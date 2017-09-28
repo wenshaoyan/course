@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sf_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:srlPrimaryColor="@color/mainBackground"
+    app:srlAccentColor="@android:color/white">
+
+    <com.scwang.smartrefresh.layout.header.BezierRadarHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlEnableHorizontalDrag="true"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.youth.banner.Banner
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:indicator_margin="10dp"
+            app:indicator_drawable_selected="@drawable/shape_banner_selected"
+            app:indicator_drawable_unselected="@drawable/shape_banner_unselected"
+            app:indicator_width="8dp"
+            app:indicator_height="8dp"
+            app:delay_time="5000"
+            app:scroll_time="1000"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:overScrollMode="never"/>
+    </LinearLayout>
+
+    <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srlClassicsSpinnerStyle="Translate"/>
+
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

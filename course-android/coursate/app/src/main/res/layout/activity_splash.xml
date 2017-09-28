@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <wenshao.com.coursate.view.MainFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom|center"
+            android:text="@string/app_name"
+            android:textColor="@android:color/white"
+            android:textSize="36sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <wenshao.com.coursate.view.MainFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top|center"
+            android:text="@string/text_app_describe"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <wenshao.com.coursate.view.MainFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|center"
+            android:text="@string/text_loading_load"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+        <app.dinus.com.loadingdrawable.LoadingView
+            android:id="@+id/level_view"
+            android:layout_gravity="top|center"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:loading_renderer="LevelLoadingRenderer"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

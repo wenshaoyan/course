@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <wenshao.com.coursate.view.MainFontTextView
+            android:id="@+id/text_app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:textColor="@color/mainBackground"
+            android:textSize="36sp" />
+        <wenshao.com.coursate.view.MainFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/text_app_name"
+            android:gravity="center|top"
+            android:layout_centerHorizontal="true"
+
+            android:text="@string/text_app_describe"
+            android:textColor="@color/mainBackground"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_guide_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
+
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/text_guide_image_title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:textColor="@color/mainBackground"
+                android:textSize="22sp"
+                android:gravity="center" />
+            <TextView
+                android:id="@+id/text_guide_image_des"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="#c0c4c7"/>
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:gravity="center">
+        <LinearLayout
+            android:id="@+id/ll_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@null">
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/shape_point_red"
+            android:id="@+id/img_red_point"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/text_skip"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="@string/text_skip"
+            android:textSize="18sp"
+            android:textColor="@color/mainBackground"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/text_next"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="@string/text_next"
+            android:textSize="18sp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/mainBackground"
+            android:gravity="center"
+            tools:ignore="RtlHardcoded" />
+    </RelativeLayout>
+
+</LinearLayout>

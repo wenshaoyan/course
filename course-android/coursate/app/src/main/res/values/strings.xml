@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Coursate</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="text_app_describe">每个人的学习工具</string>
+    <string name="text_loading_load">加载中...</string>
+    <string name="text_immediately_test">立即体验</string>
+    <string name="text_skip">跳过</string>
+    <string name="text_next">下一步</string>
+    <string name="title_activity_main1">MainActivity1</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+</resources>
