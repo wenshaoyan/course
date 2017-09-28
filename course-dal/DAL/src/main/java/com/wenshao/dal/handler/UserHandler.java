@@ -1,11 +1,9 @@
 package com.wenshao.dal.handler;
 
 import com.wenshao.dal.bean.UserBean;
-import com.wenshao.dal.dao.UserDao;
 import com.wenshao.dal.dao.impl.UserDaoImpl;
 import com.wenshao.dal.thriftgen.User;
 import com.wenshao.dal.thriftgen.UserService;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import org.apache.thrift.TException;
@@ -51,7 +49,7 @@ public class UserHandler implements UserService.Iface {
         }
     }
 
-    public User findUserById(short id) throws TException {
+    public User findUserById(int id) throws TException {
         try {
             UserBean userBeans = userDao.queryUserById(id);
             return userBeans.toUser();

@@ -92,8 +92,8 @@ UserService_insert_result.prototype.read = function(input) {
     switch (fid)
     {
       case 0:
-      if (ftype == Thrift.Type.BYTE) {
-        this.success = input.readByte();
+      if (ftype == Thrift.Type.I16) {
+        this.success = input.readI16();
       } else {
         input.skip(ftype);
       }
@@ -113,8 +113,8 @@ UserService_insert_result.prototype.read = function(input) {
 UserService_insert_result.prototype.write = function(output) {
   output.writeStructBegin('UserService_insert_result');
   if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.BYTE, 0);
-    output.writeByte(this.success);
+    output.writeFieldBegin('success', Thrift.Type.I16, 0);
+    output.writeI16(this.success);
     output.writeFieldEnd();
   }
   output.writeFieldStop();

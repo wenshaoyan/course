@@ -92,8 +92,8 @@ BannerService_insert_result.prototype.read = function(input) {
     switch (fid)
     {
       case 0:
-      if (ftype == Thrift.Type.BYTE) {
-        this.success = input.readByte();
+      if (ftype == Thrift.Type.I16) {
+        this.success = input.readI16();
       } else {
         input.skip(ftype);
       }
@@ -113,8 +113,8 @@ BannerService_insert_result.prototype.read = function(input) {
 BannerService_insert_result.prototype.write = function(output) {
   output.writeStructBegin('BannerService_insert_result');
   if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.BYTE, 0);
-    output.writeByte(this.success);
+    output.writeFieldBegin('success', Thrift.Type.I16, 0);
+    output.writeI16(this.success);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -199,8 +199,8 @@ BannerService_update_result.prototype.read = function(input) {
     switch (fid)
     {
       case 0:
-      if (ftype == Thrift.Type.BYTE) {
-        this.success = input.readByte();
+      if (ftype == Thrift.Type.I16) {
+        this.success = input.readI16();
       } else {
         input.skip(ftype);
       }
@@ -220,8 +220,8 @@ BannerService_update_result.prototype.read = function(input) {
 BannerService_update_result.prototype.write = function(output) {
   output.writeStructBegin('BannerService_update_result');
   if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.BYTE, 0);
-    output.writeByte(this.success);
+    output.writeFieldBegin('success', Thrift.Type.I16, 0);
+    output.writeI16(this.success);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -305,8 +305,8 @@ BannerService_remove_result.prototype.read = function(input) {
     switch (fid)
     {
       case 0:
-      if (ftype == Thrift.Type.BYTE) {
-        this.success = input.readByte();
+      if (ftype == Thrift.Type.I16) {
+        this.success = input.readI16();
       } else {
         input.skip(ftype);
       }
@@ -326,8 +326,8 @@ BannerService_remove_result.prototype.read = function(input) {
 BannerService_remove_result.prototype.write = function(output) {
   output.writeStructBegin('BannerService_remove_result');
   if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.BYTE, 0);
-    output.writeByte(this.success);
+    output.writeFieldBegin('success', Thrift.Type.I16, 0);
+    output.writeI16(this.success);
     output.writeFieldEnd();
   }
   output.writeFieldStop();

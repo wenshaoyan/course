@@ -12,9 +12,9 @@ public class UserService {
 
   public interface Iface {
 
-    public byte insert(User user) throws org.apache.thrift.TException;
+    public int insert(User user) throws org.apache.thrift.TException;
 
-    public User findUserById(short id) throws org.apache.thrift.TException;
+    public User findUserById(int id) throws org.apache.thrift.TException;
 
     public java.util.List<User> findUserByLogin(User user) throws org.apache.thrift.TException;
 
@@ -24,9 +24,9 @@ public class UserService {
 
   public interface AsyncIface {
 
-    public void insert(User user, org.apache.thrift.async.AsyncMethodCallback<Byte> resultHandler) throws org.apache.thrift.TException;
+    public void insert(User user, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException;
 
-    public void findUserById(short id, org.apache.thrift.async.AsyncMethodCallback<User> resultHandler) throws org.apache.thrift.TException;
+    public void findUserById(int id, org.apache.thrift.async.AsyncMethodCallback<User> resultHandler) throws org.apache.thrift.TException;
 
     public void findUserByLogin(User user, org.apache.thrift.async.AsyncMethodCallback<java.util.List<User>> resultHandler) throws org.apache.thrift.TException;
 
@@ -54,7 +54,7 @@ public class UserService {
       super(iprot, oprot);
     }
 
-    public byte insert(User user) throws org.apache.thrift.TException
+    public int insert(User user) throws org.apache.thrift.TException
     {
       send_insert(user);
       return recv_insert();
@@ -67,7 +67,7 @@ public class UserService {
       sendBase("insert", args);
     }
 
-    public byte recv_insert() throws org.apache.thrift.TException
+    public int recv_insert() throws org.apache.thrift.TException
     {
       insert_result result = new insert_result();
       receiveBase(result, "insert");
@@ -77,13 +77,13 @@ public class UserService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "insert failed: unknown result");
     }
 
-    public User findUserById(short id) throws org.apache.thrift.TException
+    public User findUserById(int id) throws org.apache.thrift.TException
     {
       send_findUserById(id);
       return recv_findUserById();
     }
 
-    public void send_findUserById(short id) throws org.apache.thrift.TException
+    public void send_findUserById(int id) throws org.apache.thrift.TException
     {
       findUserById_args args = new findUserById_args();
       args.setId(id);
@@ -164,16 +164,16 @@ public class UserService {
       super(protocolFactory, clientManager, transport);
     }
 
-    public void insert(User user, org.apache.thrift.async.AsyncMethodCallback<Byte> resultHandler) throws org.apache.thrift.TException {
+    public void insert(User user, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       insert_call method_call = new insert_call(user, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class insert_call extends org.apache.thrift.async.TAsyncMethodCall<Byte> {
+    public static class insert_call extends org.apache.thrift.async.TAsyncMethodCall<Integer> {
       private User user;
-      public insert_call(User user, org.apache.thrift.async.AsyncMethodCallback<Byte> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public insert_call(User user, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.user = user;
       }
@@ -186,7 +186,7 @@ public class UserService {
         prot.writeMessageEnd();
       }
 
-      public Byte getResult() throws org.apache.thrift.TException {
+      public Integer getResult() throws org.apache.thrift.TException {
         if (getState() != State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
@@ -196,7 +196,7 @@ public class UserService {
       }
     }
 
-    public void findUserById(short id, org.apache.thrift.async.AsyncMethodCallback<User> resultHandler) throws org.apache.thrift.TException {
+    public void findUserById(int id, org.apache.thrift.async.AsyncMethodCallback<User> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       findUserById_call method_call = new findUserById_call(id, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -204,8 +204,8 @@ public class UserService {
     }
 
     public static class findUserById_call extends org.apache.thrift.async.TAsyncMethodCall<User> {
-      private short id;
-      public findUserById_call(short id, org.apache.thrift.async.AsyncMethodCallback<User> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private int id;
+      public findUserById_call(int id, org.apache.thrift.async.AsyncMethodCallback<User> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.id = id;
       }
@@ -413,7 +413,7 @@ public class UserService {
       return processMap;
     }
 
-    public static class insert<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, insert_args, Byte> {
+    public static class insert<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, insert_args, Integer> {
       public insert() {
         super("insert");
       }
@@ -422,10 +422,10 @@ public class UserService {
         return new insert_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<Byte> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<Byte>() {
-          public void onComplete(Byte o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<Integer>() {
+          public void onComplete(Integer o) {
             insert_result result = new insert_result();
             result.success = o;
             result.setSuccessIsSet(true);
@@ -470,7 +470,7 @@ public class UserService {
         return false;
       }
 
-      public void start(I iface, insert_args args, org.apache.thrift.async.AsyncMethodCallback<Byte> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, insert_args args, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
         iface.insert(args.user,resultHandler);
       }
     }
@@ -1030,12 +1030,12 @@ public class UserService {
   public static class insert_result implements org.apache.thrift.TBase<insert_result, insert_result._Fields>, java.io.Serializable, Cloneable, Comparable<insert_result>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("insert_result");
 
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.BYTE, (short)0);
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.I32, (short)0);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new insert_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new insert_resultTupleSchemeFactory();
 
-    public byte success; // required
+    public int success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -1102,7 +1102,7 @@ public class UserService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BYTE)));
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(insert_result.class, metaDataMap);
     }
@@ -1111,7 +1111,7 @@ public class UserService {
     }
 
     public insert_result(
-      byte success)
+      int success)
     {
       this();
       this.success = success;
@@ -1136,11 +1136,11 @@ public class UserService {
       this.success = 0;
     }
 
-    public byte getSuccess() {
+    public int getSuccess() {
       return this.success;
     }
 
-    public insert_result setSuccess(byte success) {
+    public insert_result setSuccess(int success) {
       this.success = success;
       setSuccessIsSet(true);
       return this;
@@ -1165,7 +1165,7 @@ public class UserService {
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((Byte)value);
+          setSuccess((Integer)value);
         }
         break;
 
@@ -1225,7 +1225,7 @@ public class UserService {
     public int hashCode() {
       int hashCode = 1;
 
-      hashCode = hashCode * 8191 + (int) (success);
+      hashCode = hashCode * 8191 + success;
 
       return hashCode;
     }
@@ -1317,8 +1317,8 @@ public class UserService {
           }
           switch (schemeField.id) {
             case 0: // SUCCESS
-              if (schemeField.type == org.apache.thrift.protocol.TType.BYTE) {
-                struct.success = iprot.readByte();
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.success = iprot.readI32();
                 struct.setSuccessIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -1341,7 +1341,7 @@ public class UserService {
         oprot.writeStructBegin(STRUCT_DESC);
         if (struct.isSetSuccess()) {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-          oprot.writeByte(struct.success);
+          oprot.writeI32(struct.success);
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -1367,7 +1367,7 @@ public class UserService {
         }
         oprot.writeBitSet(optionals, 1);
         if (struct.isSetSuccess()) {
-          oprot.writeByte(struct.success);
+          oprot.writeI32(struct.success);
         }
       }
 
@@ -1376,7 +1376,7 @@ public class UserService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.success = iprot.readByte();
+          struct.success = iprot.readI32();
           struct.setSuccessIsSet(true);
         }
       }
@@ -1390,12 +1390,12 @@ public class UserService {
   public static class findUserById_args implements org.apache.thrift.TBase<findUserById_args, findUserById_args._Fields>, java.io.Serializable, Cloneable, Comparable<findUserById_args>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("findUserById_args");
 
-    private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.I16, (short)1);
+    private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.I32, (short)1);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new findUserById_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new findUserById_argsTupleSchemeFactory();
 
-    public short id; // required
+    public int id; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -1462,7 +1462,7 @@ public class UserService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I16)));
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(findUserById_args.class, metaDataMap);
     }
@@ -1471,7 +1471,7 @@ public class UserService {
     }
 
     public findUserById_args(
-      short id)
+      int id)
     {
       this();
       this.id = id;
@@ -1496,11 +1496,11 @@ public class UserService {
       this.id = 0;
     }
 
-    public short getId() {
+    public int getId() {
       return this.id;
     }
 
-    public findUserById_args setId(short id) {
+    public findUserById_args setId(int id) {
       this.id = id;
       setIdIsSet(true);
       return this;
@@ -1525,7 +1525,7 @@ public class UserService {
         if (value == null) {
           unsetId();
         } else {
-          setId((Short)value);
+          setId((Integer)value);
         }
         break;
 
@@ -1677,8 +1677,8 @@ public class UserService {
           }
           switch (schemeField.id) {
             case 1: // ID
-              if (schemeField.type == org.apache.thrift.protocol.TType.I16) {
-                struct.id = iprot.readI16();
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.id = iprot.readI32();
                 struct.setIdIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -1700,7 +1700,7 @@ public class UserService {
 
         oprot.writeStructBegin(STRUCT_DESC);
         oprot.writeFieldBegin(ID_FIELD_DESC);
-        oprot.writeI16(struct.id);
+        oprot.writeI32(struct.id);
         oprot.writeFieldEnd();
         oprot.writeFieldStop();
         oprot.writeStructEnd();
@@ -1725,7 +1725,7 @@ public class UserService {
         }
         oprot.writeBitSet(optionals, 1);
         if (struct.isSetId()) {
-          oprot.writeI16(struct.id);
+          oprot.writeI32(struct.id);
         }
       }
 
@@ -1734,7 +1734,7 @@ public class UserService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.id = iprot.readI16();
+          struct.id = iprot.readI32();
           struct.setIdIsSet(true);
         }
       }

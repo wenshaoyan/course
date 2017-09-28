@@ -37,7 +37,7 @@ public class UserDaoImpl implements UserDao {
         return UserBeans;
     }
 
-    public UserBean queryUserById(short id) throws Exception {
+    public UserBean queryUserById(int id) throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserBean userBean = sqlSession.selectOne(sqlTag + ".queryUserByTel", id);
         sqlSession.commit();

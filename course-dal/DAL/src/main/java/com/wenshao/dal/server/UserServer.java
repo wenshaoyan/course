@@ -5,13 +5,10 @@ import com.wenshao.dal.thriftgen.UserService;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.apache.thrift.transport.TTransportException;
 
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  * Created by wenshao on 2017/9/4
@@ -19,7 +16,7 @@ import java.util.Map;
 public class UserServer {
     public static void main(String[] args) {
         try {
-            String resource = "mybatis-config.xml";
+            String resource = "mybatis-user-config.xml";
             Reader reader = Resources.getResourceAsReader(resource);
             //构建sqlSession的工厂
             SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);

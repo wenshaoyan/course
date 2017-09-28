@@ -12,21 +12,21 @@ public class BannerService {
 
   public interface Iface {
 
-    public byte insert(com.wenshao.dal.thriftgen.Banner banner) throws org.apache.thrift.TException;
+    public int insert(com.wenshao.dal.thriftgen.Banner banner) throws org.apache.thrift.TException;
 
-    public byte update(com.wenshao.dal.thriftgen.Banner banner) throws org.apache.thrift.TException;
+    public int update(com.wenshao.dal.thriftgen.Banner banner) throws org.apache.thrift.TException;
 
-    public byte remove(short id) throws org.apache.thrift.TException;
+    public int remove(int id) throws org.apache.thrift.TException;
 
   }
 
   public interface AsyncIface {
 
-    public void insert(com.wenshao.dal.thriftgen.Banner banner, org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> resultHandler) throws org.apache.thrift.TException;
+    public void insert(com.wenshao.dal.thriftgen.Banner banner, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException;
 
-    public void update(com.wenshao.dal.thriftgen.Banner banner, org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> resultHandler) throws org.apache.thrift.TException;
+    public void update(com.wenshao.dal.thriftgen.Banner banner, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException;
 
-    public void remove(short id, org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> resultHandler) throws org.apache.thrift.TException;
+    public void remove(int id, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException;
 
   }
 
@@ -50,7 +50,7 @@ public class BannerService {
       super(iprot, oprot);
     }
 
-    public byte insert(com.wenshao.dal.thriftgen.Banner banner) throws org.apache.thrift.TException
+    public int insert(com.wenshao.dal.thriftgen.Banner banner) throws org.apache.thrift.TException
     {
       send_insert(banner);
       return recv_insert();
@@ -63,7 +63,7 @@ public class BannerService {
       sendBase("insert", args);
     }
 
-    public byte recv_insert() throws org.apache.thrift.TException
+    public int recv_insert() throws org.apache.thrift.TException
     {
       insert_result result = new insert_result();
       receiveBase(result, "insert");
@@ -73,7 +73,7 @@ public class BannerService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "insert failed: unknown result");
     }
 
-    public byte update(com.wenshao.dal.thriftgen.Banner banner) throws org.apache.thrift.TException
+    public int update(com.wenshao.dal.thriftgen.Banner banner) throws org.apache.thrift.TException
     {
       send_update(banner);
       return recv_update();
@@ -86,7 +86,7 @@ public class BannerService {
       sendBase("update", args);
     }
 
-    public byte recv_update() throws org.apache.thrift.TException
+    public int recv_update() throws org.apache.thrift.TException
     {
       update_result result = new update_result();
       receiveBase(result, "update");
@@ -96,20 +96,20 @@ public class BannerService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "update failed: unknown result");
     }
 
-    public byte remove(short id) throws org.apache.thrift.TException
+    public int remove(int id) throws org.apache.thrift.TException
     {
       send_remove(id);
       return recv_remove();
     }
 
-    public void send_remove(short id) throws org.apache.thrift.TException
+    public void send_remove(int id) throws org.apache.thrift.TException
     {
       remove_args args = new remove_args();
       args.setId(id);
       sendBase("remove", args);
     }
 
-    public byte recv_remove() throws org.apache.thrift.TException
+    public int recv_remove() throws org.apache.thrift.TException
     {
       remove_result result = new remove_result();
       receiveBase(result, "remove");
@@ -137,16 +137,16 @@ public class BannerService {
       super(protocolFactory, clientManager, transport);
     }
 
-    public void insert(com.wenshao.dal.thriftgen.Banner banner, org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> resultHandler) throws org.apache.thrift.TException {
+    public void insert(com.wenshao.dal.thriftgen.Banner banner, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       insert_call method_call = new insert_call(banner, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class insert_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Byte> {
+    public static class insert_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Integer> {
       private com.wenshao.dal.thriftgen.Banner banner;
-      public insert_call(com.wenshao.dal.thriftgen.Banner banner, org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public insert_call(com.wenshao.dal.thriftgen.Banner banner, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.banner = banner;
       }
@@ -159,7 +159,7 @@ public class BannerService {
         prot.writeMessageEnd();
       }
 
-      public java.lang.Byte getResult() throws org.apache.thrift.TException {
+      public java.lang.Integer getResult() throws org.apache.thrift.TException {
         if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new java.lang.IllegalStateException("Method call not finished!");
         }
@@ -169,16 +169,16 @@ public class BannerService {
       }
     }
 
-    public void update(com.wenshao.dal.thriftgen.Banner banner, org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> resultHandler) throws org.apache.thrift.TException {
+    public void update(com.wenshao.dal.thriftgen.Banner banner, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       update_call method_call = new update_call(banner, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class update_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Byte> {
+    public static class update_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Integer> {
       private com.wenshao.dal.thriftgen.Banner banner;
-      public update_call(com.wenshao.dal.thriftgen.Banner banner, org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public update_call(com.wenshao.dal.thriftgen.Banner banner, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.banner = banner;
       }
@@ -191,7 +191,7 @@ public class BannerService {
         prot.writeMessageEnd();
       }
 
-      public java.lang.Byte getResult() throws org.apache.thrift.TException {
+      public java.lang.Integer getResult() throws org.apache.thrift.TException {
         if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new java.lang.IllegalStateException("Method call not finished!");
         }
@@ -201,16 +201,16 @@ public class BannerService {
       }
     }
 
-    public void remove(short id, org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> resultHandler) throws org.apache.thrift.TException {
+    public void remove(int id, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       remove_call method_call = new remove_call(id, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class remove_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Byte> {
-      private short id;
-      public remove_call(short id, org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class remove_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Integer> {
+      private int id;
+      public remove_call(int id, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.id = id;
       }
@@ -223,7 +223,7 @@ public class BannerService {
         prot.writeMessageEnd();
       }
 
-      public java.lang.Byte getResult() throws org.apache.thrift.TException {
+      public java.lang.Integer getResult() throws org.apache.thrift.TException {
         if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new java.lang.IllegalStateException("Method call not finished!");
         }
@@ -334,7 +334,7 @@ public class BannerService {
       return processMap;
     }
 
-    public static class insert<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, insert_args, java.lang.Byte> {
+    public static class insert<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, insert_args, java.lang.Integer> {
       public insert() {
         super("insert");
       }
@@ -343,10 +343,10 @@ public class BannerService {
         return new insert_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte>() { 
-          public void onComplete(java.lang.Byte o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer>() { 
+          public void onComplete(java.lang.Integer o) {
             insert_result result = new insert_result();
             result.success = o;
             result.setSuccessIsSet(true);
@@ -391,12 +391,12 @@ public class BannerService {
         return false;
       }
 
-      public void start(I iface, insert_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, insert_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
         iface.insert(args.banner,resultHandler);
       }
     }
 
-    public static class update<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, update_args, java.lang.Byte> {
+    public static class update<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, update_args, java.lang.Integer> {
       public update() {
         super("update");
       }
@@ -405,10 +405,10 @@ public class BannerService {
         return new update_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte>() { 
-          public void onComplete(java.lang.Byte o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer>() { 
+          public void onComplete(java.lang.Integer o) {
             update_result result = new update_result();
             result.success = o;
             result.setSuccessIsSet(true);
@@ -453,12 +453,12 @@ public class BannerService {
         return false;
       }
 
-      public void start(I iface, update_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, update_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
         iface.update(args.banner,resultHandler);
       }
     }
 
-    public static class remove<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, remove_args, java.lang.Byte> {
+    public static class remove<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, remove_args, java.lang.Integer> {
       public remove() {
         super("remove");
       }
@@ -467,10 +467,10 @@ public class BannerService {
         return new remove_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte>() { 
-          public void onComplete(java.lang.Byte o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer>() { 
+          public void onComplete(java.lang.Integer o) {
             remove_result result = new remove_result();
             result.success = o;
             result.setSuccessIsSet(true);
@@ -515,7 +515,7 @@ public class BannerService {
         return false;
       }
 
-      public void start(I iface, remove_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Byte> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, remove_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
         iface.remove(args.id,resultHandler);
       }
     }
@@ -892,12 +892,12 @@ public class BannerService {
   public static class insert_result implements org.apache.thrift.TBase<insert_result, insert_result._Fields>, java.io.Serializable, Cloneable, Comparable<insert_result>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("insert_result");
 
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.BYTE, (short)0);
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.I32, (short)0);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new insert_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new insert_resultTupleSchemeFactory();
 
-    public byte success; // required
+    public int success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -964,7 +964,7 @@ public class BannerService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BYTE)));
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(insert_result.class, metaDataMap);
     }
@@ -973,7 +973,7 @@ public class BannerService {
     }
 
     public insert_result(
-      byte success)
+      int success)
     {
       this();
       this.success = success;
@@ -998,11 +998,11 @@ public class BannerService {
       this.success = 0;
     }
 
-    public byte getSuccess() {
+    public int getSuccess() {
       return this.success;
     }
 
-    public insert_result setSuccess(byte success) {
+    public insert_result setSuccess(int success) {
       this.success = success;
       setSuccessIsSet(true);
       return this;
@@ -1027,7 +1027,7 @@ public class BannerService {
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.lang.Byte)value);
+          setSuccess((java.lang.Integer)value);
         }
         break;
 
@@ -1087,7 +1087,7 @@ public class BannerService {
     public int hashCode() {
       int hashCode = 1;
 
-      hashCode = hashCode * 8191 + (int) (success);
+      hashCode = hashCode * 8191 + success;
 
       return hashCode;
     }
@@ -1179,8 +1179,8 @@ public class BannerService {
           }
           switch (schemeField.id) {
             case 0: // SUCCESS
-              if (schemeField.type == org.apache.thrift.protocol.TType.BYTE) {
-                struct.success = iprot.readByte();
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.success = iprot.readI32();
                 struct.setSuccessIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -1203,7 +1203,7 @@ public class BannerService {
         oprot.writeStructBegin(STRUCT_DESC);
         if (struct.isSetSuccess()) {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-          oprot.writeByte(struct.success);
+          oprot.writeI32(struct.success);
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -1229,7 +1229,7 @@ public class BannerService {
         }
         oprot.writeBitSet(optionals, 1);
         if (struct.isSetSuccess()) {
-          oprot.writeByte(struct.success);
+          oprot.writeI32(struct.success);
         }
       }
 
@@ -1238,7 +1238,7 @@ public class BannerService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.success = iprot.readByte();
+          struct.success = iprot.readI32();
           struct.setSuccessIsSet(true);
         }
       }
@@ -1619,12 +1619,12 @@ public class BannerService {
   public static class update_result implements org.apache.thrift.TBase<update_result, update_result._Fields>, java.io.Serializable, Cloneable, Comparable<update_result>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("update_result");
 
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.BYTE, (short)0);
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.I32, (short)0);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new update_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new update_resultTupleSchemeFactory();
 
-    public byte success; // required
+    public int success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -1691,7 +1691,7 @@ public class BannerService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BYTE)));
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(update_result.class, metaDataMap);
     }
@@ -1700,7 +1700,7 @@ public class BannerService {
     }
 
     public update_result(
-      byte success)
+      int success)
     {
       this();
       this.success = success;
@@ -1725,11 +1725,11 @@ public class BannerService {
       this.success = 0;
     }
 
-    public byte getSuccess() {
+    public int getSuccess() {
       return this.success;
     }
 
-    public update_result setSuccess(byte success) {
+    public update_result setSuccess(int success) {
       this.success = success;
       setSuccessIsSet(true);
       return this;
@@ -1754,7 +1754,7 @@ public class BannerService {
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.lang.Byte)value);
+          setSuccess((java.lang.Integer)value);
         }
         break;
 
@@ -1814,7 +1814,7 @@ public class BannerService {
     public int hashCode() {
       int hashCode = 1;
 
-      hashCode = hashCode * 8191 + (int) (success);
+      hashCode = hashCode * 8191 + success;
 
       return hashCode;
     }
@@ -1906,8 +1906,8 @@ public class BannerService {
           }
           switch (schemeField.id) {
             case 0: // SUCCESS
-              if (schemeField.type == org.apache.thrift.protocol.TType.BYTE) {
-                struct.success = iprot.readByte();
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.success = iprot.readI32();
                 struct.setSuccessIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -1930,7 +1930,7 @@ public class BannerService {
         oprot.writeStructBegin(STRUCT_DESC);
         if (struct.isSetSuccess()) {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-          oprot.writeByte(struct.success);
+          oprot.writeI32(struct.success);
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -1956,7 +1956,7 @@ public class BannerService {
         }
         oprot.writeBitSet(optionals, 1);
         if (struct.isSetSuccess()) {
-          oprot.writeByte(struct.success);
+          oprot.writeI32(struct.success);
         }
       }
 
@@ -1965,7 +1965,7 @@ public class BannerService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.success = iprot.readByte();
+          struct.success = iprot.readI32();
           struct.setSuccessIsSet(true);
         }
       }
@@ -1979,12 +1979,12 @@ public class BannerService {
   public static class remove_args implements org.apache.thrift.TBase<remove_args, remove_args._Fields>, java.io.Serializable, Cloneable, Comparable<remove_args>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("remove_args");
 
-    private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.I16, (short)1);
+    private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.I32, (short)1);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new remove_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new remove_argsTupleSchemeFactory();
 
-    public short id; // required
+    public int id; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -2051,7 +2051,7 @@ public class BannerService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I16)));
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(remove_args.class, metaDataMap);
     }
@@ -2060,7 +2060,7 @@ public class BannerService {
     }
 
     public remove_args(
-      short id)
+      int id)
     {
       this();
       this.id = id;
@@ -2085,11 +2085,11 @@ public class BannerService {
       this.id = 0;
     }
 
-    public short getId() {
+    public int getId() {
       return this.id;
     }
 
-    public remove_args setId(short id) {
+    public remove_args setId(int id) {
       this.id = id;
       setIdIsSet(true);
       return this;
@@ -2114,7 +2114,7 @@ public class BannerService {
         if (value == null) {
           unsetId();
         } else {
-          setId((java.lang.Short)value);
+          setId((java.lang.Integer)value);
         }
         break;
 
@@ -2266,8 +2266,8 @@ public class BannerService {
           }
           switch (schemeField.id) {
             case 1: // ID
-              if (schemeField.type == org.apache.thrift.protocol.TType.I16) {
-                struct.id = iprot.readI16();
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.id = iprot.readI32();
                 struct.setIdIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -2289,7 +2289,7 @@ public class BannerService {
 
         oprot.writeStructBegin(STRUCT_DESC);
         oprot.writeFieldBegin(ID_FIELD_DESC);
-        oprot.writeI16(struct.id);
+        oprot.writeI32(struct.id);
         oprot.writeFieldEnd();
         oprot.writeFieldStop();
         oprot.writeStructEnd();
@@ -2314,7 +2314,7 @@ public class BannerService {
         }
         oprot.writeBitSet(optionals, 1);
         if (struct.isSetId()) {
-          oprot.writeI16(struct.id);
+          oprot.writeI32(struct.id);
         }
       }
 
@@ -2323,7 +2323,7 @@ public class BannerService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.id = iprot.readI16();
+          struct.id = iprot.readI32();
           struct.setIdIsSet(true);
         }
       }
@@ -2337,12 +2337,12 @@ public class BannerService {
   public static class remove_result implements org.apache.thrift.TBase<remove_result, remove_result._Fields>, java.io.Serializable, Cloneable, Comparable<remove_result>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("remove_result");
 
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.BYTE, (short)0);
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.I32, (short)0);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new remove_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new remove_resultTupleSchemeFactory();
 
-    public byte success; // required
+    public int success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -2409,7 +2409,7 @@ public class BannerService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BYTE)));
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(remove_result.class, metaDataMap);
     }
@@ -2418,7 +2418,7 @@ public class BannerService {
     }
 
     public remove_result(
-      byte success)
+      int success)
     {
       this();
       this.success = success;
@@ -2443,11 +2443,11 @@ public class BannerService {
       this.success = 0;
     }
 
-    public byte getSuccess() {
+    public int getSuccess() {
       return this.success;
     }
 
-    public remove_result setSuccess(byte success) {
+    public remove_result setSuccess(int success) {
       this.success = success;
       setSuccessIsSet(true);
       return this;
@@ -2472,7 +2472,7 @@ public class BannerService {
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.lang.Byte)value);
+          setSuccess((java.lang.Integer)value);
         }
         break;
 
@@ -2532,7 +2532,7 @@ public class BannerService {
     public int hashCode() {
       int hashCode = 1;
 
-      hashCode = hashCode * 8191 + (int) (success);
+      hashCode = hashCode * 8191 + success;
 
       return hashCode;
     }
@@ -2624,8 +2624,8 @@ public class BannerService {
           }
           switch (schemeField.id) {
             case 0: // SUCCESS
-              if (schemeField.type == org.apache.thrift.protocol.TType.BYTE) {
-                struct.success = iprot.readByte();
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.success = iprot.readI32();
                 struct.setSuccessIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -2648,7 +2648,7 @@ public class BannerService {
         oprot.writeStructBegin(STRUCT_DESC);
         if (struct.isSetSuccess()) {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-          oprot.writeByte(struct.success);
+          oprot.writeI32(struct.success);
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -2674,7 +2674,7 @@ public class BannerService {
         }
         oprot.writeBitSet(optionals, 1);
         if (struct.isSetSuccess()) {
-          oprot.writeByte(struct.success);
+          oprot.writeI32(struct.success);
         }
       }
 
@@ -2683,7 +2683,7 @@ public class BannerService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.success = iprot.readByte();
+          struct.success = iprot.readI32();
           struct.setSuccessIsSet(true);
         }
       }
