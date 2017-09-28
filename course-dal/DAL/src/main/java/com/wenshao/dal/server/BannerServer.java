@@ -23,9 +23,9 @@ public class BannerServer{
             Reader reader = Resources.getResourceAsReader(resource);
             //构建sqlSession的工厂
             SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
-            n
+
             BannerHandler handler = new BannerHandler(sessionFactory);
-            UserService.Processor processor = new BannerService.Processor(handler);
+            BannerService.Processor processor = new BannerService.Processor(handler);
             Server server = new Server(processor, 9091);
             server.startService();
         } catch (IOException e) {

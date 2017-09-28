@@ -11,7 +11,7 @@ import java.util.List;
 public interface UserDao {
     public int insertUser(UserBean userBean) throws Exception;
     public List<UserBean> queryUserByTel(String tel) throws Exception;
-    public UserBean queryUserById(short id) throws Exception;
+    public UserBean queryUserById(int id) throws Exception;
     public List<UserBean> queryUserByInfo(UserBean userBean) throws Exception;
 
 }

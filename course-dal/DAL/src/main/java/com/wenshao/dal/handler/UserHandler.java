@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * Created by wenshao on 2017/8/28.
+ * 用户handler
  */
 public class UserHandler implements UserService.Iface {
     private UserDaoImpl userDao;
