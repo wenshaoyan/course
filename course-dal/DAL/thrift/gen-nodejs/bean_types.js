@@ -189,10 +189,44 @@ User.prototype.write = function(output) {
   return;
 };
 
-var Message = module.exports.Message = function(args) {
+var Banner = module.exports.Banner = function(args) {
+  this.id = null;
+  this.create_time = null;
+  this.update_time = null;
+  this.user_id = null;
+  this.image_url = null;
+  this.redirect_url = null;
+  this.show_client_id = null;
+  this.location = null;
+  if (args) {
+    if (args.id !== undefined && args.id !== null) {
+      this.id = args.id;
+    }
+    if (args.create_time !== undefined && args.create_time !== null) {
+      this.create_time = args.create_time;
+    }
+    if (args.update_time !== undefined && args.update_time !== null) {
+      this.update_time = args.update_time;
+    }
+    if (args.user_id !== undefined && args.user_id !== null) {
+      this.user_id = args.user_id;
+    }
+    if (args.image_url !== undefined && args.image_url !== null) {
+      this.image_url = args.image_url;
+    }
+    if (args.redirect_url !== undefined && args.redirect_url !== null) {
+      this.redirect_url = args.redirect_url;
+    }
+    if (args.show_client_id !== undefined && args.show_client_id !== null) {
+      this.show_client_id = args.show_client_id;
+    }
+    if (args.location !== undefined && args.location !== null) {
+      this.location = args.location;
+    }
+  }
 };
-Message.prototype = {};
-Message.prototype.read = function(input) {
+Banner.prototype = {};
+Banner.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -203,15 +237,115 @@ Message.prototype.read = function(input) {
     if (ftype == Thrift.Type.STOP) {
       break;
     }
-    input.skip(ftype);
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I16) {
+        this.id = input.readI16();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.create_time = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.STRING) {
+        this.update_time = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 4:
+      if (ftype == Thrift.Type.I16) {
+        this.user_id = input.readI16();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 5:
+      if (ftype == Thrift.Type.STRING) {
+        this.image_url = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 6:
+      if (ftype == Thrift.Type.STRING) {
+        this.redirect_url = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 7:
+      if (ftype == Thrift.Type.I16) {
+        this.show_client_id = input.readI16();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 8:
+      if (ftype == Thrift.Type.I16) {
+        this.location = input.readI16();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
     input.readFieldEnd();
   }
   input.readStructEnd();
   return;
 };
 
-Message.prototype.write = function(output) {
-  output.writeStructBegin('Message');
+Banner.prototype.write = function(output) {
+  output.writeStructBegin('Banner');
+  if (this.id !== null && this.id !== undefined) {
+    output.writeFieldBegin('id', Thrift.Type.I16, 1);
+    output.writeI16(this.id);
+    output.writeFieldEnd();
+  }
+  if (this.create_time !== null && this.create_time !== undefined) {
+    output.writeFieldBegin('create_time', Thrift.Type.STRING, 2);
+    output.writeString(this.create_time);
+    output.writeFieldEnd();
+  }
+  if (this.update_time !== null && this.update_time !== undefined) {
+    output.writeFieldBegin('update_time', Thrift.Type.STRING, 3);
+    output.writeString(this.update_time);
+    output.writeFieldEnd();
+  }
+  if (this.user_id !== null && this.user_id !== undefined) {
+    output.writeFieldBegin('user_id', Thrift.Type.I16, 4);
+    output.writeI16(this.user_id);
+    output.writeFieldEnd();
+  }
+  if (this.image_url !== null && this.image_url !== undefined) {
+    output.writeFieldBegin('image_url', Thrift.Type.STRING, 5);
+    output.writeString(this.image_url);
+    output.writeFieldEnd();
+  }
+  if (this.redirect_url !== null && this.redirect_url !== undefined) {
+    output.writeFieldBegin('redirect_url', Thrift.Type.STRING, 6);
+    output.writeString(this.redirect_url);
+    output.writeFieldEnd();
+  }
+  if (this.show_client_id !== null && this.show_client_id !== undefined) {
+    output.writeFieldBegin('show_client_id', Thrift.Type.I16, 7);
+    output.writeI16(this.show_client_id);
+    output.writeFieldEnd();
+  }
+  if (this.location !== null && this.location !== undefined) {
+    output.writeFieldBegin('location', Thrift.Type.I16, 8);
+    output.writeI16(this.location);
+    output.writeFieldEnd();
+  }
   output.writeFieldStop();
   output.writeStructEnd();
   return;
