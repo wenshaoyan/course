@@ -10,6 +10,14 @@ struct User{
     8: string update_time,
     9: string password
 }
-struct Message{
+struct Banner{
+    1:i16 id
+    2:string create_time
+    3:string update_time
+    4:i16 user_id
+    5:string image_url
+    6:string redirect_url
+    7:i16 show_client_id
+    8:i16 location
 
 }
