@@ -1,0 +1,262 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ *
+ */
+
+const debug = require('debug')('demo:server');
+const http = require('http');
+// 加载log4js
+const log4js = require('log4js');
+const log4jsConfig = require('../config/log4js.json');
+global.getLogger = log4js.getLogger;
+const logger = getLogger();
+
+// 定义全局变量
+let serviceConfig = require('../config/service.json');
+let errorSource = require('../config/error_source.json');
+log4js.configure(log4jsConfig);
+global.getServiceConfig = () => {
+    return serviceConfig;
+};
+global.errorSource = errorSource;
+const envSet = new Set(['develop','production']);
+function getEnv() {
+    let env = process.env.NODE_ENV;
+    if (env && envSet.has(env)) return env;
+    return 'develop';
+}
+global.NODE_ENV = getEnv();
+
+
+const thriftServerMap = new Map();
+global.getThriftServer = function (name) {
+    return thriftServerMap.get(name);
+};
+// 获取
+// 导入ip的工具类
+const IpUtil = require('../util/ip_util');
+
+
+const app = require('../app');
+
+// 连接zookeeper
+const Curator = require('../modules/node-curator');
+const CuratorFrameworkFactory = Curator.CuratorFrameworkFactory;
+const Stat = Curator.Stat;
+
+
+// 导入server
+const ThriftHelp = require('../modules/thrift-help');
+const User = require('../gen-nodejs/UserService.js');
+
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(serviceConfig.port || '3001');
+// app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+const server = http.createServer(app.callback());
+
+/**
+ * zookeeper start
+ */
+let client;
+client = CuratorFrameworkFactory.builder()
+    .connectString(serviceConfig.zkServer)
+    .namespace(`http/User`)
+    .setLogger(getLogger('zookeeper'))
+    .build(main);
+client.start();
+//global.myUserServer = null;
+let preNodeList = null;
+
+
+async function main() {
+    try {
+        let userParentPath = `/dal/${getEnv()}/UserService`;
+
+        const connectZk = new ThriftHelp.ConnectZk(userParentPath,client);
+
+        //const address = await getUserServer(client);
+        const address = await connectZk.getServer();    // 获取连接dal的地址
+        // 创建thrift的连接
+        let userServer = await new ThriftHelp.Server()
+            .setAddress(address.data)
+            .setServer('UserService', User)
+            .setPoolNumber(2, 10)
+            .setNodeName(address.nodeName)
+            .connect();
+        // 监听连接的变化 并修改
+        connectZk.setServer(userServer);
+        thriftServerMap.set('userServer',userServer);
+        const path = await client.create()
+            .withMode(CuratorFrameworkFactory.EPHEMERAL)
+            .isAbsoluteAddress()
+            .forPath(`/${IpUtil.getLocalIp()}`, `${IpUtil.getLocalIp()}:${serviceConfig.port}`);
+        server.listen(port);
+        server.on('error', onError);
+        server.on('listening', onListening);
+        logger.debug(`server start succeed :port=${port}`);
+    } catch (e) {
+        console.log(e);
+        process.exit();
+
+    }
+}
+
+async function getUserServer(_client) {
+    let zkDalPath = `/dal/${getEnv()}/UserService`;
+    const childrenData = await serverAddressByZk(_client, `${zkDalPath}`);
+    let server = childrenData[Math.floor((Math.random() * childrenData.length))];
+
+    if (!myUserServer) { // 初始化
+        const path = `${zkDalPath}/${server}`;
+        preNodeList = childrenData;
+        return await serverDataByZk(_client, path);
+    }
+    if (childrenData.length > preNodeList.length) { // 当前的节点个数大于上一次的节点
+        preNodeList = childrenData;
+        if (myUserServer.connectionStatus === 2){   // 当前为断开 需要重连
+            const path = `${zkDalPath}/${server}`;
+            return await serverDataByZk(_client, path);
+        }else if (myUserServer.connectionStatus === 1){  // 增加新节点不处理
+
+        }
+    }else if (childrenData.length < preNodeList.length && childrenData.length > 0){      // 当前的节点个数小于上一次的节点 判断删除的节点是否为当前节点
+        preNodeList = childrenData;
+        if (childrenData.indexOf(myUserServer.getNodeName()) === -1){
+            const path = `${zkDalPath}/${server}`;
+            return await serverDataByZk(_client, path);
+        }else{  // 删除的不是当前连接的节点
+
+        }
+    }else{  // 断开thrift连接
+        preNodeList = childrenData;
+        myUserServer.close();
+        logger.debug(myUserServer.connectionStatus);
+    }
+
+}
+async function serverAddressByZk(_client, _path) {
+    const childrenData = await _client.getChildren()
+        .unwantedNamespace()
+        .setWatcher(_client, watchParentNode)
+        .forPath(_path);
+
+    if (childrenData.length === 0) {
+        if (myUserServer && myUserServer instanceof ThriftHelp.Server) {
+            myUserServer.close();
+        } else {
+            throw new Error('UserServer not found');
+        }
+    }
+    return childrenData;
+}
+async function serverDataByZk(_client, _path) {
+    let stat = new Stat();
+    const split = _path.split('/');
+    const childData = await _client.getData()
+        .unwantedNamespace()
+        .storingStatIn(Stat)
+        .setWatcher(_client, watchNode)
+        .forPath(_path);
+    if (myUserServer && myUserServer instanceof ThriftHelp.Server) {
+        myUserServer.setNodeName(split[split.length-1]);
+        myUserServer.setAddress(childData);
+    }
+    return {data: childData, stat: stat.data,nodeName:split[split.length-1]};
+
+}
+// 监听单个数据节点
+function watchNode(__client, event) {
+    logger.debug('watchNode',event.getType());
+    const type = event.getType();
+    if (type === 3) {        // 节点修改
+        serverDataByZk(__client, event.getPath());
+    }
+}
+// 监听父节点
+function watchParentNode(__client, event) {
+    logger.debug('watchParentNode',event.getType());
+    const type = event.getType();
+    if (type === 4) {        // 子节点变化
+        getUserServer(__client, 4);
+    }
+}
+
+process.on('exit', (code) => {
+    logger.error('process exit!');
+    logger.info('zookeeper session close!');
+    // client = null;
+    //process.exit();
+    //client.close();
+
+});
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+    let port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+
+    return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+
+    let bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
+
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+    let addr = server.address();
+    let bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
+    debug('Listening on ' + bind);
+}
