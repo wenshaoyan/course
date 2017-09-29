@@ -13,20 +13,32 @@ router.use(async (ctx, next) => {
     }
 });
 
-router.post(apiName);
-router.get(apiName,async(ctx,next)=>{
-    ctx.body=1;
+router.post(apiName, async (ctx, next) => {
+    const client = getThriftServer(`'${getServiceConfig().serverName}'`).getClient();
+    const banner = new bean_types.Banner();
+    const params = ctx.request.body;
+    SysUtil.copyObjectAttr(banner, params);
+    try {
+        let result = await client.insert(banner);
+        logger.info(result);
+        ctx.body = {};
+    } catch (e) {
+        ctx.error = e;
+    }
+
+});
+router.get(apiName, async (ctx, next) => {
+    ctx.body = 1;
 });
 router.put(apiName);
 router.delete(apiName);
 router.patch(apiName);
 
 
-
 router.get('test', async (ctx, next) => {
     let banner = new bean_types.Banner();
     banner.id = 2;
-    banner.create_time='1506675182000';
+    banner.create_time = '1506675182000';
     const client = getThriftServer(`'${getServiceConfig().serverName}'`).getClient();
     ctx.body = await client.select(banner);
 });
