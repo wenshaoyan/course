@@ -4,7 +4,7 @@ import org.apache.commons.beanutils.Converter;
 import java.sql.Timestamp;
 
 /**
- * Created by UPC on 2017/9/28.
+ * Created by wenshao on 2017/9/28.
  * 将字符串的时间转sql的Timestamp
  */
 public class DateStringToTimeLocaleConverter implements Converter {

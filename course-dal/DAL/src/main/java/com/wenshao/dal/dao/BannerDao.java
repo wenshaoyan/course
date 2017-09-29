@@ -5,7 +5,7 @@ import com.wenshao.dal.bean.BannerBean;
 import java.util.List;
 
 /**
- * Created by UPC on 2017/9/28.
+ * Created by wenshao on 2017/9/28.
  * 轮播图接口
  */
 public interface BannerDao {

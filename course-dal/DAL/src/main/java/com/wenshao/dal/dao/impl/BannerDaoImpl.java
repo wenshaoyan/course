@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import java.util.List;
 
 /**
- * Created by UPC on 2017/9/28.
+ * Created by wenshao on 2017/9/28.
  * 轮播图实现类
  */
 public class BannerDaoImpl implements BannerDao{

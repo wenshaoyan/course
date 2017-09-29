@@ -52,4 +52,9 @@ public class BannerHandler implements BannerService.Iface {
 
     }
 
+    @Override
+    public List<Banner> select(Banner banner) throws TException {
+        return null;
+    }
+
 }

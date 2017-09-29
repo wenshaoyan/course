@@ -7,7 +7,7 @@
         VALUES(NOW(),NOW(),#{image_url},#{redirect_url},#{show_client_id},#{location})
 
     </insert>
-    <select id="select" resultMap="bannerResult">
+    <select parameterType="_Banner" id="select" resultMap="bannerResult">
       select * from t_banner;
     </select>
     <resultMap id="bannerResult" type="_Banner">

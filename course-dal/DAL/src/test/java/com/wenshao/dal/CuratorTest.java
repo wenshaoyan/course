@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Created by UPC on 2017/9/6.
+ * Created by wenshao on 2017/9/6.
  */
 public class CuratorTest {
 
