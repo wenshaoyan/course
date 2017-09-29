@@ -12,6 +12,7 @@ service BannerService{
      i32 insert(1: bean.Banner banner)
      i32 update(1: bean.Banner banner)
      i32 remove(1: i32 id)
+     list<bean.Banner> selectAll()
 
 
 }

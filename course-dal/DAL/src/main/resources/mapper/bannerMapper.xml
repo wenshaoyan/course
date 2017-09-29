@@ -7,4 +7,17 @@
         VALUES(NOW(),NOW(),#{image_url},#{redirect_url},#{show_client_id},#{location})
 
     </insert>
+    <select id="select" resultMap="bannerResult">
+      select * from t_banner;
+    </select>
+    <resultMap id="bannerResult" type="_Banner">
+        <id property="id" column="banner_id"/>
+        <result property="create_time_bean" column="banner_create_time"/>
+        <result property="update_time_bean" column="banner_update_time"/>
+        <result property="user_id" column="banner_user_id"/>
+        <result property="redirect_url" column="banner_redirect_url"/>
+        <result property="redirect_url" column="banner_redirect_url"/>
+        <result property="show_client_id" column="banner_show_client_id"/>
+        <result property="location" column="banner_location"/>
+    </resultMap>
 </mapper>

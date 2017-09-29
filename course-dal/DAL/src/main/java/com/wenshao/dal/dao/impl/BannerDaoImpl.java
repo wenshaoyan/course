@@ -5,6 +5,8 @@ import com.wenshao.dal.dao.BannerDao;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import java.util.List;
+
 /**
  * Created by UPC on 2017/9/28.
  * 轮播图实现类
@@ -40,7 +42,11 @@ public class BannerDaoImpl implements BannerDao{
         return 0;
     }
 
-    public int selectAll(int id) throws Exception {
-        return 0;
+    public List<BannerBean> selectAll() throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        List<BannerBean> objects = sqlSession.selectList(sqlTag + ".select");
+        sqlSession.commit();
+        sqlSession.close();
+        return objects;
     }
 }

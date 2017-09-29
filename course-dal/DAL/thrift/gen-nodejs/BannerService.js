@@ -92,8 +92,8 @@ BannerService_insert_result.prototype.read = function(input) {
     switch (fid)
     {
       case 0:
-      if (ftype == Thrift.Type.I16) {
-        this.success = input.readI16();
+      if (ftype == Thrift.Type.I32) {
+        this.success = input.readI32();
       } else {
         input.skip(ftype);
       }
@@ -113,8 +113,8 @@ BannerService_insert_result.prototype.read = function(input) {
 BannerService_insert_result.prototype.write = function(output) {
   output.writeStructBegin('BannerService_insert_result');
   if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.I16, 0);
-    output.writeI16(this.success);
+    output.writeFieldBegin('success', Thrift.Type.I32, 0);
+    output.writeI32(this.success);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -199,8 +199,8 @@ BannerService_update_result.prototype.read = function(input) {
     switch (fid)
     {
       case 0:
-      if (ftype == Thrift.Type.I16) {
-        this.success = input.readI16();
+      if (ftype == Thrift.Type.I32) {
+        this.success = input.readI32();
       } else {
         input.skip(ftype);
       }
@@ -220,8 +220,8 @@ BannerService_update_result.prototype.read = function(input) {
 BannerService_update_result.prototype.write = function(output) {
   output.writeStructBegin('BannerService_update_result');
   if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.I16, 0);
-    output.writeI16(this.success);
+    output.writeFieldBegin('success', Thrift.Type.I32, 0);
+    output.writeI32(this.success);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -252,8 +252,8 @@ BannerService_remove_args.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.I16) {
-        this.id = input.readI16();
+      if (ftype == Thrift.Type.I32) {
+        this.id = input.readI32();
       } else {
         input.skip(ftype);
       }
@@ -273,8 +273,8 @@ BannerService_remove_args.prototype.read = function(input) {
 BannerService_remove_args.prototype.write = function(output) {
   output.writeStructBegin('BannerService_remove_args');
   if (this.id !== null && this.id !== undefined) {
-    output.writeFieldBegin('id', Thrift.Type.I16, 1);
-    output.writeI16(this.id);
+    output.writeFieldBegin('id', Thrift.Type.I32, 1);
+    output.writeI32(this.id);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -305,8 +305,8 @@ BannerService_remove_result.prototype.read = function(input) {
     switch (fid)
     {
       case 0:
-      if (ftype == Thrift.Type.I16) {
-        this.success = input.readI16();
+      if (ftype == Thrift.Type.I32) {
+        this.success = input.readI32();
       } else {
         input.skip(ftype);
       }
@@ -326,8 +326,112 @@ BannerService_remove_result.prototype.read = function(input) {
 BannerService_remove_result.prototype.write = function(output) {
   output.writeStructBegin('BannerService_remove_result');
   if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.I16, 0);
-    output.writeI16(this.success);
+    output.writeFieldBegin('success', Thrift.Type.I32, 0);
+    output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var BannerService_selectAll_args = function(args) {
+};
+BannerService_selectAll_args.prototype = {};
+BannerService_selectAll_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    input.skip(ftype);
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_selectAll_args.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_selectAll_args');
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var BannerService_selectAll_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [bean_ttypes.Banner]);
+    }
+  }
+};
+BannerService_selectAll_result.prototype = {};
+BannerService_selectAll_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size16 = 0;
+        var _rtmp320;
+        this.success = [];
+        var _etype19 = 0;
+        _rtmp320 = input.readListBegin();
+        _etype19 = _rtmp320.etype;
+        _size16 = _rtmp320.size;
+        for (var _i21 = 0; _i21 < _size16; ++_i21)
+        {
+          var elem22 = null;
+          elem22 = new bean_ttypes.Banner();
+          elem22.read(input);
+          this.success.push(elem22);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_selectAll_result.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_selectAll_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter23 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter23))
+      {
+        iter23 = this.success[iter23];
+        iter23.write(output);
+      }
+    }
+    output.writeListEnd();
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -485,6 +589,52 @@ BannerServiceClient.prototype.recv_remove = function(input,mtype,rseqid) {
   }
   return callback('remove failed: unknown result');
 };
+BannerServiceClient.prototype.selectAll = function(callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_selectAll();
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_selectAll();
+  }
+};
+
+BannerServiceClient.prototype.send_selectAll = function() {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('selectAll', Thrift.MessageType.CALL, this.seqid());
+  var args = new BannerService_selectAll_args();
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+BannerServiceClient.prototype.recv_selectAll = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new BannerService_selectAll_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('selectAll failed: unknown result');
+};
 var BannerServiceProcessor = exports.Processor = function(handler) {
   this._handler = handler;
 }
@@ -605,6 +755,42 @@ BannerServiceProcessor.prototype.process_remove = function(seqid, input, output)
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
         output.writeMessageBegin("remove", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+BannerServiceProcessor.prototype.process_selectAll = function(seqid, input, output) {
+  var args = new BannerService_selectAll_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.selectAll.length === 0) {
+    Q.fcall(this._handler.selectAll)
+      .then(function(result) {
+        var result_obj = new BannerService_selectAll_result({success: result});
+        output.writeMessageBegin("selectAll", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("selectAll", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.selectAll(function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined')) {
+        result_obj = new BannerService_selectAll_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("selectAll", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("selectAll", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();

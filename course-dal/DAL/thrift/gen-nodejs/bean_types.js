@@ -240,8 +240,8 @@ Banner.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.I16) {
-        this.id = input.readI16();
+      if (ftype == Thrift.Type.I32) {
+        this.id = input.readI32();
       } else {
         input.skip(ftype);
       }
@@ -261,8 +261,8 @@ Banner.prototype.read = function(input) {
       }
       break;
       case 4:
-      if (ftype == Thrift.Type.I16) {
-        this.user_id = input.readI16();
+      if (ftype == Thrift.Type.I32) {
+        this.user_id = input.readI32();
       } else {
         input.skip(ftype);
       }
@@ -307,8 +307,8 @@ Banner.prototype.read = function(input) {
 Banner.prototype.write = function(output) {
   output.writeStructBegin('Banner');
   if (this.id !== null && this.id !== undefined) {
-    output.writeFieldBegin('id', Thrift.Type.I16, 1);
-    output.writeI16(this.id);
+    output.writeFieldBegin('id', Thrift.Type.I32, 1);
+    output.writeI32(this.id);
     output.writeFieldEnd();
   }
   if (this.create_time !== null && this.create_time !== undefined) {
@@ -322,8 +322,8 @@ Banner.prototype.write = function(output) {
     output.writeFieldEnd();
   }
   if (this.user_id !== null && this.user_id !== undefined) {
-    output.writeFieldBegin('user_id', Thrift.Type.I16, 4);
-    output.writeI16(this.user_id);
+    output.writeFieldBegin('user_id', Thrift.Type.I32, 4);
+    output.writeI32(this.user_id);
     output.writeFieldEnd();
   }
   if (this.image_url !== null && this.image_url !== undefined) {

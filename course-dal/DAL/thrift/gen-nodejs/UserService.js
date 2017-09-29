@@ -92,8 +92,8 @@ UserService_insert_result.prototype.read = function(input) {
     switch (fid)
     {
       case 0:
-      if (ftype == Thrift.Type.I16) {
-        this.success = input.readI16();
+      if (ftype == Thrift.Type.I32) {
+        this.success = input.readI32();
       } else {
         input.skip(ftype);
       }
@@ -113,8 +113,8 @@ UserService_insert_result.prototype.read = function(input) {
 UserService_insert_result.prototype.write = function(output) {
   output.writeStructBegin('UserService_insert_result');
   if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.I16, 0);
-    output.writeI16(this.success);
+    output.writeFieldBegin('success', Thrift.Type.I32, 0);
+    output.writeI32(this.success);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -145,8 +145,8 @@ UserService_findUserById_args.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.I16) {
-        this.id = input.readI16();
+      if (ftype == Thrift.Type.I32) {
+        this.id = input.readI32();
       } else {
         input.skip(ftype);
       }
@@ -166,8 +166,8 @@ UserService_findUserById_args.prototype.read = function(input) {
 UserService_findUserById_args.prototype.write = function(output) {
   output.writeStructBegin('UserService_findUserById_args');
   if (this.id !== null && this.id !== undefined) {
-    output.writeFieldBegin('id', Thrift.Type.I16, 1);
-    output.writeI16(this.id);
+    output.writeFieldBegin('id', Thrift.Type.I32, 1);
+    output.writeI32(this.id);
     output.writeFieldEnd();
   }
   output.writeFieldStop();

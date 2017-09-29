@@ -11,10 +11,10 @@ struct User{
     9: string password
 }
 struct Banner{
-    1:i16 id
+    1:i32 id
     2:string create_time
     3:string update_time
-    4:i16 user_id
+    4:i32 user_id
     5:string image_url
     6:string redirect_url
     7:i16 show_client_id
