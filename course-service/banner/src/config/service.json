@@ -1,0 +1,7 @@
+{
+  "port":10002,
+  "zkServer":"123.207.55.204:2181,123.207.55.204:2182,123.207.55.204:2183",
+  "serverName":"BannerService",
+  "dalName":"BannerService"
+
+}

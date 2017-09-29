@@ -15,16 +15,16 @@ var bean_ttypes = require('./bean_types');
 var ttypes = require('./service_types');
 //HELPER FUNCTIONS AND STRUCTURES
 
-var UserService_insert_args = function(args) {
-  this.user = null;
+var BannerService_insert_args = function(args) {
+  this.banner = null;
   if (args) {
-    if (args.user !== undefined && args.user !== null) {
-      this.user = new bean_ttypes.User(args.user);
+    if (args.banner !== undefined && args.banner !== null) {
+      this.banner = new bean_ttypes.Banner(args.banner);
     }
   }
 };
-UserService_insert_args.prototype = {};
-UserService_insert_args.prototype.read = function(input) {
+BannerService_insert_args.prototype = {};
+BannerService_insert_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -39,8 +39,8 @@ UserService_insert_args.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRUCT) {
-        this.user = new bean_ttypes.User();
-        this.user.read(input);
+        this.banner = new bean_ttypes.Banner();
+        this.banner.read(input);
       } else {
         input.skip(ftype);
       }
@@ -57,11 +57,11 @@ UserService_insert_args.prototype.read = function(input) {
   return;
 };
 
-UserService_insert_args.prototype.write = function(output) {
-  output.writeStructBegin('UserService_insert_args');
-  if (this.user !== null && this.user !== undefined) {
-    output.writeFieldBegin('user', Thrift.Type.STRUCT, 1);
-    this.user.write(output);
+BannerService_insert_args.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_insert_args');
+  if (this.banner !== null && this.banner !== undefined) {
+    output.writeFieldBegin('banner', Thrift.Type.STRUCT, 1);
+    this.banner.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -69,7 +69,7 @@ UserService_insert_args.prototype.write = function(output) {
   return;
 };
 
-var UserService_insert_result = function(args) {
+var BannerService_insert_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
@@ -77,8 +77,8 @@ var UserService_insert_result = function(args) {
     }
   }
 };
-UserService_insert_result.prototype = {};
-UserService_insert_result.prototype.read = function(input) {
+BannerService_insert_result.prototype = {};
+BannerService_insert_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -110,8 +110,8 @@ UserService_insert_result.prototype.read = function(input) {
   return;
 };
 
-UserService_insert_result.prototype.write = function(output) {
-  output.writeStructBegin('UserService_insert_result');
+BannerService_insert_result.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_insert_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
@@ -122,7 +122,114 @@ UserService_insert_result.prototype.write = function(output) {
   return;
 };
 
-var UserService_findUserById_args = function(args) {
+var BannerService_update_args = function(args) {
+  this.banner = null;
+  if (args) {
+    if (args.banner !== undefined && args.banner !== null) {
+      this.banner = new bean_ttypes.Banner(args.banner);
+    }
+  }
+};
+BannerService_update_args.prototype = {};
+BannerService_update_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.banner = new bean_ttypes.Banner();
+        this.banner.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_update_args.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_update_args');
+  if (this.banner !== null && this.banner !== undefined) {
+    output.writeFieldBegin('banner', Thrift.Type.STRUCT, 1);
+    this.banner.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var BannerService_update_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = args.success;
+    }
+  }
+};
+BannerService_update_result.prototype = {};
+BannerService_update_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.I32) {
+        this.success = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_update_result.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_update_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.I32, 0);
+    output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var BannerService_remove_args = function(args) {
   this.id = null;
   if (args) {
     if (args.id !== undefined && args.id !== null) {
@@ -130,8 +237,8 @@ var UserService_findUserById_args = function(args) {
     }
   }
 };
-UserService_findUserById_args.prototype = {};
-UserService_findUserById_args.prototype.read = function(input) {
+BannerService_remove_args.prototype = {};
+BannerService_remove_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -163,8 +270,8 @@ UserService_findUserById_args.prototype.read = function(input) {
   return;
 };
 
-UserService_findUserById_args.prototype.write = function(output) {
-  output.writeStructBegin('UserService_findUserById_args');
+BannerService_remove_args.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_remove_args');
   if (this.id !== null && this.id !== undefined) {
     output.writeFieldBegin('id', Thrift.Type.I32, 1);
     output.writeI32(this.id);
@@ -175,16 +282,16 @@ UserService_findUserById_args.prototype.write = function(output) {
   return;
 };
 
-var UserService_findUserById_result = function(args) {
+var BannerService_remove_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
-      this.success = new bean_ttypes.User(args.success);
+      this.success = args.success;
     }
   }
 };
-UserService_findUserById_result.prototype = {};
-UserService_findUserById_result.prototype.read = function(input) {
+BannerService_remove_result.prototype = {};
+BannerService_remove_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -198,9 +305,8 @@ UserService_findUserById_result.prototype.read = function(input) {
     switch (fid)
     {
       case 0:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.success = new bean_ttypes.User();
-        this.success.read(input);
+      if (ftype == Thrift.Type.I32) {
+        this.success = input.readI32();
       } else {
         input.skip(ftype);
       }
@@ -217,11 +323,11 @@ UserService_findUserById_result.prototype.read = function(input) {
   return;
 };
 
-UserService_findUserById_result.prototype.write = function(output) {
-  output.writeStructBegin('UserService_findUserById_result');
+BannerService_remove_result.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_remove_result');
   if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
-    this.success.write(output);
+    output.writeFieldBegin('success', Thrift.Type.I32, 0);
+    output.writeI32(this.success);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -229,16 +335,10 @@ UserService_findUserById_result.prototype.write = function(output) {
   return;
 };
 
-var UserService_findUserByLogin_args = function(args) {
-  this.user = null;
-  if (args) {
-    if (args.user !== undefined && args.user !== null) {
-      this.user = new bean_ttypes.User(args.user);
-    }
-  }
+var BannerService_selectAll_args = function(args) {
 };
-UserService_findUserByLogin_args.prototype = {};
-UserService_findUserByLogin_args.prototype.read = function(input) {
+BannerService_selectAll_args.prototype = {};
+BannerService_selectAll_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -249,50 +349,30 @@ UserService_findUserByLogin_args.prototype.read = function(input) {
     if (ftype == Thrift.Type.STOP) {
       break;
     }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.user = new bean_ttypes.User();
-        this.user.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
-    }
+    input.skip(ftype);
     input.readFieldEnd();
   }
   input.readStructEnd();
   return;
 };
 
-UserService_findUserByLogin_args.prototype.write = function(output) {
-  output.writeStructBegin('UserService_findUserByLogin_args');
-  if (this.user !== null && this.user !== undefined) {
-    output.writeFieldBegin('user', Thrift.Type.STRUCT, 1);
-    this.user.write(output);
-    output.writeFieldEnd();
-  }
+BannerService_selectAll_args.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_selectAll_args');
   output.writeFieldStop();
   output.writeStructEnd();
   return;
 };
 
-var UserService_findUserByLogin_result = function(args) {
+var BannerService_selectAll_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.User]);
+      this.success = Thrift.copyList(args.success, [bean_ttypes.Banner]);
     }
   }
 };
-UserService_findUserByLogin_result.prototype = {};
-UserService_findUserByLogin_result.prototype.read = function(input) {
+BannerService_selectAll_result.prototype = {};
+BannerService_selectAll_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -307,19 +387,19 @@ UserService_findUserByLogin_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size0 = 0;
-        var _rtmp34;
+        var _size16 = 0;
+        var _rtmp320;
         this.success = [];
-        var _etype3 = 0;
-        _rtmp34 = input.readListBegin();
-        _etype3 = _rtmp34.etype;
-        _size0 = _rtmp34.size;
-        for (var _i5 = 0; _i5 < _size0; ++_i5)
+        var _etype19 = 0;
+        _rtmp320 = input.readListBegin();
+        _etype19 = _rtmp320.etype;
+        _size16 = _rtmp320.size;
+        for (var _i21 = 0; _i21 < _size16; ++_i21)
         {
-          var elem6 = null;
-          elem6 = new bean_ttypes.User();
-          elem6.read(input);
-          this.success.push(elem6);
+          var elem22 = null;
+          elem22 = new bean_ttypes.Banner();
+          elem22.read(input);
+          this.success.push(elem22);
         }
         input.readListEnd();
       } else {
@@ -338,17 +418,17 @@ UserService_findUserByLogin_result.prototype.read = function(input) {
   return;
 };
 
-UserService_findUserByLogin_result.prototype.write = function(output) {
-  output.writeStructBegin('UserService_findUserByLogin_result');
+BannerService_selectAll_result.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_selectAll_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter7 in this.success)
+    for (var iter23 in this.success)
     {
-      if (this.success.hasOwnProperty(iter7))
+      if (this.success.hasOwnProperty(iter23))
       {
-        iter7 = this.success[iter7];
-        iter7.write(output);
+        iter23 = this.success[iter23];
+        iter23.write(output);
       }
     }
     output.writeListEnd();
@@ -359,145 +439,16 @@ UserService_findUserByLogin_result.prototype.write = function(output) {
   return;
 };
 
-var UserService_findUserByTel_args = function(args) {
-  this.tel = null;
-  if (args) {
-    if (args.tel !== undefined && args.tel !== null) {
-      this.tel = args.tel;
-    }
-  }
-};
-UserService_findUserByTel_args.prototype = {};
-UserService_findUserByTel_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.tel = input.readString();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-UserService_findUserByTel_args.prototype.write = function(output) {
-  output.writeStructBegin('UserService_findUserByTel_args');
-  if (this.tel !== null && this.tel !== undefined) {
-    output.writeFieldBegin('tel', Thrift.Type.STRING, 1);
-    output.writeString(this.tel);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var UserService_findUserByTel_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.User]);
-    }
-  }
-};
-UserService_findUserByTel_result.prototype = {};
-UserService_findUserByTel_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size8 = 0;
-        var _rtmp312;
-        this.success = [];
-        var _etype11 = 0;
-        _rtmp312 = input.readListBegin();
-        _etype11 = _rtmp312.etype;
-        _size8 = _rtmp312.size;
-        for (var _i13 = 0; _i13 < _size8; ++_i13)
-        {
-          var elem14 = null;
-          elem14 = new bean_ttypes.User();
-          elem14.read(input);
-          this.success.push(elem14);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-UserService_findUserByTel_result.prototype.write = function(output) {
-  output.writeStructBegin('UserService_findUserByTel_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter15 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter15))
-      {
-        iter15 = this.success[iter15];
-        iter15.write(output);
-      }
-    }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var UserServiceClient = exports.Client = function(output, pClass) {
+var BannerServiceClient = exports.Client = function(output, pClass) {
     this.output = output;
     this.pClass = pClass;
     this._seqid = 0;
     this._reqs = {};
 };
-UserServiceClient.prototype = {};
-UserServiceClient.prototype.seqid = function() { return this._seqid; };
-UserServiceClient.prototype.new_seqid = function() { return this._seqid += 1; };
-UserServiceClient.prototype.insert = function(user, callback) {
+BannerServiceClient.prototype = {};
+BannerServiceClient.prototype.seqid = function() { return this._seqid; };
+BannerServiceClient.prototype.new_seqid = function() { return this._seqid += 1; };
+BannerServiceClient.prototype.insert = function(banner, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -508,25 +459,25 @@ UserServiceClient.prototype.insert = function(user, callback) {
         _defer.resolve(result);
       }
     };
-    this.send_insert(user);
+    this.send_insert(banner);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_insert(user);
+    this.send_insert(banner);
   }
 };
 
-UserServiceClient.prototype.send_insert = function(user) {
+BannerServiceClient.prototype.send_insert = function(banner) {
   var output = new this.pClass(this.output);
   output.writeMessageBegin('insert', Thrift.MessageType.CALL, this.seqid());
-  var args = new UserService_insert_args();
-  args.user = user;
+  var args = new BannerService_insert_args();
+  args.banner = banner;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-UserServiceClient.prototype.recv_insert = function(input,mtype,rseqid) {
+BannerServiceClient.prototype.recv_insert = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -535,7 +486,7 @@ UserServiceClient.prototype.recv_insert = function(input,mtype,rseqid) {
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new UserService_insert_result();
+  var result = new BannerService_insert_result();
   result.read(input);
   input.readMessageEnd();
 
@@ -544,7 +495,7 @@ UserServiceClient.prototype.recv_insert = function(input,mtype,rseqid) {
   }
   return callback('insert failed: unknown result');
 };
-UserServiceClient.prototype.findUserById = function(id, callback) {
+BannerServiceClient.prototype.update = function(banner, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -555,25 +506,72 @@ UserServiceClient.prototype.findUserById = function(id, callback) {
         _defer.resolve(result);
       }
     };
-    this.send_findUserById(id);
+    this.send_update(banner);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_findUserById(id);
+    this.send_update(banner);
   }
 };
 
-UserServiceClient.prototype.send_findUserById = function(id) {
+BannerServiceClient.prototype.send_update = function(banner) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('findUserById', Thrift.MessageType.CALL, this.seqid());
-  var args = new UserService_findUserById_args();
+  output.writeMessageBegin('update', Thrift.MessageType.CALL, this.seqid());
+  var args = new BannerService_update_args();
+  args.banner = banner;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+BannerServiceClient.prototype.recv_update = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new BannerService_update_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('update failed: unknown result');
+};
+BannerServiceClient.prototype.remove = function(id, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_remove(id);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_remove(id);
+  }
+};
+
+BannerServiceClient.prototype.send_remove = function(id) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('remove', Thrift.MessageType.CALL, this.seqid());
+  var args = new BannerService_remove_args();
   args.id = id;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-UserServiceClient.prototype.recv_findUserById = function(input,mtype,rseqid) {
+BannerServiceClient.prototype.recv_remove = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -582,16 +580,16 @@ UserServiceClient.prototype.recv_findUserById = function(input,mtype,rseqid) {
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new UserService_findUserById_result();
+  var result = new BannerService_remove_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('findUserById failed: unknown result');
+  return callback('remove failed: unknown result');
 };
-UserServiceClient.prototype.findUserByLogin = function(user, callback) {
+BannerServiceClient.prototype.selectAll = function(callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -602,25 +600,24 @@ UserServiceClient.prototype.findUserByLogin = function(user, callback) {
         _defer.resolve(result);
       }
     };
-    this.send_findUserByLogin(user);
+    this.send_selectAll();
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_findUserByLogin(user);
+    this.send_selectAll();
   }
 };
 
-UserServiceClient.prototype.send_findUserByLogin = function(user) {
+BannerServiceClient.prototype.send_selectAll = function() {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('findUserByLogin', Thrift.MessageType.CALL, this.seqid());
-  var args = new UserService_findUserByLogin_args();
-  args.user = user;
+  output.writeMessageBegin('selectAll', Thrift.MessageType.CALL, this.seqid());
+  var args = new BannerService_selectAll_args();
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-UserServiceClient.prototype.recv_findUserByLogin = function(input,mtype,rseqid) {
+BannerServiceClient.prototype.recv_selectAll = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -629,67 +626,20 @@ UserServiceClient.prototype.recv_findUserByLogin = function(input,mtype,rseqid) 
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new UserService_findUserByLogin_result();
+  var result = new BannerService_selectAll_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('findUserByLogin failed: unknown result');
+  return callback('selectAll failed: unknown result');
 };
-UserServiceClient.prototype.findUserByTel = function(tel, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_findUserByTel(tel);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_findUserByTel(tel);
-  }
-};
-
-UserServiceClient.prototype.send_findUserByTel = function(tel) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('findUserByTel', Thrift.MessageType.CALL, this.seqid());
-  var args = new UserService_findUserByTel_args();
-  args.tel = tel;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
-};
-
-UserServiceClient.prototype.recv_findUserByTel = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
-    input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new UserService_findUserByTel_result();
-  result.read(input);
-  input.readMessageEnd();
-
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('findUserByTel failed: unknown result');
-};
-var UserServiceProcessor = exports.Processor = function(handler) {
+var BannerServiceProcessor = exports.Processor = function(handler) {
   this._handler = handler;
 }
 ;
-UserServiceProcessor.prototype.process = function(input, output) {
+BannerServiceProcessor.prototype.process = function(input, output) {
   var r = input.readMessageBegin();
   if (this['process_' + r.fname]) {
     return this['process_' + r.fname].call(this, r.rseqid, input, output);
@@ -704,14 +654,14 @@ UserServiceProcessor.prototype.process = function(input, output) {
   }
 }
 ;
-UserServiceProcessor.prototype.process_insert = function(seqid, input, output) {
-  var args = new UserService_insert_args();
+BannerServiceProcessor.prototype.process_insert = function(seqid, input, output) {
+  var args = new BannerService_insert_args();
   args.read(input);
   input.readMessageEnd();
   if (this._handler.insert.length === 1) {
-    Q.fcall(this._handler.insert, args.user)
+    Q.fcall(this._handler.insert, args.banner)
       .then(function(result) {
-        var result_obj = new UserService_insert_result({success: result});
+        var result_obj = new BannerService_insert_result({success: result});
         output.writeMessageBegin("insert", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
@@ -725,10 +675,10 @@ UserServiceProcessor.prototype.process_insert = function(seqid, input, output) {
         output.flush();
       });
   } else {
-    this._handler.insert(args.user, function (err, result) {
+    this._handler.insert(args.banner, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new UserService_insert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        result_obj = new BannerService_insert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("insert", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
@@ -740,35 +690,35 @@ UserServiceProcessor.prototype.process_insert = function(seqid, input, output) {
     });
   }
 };
-UserServiceProcessor.prototype.process_findUserById = function(seqid, input, output) {
-  var args = new UserService_findUserById_args();
+BannerServiceProcessor.prototype.process_update = function(seqid, input, output) {
+  var args = new BannerService_update_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.findUserById.length === 1) {
-    Q.fcall(this._handler.findUserById, args.id)
+  if (this._handler.update.length === 1) {
+    Q.fcall(this._handler.update, args.banner)
       .then(function(result) {
-        var result_obj = new UserService_findUserById_result({success: result});
-        output.writeMessageBegin("findUserById", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new BannerService_update_result({success: result});
+        output.writeMessageBegin("update", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("findUserById", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("update", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.findUserById(args.id, function (err, result) {
+    this._handler.update(args.banner, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new UserService_findUserById_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("findUserById", Thrift.MessageType.REPLY, seqid);
+        result_obj = new BannerService_update_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("update", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("findUserById", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("update", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();
@@ -776,35 +726,35 @@ UserServiceProcessor.prototype.process_findUserById = function(seqid, input, out
     });
   }
 };
-UserServiceProcessor.prototype.process_findUserByLogin = function(seqid, input, output) {
-  var args = new UserService_findUserByLogin_args();
+BannerServiceProcessor.prototype.process_remove = function(seqid, input, output) {
+  var args = new BannerService_remove_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.findUserByLogin.length === 1) {
-    Q.fcall(this._handler.findUserByLogin, args.user)
+  if (this._handler.remove.length === 1) {
+    Q.fcall(this._handler.remove, args.id)
       .then(function(result) {
-        var result_obj = new UserService_findUserByLogin_result({success: result});
-        output.writeMessageBegin("findUserByLogin", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new BannerService_remove_result({success: result});
+        output.writeMessageBegin("remove", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("findUserByLogin", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("remove", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.findUserByLogin(args.user, function (err, result) {
+    this._handler.remove(args.id, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new UserService_findUserByLogin_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("findUserByLogin", Thrift.MessageType.REPLY, seqid);
+        result_obj = new BannerService_remove_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("remove", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("findUserByLogin", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("remove", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();
@@ -812,35 +762,35 @@ UserServiceProcessor.prototype.process_findUserByLogin = function(seqid, input, 
     });
   }
 };
-UserServiceProcessor.prototype.process_findUserByTel = function(seqid, input, output) {
-  var args = new UserService_findUserByTel_args();
+BannerServiceProcessor.prototype.process_selectAll = function(seqid, input, output) {
+  var args = new BannerService_selectAll_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.findUserByTel.length === 1) {
-    Q.fcall(this._handler.findUserByTel, args.tel)
+  if (this._handler.selectAll.length === 0) {
+    Q.fcall(this._handler.selectAll)
       .then(function(result) {
-        var result_obj = new UserService_findUserByTel_result({success: result});
-        output.writeMessageBegin("findUserByTel", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new BannerService_selectAll_result({success: result});
+        output.writeMessageBegin("selectAll", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("findUserByTel", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("selectAll", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.findUserByTel(args.tel, function (err, result) {
+    this._handler.selectAll(function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new UserService_findUserByTel_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("findUserByTel", Thrift.MessageType.REPLY, seqid);
+        result_obj = new BannerService_selectAll_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("selectAll", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("findUserByTel", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("selectAll", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();

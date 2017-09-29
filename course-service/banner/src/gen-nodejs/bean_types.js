@@ -247,15 +247,15 @@ Banner.prototype.read = function(input) {
       }
       break;
       case 2:
-      if (ftype == Thrift.Type.I64) {
-        this.create_time = input.readI64();
+      if (ftype == Thrift.Type.STRING) {
+        this.create_time = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 3:
-      if (ftype == Thrift.Type.I64) {
-        this.update_time = input.readI64();
+      if (ftype == Thrift.Type.STRING) {
+        this.update_time = input.readString();
       } else {
         input.skip(ftype);
       }
@@ -312,13 +312,13 @@ Banner.prototype.write = function(output) {
     output.writeFieldEnd();
   }
   if (this.create_time !== null && this.create_time !== undefined) {
-    output.writeFieldBegin('create_time', Thrift.Type.I64, 2);
-    output.writeI64(this.create_time);
+    output.writeFieldBegin('create_time', Thrift.Type.STRING, 2);
+    output.writeString(this.create_time);
     output.writeFieldEnd();
   }
   if (this.update_time !== null && this.update_time !== undefined) {
-    output.writeFieldBegin('update_time', Thrift.Type.I64, 3);
-    output.writeI64(this.update_time);
+    output.writeFieldBegin('update_time', Thrift.Type.STRING, 3);
+    output.writeString(this.update_time);
     output.writeFieldEnd();
   }
   if (this.user_id !== null && this.user_id !== undefined) {

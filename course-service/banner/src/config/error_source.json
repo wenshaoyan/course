@@ -1,0 +1,45 @@
+{
+  "UNKNOWN_ERROR":{
+    "message":"未知错误",
+    "code":1,
+    "en_message":"unknown error",
+    "errorSource":"http"
+  },
+  "TEL_EXIST":{
+    "message":"手机号已经存在",
+    "code":101,
+    "en_message":"The phone number there",
+    "errorSource":"dal"
+  },
+  "INSERT_FAIL":{
+    "message":"添加失败",
+    "code":201,
+    "en_message":"insert failure",
+    "errorSource":"dal"
+  },
+  "QUERY_FAIL":{
+    "message":"查询失败",
+    "code":202,
+    "en_message":"query failure",
+    "errorSource":"dal"
+  },
+  "TEL_ERROR_OR_PASSWORD_ERROR":{
+    "message":"用户名或密码错误",
+    "code":102,
+    "en_message":"The user name or password error",
+    "errorSource":"dal"
+  },
+  "LOGIN_AGAIN":{
+    "message":"请重新登录",
+    "code":103,
+    "en_message":"Please again login",
+    "errorSource":"user"
+  },
+  "DATA_ERROR":{
+    "message":"数据错误",
+    "code":211,
+    "en_message":"data error!",
+    "errorSource":"dal"
+  }
+
+}
