@@ -9,6 +9,7 @@ const index = require('./routes/index');
 const router_log = require('./middleware/router_log');
 const token = require('./middleware/token');
 const getUser = require('./middleware/get_user');
+const response = require('./middleware/response');
 // middlewares
 app.use(convert(bodyparser));
 app.use(convert(json()));
@@ -31,6 +32,7 @@ app.use(router_log());
 );*/
 // 获取用户信息
 // app.use(getUser());
+app.use(response(errorSource));
 router.use('/', index.routes(),index.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());

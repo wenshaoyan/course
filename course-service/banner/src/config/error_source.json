@@ -5,6 +5,12 @@
     "en_message":"unknown error",
     "errorSource":"http"
   },
+  "THRIFT_CONNECT_ERROR":{
+    "message":"数据获取失败",
+    "code":2,
+    "en_message":"thrift service connect error",
+    "errorSource":"thrift"
+  },
   "TEL_EXIST":{
     "message":"手机号已经存在",
     "code":101,
