@@ -12,12 +12,14 @@ import org.apache.thrift.TException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by wenshao on 2017/9/28
  */
 public class BannerHandler implements BannerService.Iface {
     private BannerDaoImpl bannerDao;
+    private static Logger logger = Logger.getLogger("BannerHandler");
 
     public BannerHandler(SqlSessionFactory _sessionFactory) {
         bannerDao = new BannerDaoImpl(_sessionFactory);
@@ -25,8 +27,12 @@ public class BannerHandler implements BannerService.Iface {
     }
 
     public int insert(Banner banner) throws TException {
-
-        return 0;
+        BannerBean paramsBean = new BannerBean(banner);
+        try {
+            return  bannerDao.insert(paramsBean);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     public int update(Banner banner) throws TException {
@@ -54,7 +60,18 @@ public class BannerHandler implements BannerService.Iface {
 
     @Override
     public List<Banner> select(Banner banner) throws TException {
-        return null;
+        List<Banner> banners = new ArrayList<Banner>();
+        BannerBean paramsBean = new BannerBean(banner);
+        try {
+            List<BannerBean> bannerBeans = bannerDao.select(paramsBean);
+            for (BannerBean bean : bannerBeans) {
+                banners.add((Banner) bean);
+
+            }
+            return banners;
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
 }

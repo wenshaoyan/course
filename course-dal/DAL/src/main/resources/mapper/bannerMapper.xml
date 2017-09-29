@@ -8,7 +8,21 @@
 
     </insert>
     <select parameterType="_Banner" id="select" resultMap="bannerResult">
-      select * from t_banner;
+      select *
+      from t_banner
+      <where>
+          <if test="show_client_id != 0 and  show_client_id != null" >
+              banner_show_client_id = #{show_client_id}
+          </if>
+          <if test="user_id != 0 and user_id != null">
+              AND banner_user_id = #{user_id}
+          </if>
+          <if test="id != 0 and id != null">
+              AND banner_id = #{id}
+          </if>
+      </where>
+      ORDER BY banner_show_client_id,banner_location
+
     </select>
     <resultMap id="bannerResult" type="_Banner">
         <id property="id" column="banner_id"/>

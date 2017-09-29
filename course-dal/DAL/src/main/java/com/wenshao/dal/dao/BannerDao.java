@@ -15,6 +15,6 @@ public interface BannerDao {
     public int findById(int id) throws Exception;
 
 
-    public int select(int clientId) throws Exception;
+    public List<BannerBean> select(BannerBean bannerBean) throws Exception;
     public List<BannerBean> selectAll() throws Exception;
 }
