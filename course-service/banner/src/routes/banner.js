@@ -17,8 +17,8 @@ router.use(async (ctx, next) => {
 });
 
 router.post(apiName, routerI({
-    schema: banner_schema.banner_insert,
-    key:"banner_insert"
+    key:"banner_insert",
+    schema: banner_schema.banner_insert
 }), async (ctx, next) => {
     const client = getThriftServer(`'${getServiceConfig().serverName}'`).getClient();
     const banner = new bean_types.Banner();
