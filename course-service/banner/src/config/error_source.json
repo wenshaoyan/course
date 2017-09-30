@@ -17,6 +17,12 @@
     "en_message":"thrift service ask exception",
     "errorSource":"thrift"
   },
+  "PARAMS_VALID_ERROR":{
+    "message":"参数验证失败",
+    "code":4,
+    "en_message":"Parameter validation failure",
+    "errorSource":"ajv"
+  },
   "TEL_EXIST":{
     "message":"手机号已经存在",
     "code":101,

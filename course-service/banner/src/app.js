@@ -5,11 +5,12 @@ const convert = require('koa-convert');
 const json = require('koa-json');
 const bodyparser = require('koa-bodyparser')();
 
-const index = require('./routes/index');
+const banner = require('./routes/banner');
 const router_log = require('./middleware/router_log');
 const token = require('./middleware/token');
 const getUser = require('./middleware/get_user');
 const response = require('./middleware/response');
+
 // middlewares
 app.use(convert(bodyparser));
 app.use(convert(json()));
@@ -37,9 +38,9 @@ app.use(response({
     jsonFile:errorSource,
     successLog:getLogger('resSuccess'),
     failLog:getLogger('resFail')
-
 }));
-router.use('/', index.routes(),index.allowedMethods());
+
+router.use('/', banner.routes(),banner.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
 // response
