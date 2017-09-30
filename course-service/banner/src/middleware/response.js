@@ -4,39 +4,86 @@
  */
 'use strict';
 
-function routerLog(opt) {
+
+function copyObjectAttr(des, src) {
+    if (typeof des === 'object' && typeof src === 'object') {
+        for (let key in src) {
+            des[key] = src[key];
+        }
+    }
+}
+
+function setLog(logSocket,response) {
+    logSocket.info("===================");
+    logSocket.info('\n',response);
+    logSocket.info("===================");
+
+
+}
+
+function func(opt) {
     let source = {};
-    if (typeof opt === 'object') source = opt;
+    let isSetSuccessLog = false;
+    let isSetFailLog = false;
+    if (opt && typeof opt === 'object') {
+        if (opt.jsonFile && typeof opt.jsonFile === 'object') {
+            source = opt.jsonFile;
+        }
+        if (opt.successLog && typeof opt.successLog === 'object') {
+            opt.successLog.info("1111111");
+            isSetSuccessLog = true;
+        }
+        if (opt.failLog && typeof opt.failLog === 'object') {
+            opt.failLog.info({a:1});
+            isSetFailLog = true;
+        }
+    }
+
     return async function (ctx, next) {
         await next();
         if (ctx.body) {
-            ctx.body = {
+            const result = {
                 success: true,
                 data: ctx.body,
                 message: "success",
                 code: 0
             };
-        } else if (ctx.error) {
-            if (ctx.error in source) {
-                ctx.body = {
-                    success: false,
-                    message: source[ctx.error].message,
-                    source: source[ctx.error].source,
-                    code: source[ctx.error].code,
-                    data: [],
-                };
-            } else if (typeof ctx.error === 'object') {
-                ctx.body = {
-                    success: false,
-                    message: ctx.error.message,
-                    source: ctx.error.source,
-                    code: 1,
-                    data: []
-                };
+            ctx.body = result;
+            if (isSetSuccessLog) setLog(opt.successLog,result);
+
+            return
+        }
+        if (ctx.error) {
+            const messageObject = {
+                success: false,
+                data: []
+            };
+            const errorValue = ctx.error;
+            if (errorValue in source) {
+                copyObjectAttr(messageObject, source[errorValue]);
+                ctx.body = messageObject;
+                if (isSetFailLog) setLog(opt.failLog,messageObject);
+
+                return;
             }
+            if (typeof errorValue !== 'object' && 'UNKNOWN_ERROR' in source) {
+                copyObjectAttr(messageObject, source['UNKNOWN_ERROR']);
+                ctx.body = messageObject;
+                if (isSetFailLog) setLog(opt.failLog,messageObject);
+
+
+                return;
+            }
+            if (errorValue.name === 'TApplicationException' && 'THRIFT_ASK_EXCEPTION' in source) {
+                copyObjectAttr(messageObject, source['THRIFT_ASK_EXCEPTION']);
+                ctx.body = messageObject;
+                if (isSetFailLog) setLog(opt.failLog,messageObject);
+                return;
+            }
+
 
         }
     }
 }
 
-module.exports = routerLog;
+module.exports = func;

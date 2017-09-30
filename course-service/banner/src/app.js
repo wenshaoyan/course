@@ -32,7 +32,13 @@ app.use(router_log());
 );*/
 // 获取用户信息
 // app.use(getUser());
-app.use(response(errorSource));
+// 规范响应头
+app.use(response({
+    jsonFile:errorSource,
+    successLog:getLogger('resSuccess'),
+    failLog:getLogger('resFail')
+
+}));
 router.use('/', index.routes(),index.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());

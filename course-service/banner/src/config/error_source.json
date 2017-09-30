@@ -11,6 +11,12 @@
     "en_message":"thrift service connect error",
     "errorSource":"thrift"
   },
+  "THRIFT_ASK_EXCEPTION":{
+    "message":"数据获取失败",
+    "code":3,
+    "en_message":"thrift service ask exception",
+    "errorSource":"thrift"
+  },
   "TEL_EXIST":{
     "message":"手机号已经存在",
     "code":101,

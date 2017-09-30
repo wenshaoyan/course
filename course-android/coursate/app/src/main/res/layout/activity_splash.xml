@@ -11,7 +11,7 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <wenshao.com.coursate.view.MainFontTextView
+        <com.wenshao.coursate.view.MainFontTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom|center"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-        <wenshao.com.coursate.view.MainFontTextView
+        <com.wenshao.coursate.view.MainFontTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top|center"
@@ -36,7 +36,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical">
-        <wenshao.com.coursate.view.MainFontTextView
+        <com.wenshao.coursate.view.MainFontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top|center"

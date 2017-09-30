@@ -9,7 +9,7 @@ router.use(async (ctx, next) => {
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
-        next();
+        await next();
     }
 });
 

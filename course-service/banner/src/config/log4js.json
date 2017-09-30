@@ -23,12 +23,29 @@
       "numBackups": 5,
       "compress": true,
       "encoding": "utf-8"
+    },
+    "resSuccess":{
+      "type": "dateFile",
+      "filename": "../logs/resSuccess",
+      "pattern": "-yyyy-MM-dd.log",
+      "compress": true,
+      "alwaysIncludePattern":true
+    },
+    "resFail":{
+      "type":"file",
+      "filename": "../logs/resFail.log",
+      "maxLogSze":10485760,
+      "numBackups": 5,
+      "compress": true,
+      "encoding": "utf-8"
     }
   },
   "categories": {
     "default": { "appenders": ["console"], "level":"trace" },
     "router":{"appenders":["console","router"],"level":"trace"},
     "zookeeper":{"appenders":["console","zookeeper"],"level":"trace"},
-    "thrift":{"appenders":["console","thrift"],"level":"trace"}
+    "thrift":{"appenders":["console","thrift"],"level":"trace"},
+    "resSuccess":{"appenders":["resSuccess"],"level":"trace"},
+    "resFail":{"appenders":["resFail"],"level":"trace"}
   }
 }

@@ -1,15 +1,12 @@
 package com.wenshao.dal.handler;
 
 import com.wenshao.dal.bean.BannerBean;
-import com.wenshao.dal.dao.BannerDao;
 import com.wenshao.dal.dao.impl.BannerDaoImpl;
 import com.wenshao.dal.thriftgen.Banner;
 import com.wenshao.dal.thriftgen.BannerService;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.thrift.TException;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;

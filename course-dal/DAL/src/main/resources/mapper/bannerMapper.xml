@@ -4,7 +4,7 @@
     <insert id="insert" parameterType="_Banner" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_banner(banner_create_time,banner_update_time,banner_user_id,
         banner_image_url,banner_redirect_url,banner_show_client_id,banner_location)
-        VALUES(NOW(),NOW(),#{image_url},#{redirect_url},#{show_client_id},#{location})
+        VALUES(NOW(3),NOW(3),#{user_id},#{image_url},#{redirect_url},#{show_client_id},#{location})
 
     </insert>
     <select parameterType="_Banner" id="select" resultMap="bannerResult">
