@@ -20,6 +20,10 @@ const publicUtil = {
         type: "number",
         pattern: "^[1-9][0-9]*$",
     },
+    idString: {           // 纯数字id 字符串型
+        type: "string",
+        pattern: "^[1-9][0-9]*$",
+    },
     uuid:{          // uuid
         type: "string",
     },

@@ -6,9 +6,10 @@ const routerI = require('../middleware/router_interceptor');
 
 const logger = getLogger();
 const apiName = 'banner';
-
-router.use(async (ctx, next) => {
-    const myServer = getThriftServer(`'${getServiceConfig().serverName}'`);
+const bannerServiceName =  getServiceConfig().dalName[0];
+const clientService =  getServiceConfig().dalName[1];
+router.use(async(ctx, next) => {
+    const myServer = getThriftServer(`'${bannerServiceName}'`);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
@@ -17,37 +18,80 @@ router.use(async (ctx, next) => {
 });
 
 router.post(apiName, routerI({
-    key:"banner_insert",
+    key: "banner_insert",
     schema: banner_schema.banner_insert
-}), async (ctx, next) => {
-    const client = getThriftServer(`'${getServiceConfig().serverName}'`).getClient();
+}), async(ctx, next) => {
+    const client = getThriftServer(`'${bannerServiceName}'`).getClient();
     const banner = new bean_types.Banner();
     const params = ctx.request.body;
     SysUtil.copyObjectAttr(banner, params);
     try {
         let result = await client.insert(banner);
-        ctx.body = {
-            id: result
-        };
+
+        if (result === 0) {
+            ctx.error = 'INSERT_FAIL';
+        } else {
+            ctx.body = {
+                id: result
+            };
+        }
     } catch (e) {
+        console.log(e)
         ctx.error = e;
     }
 
 });
-router.get(apiName, async (ctx, next) => {
-    ctx.body = 1;
+router.get(`${apiName}/:id`, routerI({
+    key: "banner_id",
+    schema: banner_schema.banner_id
+}), async(ctx, next) => {
+    let id = ctx.params.id;
+    const client = getThriftServer(`'${bannerServiceName}'`).getClient();
+    try {
+        ctx.body = await client.findById(id);
+    } catch (e) {
+        ctx.error = e;
+    }
 });
-router.put(apiName);
-router.delete(apiName);
+router.put(`${apiName}/:id`, routerI({
+    key: "banner_update",
+    schema: banner_schema.banner_update
+}), async(ctx, next) => {
+    const id = ctx.params.id;
+    const params = ctx.request.body;
+    const client = getThriftServer(`'${bannerServiceName}'`).getClient();
+    const banner = new bean_types.Banner();
+    banner.image_url = params.image_url;
+    banner.redirect_url = params.redirect_url;
+    banner.id = id;
+    try {
+        const result = await client.update(banner);
+        if (result === 0) {
+            ctx.error = 'UPDATE_FAIL';
+        } else {
+            ctx.body = {};
+        }
+    } catch (e) {
+        ctx.error = e;
+    }
+});
+router.delete(`${apiName}/:id`, routerI({
+    key: "banner_id",
+}), async(ctx, next) => {
+    let id = ctx.params.id;
+    const client = getThriftServer(`'${bannerServiceName}'`).getClient();
+    try {
+        const result = await client.remove(id);
+        if (result === 0) {
+            ctx.error = 'DELETE_FAIL';
+        } else {
+            ctx.body = {};
+        }
+    } catch (e) {
+        ctx.error = e;
+    }
+});
 router.patch(apiName);
 
-
-router.get('test', async (ctx, next) => {
-    let banner = new bean_types.Banner();
-    banner.id = 2;
-    banner.create_time = '1506675182000';
-    const client = getThriftServer(`'${getServiceConfig().serverName}'`).getClient();
-    ctx.body = await client.select(banner);
-});
 
 module.exports = router;

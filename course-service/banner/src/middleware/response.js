@@ -30,11 +30,9 @@ function func(opt) {
             source = opt.jsonFile;
         }
         if (opt.successLog && typeof opt.successLog === 'object') {
-            opt.successLog.info("1111111");
             isSetSuccessLog = true;
         }
         if (opt.failLog && typeof opt.failLog === 'object') {
-            opt.failLog.info({a:1});
             isSetFailLog = true;
         }
     }
@@ -70,8 +68,6 @@ function func(opt) {
                 copyObjectAttr(messageObject, source['UNKNOWN_ERROR']);
                 ctx.body = messageObject;
                 if (isSetFailLog) setLog(opt.failLog,messageObject);
-
-
                 return;
             }
             if (errorValue.name === 'TApplicationException' && 'THRIFT_ASK_EXCEPTION' in source) {
@@ -79,6 +75,11 @@ function func(opt) {
                 ctx.body = messageObject;
                 if (isSetFailLog) setLog(opt.failLog,messageObject);
                 return;
+            }
+            if (typeof errorValue === 'object'){
+                copyObjectAttr(messageObject, source['UNKNOWN_ERROR']);
+                ctx.body = messageObject;
+                if (isSetFailLog) setLog(opt.failLog,messageObject);
             }
 
 

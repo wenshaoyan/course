@@ -14,11 +14,11 @@ const keySet = new Set();
  * @param req   请求头
  * @return {}   合并后的json
  */
-const joinParams = (req)=>{
+const joinParams = (ctx)=>{
     const obj = {};
-    const query = req.query;
-    const params =req.params;
-    const body = req.body;
+    const query = ctx.query;
+    const params =ctx.params;
+    const body = ctx.request.body;
     for(let attr in body){
         obj[attr]=body[attr];
     }
@@ -37,15 +37,19 @@ function func(opt) {
     if (typeof opt.key !== 'string') {
         throw new Error(`opt.key not is string:${opt.key}`);
     }
-    if (keySet.has(opt.key)){
+    if (keySet.has(opt.key) && opt.schema){
         throw new Error(`opt.key exist:${opt.key}`);
+    }
+    if (!keySet.has(opt.key) && !opt.schema){
+        throw new Error(`opt.schema not exist:${opt.key}`);
     }
     if (opt && typeof opt.schema === 'object') {
         keySet.add(opt.key);
+        opt.schema['$async']=true;
         ajv.addSchema(opt.schema, opt.key);
     }
     return async function (ctx, next) {
-        const paramsAll = joinParams(ctx.request);
+        const paramsAll = joinParams(ctx);
         let isError = false;
         try {
             await ajv.validate(opt.key, paramsAll);

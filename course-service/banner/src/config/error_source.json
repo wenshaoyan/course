@@ -29,6 +29,19 @@
     "en_message":"The phone number there",
     "errorSource":"dal"
   },
+
+  "TEL_ERROR_OR_PASSWORD_ERROR":{
+    "message":"用户名或密码错误",
+    "code":102,
+    "en_message":"The user name or password error",
+    "errorSource":"dal"
+  },
+  "LOGIN_AGAIN":{
+    "message":"请重新登录",
+    "code":103,
+    "en_message":"Please again login",
+    "errorSource":"user"
+  },
   "INSERT_FAIL":{
     "message":"添加失败",
     "code":201,
@@ -41,17 +54,17 @@
     "en_message":"query failure",
     "errorSource":"dal"
   },
-  "TEL_ERROR_OR_PASSWORD_ERROR":{
-    "message":"用户名或密码错误",
-    "code":102,
-    "en_message":"The user name or password error",
+  "UPDATE_FAIL":{
+    "message":"更新失败",
+    "code":203,
+    "en_message":"update failure",
     "errorSource":"dal"
   },
-  "LOGIN_AGAIN":{
-    "message":"请重新登录",
-    "code":103,
-    "en_message":"Please again login",
-    "errorSource":"user"
+  "DELETE_FAIL":{
+    "message":"删除失败",
+    "code":204,
+    "en_message":"delete failure",
+    "errorSource":"dal"
   },
   "DATA_ERROR":{
     "message":"数据错误",

@@ -22,7 +22,7 @@ global.getServiceConfig = () => {
     return serviceConfig;
 };
 global.errorSource = errorSource;
-const envSet = new Set(['develop','production']);
+const envSet = new Set(['develop', 'production']);
 function getEnv() {
     let env = process.env.NODE_ENV;
     if (env && envSet.has(env)) return env;
@@ -50,7 +50,6 @@ const Stat = Curator.Stat;
 
 // 导入server
 const ThriftHelp = require('../modules/thrift-help');
-const MyServer = require(`../gen-nodejs/${serviceConfig.serverName}.js`);
 
 
 /**
@@ -82,25 +81,29 @@ let preNodeList = null;
 
 async function main() {
     try {
-        let userParentPath = `/dal/${getEnv()}/${serviceConfig.dalName}`;
+        for (let name of serviceConfig.dalName) {
+            let parentPath = `/dal/${getEnv()}/${name}`;
 
-        const connectZk = new ThriftHelp.ConnectZk(userParentPath,client);
+            const connectZk = new ThriftHelp.ConnectZk(parentPath, client);
 
-        const address = await connectZk.getServer();    // 获取连接dal的地址
-        // 创建thrift的连接
-        let myServer = await new ThriftHelp.Server()
-            .setAddress(address.data)
-            .setServer(`${serviceConfig.serverName}`, MyServer)
-            .setPoolNumber(2, 10)
-            .setNodeName(address.nodeName)
-            .connect();
-        // 监听连接的变化 并修改
-        connectZk.setServer(myServer);
-        thriftServerMap.set(`'${serviceConfig.serverName}'`,myServer);
-        const path = await client.create()
-            .withMode(CuratorFrameworkFactory.EPHEMERAL)
-            .isAbsoluteAddress()
-            .forPath(`/${IpUtil.getLocalIp()}`, `${IpUtil.getLocalIp()}:${serviceConfig.port}`);
+            const address = await connectZk.getServer();    // 获取连接dal的地址
+            // 创建thrift的连接
+            let myServer = await new ThriftHelp.Server()
+                .setAddress(address.data)
+                .setServer(`${name}`, require(`../gen-nodejs/${name}.js`))
+                .setPoolNumber(2, 10)
+                .setNodeName(address.nodeName)
+                .connect();
+            // 监听连接的变化 并修改
+            connectZk.setServer(myServer);
+            thriftServerMap.set(`'${name}'`, myServer);
+            const path = await client.create()
+                .withMode(CuratorFrameworkFactory.EPHEMERAL)
+                .isAbsoluteAddress()
+                .forPath(`/${IpUtil.getLocalIp()}`, `${IpUtil.getLocalIp()}:${serviceConfig.port}`);
+
+        }
+
         server.listen(port);
         server.on('error', onError);
         server.on('listening', onListening);

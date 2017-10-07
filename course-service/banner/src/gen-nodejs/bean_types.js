@@ -282,15 +282,15 @@ Banner.prototype.read = function(input) {
       }
       break;
       case 7:
-      if (ftype == Thrift.Type.I16) {
-        this.show_client_id = input.readI16();
+      if (ftype == Thrift.Type.I32) {
+        this.show_client_id = input.readI32();
       } else {
         input.skip(ftype);
       }
       break;
       case 8:
-      if (ftype == Thrift.Type.I16) {
-        this.location = input.readI16();
+      if (ftype == Thrift.Type.I32) {
+        this.location = input.readI32();
       } else {
         input.skip(ftype);
       }
@@ -337,13 +337,273 @@ Banner.prototype.write = function(output) {
     output.writeFieldEnd();
   }
   if (this.show_client_id !== null && this.show_client_id !== undefined) {
-    output.writeFieldBegin('show_client_id', Thrift.Type.I16, 7);
-    output.writeI16(this.show_client_id);
+    output.writeFieldBegin('show_client_id', Thrift.Type.I32, 7);
+    output.writeI32(this.show_client_id);
     output.writeFieldEnd();
   }
   if (this.location !== null && this.location !== undefined) {
-    output.writeFieldBegin('location', Thrift.Type.I16, 8);
-    output.writeI16(this.location);
+    output.writeFieldBegin('location', Thrift.Type.I32, 8);
+    output.writeI32(this.location);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var ClientVersion = module.exports.ClientVersion = function(args) {
+  this.id = null;
+  this.create_time = null;
+  this.update_time = null;
+  this.version_name = null;
+  this.version_number = null;
+  this.client = null;
+  this.download_url = null;
+  if (args) {
+    if (args.id !== undefined && args.id !== null) {
+      this.id = args.id;
+    }
+    if (args.create_time !== undefined && args.create_time !== null) {
+      this.create_time = args.create_time;
+    }
+    if (args.update_time !== undefined && args.update_time !== null) {
+      this.update_time = args.update_time;
+    }
+    if (args.version_name !== undefined && args.version_name !== null) {
+      this.version_name = args.version_name;
+    }
+    if (args.version_number !== undefined && args.version_number !== null) {
+      this.version_number = args.version_number;
+    }
+    if (args.client !== undefined && args.client !== null) {
+      this.client = args.client;
+    }
+    if (args.download_url !== undefined && args.download_url !== null) {
+      this.download_url = args.download_url;
+    }
+  }
+};
+ClientVersion.prototype = {};
+ClientVersion.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.create_time = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.STRING) {
+        this.update_time = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 4:
+      if (ftype == Thrift.Type.STRING) {
+        this.version_name = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 5:
+      if (ftype == Thrift.Type.STRING) {
+        this.version_number = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 6:
+      if (ftype == Thrift.Type.I32) {
+        this.client = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 7:
+      if (ftype == Thrift.Type.STRING) {
+        this.download_url = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+ClientVersion.prototype.write = function(output) {
+  output.writeStructBegin('ClientVersion');
+  if (this.id !== null && this.id !== undefined) {
+    output.writeFieldBegin('id', Thrift.Type.I32, 1);
+    output.writeI32(this.id);
+    output.writeFieldEnd();
+  }
+  if (this.create_time !== null && this.create_time !== undefined) {
+    output.writeFieldBegin('create_time', Thrift.Type.STRING, 2);
+    output.writeString(this.create_time);
+    output.writeFieldEnd();
+  }
+  if (this.update_time !== null && this.update_time !== undefined) {
+    output.writeFieldBegin('update_time', Thrift.Type.STRING, 3);
+    output.writeString(this.update_time);
+    output.writeFieldEnd();
+  }
+  if (this.version_name !== null && this.version_name !== undefined) {
+    output.writeFieldBegin('version_name', Thrift.Type.STRING, 4);
+    output.writeString(this.version_name);
+    output.writeFieldEnd();
+  }
+  if (this.version_number !== null && this.version_number !== undefined) {
+    output.writeFieldBegin('version_number', Thrift.Type.STRING, 5);
+    output.writeString(this.version_number);
+    output.writeFieldEnd();
+  }
+  if (this.client !== null && this.client !== undefined) {
+    output.writeFieldBegin('client', Thrift.Type.I32, 6);
+    output.writeI32(this.client);
+    output.writeFieldEnd();
+  }
+  if (this.download_url !== null && this.download_url !== undefined) {
+    output.writeFieldBegin('download_url', Thrift.Type.STRING, 7);
+    output.writeString(this.download_url);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var ClientSide = module.exports.ClientSide = function(args) {
+  this.id = null;
+  this.create_time = null;
+  this.update_time = null;
+  this.name = null;
+  this.package_name = null;
+  if (args) {
+    if (args.id !== undefined && args.id !== null) {
+      this.id = args.id;
+    }
+    if (args.create_time !== undefined && args.create_time !== null) {
+      this.create_time = args.create_time;
+    }
+    if (args.update_time !== undefined && args.update_time !== null) {
+      this.update_time = args.update_time;
+    }
+    if (args.name !== undefined && args.name !== null) {
+      this.name = args.name;
+    }
+    if (args.package_name !== undefined && args.package_name !== null) {
+      this.package_name = args.package_name;
+    }
+  }
+};
+ClientSide.prototype = {};
+ClientSide.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.create_time = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.STRING) {
+        this.update_time = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 4:
+      if (ftype == Thrift.Type.STRING) {
+        this.name = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 5:
+      if (ftype == Thrift.Type.STRING) {
+        this.package_name = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+ClientSide.prototype.write = function(output) {
+  output.writeStructBegin('ClientSide');
+  if (this.id !== null && this.id !== undefined) {
+    output.writeFieldBegin('id', Thrift.Type.I32, 1);
+    output.writeI32(this.id);
+    output.writeFieldEnd();
+  }
+  if (this.create_time !== null && this.create_time !== undefined) {
+    output.writeFieldBegin('create_time', Thrift.Type.STRING, 2);
+    output.writeString(this.create_time);
+    output.writeFieldEnd();
+  }
+  if (this.update_time !== null && this.update_time !== undefined) {
+    output.writeFieldBegin('update_time', Thrift.Type.STRING, 3);
+    output.writeString(this.update_time);
+    output.writeFieldEnd();
+  }
+  if (this.name !== null && this.name !== undefined) {
+    output.writeFieldBegin('name', Thrift.Type.STRING, 4);
+    output.writeString(this.name);
+    output.writeFieldEnd();
+  }
+  if (this.package_name !== null && this.package_name !== undefined) {
+    output.writeFieldBegin('package_name', Thrift.Type.STRING, 5);
+    output.writeString(this.package_name);
     output.writeFieldEnd();
   }
   output.writeFieldStop();

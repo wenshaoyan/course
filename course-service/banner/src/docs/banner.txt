@@ -1,2 +1,17 @@
 1 添加轮播图
     POST /banner
+    请求参数{
+    	"image_url"	:"123",             // 图片url
+    	"redirect_url":"11111",    	    // 跳转url
+    	"show_client_id":1    	        // 显示的客户端id
+    }
+    返回参数{
+            "success": true,
+            "data": {
+                "id": 1                 // 插入的id
+            },
+            "message": "success",
+            "code": 0
+    }
+
+2 更新轮播图
