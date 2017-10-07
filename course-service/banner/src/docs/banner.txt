@@ -1,0 +1,2 @@
+1 添加轮播图
+    POST /banner

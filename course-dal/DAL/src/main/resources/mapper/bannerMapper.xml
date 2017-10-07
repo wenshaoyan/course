@@ -24,6 +24,11 @@
       ORDER BY banner_show_client_id,banner_location
 
     </select>
+
+
+    <update id="update" parameterType="_Banner" >
+        
+    </update>
     <resultMap id="bannerResult" type="_Banner">
         <id property="id" column="banner_id"/>
         <result property="create_time_bean" column="banner_create_time"/>
