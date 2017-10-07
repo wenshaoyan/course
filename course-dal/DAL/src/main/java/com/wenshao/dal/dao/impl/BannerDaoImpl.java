@@ -22,6 +22,9 @@ public class BannerDaoImpl implements BannerDao{
     @Override
     public int insert(BannerBean bannerBean) throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
+        // 查找当前客户端的最大的location
+        int i = sqlSession.selectOne(sqlTag + ".selectMaxLocation", bannerBean.getShow_client_id());
+        bannerBean.setLocation(i+1);
         sqlSession.insert(sqlTag + ".insert", bannerBean);
         sqlSession.commit();
         sqlSession.close();
@@ -29,15 +32,35 @@ public class BannerDaoImpl implements BannerDao{
     }
     @Override
     public int update(BannerBean bannerBean) throws Exception {
-        return 0;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        int result = sqlSession.update(sqlTag + ".update", bannerBean);
+        sqlSession.commit();
+        sqlSession.close();
+        return result;
     }
     @Override
     public int remove(int id) throws Exception {
-        return 0;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        int result = sqlSession.delete(sqlTag + ".remove", id);
+        sqlSession.commit();
+        sqlSession.close();
+        return result;
     }
     @Override
-    public int findById(int id) throws Exception {
-        return 0;
+    public BannerBean findById(int id) throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        BannerBean bannerBean = new BannerBean();
+        bannerBean.setId(id);
+        List<BannerBean> result = sqlSession.selectList(sqlTag + ".select", bannerBean);
+        BannerBean bannerBean1;
+        if (result.size()==0){
+            bannerBean1 = new BannerBean();
+        }else{
+            bannerBean1 = result.get(0);
+        }
+        sqlSession.commit();
+        sqlSession.close();
+        return bannerBean1;
     }
     @Override
     public List<BannerBean> select(BannerBean bannerBean) throws Exception {

@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 
 /**
  * Created by wenshao on 2017/9/28.
+ * 轮播图bean对象
  */
 public class BannerBean extends Banner {
     private Timestamp create_time_bean;

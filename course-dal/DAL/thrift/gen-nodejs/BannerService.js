@@ -335,6 +335,113 @@ BannerService_remove_result.prototype.write = function(output) {
   return;
 };
 
+var BannerService_findById_args = function(args) {
+  this.id = null;
+  if (args) {
+    if (args.id !== undefined && args.id !== null) {
+      this.id = args.id;
+    }
+  }
+};
+BannerService_findById_args.prototype = {};
+BannerService_findById_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_findById_args.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_findById_args');
+  if (this.id !== null && this.id !== undefined) {
+    output.writeFieldBegin('id', Thrift.Type.I32, 1);
+    output.writeI32(this.id);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var BannerService_findById_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new bean_ttypes.Banner(args.success);
+    }
+  }
+};
+BannerService_findById_result.prototype = {};
+BannerService_findById_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new bean_ttypes.Banner();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_findById_result.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_findById_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 var BannerService_selectAll_args = function(args) {
 };
 BannerService_selectAll_args.prototype = {};
@@ -719,6 +826,53 @@ BannerServiceClient.prototype.recv_remove = function(input,mtype,rseqid) {
   }
   return callback('remove failed: unknown result');
 };
+BannerServiceClient.prototype.findById = function(id, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_findById(id);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_findById(id);
+  }
+};
+
+BannerServiceClient.prototype.send_findById = function(id) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('findById', Thrift.MessageType.CALL, this.seqid());
+  var args = new BannerService_findById_args();
+  args.id = id;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+BannerServiceClient.prototype.recv_findById = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new BannerService_findById_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('findById failed: unknown result');
+};
 BannerServiceClient.prototype.selectAll = function(callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
@@ -932,6 +1086,42 @@ BannerServiceProcessor.prototype.process_remove = function(seqid, input, output)
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
         output.writeMessageBegin("remove", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+BannerServiceProcessor.prototype.process_findById = function(seqid, input, output) {
+  var args = new BannerService_findById_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.findById.length === 1) {
+    Q.fcall(this._handler.findById, args.id)
+      .then(function(result) {
+        var result_obj = new BannerService_findById_result({success: result});
+        output.writeMessageBegin("findById", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("findById", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.findById(args.id, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined')) {
+        result_obj = new BannerService_findById_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("findById", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("findById", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();

@@ -12,7 +12,7 @@ public interface BannerDao {
     public int insert(BannerBean bannerBean) throws Exception;
     public int update(BannerBean bannerBean) throws Exception;
     public int remove(int id) throws Exception;
-    public int findById(int id) throws Exception;
+    public BannerBean findById(int id) throws Exception;
 
 
     public List<BannerBean> select(BannerBean bannerBean) throws Exception;

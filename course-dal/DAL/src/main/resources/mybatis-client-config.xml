@@ -3,7 +3,8 @@
 <configuration>
     <properties resource="db.properties" />
     <typeAliases>
-        <typeAlias type="com.wenshao.dal.bean.BannerBean" alias="_BannerBean"/>
+        <typeAlias type="com.wenshao.dal.bean.ClientBean" alias="_ClientBean"/>
+        <typeAlias type="com.wenshao.dal.bean.ClientVersionBean" alias="_ClientVersionBean"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
@@ -17,7 +18,7 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mapper/bannerMapper.xml"/>
+        <mapper resource="mapper/clientMapper.xml"/>
     </mappers>
 
 </configuration>

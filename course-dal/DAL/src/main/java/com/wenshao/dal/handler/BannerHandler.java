@@ -33,11 +33,30 @@ public class BannerHandler implements BannerService.Iface {
     }
 
     public int update(Banner banner) throws TException {
-        return 0;
+        BannerBean paramsBean = new BannerBean(banner);
+        try {
+            return  bannerDao.update(paramsBean);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     public int remove(int id) throws TException {
-        return 0;
+        try {
+            return  bannerDao.remove(id);
+
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
+
+    @Override
+    public Banner findById(int id) throws TException {
+        try {
+            return  (Banner)bannerDao.findById(id);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     public List<Banner> selectAll() throws TException {
