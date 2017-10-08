@@ -28,5 +28,14 @@ module.exports={
             "redirect_url":schema_public.string225,
         },
         "required": ["id"]
+    },
+    "banner_filter":{
+        "type": "object",
+        "properties":{
+            "packageName":schema_public.idString,
+            "image_url":schema_public.string225,
+            "redirect_url":schema_public.string225,
+        },
+        "required": []
     }
 };

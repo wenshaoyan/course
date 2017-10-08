@@ -12,57 +12,57 @@ public class ClientService {
 
   public interface Iface {
 
-    public int clientInsert(com.wenshao.dal.thriftgen.ClientSide clientSide) throws org.apache.thrift.TException;
+    public int clientInsert(ClientSide clientSide) throws org.apache.thrift.TException;
 
-    public int clientUpdate(com.wenshao.dal.thriftgen.ClientSide clientSide) throws org.apache.thrift.TException;
+    public int clientUpdate(ClientSide clientSide) throws org.apache.thrift.TException;
 
     public int clientRemove(int id) throws org.apache.thrift.TException;
 
-    public com.wenshao.dal.thriftgen.ClientSide clientFindById(int id) throws org.apache.thrift.TException;
+    public ClientSide clientFindById(int id) throws org.apache.thrift.TException;
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientSide> clientSelectAll() throws org.apache.thrift.TException;
+    public java.util.List<ClientSide> clientSelectAll() throws org.apache.thrift.TException;
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientSide> clientSelect(com.wenshao.dal.thriftgen.ClientSide clientSide) throws org.apache.thrift.TException;
+    public java.util.List<ClientSide> clientSelect(ClientSide clientSide) throws org.apache.thrift.TException;
 
-    public int versionInsert(com.wenshao.dal.thriftgen.ClientVersion clientVersion) throws org.apache.thrift.TException;
+    public int versionInsert(ClientVersion clientVersion) throws org.apache.thrift.TException;
 
-    public int versionUpdate(com.wenshao.dal.thriftgen.ClientVersion clientVersion) throws org.apache.thrift.TException;
+    public int versionUpdate(ClientVersion clientVersion) throws org.apache.thrift.TException;
 
     public int versionRemove(int id) throws org.apache.thrift.TException;
 
-    public com.wenshao.dal.thriftgen.ClientVersion versionFindById(int id) throws org.apache.thrift.TException;
+    public ClientVersion versionFindById(int id) throws org.apache.thrift.TException;
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientVersion> versionSelectAll() throws org.apache.thrift.TException;
+    public java.util.List<ClientVersion> versionSelectAll() throws org.apache.thrift.TException;
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientVersion> versionSelect(com.wenshao.dal.thriftgen.ClientVersion clientVersion) throws org.apache.thrift.TException;
+    public java.util.List<ClientVersion> versionSelect(ClientVersion clientVersion) throws org.apache.thrift.TException;
 
   }
 
   public interface AsyncIface {
 
-    public void clientInsert(com.wenshao.dal.thriftgen.ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException;
+    public void clientInsert(ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException;
 
-    public void clientUpdate(com.wenshao.dal.thriftgen.ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException;
+    public void clientUpdate(ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException;
 
-    public void clientRemove(int id, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException;
+    public void clientRemove(int id, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException;
 
-    public void clientFindById(int id, org.apache.thrift.async.AsyncMethodCallback<com.wenshao.dal.thriftgen.ClientSide> resultHandler) throws org.apache.thrift.TException;
+    public void clientFindById(int id, org.apache.thrift.async.AsyncMethodCallback<ClientSide> resultHandler) throws org.apache.thrift.TException;
 
-    public void clientSelectAll(org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientSide>> resultHandler) throws org.apache.thrift.TException;
+    public void clientSelectAll(org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientSide>> resultHandler) throws org.apache.thrift.TException;
 
-    public void clientSelect(com.wenshao.dal.thriftgen.ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientSide>> resultHandler) throws org.apache.thrift.TException;
+    public void clientSelect(ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientSide>> resultHandler) throws org.apache.thrift.TException;
 
-    public void versionInsert(com.wenshao.dal.thriftgen.ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException;
+    public void versionInsert(ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException;
 
-    public void versionUpdate(com.wenshao.dal.thriftgen.ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException;
+    public void versionUpdate(ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException;
 
-    public void versionRemove(int id, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException;
+    public void versionRemove(int id, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException;
 
-    public void versionFindById(int id, org.apache.thrift.async.AsyncMethodCallback<com.wenshao.dal.thriftgen.ClientVersion> resultHandler) throws org.apache.thrift.TException;
+    public void versionFindById(int id, org.apache.thrift.async.AsyncMethodCallback<ClientVersion> resultHandler) throws org.apache.thrift.TException;
 
-    public void versionSelectAll(org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientVersion>> resultHandler) throws org.apache.thrift.TException;
+    public void versionSelectAll(org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientVersion>> resultHandler) throws org.apache.thrift.TException;
 
-    public void versionSelect(com.wenshao.dal.thriftgen.ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientVersion>> resultHandler) throws org.apache.thrift.TException;
+    public void versionSelect(ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientVersion>> resultHandler) throws org.apache.thrift.TException;
 
   }
 
@@ -86,13 +86,13 @@ public class ClientService {
       super(iprot, oprot);
     }
 
-    public int clientInsert(com.wenshao.dal.thriftgen.ClientSide clientSide) throws org.apache.thrift.TException
+    public int clientInsert(ClientSide clientSide) throws org.apache.thrift.TException
     {
       send_clientInsert(clientSide);
       return recv_clientInsert();
     }
 
-    public void send_clientInsert(com.wenshao.dal.thriftgen.ClientSide clientSide) throws org.apache.thrift.TException
+    public void send_clientInsert(ClientSide clientSide) throws org.apache.thrift.TException
     {
       clientInsert_args args = new clientInsert_args();
       args.setClientSide(clientSide);
@@ -109,13 +109,13 @@ public class ClientService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "clientInsert failed: unknown result");
     }
 
-    public int clientUpdate(com.wenshao.dal.thriftgen.ClientSide clientSide) throws org.apache.thrift.TException
+    public int clientUpdate(ClientSide clientSide) throws org.apache.thrift.TException
     {
       send_clientUpdate(clientSide);
       return recv_clientUpdate();
     }
 
-    public void send_clientUpdate(com.wenshao.dal.thriftgen.ClientSide clientSide) throws org.apache.thrift.TException
+    public void send_clientUpdate(ClientSide clientSide) throws org.apache.thrift.TException
     {
       clientUpdate_args args = new clientUpdate_args();
       args.setClientSide(clientSide);
@@ -155,7 +155,7 @@ public class ClientService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "clientRemove failed: unknown result");
     }
 
-    public com.wenshao.dal.thriftgen.ClientSide clientFindById(int id) throws org.apache.thrift.TException
+    public ClientSide clientFindById(int id) throws org.apache.thrift.TException
     {
       send_clientFindById(id);
       return recv_clientFindById();
@@ -168,7 +168,7 @@ public class ClientService {
       sendBase("clientFindById", args);
     }
 
-    public com.wenshao.dal.thriftgen.ClientSide recv_clientFindById() throws org.apache.thrift.TException
+    public ClientSide recv_clientFindById() throws org.apache.thrift.TException
     {
       clientFindById_result result = new clientFindById_result();
       receiveBase(result, "clientFindById");
@@ -178,7 +178,7 @@ public class ClientService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "clientFindById failed: unknown result");
     }
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientSide> clientSelectAll() throws org.apache.thrift.TException
+    public java.util.List<ClientSide> clientSelectAll() throws org.apache.thrift.TException
     {
       send_clientSelectAll();
       return recv_clientSelectAll();
@@ -190,7 +190,7 @@ public class ClientService {
       sendBase("clientSelectAll", args);
     }
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientSide> recv_clientSelectAll() throws org.apache.thrift.TException
+    public java.util.List<ClientSide> recv_clientSelectAll() throws org.apache.thrift.TException
     {
       clientSelectAll_result result = new clientSelectAll_result();
       receiveBase(result, "clientSelectAll");
@@ -200,20 +200,20 @@ public class ClientService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "clientSelectAll failed: unknown result");
     }
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientSide> clientSelect(com.wenshao.dal.thriftgen.ClientSide clientSide) throws org.apache.thrift.TException
+    public java.util.List<ClientSide> clientSelect(ClientSide clientSide) throws org.apache.thrift.TException
     {
       send_clientSelect(clientSide);
       return recv_clientSelect();
     }
 
-    public void send_clientSelect(com.wenshao.dal.thriftgen.ClientSide clientSide) throws org.apache.thrift.TException
+    public void send_clientSelect(ClientSide clientSide) throws org.apache.thrift.TException
     {
       clientSelect_args args = new clientSelect_args();
       args.setClientSide(clientSide);
       sendBase("clientSelect", args);
     }
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientSide> recv_clientSelect() throws org.apache.thrift.TException
+    public java.util.List<ClientSide> recv_clientSelect() throws org.apache.thrift.TException
     {
       clientSelect_result result = new clientSelect_result();
       receiveBase(result, "clientSelect");
@@ -223,13 +223,13 @@ public class ClientService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "clientSelect failed: unknown result");
     }
 
-    public int versionInsert(com.wenshao.dal.thriftgen.ClientVersion clientVersion) throws org.apache.thrift.TException
+    public int versionInsert(ClientVersion clientVersion) throws org.apache.thrift.TException
     {
       send_versionInsert(clientVersion);
       return recv_versionInsert();
     }
 
-    public void send_versionInsert(com.wenshao.dal.thriftgen.ClientVersion clientVersion) throws org.apache.thrift.TException
+    public void send_versionInsert(ClientVersion clientVersion) throws org.apache.thrift.TException
     {
       versionInsert_args args = new versionInsert_args();
       args.setClientVersion(clientVersion);
@@ -246,13 +246,13 @@ public class ClientService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "versionInsert failed: unknown result");
     }
 
-    public int versionUpdate(com.wenshao.dal.thriftgen.ClientVersion clientVersion) throws org.apache.thrift.TException
+    public int versionUpdate(ClientVersion clientVersion) throws org.apache.thrift.TException
     {
       send_versionUpdate(clientVersion);
       return recv_versionUpdate();
     }
 
-    public void send_versionUpdate(com.wenshao.dal.thriftgen.ClientVersion clientVersion) throws org.apache.thrift.TException
+    public void send_versionUpdate(ClientVersion clientVersion) throws org.apache.thrift.TException
     {
       versionUpdate_args args = new versionUpdate_args();
       args.setClientVersion(clientVersion);
@@ -292,7 +292,7 @@ public class ClientService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "versionRemove failed: unknown result");
     }
 
-    public com.wenshao.dal.thriftgen.ClientVersion versionFindById(int id) throws org.apache.thrift.TException
+    public ClientVersion versionFindById(int id) throws org.apache.thrift.TException
     {
       send_versionFindById(id);
       return recv_versionFindById();
@@ -305,7 +305,7 @@ public class ClientService {
       sendBase("versionFindById", args);
     }
 
-    public com.wenshao.dal.thriftgen.ClientVersion recv_versionFindById() throws org.apache.thrift.TException
+    public ClientVersion recv_versionFindById() throws org.apache.thrift.TException
     {
       versionFindById_result result = new versionFindById_result();
       receiveBase(result, "versionFindById");
@@ -315,7 +315,7 @@ public class ClientService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "versionFindById failed: unknown result");
     }
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientVersion> versionSelectAll() throws org.apache.thrift.TException
+    public java.util.List<ClientVersion> versionSelectAll() throws org.apache.thrift.TException
     {
       send_versionSelectAll();
       return recv_versionSelectAll();
@@ -327,7 +327,7 @@ public class ClientService {
       sendBase("versionSelectAll", args);
     }
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientVersion> recv_versionSelectAll() throws org.apache.thrift.TException
+    public java.util.List<ClientVersion> recv_versionSelectAll() throws org.apache.thrift.TException
     {
       versionSelectAll_result result = new versionSelectAll_result();
       receiveBase(result, "versionSelectAll");
@@ -337,20 +337,20 @@ public class ClientService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "versionSelectAll failed: unknown result");
     }
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientVersion> versionSelect(com.wenshao.dal.thriftgen.ClientVersion clientVersion) throws org.apache.thrift.TException
+    public java.util.List<ClientVersion> versionSelect(ClientVersion clientVersion) throws org.apache.thrift.TException
     {
       send_versionSelect(clientVersion);
       return recv_versionSelect();
     }
 
-    public void send_versionSelect(com.wenshao.dal.thriftgen.ClientVersion clientVersion) throws org.apache.thrift.TException
+    public void send_versionSelect(ClientVersion clientVersion) throws org.apache.thrift.TException
     {
       versionSelect_args args = new versionSelect_args();
       args.setClientVersion(clientVersion);
       sendBase("versionSelect", args);
     }
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientVersion> recv_versionSelect() throws org.apache.thrift.TException
+    public java.util.List<ClientVersion> recv_versionSelect() throws org.apache.thrift.TException
     {
       versionSelect_result result = new versionSelect_result();
       receiveBase(result, "versionSelect");
@@ -378,16 +378,16 @@ public class ClientService {
       super(protocolFactory, clientManager, transport);
     }
 
-    public void clientInsert(com.wenshao.dal.thriftgen.ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
+    public void clientInsert(ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       clientInsert_call method_call = new clientInsert_call(clientSide, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class clientInsert_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Integer> {
-      private com.wenshao.dal.thriftgen.ClientSide clientSide;
-      public clientInsert_call(com.wenshao.dal.thriftgen.ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class clientInsert_call extends org.apache.thrift.async.TAsyncMethodCall<Integer> {
+      private ClientSide clientSide;
+      public clientInsert_call(ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.clientSide = clientSide;
       }
@@ -400,9 +400,9 @@ public class ClientService {
         prot.writeMessageEnd();
       }
 
-      public java.lang.Integer getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public Integer getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -410,16 +410,16 @@ public class ClientService {
       }
     }
 
-    public void clientUpdate(com.wenshao.dal.thriftgen.ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
+    public void clientUpdate(ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       clientUpdate_call method_call = new clientUpdate_call(clientSide, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class clientUpdate_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Integer> {
-      private com.wenshao.dal.thriftgen.ClientSide clientSide;
-      public clientUpdate_call(com.wenshao.dal.thriftgen.ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class clientUpdate_call extends org.apache.thrift.async.TAsyncMethodCall<Integer> {
+      private ClientSide clientSide;
+      public clientUpdate_call(ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.clientSide = clientSide;
       }
@@ -432,9 +432,9 @@ public class ClientService {
         prot.writeMessageEnd();
       }
 
-      public java.lang.Integer getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public Integer getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -442,16 +442,16 @@ public class ClientService {
       }
     }
 
-    public void clientRemove(int id, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
+    public void clientRemove(int id, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       clientRemove_call method_call = new clientRemove_call(id, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class clientRemove_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Integer> {
+    public static class clientRemove_call extends org.apache.thrift.async.TAsyncMethodCall<Integer> {
       private int id;
-      public clientRemove_call(int id, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public clientRemove_call(int id, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.id = id;
       }
@@ -464,9 +464,9 @@ public class ClientService {
         prot.writeMessageEnd();
       }
 
-      public java.lang.Integer getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public Integer getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -474,16 +474,16 @@ public class ClientService {
       }
     }
 
-    public void clientFindById(int id, org.apache.thrift.async.AsyncMethodCallback<com.wenshao.dal.thriftgen.ClientSide> resultHandler) throws org.apache.thrift.TException {
+    public void clientFindById(int id, org.apache.thrift.async.AsyncMethodCallback<ClientSide> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       clientFindById_call method_call = new clientFindById_call(id, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class clientFindById_call extends org.apache.thrift.async.TAsyncMethodCall<com.wenshao.dal.thriftgen.ClientSide> {
+    public static class clientFindById_call extends org.apache.thrift.async.TAsyncMethodCall<ClientSide> {
       private int id;
-      public clientFindById_call(int id, org.apache.thrift.async.AsyncMethodCallback<com.wenshao.dal.thriftgen.ClientSide> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public clientFindById_call(int id, org.apache.thrift.async.AsyncMethodCallback<ClientSide> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.id = id;
       }
@@ -496,9 +496,9 @@ public class ClientService {
         prot.writeMessageEnd();
       }
 
-      public com.wenshao.dal.thriftgen.ClientSide getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public ClientSide getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -506,15 +506,15 @@ public class ClientService {
       }
     }
 
-    public void clientSelectAll(org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientSide>> resultHandler) throws org.apache.thrift.TException {
+    public void clientSelectAll(org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientSide>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       clientSelectAll_call method_call = new clientSelectAll_call(resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class clientSelectAll_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<com.wenshao.dal.thriftgen.ClientSide>> {
-      public clientSelectAll_call(org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientSide>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class clientSelectAll_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<ClientSide>> {
+      public clientSelectAll_call(org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientSide>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
       }
 
@@ -525,9 +525,9 @@ public class ClientService {
         prot.writeMessageEnd();
       }
 
-      public java.util.List<com.wenshao.dal.thriftgen.ClientSide> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public java.util.List<ClientSide> getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -535,16 +535,16 @@ public class ClientService {
       }
     }
 
-    public void clientSelect(com.wenshao.dal.thriftgen.ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientSide>> resultHandler) throws org.apache.thrift.TException {
+    public void clientSelect(ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientSide>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       clientSelect_call method_call = new clientSelect_call(clientSide, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class clientSelect_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<com.wenshao.dal.thriftgen.ClientSide>> {
-      private com.wenshao.dal.thriftgen.ClientSide clientSide;
-      public clientSelect_call(com.wenshao.dal.thriftgen.ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientSide>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class clientSelect_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<ClientSide>> {
+      private ClientSide clientSide;
+      public clientSelect_call(ClientSide clientSide, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientSide>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.clientSide = clientSide;
       }
@@ -557,9 +557,9 @@ public class ClientService {
         prot.writeMessageEnd();
       }
 
-      public java.util.List<com.wenshao.dal.thriftgen.ClientSide> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public java.util.List<ClientSide> getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -567,16 +567,16 @@ public class ClientService {
       }
     }
 
-    public void versionInsert(com.wenshao.dal.thriftgen.ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
+    public void versionInsert(ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       versionInsert_call method_call = new versionInsert_call(clientVersion, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class versionInsert_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Integer> {
-      private com.wenshao.dal.thriftgen.ClientVersion clientVersion;
-      public versionInsert_call(com.wenshao.dal.thriftgen.ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class versionInsert_call extends org.apache.thrift.async.TAsyncMethodCall<Integer> {
+      private ClientVersion clientVersion;
+      public versionInsert_call(ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.clientVersion = clientVersion;
       }
@@ -589,9 +589,9 @@ public class ClientService {
         prot.writeMessageEnd();
       }
 
-      public java.lang.Integer getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public Integer getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -599,16 +599,16 @@ public class ClientService {
       }
     }
 
-    public void versionUpdate(com.wenshao.dal.thriftgen.ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
+    public void versionUpdate(ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       versionUpdate_call method_call = new versionUpdate_call(clientVersion, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class versionUpdate_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Integer> {
-      private com.wenshao.dal.thriftgen.ClientVersion clientVersion;
-      public versionUpdate_call(com.wenshao.dal.thriftgen.ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class versionUpdate_call extends org.apache.thrift.async.TAsyncMethodCall<Integer> {
+      private ClientVersion clientVersion;
+      public versionUpdate_call(ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.clientVersion = clientVersion;
       }
@@ -621,9 +621,9 @@ public class ClientService {
         prot.writeMessageEnd();
       }
 
-      public java.lang.Integer getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public Integer getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -631,16 +631,16 @@ public class ClientService {
       }
     }
 
-    public void versionRemove(int id, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
+    public void versionRemove(int id, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       versionRemove_call method_call = new versionRemove_call(id, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class versionRemove_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Integer> {
+    public static class versionRemove_call extends org.apache.thrift.async.TAsyncMethodCall<Integer> {
       private int id;
-      public versionRemove_call(int id, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public versionRemove_call(int id, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.id = id;
       }
@@ -653,9 +653,9 @@ public class ClientService {
         prot.writeMessageEnd();
       }
 
-      public java.lang.Integer getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public Integer getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -663,16 +663,16 @@ public class ClientService {
       }
     }
 
-    public void versionFindById(int id, org.apache.thrift.async.AsyncMethodCallback<com.wenshao.dal.thriftgen.ClientVersion> resultHandler) throws org.apache.thrift.TException {
+    public void versionFindById(int id, org.apache.thrift.async.AsyncMethodCallback<ClientVersion> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       versionFindById_call method_call = new versionFindById_call(id, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class versionFindById_call extends org.apache.thrift.async.TAsyncMethodCall<com.wenshao.dal.thriftgen.ClientVersion> {
+    public static class versionFindById_call extends org.apache.thrift.async.TAsyncMethodCall<ClientVersion> {
       private int id;
-      public versionFindById_call(int id, org.apache.thrift.async.AsyncMethodCallback<com.wenshao.dal.thriftgen.ClientVersion> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public versionFindById_call(int id, org.apache.thrift.async.AsyncMethodCallback<ClientVersion> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.id = id;
       }
@@ -685,9 +685,9 @@ public class ClientService {
         prot.writeMessageEnd();
       }
 
-      public com.wenshao.dal.thriftgen.ClientVersion getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public ClientVersion getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -695,15 +695,15 @@ public class ClientService {
       }
     }
 
-    public void versionSelectAll(org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientVersion>> resultHandler) throws org.apache.thrift.TException {
+    public void versionSelectAll(org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientVersion>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       versionSelectAll_call method_call = new versionSelectAll_call(resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class versionSelectAll_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<com.wenshao.dal.thriftgen.ClientVersion>> {
-      public versionSelectAll_call(org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientVersion>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class versionSelectAll_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<ClientVersion>> {
+      public versionSelectAll_call(org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientVersion>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
       }
 
@@ -714,9 +714,9 @@ public class ClientService {
         prot.writeMessageEnd();
       }
 
-      public java.util.List<com.wenshao.dal.thriftgen.ClientVersion> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public java.util.List<ClientVersion> getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -724,16 +724,16 @@ public class ClientService {
       }
     }
 
-    public void versionSelect(com.wenshao.dal.thriftgen.ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientVersion>> resultHandler) throws org.apache.thrift.TException {
+    public void versionSelect(ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientVersion>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       versionSelect_call method_call = new versionSelect_call(clientVersion, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class versionSelect_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<com.wenshao.dal.thriftgen.ClientVersion>> {
-      private com.wenshao.dal.thriftgen.ClientVersion clientVersion;
-      public versionSelect_call(com.wenshao.dal.thriftgen.ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientVersion>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class versionSelect_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<ClientVersion>> {
+      private ClientVersion clientVersion;
+      public versionSelect_call(ClientVersion clientVersion, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientVersion>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.clientVersion = clientVersion;
       }
@@ -746,9 +746,9 @@ public class ClientService {
         prot.writeMessageEnd();
       }
 
-      public java.util.List<com.wenshao.dal.thriftgen.ClientVersion> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public java.util.List<ClientVersion> getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -761,14 +761,14 @@ public class ClientService {
   public static class Processor<I extends Iface> extends org.apache.thrift.TBaseProcessor<I> implements org.apache.thrift.TProcessor {
     private static final org.slf4j.Logger _LOGGER = org.slf4j.LoggerFactory.getLogger(Processor.class.getName());
     public Processor(I iface) {
-      super(iface, getProcessMap(new java.util.HashMap<java.lang.String, org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>>()));
+      super(iface, getProcessMap(new java.util.HashMap<String, org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>>()));
     }
 
-    protected Processor(I iface, java.util.Map<java.lang.String, org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>> processMap) {
+    protected Processor(I iface, java.util.Map<String, org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>> processMap) {
       super(iface, getProcessMap(processMap));
     }
 
-    private static <I extends Iface> java.util.Map<java.lang.String,  org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>> getProcessMap(java.util.Map<java.lang.String, org.apache.thrift.ProcessFunction<I, ? extends  org.apache.thrift.TBase>> processMap) {
+    private static <I extends Iface> java.util.Map<String,  org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>> getProcessMap(java.util.Map<String, org.apache.thrift.ProcessFunction<I, ? extends  org.apache.thrift.TBase>> processMap) {
       processMap.put("clientInsert", new clientInsert());
       processMap.put("clientUpdate", new clientUpdate());
       processMap.put("clientRemove", new clientRemove());
@@ -1035,14 +1035,14 @@ public class ClientService {
   public static class AsyncProcessor<I extends AsyncIface> extends org.apache.thrift.TBaseAsyncProcessor<I> {
     private static final org.slf4j.Logger _LOGGER = org.slf4j.LoggerFactory.getLogger(AsyncProcessor.class.getName());
     public AsyncProcessor(I iface) {
-      super(iface, getProcessMap(new java.util.HashMap<java.lang.String, org.apache.thrift.AsyncProcessFunction<I, ? extends org.apache.thrift.TBase, ?>>()));
+      super(iface, getProcessMap(new java.util.HashMap<String, org.apache.thrift.AsyncProcessFunction<I, ? extends org.apache.thrift.TBase, ?>>()));
     }
 
-    protected AsyncProcessor(I iface, java.util.Map<java.lang.String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase, ?>> processMap) {
+    protected AsyncProcessor(I iface, java.util.Map<String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase, ?>> processMap) {
       super(iface, getProcessMap(processMap));
     }
 
-    private static <I extends AsyncIface> java.util.Map<java.lang.String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase,?>> getProcessMap(java.util.Map<java.lang.String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase, ?>> processMap) {
+    private static <I extends AsyncIface> java.util.Map<String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase,?>> getProcessMap(java.util.Map<String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase, ?>> processMap) {
       processMap.put("clientInsert", new clientInsert());
       processMap.put("clientUpdate", new clientUpdate());
       processMap.put("clientRemove", new clientRemove());
@@ -1058,7 +1058,7 @@ public class ClientService {
       return processMap;
     }
 
-    public static class clientInsert<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, clientInsert_args, java.lang.Integer> {
+    public static class clientInsert<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, clientInsert_args, Integer> {
       public clientInsert() {
         super("clientInsert");
       }
@@ -1067,10 +1067,10 @@ public class ClientService {
         return new clientInsert_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer>() { 
-          public void onComplete(java.lang.Integer o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<Integer>() {
+          public void onComplete(Integer o) {
             clientInsert_result result = new clientInsert_result();
             result.success = o;
             result.setSuccessIsSet(true);
@@ -1079,12 +1079,12 @@ public class ClientService {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             clientInsert_result result = new clientInsert_result();
@@ -1103,7 +1103,7 @@ public class ClientService {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -1115,12 +1115,12 @@ public class ClientService {
         return false;
       }
 
-      public void start(I iface, clientInsert_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, clientInsert_args args, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
         iface.clientInsert(args.clientSide,resultHandler);
       }
     }
 
-    public static class clientUpdate<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, clientUpdate_args, java.lang.Integer> {
+    public static class clientUpdate<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, clientUpdate_args, Integer> {
       public clientUpdate() {
         super("clientUpdate");
       }
@@ -1129,10 +1129,10 @@ public class ClientService {
         return new clientUpdate_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer>() { 
-          public void onComplete(java.lang.Integer o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<Integer>() {
+          public void onComplete(Integer o) {
             clientUpdate_result result = new clientUpdate_result();
             result.success = o;
             result.setSuccessIsSet(true);
@@ -1141,12 +1141,12 @@ public class ClientService {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             clientUpdate_result result = new clientUpdate_result();
@@ -1165,7 +1165,7 @@ public class ClientService {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -1177,12 +1177,12 @@ public class ClientService {
         return false;
       }
 
-      public void start(I iface, clientUpdate_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, clientUpdate_args args, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
         iface.clientUpdate(args.clientSide,resultHandler);
       }
     }
 
-    public static class clientRemove<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, clientRemove_args, java.lang.Integer> {
+    public static class clientRemove<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, clientRemove_args, Integer> {
       public clientRemove() {
         super("clientRemove");
       }
@@ -1191,10 +1191,10 @@ public class ClientService {
         return new clientRemove_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer>() { 
-          public void onComplete(java.lang.Integer o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<Integer>() {
+          public void onComplete(Integer o) {
             clientRemove_result result = new clientRemove_result();
             result.success = o;
             result.setSuccessIsSet(true);
@@ -1203,12 +1203,12 @@ public class ClientService {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             clientRemove_result result = new clientRemove_result();
@@ -1227,7 +1227,7 @@ public class ClientService {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -1239,12 +1239,12 @@ public class ClientService {
         return false;
       }
 
-      public void start(I iface, clientRemove_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, clientRemove_args args, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
         iface.clientRemove(args.id,resultHandler);
       }
     }
 
-    public static class clientFindById<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, clientFindById_args, com.wenshao.dal.thriftgen.ClientSide> {
+    public static class clientFindById<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, clientFindById_args, ClientSide> {
       public clientFindById() {
         super("clientFindById");
       }
@@ -1253,10 +1253,10 @@ public class ClientService {
         return new clientFindById_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<com.wenshao.dal.thriftgen.ClientSide> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<ClientSide> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<com.wenshao.dal.thriftgen.ClientSide>() { 
-          public void onComplete(com.wenshao.dal.thriftgen.ClientSide o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<ClientSide>() {
+          public void onComplete(ClientSide o) {
             clientFindById_result result = new clientFindById_result();
             result.success = o;
             try {
@@ -1264,12 +1264,12 @@ public class ClientService {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             clientFindById_result result = new clientFindById_result();
@@ -1288,7 +1288,7 @@ public class ClientService {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -1300,12 +1300,12 @@ public class ClientService {
         return false;
       }
 
-      public void start(I iface, clientFindById_args args, org.apache.thrift.async.AsyncMethodCallback<com.wenshao.dal.thriftgen.ClientSide> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, clientFindById_args args, org.apache.thrift.async.AsyncMethodCallback<ClientSide> resultHandler) throws org.apache.thrift.TException {
         iface.clientFindById(args.id,resultHandler);
       }
     }
 
-    public static class clientSelectAll<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, clientSelectAll_args, java.util.List<com.wenshao.dal.thriftgen.ClientSide>> {
+    public static class clientSelectAll<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, clientSelectAll_args, java.util.List<ClientSide>> {
       public clientSelectAll() {
         super("clientSelectAll");
       }
@@ -1314,10 +1314,10 @@ public class ClientService {
         return new clientSelectAll_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientSide>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientSide>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientSide>>() { 
-          public void onComplete(java.util.List<com.wenshao.dal.thriftgen.ClientSide> o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientSide>>() {
+          public void onComplete(java.util.List<ClientSide> o) {
             clientSelectAll_result result = new clientSelectAll_result();
             result.success = o;
             try {
@@ -1325,12 +1325,12 @@ public class ClientService {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             clientSelectAll_result result = new clientSelectAll_result();
@@ -1349,7 +1349,7 @@ public class ClientService {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -1361,12 +1361,12 @@ public class ClientService {
         return false;
       }
 
-      public void start(I iface, clientSelectAll_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientSide>> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, clientSelectAll_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientSide>> resultHandler) throws org.apache.thrift.TException {
         iface.clientSelectAll(resultHandler);
       }
     }
 
-    public static class clientSelect<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, clientSelect_args, java.util.List<com.wenshao.dal.thriftgen.ClientSide>> {
+    public static class clientSelect<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, clientSelect_args, java.util.List<ClientSide>> {
       public clientSelect() {
         super("clientSelect");
       }
@@ -1375,10 +1375,10 @@ public class ClientService {
         return new clientSelect_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientSide>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientSide>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientSide>>() { 
-          public void onComplete(java.util.List<com.wenshao.dal.thriftgen.ClientSide> o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientSide>>() {
+          public void onComplete(java.util.List<ClientSide> o) {
             clientSelect_result result = new clientSelect_result();
             result.success = o;
             try {
@@ -1386,12 +1386,12 @@ public class ClientService {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             clientSelect_result result = new clientSelect_result();
@@ -1410,7 +1410,7 @@ public class ClientService {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -1422,12 +1422,12 @@ public class ClientService {
         return false;
       }
 
-      public void start(I iface, clientSelect_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientSide>> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, clientSelect_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientSide>> resultHandler) throws org.apache.thrift.TException {
         iface.clientSelect(args.clientSide,resultHandler);
       }
     }
 
-    public static class versionInsert<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, versionInsert_args, java.lang.Integer> {
+    public static class versionInsert<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, versionInsert_args, Integer> {
       public versionInsert() {
         super("versionInsert");
       }
@@ -1436,10 +1436,10 @@ public class ClientService {
         return new versionInsert_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer>() { 
-          public void onComplete(java.lang.Integer o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<Integer>() {
+          public void onComplete(Integer o) {
             versionInsert_result result = new versionInsert_result();
             result.success = o;
             result.setSuccessIsSet(true);
@@ -1448,12 +1448,12 @@ public class ClientService {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             versionInsert_result result = new versionInsert_result();
@@ -1472,7 +1472,7 @@ public class ClientService {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -1484,12 +1484,12 @@ public class ClientService {
         return false;
       }
 
-      public void start(I iface, versionInsert_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, versionInsert_args args, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
         iface.versionInsert(args.clientVersion,resultHandler);
       }
     }
 
-    public static class versionUpdate<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, versionUpdate_args, java.lang.Integer> {
+    public static class versionUpdate<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, versionUpdate_args, Integer> {
       public versionUpdate() {
         super("versionUpdate");
       }
@@ -1498,10 +1498,10 @@ public class ClientService {
         return new versionUpdate_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer>() { 
-          public void onComplete(java.lang.Integer o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<Integer>() {
+          public void onComplete(Integer o) {
             versionUpdate_result result = new versionUpdate_result();
             result.success = o;
             result.setSuccessIsSet(true);
@@ -1510,12 +1510,12 @@ public class ClientService {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             versionUpdate_result result = new versionUpdate_result();
@@ -1534,7 +1534,7 @@ public class ClientService {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -1546,12 +1546,12 @@ public class ClientService {
         return false;
       }
 
-      public void start(I iface, versionUpdate_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, versionUpdate_args args, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
         iface.versionUpdate(args.clientVersion,resultHandler);
       }
     }
 
-    public static class versionRemove<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, versionRemove_args, java.lang.Integer> {
+    public static class versionRemove<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, versionRemove_args, Integer> {
       public versionRemove() {
         super("versionRemove");
       }
@@ -1560,10 +1560,10 @@ public class ClientService {
         return new versionRemove_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer>() { 
-          public void onComplete(java.lang.Integer o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<Integer>() {
+          public void onComplete(Integer o) {
             versionRemove_result result = new versionRemove_result();
             result.success = o;
             result.setSuccessIsSet(true);
@@ -1572,12 +1572,12 @@ public class ClientService {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             versionRemove_result result = new versionRemove_result();
@@ -1596,7 +1596,7 @@ public class ClientService {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -1608,12 +1608,12 @@ public class ClientService {
         return false;
       }
 
-      public void start(I iface, versionRemove_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, versionRemove_args args, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
         iface.versionRemove(args.id,resultHandler);
       }
     }
 
-    public static class versionFindById<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, versionFindById_args, com.wenshao.dal.thriftgen.ClientVersion> {
+    public static class versionFindById<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, versionFindById_args, ClientVersion> {
       public versionFindById() {
         super("versionFindById");
       }
@@ -1622,10 +1622,10 @@ public class ClientService {
         return new versionFindById_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<com.wenshao.dal.thriftgen.ClientVersion> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<ClientVersion> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<com.wenshao.dal.thriftgen.ClientVersion>() { 
-          public void onComplete(com.wenshao.dal.thriftgen.ClientVersion o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<ClientVersion>() {
+          public void onComplete(ClientVersion o) {
             versionFindById_result result = new versionFindById_result();
             result.success = o;
             try {
@@ -1633,12 +1633,12 @@ public class ClientService {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             versionFindById_result result = new versionFindById_result();
@@ -1657,7 +1657,7 @@ public class ClientService {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -1669,12 +1669,12 @@ public class ClientService {
         return false;
       }
 
-      public void start(I iface, versionFindById_args args, org.apache.thrift.async.AsyncMethodCallback<com.wenshao.dal.thriftgen.ClientVersion> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, versionFindById_args args, org.apache.thrift.async.AsyncMethodCallback<ClientVersion> resultHandler) throws org.apache.thrift.TException {
         iface.versionFindById(args.id,resultHandler);
       }
     }
 
-    public static class versionSelectAll<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, versionSelectAll_args, java.util.List<com.wenshao.dal.thriftgen.ClientVersion>> {
+    public static class versionSelectAll<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, versionSelectAll_args, java.util.List<ClientVersion>> {
       public versionSelectAll() {
         super("versionSelectAll");
       }
@@ -1683,10 +1683,10 @@ public class ClientService {
         return new versionSelectAll_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientVersion>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientVersion>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientVersion>>() { 
-          public void onComplete(java.util.List<com.wenshao.dal.thriftgen.ClientVersion> o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientVersion>>() {
+          public void onComplete(java.util.List<ClientVersion> o) {
             versionSelectAll_result result = new versionSelectAll_result();
             result.success = o;
             try {
@@ -1694,12 +1694,12 @@ public class ClientService {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             versionSelectAll_result result = new versionSelectAll_result();
@@ -1718,7 +1718,7 @@ public class ClientService {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -1730,12 +1730,12 @@ public class ClientService {
         return false;
       }
 
-      public void start(I iface, versionSelectAll_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientVersion>> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, versionSelectAll_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientVersion>> resultHandler) throws org.apache.thrift.TException {
         iface.versionSelectAll(resultHandler);
       }
     }
 
-    public static class versionSelect<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, versionSelect_args, java.util.List<com.wenshao.dal.thriftgen.ClientVersion>> {
+    public static class versionSelect<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, versionSelect_args, java.util.List<ClientVersion>> {
       public versionSelect() {
         super("versionSelect");
       }
@@ -1744,10 +1744,10 @@ public class ClientService {
         return new versionSelect_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientVersion>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientVersion>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientVersion>>() { 
-          public void onComplete(java.util.List<com.wenshao.dal.thriftgen.ClientVersion> o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientVersion>>() {
+          public void onComplete(java.util.List<ClientVersion> o) {
             versionSelect_result result = new versionSelect_result();
             result.success = o;
             try {
@@ -1755,12 +1755,12 @@ public class ClientService {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             versionSelect_result result = new versionSelect_result();
@@ -1779,7 +1779,7 @@ public class ClientService {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -1791,7 +1791,7 @@ public class ClientService {
         return false;
       }
 
-      public void start(I iface, versionSelect_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.ClientVersion>> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, versionSelect_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ClientVersion>> resultHandler) throws org.apache.thrift.TException {
         iface.versionSelect(args.clientVersion,resultHandler);
       }
     }
@@ -1806,13 +1806,13 @@ public class ClientService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new clientInsert_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new clientInsert_argsTupleSchemeFactory();
 
-    public com.wenshao.dal.thriftgen.ClientSide clientSide; // required
+    public ClientSide clientSide; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       CLIENT_SIDE((short)1, "clientSide");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -1838,21 +1838,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -1861,7 +1861,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -1871,7 +1871,7 @@ public class ClientService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.CLIENT_SIDE, new org.apache.thrift.meta_data.FieldMetaData("clientSide", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.ClientSide.class)));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ClientSide.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(clientInsert_args.class, metaDataMap);
     }
@@ -1880,7 +1880,7 @@ public class ClientService {
     }
 
     public clientInsert_args(
-      com.wenshao.dal.thriftgen.ClientSide clientSide)
+      ClientSide clientSide)
     {
       this();
       this.clientSide = clientSide;
@@ -1891,7 +1891,7 @@ public class ClientService {
      */
     public clientInsert_args(clientInsert_args other) {
       if (other.isSetClientSide()) {
-        this.clientSide = new com.wenshao.dal.thriftgen.ClientSide(other.clientSide);
+        this.clientSide = new ClientSide(other.clientSide);
       }
     }
 
@@ -1904,11 +1904,11 @@ public class ClientService {
       this.clientSide = null;
     }
 
-    public com.wenshao.dal.thriftgen.ClientSide getClientSide() {
+    public ClientSide getClientSide() {
       return this.clientSide;
     }
 
-    public clientInsert_args setClientSide(com.wenshao.dal.thriftgen.ClientSide clientSide) {
+    public clientInsert_args setClientSide(ClientSide clientSide) {
       this.clientSide = clientSide;
       return this;
     }
@@ -1928,43 +1928,43 @@ public class ClientService {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case CLIENT_SIDE:
         if (value == null) {
           unsetClientSide();
         } else {
-          setClientSide((com.wenshao.dal.thriftgen.ClientSide)value);
+          setClientSide((ClientSide)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case CLIENT_SIDE:
         return getClientSide();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case CLIENT_SIDE:
         return isSetClientSide();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof clientInsert_args)
@@ -2009,7 +2009,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetClientSide()).compareTo(other.isSetClientSide());
+      lastComparison = Boolean.valueOf(isSetClientSide()).compareTo(other.isSetClientSide());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -2035,8 +2035,8 @@ public class ClientService {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("clientInsert_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("clientInsert_args(");
       boolean first = true;
 
       sb.append("clientSide:");
@@ -2066,7 +2066,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -2094,7 +2094,7 @@ public class ClientService {
           switch (schemeField.id) {
             case 1: // CLIENT_SIDE
               if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.clientSide = new com.wenshao.dal.thriftgen.ClientSide();
+                struct.clientSide = new ClientSide();
                 struct.clientSide.read(iprot);
                 struct.setClientSideIsSet(true);
               } else { 
@@ -2153,7 +2153,7 @@ public class ClientService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.clientSide = new com.wenshao.dal.thriftgen.ClientSide();
+          struct.clientSide = new ClientSide();
           struct.clientSide.read(iprot);
           struct.setClientSideIsSet(true);
         }
@@ -2179,7 +2179,7 @@ public class ClientService {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -2205,21 +2205,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -2228,7 +2228,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -2297,43 +2297,43 @@ public class ClientService {
       __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.lang.Integer)value);
+          setSuccess((Integer)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof clientInsert_result)
@@ -2376,7 +2376,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -2402,8 +2402,8 @@ public class ClientService {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("clientInsert_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("clientInsert_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -2426,7 +2426,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
         __isset_bitfield = 0;
@@ -2533,13 +2533,13 @@ public class ClientService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new clientUpdate_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new clientUpdate_argsTupleSchemeFactory();
 
-    public com.wenshao.dal.thriftgen.ClientSide clientSide; // required
+    public ClientSide clientSide; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       CLIENT_SIDE((short)1, "clientSide");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -2565,21 +2565,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -2588,7 +2588,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -2598,7 +2598,7 @@ public class ClientService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.CLIENT_SIDE, new org.apache.thrift.meta_data.FieldMetaData("clientSide", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.ClientSide.class)));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ClientSide.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(clientUpdate_args.class, metaDataMap);
     }
@@ -2607,7 +2607,7 @@ public class ClientService {
     }
 
     public clientUpdate_args(
-      com.wenshao.dal.thriftgen.ClientSide clientSide)
+      ClientSide clientSide)
     {
       this();
       this.clientSide = clientSide;
@@ -2618,7 +2618,7 @@ public class ClientService {
      */
     public clientUpdate_args(clientUpdate_args other) {
       if (other.isSetClientSide()) {
-        this.clientSide = new com.wenshao.dal.thriftgen.ClientSide(other.clientSide);
+        this.clientSide = new ClientSide(other.clientSide);
       }
     }
 
@@ -2631,11 +2631,11 @@ public class ClientService {
       this.clientSide = null;
     }
 
-    public com.wenshao.dal.thriftgen.ClientSide getClientSide() {
+    public ClientSide getClientSide() {
       return this.clientSide;
     }
 
-    public clientUpdate_args setClientSide(com.wenshao.dal.thriftgen.ClientSide clientSide) {
+    public clientUpdate_args setClientSide(ClientSide clientSide) {
       this.clientSide = clientSide;
       return this;
     }
@@ -2655,43 +2655,43 @@ public class ClientService {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case CLIENT_SIDE:
         if (value == null) {
           unsetClientSide();
         } else {
-          setClientSide((com.wenshao.dal.thriftgen.ClientSide)value);
+          setClientSide((ClientSide)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case CLIENT_SIDE:
         return getClientSide();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case CLIENT_SIDE:
         return isSetClientSide();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof clientUpdate_args)
@@ -2736,7 +2736,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetClientSide()).compareTo(other.isSetClientSide());
+      lastComparison = Boolean.valueOf(isSetClientSide()).compareTo(other.isSetClientSide());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -2762,8 +2762,8 @@ public class ClientService {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("clientUpdate_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("clientUpdate_args(");
       boolean first = true;
 
       sb.append("clientSide:");
@@ -2793,7 +2793,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -2821,7 +2821,7 @@ public class ClientService {
           switch (schemeField.id) {
             case 1: // CLIENT_SIDE
               if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.clientSide = new com.wenshao.dal.thriftgen.ClientSide();
+                struct.clientSide = new ClientSide();
                 struct.clientSide.read(iprot);
                 struct.setClientSideIsSet(true);
               } else { 
@@ -2880,7 +2880,7 @@ public class ClientService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.clientSide = new com.wenshao.dal.thriftgen.ClientSide();
+          struct.clientSide = new ClientSide();
           struct.clientSide.read(iprot);
           struct.setClientSideIsSet(true);
         }
@@ -2906,7 +2906,7 @@ public class ClientService {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -2932,21 +2932,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -2955,7 +2955,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -3024,43 +3024,43 @@ public class ClientService {
       __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.lang.Integer)value);
+          setSuccess((Integer)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof clientUpdate_result)
@@ -3103,7 +3103,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -3129,8 +3129,8 @@ public class ClientService {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("clientUpdate_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("clientUpdate_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -3153,7 +3153,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
         __isset_bitfield = 0;
@@ -3266,7 +3266,7 @@ public class ClientService {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       ID((short)1, "id");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -3292,21 +3292,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -3315,7 +3315,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -3384,43 +3384,43 @@ public class ClientService {
       __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __ID_ISSET_ID, value);
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case ID:
         if (value == null) {
           unsetId();
         } else {
-          setId((java.lang.Integer)value);
+          setId((Integer)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case ID:
         return getId();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case ID:
         return isSetId();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof clientRemove_args)
@@ -3463,7 +3463,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetId()).compareTo(other.isSetId());
+      lastComparison = Boolean.valueOf(isSetId()).compareTo(other.isSetId());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -3489,8 +3489,8 @@ public class ClientService {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("clientRemove_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("clientRemove_args(");
       boolean first = true;
 
       sb.append("id:");
@@ -3513,7 +3513,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
         __isset_bitfield = 0;
@@ -3624,7 +3624,7 @@ public class ClientService {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -3650,21 +3650,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -3673,7 +3673,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -3742,43 +3742,43 @@ public class ClientService {
       __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.lang.Integer)value);
+          setSuccess((Integer)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof clientRemove_result)
@@ -3821,7 +3821,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -3847,8 +3847,8 @@ public class ClientService {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("clientRemove_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("clientRemove_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -3871,7 +3871,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
         __isset_bitfield = 0;
@@ -3984,7 +3984,7 @@ public class ClientService {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       ID((short)1, "id");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -4010,21 +4010,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -4033,7 +4033,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -4102,43 +4102,43 @@ public class ClientService {
       __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __ID_ISSET_ID, value);
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case ID:
         if (value == null) {
           unsetId();
         } else {
-          setId((java.lang.Integer)value);
+          setId((Integer)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case ID:
         return getId();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case ID:
         return isSetId();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof clientFindById_args)
@@ -4181,7 +4181,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetId()).compareTo(other.isSetId());
+      lastComparison = Boolean.valueOf(isSetId()).compareTo(other.isSetId());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -4207,8 +4207,8 @@ public class ClientService {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("clientFindById_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("clientFindById_args(");
       boolean first = true;
 
       sb.append("id:");
@@ -4231,7 +4231,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
         __isset_bitfield = 0;
@@ -4336,13 +4336,13 @@ public class ClientService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new clientFindById_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new clientFindById_resultTupleSchemeFactory();
 
-    public com.wenshao.dal.thriftgen.ClientSide success; // required
+    public ClientSide success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -4368,21 +4368,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -4391,7 +4391,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -4401,7 +4401,7 @@ public class ClientService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.ClientSide.class)));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ClientSide.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(clientFindById_result.class, metaDataMap);
     }
@@ -4410,7 +4410,7 @@ public class ClientService {
     }
 
     public clientFindById_result(
-      com.wenshao.dal.thriftgen.ClientSide success)
+      ClientSide success)
     {
       this();
       this.success = success;
@@ -4421,7 +4421,7 @@ public class ClientService {
      */
     public clientFindById_result(clientFindById_result other) {
       if (other.isSetSuccess()) {
-        this.success = new com.wenshao.dal.thriftgen.ClientSide(other.success);
+        this.success = new ClientSide(other.success);
       }
     }
 
@@ -4434,11 +4434,11 @@ public class ClientService {
       this.success = null;
     }
 
-    public com.wenshao.dal.thriftgen.ClientSide getSuccess() {
+    public ClientSide getSuccess() {
       return this.success;
     }
 
-    public clientFindById_result setSuccess(com.wenshao.dal.thriftgen.ClientSide success) {
+    public clientFindById_result setSuccess(ClientSide success) {
       this.success = success;
       return this;
     }
@@ -4458,43 +4458,43 @@ public class ClientService {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((com.wenshao.dal.thriftgen.ClientSide)value);
+          setSuccess((ClientSide)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof clientFindById_result)
@@ -4539,7 +4539,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -4565,8 +4565,8 @@ public class ClientService {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("clientFindById_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("clientFindById_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -4596,7 +4596,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -4624,7 +4624,7 @@ public class ClientService {
           switch (schemeField.id) {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.success = new com.wenshao.dal.thriftgen.ClientSide();
+                struct.success = new ClientSide();
                 struct.success.read(iprot);
                 struct.setSuccessIsSet(true);
               } else { 
@@ -4683,7 +4683,7 @@ public class ClientService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.success = new com.wenshao.dal.thriftgen.ClientSide();
+          struct.success = new ClientSide();
           struct.success.read(iprot);
           struct.setSuccessIsSet(true);
         }
@@ -4707,7 +4707,7 @@ public class ClientService {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
 ;
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -4731,21 +4731,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -4754,7 +4754,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -4782,30 +4782,30 @@ public class ClientService {
     public void clear() {
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof clientSelectAll_args)
@@ -4853,8 +4853,8 @@ public class ClientService {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("clientSelectAll_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("clientSelectAll_args(");
       boolean first = true;
 
       sb.append(")");
@@ -4874,7 +4874,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -4953,13 +4953,13 @@ public class ClientService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new clientSelectAll_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new clientSelectAll_resultTupleSchemeFactory();
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientSide> success; // required
+    public java.util.List<ClientSide> success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -4985,21 +4985,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -5008,7 +5008,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -5019,7 +5019,7 @@ public class ClientService {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.ClientSide.class))));
+              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ClientSide.class))));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(clientSelectAll_result.class, metaDataMap);
     }
@@ -5028,7 +5028,7 @@ public class ClientService {
     }
 
     public clientSelectAll_result(
-      java.util.List<com.wenshao.dal.thriftgen.ClientSide> success)
+      java.util.List<ClientSide> success)
     {
       this();
       this.success = success;
@@ -5039,9 +5039,9 @@ public class ClientService {
      */
     public clientSelectAll_result(clientSelectAll_result other) {
       if (other.isSetSuccess()) {
-        java.util.List<com.wenshao.dal.thriftgen.ClientSide> __this__success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientSide>(other.success.size());
-        for (com.wenshao.dal.thriftgen.ClientSide other_element : other.success) {
-          __this__success.add(new com.wenshao.dal.thriftgen.ClientSide(other_element));
+        java.util.List<ClientSide> __this__success = new java.util.ArrayList<ClientSide>(other.success.size());
+        for (ClientSide other_element : other.success) {
+          __this__success.add(new ClientSide(other_element));
         }
         this.success = __this__success;
       }
@@ -5060,22 +5060,22 @@ public class ClientService {
       return (this.success == null) ? 0 : this.success.size();
     }
 
-    public java.util.Iterator<com.wenshao.dal.thriftgen.ClientSide> getSuccessIterator() {
+    public java.util.Iterator<ClientSide> getSuccessIterator() {
       return (this.success == null) ? null : this.success.iterator();
     }
 
-    public void addToSuccess(com.wenshao.dal.thriftgen.ClientSide elem) {
+    public void addToSuccess(ClientSide elem) {
       if (this.success == null) {
-        this.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientSide>();
+        this.success = new java.util.ArrayList<ClientSide>();
       }
       this.success.add(elem);
     }
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientSide> getSuccess() {
+    public java.util.List<ClientSide> getSuccess() {
       return this.success;
     }
 
-    public clientSelectAll_result setSuccess(java.util.List<com.wenshao.dal.thriftgen.ClientSide> success) {
+    public clientSelectAll_result setSuccess(java.util.List<ClientSide> success) {
       this.success = success;
       return this;
     }
@@ -5095,43 +5095,43 @@ public class ClientService {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.util.List<com.wenshao.dal.thriftgen.ClientSide>)value);
+          setSuccess((java.util.List<ClientSide>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof clientSelectAll_result)
@@ -5176,7 +5176,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -5202,8 +5202,8 @@ public class ClientService {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("clientSelectAll_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("clientSelectAll_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -5230,7 +5230,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -5260,11 +5260,11 @@ public class ClientService {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list32 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientSide>(_list32.size);
-                  com.wenshao.dal.thriftgen.ClientSide _elem33;
+                  struct.success = new java.util.ArrayList<ClientSide>(_list32.size);
+                  ClientSide _elem33;
                   for (int _i34 = 0; _i34 < _list32.size; ++_i34)
                   {
-                    _elem33 = new com.wenshao.dal.thriftgen.ClientSide();
+                    _elem33 = new ClientSide();
                     _elem33.read(iprot);
                     struct.success.add(_elem33);
                   }
@@ -5294,7 +5294,7 @@ public class ClientService {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (com.wenshao.dal.thriftgen.ClientSide _iter35 : struct.success)
+            for (ClientSide _iter35 : struct.success)
             {
               _iter35.write(oprot);
             }
@@ -5327,7 +5327,7 @@ public class ClientService {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (com.wenshao.dal.thriftgen.ClientSide _iter36 : struct.success)
+            for (ClientSide _iter36 : struct.success)
             {
               _iter36.write(oprot);
             }
@@ -5342,11 +5342,11 @@ public class ClientService {
         if (incoming.get(0)) {
           {
             org.apache.thrift.protocol.TList _list37 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientSide>(_list37.size);
-            com.wenshao.dal.thriftgen.ClientSide _elem38;
+            struct.success = new java.util.ArrayList<ClientSide>(_list37.size);
+            ClientSide _elem38;
             for (int _i39 = 0; _i39 < _list37.size; ++_i39)
             {
-              _elem38 = new com.wenshao.dal.thriftgen.ClientSide();
+              _elem38 = new ClientSide();
               _elem38.read(iprot);
               struct.success.add(_elem38);
             }
@@ -5369,13 +5369,13 @@ public class ClientService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new clientSelect_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new clientSelect_argsTupleSchemeFactory();
 
-    public com.wenshao.dal.thriftgen.ClientSide clientSide; // required
+    public ClientSide clientSide; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       CLIENT_SIDE((short)1, "clientSide");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -5401,21 +5401,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -5424,7 +5424,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -5434,7 +5434,7 @@ public class ClientService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.CLIENT_SIDE, new org.apache.thrift.meta_data.FieldMetaData("clientSide", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.ClientSide.class)));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ClientSide.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(clientSelect_args.class, metaDataMap);
     }
@@ -5443,7 +5443,7 @@ public class ClientService {
     }
 
     public clientSelect_args(
-      com.wenshao.dal.thriftgen.ClientSide clientSide)
+      ClientSide clientSide)
     {
       this();
       this.clientSide = clientSide;
@@ -5454,7 +5454,7 @@ public class ClientService {
      */
     public clientSelect_args(clientSelect_args other) {
       if (other.isSetClientSide()) {
-        this.clientSide = new com.wenshao.dal.thriftgen.ClientSide(other.clientSide);
+        this.clientSide = new ClientSide(other.clientSide);
       }
     }
 
@@ -5467,11 +5467,11 @@ public class ClientService {
       this.clientSide = null;
     }
 
-    public com.wenshao.dal.thriftgen.ClientSide getClientSide() {
+    public ClientSide getClientSide() {
       return this.clientSide;
     }
 
-    public clientSelect_args setClientSide(com.wenshao.dal.thriftgen.ClientSide clientSide) {
+    public clientSelect_args setClientSide(ClientSide clientSide) {
       this.clientSide = clientSide;
       return this;
     }
@@ -5491,43 +5491,43 @@ public class ClientService {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case CLIENT_SIDE:
         if (value == null) {
           unsetClientSide();
         } else {
-          setClientSide((com.wenshao.dal.thriftgen.ClientSide)value);
+          setClientSide((ClientSide)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case CLIENT_SIDE:
         return getClientSide();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case CLIENT_SIDE:
         return isSetClientSide();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof clientSelect_args)
@@ -5572,7 +5572,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetClientSide()).compareTo(other.isSetClientSide());
+      lastComparison = Boolean.valueOf(isSetClientSide()).compareTo(other.isSetClientSide());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -5598,8 +5598,8 @@ public class ClientService {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("clientSelect_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("clientSelect_args(");
       boolean first = true;
 
       sb.append("clientSide:");
@@ -5629,7 +5629,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -5657,7 +5657,7 @@ public class ClientService {
           switch (schemeField.id) {
             case 1: // CLIENT_SIDE
               if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.clientSide = new com.wenshao.dal.thriftgen.ClientSide();
+                struct.clientSide = new ClientSide();
                 struct.clientSide.read(iprot);
                 struct.setClientSideIsSet(true);
               } else { 
@@ -5716,7 +5716,7 @@ public class ClientService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.clientSide = new com.wenshao.dal.thriftgen.ClientSide();
+          struct.clientSide = new ClientSide();
           struct.clientSide.read(iprot);
           struct.setClientSideIsSet(true);
         }
@@ -5736,13 +5736,13 @@ public class ClientService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new clientSelect_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new clientSelect_resultTupleSchemeFactory();
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientSide> success; // required
+    public java.util.List<ClientSide> success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -5768,21 +5768,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -5791,7 +5791,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -5802,7 +5802,7 @@ public class ClientService {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.ClientSide.class))));
+              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ClientSide.class))));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(clientSelect_result.class, metaDataMap);
     }
@@ -5811,7 +5811,7 @@ public class ClientService {
     }
 
     public clientSelect_result(
-      java.util.List<com.wenshao.dal.thriftgen.ClientSide> success)
+      java.util.List<ClientSide> success)
     {
       this();
       this.success = success;
@@ -5822,9 +5822,9 @@ public class ClientService {
      */
     public clientSelect_result(clientSelect_result other) {
       if (other.isSetSuccess()) {
-        java.util.List<com.wenshao.dal.thriftgen.ClientSide> __this__success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientSide>(other.success.size());
-        for (com.wenshao.dal.thriftgen.ClientSide other_element : other.success) {
-          __this__success.add(new com.wenshao.dal.thriftgen.ClientSide(other_element));
+        java.util.List<ClientSide> __this__success = new java.util.ArrayList<ClientSide>(other.success.size());
+        for (ClientSide other_element : other.success) {
+          __this__success.add(new ClientSide(other_element));
         }
         this.success = __this__success;
       }
@@ -5843,22 +5843,22 @@ public class ClientService {
       return (this.success == null) ? 0 : this.success.size();
     }
 
-    public java.util.Iterator<com.wenshao.dal.thriftgen.ClientSide> getSuccessIterator() {
+    public java.util.Iterator<ClientSide> getSuccessIterator() {
       return (this.success == null) ? null : this.success.iterator();
     }
 
-    public void addToSuccess(com.wenshao.dal.thriftgen.ClientSide elem) {
+    public void addToSuccess(ClientSide elem) {
       if (this.success == null) {
-        this.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientSide>();
+        this.success = new java.util.ArrayList<ClientSide>();
       }
       this.success.add(elem);
     }
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientSide> getSuccess() {
+    public java.util.List<ClientSide> getSuccess() {
       return this.success;
     }
 
-    public clientSelect_result setSuccess(java.util.List<com.wenshao.dal.thriftgen.ClientSide> success) {
+    public clientSelect_result setSuccess(java.util.List<ClientSide> success) {
       this.success = success;
       return this;
     }
@@ -5878,43 +5878,43 @@ public class ClientService {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.util.List<com.wenshao.dal.thriftgen.ClientSide>)value);
+          setSuccess((java.util.List<ClientSide>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof clientSelect_result)
@@ -5959,7 +5959,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -5985,8 +5985,8 @@ public class ClientService {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("clientSelect_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("clientSelect_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -6013,7 +6013,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -6043,11 +6043,11 @@ public class ClientService {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list40 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientSide>(_list40.size);
-                  com.wenshao.dal.thriftgen.ClientSide _elem41;
+                  struct.success = new java.util.ArrayList<ClientSide>(_list40.size);
+                  ClientSide _elem41;
                   for (int _i42 = 0; _i42 < _list40.size; ++_i42)
                   {
-                    _elem41 = new com.wenshao.dal.thriftgen.ClientSide();
+                    _elem41 = new ClientSide();
                     _elem41.read(iprot);
                     struct.success.add(_elem41);
                   }
@@ -6077,7 +6077,7 @@ public class ClientService {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (com.wenshao.dal.thriftgen.ClientSide _iter43 : struct.success)
+            for (ClientSide _iter43 : struct.success)
             {
               _iter43.write(oprot);
             }
@@ -6110,7 +6110,7 @@ public class ClientService {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (com.wenshao.dal.thriftgen.ClientSide _iter44 : struct.success)
+            for (ClientSide _iter44 : struct.success)
             {
               _iter44.write(oprot);
             }
@@ -6125,11 +6125,11 @@ public class ClientService {
         if (incoming.get(0)) {
           {
             org.apache.thrift.protocol.TList _list45 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientSide>(_list45.size);
-            com.wenshao.dal.thriftgen.ClientSide _elem46;
+            struct.success = new java.util.ArrayList<ClientSide>(_list45.size);
+            ClientSide _elem46;
             for (int _i47 = 0; _i47 < _list45.size; ++_i47)
             {
-              _elem46 = new com.wenshao.dal.thriftgen.ClientSide();
+              _elem46 = new ClientSide();
               _elem46.read(iprot);
               struct.success.add(_elem46);
             }
@@ -6152,13 +6152,13 @@ public class ClientService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new versionInsert_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new versionInsert_argsTupleSchemeFactory();
 
-    public com.wenshao.dal.thriftgen.ClientVersion clientVersion; // required
+    public ClientVersion clientVersion; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       CLIENT_VERSION((short)1, "clientVersion");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -6184,21 +6184,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -6207,7 +6207,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -6217,7 +6217,7 @@ public class ClientService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.CLIENT_VERSION, new org.apache.thrift.meta_data.FieldMetaData("clientVersion", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.ClientVersion.class)));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ClientVersion.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(versionInsert_args.class, metaDataMap);
     }
@@ -6226,7 +6226,7 @@ public class ClientService {
     }
 
     public versionInsert_args(
-      com.wenshao.dal.thriftgen.ClientVersion clientVersion)
+      ClientVersion clientVersion)
     {
       this();
       this.clientVersion = clientVersion;
@@ -6237,7 +6237,7 @@ public class ClientService {
      */
     public versionInsert_args(versionInsert_args other) {
       if (other.isSetClientVersion()) {
-        this.clientVersion = new com.wenshao.dal.thriftgen.ClientVersion(other.clientVersion);
+        this.clientVersion = new ClientVersion(other.clientVersion);
       }
     }
 
@@ -6250,11 +6250,11 @@ public class ClientService {
       this.clientVersion = null;
     }
 
-    public com.wenshao.dal.thriftgen.ClientVersion getClientVersion() {
+    public ClientVersion getClientVersion() {
       return this.clientVersion;
     }
 
-    public versionInsert_args setClientVersion(com.wenshao.dal.thriftgen.ClientVersion clientVersion) {
+    public versionInsert_args setClientVersion(ClientVersion clientVersion) {
       this.clientVersion = clientVersion;
       return this;
     }
@@ -6274,43 +6274,43 @@ public class ClientService {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case CLIENT_VERSION:
         if (value == null) {
           unsetClientVersion();
         } else {
-          setClientVersion((com.wenshao.dal.thriftgen.ClientVersion)value);
+          setClientVersion((ClientVersion)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case CLIENT_VERSION:
         return getClientVersion();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case CLIENT_VERSION:
         return isSetClientVersion();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof versionInsert_args)
@@ -6355,7 +6355,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetClientVersion()).compareTo(other.isSetClientVersion());
+      lastComparison = Boolean.valueOf(isSetClientVersion()).compareTo(other.isSetClientVersion());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -6381,8 +6381,8 @@ public class ClientService {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("versionInsert_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("versionInsert_args(");
       boolean first = true;
 
       sb.append("clientVersion:");
@@ -6412,7 +6412,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -6440,7 +6440,7 @@ public class ClientService {
           switch (schemeField.id) {
             case 1: // CLIENT_VERSION
               if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.clientVersion = new com.wenshao.dal.thriftgen.ClientVersion();
+                struct.clientVersion = new ClientVersion();
                 struct.clientVersion.read(iprot);
                 struct.setClientVersionIsSet(true);
               } else { 
@@ -6499,7 +6499,7 @@ public class ClientService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.clientVersion = new com.wenshao.dal.thriftgen.ClientVersion();
+          struct.clientVersion = new ClientVersion();
           struct.clientVersion.read(iprot);
           struct.setClientVersionIsSet(true);
         }
@@ -6525,7 +6525,7 @@ public class ClientService {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -6551,21 +6551,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -6574,7 +6574,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -6643,43 +6643,43 @@ public class ClientService {
       __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.lang.Integer)value);
+          setSuccess((Integer)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof versionInsert_result)
@@ -6722,7 +6722,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -6748,8 +6748,8 @@ public class ClientService {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("versionInsert_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("versionInsert_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -6772,7 +6772,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
         __isset_bitfield = 0;
@@ -6879,13 +6879,13 @@ public class ClientService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new versionUpdate_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new versionUpdate_argsTupleSchemeFactory();
 
-    public com.wenshao.dal.thriftgen.ClientVersion clientVersion; // required
+    public ClientVersion clientVersion; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       CLIENT_VERSION((short)1, "clientVersion");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -6911,21 +6911,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -6934,7 +6934,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -6944,7 +6944,7 @@ public class ClientService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.CLIENT_VERSION, new org.apache.thrift.meta_data.FieldMetaData("clientVersion", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.ClientVersion.class)));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ClientVersion.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(versionUpdate_args.class, metaDataMap);
     }
@@ -6953,7 +6953,7 @@ public class ClientService {
     }
 
     public versionUpdate_args(
-      com.wenshao.dal.thriftgen.ClientVersion clientVersion)
+      ClientVersion clientVersion)
     {
       this();
       this.clientVersion = clientVersion;
@@ -6964,7 +6964,7 @@ public class ClientService {
      */
     public versionUpdate_args(versionUpdate_args other) {
       if (other.isSetClientVersion()) {
-        this.clientVersion = new com.wenshao.dal.thriftgen.ClientVersion(other.clientVersion);
+        this.clientVersion = new ClientVersion(other.clientVersion);
       }
     }
 
@@ -6977,11 +6977,11 @@ public class ClientService {
       this.clientVersion = null;
     }
 
-    public com.wenshao.dal.thriftgen.ClientVersion getClientVersion() {
+    public ClientVersion getClientVersion() {
       return this.clientVersion;
     }
 
-    public versionUpdate_args setClientVersion(com.wenshao.dal.thriftgen.ClientVersion clientVersion) {
+    public versionUpdate_args setClientVersion(ClientVersion clientVersion) {
       this.clientVersion = clientVersion;
       return this;
     }
@@ -7001,43 +7001,43 @@ public class ClientService {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case CLIENT_VERSION:
         if (value == null) {
           unsetClientVersion();
         } else {
-          setClientVersion((com.wenshao.dal.thriftgen.ClientVersion)value);
+          setClientVersion((ClientVersion)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case CLIENT_VERSION:
         return getClientVersion();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case CLIENT_VERSION:
         return isSetClientVersion();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof versionUpdate_args)
@@ -7082,7 +7082,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetClientVersion()).compareTo(other.isSetClientVersion());
+      lastComparison = Boolean.valueOf(isSetClientVersion()).compareTo(other.isSetClientVersion());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -7108,8 +7108,8 @@ public class ClientService {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("versionUpdate_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("versionUpdate_args(");
       boolean first = true;
 
       sb.append("clientVersion:");
@@ -7139,7 +7139,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -7167,7 +7167,7 @@ public class ClientService {
           switch (schemeField.id) {
             case 1: // CLIENT_VERSION
               if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.clientVersion = new com.wenshao.dal.thriftgen.ClientVersion();
+                struct.clientVersion = new ClientVersion();
                 struct.clientVersion.read(iprot);
                 struct.setClientVersionIsSet(true);
               } else { 
@@ -7226,7 +7226,7 @@ public class ClientService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.clientVersion = new com.wenshao.dal.thriftgen.ClientVersion();
+          struct.clientVersion = new ClientVersion();
           struct.clientVersion.read(iprot);
           struct.setClientVersionIsSet(true);
         }
@@ -7252,7 +7252,7 @@ public class ClientService {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -7278,21 +7278,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -7301,7 +7301,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -7370,43 +7370,43 @@ public class ClientService {
       __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.lang.Integer)value);
+          setSuccess((Integer)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof versionUpdate_result)
@@ -7449,7 +7449,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -7475,8 +7475,8 @@ public class ClientService {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("versionUpdate_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("versionUpdate_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -7499,7 +7499,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
         __isset_bitfield = 0;
@@ -7612,7 +7612,7 @@ public class ClientService {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       ID((short)1, "id");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -7638,21 +7638,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -7661,7 +7661,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -7730,43 +7730,43 @@ public class ClientService {
       __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __ID_ISSET_ID, value);
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case ID:
         if (value == null) {
           unsetId();
         } else {
-          setId((java.lang.Integer)value);
+          setId((Integer)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case ID:
         return getId();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case ID:
         return isSetId();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof versionRemove_args)
@@ -7809,7 +7809,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetId()).compareTo(other.isSetId());
+      lastComparison = Boolean.valueOf(isSetId()).compareTo(other.isSetId());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -7835,8 +7835,8 @@ public class ClientService {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("versionRemove_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("versionRemove_args(");
       boolean first = true;
 
       sb.append("id:");
@@ -7859,7 +7859,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
         __isset_bitfield = 0;
@@ -7970,7 +7970,7 @@ public class ClientService {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -7996,21 +7996,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -8019,7 +8019,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -8088,43 +8088,43 @@ public class ClientService {
       __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.lang.Integer)value);
+          setSuccess((Integer)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof versionRemove_result)
@@ -8167,7 +8167,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -8193,8 +8193,8 @@ public class ClientService {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("versionRemove_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("versionRemove_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -8217,7 +8217,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
         __isset_bitfield = 0;
@@ -8330,7 +8330,7 @@ public class ClientService {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       ID((short)1, "id");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -8356,21 +8356,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -8379,7 +8379,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -8448,43 +8448,43 @@ public class ClientService {
       __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __ID_ISSET_ID, value);
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case ID:
         if (value == null) {
           unsetId();
         } else {
-          setId((java.lang.Integer)value);
+          setId((Integer)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case ID:
         return getId();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case ID:
         return isSetId();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof versionFindById_args)
@@ -8527,7 +8527,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetId()).compareTo(other.isSetId());
+      lastComparison = Boolean.valueOf(isSetId()).compareTo(other.isSetId());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -8553,8 +8553,8 @@ public class ClientService {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("versionFindById_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("versionFindById_args(");
       boolean first = true;
 
       sb.append("id:");
@@ -8577,7 +8577,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
         __isset_bitfield = 0;
@@ -8682,13 +8682,13 @@ public class ClientService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new versionFindById_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new versionFindById_resultTupleSchemeFactory();
 
-    public com.wenshao.dal.thriftgen.ClientVersion success; // required
+    public ClientVersion success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -8714,21 +8714,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -8737,7 +8737,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -8747,7 +8747,7 @@ public class ClientService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.ClientVersion.class)));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ClientVersion.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(versionFindById_result.class, metaDataMap);
     }
@@ -8756,7 +8756,7 @@ public class ClientService {
     }
 
     public versionFindById_result(
-      com.wenshao.dal.thriftgen.ClientVersion success)
+      ClientVersion success)
     {
       this();
       this.success = success;
@@ -8767,7 +8767,7 @@ public class ClientService {
      */
     public versionFindById_result(versionFindById_result other) {
       if (other.isSetSuccess()) {
-        this.success = new com.wenshao.dal.thriftgen.ClientVersion(other.success);
+        this.success = new ClientVersion(other.success);
       }
     }
 
@@ -8780,11 +8780,11 @@ public class ClientService {
       this.success = null;
     }
 
-    public com.wenshao.dal.thriftgen.ClientVersion getSuccess() {
+    public ClientVersion getSuccess() {
       return this.success;
     }
 
-    public versionFindById_result setSuccess(com.wenshao.dal.thriftgen.ClientVersion success) {
+    public versionFindById_result setSuccess(ClientVersion success) {
       this.success = success;
       return this;
     }
@@ -8804,43 +8804,43 @@ public class ClientService {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((com.wenshao.dal.thriftgen.ClientVersion)value);
+          setSuccess((ClientVersion)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof versionFindById_result)
@@ -8885,7 +8885,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -8911,8 +8911,8 @@ public class ClientService {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("versionFindById_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("versionFindById_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -8942,7 +8942,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -8970,7 +8970,7 @@ public class ClientService {
           switch (schemeField.id) {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.success = new com.wenshao.dal.thriftgen.ClientVersion();
+                struct.success = new ClientVersion();
                 struct.success.read(iprot);
                 struct.setSuccessIsSet(true);
               } else { 
@@ -9029,7 +9029,7 @@ public class ClientService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.success = new com.wenshao.dal.thriftgen.ClientVersion();
+          struct.success = new ClientVersion();
           struct.success.read(iprot);
           struct.setSuccessIsSet(true);
         }
@@ -9053,7 +9053,7 @@ public class ClientService {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
 ;
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -9077,21 +9077,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -9100,7 +9100,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -9128,30 +9128,30 @@ public class ClientService {
     public void clear() {
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof versionSelectAll_args)
@@ -9199,8 +9199,8 @@ public class ClientService {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("versionSelectAll_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("versionSelectAll_args(");
       boolean first = true;
 
       sb.append(")");
@@ -9220,7 +9220,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -9299,13 +9299,13 @@ public class ClientService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new versionSelectAll_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new versionSelectAll_resultTupleSchemeFactory();
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientVersion> success; // required
+    public java.util.List<ClientVersion> success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -9331,21 +9331,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -9354,7 +9354,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -9365,7 +9365,7 @@ public class ClientService {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.ClientVersion.class))));
+              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ClientVersion.class))));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(versionSelectAll_result.class, metaDataMap);
     }
@@ -9374,7 +9374,7 @@ public class ClientService {
     }
 
     public versionSelectAll_result(
-      java.util.List<com.wenshao.dal.thriftgen.ClientVersion> success)
+      java.util.List<ClientVersion> success)
     {
       this();
       this.success = success;
@@ -9385,9 +9385,9 @@ public class ClientService {
      */
     public versionSelectAll_result(versionSelectAll_result other) {
       if (other.isSetSuccess()) {
-        java.util.List<com.wenshao.dal.thriftgen.ClientVersion> __this__success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientVersion>(other.success.size());
-        for (com.wenshao.dal.thriftgen.ClientVersion other_element : other.success) {
-          __this__success.add(new com.wenshao.dal.thriftgen.ClientVersion(other_element));
+        java.util.List<ClientVersion> __this__success = new java.util.ArrayList<ClientVersion>(other.success.size());
+        for (ClientVersion other_element : other.success) {
+          __this__success.add(new ClientVersion(other_element));
         }
         this.success = __this__success;
       }
@@ -9406,22 +9406,22 @@ public class ClientService {
       return (this.success == null) ? 0 : this.success.size();
     }
 
-    public java.util.Iterator<com.wenshao.dal.thriftgen.ClientVersion> getSuccessIterator() {
+    public java.util.Iterator<ClientVersion> getSuccessIterator() {
       return (this.success == null) ? null : this.success.iterator();
     }
 
-    public void addToSuccess(com.wenshao.dal.thriftgen.ClientVersion elem) {
+    public void addToSuccess(ClientVersion elem) {
       if (this.success == null) {
-        this.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientVersion>();
+        this.success = new java.util.ArrayList<ClientVersion>();
       }
       this.success.add(elem);
     }
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientVersion> getSuccess() {
+    public java.util.List<ClientVersion> getSuccess() {
       return this.success;
     }
 
-    public versionSelectAll_result setSuccess(java.util.List<com.wenshao.dal.thriftgen.ClientVersion> success) {
+    public versionSelectAll_result setSuccess(java.util.List<ClientVersion> success) {
       this.success = success;
       return this;
     }
@@ -9441,43 +9441,43 @@ public class ClientService {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.util.List<com.wenshao.dal.thriftgen.ClientVersion>)value);
+          setSuccess((java.util.List<ClientVersion>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof versionSelectAll_result)
@@ -9522,7 +9522,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -9548,8 +9548,8 @@ public class ClientService {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("versionSelectAll_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("versionSelectAll_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -9576,7 +9576,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -9606,11 +9606,11 @@ public class ClientService {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list48 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientVersion>(_list48.size);
-                  com.wenshao.dal.thriftgen.ClientVersion _elem49;
+                  struct.success = new java.util.ArrayList<ClientVersion>(_list48.size);
+                  ClientVersion _elem49;
                   for (int _i50 = 0; _i50 < _list48.size; ++_i50)
                   {
-                    _elem49 = new com.wenshao.dal.thriftgen.ClientVersion();
+                    _elem49 = new ClientVersion();
                     _elem49.read(iprot);
                     struct.success.add(_elem49);
                   }
@@ -9640,7 +9640,7 @@ public class ClientService {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (com.wenshao.dal.thriftgen.ClientVersion _iter51 : struct.success)
+            for (ClientVersion _iter51 : struct.success)
             {
               _iter51.write(oprot);
             }
@@ -9673,7 +9673,7 @@ public class ClientService {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (com.wenshao.dal.thriftgen.ClientVersion _iter52 : struct.success)
+            for (ClientVersion _iter52 : struct.success)
             {
               _iter52.write(oprot);
             }
@@ -9688,11 +9688,11 @@ public class ClientService {
         if (incoming.get(0)) {
           {
             org.apache.thrift.protocol.TList _list53 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientVersion>(_list53.size);
-            com.wenshao.dal.thriftgen.ClientVersion _elem54;
+            struct.success = new java.util.ArrayList<ClientVersion>(_list53.size);
+            ClientVersion _elem54;
             for (int _i55 = 0; _i55 < _list53.size; ++_i55)
             {
-              _elem54 = new com.wenshao.dal.thriftgen.ClientVersion();
+              _elem54 = new ClientVersion();
               _elem54.read(iprot);
               struct.success.add(_elem54);
             }
@@ -9715,13 +9715,13 @@ public class ClientService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new versionSelect_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new versionSelect_argsTupleSchemeFactory();
 
-    public com.wenshao.dal.thriftgen.ClientVersion clientVersion; // required
+    public ClientVersion clientVersion; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       CLIENT_VERSION((short)1, "clientVersion");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -9747,21 +9747,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -9770,7 +9770,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -9780,7 +9780,7 @@ public class ClientService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.CLIENT_VERSION, new org.apache.thrift.meta_data.FieldMetaData("clientVersion", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.ClientVersion.class)));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ClientVersion.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(versionSelect_args.class, metaDataMap);
     }
@@ -9789,7 +9789,7 @@ public class ClientService {
     }
 
     public versionSelect_args(
-      com.wenshao.dal.thriftgen.ClientVersion clientVersion)
+      ClientVersion clientVersion)
     {
       this();
       this.clientVersion = clientVersion;
@@ -9800,7 +9800,7 @@ public class ClientService {
      */
     public versionSelect_args(versionSelect_args other) {
       if (other.isSetClientVersion()) {
-        this.clientVersion = new com.wenshao.dal.thriftgen.ClientVersion(other.clientVersion);
+        this.clientVersion = new ClientVersion(other.clientVersion);
       }
     }
 
@@ -9813,11 +9813,11 @@ public class ClientService {
       this.clientVersion = null;
     }
 
-    public com.wenshao.dal.thriftgen.ClientVersion getClientVersion() {
+    public ClientVersion getClientVersion() {
       return this.clientVersion;
     }
 
-    public versionSelect_args setClientVersion(com.wenshao.dal.thriftgen.ClientVersion clientVersion) {
+    public versionSelect_args setClientVersion(ClientVersion clientVersion) {
       this.clientVersion = clientVersion;
       return this;
     }
@@ -9837,43 +9837,43 @@ public class ClientService {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case CLIENT_VERSION:
         if (value == null) {
           unsetClientVersion();
         } else {
-          setClientVersion((com.wenshao.dal.thriftgen.ClientVersion)value);
+          setClientVersion((ClientVersion)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case CLIENT_VERSION:
         return getClientVersion();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case CLIENT_VERSION:
         return isSetClientVersion();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof versionSelect_args)
@@ -9918,7 +9918,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetClientVersion()).compareTo(other.isSetClientVersion());
+      lastComparison = Boolean.valueOf(isSetClientVersion()).compareTo(other.isSetClientVersion());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -9944,8 +9944,8 @@ public class ClientService {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("versionSelect_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("versionSelect_args(");
       boolean first = true;
 
       sb.append("clientVersion:");
@@ -9975,7 +9975,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -10003,7 +10003,7 @@ public class ClientService {
           switch (schemeField.id) {
             case 1: // CLIENT_VERSION
               if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.clientVersion = new com.wenshao.dal.thriftgen.ClientVersion();
+                struct.clientVersion = new ClientVersion();
                 struct.clientVersion.read(iprot);
                 struct.setClientVersionIsSet(true);
               } else { 
@@ -10062,7 +10062,7 @@ public class ClientService {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.clientVersion = new com.wenshao.dal.thriftgen.ClientVersion();
+          struct.clientVersion = new ClientVersion();
           struct.clientVersion.read(iprot);
           struct.setClientVersionIsSet(true);
         }
@@ -10082,13 +10082,13 @@ public class ClientService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new versionSelect_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new versionSelect_resultTupleSchemeFactory();
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientVersion> success; // required
+    public java.util.List<ClientVersion> success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -10114,21 +10114,21 @@ public class ClientService {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -10137,7 +10137,7 @@ public class ClientService {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -10148,7 +10148,7 @@ public class ClientService {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.ClientVersion.class))));
+              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ClientVersion.class))));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(versionSelect_result.class, metaDataMap);
     }
@@ -10157,7 +10157,7 @@ public class ClientService {
     }
 
     public versionSelect_result(
-      java.util.List<com.wenshao.dal.thriftgen.ClientVersion> success)
+      java.util.List<ClientVersion> success)
     {
       this();
       this.success = success;
@@ -10168,9 +10168,9 @@ public class ClientService {
      */
     public versionSelect_result(versionSelect_result other) {
       if (other.isSetSuccess()) {
-        java.util.List<com.wenshao.dal.thriftgen.ClientVersion> __this__success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientVersion>(other.success.size());
-        for (com.wenshao.dal.thriftgen.ClientVersion other_element : other.success) {
-          __this__success.add(new com.wenshao.dal.thriftgen.ClientVersion(other_element));
+        java.util.List<ClientVersion> __this__success = new java.util.ArrayList<ClientVersion>(other.success.size());
+        for (ClientVersion other_element : other.success) {
+          __this__success.add(new ClientVersion(other_element));
         }
         this.success = __this__success;
       }
@@ -10189,22 +10189,22 @@ public class ClientService {
       return (this.success == null) ? 0 : this.success.size();
     }
 
-    public java.util.Iterator<com.wenshao.dal.thriftgen.ClientVersion> getSuccessIterator() {
+    public java.util.Iterator<ClientVersion> getSuccessIterator() {
       return (this.success == null) ? null : this.success.iterator();
     }
 
-    public void addToSuccess(com.wenshao.dal.thriftgen.ClientVersion elem) {
+    public void addToSuccess(ClientVersion elem) {
       if (this.success == null) {
-        this.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientVersion>();
+        this.success = new java.util.ArrayList<ClientVersion>();
       }
       this.success.add(elem);
     }
 
-    public java.util.List<com.wenshao.dal.thriftgen.ClientVersion> getSuccess() {
+    public java.util.List<ClientVersion> getSuccess() {
       return this.success;
     }
 
-    public versionSelect_result setSuccess(java.util.List<com.wenshao.dal.thriftgen.ClientVersion> success) {
+    public versionSelect_result setSuccess(java.util.List<ClientVersion> success) {
       this.success = success;
       return this;
     }
@@ -10224,43 +10224,43 @@ public class ClientService {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.util.List<com.wenshao.dal.thriftgen.ClientVersion>)value);
+          setSuccess((java.util.List<ClientVersion>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof versionSelect_result)
@@ -10305,7 +10305,7 @@ public class ClientService {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -10331,8 +10331,8 @@ public class ClientService {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("versionSelect_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("versionSelect_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -10359,7 +10359,7 @@ public class ClientService {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -10389,11 +10389,11 @@ public class ClientService {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list56 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientVersion>(_list56.size);
-                  com.wenshao.dal.thriftgen.ClientVersion _elem57;
+                  struct.success = new java.util.ArrayList<ClientVersion>(_list56.size);
+                  ClientVersion _elem57;
                   for (int _i58 = 0; _i58 < _list56.size; ++_i58)
                   {
-                    _elem57 = new com.wenshao.dal.thriftgen.ClientVersion();
+                    _elem57 = new ClientVersion();
                     _elem57.read(iprot);
                     struct.success.add(_elem57);
                   }
@@ -10423,7 +10423,7 @@ public class ClientService {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (com.wenshao.dal.thriftgen.ClientVersion _iter59 : struct.success)
+            for (ClientVersion _iter59 : struct.success)
             {
               _iter59.write(oprot);
             }
@@ -10456,7 +10456,7 @@ public class ClientService {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (com.wenshao.dal.thriftgen.ClientVersion _iter60 : struct.success)
+            for (ClientVersion _iter60 : struct.success)
             {
               _iter60.write(oprot);
             }
@@ -10471,11 +10471,11 @@ public class ClientService {
         if (incoming.get(0)) {
           {
             org.apache.thrift.protocol.TList _list61 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.ClientVersion>(_list61.size);
-            com.wenshao.dal.thriftgen.ClientVersion _elem62;
+            struct.success = new java.util.ArrayList<ClientVersion>(_list61.size);
+            ClientVersion _elem62;
             for (int _i63 = 0; _i63 < _list61.size; ++_i63)
             {
-              _elem62 = new com.wenshao.dal.thriftgen.ClientVersion();
+              _elem62 = new ClientVersion();
               _elem62.read(iprot);
               struct.success.add(_elem62);
             }

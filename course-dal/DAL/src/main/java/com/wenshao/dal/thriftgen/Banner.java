@@ -24,11 +24,11 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new BannerTupleSchemeFactory();
 
   public int id; // required
-  public java.lang.String create_time; // required
-  public java.lang.String update_time; // required
+  public String create_time; // required
+  public String update_time; // required
   public int user_id; // required
-  public java.lang.String image_url; // required
-  public java.lang.String redirect_url; // required
+  public String image_url; // required
+  public String redirect_url; // required
   public int show_client_id; // required
   public int location; // required
 
@@ -43,7 +43,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
     SHOW_CLIENT_ID((short)7, "show_client_id"),
     LOCATION((short)8, "location");
 
-    private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+    private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
     static {
       for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -83,21 +83,21 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
      */
     public static _Fields findByThriftIdOrThrow(int fieldId) {
       _Fields fields = findByThriftId(fieldId);
-      if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+      if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
       return fields;
     }
 
     /**
      * Find the _Fields constant that matches name, or null if its not found.
      */
-    public static _Fields findByName(java.lang.String name) {
+    public static _Fields findByName(String name) {
       return byName.get(name);
     }
 
     private final short _thriftId;
-    private final java.lang.String _fieldName;
+    private final String _fieldName;
 
-    _Fields(short thriftId, java.lang.String fieldName) {
+    _Fields(short thriftId, String fieldName) {
       _thriftId = thriftId;
       _fieldName = fieldName;
     }
@@ -106,7 +106,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
       return _thriftId;
     }
 
-    public java.lang.String getFieldName() {
+    public String getFieldName() {
       return _fieldName;
     }
   }
@@ -145,11 +145,11 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
 
   public Banner(
     int id,
-    java.lang.String create_time,
-    java.lang.String update_time,
+    String create_time,
+    String update_time,
     int user_id,
-    java.lang.String image_url,
-    java.lang.String redirect_url,
+    String image_url,
+    String redirect_url,
     int show_client_id,
     int location)
   {
@@ -234,11 +234,11 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
     __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __ID_ISSET_ID, value);
   }
 
-  public java.lang.String getCreate_time() {
+  public String getCreate_time() {
     return this.create_time;
   }
 
-  public Banner setCreate_time(java.lang.String create_time) {
+  public Banner setCreate_time(String create_time) {
     this.create_time = create_time;
     return this;
   }
@@ -258,11 +258,11 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
     }
   }
 
-  public java.lang.String getUpdate_time() {
+  public String getUpdate_time() {
     return this.update_time;
   }
 
-  public Banner setUpdate_time(java.lang.String update_time) {
+  public Banner setUpdate_time(String update_time) {
     this.update_time = update_time;
     return this;
   }
@@ -305,11 +305,11 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
     __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __USER_ID_ISSET_ID, value);
   }
 
-  public java.lang.String getImage_url() {
+  public String getImage_url() {
     return this.image_url;
   }
 
-  public Banner setImage_url(java.lang.String image_url) {
+  public Banner setImage_url(String image_url) {
     this.image_url = image_url;
     return this;
   }
@@ -329,11 +329,11 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
     }
   }
 
-  public java.lang.String getRedirect_url() {
+  public String getRedirect_url() {
     return this.redirect_url;
   }
 
-  public Banner setRedirect_url(java.lang.String redirect_url) {
+  public Banner setRedirect_url(String redirect_url) {
     this.redirect_url = redirect_url;
     return this;
   }
@@ -399,13 +399,13 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
     __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __LOCATION_ISSET_ID, value);
   }
 
-  public void setFieldValue(_Fields field, java.lang.Object value) {
+  public void setFieldValue(_Fields field, Object value) {
     switch (field) {
     case ID:
       if (value == null) {
         unsetId();
       } else {
-        setId((java.lang.Integer)value);
+        setId((Integer)value);
       }
       break;
 
@@ -413,7 +413,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
       if (value == null) {
         unsetCreate_time();
       } else {
-        setCreate_time((java.lang.String)value);
+        setCreate_time((String)value);
       }
       break;
 
@@ -421,7 +421,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
       if (value == null) {
         unsetUpdate_time();
       } else {
-        setUpdate_time((java.lang.String)value);
+        setUpdate_time((String)value);
       }
       break;
 
@@ -429,7 +429,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
       if (value == null) {
         unsetUser_id();
       } else {
-        setUser_id((java.lang.Integer)value);
+        setUser_id((Integer)value);
       }
       break;
 
@@ -437,7 +437,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
       if (value == null) {
         unsetImage_url();
       } else {
-        setImage_url((java.lang.String)value);
+        setImage_url((String)value);
       }
       break;
 
@@ -445,7 +445,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
       if (value == null) {
         unsetRedirect_url();
       } else {
-        setRedirect_url((java.lang.String)value);
+        setRedirect_url((String)value);
       }
       break;
 
@@ -453,7 +453,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
       if (value == null) {
         unsetShow_client_id();
       } else {
-        setShow_client_id((java.lang.Integer)value);
+        setShow_client_id((Integer)value);
       }
       break;
 
@@ -461,14 +461,14 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
       if (value == null) {
         unsetLocation();
       } else {
-        setLocation((java.lang.Integer)value);
+        setLocation((Integer)value);
       }
       break;
 
     }
   }
 
-  public java.lang.Object getFieldValue(_Fields field) {
+  public Object getFieldValue(_Fields field) {
     switch (field) {
     case ID:
       return getId();
@@ -495,13 +495,13 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
       return getLocation();
 
     }
-    throw new java.lang.IllegalStateException();
+    throw new IllegalStateException();
   }
 
   /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
   public boolean isSet(_Fields field) {
     if (field == null) {
-      throw new java.lang.IllegalArgumentException();
+      throw new IllegalArgumentException();
     }
 
     switch (field) {
@@ -522,11 +522,11 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
     case LOCATION:
       return isSetLocation();
     }
-    throw new java.lang.IllegalStateException();
+    throw new IllegalStateException();
   }
 
   @Override
-  public boolean equals(java.lang.Object that) {
+  public boolean equals(Object that) {
     if (that == null)
       return false;
     if (that instanceof Banner)
@@ -654,7 +654,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
 
     int lastComparison = 0;
 
-    lastComparison = java.lang.Boolean.valueOf(isSetId()).compareTo(other.isSetId());
+    lastComparison = Boolean.valueOf(isSetId()).compareTo(other.isSetId());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -664,7 +664,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetCreate_time()).compareTo(other.isSetCreate_time());
+    lastComparison = Boolean.valueOf(isSetCreate_time()).compareTo(other.isSetCreate_time());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -674,7 +674,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetUpdate_time()).compareTo(other.isSetUpdate_time());
+    lastComparison = Boolean.valueOf(isSetUpdate_time()).compareTo(other.isSetUpdate_time());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -684,7 +684,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetUser_id()).compareTo(other.isSetUser_id());
+    lastComparison = Boolean.valueOf(isSetUser_id()).compareTo(other.isSetUser_id());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -694,7 +694,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetImage_url()).compareTo(other.isSetImage_url());
+    lastComparison = Boolean.valueOf(isSetImage_url()).compareTo(other.isSetImage_url());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -704,7 +704,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetRedirect_url()).compareTo(other.isSetRedirect_url());
+    lastComparison = Boolean.valueOf(isSetRedirect_url()).compareTo(other.isSetRedirect_url());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -714,7 +714,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetShow_client_id()).compareTo(other.isSetShow_client_id());
+    lastComparison = Boolean.valueOf(isSetShow_client_id()).compareTo(other.isSetShow_client_id());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -724,7 +724,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetLocation()).compareTo(other.isSetLocation());
+    lastComparison = Boolean.valueOf(isSetLocation()).compareTo(other.isSetLocation());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -750,8 +750,8 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
   }
 
   @Override
-  public java.lang.String toString() {
-    java.lang.StringBuilder sb = new java.lang.StringBuilder("Banner(");
+  public String toString() {
+    StringBuilder sb = new StringBuilder("Banner(");
     boolean first = true;
 
     sb.append("id:");
@@ -818,7 +818,7 @@ public class Banner implements org.apache.thrift.TBase<Banner, Banner._Fields>, 
     }
   }
 
-  private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+  private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
     try {
       // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
       __isset_bitfield = 0;

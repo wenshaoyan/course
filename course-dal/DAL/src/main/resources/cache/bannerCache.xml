@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cacheXmlBean>
+    <cacheBeans>
+        <entry>
+            <key>findById</key>
+            <value>
+                <cacheBean >
+                    <expireTime>10</expireTime>
+                    <actionName>findById</actionName>
+                </cacheBean>
+            </value>
+        </entry>
+        <entry>
+            <key>abc1</key>
+            <value>
+                <cacheBean >
+                    <expireTime>10</expireTime>
+                    <actionName>abc</actionName>
+                </cacheBean>
+            </value>
+        </entry>
+
+    </cacheBeans>
+</cacheXmlBean>

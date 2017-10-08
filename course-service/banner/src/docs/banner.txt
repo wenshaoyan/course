@@ -14,4 +14,44 @@
             "code": 0
     }
 
-2 更新轮播图
+2 删除轮播图
+    DELETE /banner/1
+    请求参数{}
+    返回参数{
+            "success": true,
+            "data": {},
+            "message": "success",
+            "code": 0
+    }
+
+3 更新轮播图
+    PUT /banner/1
+    请求参数{
+        "image_url"	:"123",             // 图片url
+        "redirect_url":"11111",    	    // 跳转url
+    }
+    返回参数{
+            "success": true,
+            "data": {},
+            "message": "success",
+            "code": 0
+    }
+
+4 根据id获取单个信息
+    GET /banner/1
+    请求参数{}
+    返回参数{
+            "success": true,
+            "data": {
+                "id": 3,                            // id
+                "create_time": "1507414133247",     // 创建时间
+                "update_time": "1507414133247",     // 修改时间
+                "user_id": 0,                       // 创建用户id
+                "image_url": null,                  // 图片地址
+                "redirect_url": "11111",            // 跳转url
+                "show_client_id": 1,                // 显示的客户端id
+                "location": 1                       // 当前位置
+            },
+            "message": "success",
+            "code": 0
+     }

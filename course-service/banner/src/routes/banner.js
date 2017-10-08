@@ -36,7 +36,6 @@ router.post(apiName, routerI({
             };
         }
     } catch (e) {
-        console.log(e)
         ctx.error = e;
     }
 
@@ -91,7 +90,18 @@ router.delete(`${apiName}/:id`, routerI({
         ctx.error = e;
     }
 });
-router.patch(apiName);
+router.get(`${apiName}`, routerI({
+    key: "banner_filter",
+    schema: banner_schema.banner_filter
+}), async(ctx, next) => {
+    let id = ctx.params.id;
+    const client = getThriftServer(`'${bannerServiceName}'`).getClient();
+    try {
+        ctx.body = await client.findById(id);
+    } catch (e) {
+        ctx.error = e;
+    }
+});
 
 
 module.exports = router;

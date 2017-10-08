@@ -25,14 +25,14 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new UserTupleSchemeFactory();
 
   public short id; // required
-  public java.lang.String name; // required
-  public java.lang.String head; // required
-  public java.lang.String tel; // required
-  public java.lang.String device_uuid; // required
-  public java.lang.String register_time; // required
-  public java.lang.String create_time; // required
-  public java.lang.String update_time; // required
-  public java.lang.String password; // required
+  public String name; // required
+  public String head; // required
+  public String tel; // required
+  public String device_uuid; // required
+  public String register_time; // required
+  public String create_time; // required
+  public String update_time; // required
+  public String password; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -46,7 +46,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     UPDATE_TIME((short)8, "update_time"),
     PASSWORD((short)9, "password");
 
-    private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+    private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
     static {
       for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -88,21 +88,21 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
      */
     public static _Fields findByThriftIdOrThrow(int fieldId) {
       _Fields fields = findByThriftId(fieldId);
-      if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+      if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
       return fields;
     }
 
     /**
      * Find the _Fields constant that matches name, or null if its not found.
      */
-    public static _Fields findByName(java.lang.String name) {
+    public static _Fields findByName(String name) {
       return byName.get(name);
     }
 
     private final short _thriftId;
-    private final java.lang.String _fieldName;
+    private final String _fieldName;
 
-    _Fields(short thriftId, java.lang.String fieldName) {
+    _Fields(short thriftId, String fieldName) {
       _thriftId = thriftId;
       _fieldName = fieldName;
     }
@@ -111,7 +111,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       return _thriftId;
     }
 
-    public java.lang.String getFieldName() {
+    public String getFieldName() {
       return _fieldName;
     }
   }
@@ -149,14 +149,14 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
 
   public User(
     short id,
-    java.lang.String name,
-    java.lang.String head,
-    java.lang.String tel,
-    java.lang.String device_uuid,
-    java.lang.String register_time,
-    java.lang.String create_time,
-    java.lang.String update_time,
-    java.lang.String password)
+    String name,
+    String head,
+    String tel,
+    String device_uuid,
+    String register_time,
+    String create_time,
+    String update_time,
+    String password)
   {
     this();
     this.id = id;
@@ -244,11 +244,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __ID_ISSET_ID, value);
   }
 
-  public java.lang.String getName() {
+  public String getName() {
     return this.name;
   }
 
-  public User setName(java.lang.String name) {
+  public User setName(String name) {
     this.name = name;
     return this;
   }
@@ -268,11 +268,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     }
   }
 
-  public java.lang.String getHead() {
+  public String getHead() {
     return this.head;
   }
 
-  public User setHead(java.lang.String head) {
+  public User setHead(String head) {
     this.head = head;
     return this;
   }
@@ -292,11 +292,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     }
   }
 
-  public java.lang.String getTel() {
+  public String getTel() {
     return this.tel;
   }
 
-  public User setTel(java.lang.String tel) {
+  public User setTel(String tel) {
     this.tel = tel;
     return this;
   }
@@ -316,11 +316,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     }
   }
 
-  public java.lang.String getDevice_uuid() {
+  public String getDevice_uuid() {
     return this.device_uuid;
   }
 
-  public User setDevice_uuid(java.lang.String device_uuid) {
+  public User setDevice_uuid(String device_uuid) {
     this.device_uuid = device_uuid;
     return this;
   }
@@ -340,11 +340,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     }
   }
 
-  public java.lang.String getRegister_time() {
+  public String getRegister_time() {
     return this.register_time;
   }
 
-  public User setRegister_time(java.lang.String register_time) {
+  public User setRegister_time(String register_time) {
     this.register_time = register_time;
     return this;
   }
@@ -364,11 +364,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     }
   }
 
-  public java.lang.String getCreate_time() {
+  public String getCreate_time() {
     return this.create_time;
   }
 
-  public User setCreate_time(java.lang.String create_time) {
+  public User setCreate_time(String create_time) {
     this.create_time = create_time;
     return this;
   }
@@ -388,11 +388,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     }
   }
 
-  public java.lang.String getUpdate_time() {
+  public String getUpdate_time() {
     return this.update_time;
   }
 
-  public User setUpdate_time(java.lang.String update_time) {
+  public User setUpdate_time(String update_time) {
     this.update_time = update_time;
     return this;
   }
@@ -412,11 +412,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     }
   }
 
-  public java.lang.String getPassword() {
+  public String getPassword() {
     return this.password;
   }
 
-  public User setPassword(java.lang.String password) {
+  public User setPassword(String password) {
     this.password = password;
     return this;
   }
@@ -436,13 +436,13 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     }
   }
 
-  public void setFieldValue(_Fields field, java.lang.Object value) {
+  public void setFieldValue(_Fields field, Object value) {
     switch (field) {
     case ID:
       if (value == null) {
         unsetId();
       } else {
-        setId((java.lang.Short)value);
+        setId((Short)value);
       }
       break;
 
@@ -450,7 +450,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetName();
       } else {
-        setName((java.lang.String)value);
+        setName((String)value);
       }
       break;
 
@@ -458,7 +458,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetHead();
       } else {
-        setHead((java.lang.String)value);
+        setHead((String)value);
       }
       break;
 
@@ -466,7 +466,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetTel();
       } else {
-        setTel((java.lang.String)value);
+        setTel((String)value);
       }
       break;
 
@@ -474,7 +474,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetDevice_uuid();
       } else {
-        setDevice_uuid((java.lang.String)value);
+        setDevice_uuid((String)value);
       }
       break;
 
@@ -482,7 +482,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetRegister_time();
       } else {
-        setRegister_time((java.lang.String)value);
+        setRegister_time((String)value);
       }
       break;
 
@@ -490,7 +490,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetCreate_time();
       } else {
-        setCreate_time((java.lang.String)value);
+        setCreate_time((String)value);
       }
       break;
 
@@ -498,7 +498,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetUpdate_time();
       } else {
-        setUpdate_time((java.lang.String)value);
+        setUpdate_time((String)value);
       }
       break;
 
@@ -506,14 +506,14 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetPassword();
       } else {
-        setPassword((java.lang.String)value);
+        setPassword((String)value);
       }
       break;
 
     }
   }
 
-  public java.lang.Object getFieldValue(_Fields field) {
+  public Object getFieldValue(_Fields field) {
     switch (field) {
     case ID:
       return getId();
@@ -543,13 +543,13 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       return getPassword();
 
     }
-    throw new java.lang.IllegalStateException();
+    throw new IllegalStateException();
   }
 
   /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
   public boolean isSet(_Fields field) {
     if (field == null) {
-      throw new java.lang.IllegalArgumentException();
+      throw new IllegalArgumentException();
     }
 
     switch (field) {
@@ -572,11 +572,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     case PASSWORD:
       return isSetPassword();
     }
-    throw new java.lang.IllegalStateException();
+    throw new IllegalStateException();
   }
 
   @Override
-  public boolean equals(java.lang.Object that) {
+  public boolean equals(Object that) {
     if (that == null)
       return false;
     if (that instanceof User)
@@ -723,7 +723,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
 
     int lastComparison = 0;
 
-    lastComparison = java.lang.Boolean.valueOf(isSetId()).compareTo(other.isSetId());
+    lastComparison = Boolean.valueOf(isSetId()).compareTo(other.isSetId());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -733,7 +733,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetName()).compareTo(other.isSetName());
+    lastComparison = Boolean.valueOf(isSetName()).compareTo(other.isSetName());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -743,7 +743,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetHead()).compareTo(other.isSetHead());
+    lastComparison = Boolean.valueOf(isSetHead()).compareTo(other.isSetHead());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -753,7 +753,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetTel()).compareTo(other.isSetTel());
+    lastComparison = Boolean.valueOf(isSetTel()).compareTo(other.isSetTel());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -763,7 +763,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetDevice_uuid()).compareTo(other.isSetDevice_uuid());
+    lastComparison = Boolean.valueOf(isSetDevice_uuid()).compareTo(other.isSetDevice_uuid());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -773,7 +773,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetRegister_time()).compareTo(other.isSetRegister_time());
+    lastComparison = Boolean.valueOf(isSetRegister_time()).compareTo(other.isSetRegister_time());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -783,7 +783,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetCreate_time()).compareTo(other.isSetCreate_time());
+    lastComparison = Boolean.valueOf(isSetCreate_time()).compareTo(other.isSetCreate_time());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -793,7 +793,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetUpdate_time()).compareTo(other.isSetUpdate_time());
+    lastComparison = Boolean.valueOf(isSetUpdate_time()).compareTo(other.isSetUpdate_time());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -803,7 +803,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetPassword()).compareTo(other.isSetPassword());
+    lastComparison = Boolean.valueOf(isSetPassword()).compareTo(other.isSetPassword());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -829,8 +829,8 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @Override
-  public java.lang.String toString() {
-    java.lang.StringBuilder sb = new java.lang.StringBuilder("User(");
+  public String toString() {
+    StringBuilder sb = new StringBuilder("User(");
     boolean first = true;
 
     sb.append("id:");
@@ -917,7 +917,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     }
   }
 
-  private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+  private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
     try {
       // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
       __isset_bitfield = 0;

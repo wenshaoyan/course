@@ -31,3 +31,7 @@ service ClientService{
     list<bean.ClientVersion> versionSelectAll(),
     list<bean.ClientVersion> versionSelect(1: bean.ClientVersion clientVersion)
 }
+service CacheService{
+    void bannerPut(1: string key,2:list<bean.Banner> banners)
+    list<bean.Banner> bannerGet(1: string key)
+}

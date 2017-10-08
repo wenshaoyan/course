@@ -1,7 +1,9 @@
 package com.wenshao.dal;
 
+import com.wenshao.dal.bean.CacheXmlBean;
 import com.wenshao.dal.bean.UserBean;
 import com.wenshao.dal.thriftgen.User;
+import com.wenshao.dal.util.JaxbUtil;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.Converter;
@@ -12,10 +14,7 @@ import org.apache.commons.beanutils.locale.converters.StringLocaleConverter;
 import org.apache.ibatis.annotations.Insert;
 
 import java.lang.reflect.InvocationTargetException;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -84,7 +83,7 @@ public class Test {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
 
         List<Student> persons = new ArrayList<Student>();
         persons.add(new Student());
@@ -94,6 +93,10 @@ public class Test {
         printPersonInfo(persons);
 
 
+    }
+    public static void main3(String[] args) {
+
+        System.out.println("=============");
     }
 
 

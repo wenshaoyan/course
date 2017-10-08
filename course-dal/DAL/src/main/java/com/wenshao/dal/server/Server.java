@@ -1,7 +1,11 @@
 package com.wenshao.dal.server;
 
+import com.wenshao.dal.bean.CacheXmlBean;
 import com.wenshao.dal.constant.ZKConstant;
+import com.wenshao.dal.thriftgen.CacheService;
+import com.wenshao.dal.util.CacheClientUtil;
 import com.wenshao.dal.util.IPUtil;
+import com.wenshao.dal.util.JaxbUtil;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryNTimes;
@@ -9,6 +13,7 @@ import org.apache.log4j.Logger;
 import org.apache.thrift.TMultiplexedProcessor;
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.server.TThreadedSelectorServer;
@@ -20,6 +25,7 @@ import org.apache.zookeeper.data.Id;
 import org.apache.zookeeper.data.Stat;
 import org.apache.zookeeper.server.auth.DigestAuthenticationProvider;
 
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -37,19 +43,29 @@ public class Server {
 
     private TProcessor processor;
     private int port;
-    private static String getEnv(){
+    private CuratorFramework zkClient;
+    private Reader cacheReader;
+
+    private static String getEnv() {
         HashSet<String> envSet = new HashSet<String>();
         envSet.add("develop");
         envSet.add("production");
         Map<String, String> map = System.getenv();
         String java_env = map.get("JAVA_ENV");
-        if (java_env != null && envSet.contains(java_env))return java_env;
-        return  "develop";
+        if (java_env != null && envSet.contains(java_env)) return java_env;
+        return "develop";
     }
+
     public Server(TProcessor processor, int port) {
         this.processor = processor;
         this.port = port;
 
+    }
+
+    public Server(TProcessor processor, int port, Reader cacheReader) {
+        this.processor = processor;
+        this.port = port;
+        this.cacheReader = cacheReader;
     }
 
     /**
@@ -67,6 +83,14 @@ public class Server {
             String serverName = getServerName(processor.getClass().getName());
             logger.debug(serverName + " start service " + this.port);
             this.startZK(serverName);
+            if (this.cacheReader != null) {
+                // 连接缓存服务器
+                this.connectionCacheServer();
+                // 设置缓存bean对象
+                CacheXmlBean cacheXmlBean = JaxbUtil.converyToJavaBean(this.cacheReader, CacheXmlBean.class);
+                CacheClientUtil.setCacheXmlBean(cacheXmlBean);
+            }
+
             server.serve(); // 启动服务
         } catch (TTransportException e) {
             e.printStackTrace();
@@ -80,7 +104,7 @@ public class Server {
     private void startZK(String serverName) throws Exception {
         RetryNTimes retryNTimes = new RetryNTimes(10, 1000);
         String localIp = IPUtil.getLocalIp();
-        String root = "dal/"+Server.getEnv()+"/" + serverName;
+        String root = "dal/" + Server.getEnv() + "/" + serverName;
         CuratorFramework client = CuratorFrameworkFactory.builder()
                 .connectString(ZKConstant.CONNECT_STRING)
                 .sessionTimeoutMs(ZKConstant.SESSION_TIMEOUT)
@@ -89,9 +113,9 @@ public class Server {
                 .build();
         client.start();
         Stat stat = client.checkExists()
-                .forPath("/"+localIp);
+                .forPath("/" + localIp);
         if (stat != null) {
-            throw new Exception(root + " Existing "+localIp+" Node");
+            throw new Exception(root + " Existing " + localIp + " Node");
         }
         List<ACL> acls = new ArrayList<ACL>();
         //添加第一个id，采用用户名密码形式
@@ -106,8 +130,33 @@ public class Server {
         String nodeData = localIp + ":" + this.port;
         client.create()
                 .withMode(CreateMode.EPHEMERAL)
-                .forPath('/'+localIp,nodeData.getBytes());
+                .forPath('/' + localIp, nodeData.getBytes());
+        zkClient = client;
+    }
 
+    private void connectionCacheServer() throws Exception {
+        String root = "/cache/" + Server.getEnv() + "/CacheService";
+        List<String> strings = zkClient.usingNamespace(null).getChildren().forPath(root);
+        if (strings == null || strings.size() == 0) {
+            throw new Exception(root + " not Existing node");
+        }
+        String s = strings.get(0);
+
+        byte[] bytes = zkClient.usingNamespace(null).getData().forPath(root + "/" + s);
+        String url = new String(bytes);
+        logger.debug("CacheServer:Ready to connect "+url);
+        String[] split = url.split(":");
+        if (split.length != 2) {
+            throw new Exception(s + "data error!");
+
+        } else {
+            String host = split[0];
+            int port = Integer.parseInt(split[1]);
+            TProtocol tProtocol = CacheClientUtil.build(host, port);
+            CacheService.Client client = new CacheService.Client(tProtocol);
+            CacheClientUtil.setCacheClient(client);
+            logger.debug("CacheServer:connect successful "+url);
+        }
     }
 
     // 找出server名称
