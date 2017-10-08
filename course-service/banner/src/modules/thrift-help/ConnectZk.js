@@ -95,7 +95,7 @@ class ConnectZk {
             if (this.server && typeof this.server === 'object') {
                 this.server.close();
             } else {
-                console.warn('UserServer not found');
+                console.warn(this.parentPath+' not found');
             }
         }
         return childrenData;
