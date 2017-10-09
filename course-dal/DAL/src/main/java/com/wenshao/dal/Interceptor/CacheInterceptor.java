@@ -39,6 +39,7 @@ public class CacheInterceptor {
             logger.debug("获取缓存");
             return abc;
 
+
         } catch (TException e) {
             e.printStackTrace();
             return  null;

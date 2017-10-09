@@ -6,16 +6,15 @@
             <value>
                 <cacheBean >
                     <expireTime>10</expireTime>
-                    <actionName>findById</actionName>
+
                 </cacheBean>
             </value>
         </entry>
         <entry>
-            <key>abc1</key>
+            <key>selectAll</key>
             <value>
                 <cacheBean >
                     <expireTime>10</expireTime>
-                    <actionName>abc</actionName>
                 </cacheBean>
             </value>
         </entry>

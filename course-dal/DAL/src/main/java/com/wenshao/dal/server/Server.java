@@ -152,9 +152,7 @@ public class Server {
         } else {
             String host = split[0];
             int port = Integer.parseInt(split[1]);
-            TProtocol tProtocol = CacheClientUtil.build(host, port);
-            CacheService.Client client = new CacheService.Client(tProtocol);
-            CacheClientUtil.setCacheClient(client);
+            CacheClientUtil.build(host, port);
             logger.debug("CacheServer:connect successful "+url);
         }
     }

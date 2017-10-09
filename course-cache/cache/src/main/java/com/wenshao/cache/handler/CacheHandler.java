@@ -4,6 +4,7 @@ import com.wenshao.cache.thriftgen.Banner;
 import com.wenshao.cache.thriftgen.CacheService;
 import org.apache.thrift.TException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +16,11 @@ public class CacheHandler implements CacheService.Iface{
     }
 
     public List<Banner> bannerGet(String key) throws TException {
-        return null;
+
+        ArrayList<Banner> banners = new ArrayList<Banner>();
+        Banner banner = new Banner();
+        banner.id=1;
+        banners.add(banner);
+        return banners;
     }
 }

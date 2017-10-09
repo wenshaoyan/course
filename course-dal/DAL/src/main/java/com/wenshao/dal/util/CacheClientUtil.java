@@ -2,15 +2,19 @@ package com.wenshao.dal.util;
 
 import com.google.common.base.Objects;
 import com.wenshao.dal.bean.CacheXmlBean;
+import com.wenshao.dal.thriftgen.Banner;
 import com.wenshao.dal.thriftgen.CacheService;
 import com.wenshao.dal.thriftgen.User;
 import com.wenshao.dal.thriftgen.UserService;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
+import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 import org.apache.thrift.transport.TTransportException;
+
+import java.util.List;
 
 /**
  * Created by wenshao on 2017/10/8.
@@ -29,7 +33,7 @@ public class CacheClientUtil {
      * @return socket
      */
     private static TTransport createTTransport() {
-        return new TSocket(host, port);
+        return new TFramedTransport(new TSocket(host, port,2000));
     }
 
     /**
@@ -69,7 +73,7 @@ public class CacheClientUtil {
 
     }
 
-    public static TProtocol build(String _host, int _port) {
+    public static TProtocol build1(String _host, int _port) {
         port = _port;
         host = _host;
         try {
@@ -83,6 +87,19 @@ public class CacheClientUtil {
             e.printStackTrace();
         }
         return null;
+    }
+    public static void build(String _host, int _port) {
+        TTransport  m_transport = new TFramedTransport(new TSocket(_host, _port, 2000));
+        TProtocol protocol = new TBinaryProtocol(m_transport);
+        CacheService.Client client = new CacheService.Client(protocol);
+        try {
+            m_transport.open();
+            setCacheClient(client);
+        } catch (TException e){
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
     public static void setCacheClient(CacheService.Client _client){
         client = _client;
