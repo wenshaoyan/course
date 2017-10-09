@@ -2,12 +2,14 @@ package com.wenshao.dal.handler;
 
 import com.wenshao.dal.Interceptor.CacheInterceptor;
 import com.wenshao.dal.util.MD5Util;
+import org.apache.thrift.TException;
 
 import javax.print.attribute.standard.NumberUp;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.List;
 
 /**
  * Created by wenshao on 2017/10/8.
@@ -54,50 +56,50 @@ public class DynamicCacheProxyHandler implements InvocationHandler {
      * 　　* @throws Throwable
      */
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) {
+    public Object invoke(Object proxy, Method method, Object[] args) throws TException {
         Object result = null;
 
         String md5Key = null;
         try {
             md5Key = getMd5Key(args);
-            System.out.println(md5Key);
             result = interceptor.before(method.getName(), md5Key);
             if (result == null) {
                 result = method.invoke(business, args);
-                interceptor.after(method.getName(), md5Key, result);
+                interceptor.after(method.getName(), md5Key,result);
                 return result;
             } else {
                 return result;
             }
-        } catch (InvocationTargetException e) {
+        } catch (TException e){
             e.printStackTrace();
-            //throw new
-        } catch (IllegalAccessException e) {
+            throw new TException(e);
+        } catch (Exception e) {     // 反射的结果
             e.printStackTrace();
+            throw new TException(e);
         }
-        return null;
-
     }
 
 
-    private String getMd5Key(Object[] args) throws InvocationTargetException, IllegalAccessException {
+    private String getMd5Key(Object[] args) throws Exception {
         if (args == null || args[0] == null) {
             return MD5Util.getMD5("all");
         }
         StringBuilder sb = new StringBuilder();
-        for (Object o : args) {
-            if (o.getClass().isPrimitive()) {    // 简单类型
-                sb.append(o);
-            } else {
-                if (o instanceof Number) {
+        try {
+            for (Object o : args) {
+                if (o.getClass().isPrimitive()) {    // 简单类型
                     sb.append(o);
                 } else {
-                    setObjectValues(o, sb);
+                    if (o instanceof Number) {
+                        sb.append(o);
+                    } else {
+                        setObjectValues(o, sb);
+                    }
                 }
             }
+        } catch (Exception e) {
+            throw new Exception(e);
         }
-        System.out.println(sb.toString());
-
         return MD5Util.getMD5(sb.toString());
     }
 

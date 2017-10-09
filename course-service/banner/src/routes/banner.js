@@ -101,6 +101,7 @@ router.get(`${apiName}`, routerI({
     try {
         ctx.body = await client.select(banner)
     } catch (e) {
+        console.log(e);
         ctx.error = e;
     }
 });

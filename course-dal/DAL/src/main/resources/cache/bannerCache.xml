@@ -2,22 +2,18 @@
 <cacheXmlBean>
     <cacheBeans>
         <entry>
-            <key>findById</key>
+            <key>selectAll</key>
             <value>
-                <cacheBean >
-                    <expireTime>10</expireTime>
-
-                </cacheBean>
+                <methodPut>bannerGet</methodPut>
+                <methodGet>bannerGet</methodGet>
             </value>
         </entry>
         <entry>
-            <key>selectAll</key>
+            <key>select</key>
             <value>
-                <cacheBean >
-                    <expireTime>10</expireTime>
-                </cacheBean>
+                <methodPut>bannerGet</methodPut>
+                <methodGet>bannerGet</methodGet>
             </value>
         </entry>
-
     </cacheBeans>
 </cacheXmlBean>

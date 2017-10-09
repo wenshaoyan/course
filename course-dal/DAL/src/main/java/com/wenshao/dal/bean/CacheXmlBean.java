@@ -3,6 +3,7 @@ package com.wenshao.dal.bean;
 
 
 import javax.xml.bind.annotation.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ import java.util.Map;
 public class CacheXmlBean {
     @XmlElementWrapper(name = "cacheBeans")
     @XmlElement(name = "cacheBean")
-    private Map<String,CacheBean> cacheBeans;
+    private Map<String,CacheBean> cacheBeans = new HashMap<String, CacheBean>();
 
     public Map<String, CacheBean> getCacheBeans() {
         return cacheBeans;

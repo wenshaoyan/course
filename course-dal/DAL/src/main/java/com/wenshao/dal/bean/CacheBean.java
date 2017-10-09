@@ -11,32 +11,35 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public  class CacheBean {
+
     @XmlElement(required = true)
-    private int expireTime;     // 过期时间 单位:分钟
+    private String methodGet;  // 获取缓存方法名称
     @XmlElement(required = true)
-    private String actionName;  // 方法名称
+    private String methodPut;  // 设置缓存方法名称
 
-    public String getActionName() {
-        return actionName;
+
+    public String getMethodGet() {
+        return methodGet;
     }
 
-    public void setActionName(String actionName) {
-        this.actionName = actionName;
+    public void setMethodGet(String methodGet) {
+        this.methodGet = methodGet;
     }
 
-    public int getExpireTime() {
-        return expireTime;
+    public String getMethodPut() {
+        return methodPut;
     }
 
-    public void setExpireTime(int expireTime) {
-        this.expireTime = expireTime;
+    public void setMethodPut(String methodPut) {
+        this.methodPut = methodPut;
     }
+
 
     @Override
     public String toString() {
         return "CacheBean{" +
-                "expireTime=" + expireTime +
-                ", actionName='" + actionName + '\'' +
+                ", methodGet='" + methodGet + '\'' +
+                ", methodPut='" + methodPut + '\'' +
                 '}';
     }
 }

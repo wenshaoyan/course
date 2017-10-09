@@ -101,7 +101,7 @@ public class Test {
 
     }
 
-    public static void main(String[] args) throws IllegalAccessException, InvocationTargetException {
+    public static void main3(String[] args) throws IllegalAccessException, InvocationTargetException {
         Banner banner = new Banner();
         banner.setId(1);
         banner.setUser_id(1);
@@ -155,6 +155,20 @@ public class Test {
 
         //System.out.println(b);
     }
+    public static void main(String[] args){
+        try {
+            Object banners = new ArrayList<Banner>();
+            Class<?> aClass = Class.forName("java.util.ArrayList");
+            Object o = aClass.newInstance();
+            System.out.println(aClass);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
 
+    }
 
 }

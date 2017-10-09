@@ -9,6 +9,8 @@ import com.wenshao.dal.util.CacheClientUtil;
 import org.apache.log4j.Logger;
 import org.apache.thrift.TException;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,14 +35,30 @@ public class CacheInterceptor {
         if (!cacheBeans.containsKey(actionName)){
             return null;
         }
+        CacheBean cacheBean = cacheBeans.get(actionName);
+        if (cacheBean == null || cacheBean.getMethodGet()==null || cacheBean.getMethodPut()==null){
+            return null;
+        }
         try {
             // 3 存在缓存则返回缓存中的数据 否则返回空
-            List<Banner> abc = cacheClient.bannerGet(md5Key);
+            Class userCla = (Class)cacheClient.getClass();
+            Class[] paramsTypes = new Class[]{String.class};
+
+            Method method = userCla.getMethod(cacheBean.getMethodGet(),paramsTypes);
+            Object[] args = new Object[]{md5Key};
+            Object invoke = method.invoke(cacheClient, args);
             logger.debug("获取缓存");
-            return abc;
-
-
-        } catch (TException e) {
+            return invoke;
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            return  null;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return  null;
+        } catch (InvocationTargetException e) { // 没有缓存
+            e.printStackTrace();
+            return  null;
+        }catch (Exception e){
             e.printStackTrace();
             return  null;
         }
