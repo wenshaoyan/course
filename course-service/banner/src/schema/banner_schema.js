@@ -36,6 +36,6 @@ module.exports={
             "image_url":schema_public.string225,
             "redirect_url":schema_public.string225,
         },
-        "required": []
+        //"required": []
     }
 };

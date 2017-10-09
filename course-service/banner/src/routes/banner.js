@@ -94,10 +94,12 @@ router.get(`${apiName}`, routerI({
     key: "banner_filter",
     schema: banner_schema.banner_filter
 }), async(ctx, next) => {
-    let id = ctx.params.id;
+    const banner = new bean_types.Banner();
+    const params = ctx.query;
+    SysUtil.copyObjectAttr(banner, params);
     const client = getThriftServer(`'${bannerServiceName}'`).getClient();
     try {
-        ctx.body = await client.findById(id);
+        ctx.body = await client.select(banner)
     } catch (e) {
         ctx.error = e;
     }
