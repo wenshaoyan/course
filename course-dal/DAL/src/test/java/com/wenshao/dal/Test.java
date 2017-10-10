@@ -155,8 +155,8 @@ public class Test {
 
         //System.out.println(b);
     }
-    public static void main(String[] args){
-        try {
+    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        /*try {
             Object banners = new ArrayList<Banner>();
             Class<?> aClass = Class.forName("java.util.ArrayList");
             Object o = aClass.newInstance();
@@ -167,7 +167,42 @@ public class Test {
             e.printStackTrace();
         } catch (InstantiationException e) {
             e.printStackTrace();
+        }*/
+        List<String> strings = new ArrayList<String>();
+        strings.add("111");
+
+        Object o = strings;
+
+        /*ArrayList<Banner> banners = new ArrayList<Banner>();
+        Banner banner = new Banner();
+        banner.setUser_id(11);
+        banners.add(banner);
+        Object obj = banners;
+        if (obj instanceof ArrayList<?>){
+            List<?> obj1 = (ArrayList<?>) obj;
+            if (obj1.size()>0){
+                Object o = obj1.get(0);
+                Class<?> aClass = Class.forName(o.getClass().getName());
+                //List<aClass> aClasses = new ArrayList<aClass>();
+            }
+
+            //test(obj1);
+            for (Object o : obj1){
+                System.out.println("===========");
+
+                Class<?> aClass = Class.forName(o.getClass().getName());
+                Object o1 = aClass.newInstance();
+                System.out.println();
+                System.out.println(o1);
+
+            }
+
+            System.out.println("===========");
+
         }
+*/
+    }
+    public static void test(List<String> s){
 
     }
 

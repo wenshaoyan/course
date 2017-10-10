@@ -4,15 +4,17 @@
         <entry>
             <key>selectAll</key>
             <value>
-                <methodPut>bannerGet</methodPut>
                 <methodGet>bannerGet</methodGet>
+                <methodPut>bannerPut</methodPut>
+                <dataClass>com.wenshao.dal.thriftgen.BannerList</dataClass>
             </value>
         </entry>
         <entry>
             <key>select</key>
             <value>
-                <methodPut>bannerGet</methodPut>
                 <methodGet>bannerGet</methodGet>
+                <methodPut>bannerPut</methodPut>
+                <dataClass>com.wenshao.dal.thriftgen.BannerList</dataClass>
             </value>
         </entry>
     </cacheBeans>

@@ -16,6 +16,8 @@ public  class CacheBean {
     private String methodGet;  // 获取缓存方法名称
     @XmlElement(required = true)
     private String methodPut;  // 设置缓存方法名称
+    @XmlElement(required = true)
+    private String dataClass;  // 设置缓存方法名称
 
 
     public String getMethodGet() {
@@ -35,11 +37,20 @@ public  class CacheBean {
     }
 
 
+    public String getDataClass() {
+        return dataClass;
+    }
+
+    public void setDataClass(String dataClass) {
+        this.dataClass = dataClass;
+    }
+
     @Override
     public String toString() {
         return "CacheBean{" +
                 ", methodGet='" + methodGet + '\'' +
                 ", methodPut='" + methodPut + '\'' +
+                ", dataClass='" + dataClass + '\'' +
                 '}';
     }
 }

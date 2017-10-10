@@ -1,7 +1,7 @@
 package com.wenshao.cache.handler;
 
-import com.wenshao.cache.bean.ListBanner;
 import com.wenshao.cache.thriftgen.Banner;
+import com.wenshao.cache.thriftgen.BannerList;
 import com.wenshao.cache.thriftgen.CacheService;
 import org.apache.thrift.TException;
 import org.ehcache.Cache;
@@ -21,20 +21,26 @@ public class CacheHandler implements CacheService.Iface {
         this.mCacheManager = cacheManager;
     }
 
-    public void bannerPut(String key, List<Banner> banners) throws TException {
-        ListBanner listBanner = new ListBanner();
-        listBanner.setBanners(banners);
-        Cache<String, ListBanner> bannerCache = this.mCacheManager.getCache("banner", String.class, ListBanner.class);
-        bannerCache.put(key, listBanner);
+    public void bannerPut(String key, BannerList banners) throws TException {
 
+        Cache<String, BannerList> bannerCache = this.mCacheManager.getCache("banner", String.class, BannerList.class);
+        bannerCache.put(key, banners);
+        System.out.println("设置缓存成功");
     }
 
-    public List<Banner> bannerGet(String key) throws TException {
-        Cache<String, ListBanner> bannerCache = this.mCacheManager.getCache("banner", String.class, ListBanner.class);
-        ListBanner listBanner = bannerCache.get(key);
-        if (listBanner != null) {
-            return listBanner.getBanners();
-        }
-        return null;
+    public BannerList bannerGet(String key) throws TException {
+        Cache<String, BannerList> bannerCache = this.mCacheManager.getCache("banner", String.class, BannerList.class);
+        BannerList bannerList = new BannerList();
+        List<Banner> banners = new ArrayList<Banner>();
+        Banner banner = new Banner();
+        banner.setId(1);
+        banners.add(banner);
+        bannerList.setData(banners);
+        System.out.println("获取缓存成功");
+
+        return bannerCache.get(key);
+//        return bannerList;
     }
+
+
 }

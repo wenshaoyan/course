@@ -4,6 +4,7 @@ import com.wenshao.dal.bean.CacheBean;
 import com.wenshao.dal.bean.CacheXmlBean;
 import com.wenshao.dal.server.Server;
 import com.wenshao.dal.thriftgen.Banner;
+import com.wenshao.dal.thriftgen.BannerList;
 import com.wenshao.dal.thriftgen.CacheService;
 import com.wenshao.dal.util.CacheClientUtil;
 import org.apache.log4j.Logger;
@@ -47,8 +48,15 @@ public class CacheInterceptor {
             Method method = userCla.getMethod(cacheBean.getMethodGet(),paramsTypes);
             Object[] args = new Object[]{md5Key};
             Object invoke = method.invoke(cacheClient, args);
+
+            // 获取数据列表
+            Class aClass = (Class)invoke.getClass();
+            Method method1 = aClass.getMethod("getData");
+
+            Object invoke1 = method1.invoke(invoke);
+
             logger.debug("获取缓存");
-            return invoke;
+            return invoke1;
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
             return  null;
@@ -69,13 +77,46 @@ public class CacheInterceptor {
     public void after(String actionName, String md5Key,Object data) {
         CacheService.Client cacheClient = CacheClientUtil.getCacheClient();
         CacheXmlBean cacheXmlBean = CacheClientUtil.getCacheXmlBean();
-        List<Banner> banners = new ArrayList<Banner>();
+        Map<String, CacheBean> cacheBeans = cacheXmlBean.getCacheBeans();
+        CacheBean cacheBean = cacheBeans.get(actionName);
+
         try {
-            logger.debug("设置缓存");
-            cacheClient.bannerPut(md5Key,banners);
-        } catch (TException e) {
+            Class<?> aClass = Class.forName(cacheBean.getDataClass());
+            Object dataObj = aClass.newInstance();
+            Class[] dataTypes = new Class[]{List.class};
+
+            Method setData = aClass.getMethod("setData",dataTypes);
+            Method[] methods = aClass.getMethods();
+
+            setData.invoke(dataObj,data);
+
+            Class userCla = (Class)cacheClient.getClass();
+            Class[] paramsTypes = new Class[]{String.class, BannerList.class};
+
+            Method method = null;
+            Method[] methods1 = userCla.getMethods();
+            for (Method m:methods1){
+                if (m.getName().equals(cacheBean.getMethodPut())){
+                    System.out.println(m.getName());
+
+                }
+            }
+            method = userCla.getMethod(cacheBean.getMethodPut(),paramsTypes);
+            Object[] args = new Object[]{md5Key,dataObj};
+            method.invoke(cacheClient, args);
+
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
             e.printStackTrace();
         }
+
     }
 
 

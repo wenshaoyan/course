@@ -36,5 +36,7 @@ struct ClientSide{
     3:string update_time
     4:string name
     5:string package_name
-
+}
+struct BannerList{
+    1:list<Banner> data
 }

@@ -9,4 +9,6 @@ struct Banner{
     7:i32 show_client_id
     8:i32 location
 }
-
+struct BannerList{
+    1:list<Banner> data
+}
