@@ -6,11 +6,16 @@
     <cache alias="banner">
         <key-type>java.lang.String</key-type>
         <value-type>com.wenshao.cache.thriftgen.BannerList</value-type>
+        <expiry>
+            <ttl unit="hours">2</ttl>
+        </expiry>
         <resources>
             <heap unit="entries">2000</heap>
             <offheap unit="MB">500</offheap>
             <!--<disk unit="GB">1</disk>-->
         </resources>
+
+
     </cache>
 
 </config>

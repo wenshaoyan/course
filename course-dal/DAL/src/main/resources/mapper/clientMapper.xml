@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.clientMapper">
+    <select id="selectClient" parameterType="_ClientBean" resultMap="clientResult">
+        SELECT * FROM t_client
+        <where>
+            <if test="package_name != null">
+                AND clinet_package_name = #{package_name}
+            </if>
+        </where>
+
+
+    </select>
+    <resultMap id="clientResult" type="_ClientBean">
+        <id property="id" column="client_id"/>
+        <result property="create_time_bean" column="client_create_time"/>
+        <result property="update_time_bean" column="client_update_time"/>
+        <result property="name" column="client_name"/>
+        <result property="package_name" column="client_package_name"/>
+
+    </resultMap>
 
 </mapper>

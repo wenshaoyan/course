@@ -1,7 +1,11 @@
 package com.wenshao.dal.dao.impl;
 
+import com.wenshao.dal.bean.ClientBean;
 import com.wenshao.dal.dao.ClientDao;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+
+import java.util.List;
 
 /**
  * Created by wenshao on 2017/10/8.
@@ -9,9 +13,27 @@ import org.apache.ibatis.session.SqlSessionFactory;
  */
 public class ClientDaoImpl implements ClientDao {
     private SqlSessionFactory sqlSessionFactory;
-    private static final String sqlTag = "mapper.bannerMapper";
+    private static final String sqlTag = "mapper.clientMapper";
     public ClientDaoImpl(SqlSessionFactory sqlSessionFactory){
         super();
         this.sqlSessionFactory = sqlSessionFactory;
+    }
+
+    @Override
+    public List<ClientBean> clientSelect(ClientBean clientBean) throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        List<ClientBean> list = sqlSession.selectList(sqlTag + ".selectClient",clientBean);
+        sqlSession.commit();
+        sqlSession.close();
+        return list;
+    }
+
+    @Override
+    public List<ClientBean> clientSelectAll() throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        List<ClientBean> list = sqlSession.selectList(sqlTag + ".selectClient");
+        sqlSession.commit();
+        sqlSession.close();
+        return list;
     }
 }

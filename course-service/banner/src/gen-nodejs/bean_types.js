@@ -611,3 +611,79 @@ ClientSide.prototype.write = function(output) {
   return;
 };
 
+var BannerList = module.exports.BannerList = function(args) {
+  this.data = null;
+  if (args) {
+    if (args.data !== undefined && args.data !== null) {
+      this.data = Thrift.copyList(args.data, [ttypes.Banner]);
+    }
+  }
+};
+BannerList.prototype = {};
+BannerList.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.LIST) {
+        var _size0 = 0;
+        var _rtmp34;
+        this.data = [];
+        var _etype3 = 0;
+        _rtmp34 = input.readListBegin();
+        _etype3 = _rtmp34.etype;
+        _size0 = _rtmp34.size;
+        for (var _i5 = 0; _i5 < _size0; ++_i5)
+        {
+          var elem6 = null;
+          elem6 = new ttypes.Banner();
+          elem6.read(input);
+          this.data.push(elem6);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerList.prototype.write = function(output) {
+  output.writeStructBegin('BannerList');
+  if (this.data !== null && this.data !== undefined) {
+    output.writeFieldBegin('data', Thrift.Type.LIST, 1);
+    output.writeListBegin(Thrift.Type.STRUCT, this.data.length);
+    for (var iter7 in this.data)
+    {
+      if (this.data.hasOwnProperty(iter7))
+      {
+        iter7 = this.data[iter7];
+        iter7.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+

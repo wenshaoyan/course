@@ -25,7 +25,6 @@ public class CacheInterceptor {
 
     // 在 action 之前调用
     public Object before(String actionName, String md5Key) {
-
         CacheService.Client cacheClient = CacheClientUtil.getCacheClient();
         CacheXmlBean cacheXmlBean = CacheClientUtil.getCacheXmlBean();
         // 1 检查是否配置了缓存
@@ -64,7 +63,7 @@ public class CacheInterceptor {
             e.printStackTrace();
             return  null;
         } catch (InvocationTargetException e) { // 没有缓存
-            e.printStackTrace();
+            //e.printStackTrace();
             return  null;
         }catch (Exception e){
             e.printStackTrace();
@@ -77,9 +76,18 @@ public class CacheInterceptor {
     public void after(String actionName, String md5Key,Object data) {
         CacheService.Client cacheClient = CacheClientUtil.getCacheClient();
         CacheXmlBean cacheXmlBean = CacheClientUtil.getCacheXmlBean();
+        // 1 检查是否配置了缓存
+        if (cacheXmlBean == null) {
+            return;
+        }
         Map<String, CacheBean> cacheBeans = cacheXmlBean.getCacheBeans();
+        if (!cacheBeans.containsKey(actionName)){
+            return;
+        }
         CacheBean cacheBean = cacheBeans.get(actionName);
-
+        if (cacheBean == null || cacheBean.getMethodGet()==null || cacheBean.getMethodPut()==null){
+            return;
+        }
         try {
             Class<?> aClass = Class.forName(cacheBean.getDataClass());
             Object dataObj = aClass.newInstance();
