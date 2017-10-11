@@ -14,6 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cache.CacheMode;
+import com.lzy.okgo.model.Response;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
@@ -23,6 +26,11 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.wenshao.coursate.bean.BannerBean;
+import com.wenshao.coursate.bean.HttpApiResponse;
+import com.wenshao.coursate.bean.UserBean;
+import com.wenshao.coursate.config.ServerConfig;
+import com.wenshao.coursate.util.JsonCallback;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;
@@ -202,15 +210,40 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 R.drawable.guide_1_2,
                 R.drawable.guide_1_3
         };
-        List<String> ImageList = new ArrayList<String>();
-        for (int i = 0; i < ints.length; i++) {
-            // 添加图片
-            ImageList.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic1xjab4j30ci08cjrv.jpg");
-        }
-        mBanner.setImageLoader(new GlideImageLoader());
+        final List<String> ImageList = new ArrayList<String>();
+        OkGo.<HttpApiResponse<List<BannerBean> >>get(ServerConfig.HTTP_BANNER_V1)                            // 请求方式和请求url
+                .tag(this)                       // 请求的 tag, 主要用于取消对应的请求
+                .cacheKey("bannerListGet")            // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
+                .cacheMode(CacheMode.DEFAULT)  // 缓存模式，详细请看缓存介绍
+                .params("package_name",mContext.getPackageName())
+                //.upJson()
+                .execute(new JsonCallback<HttpApiResponse<List<BannerBean>>>() {
+                    @Override
+                    public void onSuccess(Response<HttpApiResponse<List<BannerBean>>> httpApiResponseResponse) {
+                        List<BannerBean> data = httpApiResponseResponse.body().data;
+                        for (BannerBean bannerBean:data){
+                            ImageList.add(bannerBean.getImage_url());
+                        }
+                    }
 
-        mBanner.setImages(ImageList);
-        mBanner.start();
+                    @Override
+                    public void onError(Response<HttpApiResponse<List<BannerBean>>> response) {
+                        super.onError(response);
+                        ImageList.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic1xjab4j30ci08cjrv22.jpg");
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+                        mBanner.setImageLoader(new GlideImageLoader());
+
+                        mBanner.setImages(ImageList);
+                        mBanner.start();
+                    }
+                });
+
+
     }
 
     @Override
