@@ -52,7 +52,7 @@
         <result property="update_time_bean" column="banner_update_time"/>
         <result property="user_id" column="banner_user_id"/>
         <result property="redirect_url" column="banner_redirect_url"/>
-        <result property="redirect_url" column="banner_redirect_url"/>
+        <result property="image_url" column="banner_image_url"/>
         <result property="show_client_id" column="banner_show_client_id"/>
         <result property="location" column="banner_location"/>
     </resultMap>

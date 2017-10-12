@@ -5,7 +5,7 @@
         SELECT * FROM t_client
         <where>
             <if test="package_name != null">
-                AND clinet_package_name = #{package_name}
+                AND client_package_name = #{package_name}
             </if>
         </where>
 
