@@ -45,5 +45,6 @@ class SysUtil{
         }
         return obj;
     }
+
 }
 module.exports =SysUtil;

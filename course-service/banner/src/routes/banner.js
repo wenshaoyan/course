@@ -104,14 +104,17 @@ router.get(`${apiName}`, routerI({
     try {
 
         let result = await client2.clientSelect(clientSide);
-        if (result.length !== 1){
+        if (result.length !== 1) {
             ctx.error = 'PACKAGE_NAME_ERROR';
-        }else {
+        } else {
             banner.show_client_id = result[0].id;
-            ctx.body = await client.select(banner);
+            let bannerResults = await client.select(banner);
+            bannerResults.forEach((value) => {
+                value.image_url = getServiceConfig().publicServer + value.image_url;
+            });
+            ctx.body = bannerResults;
         }
     } catch (e) {
-
         ctx.error = e;
     }
 });
