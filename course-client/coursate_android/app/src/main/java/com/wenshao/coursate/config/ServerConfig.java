@@ -21,12 +21,15 @@ public class ServerConfig {
      * 注册  post params={"name":"test",password:"aaa","email":"123@qq.com","tel":"1222333"}
      * 修改密码
      */
-    public final static String HTTP_USER_V1 = HTTP_ADDRESS + ":" + HTTP_PORT + "/api/user/v1/user";
-//    public final static String HTTP_USER_V1 = HTTP_ADDRESS + ":" + HTTP_PORT + "/user";
-    /*// 登录接口
-    public final static String HTTP_USER_LOGIN= HTTP_USER_V1+"login";
-    // 注册接口
-    public final static String HTTP_USER_REGISTER= HTTP_USER_V1+"register";*/
+    public final static String HTTP_USER_V1 = HTTP_ADDRESS + ":" + HTTP_PORT + "/api/app/v1/user";
+    /**
+     *
+     * banner 服务接口  restful api
+     * 获取  get params={"package_name":"com.wenshao.coursate"}
+     *
+     */
+    public final static String HTTP_BANNER_V1 = HTTP_ADDRESS + ":" + HTTP_PORT + "/api/app/v1/banner";
+
 
 
 }
