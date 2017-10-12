@@ -6,4 +6,7 @@
     <!--app主样式-->
     <color name="mainBackground">#00BAFF</color>
     <color name="mainPrimaryDark">#0496cc</color>
+    <color name="caption_color">#ff808080</color>
+    <color name="divider_color">#ffececec</color>
+
 </resources>

@@ -5,55 +5,134 @@
     android:id="@+id/sf_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:srlPrimaryColor="@color/mainBackground"
-    app:srlAccentColor="@android:color/white">
+    app:srlAccentColor="@android:color/white"
+    app:srlPrimaryColor="@color/mainBackground">
 
     <com.scwang.smartrefresh.layout.header.BezierRadarHeader
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlEnableHorizontalDrag="true"/>
+        app:srlEnableHorizontalDrag="true" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <com.youth.banner.Banner
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/banner"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            app:indicator_margin="10dp"
+            app:delay_time="5000"
             app:indicator_drawable_selected="@drawable/shape_banner_selected"
             app:indicator_drawable_unselected="@drawable/shape_banner_unselected"
-            app:indicator_width="8dp"
             app:indicator_height="8dp"
-            app:delay_time="5000"
-            app:scroll_time="1000"/>
+            app:indicator_margin="10dp"
+            app:indicator_width="8dp"
+            app:scroll_time="1000" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="65dp"
+            android:layout_marginLeft="16.0dp"
+            android:layout_marginRight="16.0dp"
             android:orientation="horizontal">
 
+            <FrameLayout
+                android:id="@+id/hm_hot"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:background="?selectableItemBackgroundBorderless">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawablePadding="2.0dp"
+                    android:drawableTop="@drawable/icon_home_hot"
+                    android:gravity="center"
+                    android:text="@string/hm_hot"
+                    android:textColor="@color/caption_color"
+                    android:textSize="11.0sp" />
+            </FrameLayout>
 
+            <FrameLayout
+                android:id="@+id/hm_new"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="?selectableItemBackgroundBorderless">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawablePadding="2.0dp"
+                    android:drawableTop="@drawable/icon_home_new"
+                    android:gravity="center"
+                    android:text="@string/hm_new"
+                    android:textColor="@color/caption_color"
+                    android:textSize="11.0sp" />
+            </FrameLayout>
 
+            <FrameLayout
+                android:id="@+id/hm_live"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="?selectableItemBackgroundBorderless">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawablePadding="2.0dip"
+                    android:drawableTop="@drawable/icon_home_live"
+                    android:gravity="center"
+                    android:text="@string/hm_live"
+                    android:textColor="@color/caption_color"
+                    android:textSize="11.0sp" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/hm_all"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="?selectableItemBackgroundBorderless">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawablePadding="2.0dip"
+                    android:drawableTop="@drawable/icon_home_classify"
+                    android:gravity="center"
+                    android:text="@string/hm_all"
+                    android:textColor="@color/caption_color"
+                    android:textSize="11.0sp" />
+            </FrameLayout>
         </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:background="@color/divider_color" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:overScrollMode="never"/>
+            android:overScrollMode="never" />
     </LinearLayout>
 
     <com.scwang.smartrefresh.layout.footer.ClassicsFooter
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srlClassicsSpinnerStyle="Translate"/>
+        app:srlClassicsSpinnerStyle="Translate" />
 
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>
