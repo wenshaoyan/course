@@ -10,6 +10,7 @@
         android:id="@+id/id_tool_bar"
         android:background="?attr/colorPrimary"
         app:navigationIcon="?attr/homeAsUpIndicator"
+        android:fitsSystemWindows="true"
         >
     </android.support.v7.widget.Toolbar>
 </FrameLayout>

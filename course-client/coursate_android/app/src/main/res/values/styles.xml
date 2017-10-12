@@ -24,7 +24,7 @@
         <item name="colorAccent">@color/mainBackground</item>
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:dividerHeight">1dp</item>
-
+        <item name="actionBarSize">45dp</item>
     </style>
 
 
