@@ -43,6 +43,7 @@ dependencies {
     compile 'com.youth.banner:banner:1.4.10'  //最新版本
 
     compile 'com.github.bumptech.glide:glide:4.1.1'
+    compile 'com.github.donkingliang:GroupedRecyclerViewAdapter:1.0.4'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
 
 

@@ -171,6 +171,7 @@ public class GuideActivity extends Activity implements View.OnClickListener {
         switch (v.getId()){
             case R.id.text_skip:     // 跳往首页
                 startActivity(new Intent(this,IndexActivity.class));
+//                startActivity(new Intent(this,TestActivity.class));
                 finish();
                 break;
             case R.id.text_next:     // 下一步

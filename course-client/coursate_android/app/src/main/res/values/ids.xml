@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="sf_layout" type="id">sf_layout</item>
+    <item name="sf_header" type="id">sf_header</item>
+    <item name="hm_hot" type="id">hm_hot</item>
+    <item name="hm_new" type="id">hm_new</item>
+    <item name="hm_live" type="id">hm_live</item>
+    <item name="hm_all" type="id">hm_all</item>
+    <item name="rv_list" type="id">rv_list</item>
+    <item name="banner" type="id">banner</item>
+    <item name="divider" type="id">divider</item>
+    <item name="title_tv" type="id">title_tv</item>
+    <item name="footer_tv" type="id">footer_tv</item>
+</resources>

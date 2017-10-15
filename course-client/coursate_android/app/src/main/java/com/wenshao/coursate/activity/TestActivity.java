@@ -1,17 +1,14 @@
-package com.wenshao.coursate.fragment;
+package com.wenshao.coursate.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
@@ -30,6 +27,7 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.wenshao.coursate.R;
 import com.wenshao.coursate.adapter.BaseRecyclerAdapter;
 import com.wenshao.coursate.adapter.GroupedListAdapter;
 import com.wenshao.coursate.adapter.SmartViewHolder;
@@ -37,6 +35,7 @@ import com.wenshao.coursate.bean.BannerBean;
 import com.wenshao.coursate.bean.HttpApiResponse;
 import com.wenshao.coursate.config.ServerConfig;
 import com.wenshao.coursate.model.GroupModel;
+import com.wenshao.coursate.util.GlideImageLoader;
 import com.wenshao.coursate.util.JsonCallback;
 import com.youth.banner.Banner;
 
@@ -47,18 +46,14 @@ import java.util.List;
 import static android.R.layout.simple_list_item_2;
 import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 
-
-import com.wenshao.coursate.R;
-import com.wenshao.coursate.util.GlideImageLoader;
-
 /**
- * Created by wenshao on 2017/9/27.
- * 首页页面
+ * Created by wenshao on 2017/10/14.
  */
 
-public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class TestActivity extends AppCompatActivity  implements AdapterView.OnItemClickListener{
     private Context mContext;
     private View mView;
+    private View mPageHead;
     private SmartRefreshLayout mRefreshLayout;
     private BezierRadarHeader mRefreshHeader;
     private RecyclerView mRecyclerView;
@@ -84,41 +79,38 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             this.name = name;
         }
     }
-
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
-    }
-
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_home, null);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mContext = this;
+        setContentView(R.layout.activity_test);
+        Log.i(TAG, "onCreate: ");
 
-        mContext = getContext();
         initUi();
         initData();
-        /*Window window = getActivity().getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);*/
-        //window.setStatusBarColor("#11111");   //这里动态修改颜色
-        return mView;
     }
 
     private void initUi() {
-        mRefreshLayout = (SmartRefreshLayout) mView.findViewById(R.id.sf_layout);
-        mRefreshHeader = (BezierRadarHeader) mView.findViewById(R.id.header);
-        mBanner = (Banner) mView.findViewById(R.id.banner);
+        mRefreshLayout = (SmartRefreshLayout) findViewById(R.id.sf_layout);
+        mRefreshHeader = (BezierRadarHeader) findViewById(R.id.header);
+        mBanner = (Banner) findViewById(R.id.banner);
 
-        mRecyclerView = (RecyclerView) mView.findViewById(R.id.rv_list);
-        mRefreshLayout.setEnableScrollContentWhenLoaded(false);//是否在加载完成时滚动列表显示新的内容
 
+        mRecyclerView = (RecyclerView) findViewById(R.id.rv_list);
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, VERTICAL));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
+
+        mRecyclerView.setAdapter(new BaseRecyclerAdapter<Item>(Arrays.asList(Item.values()), simple_list_item_2, this) {
+            @Override
+            protected void onBindViewHolder(SmartViewHolder holder, Item model, int position) {
+                holder.text(android.R.id.text1, model.name());
+                holder.text(android.R.id.text2, model.name);
+                holder.textColorId(android.R.id.text2, R.color.mainBackground);
+            }
+        });
         GroupedListAdapter adapter = new GroupedListAdapter(mContext, GroupModel.getGroups(10, 10));
         adapter.setOnHeaderClickListener(new GroupedRecyclerViewAdapter.OnHeaderClickListener() {
             @Override
@@ -146,95 +138,26 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             }
         });
 
-
-        mRecyclerView.setAdapter(adapter);
+        //mRecyclerView.setAdapter(adapter);
         //直接使用GroupGridLayoutManager实现子项的Grid效果
         GroupedGridLayoutManager gridLayoutManager = new GroupedGridLayoutManager(mContext, 4, adapter){
             //重写这个方法 改变子项的SpanSize。
             //这个跟重写SpanSizeLookup的getSpanSize方法的使用是一样的。
             @Override
             public int getChildSpanSize(int groupPosition, int childPosition) {
-                return 2;
+                if(groupPosition % 2 == 1){
+                    return 2;
+                }
+                return super.getChildSpanSize(groupPosition, childPosition);
             }
         };
         mRecyclerView.setLayoutManager(gridLayoutManager);
 
 
         if (isFirstEnter) {
-            mRefreshLayout.autoRefresh();
+            //mRefreshLayout.autoRefresh();
             isFirstEnter = false;
         }
-        addListener();
-
-
-    }
-
-    private void addListener() {
-        mRefreshLayout.setOnMultiPurposeListener(new OnMultiPurposeListener() {
-            // 往下拉 持续
-            @Override
-            public void onHeaderPulling(RefreshHeader header, float percent, int offset, int headerHeight, int extendHeight) {
-
-            }
-
-            // 自动释放 持续
-            @Override
-            public void onHeaderReleasing(RefreshHeader header, float percent, int offset, int headerHeight, int extendHeight) {
-
-            }
-
-            // 执行开始刷新的动画 一次刷新中执行一次
-            @Override
-            public void onHeaderStartAnimator(RefreshHeader header, int headerHeight, int extendHeight) {
-                Log.i(TAG, "onHeaderStartAnimator");
-
-            }
-
-            // 刷新动画介绍 一次刷新中执行一次
-            @Override
-            public void onHeaderFinish(RefreshHeader header, boolean success) {
-                Log.i(TAG, "onHeaderFinish");
-
-            }
-
-            @Override
-            public void onFooterPulling(RefreshFooter footer, float percent, int offset, int footerHeight, int extendHeight) {
-
-            }
-
-            @Override
-            public void onFooterReleasing(RefreshFooter footer, float percent, int offset, int footerHeight, int extendHeight) {
-
-            }
-
-            @Override
-            public void onFooterStartAnimator(RefreshFooter footer, int footerHeight, int extendHeight) {
-
-            }
-
-            @Override
-            public void onFooterFinish(RefreshFooter footer, boolean success) {
-
-            }
-
-            @Override
-            public void onLoadmore(RefreshLayout refreshlayout) {
-
-            }
-
-            // 开始刷新
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-
-            }
-
-            // 状态改变  状态包括 None:空闲状态 PullDownToRefresh:下拉状态  ReleaseToRefresh:释放状态 Refreshing:刷新中  RefreshFinish:刷新完成
-            @Override
-            public void onStateChanged(RefreshLayout refreshLayout, RefreshState oldState, RefreshState newState) {
-                Log.i(TAG, "333" + oldState.name() + "========" + newState.name());
-
-            }
-        });
 
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -252,14 +175,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
             }
         });
+
     }
 
     private void initData() {
-        int[] ints = {
-                R.drawable.guide_1_1,
-                R.drawable.guide_1_2,
-                R.drawable.guide_1_3
-        };
         final List<String> ImageList = new ArrayList<String>();
         OkGo.<HttpApiResponse<List<BannerBean> >>get(ServerConfig.HTTP_BANNER_V1)                            // 请求方式和请求url
                 .tag(this)                       // 请求的 tag, 主要用于取消对应的请求
@@ -295,11 +214,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
 
     }
-
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
     }
-
-
 }

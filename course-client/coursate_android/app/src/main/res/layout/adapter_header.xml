@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <View
+        android:id="@id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/hm_module_divider_size"
+        android:background="@color/bg_color" />
+
+    <TextView
+        android:id="@id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="12.0dp"
+        android:layout_marginBottom="12.0dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="22sp"
+        android:layout_gravity="center"
+        android:text="@string/title_title" />
+</LinearLayout>

@@ -16,4 +16,6 @@
     <string name="hm_hot">最热</string>
     <string name="hm_live">直播</string>
     <string name="hm_new">最新</string>
+    <string name="title_title">标题.标题</string>
+    <string name="view_all"><![CDATA[查看全部>]]></string>
 </resources>

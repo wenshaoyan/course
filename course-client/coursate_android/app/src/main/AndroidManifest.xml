@@ -32,6 +32,10 @@
             android:label=""
             android:theme="@style/indexTheme" />
 
+        <activity
+            android:name="com.wenshao.coursate.activity.TestActivity"
+            android:label=""
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

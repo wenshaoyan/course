@@ -1,47 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
 <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/sf_layout"
+    android:id="@id/sf_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:srlAccentColor="@android:color/white"
     app:srlPrimaryColor="@color/mainBackground">
 
     <com.scwang.smartrefresh.layout.header.BezierRadarHeader
-        android:id="@+id/header"
+        android:id="@id/sf_header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srlEnableHorizontalDrag="true" />
-
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/banner"
+        <com.youth.banner.Banner xmlns:banner="http://schemas.android.com/apk/res-auto"
+            android:id="@id/banner"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:delay_time="5000"
-            app:indicator_drawable_selected="@drawable/shape_banner_selected"
-            app:indicator_drawable_unselected="@drawable/shape_banner_unselected"
-            app:indicator_height="8dp"
-            app:indicator_margin="10dp"
-            app:indicator_width="8dp"
-            app:scroll_time="1000" />
+            android:layout_height="100dp"
+            banner:delay_time="5000"
+            banner:indicator_drawable_selected="@drawable/shape_banner_selected"
+            banner:indicator_drawable_unselected="@drawable/shape_banner_unselected"
+            banner:indicator_height="8dp"
+            banner:indicator_margin="10dp"
+            banner:indicator_width="8dp"
+            banner:scroll_time="1000" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_marginLeft="16.0dp"
             android:layout_marginRight="16.0dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <FrameLayout
-                android:id="@+id/hm_hot"
+                android:id="@id/hm_hot"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.0"
@@ -60,7 +63,7 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/hm_new"
+                android:id="@id/hm_new"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
@@ -79,7 +82,7 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/hm_live"
+                android:id="@id/hm_live"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
@@ -98,7 +101,7 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/hm_all"
+                android:id="@id/hm_all"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
@@ -118,21 +121,17 @@
         </LinearLayout>
 
         <View
-            android:layout_width="fill_parent"
-            android:layout_height="0.5dip"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
             android:background="@color/divider_color" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_list"
+            android:id="@id/rv_list"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:overScrollMode="never" />
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            />
     </LinearLayout>
-
-    <com.scwang.smartrefresh.layout.footer.ClassicsFooter
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srlClassicsSpinnerStyle="Translate" />
+    </android.support.v4.widget.NestedScrollView>
 
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>
