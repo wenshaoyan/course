@@ -41,11 +41,8 @@ import com.wenshao.coursate.util.JsonCallback;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static android.R.layout.simple_list_item_2;
-import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 
 
 import com.wenshao.coursate.R;
@@ -156,6 +153,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             public int getChildSpanSize(int groupPosition, int childPosition) {
                 return 2;
             }
+
         };
         mRecyclerView.setLayoutManager(gridLayoutManager);
 

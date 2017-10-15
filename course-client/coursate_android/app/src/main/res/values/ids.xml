@@ -11,4 +11,7 @@
     <item name="divider" type="id">divider</item>
     <item name="title_tv" type="id">title_tv</item>
     <item name="footer_tv" type="id">footer_tv</item>
+    <item name="child_tv" type="id">child_tv</item>
+    <item name="title_item" type="id">title_video</item>
+    <item name="watch_item" type="id">watch_video</item>
 </resources>

@@ -1,16 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="1px"
-    android:orientation="vertical">
+    android:layout_height="180dp">
 
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/image_item"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        app:riv_border_color="?attr/colorPrimary"
+        app:riv_border_width="2dp"
+        app:riv_corner_radius="5dp"
+        android:src="@drawable/guide_1_2"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"/>
     <TextView
-        android:id="@+id/tv_child"
-        android:layout_width="match_parent"
+        android:id="@id/title_item"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:padding="8dp"
-        android:textSize="16sp" />
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="文少卡卡卡卡"
+        android:textSize="17sp"
+        android:layout_below="@id/image_item"
+        android:layout_alignLeft="@id/image_item"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="3dp"
+        android:textColor="@color/title_color"/>
+    <TextView
+        android:id="@id/watch_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="16sp"
+        android:layout_below="@id/title_item"
+        android:layout_alignLeft="@id/image_item"
+        android:text="dhdhdh"
+        android:textColor="@color/text_dec_color"/>
 
-</LinearLayout>
+</RelativeLayout>

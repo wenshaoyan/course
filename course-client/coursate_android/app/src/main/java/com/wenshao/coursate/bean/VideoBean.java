@@ -11,6 +11,10 @@ public class VideoBean {
     private String create_time;
     private float price;
     private String describe;
+    private int play_number;
+    private int buy_number;
+    private int love_number;
+
 
     public int getId() {
         return id;
@@ -52,6 +56,30 @@ public class VideoBean {
         this.describe = describe;
     }
 
+    public int getPlay_number() {
+        return play_number;
+    }
+
+    public void setPlay_number(int play_number) {
+        this.play_number = play_number;
+    }
+
+    public int getBuy_number() {
+        return buy_number;
+    }
+
+    public void setBuy_number(int buy_number) {
+        this.buy_number = buy_number;
+    }
+
+    public int getLove_number() {
+        return love_number;
+    }
+
+    public void setLove_number(int love_number) {
+        this.love_number = love_number;
+    }
+
     @Override
     public String toString() {
         return "VideoBean{" +
@@ -60,6 +88,9 @@ public class VideoBean {
                 ", create_time='" + create_time + '\'' +
                 ", price=" + price +
                 ", describe='" + describe + '\'' +
+                ", play_number=" + play_number +
+                ", buy_number=" + buy_number +
+                ", love_number=" + love_number +
                 '}';
     }
 }
