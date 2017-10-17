@@ -6,23 +6,22 @@
         user_create_time,user_update_time)
         VALUES(#{name},#{head},#{password},#{tel},#{device_uuid},#{register_time},#{create_time},#{update_time});
     </insert>
-
-    <select id="queryUserByTel" parameterType="String" resultMap="userResult">
+    <select id="select">
         SELECT *
         FROM t_user
-        WHERE t_user.user_tel = #{tel}
+        <where>
+            <if test="tel != null" >
+                AND user_tel = #{tel}
+            </if>
+            <if test="tel != null" >
+                AND user_password = #{password}
+            </if>
+            <if test="user_id != null" >
+                AND user_id = #{id}
+            </if>
+        </where>
     </select>
-    <select id="queryUserById" parameterType="int" resultMap="userResult">
-        SELECT *
-        FROM t_user
-        WHERE t_user.user_id = #{id}
-    </select>
-    <select id="queryUserByInfo" parameterType="_User" resultMap="userResult">
-        SELECT *
-        FROM t_user
-        WHERE t_user.user_tel = #{tel}
-        AND t_user.user_password= #{password}
-    </select>
+    
     <resultMap id="userResult" type="_User">
         <id property="id" column="user_id"/>
         <result property="tel" column="user_tel"/>

@@ -2,7 +2,6 @@ package com.wenshao.dal.dao.impl;
 
 import com.wenshao.dal.bean.UserBean;
 import com.wenshao.dal.dao.UserDao;
-import com.wenshao.dal.thriftgen.User;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -21,7 +20,8 @@ public class UserDaoImpl implements UserDao {
         super();
         this.sqlSessionFactory = sqlSessionFactory;
     }
-    public int insertUser(UserBean userBean) throws Exception {
+    @Override
+    public int insert(UserBean userBean) throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         sqlSession.insert(sqlTag + ".insertUser", userBean);
         sqlSession.commit();
@@ -29,27 +29,37 @@ public class UserDaoImpl implements UserDao {
         return userBean.getId();
     }
 
-    public List<UserBean> queryUserByTel(String tel) throws Exception {
+    @Override
+    public UserBean findById(int id) throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<UserBean> UserBeans = sqlSession.selectList(sqlTag + ".queryUserByTel", tel);
+        UserBean userBean1 = new UserBean();
+        userBean1.setId(id);
+        List<UserBean> userBeans  = sqlSession.selectList(sqlTag + ".select", userBean1);
+        UserBean userBean;
+        if (userBeans.size()==0){
+            userBean = new UserBean();
+        }else{
+            userBean = userBeans.get(0);
+        }
+        sqlSession.commit();
+        sqlSession.close();
+        return userBean;
+    }
+    @Override
+    public List<UserBean> select(UserBean userBean) throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        List<UserBean> UserBeans = sqlSession.selectList(sqlTag + ".select", userBean);
         sqlSession.commit();
         sqlSession.close();
         return UserBeans;
     }
 
-    public UserBean queryUserById(int id) throws Exception {
+    @Override
+    public List<UserBean> selectAll() throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        UserBean userBean = sqlSession.selectOne(sqlTag + ".queryUserByTel", id);
+        List<UserBean> UserBeans = sqlSession.selectList(sqlTag + ".select");
         sqlSession.commit();
         sqlSession.close();
-        return userBean;
-    }
-
-    public List<UserBean> queryUserByInfo(UserBean userBean) throws Exception {
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<UserBean> userBeans = sqlSession.selectList(sqlTag + ".queryUserByInfo", userBean);
-        sqlSession.commit();
-        sqlSession.close();
-        return userBeans;
+        return UserBeans;
     }
 }

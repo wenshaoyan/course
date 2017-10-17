@@ -1,8 +1,51 @@
 {
+  "UNKNOWN_ERROR":{
+    "message":"未知错误",
+    "code":1,
+    "en_message":"unknown error",
+    "errorSource":"http"
+  },
+  "THRIFT_CONNECT_ERROR":{
+    "message":"数据获取失败",
+    "code":2,
+    "en_message":"thrift service connect error",
+    "errorSource":"thrift"
+  },
+  "THRIFT_ASK_EXCEPTION":{
+    "message":"数据获取失败",
+    "code":3,
+    "en_message":"thrift service ask exception",
+    "errorSource":"thrift"
+  },
+  "PARAMS_VALID_ERROR":{
+    "message":"参数验证失败",
+    "code":4,
+    "en_message":"Parameter validation failure",
+    "errorSource":"ajv"
+  },
   "TEL_EXIST":{
     "message":"手机号已经存在",
     "code":101,
     "en_message":"The phone number there",
+    "errorSource":"dal"
+  },
+
+  "TEL_ERROR_OR_PASSWORD_ERROR":{
+    "message":"用户名或密码错误",
+    "code":102,
+    "en_message":"The user name or password error",
+    "errorSource":"dal"
+  },
+  "LOGIN_AGAIN":{
+    "message":"请重新登录",
+    "code":103,
+    "en_message":"Please again login",
+    "errorSource":"user"
+  },
+  "PACKAGE_NAME_ERROR":{
+    "message":"包名不存在或为注册包名",
+    "code":104,
+    "en_message":"package name not exist or not register",
     "errorSource":"dal"
   },
   "INSERT_FAIL":{
@@ -17,17 +60,17 @@
     "en_message":"query failure",
     "errorSource":"dal"
   },
-  "TEL_ERROR_OR_PASSWORD_ERROR":{
-    "message":"用户名或密码错误",
-    "code":102,
-    "en_message":"The user name or password error",
+  "UPDATE_FAIL":{
+    "message":"更新失败",
+    "code":203,
+    "en_message":"update failure",
     "errorSource":"dal"
   },
-  "LOGIN_AGAIN":{
-    "message":"请重新登录",
-    "code":103,
-    "en_message":"Please again login",
-    "errorSource":"user"
+  "DELETE_FAIL":{
+    "message":"删除失败",
+    "code":204,
+    "en_message":"delete failure",
+    "errorSource":"dal"
   },
   "DATA_ERROR":{
     "message":"数据错误",

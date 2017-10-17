@@ -27,66 +27,60 @@ public class UserHandler implements UserService.Iface {
         userDao = new UserDaoImpl(_sessionFactory);
 
     }
-
-    public int insert(User user) throws TException {
-        UserBean userBean = new UserBean();
+    @Override
+    public int userInsert(User user) throws TException {
+        UserBean userBean = new UserBean(user);
         Date date = new Date();
         long time = date.getTime();
-        Timestamp timestamp = new Timestamp(time);
         try {
-            userBean.setName(user.name);
-            userBean.setHead(user.head);
-            userBean.setTel(user.tel);
-            userBean.setDevice_uuid(user.device_uuid);
-            userBean.setRegister_time(timestamp);
-            userBean.setCreate_time(timestamp);
-            userBean.setUpdate_time(timestamp);
-            userBean.setPassword(user.password);
-            int id = userDao.insertUser(userBean);
-            return id;
-        } catch (Exception e) {
-            //e.printStackTrace();
-            return 0;
-        }
-    }
-
-    public User findUserById(int id) throws TException {
-        try {
-            UserBean userBeans = userDao.queryUserById(id);
-            return userBeans.toUser();
+            userBean.setCreate_time(String.valueOf(time));
+            return userDao.insert(userBean);
         } catch (Exception e) {
             throw new TException(e);
         }
     }
 
-    public List<User> findUserByLogin(User user) throws TException {
-        UserBean userBean = new UserBean();
-        userBean.setPassword(user.password);
-        userBean.setTel(user.tel);
+    @Override
+    public User userFindById(int id) throws TException {
         try {
-            ArrayList<User> users = new ArrayList<User>();
-            List<UserBean> userBeans = userDao.queryUserByInfo(userBean);
-            return this.toListUser(users,userBeans);
+            return userDao.findById(id);
         } catch (Exception e) {
             throw new TException(e);
         }
     }
 
-    public List<User> findUserByTel(String tel) throws TException {
+    @Override
+    public List<User> userSelectAll() throws TException {
+
         try {
-            ArrayList<User> users = new ArrayList<User>();
-            List<UserBean> userBeans = userDao.queryUserByTel(tel);
-            return this.toListUser(users,userBeans);
+            List<User> users = new ArrayList<User>();
+            List<UserBean> bannerBeans = userDao.selectAll();
+            for (UserBean bean : bannerBeans) {
+                users.add((User) bean);
+
+            }
+            return users;
         } catch (Exception e) {
             throw new TException(e);
         }
     }
-    private List<User> toListUser(List<User> users,List<UserBean> userBeans){
-        for (UserBean bean : userBeans){
-            users.add(bean.toUser());
+
+    @Override
+    public List<User> userSelect(User user) throws TException {
+        List<User> users = new ArrayList<User>();
+        UserBean paramsBean = new UserBean(user);
+        try {
+            List<UserBean> userBeans = userDao.select(paramsBean);
+            for (UserBean bean : userBeans) {
+                users.add((User) bean);
+
+            }
+            return users;
+        } catch (Exception e) {
+            throw new TException(e);
         }
-        return users;
     }
+
 
 
 }

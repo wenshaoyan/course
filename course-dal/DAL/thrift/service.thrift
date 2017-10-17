@@ -3,10 +3,10 @@ namespace java com.wenshao.dal.thriftgen
 include "bean.thrift"
 
 service UserService{
-    i32 insert(1: bean.User user)
-    bean.User findUserById(1: i32 id)
-    list<bean.User> findUserByLogin(1: bean.User user)
-    list<bean.User> findUserByTel(1: string tel)
+    i32 userInsert(1: bean.User user),
+    bean.User userFindById(1: i32 id),
+    list<bean.User> userSelectAll(),
+    list<bean.User> userSelect(1: bean.User user)
 }
 service BannerService{
     i32 insert(1: bean.Banner banner),

@@ -1,6 +1,6 @@
 namespace java com.wenshao.dal.thriftgen
 struct User{
-    1: i16 id,
+    1: i32 id,
     2: string name,
     3: string head,
     4: string tel,
@@ -39,4 +39,15 @@ struct ClientSide{
 }
 struct BannerList{
     1:list<Banner> data
+}
+struct Course{
+    1:i32 id
+    2:string title
+    3:string create_time
+    4:double price
+    5:string describe
+    6:i32 status
+    7:i32 author_id
+    8:i32 type
+    9:string image
 }

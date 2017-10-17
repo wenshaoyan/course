@@ -5,7 +5,7 @@ const convert = require('koa-convert');
 const json = require('koa-json');
 const bodyparser = require('koa-bodyparser')();
 
-const index = require('./routes/index');
+const user = require('./routes/user');
 const router_log = require('./middleware/router_log');
 const token = require('./middleware/token');
 const getUser = require('./middleware/get_user');
@@ -18,20 +18,9 @@ app.proxy = true;
 
 // logger
 app.use(router_log());
-/*app.use(token({
-        "maxAge":1000*60*60*24,
-        "redisStore":{
-            port: 6379,          // Redis port
-            host: '123.207.55.204',   // Redis host
-            family: 4,           // 4 (IPv4) or 6 (IPv6)
-            password: 'wenshao314106',
-            db: 0
-        }
-    })
-);*/
 // 获取用户信息
 // app.use(getUser());
-router.use('/', index.routes(),index.allowedMethods());
+router.use('/', user.routes(),user.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
 // response

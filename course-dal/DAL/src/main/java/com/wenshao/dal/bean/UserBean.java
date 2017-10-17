@@ -7,112 +7,69 @@ import java.sql.Timestamp;
  * Created by wenshao on 2017/8/28.
  * 用户类接口
  */
-public class UserBean {
-    private int id;
-    private String name;
-    private String head;
-    private String tel;
-    private String device_uuid;
-    private Timestamp register_time;
-    private Timestamp create_time;
-    private Timestamp update_time;
-    private String password;
+public class UserBean extends User {
+    private Timestamp create_time_bean;
+    private Timestamp update_time_bean;
+    private Timestamp register_time_bean;
 
-    public String getPassword() {
-        return password;
+    public UserBean() {
+        super();
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public UserBean(User user) {
+        super();
+        this.id = user.id;
+        this.setCreate_time(user.create_time);
+        this.setUpdate_time(user.update_time);
+        this.setRegister_time(user.register_time);
+        this.name = user.name;
+        this.head = user.head;
+        this.tel = user.tel;
+        this.device_uuid = user.device_uuid;
+        this.password = user.password;
     }
 
-    public int getId() {
-        return id;
+    public Timestamp getCreate_time_bean() {
+        return create_time_bean;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCreate_time_bean(Timestamp create_time_bean) {
+        this.create_time = String.valueOf(create_time_bean.getTime());
+        this.create_time_bean = create_time_bean;
     }
 
-    public String getName() {
-        return name;
+    public Timestamp getUpdate_time_bean() {
+        return update_time_bean;
+    }
+    public void setUpdate_time_bean(Timestamp update_time_bean) {
+        this.update_time = String.valueOf(update_time_bean.getTime());
+        this.update_time_bean = update_time_bean;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Timestamp getRegister_time_bean() {
+        return register_time_bean;
     }
 
-    public String getHead() {
-        return head;
-    }
-
-    public void setHead(String head) {
-        this.head = head;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-    public String getDevice_uuid() {
-        return device_uuid;
-    }
-
-    public void setDevice_uuid(String device_uuid) {
-        this.device_uuid = device_uuid;
-    }
-
-    public Timestamp getRegister_time() {
-        return register_time;
-    }
-
-    public void setRegister_time(Timestamp register_time) {
-        this.register_time = register_time;
-    }
-
-    public Timestamp getCreate_time() {
-        return create_time;
-    }
-
-    public void setCreate_time(Timestamp create_time) {
-        this.create_time = create_time;
-    }
-
-    public Timestamp getUpdate_time() {
-        return update_time;
-    }
-
-    public void setUpdate_time(Timestamp update_time) {
-        this.update_time = update_time;
+    public void setRegister_time_bean(Timestamp register_time_bean) {
+        this.register_time = String.valueOf(register_time_bean.getTime());
+        this.register_time_bean = register_time_bean;
     }
 
     @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", head='" + head + '\'' +
-                ", tel='" + tel + '\'' +
-                ", device_uuid='" + device_uuid + '\'' +
-                ", register_time=" + register_time +
-                ", create_time=" + create_time +
-                ", update_time=" + update_time +
-                '}';
+    public User setCreate_time(String create_time) {
+        if (create_time!=null)this.create_time_bean = new Timestamp(Long.parseLong(create_time));
+        return super.setCreate_time(create_time);
     }
-    public User toUser(){
-        User user = new User();
-        user.id = (short) this.id;
-        user.name = name;
-        user.head = head;
-        user.tel = tel;
-        user.device_uuid = device_uuid;
-        user.register_time = register_time.toString();
-        user.create_time = create_time.toString();
-        user.update_time = update_time.toString();
-        return user;
+
+    @Override
+    public User setUpdate_time(String update_time) {
+        if (update_time!=null)this.update_time_bean = new Timestamp(Long.parseLong(create_time));
+        return super.setUpdate_time(update_time);
+    }
+
+    @Override
+    public User setRegister_time(String register_time) {
+        if (register_time!=null)this.register_time_bean = new Timestamp(Long.parseLong(register_time));
+        return super.setRegister_time(register_time);
     }
 }

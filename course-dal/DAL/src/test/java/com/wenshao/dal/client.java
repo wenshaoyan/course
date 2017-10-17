@@ -85,7 +85,7 @@ public class client {
             user.update_time = "2017-01-01";
             user.device_uuid = "1111";
 
-            System.out.println(client.insert(user));
+            //System.out.println(client.insert(user));
         } catch (TException e) {
             e.printStackTrace();
         }
