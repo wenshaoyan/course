@@ -2,10 +2,10 @@ const router = require('koa-router')();
 const bean_types = require('../gen-nodejs/bean_types');
 const SysUtil = require('../util/sys_util');
 const logger = getLogger();
-const userService = getServiceConfig().dalName[1];
+const userService = getServiceConfig().dalName[0];
 const routerI = require('../middleware/router_interceptor');
 const user_schema = require('../schema/user_schema');
-const apiName = 'user';
+const apiName = '/';
 router.use(async (ctx, next) => {
     const myServer = getThriftServer(`'${userService}'`);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
@@ -15,18 +15,17 @@ router.use(async (ctx, next) => {
     }
 });
 // 登录
-router.get(apiName, routerI({
+router.get(apiName,routerI({
     key: "user_login",
     schema: user_schema.user_login
-}),async(ctx, next) => {
-    const userServer = getThriftServer('userServer');
+}), async(ctx, next) => {
+    const client = getThriftServer(`'${userService}'`).getClient();
     const user = new bean_types.User();
     const params = ctx.query;
     user.tel = params.tel;
     user.password = params.password;
-    const client = userServer.getClient();
     try {
-        const result = await client.select(user);
+        const result = await client.userSelect(user);
         if (result.length === 0) {
             ctx.error = 'TEL_ERROR_OR_PASSWORD_ERROR';
         } else if (result.length > 1) {
@@ -44,7 +43,7 @@ router.post(apiName,routerI({
     key: "user_insert",
     schema: user_schema.user_login
 }), async function (ctx, next) {
-    const userServer = getThriftServer('userServer');
+    const userServer = getThriftServer(`'${userService}'`);
     const user = new bean_types.User();
     const queryUser = new bean_types.User();
     const params = ctx.request.body;
@@ -57,12 +56,12 @@ router.post(apiName,routerI({
     queryUser.tel = user.tel;
     const client = userServer.getClient();
     try {
-        const users = await client.select(queryUser);
+        const users = await client.userSelect(queryUser);
         if (users.length !== 0) {
             ctx.error = 'TEL_EXIST';
             return;
         }
-        const insertResult = await client.insert(user);
+        const insertResult = await client.userInsert(user);
         if (insertResult === 0) {
             ctx.error = 'INSERT_FAIL';
             return;

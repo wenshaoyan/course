@@ -16,12 +16,10 @@ const logger = getLogger();
 
 // 定义全局变量
 let serviceConfig = require('../config/service.json');
-let errorSource = require('../config/error_source.json');
 log4js.configure(log4jsConfig);
 global.getServiceConfig = () => {
     return serviceConfig;
 };
-global.errorSource = errorSource;
 const envSet = new Set(['develop', 'production']);
 function getEnv() {
     let env = process.env.NODE_ENV;

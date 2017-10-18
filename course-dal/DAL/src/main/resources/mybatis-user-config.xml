@@ -3,7 +3,7 @@
 <configuration>
     <properties resource="db.properties" />
     <typeAliases>
-        <typeAlias type="com.wenshao.dal.bean.UserBean" alias="_User"/>
+        <typeAlias type="com.wenshao.dal.bean.UserBean" alias="_UserBean"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">

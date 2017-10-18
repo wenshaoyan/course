@@ -10,6 +10,7 @@ const router_log = require('./middleware/router_log');
 const token = require('./middleware/token');
 const getUser = require('./middleware/get_user');
 const response = require('./middleware/response');
+const errorSource = require('./config/error_source.json');
 
 // middlewares
 app.use(convert(bodyparser));
