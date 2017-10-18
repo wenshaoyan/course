@@ -44,10 +44,23 @@ struct Course{
     1:i32 id
     2:string title
     3:string create_time
-    4:double price
-    5:string describe
-    6:i32 status
-    7:i32 author_id
-    8:i32 type
-    9:string image
+    4:string update_time
+    5:double price
+    6:string describe
+    7:i32 status
+    8:i32 author_id
+    9:i32 type
+    10:string image
+}
+struct Video{
+    1:string id
+    2:string title
+    3:string resource_path
+    4:i32 resource_time
+    5:i32 location
+    6:i32 course_id
+    7:i32 status
+    8:i32 play_number
+    9:string create_time
+    10:string update_time
 }

@@ -35,3 +35,18 @@ service CacheService{
     void bannerPut(1: string key,2:bean.BannerList banners)
     bean.BannerList bannerGet(1: string key)
 }
+service CourseService{
+    i32 courseInsert(1: bean.Course course),
+    i32 courseUpdate(1: bean.Course course),
+    i32 courseRemove(1: i32 id),
+    bean.Course courseFindById(1: i32 id),
+    list<bean.Course> courseSelectAll(),
+    list<bean.Course> courseSelect(1: bean.Course course),
+
+    string videoInsert(1: bean.Video video),
+    i32 videoUpdate(1: bean.Video video),
+    i32 videoRemove(1: string id),
+    bean.Video versionFindById(1: string id),
+    list<bean.Video> videoSelectAll(),
+    list<bean.Video> videoSelect(1: bean.Video video)
+}

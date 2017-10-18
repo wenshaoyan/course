@@ -865,3 +865,197 @@ Course.prototype.write = function(output) {
   return;
 };
 
+var Video = module.exports.Video = function(args) {
+  this.id = null;
+  this.title = null;
+  this.resource_path = null;
+  this.resource_time = null;
+  this.location = null;
+  this.course_id = null;
+  this.status = null;
+  this.play_number = null;
+  this.create_time = null;
+  this.update_time = null;
+  if (args) {
+    if (args.id !== undefined && args.id !== null) {
+      this.id = args.id;
+    }
+    if (args.title !== undefined && args.title !== null) {
+      this.title = args.title;
+    }
+    if (args.resource_path !== undefined && args.resource_path !== null) {
+      this.resource_path = args.resource_path;
+    }
+    if (args.resource_time !== undefined && args.resource_time !== null) {
+      this.resource_time = args.resource_time;
+    }
+    if (args.location !== undefined && args.location !== null) {
+      this.location = args.location;
+    }
+    if (args.course_id !== undefined && args.course_id !== null) {
+      this.course_id = args.course_id;
+    }
+    if (args.status !== undefined && args.status !== null) {
+      this.status = args.status;
+    }
+    if (args.play_number !== undefined && args.play_number !== null) {
+      this.play_number = args.play_number;
+    }
+    if (args.create_time !== undefined && args.create_time !== null) {
+      this.create_time = args.create_time;
+    }
+    if (args.update_time !== undefined && args.update_time !== null) {
+      this.update_time = args.update_time;
+    }
+  }
+};
+Video.prototype = {};
+Video.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRING) {
+        this.id = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.title = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.STRING) {
+        this.resource_path = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 4:
+      if (ftype == Thrift.Type.I32) {
+        this.resource_time = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 5:
+      if (ftype == Thrift.Type.I32) {
+        this.location = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 6:
+      if (ftype == Thrift.Type.I32) {
+        this.course_id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 7:
+      if (ftype == Thrift.Type.I32) {
+        this.status = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 8:
+      if (ftype == Thrift.Type.I32) {
+        this.play_number = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 9:
+      if (ftype == Thrift.Type.STRING) {
+        this.create_time = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 10:
+      if (ftype == Thrift.Type.STRING) {
+        this.update_time = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+Video.prototype.write = function(output) {
+  output.writeStructBegin('Video');
+  if (this.id !== null && this.id !== undefined) {
+    output.writeFieldBegin('id', Thrift.Type.STRING, 1);
+    output.writeString(this.id);
+    output.writeFieldEnd();
+  }
+  if (this.title !== null && this.title !== undefined) {
+    output.writeFieldBegin('title', Thrift.Type.STRING, 2);
+    output.writeString(this.title);
+    output.writeFieldEnd();
+  }
+  if (this.resource_path !== null && this.resource_path !== undefined) {
+    output.writeFieldBegin('resource_path', Thrift.Type.STRING, 3);
+    output.writeString(this.resource_path);
+    output.writeFieldEnd();
+  }
+  if (this.resource_time !== null && this.resource_time !== undefined) {
+    output.writeFieldBegin('resource_time', Thrift.Type.I32, 4);
+    output.writeI32(this.resource_time);
+    output.writeFieldEnd();
+  }
+  if (this.location !== null && this.location !== undefined) {
+    output.writeFieldBegin('location', Thrift.Type.I32, 5);
+    output.writeI32(this.location);
+    output.writeFieldEnd();
+  }
+  if (this.course_id !== null && this.course_id !== undefined) {
+    output.writeFieldBegin('course_id', Thrift.Type.I32, 6);
+    output.writeI32(this.course_id);
+    output.writeFieldEnd();
+  }
+  if (this.status !== null && this.status !== undefined) {
+    output.writeFieldBegin('status', Thrift.Type.I32, 7);
+    output.writeI32(this.status);
+    output.writeFieldEnd();
+  }
+  if (this.play_number !== null && this.play_number !== undefined) {
+    output.writeFieldBegin('play_number', Thrift.Type.I32, 8);
+    output.writeI32(this.play_number);
+    output.writeFieldEnd();
+  }
+  if (this.create_time !== null && this.create_time !== undefined) {
+    output.writeFieldBegin('create_time', Thrift.Type.STRING, 9);
+    output.writeString(this.create_time);
+    output.writeFieldEnd();
+  }
+  if (this.update_time !== null && this.update_time !== undefined) {
+    output.writeFieldBegin('update_time', Thrift.Type.STRING, 10);
+    output.writeString(this.update_time);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
