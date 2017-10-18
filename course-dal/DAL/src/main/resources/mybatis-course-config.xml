@@ -18,6 +18,7 @@
     </environments>
     <mappers>
         <mapper resource="mapper/courseMapper.xml"/>
+        <mapper resource="mapper/videoMapper.xml"/>
     </mappers>
 
 </configuration>
