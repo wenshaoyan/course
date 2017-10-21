@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+</head>
+<body>
+
+<div id="example">
+  <div class="aa" :class="{ active: isActive,'text-danger': hasError }"></div>
+  <div class="bb" :class="classObject"></div>
+  <div class="cc" :class="classC"></div>
+  <div :class="[activeClass, errorClass]"></div>
+  <my-component class="baz boo"></my-component>
+  <div :style="styleObject"></div>
+  <div :style="[styleObject,styleObject,styleObject]"></div>
+  <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
+  <h1 v-if="ok">Yes</h1>
+  <h1 v-else>No</h1>
+  <template v-if="ok">
+    <h1>Title</h1>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+  </template>
+  <template v-if="loginType === 'username'">
+    <label>Username</label>
+    <input placeholder="Enter your username" key="username-input">
+  </template>
+  <template v-else>
+    <label>Email</label>
+    <input placeholder="Enter your email address" key="email-input">
+  </template>
+  <button @click="qiehuan">切换</button>
+  <ul id="example-1">
+    <li v-for="(item,index) of items" :key="index">
+      {{ item }},{{ index }},
+    </li>
+  </ul>
+  <button @click="test1">aaa</button>
+  <div>
+    <span>{{userProfile.age}}</span>
+    <span>{{userProfile.favoriteColor}}</span>
+  </div>
+  <li v-for="n in evenNumbers">{{ n }}</li>
+  <div>
+    <span v-for="n in 10">{{ n }} </span>
+  </div>
+  <ul>
+    <template v-for="item in items">
+      <li>{{ item.id }}</li>
+      <li class="divider"></li>
+    </template>
+  </ul>
+
+  <a v-on:click.stop="doThis">22</a>
+  <input v-model="message" placeholder="edit me">
+  <p>Message is: {{ message }}</p>
+  <input type="checkbox" id="checkbox" v-model="checked">
+  <label for="checkbox">{{ checked }}</label>
+
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
+  <br>
+  <span>Checked names: {{ checkedNames }}</span>
+</div>
+</body>
+<script>
+  Vue.component('my-component', {
+    template: '<p class="foo bar">Hi</p>'
+  })
+  let vm = new Vue({
+    el:'#example',
+    data:{
+      isActive:true,
+      hasError: false,
+      classObject:{
+        active:true,
+        hasError:false
+      },
+      activeClass:'1',
+      errorClass:'1',
+      ok:true,
+      loginType:'username',
+      items:[{id:1},{id:2},{id:3},{id:1}],
+      userProfile:{},
+      numbers: [ 1, 2, 3, 4, 5 ],
+      message:'',
+      checked:true,
+      checkedNames:['John']
+
+    },
+    methods:{
+      qiehuan:function () {
+        this.loginType = this.loginType === 'username'? 'email':'username';
+      },
+      test1:function () {
+        this.userProfile = Object.assign({}, this.userProfile, {
+          age: 27,
+          favoriteColor: 'Vue Green'
+        })
+      },
+      doThis:function () {
+          alert('1')
+        return true;
+
+      }
+    },
+    computed:{
+      classC:function () {
+        return {
+          'active': this.isActive && !this.error,
+          'text-danger': this.error && this.error.type === 'fatal'
+        }
+      },
+      styleObject:function () {
+        return {
+          color: 'red',
+          fontSize: '13px'
+        }
+      },
+      evenNumbers: function () {
+        return this.numbers.filter(function (number) {
+          return number % 2 === 0
+        })
+      }
+    }
+  })
+
+</script>
+</body>
+</html>
