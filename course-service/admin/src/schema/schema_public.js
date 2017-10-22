@@ -97,7 +97,7 @@ const publicUtil = {
     },
     page: {
         type: "string",
-        pattern: "^[1-9][0-9]*$",
+        pattern: "^(0|[1-9][0-9]*)$",
     },
     per_page: {
         type: "string",

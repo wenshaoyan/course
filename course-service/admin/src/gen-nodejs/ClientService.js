@@ -494,19 +494,19 @@ ClientService_clientSelectAll_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size48 = 0;
-        var _rtmp352;
+        var _size56 = 0;
+        var _rtmp360;
         this.success = [];
-        var _etype51 = 0;
-        _rtmp352 = input.readListBegin();
-        _etype51 = _rtmp352.etype;
-        _size48 = _rtmp352.size;
-        for (var _i53 = 0; _i53 < _size48; ++_i53)
+        var _etype59 = 0;
+        _rtmp360 = input.readListBegin();
+        _etype59 = _rtmp360.etype;
+        _size56 = _rtmp360.size;
+        for (var _i61 = 0; _i61 < _size56; ++_i61)
         {
-          var elem54 = null;
-          elem54 = new bean_ttypes.ClientSide();
-          elem54.read(input);
-          this.success.push(elem54);
+          var elem62 = null;
+          elem62 = new bean_ttypes.ClientSide();
+          elem62.read(input);
+          this.success.push(elem62);
         }
         input.readListEnd();
       } else {
@@ -530,12 +530,12 @@ ClientService_clientSelectAll_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter55 in this.success)
+    for (var iter63 in this.success)
     {
-      if (this.success.hasOwnProperty(iter55))
+      if (this.success.hasOwnProperty(iter63))
       {
-        iter55 = this.success[iter55];
-        iter55.write(output);
+        iter63 = this.success[iter63];
+        iter63.write(output);
       }
     }
     output.writeListEnd();
@@ -624,19 +624,19 @@ ClientService_clientSelect_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size56 = 0;
-        var _rtmp360;
+        var _size64 = 0;
+        var _rtmp368;
         this.success = [];
-        var _etype59 = 0;
-        _rtmp360 = input.readListBegin();
-        _etype59 = _rtmp360.etype;
-        _size56 = _rtmp360.size;
-        for (var _i61 = 0; _i61 < _size56; ++_i61)
+        var _etype67 = 0;
+        _rtmp368 = input.readListBegin();
+        _etype67 = _rtmp368.etype;
+        _size64 = _rtmp368.size;
+        for (var _i69 = 0; _i69 < _size64; ++_i69)
         {
-          var elem62 = null;
-          elem62 = new bean_ttypes.ClientSide();
-          elem62.read(input);
-          this.success.push(elem62);
+          var elem70 = null;
+          elem70 = new bean_ttypes.ClientSide();
+          elem70.read(input);
+          this.success.push(elem70);
         }
         input.readListEnd();
       } else {
@@ -660,12 +660,12 @@ ClientService_clientSelect_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter63 in this.success)
+    for (var iter71 in this.success)
     {
-      if (this.success.hasOwnProperty(iter63))
+      if (this.success.hasOwnProperty(iter71))
       {
-        iter63 = this.success[iter63];
-        iter63.write(output);
+        iter71 = this.success[iter71];
+        iter71.write(output);
       }
     }
     output.writeListEnd();
@@ -1155,19 +1155,19 @@ ClientService_versionSelectAll_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size64 = 0;
-        var _rtmp368;
+        var _size72 = 0;
+        var _rtmp376;
         this.success = [];
-        var _etype67 = 0;
-        _rtmp368 = input.readListBegin();
-        _etype67 = _rtmp368.etype;
-        _size64 = _rtmp368.size;
-        for (var _i69 = 0; _i69 < _size64; ++_i69)
+        var _etype75 = 0;
+        _rtmp376 = input.readListBegin();
+        _etype75 = _rtmp376.etype;
+        _size72 = _rtmp376.size;
+        for (var _i77 = 0; _i77 < _size72; ++_i77)
         {
-          var elem70 = null;
-          elem70 = new bean_ttypes.ClientVersion();
-          elem70.read(input);
-          this.success.push(elem70);
+          var elem78 = null;
+          elem78 = new bean_ttypes.ClientVersion();
+          elem78.read(input);
+          this.success.push(elem78);
         }
         input.readListEnd();
       } else {
@@ -1191,12 +1191,12 @@ ClientService_versionSelectAll_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter71 in this.success)
+    for (var iter79 in this.success)
     {
-      if (this.success.hasOwnProperty(iter71))
+      if (this.success.hasOwnProperty(iter79))
       {
-        iter71 = this.success[iter71];
-        iter71.write(output);
+        iter79 = this.success[iter79];
+        iter79.write(output);
       }
     }
     output.writeListEnd();
@@ -1285,19 +1285,19 @@ ClientService_versionSelect_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size72 = 0;
-        var _rtmp376;
+        var _size80 = 0;
+        var _rtmp384;
         this.success = [];
-        var _etype75 = 0;
-        _rtmp376 = input.readListBegin();
-        _etype75 = _rtmp376.etype;
-        _size72 = _rtmp376.size;
-        for (var _i77 = 0; _i77 < _size72; ++_i77)
+        var _etype83 = 0;
+        _rtmp384 = input.readListBegin();
+        _etype83 = _rtmp384.etype;
+        _size80 = _rtmp384.size;
+        for (var _i85 = 0; _i85 < _size80; ++_i85)
         {
-          var elem78 = null;
-          elem78 = new bean_ttypes.ClientVersion();
-          elem78.read(input);
-          this.success.push(elem78);
+          var elem86 = null;
+          elem86 = new bean_ttypes.ClientVersion();
+          elem86.read(input);
+          this.success.push(elem86);
         }
         input.readListEnd();
       } else {
@@ -1321,12 +1321,12 @@ ClientService_versionSelect_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter79 in this.success)
+    for (var iter87 in this.success)
     {
-      if (this.success.hasOwnProperty(iter79))
+      if (this.success.hasOwnProperty(iter87))
       {
-        iter79 = this.success[iter79];
-        iter79.write(output);
+        iter87 = this.success[iter87];
+        iter87.write(output);
       }
     }
     output.writeListEnd();

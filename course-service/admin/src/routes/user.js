@@ -26,30 +26,17 @@ router.get(`${apiName}`, routerI({
 }), async(ctx, next) => {
     const client = getThriftServer(`'${userService}'`).getClient();
     const user = new bean_types.User();
-
     const params = ctx.query;
-
     user.tel = params.tel;
-    user.password = params.password;
+    user.id = params.id;
+    user.name = params.name;
+    const query = new bean_types.Query(params);
     try {
-        const result = await client.userSelect(user);
-        if (result.length === 0) {
-            ctx.error = 'TEL_ERROR_OR_PASSWORD_ERROR';
-            return;
-        } else if (result.length > 1) {
-            ctx.error = 'DATA_ERROR';
-            return;
-        }
-        let userResult = result[0];
-        let roleResult = await client.roleFindById(userResult.role_id);
-        if (!roleResult.id) {
-            ctx.error = 'USER_ROLE_NOT_FOUND';
-            return;
-        }
-        userResult.head = getServiceConfig().publicServer + userResult.head;
-        ctx.body = userResult;
+        const userResult = await client.userQuery(query);
+        const roleResult = await client.roleSelectAll();
+
+
     } catch (e) {
-        console.log(e);
         ctx.error = e;
     }
 });

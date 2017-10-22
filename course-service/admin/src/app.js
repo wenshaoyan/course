@@ -9,6 +9,7 @@ const cors = require('koa-cors');
 
 const user = require('./routes/user');
 const management = require('./routes/management');
+const role = require('./routes/role');
 const router_log = require('./middleware/router_log');
 const token = require('./middleware/token');
 const getUser = require('./middleware/get_user');
@@ -36,6 +37,7 @@ app.use(cors());
 // 操作user表
 router.use('/user', user.routes(),user.allowedMethods());
 router.use('/management', management.routes(),management.allowedMethods());
+router.use('/role', role.routes(),role.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
 // response
