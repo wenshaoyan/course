@@ -1,7 +1,11 @@
 package com.wenshao.dal.handler;
 
+import com.wenshao.dal.bean.RoleBean;
 import com.wenshao.dal.bean.UserBean;
+import com.wenshao.dal.dao.RoleDao;
+import com.wenshao.dal.dao.impl.RoleDaoImpl;
 import com.wenshao.dal.dao.impl.UserDaoImpl;
+import com.wenshao.dal.thriftgen.Role;
 import com.wenshao.dal.thriftgen.User;
 import com.wenshao.dal.thriftgen.UserService;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -20,11 +24,13 @@ import java.util.List;
  */
 public class UserHandler implements UserService.Iface {
     private UserDaoImpl userDao;
+    private RoleDaoImpl roleDao;
     private static Logger logger = Logger.getLogger(String.valueOf(UserHandler.class));
 
 
     public UserHandler(SqlSessionFactory _sessionFactory) {
         userDao = new UserDaoImpl(_sessionFactory);
+        roleDao = new RoleDaoImpl(_sessionFactory);
 
     }
     @Override
@@ -81,6 +87,40 @@ public class UserHandler implements UserService.Iface {
         }
     }
 
+    @Override
+    public int roleInsert(Role role) throws TException {
+        return 0;
+    }
+
+    @Override
+    public Role roleFindById(int id) throws TException {
+        try {
+            return roleDao.findById(id);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
+
+    @Override
+    public List<Role> roleSelectAll() throws TException {
+        return null;
+    }
+
+    @Override
+    public List<Role> roleSelect(Role role) throws TException {
+        List<Role> roles = new ArrayList<Role>();
+        RoleBean paramsBean = new RoleBean(role);
+        try {
+            List<RoleBean> roleBeans = roleDao.select(paramsBean);
+            for (RoleBean bean : roleBeans) {
+                roles.add((Role) bean);
+
+            }
+            return roles;
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
 
 
 }

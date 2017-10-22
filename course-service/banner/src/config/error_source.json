@@ -48,6 +48,12 @@
     "en_message":"package name not exist or not register",
     "errorSource":"dal"
   },
+  "USER_ROLE_NOT_FOUND":{
+    "message":"用户信息错误",
+    "code":105,
+    "en_message":"user info error",
+    "errorSource":"dal"
+  },
   "INSERT_FAIL":{
     "message":"添加失败",
     "code":201,
@@ -77,6 +83,12 @@
     "code":211,
     "en_message":"data error!",
     "errorSource":"dal"
+  },
+  "TOKEN_INFO_LOSE":{
+    "message":"token信息丢失",
+    "code":307,
+    "en_message":"token lose",
+    "errorSource":"auth"
   }
 
 }

@@ -7,6 +7,11 @@ service UserService{
     bean.User userFindById(1: i32 id),
     list<bean.User> userSelectAll(),
     list<bean.User> userSelect(1: bean.User user)
+
+    i32 roleInsert(1: bean.Role role),
+    bean.Role roleFindById(1: i32 id),
+    list<bean.Role> roleSelectAll(),
+    list<bean.Role> roleSelect(1: bean.Role role)
 }
 service BannerService{
     i32 insert(1: bean.Banner banner),

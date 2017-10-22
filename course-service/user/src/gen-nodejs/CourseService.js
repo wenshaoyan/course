@@ -15,16 +15,16 @@ var bean_ttypes = require('./bean_types');
 var ttypes = require('./service_types');
 //HELPER FUNCTIONS AND STRUCTURES
 
-var ClientService_clientInsert_args = function(args) {
-  this.clientSide = null;
+var CourseService_courseInsert_args = function(args) {
+  this.course = null;
   if (args) {
-    if (args.clientSide !== undefined && args.clientSide !== null) {
-      this.clientSide = new bean_ttypes.ClientSide(args.clientSide);
+    if (args.course !== undefined && args.course !== null) {
+      this.course = new bean_ttypes.Course(args.course);
     }
   }
 };
-ClientService_clientInsert_args.prototype = {};
-ClientService_clientInsert_args.prototype.read = function(input) {
+CourseService_courseInsert_args.prototype = {};
+CourseService_courseInsert_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -39,8 +39,8 @@ ClientService_clientInsert_args.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRUCT) {
-        this.clientSide = new bean_ttypes.ClientSide();
-        this.clientSide.read(input);
+        this.course = new bean_ttypes.Course();
+        this.course.read(input);
       } else {
         input.skip(ftype);
       }
@@ -57,11 +57,11 @@ ClientService_clientInsert_args.prototype.read = function(input) {
   return;
 };
 
-ClientService_clientInsert_args.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_clientInsert_args');
-  if (this.clientSide !== null && this.clientSide !== undefined) {
-    output.writeFieldBegin('clientSide', Thrift.Type.STRUCT, 1);
-    this.clientSide.write(output);
+CourseService_courseInsert_args.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_courseInsert_args');
+  if (this.course !== null && this.course !== undefined) {
+    output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
+    this.course.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -69,7 +69,7 @@ ClientService_clientInsert_args.prototype.write = function(output) {
   return;
 };
 
-var ClientService_clientInsert_result = function(args) {
+var CourseService_courseInsert_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
@@ -77,8 +77,8 @@ var ClientService_clientInsert_result = function(args) {
     }
   }
 };
-ClientService_clientInsert_result.prototype = {};
-ClientService_clientInsert_result.prototype.read = function(input) {
+CourseService_courseInsert_result.prototype = {};
+CourseService_courseInsert_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -110,8 +110,8 @@ ClientService_clientInsert_result.prototype.read = function(input) {
   return;
 };
 
-ClientService_clientInsert_result.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_clientInsert_result');
+CourseService_courseInsert_result.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_courseInsert_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
@@ -122,16 +122,16 @@ ClientService_clientInsert_result.prototype.write = function(output) {
   return;
 };
 
-var ClientService_clientUpdate_args = function(args) {
-  this.clientSide = null;
+var CourseService_courseUpdate_args = function(args) {
+  this.course = null;
   if (args) {
-    if (args.clientSide !== undefined && args.clientSide !== null) {
-      this.clientSide = new bean_ttypes.ClientSide(args.clientSide);
+    if (args.course !== undefined && args.course !== null) {
+      this.course = new bean_ttypes.Course(args.course);
     }
   }
 };
-ClientService_clientUpdate_args.prototype = {};
-ClientService_clientUpdate_args.prototype.read = function(input) {
+CourseService_courseUpdate_args.prototype = {};
+CourseService_courseUpdate_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -146,8 +146,8 @@ ClientService_clientUpdate_args.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRUCT) {
-        this.clientSide = new bean_ttypes.ClientSide();
-        this.clientSide.read(input);
+        this.course = new bean_ttypes.Course();
+        this.course.read(input);
       } else {
         input.skip(ftype);
       }
@@ -164,11 +164,11 @@ ClientService_clientUpdate_args.prototype.read = function(input) {
   return;
 };
 
-ClientService_clientUpdate_args.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_clientUpdate_args');
-  if (this.clientSide !== null && this.clientSide !== undefined) {
-    output.writeFieldBegin('clientSide', Thrift.Type.STRUCT, 1);
-    this.clientSide.write(output);
+CourseService_courseUpdate_args.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_courseUpdate_args');
+  if (this.course !== null && this.course !== undefined) {
+    output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
+    this.course.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -176,7 +176,7 @@ ClientService_clientUpdate_args.prototype.write = function(output) {
   return;
 };
 
-var ClientService_clientUpdate_result = function(args) {
+var CourseService_courseUpdate_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
@@ -184,8 +184,8 @@ var ClientService_clientUpdate_result = function(args) {
     }
   }
 };
-ClientService_clientUpdate_result.prototype = {};
-ClientService_clientUpdate_result.prototype.read = function(input) {
+CourseService_courseUpdate_result.prototype = {};
+CourseService_courseUpdate_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -217,8 +217,8 @@ ClientService_clientUpdate_result.prototype.read = function(input) {
   return;
 };
 
-ClientService_clientUpdate_result.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_clientUpdate_result');
+CourseService_courseUpdate_result.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_courseUpdate_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
@@ -229,7 +229,7 @@ ClientService_clientUpdate_result.prototype.write = function(output) {
   return;
 };
 
-var ClientService_clientRemove_args = function(args) {
+var CourseService_courseRemove_args = function(args) {
   this.id = null;
   if (args) {
     if (args.id !== undefined && args.id !== null) {
@@ -237,8 +237,8 @@ var ClientService_clientRemove_args = function(args) {
     }
   }
 };
-ClientService_clientRemove_args.prototype = {};
-ClientService_clientRemove_args.prototype.read = function(input) {
+CourseService_courseRemove_args.prototype = {};
+CourseService_courseRemove_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -270,8 +270,8 @@ ClientService_clientRemove_args.prototype.read = function(input) {
   return;
 };
 
-ClientService_clientRemove_args.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_clientRemove_args');
+CourseService_courseRemove_args.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_courseRemove_args');
   if (this.id !== null && this.id !== undefined) {
     output.writeFieldBegin('id', Thrift.Type.I32, 1);
     output.writeI32(this.id);
@@ -282,7 +282,7 @@ ClientService_clientRemove_args.prototype.write = function(output) {
   return;
 };
 
-var ClientService_clientRemove_result = function(args) {
+var CourseService_courseRemove_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
@@ -290,8 +290,8 @@ var ClientService_clientRemove_result = function(args) {
     }
   }
 };
-ClientService_clientRemove_result.prototype = {};
-ClientService_clientRemove_result.prototype.read = function(input) {
+CourseService_courseRemove_result.prototype = {};
+CourseService_courseRemove_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -323,8 +323,8 @@ ClientService_clientRemove_result.prototype.read = function(input) {
   return;
 };
 
-ClientService_clientRemove_result.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_clientRemove_result');
+CourseService_courseRemove_result.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_courseRemove_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
@@ -335,7 +335,7 @@ ClientService_clientRemove_result.prototype.write = function(output) {
   return;
 };
 
-var ClientService_clientFindById_args = function(args) {
+var CourseService_courseFindById_args = function(args) {
   this.id = null;
   if (args) {
     if (args.id !== undefined && args.id !== null) {
@@ -343,8 +343,8 @@ var ClientService_clientFindById_args = function(args) {
     }
   }
 };
-ClientService_clientFindById_args.prototype = {};
-ClientService_clientFindById_args.prototype.read = function(input) {
+CourseService_courseFindById_args.prototype = {};
+CourseService_courseFindById_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -376,8 +376,8 @@ ClientService_clientFindById_args.prototype.read = function(input) {
   return;
 };
 
-ClientService_clientFindById_args.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_clientFindById_args');
+CourseService_courseFindById_args.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_courseFindById_args');
   if (this.id !== null && this.id !== undefined) {
     output.writeFieldBegin('id', Thrift.Type.I32, 1);
     output.writeI32(this.id);
@@ -388,16 +388,16 @@ ClientService_clientFindById_args.prototype.write = function(output) {
   return;
 };
 
-var ClientService_clientFindById_result = function(args) {
+var CourseService_courseFindById_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
-      this.success = new bean_ttypes.ClientSide(args.success);
+      this.success = new bean_ttypes.Course(args.success);
     }
   }
 };
-ClientService_clientFindById_result.prototype = {};
-ClientService_clientFindById_result.prototype.read = function(input) {
+CourseService_courseFindById_result.prototype = {};
+CourseService_courseFindById_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -412,7 +412,7 @@ ClientService_clientFindById_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.STRUCT) {
-        this.success = new bean_ttypes.ClientSide();
+        this.success = new bean_ttypes.Course();
         this.success.read(input);
       } else {
         input.skip(ftype);
@@ -430,8 +430,8 @@ ClientService_clientFindById_result.prototype.read = function(input) {
   return;
 };
 
-ClientService_clientFindById_result.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_clientFindById_result');
+CourseService_courseFindById_result.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_courseFindById_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
     this.success.write(output);
@@ -442,10 +442,10 @@ ClientService_clientFindById_result.prototype.write = function(output) {
   return;
 };
 
-var ClientService_clientSelectAll_args = function(args) {
+var CourseService_courseSelectAll_args = function(args) {
 };
-ClientService_clientSelectAll_args.prototype = {};
-ClientService_clientSelectAll_args.prototype.read = function(input) {
+CourseService_courseSelectAll_args.prototype = {};
+CourseService_courseSelectAll_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -463,23 +463,23 @@ ClientService_clientSelectAll_args.prototype.read = function(input) {
   return;
 };
 
-ClientService_clientSelectAll_args.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_clientSelectAll_args');
+CourseService_courseSelectAll_args.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_courseSelectAll_args');
   output.writeFieldStop();
   output.writeStructEnd();
   return;
 };
 
-var ClientService_clientSelectAll_result = function(args) {
+var CourseService_courseSelectAll_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.ClientSide]);
+      this.success = Thrift.copyList(args.success, [bean_ttypes.Course]);
     }
   }
 };
-ClientService_clientSelectAll_result.prototype = {};
-ClientService_clientSelectAll_result.prototype.read = function(input) {
+CourseService_courseSelectAll_result.prototype = {};
+CourseService_courseSelectAll_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -494,19 +494,19 @@ ClientService_clientSelectAll_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size48 = 0;
-        var _rtmp352;
+        var _size80 = 0;
+        var _rtmp384;
         this.success = [];
-        var _etype51 = 0;
-        _rtmp352 = input.readListBegin();
-        _etype51 = _rtmp352.etype;
-        _size48 = _rtmp352.size;
-        for (var _i53 = 0; _i53 < _size48; ++_i53)
+        var _etype83 = 0;
+        _rtmp384 = input.readListBegin();
+        _etype83 = _rtmp384.etype;
+        _size80 = _rtmp384.size;
+        for (var _i85 = 0; _i85 < _size80; ++_i85)
         {
-          var elem54 = null;
-          elem54 = new bean_ttypes.ClientSide();
-          elem54.read(input);
-          this.success.push(elem54);
+          var elem86 = null;
+          elem86 = new bean_ttypes.Course();
+          elem86.read(input);
+          this.success.push(elem86);
         }
         input.readListEnd();
       } else {
@@ -525,17 +525,17 @@ ClientService_clientSelectAll_result.prototype.read = function(input) {
   return;
 };
 
-ClientService_clientSelectAll_result.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_clientSelectAll_result');
+CourseService_courseSelectAll_result.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_courseSelectAll_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter55 in this.success)
+    for (var iter87 in this.success)
     {
-      if (this.success.hasOwnProperty(iter55))
+      if (this.success.hasOwnProperty(iter87))
       {
-        iter55 = this.success[iter55];
-        iter55.write(output);
+        iter87 = this.success[iter87];
+        iter87.write(output);
       }
     }
     output.writeListEnd();
@@ -546,16 +546,16 @@ ClientService_clientSelectAll_result.prototype.write = function(output) {
   return;
 };
 
-var ClientService_clientSelect_args = function(args) {
-  this.clientSide = null;
+var CourseService_courseSelect_args = function(args) {
+  this.course = null;
   if (args) {
-    if (args.clientSide !== undefined && args.clientSide !== null) {
-      this.clientSide = new bean_ttypes.ClientSide(args.clientSide);
+    if (args.course !== undefined && args.course !== null) {
+      this.course = new bean_ttypes.Course(args.course);
     }
   }
 };
-ClientService_clientSelect_args.prototype = {};
-ClientService_clientSelect_args.prototype.read = function(input) {
+CourseService_courseSelect_args.prototype = {};
+CourseService_courseSelect_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -570,8 +570,8 @@ ClientService_clientSelect_args.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRUCT) {
-        this.clientSide = new bean_ttypes.ClientSide();
-        this.clientSide.read(input);
+        this.course = new bean_ttypes.Course();
+        this.course.read(input);
       } else {
         input.skip(ftype);
       }
@@ -588,11 +588,11 @@ ClientService_clientSelect_args.prototype.read = function(input) {
   return;
 };
 
-ClientService_clientSelect_args.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_clientSelect_args');
-  if (this.clientSide !== null && this.clientSide !== undefined) {
-    output.writeFieldBegin('clientSide', Thrift.Type.STRUCT, 1);
-    this.clientSide.write(output);
+CourseService_courseSelect_args.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_courseSelect_args');
+  if (this.course !== null && this.course !== undefined) {
+    output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
+    this.course.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -600,16 +600,16 @@ ClientService_clientSelect_args.prototype.write = function(output) {
   return;
 };
 
-var ClientService_clientSelect_result = function(args) {
+var CourseService_courseSelect_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.ClientSide]);
+      this.success = Thrift.copyList(args.success, [bean_ttypes.Course]);
     }
   }
 };
-ClientService_clientSelect_result.prototype = {};
-ClientService_clientSelect_result.prototype.read = function(input) {
+CourseService_courseSelect_result.prototype = {};
+CourseService_courseSelect_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -624,19 +624,19 @@ ClientService_clientSelect_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size56 = 0;
-        var _rtmp360;
+        var _size88 = 0;
+        var _rtmp392;
         this.success = [];
-        var _etype59 = 0;
-        _rtmp360 = input.readListBegin();
-        _etype59 = _rtmp360.etype;
-        _size56 = _rtmp360.size;
-        for (var _i61 = 0; _i61 < _size56; ++_i61)
+        var _etype91 = 0;
+        _rtmp392 = input.readListBegin();
+        _etype91 = _rtmp392.etype;
+        _size88 = _rtmp392.size;
+        for (var _i93 = 0; _i93 < _size88; ++_i93)
         {
-          var elem62 = null;
-          elem62 = new bean_ttypes.ClientSide();
-          elem62.read(input);
-          this.success.push(elem62);
+          var elem94 = null;
+          elem94 = new bean_ttypes.Course();
+          elem94.read(input);
+          this.success.push(elem94);
         }
         input.readListEnd();
       } else {
@@ -655,17 +655,17 @@ ClientService_clientSelect_result.prototype.read = function(input) {
   return;
 };
 
-ClientService_clientSelect_result.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_clientSelect_result');
+CourseService_courseSelect_result.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_courseSelect_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter63 in this.success)
+    for (var iter95 in this.success)
     {
-      if (this.success.hasOwnProperty(iter63))
+      if (this.success.hasOwnProperty(iter95))
       {
-        iter63 = this.success[iter63];
-        iter63.write(output);
+        iter95 = this.success[iter95];
+        iter95.write(output);
       }
     }
     output.writeListEnd();
@@ -676,16 +676,16 @@ ClientService_clientSelect_result.prototype.write = function(output) {
   return;
 };
 
-var ClientService_versionInsert_args = function(args) {
-  this.clientVersion = null;
+var CourseService_videoInsert_args = function(args) {
+  this.video = null;
   if (args) {
-    if (args.clientVersion !== undefined && args.clientVersion !== null) {
-      this.clientVersion = new bean_ttypes.ClientVersion(args.clientVersion);
+    if (args.video !== undefined && args.video !== null) {
+      this.video = new bean_ttypes.Video(args.video);
     }
   }
 };
-ClientService_versionInsert_args.prototype = {};
-ClientService_versionInsert_args.prototype.read = function(input) {
+CourseService_videoInsert_args.prototype = {};
+CourseService_videoInsert_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -700,8 +700,8 @@ ClientService_versionInsert_args.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRUCT) {
-        this.clientVersion = new bean_ttypes.ClientVersion();
-        this.clientVersion.read(input);
+        this.video = new bean_ttypes.Video();
+        this.video.read(input);
       } else {
         input.skip(ftype);
       }
@@ -718,11 +718,11 @@ ClientService_versionInsert_args.prototype.read = function(input) {
   return;
 };
 
-ClientService_versionInsert_args.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_versionInsert_args');
-  if (this.clientVersion !== null && this.clientVersion !== undefined) {
-    output.writeFieldBegin('clientVersion', Thrift.Type.STRUCT, 1);
-    this.clientVersion.write(output);
+CourseService_videoInsert_args.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_videoInsert_args');
+  if (this.video !== null && this.video !== undefined) {
+    output.writeFieldBegin('video', Thrift.Type.STRUCT, 1);
+    this.video.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -730,7 +730,7 @@ ClientService_versionInsert_args.prototype.write = function(output) {
   return;
 };
 
-var ClientService_versionInsert_result = function(args) {
+var CourseService_videoInsert_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
@@ -738,8 +738,115 @@ var ClientService_versionInsert_result = function(args) {
     }
   }
 };
-ClientService_versionInsert_result.prototype = {};
-ClientService_versionInsert_result.prototype.read = function(input) {
+CourseService_videoInsert_result.prototype = {};
+CourseService_videoInsert_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRING) {
+        this.success = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CourseService_videoInsert_result.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_videoInsert_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRING, 0);
+    output.writeString(this.success);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var CourseService_videoUpdate_args = function(args) {
+  this.video = null;
+  if (args) {
+    if (args.video !== undefined && args.video !== null) {
+      this.video = new bean_ttypes.Video(args.video);
+    }
+  }
+};
+CourseService_videoUpdate_args.prototype = {};
+CourseService_videoUpdate_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.video = new bean_ttypes.Video();
+        this.video.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CourseService_videoUpdate_args.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_videoUpdate_args');
+  if (this.video !== null && this.video !== undefined) {
+    output.writeFieldBegin('video', Thrift.Type.STRUCT, 1);
+    this.video.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var CourseService_videoUpdate_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = args.success;
+    }
+  }
+};
+CourseService_videoUpdate_result.prototype = {};
+CourseService_videoUpdate_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -771,8 +878,8 @@ ClientService_versionInsert_result.prototype.read = function(input) {
   return;
 };
 
-ClientService_versionInsert_result.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_versionInsert_result');
+CourseService_videoUpdate_result.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_videoUpdate_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
@@ -783,114 +890,7 @@ ClientService_versionInsert_result.prototype.write = function(output) {
   return;
 };
 
-var ClientService_versionUpdate_args = function(args) {
-  this.clientVersion = null;
-  if (args) {
-    if (args.clientVersion !== undefined && args.clientVersion !== null) {
-      this.clientVersion = new bean_ttypes.ClientVersion(args.clientVersion);
-    }
-  }
-};
-ClientService_versionUpdate_args.prototype = {};
-ClientService_versionUpdate_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.clientVersion = new bean_ttypes.ClientVersion();
-        this.clientVersion.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-ClientService_versionUpdate_args.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_versionUpdate_args');
-  if (this.clientVersion !== null && this.clientVersion !== undefined) {
-    output.writeFieldBegin('clientVersion', Thrift.Type.STRUCT, 1);
-    this.clientVersion.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var ClientService_versionUpdate_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = args.success;
-    }
-  }
-};
-ClientService_versionUpdate_result.prototype = {};
-ClientService_versionUpdate_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-      if (ftype == Thrift.Type.I32) {
-        this.success = input.readI32();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-ClientService_versionUpdate_result.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_versionUpdate_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.I32, 0);
-    output.writeI32(this.success);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var ClientService_versionRemove_args = function(args) {
+var CourseService_videoRemove_args = function(args) {
   this.id = null;
   if (args) {
     if (args.id !== undefined && args.id !== null) {
@@ -898,8 +898,8 @@ var ClientService_versionRemove_args = function(args) {
     }
   }
 };
-ClientService_versionRemove_args.prototype = {};
-ClientService_versionRemove_args.prototype.read = function(input) {
+CourseService_videoRemove_args.prototype = {};
+CourseService_videoRemove_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -913,8 +913,8 @@ ClientService_versionRemove_args.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.I32) {
-        this.id = input.readI32();
+      if (ftype == Thrift.Type.STRING) {
+        this.id = input.readString();
       } else {
         input.skip(ftype);
       }
@@ -931,11 +931,11 @@ ClientService_versionRemove_args.prototype.read = function(input) {
   return;
 };
 
-ClientService_versionRemove_args.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_versionRemove_args');
+CourseService_videoRemove_args.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_videoRemove_args');
   if (this.id !== null && this.id !== undefined) {
-    output.writeFieldBegin('id', Thrift.Type.I32, 1);
-    output.writeI32(this.id);
+    output.writeFieldBegin('id', Thrift.Type.STRING, 1);
+    output.writeString(this.id);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -943,7 +943,7 @@ ClientService_versionRemove_args.prototype.write = function(output) {
   return;
 };
 
-var ClientService_versionRemove_result = function(args) {
+var CourseService_videoRemove_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
@@ -951,8 +951,8 @@ var ClientService_versionRemove_result = function(args) {
     }
   }
 };
-ClientService_versionRemove_result.prototype = {};
-ClientService_versionRemove_result.prototype.read = function(input) {
+CourseService_videoRemove_result.prototype = {};
+CourseService_videoRemove_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -984,8 +984,8 @@ ClientService_versionRemove_result.prototype.read = function(input) {
   return;
 };
 
-ClientService_versionRemove_result.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_versionRemove_result');
+CourseService_videoRemove_result.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_videoRemove_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
@@ -996,7 +996,7 @@ ClientService_versionRemove_result.prototype.write = function(output) {
   return;
 };
 
-var ClientService_versionFindById_args = function(args) {
+var CourseService_versionFindById_args = function(args) {
   this.id = null;
   if (args) {
     if (args.id !== undefined && args.id !== null) {
@@ -1004,8 +1004,8 @@ var ClientService_versionFindById_args = function(args) {
     }
   }
 };
-ClientService_versionFindById_args.prototype = {};
-ClientService_versionFindById_args.prototype.read = function(input) {
+CourseService_versionFindById_args.prototype = {};
+CourseService_versionFindById_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -1019,8 +1019,8 @@ ClientService_versionFindById_args.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.I32) {
-        this.id = input.readI32();
+      if (ftype == Thrift.Type.STRING) {
+        this.id = input.readString();
       } else {
         input.skip(ftype);
       }
@@ -1037,11 +1037,11 @@ ClientService_versionFindById_args.prototype.read = function(input) {
   return;
 };
 
-ClientService_versionFindById_args.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_versionFindById_args');
+CourseService_versionFindById_args.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_versionFindById_args');
   if (this.id !== null && this.id !== undefined) {
-    output.writeFieldBegin('id', Thrift.Type.I32, 1);
-    output.writeI32(this.id);
+    output.writeFieldBegin('id', Thrift.Type.STRING, 1);
+    output.writeString(this.id);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -1049,16 +1049,16 @@ ClientService_versionFindById_args.prototype.write = function(output) {
   return;
 };
 
-var ClientService_versionFindById_result = function(args) {
+var CourseService_versionFindById_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
-      this.success = new bean_ttypes.ClientVersion(args.success);
+      this.success = new bean_ttypes.Video(args.success);
     }
   }
 };
-ClientService_versionFindById_result.prototype = {};
-ClientService_versionFindById_result.prototype.read = function(input) {
+CourseService_versionFindById_result.prototype = {};
+CourseService_versionFindById_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -1073,7 +1073,7 @@ ClientService_versionFindById_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.STRUCT) {
-        this.success = new bean_ttypes.ClientVersion();
+        this.success = new bean_ttypes.Video();
         this.success.read(input);
       } else {
         input.skip(ftype);
@@ -1091,8 +1091,8 @@ ClientService_versionFindById_result.prototype.read = function(input) {
   return;
 };
 
-ClientService_versionFindById_result.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_versionFindById_result');
+CourseService_versionFindById_result.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_versionFindById_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
     this.success.write(output);
@@ -1103,10 +1103,10 @@ ClientService_versionFindById_result.prototype.write = function(output) {
   return;
 };
 
-var ClientService_versionSelectAll_args = function(args) {
+var CourseService_videoSelectAll_args = function(args) {
 };
-ClientService_versionSelectAll_args.prototype = {};
-ClientService_versionSelectAll_args.prototype.read = function(input) {
+CourseService_videoSelectAll_args.prototype = {};
+CourseService_videoSelectAll_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -1124,23 +1124,23 @@ ClientService_versionSelectAll_args.prototype.read = function(input) {
   return;
 };
 
-ClientService_versionSelectAll_args.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_versionSelectAll_args');
+CourseService_videoSelectAll_args.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_videoSelectAll_args');
   output.writeFieldStop();
   output.writeStructEnd();
   return;
 };
 
-var ClientService_versionSelectAll_result = function(args) {
+var CourseService_videoSelectAll_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.ClientVersion]);
+      this.success = Thrift.copyList(args.success, [bean_ttypes.Video]);
     }
   }
 };
-ClientService_versionSelectAll_result.prototype = {};
-ClientService_versionSelectAll_result.prototype.read = function(input) {
+CourseService_videoSelectAll_result.prototype = {};
+CourseService_videoSelectAll_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -1155,19 +1155,19 @@ ClientService_versionSelectAll_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size64 = 0;
-        var _rtmp368;
+        var _size96 = 0;
+        var _rtmp3100;
         this.success = [];
-        var _etype67 = 0;
-        _rtmp368 = input.readListBegin();
-        _etype67 = _rtmp368.etype;
-        _size64 = _rtmp368.size;
-        for (var _i69 = 0; _i69 < _size64; ++_i69)
+        var _etype99 = 0;
+        _rtmp3100 = input.readListBegin();
+        _etype99 = _rtmp3100.etype;
+        _size96 = _rtmp3100.size;
+        for (var _i101 = 0; _i101 < _size96; ++_i101)
         {
-          var elem70 = null;
-          elem70 = new bean_ttypes.ClientVersion();
-          elem70.read(input);
-          this.success.push(elem70);
+          var elem102 = null;
+          elem102 = new bean_ttypes.Video();
+          elem102.read(input);
+          this.success.push(elem102);
         }
         input.readListEnd();
       } else {
@@ -1186,17 +1186,17 @@ ClientService_versionSelectAll_result.prototype.read = function(input) {
   return;
 };
 
-ClientService_versionSelectAll_result.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_versionSelectAll_result');
+CourseService_videoSelectAll_result.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_videoSelectAll_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter71 in this.success)
+    for (var iter103 in this.success)
     {
-      if (this.success.hasOwnProperty(iter71))
+      if (this.success.hasOwnProperty(iter103))
       {
-        iter71 = this.success[iter71];
-        iter71.write(output);
+        iter103 = this.success[iter103];
+        iter103.write(output);
       }
     }
     output.writeListEnd();
@@ -1207,16 +1207,16 @@ ClientService_versionSelectAll_result.prototype.write = function(output) {
   return;
 };
 
-var ClientService_versionSelect_args = function(args) {
-  this.clientVersion = null;
+var CourseService_videoSelect_args = function(args) {
+  this.video = null;
   if (args) {
-    if (args.clientVersion !== undefined && args.clientVersion !== null) {
-      this.clientVersion = new bean_ttypes.ClientVersion(args.clientVersion);
+    if (args.video !== undefined && args.video !== null) {
+      this.video = new bean_ttypes.Video(args.video);
     }
   }
 };
-ClientService_versionSelect_args.prototype = {};
-ClientService_versionSelect_args.prototype.read = function(input) {
+CourseService_videoSelect_args.prototype = {};
+CourseService_videoSelect_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -1231,8 +1231,8 @@ ClientService_versionSelect_args.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRUCT) {
-        this.clientVersion = new bean_ttypes.ClientVersion();
-        this.clientVersion.read(input);
+        this.video = new bean_ttypes.Video();
+        this.video.read(input);
       } else {
         input.skip(ftype);
       }
@@ -1249,11 +1249,11 @@ ClientService_versionSelect_args.prototype.read = function(input) {
   return;
 };
 
-ClientService_versionSelect_args.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_versionSelect_args');
-  if (this.clientVersion !== null && this.clientVersion !== undefined) {
-    output.writeFieldBegin('clientVersion', Thrift.Type.STRUCT, 1);
-    this.clientVersion.write(output);
+CourseService_videoSelect_args.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_videoSelect_args');
+  if (this.video !== null && this.video !== undefined) {
+    output.writeFieldBegin('video', Thrift.Type.STRUCT, 1);
+    this.video.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -1261,16 +1261,16 @@ ClientService_versionSelect_args.prototype.write = function(output) {
   return;
 };
 
-var ClientService_versionSelect_result = function(args) {
+var CourseService_videoSelect_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.ClientVersion]);
+      this.success = Thrift.copyList(args.success, [bean_ttypes.Video]);
     }
   }
 };
-ClientService_versionSelect_result.prototype = {};
-ClientService_versionSelect_result.prototype.read = function(input) {
+CourseService_videoSelect_result.prototype = {};
+CourseService_videoSelect_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -1285,19 +1285,19 @@ ClientService_versionSelect_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size72 = 0;
-        var _rtmp376;
+        var _size104 = 0;
+        var _rtmp3108;
         this.success = [];
-        var _etype75 = 0;
-        _rtmp376 = input.readListBegin();
-        _etype75 = _rtmp376.etype;
-        _size72 = _rtmp376.size;
-        for (var _i77 = 0; _i77 < _size72; ++_i77)
+        var _etype107 = 0;
+        _rtmp3108 = input.readListBegin();
+        _etype107 = _rtmp3108.etype;
+        _size104 = _rtmp3108.size;
+        for (var _i109 = 0; _i109 < _size104; ++_i109)
         {
-          var elem78 = null;
-          elem78 = new bean_ttypes.ClientVersion();
-          elem78.read(input);
-          this.success.push(elem78);
+          var elem110 = null;
+          elem110 = new bean_ttypes.Video();
+          elem110.read(input);
+          this.success.push(elem110);
         }
         input.readListEnd();
       } else {
@@ -1316,17 +1316,17 @@ ClientService_versionSelect_result.prototype.read = function(input) {
   return;
 };
 
-ClientService_versionSelect_result.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_versionSelect_result');
+CourseService_videoSelect_result.prototype.write = function(output) {
+  output.writeStructBegin('CourseService_videoSelect_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter79 in this.success)
+    for (var iter111 in this.success)
     {
-      if (this.success.hasOwnProperty(iter79))
+      if (this.success.hasOwnProperty(iter111))
       {
-        iter79 = this.success[iter79];
-        iter79.write(output);
+        iter111 = this.success[iter111];
+        iter111.write(output);
       }
     }
     output.writeListEnd();
@@ -1337,16 +1337,16 @@ ClientService_versionSelect_result.prototype.write = function(output) {
   return;
 };
 
-var ClientServiceClient = exports.Client = function(output, pClass) {
+var CourseServiceClient = exports.Client = function(output, pClass) {
     this.output = output;
     this.pClass = pClass;
     this._seqid = 0;
     this._reqs = {};
 };
-ClientServiceClient.prototype = {};
-ClientServiceClient.prototype.seqid = function() { return this._seqid; };
-ClientServiceClient.prototype.new_seqid = function() { return this._seqid += 1; };
-ClientServiceClient.prototype.clientInsert = function(clientSide, callback) {
+CourseServiceClient.prototype = {};
+CourseServiceClient.prototype.seqid = function() { return this._seqid; };
+CourseServiceClient.prototype.new_seqid = function() { return this._seqid += 1; };
+CourseServiceClient.prototype.courseInsert = function(course, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1357,25 +1357,25 @@ ClientServiceClient.prototype.clientInsert = function(clientSide, callback) {
         _defer.resolve(result);
       }
     };
-    this.send_clientInsert(clientSide);
+    this.send_courseInsert(course);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_clientInsert(clientSide);
+    this.send_courseInsert(course);
   }
 };
 
-ClientServiceClient.prototype.send_clientInsert = function(clientSide) {
+CourseServiceClient.prototype.send_courseInsert = function(course) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('clientInsert', Thrift.MessageType.CALL, this.seqid());
-  var args = new ClientService_clientInsert_args();
-  args.clientSide = clientSide;
+  output.writeMessageBegin('courseInsert', Thrift.MessageType.CALL, this.seqid());
+  var args = new CourseService_courseInsert_args();
+  args.course = course;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-ClientServiceClient.prototype.recv_clientInsert = function(input,mtype,rseqid) {
+CourseServiceClient.prototype.recv_courseInsert = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -1384,16 +1384,16 @@ ClientServiceClient.prototype.recv_clientInsert = function(input,mtype,rseqid) {
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new ClientService_clientInsert_result();
+  var result = new CourseService_courseInsert_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('clientInsert failed: unknown result');
+  return callback('courseInsert failed: unknown result');
 };
-ClientServiceClient.prototype.clientUpdate = function(clientSide, callback) {
+CourseServiceClient.prototype.courseUpdate = function(course, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1404,25 +1404,25 @@ ClientServiceClient.prototype.clientUpdate = function(clientSide, callback) {
         _defer.resolve(result);
       }
     };
-    this.send_clientUpdate(clientSide);
+    this.send_courseUpdate(course);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_clientUpdate(clientSide);
+    this.send_courseUpdate(course);
   }
 };
 
-ClientServiceClient.prototype.send_clientUpdate = function(clientSide) {
+CourseServiceClient.prototype.send_courseUpdate = function(course) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('clientUpdate', Thrift.MessageType.CALL, this.seqid());
-  var args = new ClientService_clientUpdate_args();
-  args.clientSide = clientSide;
+  output.writeMessageBegin('courseUpdate', Thrift.MessageType.CALL, this.seqid());
+  var args = new CourseService_courseUpdate_args();
+  args.course = course;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-ClientServiceClient.prototype.recv_clientUpdate = function(input,mtype,rseqid) {
+CourseServiceClient.prototype.recv_courseUpdate = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -1431,16 +1431,16 @@ ClientServiceClient.prototype.recv_clientUpdate = function(input,mtype,rseqid) {
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new ClientService_clientUpdate_result();
+  var result = new CourseService_courseUpdate_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('clientUpdate failed: unknown result');
+  return callback('courseUpdate failed: unknown result');
 };
-ClientServiceClient.prototype.clientRemove = function(id, callback) {
+CourseServiceClient.prototype.courseRemove = function(id, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1451,25 +1451,25 @@ ClientServiceClient.prototype.clientRemove = function(id, callback) {
         _defer.resolve(result);
       }
     };
-    this.send_clientRemove(id);
+    this.send_courseRemove(id);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_clientRemove(id);
+    this.send_courseRemove(id);
   }
 };
 
-ClientServiceClient.prototype.send_clientRemove = function(id) {
+CourseServiceClient.prototype.send_courseRemove = function(id) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('clientRemove', Thrift.MessageType.CALL, this.seqid());
-  var args = new ClientService_clientRemove_args();
+  output.writeMessageBegin('courseRemove', Thrift.MessageType.CALL, this.seqid());
+  var args = new CourseService_courseRemove_args();
   args.id = id;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-ClientServiceClient.prototype.recv_clientRemove = function(input,mtype,rseqid) {
+CourseServiceClient.prototype.recv_courseRemove = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -1478,16 +1478,16 @@ ClientServiceClient.prototype.recv_clientRemove = function(input,mtype,rseqid) {
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new ClientService_clientRemove_result();
+  var result = new CourseService_courseRemove_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('clientRemove failed: unknown result');
+  return callback('courseRemove failed: unknown result');
 };
-ClientServiceClient.prototype.clientFindById = function(id, callback) {
+CourseServiceClient.prototype.courseFindById = function(id, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1498,25 +1498,25 @@ ClientServiceClient.prototype.clientFindById = function(id, callback) {
         _defer.resolve(result);
       }
     };
-    this.send_clientFindById(id);
+    this.send_courseFindById(id);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_clientFindById(id);
+    this.send_courseFindById(id);
   }
 };
 
-ClientServiceClient.prototype.send_clientFindById = function(id) {
+CourseServiceClient.prototype.send_courseFindById = function(id) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('clientFindById', Thrift.MessageType.CALL, this.seqid());
-  var args = new ClientService_clientFindById_args();
+  output.writeMessageBegin('courseFindById', Thrift.MessageType.CALL, this.seqid());
+  var args = new CourseService_courseFindById_args();
   args.id = id;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-ClientServiceClient.prototype.recv_clientFindById = function(input,mtype,rseqid) {
+CourseServiceClient.prototype.recv_courseFindById = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -1525,16 +1525,16 @@ ClientServiceClient.prototype.recv_clientFindById = function(input,mtype,rseqid)
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new ClientService_clientFindById_result();
+  var result = new CourseService_courseFindById_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('clientFindById failed: unknown result');
+  return callback('courseFindById failed: unknown result');
 };
-ClientServiceClient.prototype.clientSelectAll = function(callback) {
+CourseServiceClient.prototype.courseSelectAll = function(callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1545,24 +1545,24 @@ ClientServiceClient.prototype.clientSelectAll = function(callback) {
         _defer.resolve(result);
       }
     };
-    this.send_clientSelectAll();
+    this.send_courseSelectAll();
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_clientSelectAll();
+    this.send_courseSelectAll();
   }
 };
 
-ClientServiceClient.prototype.send_clientSelectAll = function() {
+CourseServiceClient.prototype.send_courseSelectAll = function() {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('clientSelectAll', Thrift.MessageType.CALL, this.seqid());
-  var args = new ClientService_clientSelectAll_args();
+  output.writeMessageBegin('courseSelectAll', Thrift.MessageType.CALL, this.seqid());
+  var args = new CourseService_courseSelectAll_args();
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-ClientServiceClient.prototype.recv_clientSelectAll = function(input,mtype,rseqid) {
+CourseServiceClient.prototype.recv_courseSelectAll = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -1571,16 +1571,16 @@ ClientServiceClient.prototype.recv_clientSelectAll = function(input,mtype,rseqid
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new ClientService_clientSelectAll_result();
+  var result = new CourseService_courseSelectAll_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('clientSelectAll failed: unknown result');
+  return callback('courseSelectAll failed: unknown result');
 };
-ClientServiceClient.prototype.clientSelect = function(clientSide, callback) {
+CourseServiceClient.prototype.courseSelect = function(course, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1591,25 +1591,25 @@ ClientServiceClient.prototype.clientSelect = function(clientSide, callback) {
         _defer.resolve(result);
       }
     };
-    this.send_clientSelect(clientSide);
+    this.send_courseSelect(course);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_clientSelect(clientSide);
+    this.send_courseSelect(course);
   }
 };
 
-ClientServiceClient.prototype.send_clientSelect = function(clientSide) {
+CourseServiceClient.prototype.send_courseSelect = function(course) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('clientSelect', Thrift.MessageType.CALL, this.seqid());
-  var args = new ClientService_clientSelect_args();
-  args.clientSide = clientSide;
+  output.writeMessageBegin('courseSelect', Thrift.MessageType.CALL, this.seqid());
+  var args = new CourseService_courseSelect_args();
+  args.course = course;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-ClientServiceClient.prototype.recv_clientSelect = function(input,mtype,rseqid) {
+CourseServiceClient.prototype.recv_courseSelect = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -1618,16 +1618,16 @@ ClientServiceClient.prototype.recv_clientSelect = function(input,mtype,rseqid) {
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new ClientService_clientSelect_result();
+  var result = new CourseService_courseSelect_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('clientSelect failed: unknown result');
+  return callback('courseSelect failed: unknown result');
 };
-ClientServiceClient.prototype.versionInsert = function(clientVersion, callback) {
+CourseServiceClient.prototype.videoInsert = function(video, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1638,25 +1638,25 @@ ClientServiceClient.prototype.versionInsert = function(clientVersion, callback) 
         _defer.resolve(result);
       }
     };
-    this.send_versionInsert(clientVersion);
+    this.send_videoInsert(video);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_versionInsert(clientVersion);
+    this.send_videoInsert(video);
   }
 };
 
-ClientServiceClient.prototype.send_versionInsert = function(clientVersion) {
+CourseServiceClient.prototype.send_videoInsert = function(video) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('versionInsert', Thrift.MessageType.CALL, this.seqid());
-  var args = new ClientService_versionInsert_args();
-  args.clientVersion = clientVersion;
+  output.writeMessageBegin('videoInsert', Thrift.MessageType.CALL, this.seqid());
+  var args = new CourseService_videoInsert_args();
+  args.video = video;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-ClientServiceClient.prototype.recv_versionInsert = function(input,mtype,rseqid) {
+CourseServiceClient.prototype.recv_videoInsert = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -1665,16 +1665,16 @@ ClientServiceClient.prototype.recv_versionInsert = function(input,mtype,rseqid) 
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new ClientService_versionInsert_result();
+  var result = new CourseService_videoInsert_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('versionInsert failed: unknown result');
+  return callback('videoInsert failed: unknown result');
 };
-ClientServiceClient.prototype.versionUpdate = function(clientVersion, callback) {
+CourseServiceClient.prototype.videoUpdate = function(video, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1685,25 +1685,25 @@ ClientServiceClient.prototype.versionUpdate = function(clientVersion, callback) 
         _defer.resolve(result);
       }
     };
-    this.send_versionUpdate(clientVersion);
+    this.send_videoUpdate(video);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_versionUpdate(clientVersion);
+    this.send_videoUpdate(video);
   }
 };
 
-ClientServiceClient.prototype.send_versionUpdate = function(clientVersion) {
+CourseServiceClient.prototype.send_videoUpdate = function(video) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('versionUpdate', Thrift.MessageType.CALL, this.seqid());
-  var args = new ClientService_versionUpdate_args();
-  args.clientVersion = clientVersion;
+  output.writeMessageBegin('videoUpdate', Thrift.MessageType.CALL, this.seqid());
+  var args = new CourseService_videoUpdate_args();
+  args.video = video;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-ClientServiceClient.prototype.recv_versionUpdate = function(input,mtype,rseqid) {
+CourseServiceClient.prototype.recv_videoUpdate = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -1712,16 +1712,16 @@ ClientServiceClient.prototype.recv_versionUpdate = function(input,mtype,rseqid) 
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new ClientService_versionUpdate_result();
+  var result = new CourseService_videoUpdate_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('versionUpdate failed: unknown result');
+  return callback('videoUpdate failed: unknown result');
 };
-ClientServiceClient.prototype.versionRemove = function(id, callback) {
+CourseServiceClient.prototype.videoRemove = function(id, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1732,25 +1732,25 @@ ClientServiceClient.prototype.versionRemove = function(id, callback) {
         _defer.resolve(result);
       }
     };
-    this.send_versionRemove(id);
+    this.send_videoRemove(id);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_versionRemove(id);
+    this.send_videoRemove(id);
   }
 };
 
-ClientServiceClient.prototype.send_versionRemove = function(id) {
+CourseServiceClient.prototype.send_videoRemove = function(id) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('versionRemove', Thrift.MessageType.CALL, this.seqid());
-  var args = new ClientService_versionRemove_args();
+  output.writeMessageBegin('videoRemove', Thrift.MessageType.CALL, this.seqid());
+  var args = new CourseService_videoRemove_args();
   args.id = id;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-ClientServiceClient.prototype.recv_versionRemove = function(input,mtype,rseqid) {
+CourseServiceClient.prototype.recv_videoRemove = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -1759,16 +1759,16 @@ ClientServiceClient.prototype.recv_versionRemove = function(input,mtype,rseqid) 
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new ClientService_versionRemove_result();
+  var result = new CourseService_videoRemove_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('versionRemove failed: unknown result');
+  return callback('videoRemove failed: unknown result');
 };
-ClientServiceClient.prototype.versionFindById = function(id, callback) {
+CourseServiceClient.prototype.versionFindById = function(id, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1787,17 +1787,17 @@ ClientServiceClient.prototype.versionFindById = function(id, callback) {
   }
 };
 
-ClientServiceClient.prototype.send_versionFindById = function(id) {
+CourseServiceClient.prototype.send_versionFindById = function(id) {
   var output = new this.pClass(this.output);
   output.writeMessageBegin('versionFindById', Thrift.MessageType.CALL, this.seqid());
-  var args = new ClientService_versionFindById_args();
+  var args = new CourseService_versionFindById_args();
   args.id = id;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-ClientServiceClient.prototype.recv_versionFindById = function(input,mtype,rseqid) {
+CourseServiceClient.prototype.recv_versionFindById = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -1806,7 +1806,7 @@ ClientServiceClient.prototype.recv_versionFindById = function(input,mtype,rseqid
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new ClientService_versionFindById_result();
+  var result = new CourseService_versionFindById_result();
   result.read(input);
   input.readMessageEnd();
 
@@ -1815,7 +1815,7 @@ ClientServiceClient.prototype.recv_versionFindById = function(input,mtype,rseqid
   }
   return callback('versionFindById failed: unknown result');
 };
-ClientServiceClient.prototype.versionSelectAll = function(callback) {
+CourseServiceClient.prototype.videoSelectAll = function(callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1826,24 +1826,24 @@ ClientServiceClient.prototype.versionSelectAll = function(callback) {
         _defer.resolve(result);
       }
     };
-    this.send_versionSelectAll();
+    this.send_videoSelectAll();
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_versionSelectAll();
+    this.send_videoSelectAll();
   }
 };
 
-ClientServiceClient.prototype.send_versionSelectAll = function() {
+CourseServiceClient.prototype.send_videoSelectAll = function() {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('versionSelectAll', Thrift.MessageType.CALL, this.seqid());
-  var args = new ClientService_versionSelectAll_args();
+  output.writeMessageBegin('videoSelectAll', Thrift.MessageType.CALL, this.seqid());
+  var args = new CourseService_videoSelectAll_args();
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-ClientServiceClient.prototype.recv_versionSelectAll = function(input,mtype,rseqid) {
+CourseServiceClient.prototype.recv_videoSelectAll = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -1852,16 +1852,16 @@ ClientServiceClient.prototype.recv_versionSelectAll = function(input,mtype,rseqi
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new ClientService_versionSelectAll_result();
+  var result = new CourseService_videoSelectAll_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('versionSelectAll failed: unknown result');
+  return callback('videoSelectAll failed: unknown result');
 };
-ClientServiceClient.prototype.versionSelect = function(clientVersion, callback) {
+CourseServiceClient.prototype.videoSelect = function(video, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1872,25 +1872,25 @@ ClientServiceClient.prototype.versionSelect = function(clientVersion, callback) 
         _defer.resolve(result);
       }
     };
-    this.send_versionSelect(clientVersion);
+    this.send_videoSelect(video);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_versionSelect(clientVersion);
+    this.send_videoSelect(video);
   }
 };
 
-ClientServiceClient.prototype.send_versionSelect = function(clientVersion) {
+CourseServiceClient.prototype.send_videoSelect = function(video) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('versionSelect', Thrift.MessageType.CALL, this.seqid());
-  var args = new ClientService_versionSelect_args();
-  args.clientVersion = clientVersion;
+  output.writeMessageBegin('videoSelect', Thrift.MessageType.CALL, this.seqid());
+  var args = new CourseService_videoSelect_args();
+  args.video = video;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-ClientServiceClient.prototype.recv_versionSelect = function(input,mtype,rseqid) {
+CourseServiceClient.prototype.recv_videoSelect = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -1899,20 +1899,20 @@ ClientServiceClient.prototype.recv_versionSelect = function(input,mtype,rseqid) 
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new ClientService_versionSelect_result();
+  var result = new CourseService_videoSelect_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('versionSelect failed: unknown result');
+  return callback('videoSelect failed: unknown result');
 };
-var ClientServiceProcessor = exports.Processor = function(handler) {
+var CourseServiceProcessor = exports.Processor = function(handler) {
   this._handler = handler;
 }
 ;
-ClientServiceProcessor.prototype.process = function(input, output) {
+CourseServiceProcessor.prototype.process = function(input, output) {
   var r = input.readMessageBegin();
   if (this['process_' + r.fname]) {
     return this['process_' + r.fname].call(this, r.rseqid, input, output);
@@ -1927,35 +1927,35 @@ ClientServiceProcessor.prototype.process = function(input, output) {
   }
 }
 ;
-ClientServiceProcessor.prototype.process_clientInsert = function(seqid, input, output) {
-  var args = new ClientService_clientInsert_args();
+CourseServiceProcessor.prototype.process_courseInsert = function(seqid, input, output) {
+  var args = new CourseService_courseInsert_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.clientInsert.length === 1) {
-    Q.fcall(this._handler.clientInsert, args.clientSide)
+  if (this._handler.courseInsert.length === 1) {
+    Q.fcall(this._handler.courseInsert, args.course)
       .then(function(result) {
-        var result_obj = new ClientService_clientInsert_result({success: result});
-        output.writeMessageBegin("clientInsert", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new CourseService_courseInsert_result({success: result});
+        output.writeMessageBegin("courseInsert", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("clientInsert", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("courseInsert", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.clientInsert(args.clientSide, function (err, result) {
+    this._handler.courseInsert(args.course, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new ClientService_clientInsert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("clientInsert", Thrift.MessageType.REPLY, seqid);
+        result_obj = new CourseService_courseInsert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("courseInsert", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("clientInsert", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("courseInsert", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();
@@ -1963,35 +1963,35 @@ ClientServiceProcessor.prototype.process_clientInsert = function(seqid, input, o
     });
   }
 };
-ClientServiceProcessor.prototype.process_clientUpdate = function(seqid, input, output) {
-  var args = new ClientService_clientUpdate_args();
+CourseServiceProcessor.prototype.process_courseUpdate = function(seqid, input, output) {
+  var args = new CourseService_courseUpdate_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.clientUpdate.length === 1) {
-    Q.fcall(this._handler.clientUpdate, args.clientSide)
+  if (this._handler.courseUpdate.length === 1) {
+    Q.fcall(this._handler.courseUpdate, args.course)
       .then(function(result) {
-        var result_obj = new ClientService_clientUpdate_result({success: result});
-        output.writeMessageBegin("clientUpdate", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new CourseService_courseUpdate_result({success: result});
+        output.writeMessageBegin("courseUpdate", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("clientUpdate", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("courseUpdate", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.clientUpdate(args.clientSide, function (err, result) {
+    this._handler.courseUpdate(args.course, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new ClientService_clientUpdate_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("clientUpdate", Thrift.MessageType.REPLY, seqid);
+        result_obj = new CourseService_courseUpdate_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("courseUpdate", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("clientUpdate", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("courseUpdate", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();
@@ -1999,35 +1999,35 @@ ClientServiceProcessor.prototype.process_clientUpdate = function(seqid, input, o
     });
   }
 };
-ClientServiceProcessor.prototype.process_clientRemove = function(seqid, input, output) {
-  var args = new ClientService_clientRemove_args();
+CourseServiceProcessor.prototype.process_courseRemove = function(seqid, input, output) {
+  var args = new CourseService_courseRemove_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.clientRemove.length === 1) {
-    Q.fcall(this._handler.clientRemove, args.id)
+  if (this._handler.courseRemove.length === 1) {
+    Q.fcall(this._handler.courseRemove, args.id)
       .then(function(result) {
-        var result_obj = new ClientService_clientRemove_result({success: result});
-        output.writeMessageBegin("clientRemove", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new CourseService_courseRemove_result({success: result});
+        output.writeMessageBegin("courseRemove", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("clientRemove", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("courseRemove", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.clientRemove(args.id, function (err, result) {
+    this._handler.courseRemove(args.id, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new ClientService_clientRemove_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("clientRemove", Thrift.MessageType.REPLY, seqid);
+        result_obj = new CourseService_courseRemove_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("courseRemove", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("clientRemove", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("courseRemove", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();
@@ -2035,35 +2035,35 @@ ClientServiceProcessor.prototype.process_clientRemove = function(seqid, input, o
     });
   }
 };
-ClientServiceProcessor.prototype.process_clientFindById = function(seqid, input, output) {
-  var args = new ClientService_clientFindById_args();
+CourseServiceProcessor.prototype.process_courseFindById = function(seqid, input, output) {
+  var args = new CourseService_courseFindById_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.clientFindById.length === 1) {
-    Q.fcall(this._handler.clientFindById, args.id)
+  if (this._handler.courseFindById.length === 1) {
+    Q.fcall(this._handler.courseFindById, args.id)
       .then(function(result) {
-        var result_obj = new ClientService_clientFindById_result({success: result});
-        output.writeMessageBegin("clientFindById", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new CourseService_courseFindById_result({success: result});
+        output.writeMessageBegin("courseFindById", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("clientFindById", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("courseFindById", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.clientFindById(args.id, function (err, result) {
+    this._handler.courseFindById(args.id, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new ClientService_clientFindById_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("clientFindById", Thrift.MessageType.REPLY, seqid);
+        result_obj = new CourseService_courseFindById_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("courseFindById", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("clientFindById", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("courseFindById", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();
@@ -2071,35 +2071,35 @@ ClientServiceProcessor.prototype.process_clientFindById = function(seqid, input,
     });
   }
 };
-ClientServiceProcessor.prototype.process_clientSelectAll = function(seqid, input, output) {
-  var args = new ClientService_clientSelectAll_args();
+CourseServiceProcessor.prototype.process_courseSelectAll = function(seqid, input, output) {
+  var args = new CourseService_courseSelectAll_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.clientSelectAll.length === 0) {
-    Q.fcall(this._handler.clientSelectAll)
+  if (this._handler.courseSelectAll.length === 0) {
+    Q.fcall(this._handler.courseSelectAll)
       .then(function(result) {
-        var result_obj = new ClientService_clientSelectAll_result({success: result});
-        output.writeMessageBegin("clientSelectAll", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new CourseService_courseSelectAll_result({success: result});
+        output.writeMessageBegin("courseSelectAll", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("clientSelectAll", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("courseSelectAll", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.clientSelectAll(function (err, result) {
+    this._handler.courseSelectAll(function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new ClientService_clientSelectAll_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("clientSelectAll", Thrift.MessageType.REPLY, seqid);
+        result_obj = new CourseService_courseSelectAll_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("courseSelectAll", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("clientSelectAll", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("courseSelectAll", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();
@@ -2107,35 +2107,35 @@ ClientServiceProcessor.prototype.process_clientSelectAll = function(seqid, input
     });
   }
 };
-ClientServiceProcessor.prototype.process_clientSelect = function(seqid, input, output) {
-  var args = new ClientService_clientSelect_args();
+CourseServiceProcessor.prototype.process_courseSelect = function(seqid, input, output) {
+  var args = new CourseService_courseSelect_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.clientSelect.length === 1) {
-    Q.fcall(this._handler.clientSelect, args.clientSide)
+  if (this._handler.courseSelect.length === 1) {
+    Q.fcall(this._handler.courseSelect, args.course)
       .then(function(result) {
-        var result_obj = new ClientService_clientSelect_result({success: result});
-        output.writeMessageBegin("clientSelect", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new CourseService_courseSelect_result({success: result});
+        output.writeMessageBegin("courseSelect", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("clientSelect", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("courseSelect", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.clientSelect(args.clientSide, function (err, result) {
+    this._handler.courseSelect(args.course, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new ClientService_clientSelect_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("clientSelect", Thrift.MessageType.REPLY, seqid);
+        result_obj = new CourseService_courseSelect_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("courseSelect", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("clientSelect", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("courseSelect", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();
@@ -2143,35 +2143,35 @@ ClientServiceProcessor.prototype.process_clientSelect = function(seqid, input, o
     });
   }
 };
-ClientServiceProcessor.prototype.process_versionInsert = function(seqid, input, output) {
-  var args = new ClientService_versionInsert_args();
+CourseServiceProcessor.prototype.process_videoInsert = function(seqid, input, output) {
+  var args = new CourseService_videoInsert_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.versionInsert.length === 1) {
-    Q.fcall(this._handler.versionInsert, args.clientVersion)
+  if (this._handler.videoInsert.length === 1) {
+    Q.fcall(this._handler.videoInsert, args.video)
       .then(function(result) {
-        var result_obj = new ClientService_versionInsert_result({success: result});
-        output.writeMessageBegin("versionInsert", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new CourseService_videoInsert_result({success: result});
+        output.writeMessageBegin("videoInsert", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("versionInsert", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("videoInsert", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.versionInsert(args.clientVersion, function (err, result) {
+    this._handler.videoInsert(args.video, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new ClientService_versionInsert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("versionInsert", Thrift.MessageType.REPLY, seqid);
+        result_obj = new CourseService_videoInsert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("videoInsert", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("versionInsert", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("videoInsert", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();
@@ -2179,35 +2179,35 @@ ClientServiceProcessor.prototype.process_versionInsert = function(seqid, input, 
     });
   }
 };
-ClientServiceProcessor.prototype.process_versionUpdate = function(seqid, input, output) {
-  var args = new ClientService_versionUpdate_args();
+CourseServiceProcessor.prototype.process_videoUpdate = function(seqid, input, output) {
+  var args = new CourseService_videoUpdate_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.versionUpdate.length === 1) {
-    Q.fcall(this._handler.versionUpdate, args.clientVersion)
+  if (this._handler.videoUpdate.length === 1) {
+    Q.fcall(this._handler.videoUpdate, args.video)
       .then(function(result) {
-        var result_obj = new ClientService_versionUpdate_result({success: result});
-        output.writeMessageBegin("versionUpdate", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new CourseService_videoUpdate_result({success: result});
+        output.writeMessageBegin("videoUpdate", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("versionUpdate", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("videoUpdate", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.versionUpdate(args.clientVersion, function (err, result) {
+    this._handler.videoUpdate(args.video, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new ClientService_versionUpdate_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("versionUpdate", Thrift.MessageType.REPLY, seqid);
+        result_obj = new CourseService_videoUpdate_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("videoUpdate", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("versionUpdate", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("videoUpdate", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();
@@ -2215,35 +2215,35 @@ ClientServiceProcessor.prototype.process_versionUpdate = function(seqid, input, 
     });
   }
 };
-ClientServiceProcessor.prototype.process_versionRemove = function(seqid, input, output) {
-  var args = new ClientService_versionRemove_args();
+CourseServiceProcessor.prototype.process_videoRemove = function(seqid, input, output) {
+  var args = new CourseService_videoRemove_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.versionRemove.length === 1) {
-    Q.fcall(this._handler.versionRemove, args.id)
+  if (this._handler.videoRemove.length === 1) {
+    Q.fcall(this._handler.videoRemove, args.id)
       .then(function(result) {
-        var result_obj = new ClientService_versionRemove_result({success: result});
-        output.writeMessageBegin("versionRemove", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new CourseService_videoRemove_result({success: result});
+        output.writeMessageBegin("videoRemove", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("versionRemove", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("videoRemove", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.versionRemove(args.id, function (err, result) {
+    this._handler.videoRemove(args.id, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new ClientService_versionRemove_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("versionRemove", Thrift.MessageType.REPLY, seqid);
+        result_obj = new CourseService_videoRemove_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("videoRemove", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("versionRemove", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("videoRemove", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();
@@ -2251,14 +2251,14 @@ ClientServiceProcessor.prototype.process_versionRemove = function(seqid, input, 
     });
   }
 };
-ClientServiceProcessor.prototype.process_versionFindById = function(seqid, input, output) {
-  var args = new ClientService_versionFindById_args();
+CourseServiceProcessor.prototype.process_versionFindById = function(seqid, input, output) {
+  var args = new CourseService_versionFindById_args();
   args.read(input);
   input.readMessageEnd();
   if (this._handler.versionFindById.length === 1) {
     Q.fcall(this._handler.versionFindById, args.id)
       .then(function(result) {
-        var result_obj = new ClientService_versionFindById_result({success: result});
+        var result_obj = new CourseService_versionFindById_result({success: result});
         output.writeMessageBegin("versionFindById", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
@@ -2275,7 +2275,7 @@ ClientServiceProcessor.prototype.process_versionFindById = function(seqid, input
     this._handler.versionFindById(args.id, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new ClientService_versionFindById_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        result_obj = new CourseService_versionFindById_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("versionFindById", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
@@ -2287,35 +2287,35 @@ ClientServiceProcessor.prototype.process_versionFindById = function(seqid, input
     });
   }
 };
-ClientServiceProcessor.prototype.process_versionSelectAll = function(seqid, input, output) {
-  var args = new ClientService_versionSelectAll_args();
+CourseServiceProcessor.prototype.process_videoSelectAll = function(seqid, input, output) {
+  var args = new CourseService_videoSelectAll_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.versionSelectAll.length === 0) {
-    Q.fcall(this._handler.versionSelectAll)
+  if (this._handler.videoSelectAll.length === 0) {
+    Q.fcall(this._handler.videoSelectAll)
       .then(function(result) {
-        var result_obj = new ClientService_versionSelectAll_result({success: result});
-        output.writeMessageBegin("versionSelectAll", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new CourseService_videoSelectAll_result({success: result});
+        output.writeMessageBegin("videoSelectAll", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("versionSelectAll", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("videoSelectAll", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.versionSelectAll(function (err, result) {
+    this._handler.videoSelectAll(function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new ClientService_versionSelectAll_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("versionSelectAll", Thrift.MessageType.REPLY, seqid);
+        result_obj = new CourseService_videoSelectAll_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("videoSelectAll", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("versionSelectAll", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("videoSelectAll", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();
@@ -2323,35 +2323,35 @@ ClientServiceProcessor.prototype.process_versionSelectAll = function(seqid, inpu
     });
   }
 };
-ClientServiceProcessor.prototype.process_versionSelect = function(seqid, input, output) {
-  var args = new ClientService_versionSelect_args();
+CourseServiceProcessor.prototype.process_videoSelect = function(seqid, input, output) {
+  var args = new CourseService_videoSelect_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.versionSelect.length === 1) {
-    Q.fcall(this._handler.versionSelect, args.clientVersion)
+  if (this._handler.videoSelect.length === 1) {
+    Q.fcall(this._handler.videoSelect, args.video)
       .then(function(result) {
-        var result_obj = new ClientService_versionSelect_result({success: result});
-        output.writeMessageBegin("versionSelect", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new CourseService_videoSelect_result({success: result});
+        output.writeMessageBegin("videoSelect", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("versionSelect", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("videoSelect", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.versionSelect(args.clientVersion, function (err, result) {
+    this._handler.videoSelect(args.video, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new ClientService_versionSelect_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("versionSelect", Thrift.MessageType.REPLY, seqid);
+        result_obj = new CourseService_videoSelect_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("videoSelect", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("versionSelect", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("videoSelect", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();

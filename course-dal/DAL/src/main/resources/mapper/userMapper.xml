@@ -3,8 +3,8 @@
 <mapper namespace="mapper.userMapper">
     <insert id="insertUser" parameterType="_UserBean" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_user(user_name,user_head,user_password,user_tel,user_device_uuid,user_register_time,
-        user_create_time,user_update_time)
-        VALUES(#{name},#{head},#{password},#{tel},#{device_uuid},#{register_time},#{create_time},#{update_time});
+        user_create_time,user_update_time,user_role_id)
+        VALUES(#{name},#{head},#{password},#{tel},#{device_uuid},#{register_time},#{create_time},#{update_time},#{role_id});
     </insert>
     <select id="select" parameterType="_UserBean" resultMap="userResult">
         SELECT *
@@ -16,7 +16,7 @@
             <if test="password != null" >
                 AND user_password = #{password}
             </if>
-            <if test="id != null" >
+            <if test="id != 0" >
                 AND user_id = #{id}
             </if>
         </where>
@@ -28,8 +28,9 @@
         <result property="head" column="user_head"/>
         <result property="name" column="user_name"/>
         <result property="device_uuid" column="user_device_uuid"/>
-        <result property="register_time" column="user_register_time"/>
-        <result property="create_time" column="user_create_time"/>
-        <result property="update_time" column="user_update_time"/>
+        <result property="register_time_bean" column="user_register_time"/>
+        <result property="create_time_bean" column="user_create_time"/>
+        <result property="update_time_bean" column="user_update_time"/>
+        <result property="role_id" column="user_role_id"/>
     </resultMap>
 </mapper>

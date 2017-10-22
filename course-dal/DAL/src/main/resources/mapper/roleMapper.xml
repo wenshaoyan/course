@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.roleMapper">
+    <select id="select" parameterType="_RoleBean" resultMap="roleResult">
+        SELECT *
+        FROM t_role
+        <where>
+            <if test="id != null" >
+                AND role_id = #{id}
+            </if>
+        </where>
+    </select>
+    
+    <resultMap id="roleResult" type="_RoleBean">
+        <id property="id" column="role_id"/>
+        <result property="permission" column="role_permission"/>
+        <result property="name" column="role_name"/>
+        <result property="create_time_bean" column="role_create_time"/>
+        <result property="update_time_bean" column="role_update_time"/>
+    </resultMap>
+</mapper>

@@ -4,6 +4,8 @@ const router = require('koa-router')();
 const convert = require('koa-convert');
 const json = require('koa-json');
 const bodyparser = require('koa-bodyparser')();
+const cors = require('koa-cors');
+
 
 const user = require('./routes/user');
 const router_log = require('./middleware/router_log');
@@ -27,6 +29,9 @@ app.use(response({
     successLog:getLogger('resSuccess'),
     failLog:getLogger('resFail')
 }));
+
+// 跨域
+app.use(cors());
 // 获取用户信息
 // app.use(getUser());
 router.use('/user', user.routes(),user.allowedMethods());

@@ -48,10 +48,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<UserBean> select(UserBean userBean) throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<UserBean> UserBeans = sqlSession.selectList(sqlTag + ".select", userBean);
+        List<UserBean> userBeans = sqlSession.selectList(sqlTag + ".select", userBean);
         sqlSession.commit();
         sqlSession.close();
-        return UserBeans;
+        return userBeans;
     }
 
     @Override

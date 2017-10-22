@@ -8,7 +8,15 @@ struct User{
     6: string register_time,
     7: string create_time,
     8: string update_time,
-    9: string password
+    9: string password,
+    10: i32 role_id
+}
+struct Role{
+    1: i32 id,
+    2: string name,
+    3: string create_time,
+    4: string update_time,
+    5: string  permission
 }
 struct Banner{
     1:i32 id
