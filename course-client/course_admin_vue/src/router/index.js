@@ -49,6 +49,16 @@ export default new Router({
  */
 export const asyncRouterMap = [
   {
+    path: '/user',
+    component: Layout,
+    code: 1001,
+    name: '用户管理',
+    icon: 'theme',
+    redirect: 'noredirect',
+    noDropdown: true,
+    children: [{ path: 'index', component: _import('user/index'), name: '用户管理' }]
+  },
+  {
     path: '/permission',
     component: Layout,
     redirect: '/permission/index',
@@ -185,15 +195,5 @@ export const asyncRouterMap = [
     children: [{ path: 'index', component: _import('clipboard/index'), name: 'clipboard' }]
   },
 
-  { path: '*', redirect: '/404', hidden: true },
-  {
-    path: '/user',
-    component: Layout,
-    code: 1001,
-    name: '用户管理',
-    icon: 'theme',
-    redirect: 'noredirect',
-    noDropdown: true
-
-  }
+  { path: '*', redirect: '/404', hidden: true }
 ]

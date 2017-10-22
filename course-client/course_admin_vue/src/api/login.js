@@ -6,7 +6,7 @@ export function login(tel, password) {
     password
   }
   return fetch({
-    url: '/user',
+    url: '/management/login',
     method: 'get',
     params: data
   })
@@ -21,7 +21,7 @@ export function logout() {
 
 export function getUserInfo(token) {
   return fetch({
-    url: '/user/token',
+    url: '/management/token',
     method: 'get'
   })
 }

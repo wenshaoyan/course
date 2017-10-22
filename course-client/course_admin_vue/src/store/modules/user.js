@@ -93,7 +93,6 @@ const user = {
           const storeData = {}
           commit('SET_ALL_DATA', data)
           commit('GET_ALL_DATA', storeData)
-          console.log(storeData)
           resolve(storeData)
         }).catch(error => {
           reject(error)
