@@ -1,0 +1,7 @@
+{
+  "port": 6379,
+  "host": "123.207.55.204",
+  "family": 4,
+  "password": "wenshao314106",
+  "db": 0
+}

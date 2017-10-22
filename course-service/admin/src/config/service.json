@@ -1,0 +1,9 @@
+{
+  "port":9000,
+  "zkServer":"123.207.55.204:2181,123.207.55.204:2182,123.207.55.204:2183",
+  "serverName":"AdminHttp",
+  "dalName":["UserService"],
+  "publicServer":"http://123.207.55.204:8083",
+  "tokenTime":604800000
+
+}

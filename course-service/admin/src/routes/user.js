@@ -1,13 +1,16 @@
+/**
+ * Created by wenshao on 2017/10/22.
+ * 平台用户管理
+ */
 const router = require('koa-router')();
 const bean_types = require('../gen-nodejs/bean_types');
 const SysUtil = require('../util/sys_util');
 const logger = getLogger();
 const userService = getServiceConfig().dalName[0];
 const routerI = require('../middleware/router_interceptor');
-const UserSchema = require('../schema/user_schema');
+const AdminSchema = require('../schema/admin_schema');
 const apiName = '/';
-const ioredis = require('ioredis');
-let redis = new ioredis(require('../config/redis.json'));
+
 router.use(async(ctx, next) => {
     const myServer = getThriftServer(`'${userService}'`);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
@@ -16,10 +19,10 @@ router.use(async(ctx, next) => {
         await next();
     }
 });
-// 登录
-router.get(apiName, routerI({
-    key: "user_login",
-    schema: UserSchema.user_login
+// 查找用户
+router.get(`${apiName}`, routerI({
+    key: "user_query",
+    schema: AdminSchema.user_query
 }), async(ctx, next) => {
     const client = getThriftServer(`'${userService}'`).getClient();
     const user = new bean_types.User();
@@ -44,20 +47,16 @@ router.get(apiName, routerI({
             return;
         }
         userResult.head = getServiceConfig().publicServer + userResult.head;
-        userResult.permission = JSON.parse(roleResult.permission);
-        const key = `token:${SysUtil.getUuid()}`;
-        userResult.tokenID = key;
-        redis.set(key, JSON.stringify(userResult), 'EX', getServiceConfig().tokenTime);
         ctx.body = userResult;
     } catch (e) {
         console.log(e);
         ctx.error = e;
     }
 });
-// 注册
+// 添加用户
 router.post(apiName, routerI({
     key: "user_insert",
-    schema: UserSchema.user_insert
+    schema: AdminSchema.user_insert
 }), async function (ctx, next) {
     const userServer = getThriftServer(`'${userService}'`);
     const user = new bean_types.User();
@@ -88,7 +87,6 @@ router.post(apiName, routerI({
         ctx.error = e;
     }
 });
-
 router.get('test', async(ctx, next) => {
     logger.info(ctx, ctx.userInfo);
 });

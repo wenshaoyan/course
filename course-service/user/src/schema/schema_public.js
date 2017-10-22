@@ -24,71 +24,93 @@ const publicUtil = {
         type: "string",
         pattern: "^[1-9][0-9]*$",
     },
-    uuid:{          // uuid
+    uuid: {          // uuid
         type: "string",
     },
     name: {         // 用户名称
         type: "string",
-        maxLength:12
+        maxLength: 12
     },
-    http_url:{      // url地址
-        type:"string",
+    http_url: {      // url地址
+        type: "string",
         Formats: "url",
     },
-    id_card:{       // 省份证号码
-        type:"string",
-        pattern:"(^\\d{15}$)|(^\\d{18}$)|(^\\d{17}(\\d|X|x)$)"
+    id_card: {       // 省份证号码
+        type: "string",
+        pattern: "(^\\d{15}$)|(^\\d{18}$)|(^\\d{17}(\\d|X|x)$)"
     },
-    area:{          // 地区
-        type:"string",
+    area: {          // 地区
+        type: "string",
         minLength: 1,
         maxLength: 50
     },
-    string225:{     // 225长度字符串
-        type:"string",
+    string225: {     // 225长度字符串
+        type: "string",
         maxLength: 255
     },
-    string500:{     // 500长度字符串
-        type:"string",
+    string500: {     // 500长度字符串
+        type: "string",
         maxLength: 500
     },
-    userId:{        // 用户id
-        type:"string",
+    userId: {        // 用户id
+        type: "string",
         maxLength: 50
     },
-    status:{        // 状态
-        type:"number"
+    status: {        // 状态
+        type: "number"
     },
-    arrayByString:{ // 字符串元素的数组
-        type:"array"
+    arrayByString: { // 字符串元素的数组
+        type: "array"
     },
-    num:{           // number
-        type:"number",
+    num: {           // number
+        type: "number",
     },
-    stringOrNull:{  // 字符串或者null
-        type:["string","null"]
+    stringOrNull: {  // 字符串或者null
+        type: ["string", "null"]
     },
-    eventStatus:{   // 事件的状态
-        "enum":["await","proceed","end"],
+    eventStatus: {   // 事件的状态
+        "enum": ["await", "proceed", "end"],
     },
-    bool:{          // 布尔值
-        type:"boolean"
+    bool: {          // 布尔值
+        type: "boolean"
     },
-    date:{          // 时期
-        type:"string",
-        pattern:"^\\d{4}-\\d{2}$"
+    date: {          // 时期
+        type: "string",
+        pattern: "^\\d{4}-\\d{2}$"
     },
-    appType:{           // App类型
-        "enum":["app"],
+    appType: {           // App类型
+        "enum": ["app"],
     },
-    deviceType:{        // 设置类型
-        "enum":["android","ios"],
+    deviceType: {        // 设置类型
+        "enum": ["android", "ios"],
     },
-    text:{
-        type:"string"
+    text: {
+        type: "string"
+    },
+    limit: {
+        type: "string",
+        pattern: "^[1-9][0-9]*$",
+    },
+    offset: {
+        type: "string",
+        pattern: "^[1-9][0-9]*$",
+    },
+    page: {
+        type: "string",
+        pattern: "^[1-9][0-9]*$",
+    },
+    per_page: {
+        type: "string",
+        pattern: "^[1-9][0-9]*$",
+    },
+    sortby: {
+        type: "string",
+        minLength: 1,
+        maxLength: 100
+    },
+    order: {
+        "enum": ["asc", "desc"],
     }
 
-
-
 };
-module.exports =publicUtil;
+module.exports = publicUtil;

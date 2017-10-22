@@ -1,0 +1,182 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ *
+ */
+
+const debug = require('debug')('demo:server');
+const http = require('http');
+
+// 加载log4js
+const log4js = require('log4js');
+const log4jsConfig = require('../config/log4js.json');
+global.getLogger = log4js.getLogger;
+const logger = getLogger();
+
+// 定义全局变量
+let serviceConfig = require('../config/service.json');
+log4js.configure(log4jsConfig);
+global.getServiceConfig = () => {
+    return serviceConfig;
+};
+const envSet = new Set(['develop', 'production']);
+function getEnv() {
+    let env = process.env.NODE_ENV;
+    if (env && envSet.has(env)) return env;
+    return 'develop';
+}
+global.NODE_ENV = getEnv();
+
+
+const thriftServerMap = new Map();
+global.getThriftServer = function (name) {
+    return thriftServerMap.get(name);
+};
+// 获取
+// 导入ip的工具类
+const IpUtil = require('../util/ip_util');
+
+
+const app = require('../app');
+
+// 连接zookeeper
+const Curator = require('../modules/node-curator');
+const CuratorFrameworkFactory = Curator.CuratorFrameworkFactory;
+const Stat = Curator.Stat;
+
+
+// 导入server
+const ThriftHelp = require('../modules/thrift-help');
+
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(serviceConfig.port || '3001');
+// app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+const server = http.createServer(app.callback());
+
+/**
+ * zookeeper start
+ */
+let client;
+client = CuratorFrameworkFactory.builder()
+    .connectString(serviceConfig.zkServer)
+    .namespace(`http/${getEnv()}/${serviceConfig.serverName}`)
+    .setLogger(getLogger('zookeeper'))
+    .build(main);
+client.start();
+//global.myUserServer = null;
+let preNodeList = null;
+
+
+async function main() {
+    try {
+        for (let name of serviceConfig.dalName) {
+            let parentPath = `/dal/${getEnv()}/${name}`;
+
+            const connectZk = new ThriftHelp.ConnectZk(parentPath, client);
+
+            const address = await connectZk.getServer();    // 获取连接dal的地址
+            // 创建thrift的连接
+            let myServer = await new ThriftHelp.Server()
+                .setAddress(address.data)
+                .setServer(`${name}`, require(`../gen-nodejs/${name}.js`))
+                .setPoolNumber(2, 10)
+                .setNodeName(address.nodeName)
+                .connect();
+            // 监听连接的变化 并修改
+            connectZk.setServer(myServer);
+            thriftServerMap.set(`'${name}'`, myServer);
+            const path = await client.create()
+                .withMode(CuratorFrameworkFactory.EPHEMERAL)
+                .isAbsoluteAddress()
+                .forPath(`/${IpUtil.getLocalIp()}`, `${IpUtil.getLocalIp()}:${serviceConfig.port}`);
+
+        }
+
+        server.listen(port);
+        server.on('error', onError);
+        server.on('listening', onListening);
+        logger.debug(`server start succeed :port=${port}`);
+    } catch (e) {
+        console.log(e);
+        process.exit();
+
+    }
+}
+process.on('exit', (code) => {
+    logger.error('process exit!');
+    logger.info('zookeeper session close!');
+    // client = null;
+    //process.exit();
+    //client.close();
+
+});
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+    let port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+
+    return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+
+    let bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
+
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+    let addr = server.address();
+    let bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
+    debug('Listening on ' + bind);
+}
