@@ -1,10 +1,12 @@
 package com.wenshao.dal.handler;
 
+import com.wenshao.dal.bean.QueryBean;
 import com.wenshao.dal.bean.RoleBean;
 import com.wenshao.dal.bean.UserBean;
 import com.wenshao.dal.dao.RoleDao;
 import com.wenshao.dal.dao.impl.RoleDaoImpl;
 import com.wenshao.dal.dao.impl.UserDaoImpl;
+import com.wenshao.dal.thriftgen.Query;
 import com.wenshao.dal.thriftgen.Role;
 import com.wenshao.dal.thriftgen.User;
 import com.wenshao.dal.thriftgen.UserService;
@@ -31,6 +33,14 @@ public class UserHandler implements UserService.Iface {
     public UserHandler(SqlSessionFactory _sessionFactory) {
         userDao = new UserDaoImpl(_sessionFactory);
         roleDao = new RoleDaoImpl(_sessionFactory);
+    }
+    private List<User> query(UserBean paramsBean) throws Exception {
+        List<User> users = new ArrayList<User>();
+        List<UserBean> userBeans = userDao.select(paramsBean);
+        for (UserBean bean : userBeans) {
+            users.add((User) bean);
+        }
+        return users;
 
     }
     @Override
@@ -73,19 +83,26 @@ public class UserHandler implements UserService.Iface {
 
     @Override
     public List<User> userSelect(User user) throws TException {
-        List<User> users = new ArrayList<User>();
         UserBean paramsBean = new UserBean(user);
         try {
-            List<UserBean> userBeans = userDao.select(paramsBean);
-            for (UserBean bean : userBeans) {
-                users.add((User) bean);
-
-            }
-            return users;
+            return query(paramsBean);
         } catch (Exception e) {
             throw new TException(e);
         }
     }
+
+    @Override
+    public List<User> userQuery(Query query) throws TException {
+        QueryBean queryBean = new QueryBean(query);
+        UserBean paramsBean = new UserBean();
+        paramsBean.setQueryBean(queryBean);
+        try {
+            return query(paramsBean);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
+
 
     @Override
     public int roleInsert(Role role) throws TException {
@@ -103,7 +120,16 @@ public class UserHandler implements UserService.Iface {
 
     @Override
     public List<Role> roleSelectAll() throws TException {
-        return null;
+        List<Role> roles = new ArrayList<Role>();
+        try {
+            List<RoleBean> roleBeans = roleDao.selectAll();
+            for (RoleBean bean : roleBeans) {
+                roles.add((Role) bean);
+            }
+            return roles;
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     @Override

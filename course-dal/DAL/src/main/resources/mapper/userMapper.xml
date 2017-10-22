@@ -19,7 +19,31 @@
             <if test="id != 0" >
                 AND user_id = #{id}
             </if>
+            <if test="queryBean != null">
+                <if test="queryBean.create_time_start_bean != 0 ">
+                    AND UNIX_TIMESTAMP(t_user.user_create_time)>#{queryBean.create_time_start_bean}
+                </if>
+                <if test="queryBean.create_time_end_bean != 0 ">
+                    AND UNIX_TIMESTAMP(t_user.user_create_time)>#{queryBean.create_time_end_bean}
+                </if>
+                <if test="queryBean.update_time_start_bean !=0 ">
+                    AND UNIX_TIMESTAMP(t_user.user_update_time)>#{queryBean.update_time_start_bean}
+                </if>
+                <if test="queryBean.update_time_end_bean !=0 ">
+                    AND UNIX_TIMESTAMP(t_user.user_update_time)>#{queryBean.update_time_end_bean}
+                </if>
+            </if>
+
         </where>
+        <if test="queryBean != null">
+            <if test="queryBean.OrderByClause != null">
+                ORDER BY ${queryBean.OrderByClause}
+            </if>
+            <if test="queryBean.limit != 0">
+                LIMIT ${queryBean.offset} ,${queryBean.limit}
+            </if>
+        </if>
+
     </select>
     
     <resultMap id="userResult" type="_UserBean">

@@ -1,5 +1,6 @@
 package com.wenshao.dal.dao.impl;
 
+import com.wenshao.dal.bean.QueryBean;
 import com.wenshao.dal.bean.UserBean;
 import com.wenshao.dal.dao.UserDao;
 import org.apache.ibatis.session.SqlSession;
@@ -62,4 +63,5 @@ public class UserDaoImpl implements UserDao {
         sqlSession.close();
         return UserBeans;
     }
+
 }

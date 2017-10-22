@@ -11,6 +11,7 @@ public class UserBean extends User {
     private Timestamp create_time_bean;
     private Timestamp update_time_bean;
     private Timestamp register_time_bean;
+    private QueryBean queryBean;
 
     public UserBean() {
         super();
@@ -53,6 +54,14 @@ public class UserBean extends User {
     public void setRegister_time_bean(Timestamp register_time_bean) {
         this.register_time = String.valueOf(register_time_bean.getTime());
         this.register_time_bean = register_time_bean;
+    }
+
+    public QueryBean getQueryBean() {
+        return queryBean;
+    }
+
+    public void setQueryBean(QueryBean queryBean) {
+        this.queryBean = queryBean;
     }
 
     @Override

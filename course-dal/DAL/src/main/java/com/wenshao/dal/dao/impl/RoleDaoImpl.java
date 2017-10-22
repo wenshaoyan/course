@@ -51,6 +51,10 @@ public class RoleDaoImpl implements RoleDao{
 
     @Override
     public List<RoleBean> selectAll() throws Exception {
-        return null;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        List<RoleBean> roleBeans = sqlSession.selectList(sqlTag + ".select");
+        sqlSession.commit();
+        sqlSession.close();
+        return roleBeans;
     }
 }

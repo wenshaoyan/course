@@ -72,3 +72,13 @@ struct Video{
     9:string create_time
     10:string update_time
 }
+struct Query{
+    1:string create_time_start,
+    2:string create_time_end,
+    3:string update_time_start,
+    4:string update_time_end,
+    5:i32 page,
+    6:i32 per_page,
+    7:string sortBy,
+    8:string order
+}

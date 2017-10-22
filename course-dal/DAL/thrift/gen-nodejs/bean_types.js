@@ -1205,3 +1205,165 @@ Video.prototype.write = function(output) {
   return;
 };
 
+var Query = module.exports.Query = function(args) {
+  this.create_time_start = null;
+  this.create_time_end = null;
+  this.update_time_start = null;
+  this.update_time_end = null;
+  this.page = null;
+  this.per_page = null;
+  this.sortBy = null;
+  this.order = null;
+  if (args) {
+    if (args.create_time_start !== undefined && args.create_time_start !== null) {
+      this.create_time_start = args.create_time_start;
+    }
+    if (args.create_time_end !== undefined && args.create_time_end !== null) {
+      this.create_time_end = args.create_time_end;
+    }
+    if (args.update_time_start !== undefined && args.update_time_start !== null) {
+      this.update_time_start = args.update_time_start;
+    }
+    if (args.update_time_end !== undefined && args.update_time_end !== null) {
+      this.update_time_end = args.update_time_end;
+    }
+    if (args.page !== undefined && args.page !== null) {
+      this.page = args.page;
+    }
+    if (args.per_page !== undefined && args.per_page !== null) {
+      this.per_page = args.per_page;
+    }
+    if (args.sortBy !== undefined && args.sortBy !== null) {
+      this.sortBy = args.sortBy;
+    }
+    if (args.order !== undefined && args.order !== null) {
+      this.order = args.order;
+    }
+  }
+};
+Query.prototype = {};
+Query.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRING) {
+        this.create_time_start = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.create_time_end = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.STRING) {
+        this.update_time_start = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 4:
+      if (ftype == Thrift.Type.STRING) {
+        this.update_time_end = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 5:
+      if (ftype == Thrift.Type.I32) {
+        this.page = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 6:
+      if (ftype == Thrift.Type.I32) {
+        this.per_page = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 7:
+      if (ftype == Thrift.Type.STRING) {
+        this.sortBy = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 8:
+      if (ftype == Thrift.Type.STRING) {
+        this.order = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+Query.prototype.write = function(output) {
+  output.writeStructBegin('Query');
+  if (this.create_time_start !== null && this.create_time_start !== undefined) {
+    output.writeFieldBegin('create_time_start', Thrift.Type.STRING, 1);
+    output.writeString(this.create_time_start);
+    output.writeFieldEnd();
+  }
+  if (this.create_time_end !== null && this.create_time_end !== undefined) {
+    output.writeFieldBegin('create_time_end', Thrift.Type.STRING, 2);
+    output.writeString(this.create_time_end);
+    output.writeFieldEnd();
+  }
+  if (this.update_time_start !== null && this.update_time_start !== undefined) {
+    output.writeFieldBegin('update_time_start', Thrift.Type.STRING, 3);
+    output.writeString(this.update_time_start);
+    output.writeFieldEnd();
+  }
+  if (this.update_time_end !== null && this.update_time_end !== undefined) {
+    output.writeFieldBegin('update_time_end', Thrift.Type.STRING, 4);
+    output.writeString(this.update_time_end);
+    output.writeFieldEnd();
+  }
+  if (this.page !== null && this.page !== undefined) {
+    output.writeFieldBegin('page', Thrift.Type.I32, 5);
+    output.writeI32(this.page);
+    output.writeFieldEnd();
+  }
+  if (this.per_page !== null && this.per_page !== undefined) {
+    output.writeFieldBegin('per_page', Thrift.Type.I32, 6);
+    output.writeI32(this.per_page);
+    output.writeFieldEnd();
+  }
+  if (this.sortBy !== null && this.sortBy !== undefined) {
+    output.writeFieldBegin('sortBy', Thrift.Type.STRING, 7);
+    output.writeString(this.sortBy);
+    output.writeFieldEnd();
+  }
+  if (this.order !== null && this.order !== undefined) {
+    output.writeFieldBegin('order', Thrift.Type.STRING, 8);
+    output.writeString(this.order);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+

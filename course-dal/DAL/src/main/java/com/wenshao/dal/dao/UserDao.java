@@ -1,5 +1,6 @@
 package com.wenshao.dal.dao;
 
+import com.wenshao.dal.bean.QueryBean;
 import com.wenshao.dal.bean.UserBean;
 
 import java.util.List;
@@ -14,5 +15,6 @@ public interface UserDao {
 
     public List<UserBean> select(UserBean userBean) throws Exception;
     public List<UserBean> selectAll() throws Exception;
+
 
 }
