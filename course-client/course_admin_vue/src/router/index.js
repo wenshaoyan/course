@@ -52,7 +52,7 @@ export const asyncRouterMap = [
     path: '/user',
     component: Layout,
     code: 1001,
-    name: '用户管理',
+    name: '',
     icon: 'theme',
     redirect: 'noredirect',
     noDropdown: true,

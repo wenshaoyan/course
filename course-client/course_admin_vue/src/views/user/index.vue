@@ -1,10 +1,10 @@
 <template>
   <div class="app-container calendar-list-container">
     <div class="filter-container">
-      <el-input @keyup.enter.native="handleSearch" style="width: 200px;" class="filter-item" placeholder="id" v-model="listQuery.id">
+      <el-input @keyup.enter.native="handleSearch" style="width: 200px;" class="filter-item" placeholder="id" v-model="listQuery.id" @change="queryParamChange('id')">
       </el-input>
 
-      <el-input @keyup.enter.native="handleSearch" style="width: 200px;" class="filter-item" placeholder="名称" v-model="listQuery.name">
+      <el-input @keyup.enter.native="handleSearch" style="width: 200px;" class="filter-item" placeholder="名称" v-model="listQuery.name" @change="queryParamChange('name')">
       </el-input>
 
       <el-select clearable class="filter-item" style="width: 130px" v-model="listQuery.role_id" placeholder="角色列表">
@@ -208,6 +208,11 @@
       this.getList()
     },
     methods: {
+      queryParamChange(keyName) {
+        if (keyName in this.listQuery && this.listQuery[keyName] === '') {
+          this.listQuery[keyName] = undefined
+        }
+      },
       watchSort() {
         const sort = this.listQuery.sort
         if (sort[0] === '+') {
