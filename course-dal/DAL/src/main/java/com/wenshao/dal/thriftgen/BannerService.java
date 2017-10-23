@@ -4405,14 +4405,14 @@ public class BannerService {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list40 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Banner>(_list40.size);
-                  com.wenshao.dal.thriftgen.Banner _elem41;
-                  for (int _i42 = 0; _i42 < _list40.size; ++_i42)
+                  org.apache.thrift.protocol.TList _list48 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Banner>(_list48.size);
+                  com.wenshao.dal.thriftgen.Banner _elem49;
+                  for (int _i50 = 0; _i50 < _list48.size; ++_i50)
                   {
-                    _elem41 = new com.wenshao.dal.thriftgen.Banner();
-                    _elem41.read(iprot);
-                    struct.success.add(_elem41);
+                    _elem49 = new com.wenshao.dal.thriftgen.Banner();
+                    _elem49.read(iprot);
+                    struct.success.add(_elem49);
                   }
                   iprot.readListEnd();
                 }
@@ -4440,9 +4440,9 @@ public class BannerService {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (com.wenshao.dal.thriftgen.Banner _iter43 : struct.success)
+            for (com.wenshao.dal.thriftgen.Banner _iter51 : struct.success)
             {
-              _iter43.write(oprot);
+              _iter51.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -4473,9 +4473,9 @@ public class BannerService {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (com.wenshao.dal.thriftgen.Banner _iter44 : struct.success)
+            for (com.wenshao.dal.thriftgen.Banner _iter52 : struct.success)
             {
-              _iter44.write(oprot);
+              _iter52.write(oprot);
             }
           }
         }
@@ -4487,14 +4487,14 @@ public class BannerService {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list45 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Banner>(_list45.size);
-            com.wenshao.dal.thriftgen.Banner _elem46;
-            for (int _i47 = 0; _i47 < _list45.size; ++_i47)
+            org.apache.thrift.protocol.TList _list53 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Banner>(_list53.size);
+            com.wenshao.dal.thriftgen.Banner _elem54;
+            for (int _i55 = 0; _i55 < _list53.size; ++_i55)
             {
-              _elem46 = new com.wenshao.dal.thriftgen.Banner();
-              _elem46.read(iprot);
-              struct.success.add(_elem46);
+              _elem54 = new com.wenshao.dal.thriftgen.Banner();
+              _elem54.read(iprot);
+              struct.success.add(_elem54);
             }
           }
           struct.setSuccessIsSet(true);
@@ -5188,14 +5188,14 @@ public class BannerService {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list48 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Banner>(_list48.size);
-                  com.wenshao.dal.thriftgen.Banner _elem49;
-                  for (int _i50 = 0; _i50 < _list48.size; ++_i50)
+                  org.apache.thrift.protocol.TList _list56 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Banner>(_list56.size);
+                  com.wenshao.dal.thriftgen.Banner _elem57;
+                  for (int _i58 = 0; _i58 < _list56.size; ++_i58)
                   {
-                    _elem49 = new com.wenshao.dal.thriftgen.Banner();
-                    _elem49.read(iprot);
-                    struct.success.add(_elem49);
+                    _elem57 = new com.wenshao.dal.thriftgen.Banner();
+                    _elem57.read(iprot);
+                    struct.success.add(_elem57);
                   }
                   iprot.readListEnd();
                 }
@@ -5223,9 +5223,9 @@ public class BannerService {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (com.wenshao.dal.thriftgen.Banner _iter51 : struct.success)
+            for (com.wenshao.dal.thriftgen.Banner _iter59 : struct.success)
             {
-              _iter51.write(oprot);
+              _iter59.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -5256,9 +5256,9 @@ public class BannerService {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (com.wenshao.dal.thriftgen.Banner _iter52 : struct.success)
+            for (com.wenshao.dal.thriftgen.Banner _iter60 : struct.success)
             {
-              _iter52.write(oprot);
+              _iter60.write(oprot);
             }
           }
         }
@@ -5270,14 +5270,14 @@ public class BannerService {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list53 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Banner>(_list53.size);
-            com.wenshao.dal.thriftgen.Banner _elem54;
-            for (int _i55 = 0; _i55 < _list53.size; ++_i55)
+            org.apache.thrift.protocol.TList _list61 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Banner>(_list61.size);
+            com.wenshao.dal.thriftgen.Banner _elem62;
+            for (int _i63 = 0; _i63 < _list61.size; ++_i63)
             {
-              _elem54 = new com.wenshao.dal.thriftgen.Banner();
-              _elem54.read(iprot);
-              struct.success.add(_elem54);
+              _elem62 = new com.wenshao.dal.thriftgen.Banner();
+              _elem62.read(iprot);
+              struct.success.add(_elem62);
             }
           }
           struct.setSuccessIsSet(true);

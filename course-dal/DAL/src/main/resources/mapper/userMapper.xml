@@ -10,14 +10,20 @@
         SELECT *
         FROM t_user
         <where>
+            <if test="id != 0" >
+                AND user_id = #{id}
+            </if>
+            <if test="role_id != 0" >
+                AND user_role_id = #{role_id}
+            </if>
             <if test="tel != null" >
                 AND user_tel = #{tel}
             </if>
             <if test="password != null" >
                 AND user_password = #{password}
             </if>
-            <if test="id != 0" >
-                AND user_id = #{id}
+            <if test="name != null and name != '' " >
+                AND user_name = #{name}
             </if>
             <if test="queryBean != null">
                 <if test="queryBean.create_time_start_bean != 0 ">

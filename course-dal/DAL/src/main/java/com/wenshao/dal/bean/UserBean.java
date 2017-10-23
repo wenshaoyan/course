@@ -28,6 +28,7 @@ public class UserBean extends User {
         this.tel = user.tel;
         this.device_uuid = user.device_uuid;
         this.password = user.password;
+        this.role_id = user.role_id;
     }
 
     public Timestamp getCreate_time_bean() {

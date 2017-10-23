@@ -22,6 +22,8 @@ public class UserService {
 
     public java.util.List<com.wenshao.dal.thriftgen.User> userQuery(com.wenshao.dal.thriftgen.Query query) throws org.apache.thrift.TException;
 
+    public java.util.List<com.wenshao.dal.thriftgen.User> userSelectQuery(com.wenshao.dal.thriftgen.User user, com.wenshao.dal.thriftgen.Query query) throws org.apache.thrift.TException;
+
     public int roleInsert(com.wenshao.dal.thriftgen.Role role) throws org.apache.thrift.TException;
 
     public com.wenshao.dal.thriftgen.Role roleFindById(int id) throws org.apache.thrift.TException;
@@ -43,6 +45,8 @@ public class UserService {
     public void userSelect(com.wenshao.dal.thriftgen.User user, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.User>> resultHandler) throws org.apache.thrift.TException;
 
     public void userQuery(com.wenshao.dal.thriftgen.Query query, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.User>> resultHandler) throws org.apache.thrift.TException;
+
+    public void userSelectQuery(com.wenshao.dal.thriftgen.User user, com.wenshao.dal.thriftgen.Query query, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.User>> resultHandler) throws org.apache.thrift.TException;
 
     public void roleInsert(com.wenshao.dal.thriftgen.Role role, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException;
 
@@ -186,6 +190,30 @@ public class UserService {
         return result.success;
       }
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "userQuery failed: unknown result");
+    }
+
+    public java.util.List<com.wenshao.dal.thriftgen.User> userSelectQuery(com.wenshao.dal.thriftgen.User user, com.wenshao.dal.thriftgen.Query query) throws org.apache.thrift.TException
+    {
+      send_userSelectQuery(user, query);
+      return recv_userSelectQuery();
+    }
+
+    public void send_userSelectQuery(com.wenshao.dal.thriftgen.User user, com.wenshao.dal.thriftgen.Query query) throws org.apache.thrift.TException
+    {
+      userSelectQuery_args args = new userSelectQuery_args();
+      args.setUser(user);
+      args.setQuery(query);
+      sendBase("userSelectQuery", args);
+    }
+
+    public java.util.List<com.wenshao.dal.thriftgen.User> recv_userSelectQuery() throws org.apache.thrift.TException
+    {
+      userSelectQuery_result result = new userSelectQuery_result();
+      receiveBase(result, "userSelectQuery");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "userSelectQuery failed: unknown result");
     }
 
     public int roleInsert(com.wenshao.dal.thriftgen.Role role) throws org.apache.thrift.TException
@@ -454,6 +482,41 @@ public class UserService {
       }
     }
 
+    public void userSelectQuery(com.wenshao.dal.thriftgen.User user, com.wenshao.dal.thriftgen.Query query, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.User>> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      userSelectQuery_call method_call = new userSelectQuery_call(user, query, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class userSelectQuery_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<com.wenshao.dal.thriftgen.User>> {
+      private com.wenshao.dal.thriftgen.User user;
+      private com.wenshao.dal.thriftgen.Query query;
+      public userSelectQuery_call(com.wenshao.dal.thriftgen.User user, com.wenshao.dal.thriftgen.Query query, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.User>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.user = user;
+        this.query = query;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("userSelectQuery", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        userSelectQuery_args args = new userSelectQuery_args();
+        args.setUser(user);
+        args.setQuery(query);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public java.util.List<com.wenshao.dal.thriftgen.User> getResult() throws org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new java.lang.IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_userSelectQuery();
+      }
+    }
+
     public void roleInsert(com.wenshao.dal.thriftgen.Role role, org.apache.thrift.async.AsyncMethodCallback<java.lang.Integer> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       roleInsert_call method_call = new roleInsert_call(role, resultHandler, this, ___protocolFactory, ___transport);
@@ -597,6 +660,7 @@ public class UserService {
       processMap.put("userSelectAll", new userSelectAll());
       processMap.put("userSelect", new userSelect());
       processMap.put("userQuery", new userQuery());
+      processMap.put("userSelectQuery", new userSelectQuery());
       processMap.put("roleInsert", new roleInsert());
       processMap.put("roleFindById", new roleFindById());
       processMap.put("roleSelectAll", new roleSelectAll());
@@ -705,6 +769,26 @@ public class UserService {
       }
     }
 
+    public static class userSelectQuery<I extends Iface> extends org.apache.thrift.ProcessFunction<I, userSelectQuery_args> {
+      public userSelectQuery() {
+        super("userSelectQuery");
+      }
+
+      public userSelectQuery_args getEmptyArgsInstance() {
+        return new userSelectQuery_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public userSelectQuery_result getResult(I iface, userSelectQuery_args args) throws org.apache.thrift.TException {
+        userSelectQuery_result result = new userSelectQuery_result();
+        result.success = iface.userSelectQuery(args.user, args.query);
+        return result;
+      }
+    }
+
     public static class roleInsert<I extends Iface> extends org.apache.thrift.ProcessFunction<I, roleInsert_args> {
       public roleInsert() {
         super("roleInsert");
@@ -804,6 +888,7 @@ public class UserService {
       processMap.put("userSelectAll", new userSelectAll());
       processMap.put("userSelect", new userSelect());
       processMap.put("userQuery", new userQuery());
+      processMap.put("userSelectQuery", new userSelectQuery());
       processMap.put("roleInsert", new roleInsert());
       processMap.put("roleFindById", new roleFindById());
       processMap.put("roleSelectAll", new roleSelectAll());
@@ -1114,6 +1199,67 @@ public class UserService {
 
       public void start(I iface, userQuery_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.User>> resultHandler) throws org.apache.thrift.TException {
         iface.userQuery(args.query,resultHandler);
+      }
+    }
+
+    public static class userSelectQuery<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, userSelectQuery_args, java.util.List<com.wenshao.dal.thriftgen.User>> {
+      public userSelectQuery() {
+        super("userSelectQuery");
+      }
+
+      public userSelectQuery_args getEmptyArgsInstance() {
+        return new userSelectQuery_args();
+      }
+
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.User>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.User>>() { 
+          public void onComplete(java.util.List<com.wenshao.dal.thriftgen.User> o) {
+            userSelectQuery_result result = new userSelectQuery_result();
+            result.success = o;
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (java.lang.Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          public void onError(java.lang.Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            userSelectQuery_result result = new userSelectQuery_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (java.lang.Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, userSelectQuery_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<com.wenshao.dal.thriftgen.User>> resultHandler) throws org.apache.thrift.TException {
+        iface.userSelectQuery(args.user, args.query,resultHandler);
       }
     }
 
@@ -5048,6 +5194,898 @@ public class UserService {
     }
   }
 
+  public static class userSelectQuery_args implements org.apache.thrift.TBase<userSelectQuery_args, userSelectQuery_args._Fields>, java.io.Serializable, Cloneable, Comparable<userSelectQuery_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("userSelectQuery_args");
+
+    private static final org.apache.thrift.protocol.TField USER_FIELD_DESC = new org.apache.thrift.protocol.TField("user", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift.protocol.TField QUERY_FIELD_DESC = new org.apache.thrift.protocol.TField("query", org.apache.thrift.protocol.TType.STRUCT, (short)2);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new userSelectQuery_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new userSelectQuery_argsTupleSchemeFactory();
+
+    public com.wenshao.dal.thriftgen.User user; // required
+    public com.wenshao.dal.thriftgen.Query query; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      USER((short)1, "user"),
+      QUERY((short)2, "query");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // USER
+            return USER;
+          case 2: // QUERY
+            return QUERY;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.USER, new org.apache.thrift.meta_data.FieldMetaData("user", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.User.class)));
+      tmpMap.put(_Fields.QUERY, new org.apache.thrift.meta_data.FieldMetaData("query", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.Query.class)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(userSelectQuery_args.class, metaDataMap);
+    }
+
+    public userSelectQuery_args() {
+    }
+
+    public userSelectQuery_args(
+      com.wenshao.dal.thriftgen.User user,
+      com.wenshao.dal.thriftgen.Query query)
+    {
+      this();
+      this.user = user;
+      this.query = query;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public userSelectQuery_args(userSelectQuery_args other) {
+      if (other.isSetUser()) {
+        this.user = new com.wenshao.dal.thriftgen.User(other.user);
+      }
+      if (other.isSetQuery()) {
+        this.query = new com.wenshao.dal.thriftgen.Query(other.query);
+      }
+    }
+
+    public userSelectQuery_args deepCopy() {
+      return new userSelectQuery_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.user = null;
+      this.query = null;
+    }
+
+    public com.wenshao.dal.thriftgen.User getUser() {
+      return this.user;
+    }
+
+    public userSelectQuery_args setUser(com.wenshao.dal.thriftgen.User user) {
+      this.user = user;
+      return this;
+    }
+
+    public void unsetUser() {
+      this.user = null;
+    }
+
+    /** Returns true if field user is set (has been assigned a value) and false otherwise */
+    public boolean isSetUser() {
+      return this.user != null;
+    }
+
+    public void setUserIsSet(boolean value) {
+      if (!value) {
+        this.user = null;
+      }
+    }
+
+    public com.wenshao.dal.thriftgen.Query getQuery() {
+      return this.query;
+    }
+
+    public userSelectQuery_args setQuery(com.wenshao.dal.thriftgen.Query query) {
+      this.query = query;
+      return this;
+    }
+
+    public void unsetQuery() {
+      this.query = null;
+    }
+
+    /** Returns true if field query is set (has been assigned a value) and false otherwise */
+    public boolean isSetQuery() {
+      return this.query != null;
+    }
+
+    public void setQueryIsSet(boolean value) {
+      if (!value) {
+        this.query = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, java.lang.Object value) {
+      switch (field) {
+      case USER:
+        if (value == null) {
+          unsetUser();
+        } else {
+          setUser((com.wenshao.dal.thriftgen.User)value);
+        }
+        break;
+
+      case QUERY:
+        if (value == null) {
+          unsetQuery();
+        } else {
+          setQuery((com.wenshao.dal.thriftgen.Query)value);
+        }
+        break;
+
+      }
+    }
+
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case USER:
+        return getUser();
+
+      case QUERY:
+        return getQuery();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case USER:
+        return isSetUser();
+      case QUERY:
+        return isSetQuery();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof userSelectQuery_args)
+        return this.equals((userSelectQuery_args)that);
+      return false;
+    }
+
+    public boolean equals(userSelectQuery_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_user = true && this.isSetUser();
+      boolean that_present_user = true && that.isSetUser();
+      if (this_present_user || that_present_user) {
+        if (!(this_present_user && that_present_user))
+          return false;
+        if (!this.user.equals(that.user))
+          return false;
+      }
+
+      boolean this_present_query = true && this.isSetQuery();
+      boolean that_present_query = true && that.isSetQuery();
+      if (this_present_query || that_present_query) {
+        if (!(this_present_query && that_present_query))
+          return false;
+        if (!this.query.equals(that.query))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetUser()) ? 131071 : 524287);
+      if (isSetUser())
+        hashCode = hashCode * 8191 + user.hashCode();
+
+      hashCode = hashCode * 8191 + ((isSetQuery()) ? 131071 : 524287);
+      if (isSetQuery())
+        hashCode = hashCode * 8191 + query.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(userSelectQuery_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetUser()).compareTo(other.isSetUser());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetUser()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.user, other.user);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetQuery()).compareTo(other.isSetQuery());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetQuery()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.query, other.query);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("userSelectQuery_args(");
+      boolean first = true;
+
+      sb.append("user:");
+      if (this.user == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.user);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("query:");
+      if (this.query == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.query);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (user != null) {
+        user.validate();
+      }
+      if (query != null) {
+        query.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class userSelectQuery_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public userSelectQuery_argsStandardScheme getScheme() {
+        return new userSelectQuery_argsStandardScheme();
+      }
+    }
+
+    private static class userSelectQuery_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<userSelectQuery_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, userSelectQuery_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // USER
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.user = new com.wenshao.dal.thriftgen.User();
+                struct.user.read(iprot);
+                struct.setUserIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // QUERY
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.query = new com.wenshao.dal.thriftgen.Query();
+                struct.query.read(iprot);
+                struct.setQueryIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, userSelectQuery_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.user != null) {
+          oprot.writeFieldBegin(USER_FIELD_DESC);
+          struct.user.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        if (struct.query != null) {
+          oprot.writeFieldBegin(QUERY_FIELD_DESC);
+          struct.query.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class userSelectQuery_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public userSelectQuery_argsTupleScheme getScheme() {
+        return new userSelectQuery_argsTupleScheme();
+      }
+    }
+
+    private static class userSelectQuery_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<userSelectQuery_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, userSelectQuery_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetUser()) {
+          optionals.set(0);
+        }
+        if (struct.isSetQuery()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetUser()) {
+          struct.user.write(oprot);
+        }
+        if (struct.isSetQuery()) {
+          struct.query.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, userSelectQuery_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.user = new com.wenshao.dal.thriftgen.User();
+          struct.user.read(iprot);
+          struct.setUserIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.query = new com.wenshao.dal.thriftgen.Query();
+          struct.query.read(iprot);
+          struct.setQueryIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class userSelectQuery_result implements org.apache.thrift.TBase<userSelectQuery_result, userSelectQuery_result._Fields>, java.io.Serializable, Cloneable, Comparable<userSelectQuery_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("userSelectQuery_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.LIST, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new userSelectQuery_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new userSelectQuery_resultTupleSchemeFactory();
+
+    public java.util.List<com.wenshao.dal.thriftgen.User> success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.wenshao.dal.thriftgen.User.class))));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(userSelectQuery_result.class, metaDataMap);
+    }
+
+    public userSelectQuery_result() {
+    }
+
+    public userSelectQuery_result(
+      java.util.List<com.wenshao.dal.thriftgen.User> success)
+    {
+      this();
+      this.success = success;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public userSelectQuery_result(userSelectQuery_result other) {
+      if (other.isSetSuccess()) {
+        java.util.List<com.wenshao.dal.thriftgen.User> __this__success = new java.util.ArrayList<com.wenshao.dal.thriftgen.User>(other.success.size());
+        for (com.wenshao.dal.thriftgen.User other_element : other.success) {
+          __this__success.add(new com.wenshao.dal.thriftgen.User(other_element));
+        }
+        this.success = __this__success;
+      }
+    }
+
+    public userSelectQuery_result deepCopy() {
+      return new userSelectQuery_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+    }
+
+    public int getSuccessSize() {
+      return (this.success == null) ? 0 : this.success.size();
+    }
+
+    public java.util.Iterator<com.wenshao.dal.thriftgen.User> getSuccessIterator() {
+      return (this.success == null) ? null : this.success.iterator();
+    }
+
+    public void addToSuccess(com.wenshao.dal.thriftgen.User elem) {
+      if (this.success == null) {
+        this.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.User>();
+      }
+      this.success.add(elem);
+    }
+
+    public java.util.List<com.wenshao.dal.thriftgen.User> getSuccess() {
+      return this.success;
+    }
+
+    public userSelectQuery_result setSuccess(java.util.List<com.wenshao.dal.thriftgen.User> success) {
+      this.success = success;
+      return this;
+    }
+
+    public void unsetSuccess() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return this.success != null;
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, java.lang.Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((java.util.List<com.wenshao.dal.thriftgen.User>)value);
+        }
+        break;
+
+      }
+    }
+
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof userSelectQuery_result)
+        return this.equals((userSelectQuery_result)that);
+      return false;
+    }
+
+    public boolean equals(userSelectQuery_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
+      if (isSetSuccess())
+        hashCode = hashCode * 8191 + success.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(userSelectQuery_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("userSelectQuery_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class userSelectQuery_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public userSelectQuery_resultStandardScheme getScheme() {
+        return new userSelectQuery_resultStandardScheme();
+      }
+    }
+
+    private static class userSelectQuery_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<userSelectQuery_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, userSelectQuery_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list24 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.User>(_list24.size);
+                  com.wenshao.dal.thriftgen.User _elem25;
+                  for (int _i26 = 0; _i26 < _list24.size; ++_i26)
+                  {
+                    _elem25 = new com.wenshao.dal.thriftgen.User();
+                    _elem25.read(iprot);
+                    struct.success.add(_elem25);
+                  }
+                  iprot.readListEnd();
+                }
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, userSelectQuery_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.success != null) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
+            for (com.wenshao.dal.thriftgen.User _iter27 : struct.success)
+            {
+              _iter27.write(oprot);
+            }
+            oprot.writeListEnd();
+          }
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class userSelectQuery_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public userSelectQuery_resultTupleScheme getScheme() {
+        return new userSelectQuery_resultTupleScheme();
+      }
+    }
+
+    private static class userSelectQuery_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<userSelectQuery_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, userSelectQuery_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          {
+            oprot.writeI32(struct.success.size());
+            for (com.wenshao.dal.thriftgen.User _iter28 : struct.success)
+            {
+              _iter28.write(oprot);
+            }
+          }
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, userSelectQuery_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          {
+            org.apache.thrift.protocol.TList _list29 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.User>(_list29.size);
+            com.wenshao.dal.thriftgen.User _elem30;
+            for (int _i31 = 0; _i31 < _list29.size; ++_i31)
+            {
+              _elem30 = new com.wenshao.dal.thriftgen.User();
+              _elem30.read(iprot);
+              struct.success.add(_elem30);
+            }
+          }
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
   public static class roleInsert_args implements org.apache.thrift.TBase<roleInsert_args, roleInsert_args._Fields>, java.io.Serializable, Cloneable, Comparable<roleInsert_args>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("roleInsert_args");
 
@@ -7064,14 +8102,14 @@ public class UserService {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list24 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Role>(_list24.size);
-                  com.wenshao.dal.thriftgen.Role _elem25;
-                  for (int _i26 = 0; _i26 < _list24.size; ++_i26)
+                  org.apache.thrift.protocol.TList _list32 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Role>(_list32.size);
+                  com.wenshao.dal.thriftgen.Role _elem33;
+                  for (int _i34 = 0; _i34 < _list32.size; ++_i34)
                   {
-                    _elem25 = new com.wenshao.dal.thriftgen.Role();
-                    _elem25.read(iprot);
-                    struct.success.add(_elem25);
+                    _elem33 = new com.wenshao.dal.thriftgen.Role();
+                    _elem33.read(iprot);
+                    struct.success.add(_elem33);
                   }
                   iprot.readListEnd();
                 }
@@ -7099,9 +8137,9 @@ public class UserService {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (com.wenshao.dal.thriftgen.Role _iter27 : struct.success)
+            for (com.wenshao.dal.thriftgen.Role _iter35 : struct.success)
             {
-              _iter27.write(oprot);
+              _iter35.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -7132,9 +8170,9 @@ public class UserService {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (com.wenshao.dal.thriftgen.Role _iter28 : struct.success)
+            for (com.wenshao.dal.thriftgen.Role _iter36 : struct.success)
             {
-              _iter28.write(oprot);
+              _iter36.write(oprot);
             }
           }
         }
@@ -7146,14 +8184,14 @@ public class UserService {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list29 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Role>(_list29.size);
-            com.wenshao.dal.thriftgen.Role _elem30;
-            for (int _i31 = 0; _i31 < _list29.size; ++_i31)
+            org.apache.thrift.protocol.TList _list37 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Role>(_list37.size);
+            com.wenshao.dal.thriftgen.Role _elem38;
+            for (int _i39 = 0; _i39 < _list37.size; ++_i39)
             {
-              _elem30 = new com.wenshao.dal.thriftgen.Role();
-              _elem30.read(iprot);
-              struct.success.add(_elem30);
+              _elem38 = new com.wenshao.dal.thriftgen.Role();
+              _elem38.read(iprot);
+              struct.success.add(_elem38);
             }
           }
           struct.setSuccessIsSet(true);
@@ -7847,14 +8885,14 @@ public class UserService {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list32 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Role>(_list32.size);
-                  com.wenshao.dal.thriftgen.Role _elem33;
-                  for (int _i34 = 0; _i34 < _list32.size; ++_i34)
+                  org.apache.thrift.protocol.TList _list40 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Role>(_list40.size);
+                  com.wenshao.dal.thriftgen.Role _elem41;
+                  for (int _i42 = 0; _i42 < _list40.size; ++_i42)
                   {
-                    _elem33 = new com.wenshao.dal.thriftgen.Role();
-                    _elem33.read(iprot);
-                    struct.success.add(_elem33);
+                    _elem41 = new com.wenshao.dal.thriftgen.Role();
+                    _elem41.read(iprot);
+                    struct.success.add(_elem41);
                   }
                   iprot.readListEnd();
                 }
@@ -7882,9 +8920,9 @@ public class UserService {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (com.wenshao.dal.thriftgen.Role _iter35 : struct.success)
+            for (com.wenshao.dal.thriftgen.Role _iter43 : struct.success)
             {
-              _iter35.write(oprot);
+              _iter43.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -7915,9 +8953,9 @@ public class UserService {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (com.wenshao.dal.thriftgen.Role _iter36 : struct.success)
+            for (com.wenshao.dal.thriftgen.Role _iter44 : struct.success)
             {
-              _iter36.write(oprot);
+              _iter44.write(oprot);
             }
           }
         }
@@ -7929,14 +8967,14 @@ public class UserService {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list37 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Role>(_list37.size);
-            com.wenshao.dal.thriftgen.Role _elem38;
-            for (int _i39 = 0; _i39 < _list37.size; ++_i39)
+            org.apache.thrift.protocol.TList _list45 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<com.wenshao.dal.thriftgen.Role>(_list45.size);
+            com.wenshao.dal.thriftgen.Role _elem46;
+            for (int _i47 = 0; _i47 < _list45.size; ++_i47)
             {
-              _elem38 = new com.wenshao.dal.thriftgen.Role();
-              _elem38.read(iprot);
-              struct.success.add(_elem38);
+              _elem46 = new com.wenshao.dal.thriftgen.Role();
+              _elem46.read(iprot);
+              struct.success.add(_elem46);
             }
           }
           struct.setSuccessIsSet(true);

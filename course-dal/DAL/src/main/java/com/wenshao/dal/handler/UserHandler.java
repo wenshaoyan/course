@@ -103,6 +103,17 @@ public class UserHandler implements UserService.Iface {
         }
     }
 
+    @Override
+    public List<User> userSelectQuery(User user, Query query) throws TException {
+        QueryBean queryBean = new QueryBean(query);
+        UserBean paramsBean = new UserBean(user);
+        paramsBean.setQueryBean(queryBean);
+        try {
+            return query(paramsBean);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
 
     @Override
     public int roleInsert(Role role) throws TException {
