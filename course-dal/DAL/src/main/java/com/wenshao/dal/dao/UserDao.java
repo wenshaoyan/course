@@ -14,6 +14,7 @@ public interface UserDao {
     public UserBean findById(int id) throws Exception;
 
     public List<UserBean> select(UserBean userBean) throws Exception;
+    public int count(UserBean userBean) throws Exception;
     public List<UserBean> selectAll() throws Exception;
 
 

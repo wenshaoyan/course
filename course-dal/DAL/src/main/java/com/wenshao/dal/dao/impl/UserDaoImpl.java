@@ -3,6 +3,7 @@ package com.wenshao.dal.dao.impl;
 import com.wenshao.dal.bean.QueryBean;
 import com.wenshao.dal.bean.UserBean;
 import com.wenshao.dal.dao.UserDao;
+import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -53,6 +54,15 @@ public class UserDaoImpl implements UserDao {
         sqlSession.commit();
         sqlSession.close();
         return userBeans;
+    }
+
+    @Override
+    public int count(UserBean userBean) throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        int i = sqlSession.selectOne(sqlTag + ".count", userBean);
+        sqlSession.commit();
+        sqlSession.close();
+        return i;
     }
 
     @Override

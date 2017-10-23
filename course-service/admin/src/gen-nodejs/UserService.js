@@ -737,6 +737,127 @@ UserService_userSelectQuery_result.prototype.write = function(output) {
   return;
 };
 
+var UserService_userCountSelectQuery_args = function(args) {
+  this.user = null;
+  this.query = null;
+  if (args) {
+    if (args.user !== undefined && args.user !== null) {
+      this.user = new bean_ttypes.User(args.user);
+    }
+    if (args.query !== undefined && args.query !== null) {
+      this.query = new bean_ttypes.Query(args.query);
+    }
+  }
+};
+UserService_userCountSelectQuery_args.prototype = {};
+UserService_userCountSelectQuery_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.user = new bean_ttypes.User();
+        this.user.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.query = new bean_ttypes.Query();
+        this.query.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+UserService_userCountSelectQuery_args.prototype.write = function(output) {
+  output.writeStructBegin('UserService_userCountSelectQuery_args');
+  if (this.user !== null && this.user !== undefined) {
+    output.writeFieldBegin('user', Thrift.Type.STRUCT, 1);
+    this.user.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.query !== null && this.query !== undefined) {
+    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+    this.query.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var UserService_userCountSelectQuery_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = args.success;
+    }
+  }
+};
+UserService_userCountSelectQuery_result.prototype = {};
+UserService_userCountSelectQuery_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.I32) {
+        this.success = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+UserService_userCountSelectQuery_result.prototype.write = function(output) {
+  output.writeStructBegin('UserService_userCountSelectQuery_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.I32, 0);
+    output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 var UserService_roleInsert_args = function(args) {
   this.role = null;
   if (args) {
@@ -1476,6 +1597,54 @@ UserServiceClient.prototype.recv_userSelectQuery = function(input,mtype,rseqid) 
   }
   return callback('userSelectQuery failed: unknown result');
 };
+UserServiceClient.prototype.userCountSelectQuery = function(user, query, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_userCountSelectQuery(user, query);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_userCountSelectQuery(user, query);
+  }
+};
+
+UserServiceClient.prototype.send_userCountSelectQuery = function(user, query) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('userCountSelectQuery', Thrift.MessageType.CALL, this.seqid());
+  var args = new UserService_userCountSelectQuery_args();
+  args.user = user;
+  args.query = query;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+UserServiceClient.prototype.recv_userCountSelectQuery = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new UserService_userCountSelectQuery_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('userCountSelectQuery failed: unknown result');
+};
 UserServiceClient.prototype.roleInsert = function(role, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
@@ -1891,6 +2060,42 @@ UserServiceProcessor.prototype.process_userSelectQuery = function(seqid, input, 
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
         output.writeMessageBegin("userSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+UserServiceProcessor.prototype.process_userCountSelectQuery = function(seqid, input, output) {
+  var args = new UserService_userCountSelectQuery_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.userCountSelectQuery.length === 2) {
+    Q.fcall(this._handler.userCountSelectQuery, args.user, args.query)
+      .then(function(result) {
+        var result_obj = new UserService_userCountSelectQuery_result({success: result});
+        output.writeMessageBegin("userCountSelectQuery", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("userCountSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.userCountSelectQuery(args.user, args.query, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined')) {
+        result_obj = new UserService_userCountSelectQuery_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("userCountSelectQuery", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("userCountSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();

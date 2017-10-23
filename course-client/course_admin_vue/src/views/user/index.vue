@@ -23,34 +23,34 @@
       <el-checkbox class="filter-item" @change='tableKey=tableKey+1' v-model="showAuditor">显示审核人</el-checkbox>
     </div>
 
-    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 100%">
+    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row >
 
-      <el-table-column align="center" label="id" width="150px">
+      <el-table-column align="center" label="id" width="95">
         <template scope="scope">
           <span>{{scope.row.id}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="120px" align="center" label="名称">
+      <el-table-column align="center" label="名称">
         <template scope="scope">
           <span>{{scope.row.name}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="150px" align="center" label="电话">
+      <el-table-column align="center" label="电话" width="150">
         <template scope="scope">
           <span>{{scope.row.tel}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="180px" align="center" label="注册时间">
+      <el-table-column align="center" label="注册时间" width="150">
         <template scope="scope">
           <span>{{scope.row.create_time | parseTime('{y}-{m}-{d} {h}:{i}')}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="180px" align="center" label="更新时间">
+      <el-table-column align="center" label="更新时间" width="150">
         <template scope="scope">
           <span>{{scope.row.update_time | parseTime('{y}-{m}-{d} {h}:{i}')}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="180px" align="center" label="角色id">
+      <el-table-column align="center" label="角色id">
         <template scope="scope">
           <span>{{scope.row.role_id}}</span>
         </template>
@@ -59,18 +59,13 @@
 
     <div v-show="!listLoading" class="pagination-container">
       <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="listQuery.page"
-                     :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total">
+                     :page-sizes="[10,20,30, 50]" :page-size="listQuery.per_page" layout="total, sizes, prev, pager, next, jumper" :total="total">
       </el-pagination>
     </div>
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form class="small-space" :model="temp" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
-        <el-form-item label="类型">
-          <el-select class="filter-item" v-model="temp.type" placeholder="请选择">
-            <el-option v-for="item in  calendarTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" >
-            </el-option>
-          </el-select>
-        </el-form-item>
+
 
         <el-form-item label="状态">
           <el-select class="filter-item" v-model="temp.status" placeholder="请选择">
@@ -123,19 +118,6 @@
   import waves from '@/directive/waves/index.js' // 水波纹指令
   import { parseTime } from '@/utils'
 
-  const calendarTypeOptions = [
-    { key: 'CN', display_name: '中国' },
-    { key: 'US', display_name: '美国' },
-    { key: 'JP', display_name: '日本' },
-    { key: 'EU', display_name: '欧元区' }
-  ]
-
-  // arr to obj
-  const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
-    acc[cur.key] = cur.display_name
-    return acc
-  }, {})
-
   export default {
     name: 'table_demo',
     directives: {
@@ -168,7 +150,6 @@
           status: 'published'
         },
         importanceOptions: [1, 2, 3],
-        calendarTypeOptions,
         sortOptions: [
           { label: '按ID升序', key: '+user_id' },
           { label: '按ID降序', key: '-user_id' },
@@ -198,9 +179,6 @@
           deleted: 'danger'
         }
         return statusMap[status]
-      },
-      typeFilter(type) {
-        return calendarTypeKeyValue[type]
       }
     },
     created() {
@@ -226,8 +204,8 @@
       getList() {
         this.listLoading = true
         userQuery(this.listQuery).then(data => {
-          this.list = data
-          this.total = data.length
+          this.list = data.list
+          this.total = data.count
           this.listLoading = false
         }).catch(e => {
           this.listLoading = false
@@ -239,19 +217,16 @@
         })
       },
       handleSearch() {
+        this.listQuery.page = 1
         this.getList()
       },
-      handleFilter() {
-        // this.listQuery.page = 1
-        // this.getList()
-      },
       handleSizeChange(val) {
-        // this.listQuery.limit = val
-        // this.getList()
+        this.listQuery.per_page = val
+        this.getList()
       },
       handleCurrentChange(val) {
-        // this.listQuery.page = val
-        // this.getList()
+        this.listQuery.page = val
+        this.getList()
       },
       timeFilter(time) {
         if (!time[0]) {

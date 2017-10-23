@@ -41,7 +41,6 @@ public class UserHandler implements UserService.Iface {
             users.add((User) bean);
         }
         return users;
-
     }
     @Override
     public int userInsert(User user) throws TException {
@@ -50,6 +49,8 @@ public class UserHandler implements UserService.Iface {
         long time = date.getTime();
         try {
             userBean.setCreate_time(String.valueOf(time));
+            userBean.setUpdate_time(String.valueOf(time));
+            userBean.setRegister_time(String.valueOf(time));
             return userDao.insert(userBean);
         } catch (Exception e) {
             throw new TException(e);
@@ -110,6 +111,18 @@ public class UserHandler implements UserService.Iface {
         paramsBean.setQueryBean(queryBean);
         try {
             return query(paramsBean);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
+
+    @Override
+    public int userCountSelectQuery(User user, Query query) throws TException {
+        QueryBean queryBean = new QueryBean(query);
+        UserBean paramsBean = new UserBean(user);
+        paramsBean.setQueryBean(queryBean);
+        try {
+            return userDao.count(paramsBean);
         } catch (Exception e) {
             throw new TException(e);
         }

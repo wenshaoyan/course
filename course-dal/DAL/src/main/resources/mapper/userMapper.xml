@@ -4,11 +4,17 @@
     <insert id="insertUser" parameterType="_UserBean" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_user(user_name,user_head,user_password,user_tel,user_device_uuid,user_register_time,
         user_create_time,user_update_time,user_role_id)
-        VALUES(#{name},#{head},#{password},#{tel},#{device_uuid},#{register_time},#{create_time},#{update_time},#{role_id});
+        VALUES(#{name},#{head},#{password},#{tel},#{device_uuid},#{register_time_bean},#{create_time_bean},#{update_time_bean},#{role_id});
     </insert>
-    <select id="select" parameterType="_UserBean" resultMap="userResult">
+    <sql id="select_list">
         SELECT *
         FROM t_user
+    </sql>
+    <sql id="select_count">
+        SELECT count(*)
+        FROM t_user
+    </sql>
+    <sql id="condition">
         <where>
             <if test="id != 0" >
                 AND user_id = #{id}
@@ -39,19 +45,29 @@
                     AND UNIX_TIMESTAMP(t_user.user_update_time)>#{queryBean.update_time_end_bean}
                 </if>
             </if>
-
         </where>
-        <if test="queryBean != null">
-            <if test="queryBean.OrderByClause != null">
-                ORDER BY ${queryBean.OrderByClause}
-            </if>
-            <if test="queryBean.limit != 0">
-                LIMIT ${queryBean.offset} ,${queryBean.limit}
-            </if>
-        </if>
+    </sql>
+    <sql id="order">
+        <if test="queryBean != null and queryBean.OrderByClause != null">
+          ORDER BY ${queryBean.OrderByClause}
 
+        </if>
+    </sql>
+    <sql id="limit">
+        <if test="queryBean != null and queryBean.limit != 0">
+            LIMIT ${queryBean.offset} ,${queryBean.limit}
+        </if>
+    </sql>
+    <select id="select" parameterType="_UserBean" resultMap="userResult">
+        <include refid="select_list"/>
+        <include refid="condition"/>
+        <include refid="order"/>
+        <include refid="limit"/>
     </select>
-    
+    <select id="count" parameterType="_UserBean" resultType="java.lang.Integer">
+        <include refid="select_count"/>
+        <include refid="condition"/>
+    </select>
     <resultMap id="userResult" type="_UserBean">
         <id property="id" column="user_id"/>
         <result property="tel" column="user_tel"/>

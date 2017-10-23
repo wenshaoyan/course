@@ -9,6 +9,7 @@ service UserService{
     list<bean.User> userSelect(1: bean.User user)
     list<bean.User> userQuery(1: bean.Query query)
     list<bean.User> userSelectQuery(1: bean.User user,2: bean.Query query)
+    i32 userCountSelectQuery(1: bean.User user,2: bean.Query query)
 
     i32 roleInsert(1: bean.Role role),
     bean.Role roleFindById(1: i32 id),
