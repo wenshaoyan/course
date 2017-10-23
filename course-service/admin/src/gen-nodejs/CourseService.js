@@ -494,19 +494,19 @@ CourseService_courseSelectAll_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size88 = 0;
-        var _rtmp392;
+        var _size96 = 0;
+        var _rtmp3100;
         this.success = [];
-        var _etype91 = 0;
-        _rtmp392 = input.readListBegin();
-        _etype91 = _rtmp392.etype;
-        _size88 = _rtmp392.size;
-        for (var _i93 = 0; _i93 < _size88; ++_i93)
+        var _etype99 = 0;
+        _rtmp3100 = input.readListBegin();
+        _etype99 = _rtmp3100.etype;
+        _size96 = _rtmp3100.size;
+        for (var _i101 = 0; _i101 < _size96; ++_i101)
         {
-          var elem94 = null;
-          elem94 = new bean_ttypes.Course();
-          elem94.read(input);
-          this.success.push(elem94);
+          var elem102 = null;
+          elem102 = new bean_ttypes.Course();
+          elem102.read(input);
+          this.success.push(elem102);
         }
         input.readListEnd();
       } else {
@@ -530,12 +530,12 @@ CourseService_courseSelectAll_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter95 in this.success)
+    for (var iter103 in this.success)
     {
-      if (this.success.hasOwnProperty(iter95))
+      if (this.success.hasOwnProperty(iter103))
       {
-        iter95 = this.success[iter95];
-        iter95.write(output);
+        iter103 = this.success[iter103];
+        iter103.write(output);
       }
     }
     output.writeListEnd();
@@ -624,19 +624,19 @@ CourseService_courseSelect_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size96 = 0;
-        var _rtmp3100;
+        var _size104 = 0;
+        var _rtmp3108;
         this.success = [];
-        var _etype99 = 0;
-        _rtmp3100 = input.readListBegin();
-        _etype99 = _rtmp3100.etype;
-        _size96 = _rtmp3100.size;
-        for (var _i101 = 0; _i101 < _size96; ++_i101)
+        var _etype107 = 0;
+        _rtmp3108 = input.readListBegin();
+        _etype107 = _rtmp3108.etype;
+        _size104 = _rtmp3108.size;
+        for (var _i109 = 0; _i109 < _size104; ++_i109)
         {
-          var elem102 = null;
-          elem102 = new bean_ttypes.Course();
-          elem102.read(input);
-          this.success.push(elem102);
+          var elem110 = null;
+          elem110 = new bean_ttypes.Course();
+          elem110.read(input);
+          this.success.push(elem110);
         }
         input.readListEnd();
       } else {
@@ -660,12 +660,12 @@ CourseService_courseSelect_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter103 in this.success)
+    for (var iter111 in this.success)
     {
-      if (this.success.hasOwnProperty(iter103))
+      if (this.success.hasOwnProperty(iter111))
       {
-        iter103 = this.success[iter103];
-        iter103.write(output);
+        iter111 = this.success[iter111];
+        iter111.write(output);
       }
     }
     output.writeListEnd();
@@ -1155,19 +1155,19 @@ CourseService_videoSelectAll_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size104 = 0;
-        var _rtmp3108;
+        var _size112 = 0;
+        var _rtmp3116;
         this.success = [];
-        var _etype107 = 0;
-        _rtmp3108 = input.readListBegin();
-        _etype107 = _rtmp3108.etype;
-        _size104 = _rtmp3108.size;
-        for (var _i109 = 0; _i109 < _size104; ++_i109)
+        var _etype115 = 0;
+        _rtmp3116 = input.readListBegin();
+        _etype115 = _rtmp3116.etype;
+        _size112 = _rtmp3116.size;
+        for (var _i117 = 0; _i117 < _size112; ++_i117)
         {
-          var elem110 = null;
-          elem110 = new bean_ttypes.Video();
-          elem110.read(input);
-          this.success.push(elem110);
+          var elem118 = null;
+          elem118 = new bean_ttypes.Video();
+          elem118.read(input);
+          this.success.push(elem118);
         }
         input.readListEnd();
       } else {
@@ -1191,12 +1191,12 @@ CourseService_videoSelectAll_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter111 in this.success)
+    for (var iter119 in this.success)
     {
-      if (this.success.hasOwnProperty(iter111))
+      if (this.success.hasOwnProperty(iter119))
       {
-        iter111 = this.success[iter111];
-        iter111.write(output);
+        iter119 = this.success[iter119];
+        iter119.write(output);
       }
     }
     output.writeListEnd();
@@ -1285,19 +1285,19 @@ CourseService_videoSelect_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size112 = 0;
-        var _rtmp3116;
+        var _size120 = 0;
+        var _rtmp3124;
         this.success = [];
-        var _etype115 = 0;
-        _rtmp3116 = input.readListBegin();
-        _etype115 = _rtmp3116.etype;
-        _size112 = _rtmp3116.size;
-        for (var _i117 = 0; _i117 < _size112; ++_i117)
+        var _etype123 = 0;
+        _rtmp3124 = input.readListBegin();
+        _etype123 = _rtmp3124.etype;
+        _size120 = _rtmp3124.size;
+        for (var _i125 = 0; _i125 < _size120; ++_i125)
         {
-          var elem118 = null;
-          elem118 = new bean_ttypes.Video();
-          elem118.read(input);
-          this.success.push(elem118);
+          var elem126 = null;
+          elem126 = new bean_ttypes.Video();
+          elem126.read(input);
+          this.success.push(elem126);
         }
         input.readListEnd();
       } else {
@@ -1321,12 +1321,12 @@ CourseService_videoSelect_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter119 in this.success)
+    for (var iter127 in this.success)
     {
-      if (this.success.hasOwnProperty(iter119))
+      if (this.success.hasOwnProperty(iter127))
       {
-        iter119 = this.success[iter119];
-        iter119.write(output);
+        iter127 = this.success[iter127];
+        iter127.write(output);
       }
     }
     output.writeListEnd();

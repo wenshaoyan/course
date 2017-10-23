@@ -11,7 +11,7 @@ const routerI = require('../middleware/router_interceptor');
 const AdminSchema = require('../schema/admin_schema');
 const apiName = '/';
 
-router.use(async(ctx, next) => {
+router.use(async (ctx, next) => {
     const myServer = getThriftServer(`'${userService}'`);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
@@ -23,19 +23,20 @@ router.use(async(ctx, next) => {
 router.get(`${apiName}`, routerI({
     key: "user_query",
     schema: AdminSchema.user_query
-}), async(ctx, next) => {
+}), async (ctx, next) => {
     const client = getThriftServer(`'${userService}'`).getClient();
-    const user = new bean_types.User();
     const params = ctx.query;
-    user.tel = params.tel;
-    user.id = params.id;
-    user.name = params.name;
+    const user = new bean_types.User(params);
     const query = new bean_types.Query(params);
     try {
-        const userResult = await client.userQuery(query);
+        console.log(user);
+        const userResult = await client.userSelectQuery(user, query);
+        userResult.map(value => {
+            value.head = getServiceConfig().publicServer + value.head;
+            return value;
+        });
         const roleResult = await client.roleSelectAll();
-
-
+        ctx.body = userResult;
     } catch (e) {
         ctx.error = e;
     }
@@ -74,7 +75,7 @@ router.post(apiName, routerI({
         ctx.error = e;
     }
 });
-router.get('test', async(ctx, next) => {
+router.get('test', async (ctx, next) => {
     logger.info(ctx, ctx.userInfo);
 });
 

@@ -17,10 +17,10 @@ const query = {
 };
 const extend = function (d1, d2) {
     const obj = {};
-    for (let k in d2){
+    for (let k in d2) {
         obj[k] = d2[k];
     }
-    for (let k in d1){
+    for (let k in d1) {
         obj[k] = d1[k];
     }
     return obj;
@@ -30,9 +30,9 @@ module.exports = {
         "type": "object",
         "properties": extend({
             "tel": schema_public.tel,
-            "id": schema_public.string225,
-            "name": schema_public.idString
-        },query)
+            "id": schema_public.idString,
+            "name": schema_public.string225
+        }, query)
     },
     "user_insert": {
         "type": "object",
