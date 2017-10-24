@@ -30,11 +30,9 @@ router.get(`${apiName}`, routerI({
     const query = new bean_types.Query(params);
     try {
         let userResult = [];
-        console.log(query)
         // 查询满足条件的记录列表
         const i = await client.userCountSelectQuery(user, query);
         if (i !== 0) userResult = await client.userSelectQuery(user, query);
-
         userResult.map(value => {
             value.head = getServiceConfig().publicServer + value.head;
             return value;
