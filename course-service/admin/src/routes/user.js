@@ -30,15 +30,20 @@ router.get(`${apiName}`, routerI({
     const query = new bean_types.Query(params);
     try {
         let userResult = [];
-        // 查询满足条件的记录列表
-        const i = await client.userCountSelectQuery(user, query);
-        if (i !== 0) userResult = await client.userSelectQuery(user, query);
+        let count = undefined;
+        if (params.action === 'search') {   // 搜索动作 请求总条数
+            // 查询满足条件的记录列表
+            count = await client.userCountSelectQuery(user, query);
+            if (count !== 0) userResult = await client.userSelectQuery(user, query);
+        } else {    // 翻页动作 不请求总条数
+            userResult = await client.userSelectQuery(user, query);
+        }
         userResult.map(value => {
             value.head = getServiceConfig().publicServer + value.head;
             return value;
         });
-        const roleResult = await client.roleSelectAll();
-        ctx.body = {list: userResult, count: i};
+
+        ctx.body = {list: userResult, count: count};
     } catch (e) {
         ctx.error = e;
     }

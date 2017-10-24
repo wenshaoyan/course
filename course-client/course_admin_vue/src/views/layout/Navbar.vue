@@ -7,7 +7,7 @@
 		<screenfull class='screenfull'></screenfull>
 		<el-dropdown class="avatar-container" trigger="click">
 			<div class="avatar-wrapper">
-				<img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'">
+				<img class="user-avatar" :src="head">
 				<i class="el-icon-caret-bottom"></i>
 			</div>
 			<el-dropdown-menu class="user-dropdown" slot="dropdown">
@@ -46,8 +46,12 @@ export default {
   },
   data() {
     return {
-      log: errLogStore.state.errLog
+      log: errLogStore.state.errLog,
+      head: ''
     }
+  },
+  created() {
+    this.initData()
   },
   computed: {
     ...mapGetters([
@@ -57,6 +61,9 @@ export default {
     ])
   },
   methods: {
+    initData() {
+      this.head = this.$store.state.user.head
+    },
     toggleSideBar() {
       this.$store.dispatch('ToggleSideBar')
     },

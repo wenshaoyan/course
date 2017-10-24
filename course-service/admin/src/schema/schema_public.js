@@ -110,6 +110,9 @@ const publicUtil = {
     },
     order: {
         "enum": ["asc", "desc"],
+    },
+    action:{
+        "enum": ["paging", "search"],
     }
 
 };
