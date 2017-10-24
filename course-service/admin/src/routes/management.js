@@ -61,7 +61,6 @@ router.get(`${apiName}login`, routerI({
 });
 // 通过tokenid取用户信息
 router.get(`${apiName}token`, async(ctx, next) => {
-    console.log(ctx.header);
     if (NODE_ENV === 'develop'){
         ctx.body = {
             "id": 10095,

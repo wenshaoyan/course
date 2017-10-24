@@ -28,7 +28,7 @@ app.use(router_log());
 
 app.use(response({
     jsonFile:errorSource,
-    successLog:getLogger('resSuccess'),
+    //successLog:getLogger('resSuccess'),
     failLog:getLogger('resFail')
 }));
 

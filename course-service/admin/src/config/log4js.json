@@ -29,6 +29,6 @@
     "default": { "appenders": ["console"], "level":"trace" },
     "router":{"appenders":["console","router"],"level":"trace"},
     "zookeeper":{"appenders":["console","zookeeper"],"level":"trace"},
-    "thrift":{"appenders":["console","thrift"],"level":"trace"}
+    "thrift":{"appenders":["thrift"],"level":"trace"}
   }
 }

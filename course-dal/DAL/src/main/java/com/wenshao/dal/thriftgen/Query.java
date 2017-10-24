@@ -23,14 +23,14 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new QueryStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new QueryTupleSchemeFactory();
 
-  public java.lang.String create_time_start; // required
-  public java.lang.String create_time_end; // required
-  public java.lang.String update_time_start; // required
-  public java.lang.String update_time_end; // required
+  public String create_time_start; // required
+  public String create_time_end; // required
+  public String update_time_start; // required
+  public String update_time_end; // required
   public int page; // required
   public int per_page; // required
-  public java.lang.String sortBy; // required
-  public java.lang.String order; // required
+  public String sortBy; // required
+  public String order; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -43,7 +43,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
     SORT_BY((short)7, "sortBy"),
     ORDER((short)8, "order");
 
-    private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+    private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
     static {
       for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -83,21 +83,21 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
      */
     public static _Fields findByThriftIdOrThrow(int fieldId) {
       _Fields fields = findByThriftId(fieldId);
-      if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+      if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
       return fields;
     }
 
     /**
      * Find the _Fields constant that matches name, or null if its not found.
      */
-    public static _Fields findByName(java.lang.String name) {
+    public static _Fields findByName(String name) {
       return byName.get(name);
     }
 
     private final short _thriftId;
-    private final java.lang.String _fieldName;
+    private final String _fieldName;
 
-    _Fields(short thriftId, java.lang.String fieldName) {
+    _Fields(short thriftId, String fieldName) {
       _thriftId = thriftId;
       _fieldName = fieldName;
     }
@@ -106,7 +106,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
       return _thriftId;
     }
 
-    public java.lang.String getFieldName() {
+    public String getFieldName() {
       return _fieldName;
     }
   }
@@ -142,14 +142,14 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
   }
 
   public Query(
-    java.lang.String create_time_start,
-    java.lang.String create_time_end,
-    java.lang.String update_time_start,
-    java.lang.String update_time_end,
+    String create_time_start,
+    String create_time_end,
+    String update_time_start,
+    String update_time_end,
     int page,
     int per_page,
-    java.lang.String sortBy,
-    java.lang.String order)
+    String sortBy,
+    String order)
   {
     this();
     this.create_time_start = create_time_start;
@@ -209,11 +209,11 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
     this.order = null;
   }
 
-  public java.lang.String getCreate_time_start() {
+  public String getCreate_time_start() {
     return this.create_time_start;
   }
 
-  public Query setCreate_time_start(java.lang.String create_time_start) {
+  public Query setCreate_time_start(String create_time_start) {
     this.create_time_start = create_time_start;
     return this;
   }
@@ -233,11 +233,11 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
     }
   }
 
-  public java.lang.String getCreate_time_end() {
+  public String getCreate_time_end() {
     return this.create_time_end;
   }
 
-  public Query setCreate_time_end(java.lang.String create_time_end) {
+  public Query setCreate_time_end(String create_time_end) {
     this.create_time_end = create_time_end;
     return this;
   }
@@ -257,11 +257,11 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
     }
   }
 
-  public java.lang.String getUpdate_time_start() {
+  public String getUpdate_time_start() {
     return this.update_time_start;
   }
 
-  public Query setUpdate_time_start(java.lang.String update_time_start) {
+  public Query setUpdate_time_start(String update_time_start) {
     this.update_time_start = update_time_start;
     return this;
   }
@@ -281,11 +281,11 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
     }
   }
 
-  public java.lang.String getUpdate_time_end() {
+  public String getUpdate_time_end() {
     return this.update_time_end;
   }
 
-  public Query setUpdate_time_end(java.lang.String update_time_end) {
+  public Query setUpdate_time_end(String update_time_end) {
     this.update_time_end = update_time_end;
     return this;
   }
@@ -351,11 +351,11 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
     __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __PER_PAGE_ISSET_ID, value);
   }
 
-  public java.lang.String getSortBy() {
+  public String getSortBy() {
     return this.sortBy;
   }
 
-  public Query setSortBy(java.lang.String sortBy) {
+  public Query setSortBy(String sortBy) {
     this.sortBy = sortBy;
     return this;
   }
@@ -375,11 +375,11 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
     }
   }
 
-  public java.lang.String getOrder() {
+  public String getOrder() {
     return this.order;
   }
 
-  public Query setOrder(java.lang.String order) {
+  public Query setOrder(String order) {
     this.order = order;
     return this;
   }
@@ -399,13 +399,13 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
     }
   }
 
-  public void setFieldValue(_Fields field, java.lang.Object value) {
+  public void setFieldValue(_Fields field, Object value) {
     switch (field) {
     case CREATE_TIME_START:
       if (value == null) {
         unsetCreate_time_start();
       } else {
-        setCreate_time_start((java.lang.String)value);
+        setCreate_time_start((String)value);
       }
       break;
 
@@ -413,7 +413,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
       if (value == null) {
         unsetCreate_time_end();
       } else {
-        setCreate_time_end((java.lang.String)value);
+        setCreate_time_end((String)value);
       }
       break;
 
@@ -421,7 +421,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
       if (value == null) {
         unsetUpdate_time_start();
       } else {
-        setUpdate_time_start((java.lang.String)value);
+        setUpdate_time_start((String)value);
       }
       break;
 
@@ -429,7 +429,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
       if (value == null) {
         unsetUpdate_time_end();
       } else {
-        setUpdate_time_end((java.lang.String)value);
+        setUpdate_time_end((String)value);
       }
       break;
 
@@ -437,7 +437,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
       if (value == null) {
         unsetPage();
       } else {
-        setPage((java.lang.Integer)value);
+        setPage((Integer)value);
       }
       break;
 
@@ -445,7 +445,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
       if (value == null) {
         unsetPer_page();
       } else {
-        setPer_page((java.lang.Integer)value);
+        setPer_page((Integer)value);
       }
       break;
 
@@ -453,7 +453,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
       if (value == null) {
         unsetSortBy();
       } else {
-        setSortBy((java.lang.String)value);
+        setSortBy((String)value);
       }
       break;
 
@@ -461,14 +461,14 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
       if (value == null) {
         unsetOrder();
       } else {
-        setOrder((java.lang.String)value);
+        setOrder((String)value);
       }
       break;
 
     }
   }
 
-  public java.lang.Object getFieldValue(_Fields field) {
+  public Object getFieldValue(_Fields field) {
     switch (field) {
     case CREATE_TIME_START:
       return getCreate_time_start();
@@ -495,13 +495,13 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
       return getOrder();
 
     }
-    throw new java.lang.IllegalStateException();
+    throw new IllegalStateException();
   }
 
   /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
   public boolean isSet(_Fields field) {
     if (field == null) {
-      throw new java.lang.IllegalArgumentException();
+      throw new IllegalArgumentException();
     }
 
     switch (field) {
@@ -522,11 +522,11 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
     case ORDER:
       return isSetOrder();
     }
-    throw new java.lang.IllegalStateException();
+    throw new IllegalStateException();
   }
 
   @Override
-  public boolean equals(java.lang.Object that) {
+  public boolean equals(Object that) {
     if (that == null)
       return false;
     if (that instanceof Query)
@@ -658,7 +658,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
 
     int lastComparison = 0;
 
-    lastComparison = java.lang.Boolean.valueOf(isSetCreate_time_start()).compareTo(other.isSetCreate_time_start());
+    lastComparison = Boolean.valueOf(isSetCreate_time_start()).compareTo(other.isSetCreate_time_start());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -668,7 +668,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetCreate_time_end()).compareTo(other.isSetCreate_time_end());
+    lastComparison = Boolean.valueOf(isSetCreate_time_end()).compareTo(other.isSetCreate_time_end());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -678,7 +678,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetUpdate_time_start()).compareTo(other.isSetUpdate_time_start());
+    lastComparison = Boolean.valueOf(isSetUpdate_time_start()).compareTo(other.isSetUpdate_time_start());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -688,7 +688,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetUpdate_time_end()).compareTo(other.isSetUpdate_time_end());
+    lastComparison = Boolean.valueOf(isSetUpdate_time_end()).compareTo(other.isSetUpdate_time_end());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -698,7 +698,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetPage()).compareTo(other.isSetPage());
+    lastComparison = Boolean.valueOf(isSetPage()).compareTo(other.isSetPage());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -708,7 +708,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetPer_page()).compareTo(other.isSetPer_page());
+    lastComparison = Boolean.valueOf(isSetPer_page()).compareTo(other.isSetPer_page());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -718,7 +718,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetSortBy()).compareTo(other.isSetSortBy());
+    lastComparison = Boolean.valueOf(isSetSortBy()).compareTo(other.isSetSortBy());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -728,7 +728,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetOrder()).compareTo(other.isSetOrder());
+    lastComparison = Boolean.valueOf(isSetOrder()).compareTo(other.isSetOrder());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -754,8 +754,8 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
   }
 
   @Override
-  public java.lang.String toString() {
-    java.lang.StringBuilder sb = new java.lang.StringBuilder("Query(");
+  public String toString() {
+    StringBuilder sb = new StringBuilder("Query(");
     boolean first = true;
 
     sb.append("create_time_start:");
@@ -830,7 +830,7 @@ public class Query implements org.apache.thrift.TBase<Query, Query._Fields>, jav
     }
   }
 
-  private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+  private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
     try {
       // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
       __isset_bitfield = 0;

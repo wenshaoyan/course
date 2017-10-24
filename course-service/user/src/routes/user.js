@@ -64,10 +64,11 @@ router.post(apiName, routerI({
     const queryUser = new bean_types.User();
     const params = ctx.request.body;
     user.name = params.name;
-    user.head = "head";
+    user.head = '/head/0130391F45572E36CC55343619A1D84A02D00E-0E65-4211-D270-4C6CB4071F28.png';
     user.tel = params.tel;
     user.device_uuid = params.device_uuid;
     user.password = params.password;
+    user.role_id = 100;
 
     queryUser.tel = user.tel;
     const client = userServer.getClient();
