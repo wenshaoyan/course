@@ -13,7 +13,6 @@ public class QueryBean extends Query {
     private int update_time_start_bean;
     private int update_time_end_bean;
     private int offset;
-    private int limit;
 
     public QueryBean() {
 
@@ -26,12 +25,12 @@ public class QueryBean extends Query {
         this.setUpdate_time_start_bean(stringToInt(query.update_time_start));
         this.setUpdate_time_end_bean(stringToInt(query.update_time_end));
         this.page = query.page;
-        this.per_page = query.per_page;
-        this.sortBy = query.sortBy;
+        this.limit = query.limit;
+        this.sort_by = query.sort_by;
         this.order = query.order;
         String temp = null;
-        if (this.sortBy != null) {
-            temp = "" + this.sortBy;
+        if (this.sort_by != null) {
+            temp = "" + this.sort_by;
         }
         if (temp != null) {
             if (this.order == null || "asc".equals(this.order)) {
@@ -40,8 +39,7 @@ public class QueryBean extends Query {
                 this.setOrderByClause(temp+" DESC");
             }
         }
-        if (query.page > 0) this.offset = (query.page - 1) * query.per_page;
-        this.limit = query.per_page;
+        if (query.page > 0) this.offset = (query.page - 1) * query.limit;
     }
 
     public String getOrderByClause() {
@@ -96,11 +94,4 @@ public class QueryBean extends Query {
         this.offset = offset;
     }
 
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
 }

@@ -78,7 +78,7 @@ struct Query{
     3:string update_time_start,
     4:string update_time_end,
     5:i32 page,
-    6:i32 per_page,
-    7:string sortBy,
+    6:i32 limit,
+    7:string sort_by,
     8:string order
 }
