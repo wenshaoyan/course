@@ -56,7 +56,7 @@
 
     <div v-show="!listLoading" class="pagination-container">
       <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="bindPage"
-                     :page-sizes="[10,20,30, 50]" :page-size="listQuery.per_page" layout="total, sizes, prev, pager, next, jumper" :total="total">
+                     :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total">
       </el-pagination>
     </div>
 
@@ -82,11 +82,11 @@
         listLoading: true,
         listQuery: {
           page: 1,
-          per_page: 10,
+          limit: 10,
           name: undefined,
           id: undefined,
           role_id: undefined,
-          sortBy: 'user_create_time',
+          sort_by: 'user_create_time',
           order: 'desc',
           type: undefined,
           sort: '-user_create_time',
@@ -122,10 +122,10 @@
         const sort = this.listQuery.sort
         if (sort[0] === '+') {
           this.listQuery.order = 'asc'
-          this.listQuery.sortBy = sort.slice(1, sort.length)
+          this.listQuery.sort_by = sort.slice(1, sort.length)
         } else if (sort[0] === '-') {
           this.listQuery.order = 'desc'
-          this.listQuery.sortBy = sort.slice(1, sort.length)
+          this.listQuery.sort_by = sort.slice(1, sort.length)
         }
       },
       getList() {
@@ -153,7 +153,7 @@
       },
       handleSizeChange(val) {
         this.listQuery.action = 'search'
-        this.listQuery.per_page = val
+        this.listQuery.limit = val
         this.listQuery.page = 1
         this.getList()
       },

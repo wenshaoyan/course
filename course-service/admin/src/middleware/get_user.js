@@ -11,35 +11,50 @@ module.exports = user;
 
 function user(opts) {
     let salt = 'wenshao';
-    return async(ctx, next) => {
+    let Unchecked = [];
+    if ('salt' in opts && typeof opts.salt === 'string') {
+        salt = opts.salt;
+    }
+    if ('Unchecked' in opts && opts.Unchecked instanceof Array) {
+        Unchecked = opts.Unchecked;
+    } else if ('Unchecked' in opts && typeof opts.Unchecked === 'string') {
+        Unchecked = [opts.Unchecked];
+    }
+    return async (ctx, next) => {
+        const url = ctx.url;
+        let isSkip = false;
+        for (let value of Unchecked) {
+            let num = url.indexOf(value);
+            if (num !== -1) {
+                isSkip = true;
+                break;
+            }
+        }
+        if (isSkip) {
+            await next();
+            return;
+        }
+        if (getEnv() === 'develop') {
+            ctx.userInfo = {id: 1, name: 'test'};
+            await next();
+            return;
+        }
         if ('user-info' in ctx.header && 'user-md5' in ctx.header) {
             const md5Result = md5(salt + ctx.header['user-info']);
             if (md5Result === ctx.header['user-md5']) {
                 try {
                     ctx.userInfo = JSON.parse(ctx.header['user-info']);
                 } catch (e) {
-                    ctx.body = {
-                        "message": "身份获取失败,请重新登录",
-                        "code": 305,
-                        "en_message": "Please again login",
-                        "errorSource": "getUser"
-                    };
-                    return;
+                    ctx.error = 'TOKEN_INFO_EXCEPTION';
                 }
-                next();
+                await next();
             } else {
-                ctx.body = {
-                    "message": "身份获取失败,请重新登录",
-                    "code": 306,
-                    "en_message": "Please again login",
-                    "errorSource": "getUser"
-                };
+                ctx.error = 'TOKEN_INVALID';
+                await next();
             }
-        } else {
-            if (global.NODE_ENV && global.NODE_ENV === 'develop'){
-                ctx.userInfo = {id:1,name:'test'};
-            }
-            next();
+        }else{
+            ctx.error = 'TOKEN_INFO_LOSE';
+            await next();
         }
     }
 }

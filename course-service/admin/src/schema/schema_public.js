@@ -99,11 +99,11 @@ const publicUtil = {
         type: "string",
         pattern: "^(0|[1-9][0-9]*)$",
     },
-    per_page: {
+    limit: {
         type: "string",
         pattern: "^[1-9][0-9]*$",
     },
-    sortby: {
+    sort_by: {
         type: "string",
         minLength: 1,
         maxLength: 100

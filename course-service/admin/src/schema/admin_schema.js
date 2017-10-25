@@ -11,8 +11,8 @@ const query = {
     "update_time_start": schema_public.idString,
     "update_time_end": schema_public.idString,
     "page": schema_public.page,
-    "per_page": schema_public.per_page,
-    "sortby": schema_public.sortby,
+    "limit": schema_public.limit,
+    "sort_by": schema_public.sort_by,
     "order": schema_public.order
 };
 const extend = function (d1, d2) {
@@ -51,5 +51,28 @@ module.exports = {
             "password": schema_public.string225,
         },
         "required": ["tel", "password"]
-    }
+    },
+    "client_query": {
+        "type": "object",
+        "properties": extend({
+            "id": schema_public.idString,
+            "package_name": schema_public.string225
+        }, query)
+    },
+    "banner_query": {
+        "type": "object",
+        "properties": extend({
+            "id": schema_public.idString,
+            "package_name": schema_public.string225
+        }, query)
+    },
+    "banner_insert": {
+        "type": "object",
+        "properties": extend({
+            "id": schema_public.idString,
+            "image_url": schema_public.string225,
+            "redirect_url":schema_public.string225,
+            "show_client_id":schema_public.num
+        }, query)
+    },
 };

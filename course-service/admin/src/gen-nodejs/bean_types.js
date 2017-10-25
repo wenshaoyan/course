@@ -1211,8 +1211,8 @@ var Query = module.exports.Query = function(args) {
   this.update_time_start = null;
   this.update_time_end = null;
   this.page = null;
-  this.per_page = null;
-  this.sortBy = null;
+  this.limit = null;
+  this.sort_by = null;
   this.order = null;
   if (args) {
     if (args.create_time_start !== undefined && args.create_time_start !== null) {
@@ -1230,11 +1230,11 @@ var Query = module.exports.Query = function(args) {
     if (args.page !== undefined && args.page !== null) {
       this.page = args.page;
     }
-    if (args.per_page !== undefined && args.per_page !== null) {
-      this.per_page = args.per_page;
+    if (args.limit !== undefined && args.limit !== null) {
+      this.limit = args.limit;
     }
-    if (args.sortBy !== undefined && args.sortBy !== null) {
-      this.sortBy = args.sortBy;
+    if (args.sort_by !== undefined && args.sort_by !== null) {
+      this.sort_by = args.sort_by;
     }
     if (args.order !== undefined && args.order !== null) {
       this.order = args.order;
@@ -1292,14 +1292,14 @@ Query.prototype.read = function(input) {
       break;
       case 6:
       if (ftype == Thrift.Type.I32) {
-        this.per_page = input.readI32();
+        this.limit = input.readI32();
       } else {
         input.skip(ftype);
       }
       break;
       case 7:
       if (ftype == Thrift.Type.STRING) {
-        this.sortBy = input.readString();
+        this.sort_by = input.readString();
       } else {
         input.skip(ftype);
       }
@@ -1347,14 +1347,14 @@ Query.prototype.write = function(output) {
     output.writeI32(this.page);
     output.writeFieldEnd();
   }
-  if (this.per_page !== null && this.per_page !== undefined) {
-    output.writeFieldBegin('per_page', Thrift.Type.I32, 6);
-    output.writeI32(this.per_page);
+  if (this.limit !== null && this.limit !== undefined) {
+    output.writeFieldBegin('limit', Thrift.Type.I32, 6);
+    output.writeI32(this.limit);
     output.writeFieldEnd();
   }
-  if (this.sortBy !== null && this.sortBy !== undefined) {
-    output.writeFieldBegin('sortBy', Thrift.Type.STRING, 7);
-    output.writeString(this.sortBy);
+  if (this.sort_by !== null && this.sort_by !== undefined) {
+    output.writeFieldBegin('sort_by', Thrift.Type.STRING, 7);
+    output.writeString(this.sort_by);
     output.writeFieldEnd();
   }
   if (this.order !== null && this.order !== undefined) {
