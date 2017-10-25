@@ -20,18 +20,18 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     @Override
-    public List<ClientBean> clientSelect(ClientBean clientBean) throws Exception {
+    public List<ClientBean> select(ClientBean clientBean) throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<ClientBean> list = sqlSession.selectList(sqlTag + ".selectClient",clientBean);
+        List<ClientBean> list = sqlSession.selectList(sqlTag + ".select",clientBean);
         sqlSession.commit();
         sqlSession.close();
         return list;
     }
 
     @Override
-    public List<ClientBean> clientSelectAll() throws Exception {
+    public List<ClientBean> selectAll() throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<ClientBean> list = sqlSession.selectList(sqlTag + ".selectClient");
+        List<ClientBean> list = sqlSession.selectList(sqlTag + ".select");
         sqlSession.commit();
         sqlSession.close();
         return list;

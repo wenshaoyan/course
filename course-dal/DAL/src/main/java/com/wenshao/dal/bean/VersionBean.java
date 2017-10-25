@@ -1,6 +1,6 @@
 package com.wenshao.dal.bean;
 
-import com.wenshao.dal.thriftgen.ClientVersion;
+import com.wenshao.dal.thriftgen.Version;
 
 import java.sql.Timestamp;
 
@@ -8,23 +8,25 @@ import java.sql.Timestamp;
  * Created by wenshao on 2017/10/8.
  * 版本管理bean对象
  */
-public class ClientVersionBean extends ClientVersion {
+public class VersionBean extends Version {
     private Timestamp create_time_bean;
     private Timestamp update_time_bean;
+    private QueryBean queryBean;
 
-    public ClientVersionBean() {
+
+    public VersionBean() {
         super();
     }
 
-    public ClientVersionBean(ClientVersion clientVersion) {
+    public VersionBean(Version version) {
         super();
-        this.id = clientVersion.id;
-        this.setCreate_time(clientVersion.create_time);
-        this.setUpdate_time(clientVersion.update_time);
-        this.version_name = clientVersion.version_name;
-        this.version_number = clientVersion.version_number;
-        this.client = clientVersion.client;
-        this.download_url = clientVersion.download_url;
+        this.id = version.id;
+        this.setCreate_time(version.create_time);
+        this.setUpdate_time(version.update_time);
+        this.version_name = version.version_name;
+        this.version_number = version.version_number;
+        this.client = version.client;
+        this.download_url = version.download_url;
     }
 
     public Timestamp getCreate_time_bean() {
@@ -46,14 +48,22 @@ public class ClientVersionBean extends ClientVersion {
     }
 
     @Override
-    public ClientVersion setCreate_time(String create_time) {
+    public Version setCreate_time(String create_time) {
         if (create_time != null) this.create_time_bean = new Timestamp(Long.parseLong(create_time));
         return super.setCreate_time(create_time);
     }
 
     @Override
-    public ClientVersion setUpdate_time(String update_time) {
+    public Version setUpdate_time(String update_time) {
         if (update_time != null) this.update_time_bean = new Timestamp(Long.parseLong(create_time));
         return super.setUpdate_time(update_time);
+    }
+
+    public QueryBean getQueryBean() {
+        return queryBean;
+    }
+
+    public void setQueryBean(QueryBean queryBean) {
+        this.queryBean = queryBean;
     }
 }

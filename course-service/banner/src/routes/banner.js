@@ -6,8 +6,8 @@ const routerI = require('../middleware/router_interceptor');
 
 const logger = getLogger();
 const apiName = 'banner';
-const bannerServiceName = getServiceConfig().dalName[0];
-const clientService = getServiceConfig().dalName[1];
+const bannerServiceName = getServiceConfig().dalName.banner;
+const clientService = getServiceConfig().dalName.clinet;
 router.use(async (ctx, next) => {
     const myServer = getThriftServer(`'${bannerServiceName}'`);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态

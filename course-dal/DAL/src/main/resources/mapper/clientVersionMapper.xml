@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.clientMapper">
-
+<mapper namespace="mapper.clientVersionMapper">
     <sql id="select_list">
-         SELECT * FROM t_client
+        SELECT *
+        FROM t_version
     </sql>
     <sql id="select_count">
         SELECT count(*)
-        FROM t_client
+        FROM t_version
     </sql>
     <sql id="condition">
         <where>
@@ -41,23 +41,5 @@
             LIMIT ${queryBean.offset} ,${queryBean.limit}
         </if>
     </sql>
-    <select id="select" parameterType="_ClientBean" resultMap="clientResult">
-        <include refid="select_list"/>
-        <include refid="condition"/>
-        <include refid="order"/>
-        <include refid="limit"/>
-    </select>
-    <select id="count" parameterType="_ClientBean" resultMap="java.lang.Integer">
-        <include refid="select_count"/>
-        <include refid="condition"/>
-    </select>
-    <resultMap id="clientResult" type="_ClientBean">
-        <id property="id" column="client_id"/>
-        <result property="create_time_bean" column="client_create_time"/>
-        <result property="update_time_bean" column="client_update_time"/>
-        <result property="name" column="client_name"/>
-        <result property="package_name" column="client_package_name"/>
-
-    </resultMap>
 
 </mapper>

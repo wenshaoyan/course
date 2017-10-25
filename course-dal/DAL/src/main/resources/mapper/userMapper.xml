@@ -50,7 +50,6 @@
     <sql id="order">
         <if test="queryBean != null and queryBean.OrderByClause != null">
           ORDER BY ${queryBean.OrderByClause}
-
         </if>
     </sql>
     <sql id="limit">

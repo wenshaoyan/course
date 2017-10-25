@@ -11,6 +11,7 @@ const user = require('./routes/user');
 const management = require('./routes/management');
 const role = require('./routes/role');
 const banner = require('./routes/banner');
+const client = require('./routes/client');
 
 const router_log = require('./middleware/router_log');
 const token = require('./middleware/token');
@@ -44,6 +45,7 @@ router.use('/user', user.routes(), user.allowedMethods());
 router.use('/management', management.routes(), management.allowedMethods());
 router.use('/role', role.routes(), role.allowedMethods());
 router.use('/banner', banner.routes(), banner.allowedMethods());
+router.use('/client', client.routes(), client.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
 // response

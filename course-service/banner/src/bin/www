@@ -79,7 +79,8 @@ let preNodeList = null;
 
 async function main() {
     try {
-        for (let name of serviceConfig.dalName) {
+        for (let key in serviceConfig.dalName) {
+            const name = serviceConfig.dalName[key]
             let parentPath = `/dal/${getEnv()}/${name}`;
 
             const connectZk = new ThriftHelp.ConnectZk(parentPath, client);

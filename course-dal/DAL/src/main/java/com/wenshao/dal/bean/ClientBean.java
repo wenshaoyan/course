@@ -1,6 +1,7 @@
 package com.wenshao.dal.bean;
 
 import com.wenshao.dal.thriftgen.ClientSide;
+import com.wenshao.dal.thriftgen.Query;
 
 import java.sql.Timestamp;
 
@@ -11,6 +12,7 @@ import java.sql.Timestamp;
 public class ClientBean extends ClientSide{
     private Timestamp create_time_bean;
     private Timestamp update_time_bean;
+    private QueryBean queryBean;
 
     public ClientBean() {
         super();
@@ -54,5 +56,11 @@ public class ClientBean extends ClientSide{
         return super.setUpdate_time(update_time);
     }
 
+    public QueryBean getQueryBean() {
+        return queryBean;
+    }
 
+    public void setQueryBean(QueryBean queryBean) {
+        this.queryBean = queryBean;
+    }
 }

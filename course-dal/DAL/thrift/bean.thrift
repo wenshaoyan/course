@@ -28,7 +28,7 @@ struct Banner{
     7:i32 show_client_id
     8:i32 location
 }
-struct ClientVersion{
+struct Version{
     1:i32 id
     2:string create_time
     3:string update_time

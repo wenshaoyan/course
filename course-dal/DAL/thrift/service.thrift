@@ -31,13 +31,19 @@ service ClientService{
     bean.ClientSide clientFindById(1: i32 id),
     list<bean.ClientSide> clientSelectAll(),
     list<bean.ClientSide> clientSelect(1: bean.ClientSide clientSide),
+    list<bean.ClientSide> clientSelectQuery(1: bean.ClientSide clientSide,2: bean.Query query),
 
-    i32 versionInsert(1: bean.ClientVersion clientVersion),
-    i32 versionUpdate(1: bean.ClientVersion clientVersion),
+    i32 versionInsert(1: bean.Version version),
+    i32 versionUpdate(1: bean.Version version),
     i32 versionRemove(1: i32 id),
-    bean.ClientVersion versionFindById(1: i32 id),
-    list<bean.ClientVersion> versionSelectAll(),
-    list<bean.ClientVersion> versionSelect(1: bean.ClientVersion clientVersion)
+    bean.Version versionFindById(1: i32 id),
+    list<bean.Version> versionSelectAll(),
+    list<bean.Version> versionSelect(1: bean.Version version),
+    list<bean.Version> versionSelectQuery(1: bean.Version version,2: bean.Query query),
+
+
+
+
 }
 service CacheService{
     void bannerPut(1: string key,2:bean.BannerList banners)

@@ -676,11 +676,155 @@ ClientService_clientSelect_result.prototype.write = function(output) {
   return;
 };
 
-var ClientService_versionInsert_args = function(args) {
-  this.clientVersion = null;
+var ClientService_clientSelectQuery_args = function(args) {
+  this.clientSide = null;
+  this.query = null;
   if (args) {
-    if (args.clientVersion !== undefined && args.clientVersion !== null) {
-      this.clientVersion = new bean_ttypes.ClientVersion(args.clientVersion);
+    if (args.clientSide !== undefined && args.clientSide !== null) {
+      this.clientSide = new bean_ttypes.ClientSide(args.clientSide);
+    }
+    if (args.query !== undefined && args.query !== null) {
+      this.query = new bean_ttypes.Query(args.query);
+    }
+  }
+};
+ClientService_clientSelectQuery_args.prototype = {};
+ClientService_clientSelectQuery_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.clientSide = new bean_ttypes.ClientSide();
+        this.clientSide.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.query = new bean_ttypes.Query();
+        this.query.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+ClientService_clientSelectQuery_args.prototype.write = function(output) {
+  output.writeStructBegin('ClientService_clientSelectQuery_args');
+  if (this.clientSide !== null && this.clientSide !== undefined) {
+    output.writeFieldBegin('clientSide', Thrift.Type.STRUCT, 1);
+    this.clientSide.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.query !== null && this.query !== undefined) {
+    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+    this.query.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var ClientService_clientSelectQuery_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [bean_ttypes.ClientSide]);
+    }
+  }
+};
+ClientService_clientSelectQuery_result.prototype = {};
+ClientService_clientSelectQuery_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size80 = 0;
+        var _rtmp384;
+        this.success = [];
+        var _etype83 = 0;
+        _rtmp384 = input.readListBegin();
+        _etype83 = _rtmp384.etype;
+        _size80 = _rtmp384.size;
+        for (var _i85 = 0; _i85 < _size80; ++_i85)
+        {
+          var elem86 = null;
+          elem86 = new bean_ttypes.ClientSide();
+          elem86.read(input);
+          this.success.push(elem86);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+ClientService_clientSelectQuery_result.prototype.write = function(output) {
+  output.writeStructBegin('ClientService_clientSelectQuery_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter87 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter87))
+      {
+        iter87 = this.success[iter87];
+        iter87.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var ClientService_versionInsert_args = function(args) {
+  this.version = null;
+  if (args) {
+    if (args.version !== undefined && args.version !== null) {
+      this.version = new bean_ttypes.Version(args.version);
     }
   }
 };
@@ -700,8 +844,8 @@ ClientService_versionInsert_args.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRUCT) {
-        this.clientVersion = new bean_ttypes.ClientVersion();
-        this.clientVersion.read(input);
+        this.version = new bean_ttypes.Version();
+        this.version.read(input);
       } else {
         input.skip(ftype);
       }
@@ -720,9 +864,9 @@ ClientService_versionInsert_args.prototype.read = function(input) {
 
 ClientService_versionInsert_args.prototype.write = function(output) {
   output.writeStructBegin('ClientService_versionInsert_args');
-  if (this.clientVersion !== null && this.clientVersion !== undefined) {
-    output.writeFieldBegin('clientVersion', Thrift.Type.STRUCT, 1);
-    this.clientVersion.write(output);
+  if (this.version !== null && this.version !== undefined) {
+    output.writeFieldBegin('version', Thrift.Type.STRUCT, 1);
+    this.version.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -784,10 +928,10 @@ ClientService_versionInsert_result.prototype.write = function(output) {
 };
 
 var ClientService_versionUpdate_args = function(args) {
-  this.clientVersion = null;
+  this.version = null;
   if (args) {
-    if (args.clientVersion !== undefined && args.clientVersion !== null) {
-      this.clientVersion = new bean_ttypes.ClientVersion(args.clientVersion);
+    if (args.version !== undefined && args.version !== null) {
+      this.version = new bean_ttypes.Version(args.version);
     }
   }
 };
@@ -807,8 +951,8 @@ ClientService_versionUpdate_args.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRUCT) {
-        this.clientVersion = new bean_ttypes.ClientVersion();
-        this.clientVersion.read(input);
+        this.version = new bean_ttypes.Version();
+        this.version.read(input);
       } else {
         input.skip(ftype);
       }
@@ -827,9 +971,9 @@ ClientService_versionUpdate_args.prototype.read = function(input) {
 
 ClientService_versionUpdate_args.prototype.write = function(output) {
   output.writeStructBegin('ClientService_versionUpdate_args');
-  if (this.clientVersion !== null && this.clientVersion !== undefined) {
-    output.writeFieldBegin('clientVersion', Thrift.Type.STRUCT, 1);
-    this.clientVersion.write(output);
+  if (this.version !== null && this.version !== undefined) {
+    output.writeFieldBegin('version', Thrift.Type.STRUCT, 1);
+    this.version.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -1053,7 +1197,7 @@ var ClientService_versionFindById_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
-      this.success = new bean_ttypes.ClientVersion(args.success);
+      this.success = new bean_ttypes.Version(args.success);
     }
   }
 };
@@ -1073,7 +1217,7 @@ ClientService_versionFindById_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.STRUCT) {
-        this.success = new bean_ttypes.ClientVersion();
+        this.success = new bean_ttypes.Version();
         this.success.read(input);
       } else {
         input.skip(ftype);
@@ -1135,142 +1279,12 @@ var ClientService_versionSelectAll_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.ClientVersion]);
+      this.success = Thrift.copyList(args.success, [bean_ttypes.Version]);
     }
   }
 };
 ClientService_versionSelectAll_result.prototype = {};
 ClientService_versionSelectAll_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size80 = 0;
-        var _rtmp384;
-        this.success = [];
-        var _etype83 = 0;
-        _rtmp384 = input.readListBegin();
-        _etype83 = _rtmp384.etype;
-        _size80 = _rtmp384.size;
-        for (var _i85 = 0; _i85 < _size80; ++_i85)
-        {
-          var elem86 = null;
-          elem86 = new bean_ttypes.ClientVersion();
-          elem86.read(input);
-          this.success.push(elem86);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-ClientService_versionSelectAll_result.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_versionSelectAll_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter87 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter87))
-      {
-        iter87 = this.success[iter87];
-        iter87.write(output);
-      }
-    }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var ClientService_versionSelect_args = function(args) {
-  this.clientVersion = null;
-  if (args) {
-    if (args.clientVersion !== undefined && args.clientVersion !== null) {
-      this.clientVersion = new bean_ttypes.ClientVersion(args.clientVersion);
-    }
-  }
-};
-ClientService_versionSelect_args.prototype = {};
-ClientService_versionSelect_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.clientVersion = new bean_ttypes.ClientVersion();
-        this.clientVersion.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-ClientService_versionSelect_args.prototype.write = function(output) {
-  output.writeStructBegin('ClientService_versionSelect_args');
-  if (this.clientVersion !== null && this.clientVersion !== undefined) {
-    output.writeFieldBegin('clientVersion', Thrift.Type.STRUCT, 1);
-    this.clientVersion.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var ClientService_versionSelect_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.ClientVersion]);
-    }
-  }
-};
-ClientService_versionSelect_result.prototype = {};
-ClientService_versionSelect_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -1295,9 +1309,139 @@ ClientService_versionSelect_result.prototype.read = function(input) {
         for (var _i93 = 0; _i93 < _size88; ++_i93)
         {
           var elem94 = null;
-          elem94 = new bean_ttypes.ClientVersion();
+          elem94 = new bean_ttypes.Version();
           elem94.read(input);
           this.success.push(elem94);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+ClientService_versionSelectAll_result.prototype.write = function(output) {
+  output.writeStructBegin('ClientService_versionSelectAll_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter95 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter95))
+      {
+        iter95 = this.success[iter95];
+        iter95.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var ClientService_versionSelect_args = function(args) {
+  this.version = null;
+  if (args) {
+    if (args.version !== undefined && args.version !== null) {
+      this.version = new bean_ttypes.Version(args.version);
+    }
+  }
+};
+ClientService_versionSelect_args.prototype = {};
+ClientService_versionSelect_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.version = new bean_ttypes.Version();
+        this.version.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+ClientService_versionSelect_args.prototype.write = function(output) {
+  output.writeStructBegin('ClientService_versionSelect_args');
+  if (this.version !== null && this.version !== undefined) {
+    output.writeFieldBegin('version', Thrift.Type.STRUCT, 1);
+    this.version.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var ClientService_versionSelect_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [bean_ttypes.Version]);
+    }
+  }
+};
+ClientService_versionSelect_result.prototype = {};
+ClientService_versionSelect_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size96 = 0;
+        var _rtmp3100;
+        this.success = [];
+        var _etype99 = 0;
+        _rtmp3100 = input.readListBegin();
+        _etype99 = _rtmp3100.etype;
+        _size96 = _rtmp3100.size;
+        for (var _i101 = 0; _i101 < _size96; ++_i101)
+        {
+          var elem102 = null;
+          elem102 = new bean_ttypes.Version();
+          elem102.read(input);
+          this.success.push(elem102);
         }
         input.readListEnd();
       } else {
@@ -1321,12 +1465,156 @@ ClientService_versionSelect_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter95 in this.success)
+    for (var iter103 in this.success)
     {
-      if (this.success.hasOwnProperty(iter95))
+      if (this.success.hasOwnProperty(iter103))
       {
-        iter95 = this.success[iter95];
-        iter95.write(output);
+        iter103 = this.success[iter103];
+        iter103.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var ClientService_versionSelectQuery_args = function(args) {
+  this.version = null;
+  this.query = null;
+  if (args) {
+    if (args.version !== undefined && args.version !== null) {
+      this.version = new bean_ttypes.Version(args.version);
+    }
+    if (args.query !== undefined && args.query !== null) {
+      this.query = new bean_ttypes.Query(args.query);
+    }
+  }
+};
+ClientService_versionSelectQuery_args.prototype = {};
+ClientService_versionSelectQuery_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.version = new bean_ttypes.Version();
+        this.version.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.query = new bean_ttypes.Query();
+        this.query.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+ClientService_versionSelectQuery_args.prototype.write = function(output) {
+  output.writeStructBegin('ClientService_versionSelectQuery_args');
+  if (this.version !== null && this.version !== undefined) {
+    output.writeFieldBegin('version', Thrift.Type.STRUCT, 1);
+    this.version.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.query !== null && this.query !== undefined) {
+    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+    this.query.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var ClientService_versionSelectQuery_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [bean_ttypes.Version]);
+    }
+  }
+};
+ClientService_versionSelectQuery_result.prototype = {};
+ClientService_versionSelectQuery_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size104 = 0;
+        var _rtmp3108;
+        this.success = [];
+        var _etype107 = 0;
+        _rtmp3108 = input.readListBegin();
+        _etype107 = _rtmp3108.etype;
+        _size104 = _rtmp3108.size;
+        for (var _i109 = 0; _i109 < _size104; ++_i109)
+        {
+          var elem110 = null;
+          elem110 = new bean_ttypes.Version();
+          elem110.read(input);
+          this.success.push(elem110);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+ClientService_versionSelectQuery_result.prototype.write = function(output) {
+  output.writeStructBegin('ClientService_versionSelectQuery_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter111 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter111))
+      {
+        iter111 = this.success[iter111];
+        iter111.write(output);
       }
     }
     output.writeListEnd();
@@ -1627,7 +1915,7 @@ ClientServiceClient.prototype.recv_clientSelect = function(input,mtype,rseqid) {
   }
   return callback('clientSelect failed: unknown result');
 };
-ClientServiceClient.prototype.versionInsert = function(clientVersion, callback) {
+ClientServiceClient.prototype.clientSelectQuery = function(clientSide, query, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1638,19 +1926,67 @@ ClientServiceClient.prototype.versionInsert = function(clientVersion, callback) 
         _defer.resolve(result);
       }
     };
-    this.send_versionInsert(clientVersion);
+    this.send_clientSelectQuery(clientSide, query);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_versionInsert(clientVersion);
+    this.send_clientSelectQuery(clientSide, query);
   }
 };
 
-ClientServiceClient.prototype.send_versionInsert = function(clientVersion) {
+ClientServiceClient.prototype.send_clientSelectQuery = function(clientSide, query) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('clientSelectQuery', Thrift.MessageType.CALL, this.seqid());
+  var args = new ClientService_clientSelectQuery_args();
+  args.clientSide = clientSide;
+  args.query = query;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+ClientServiceClient.prototype.recv_clientSelectQuery = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new ClientService_clientSelectQuery_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('clientSelectQuery failed: unknown result');
+};
+ClientServiceClient.prototype.versionInsert = function(version, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_versionInsert(version);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_versionInsert(version);
+  }
+};
+
+ClientServiceClient.prototype.send_versionInsert = function(version) {
   var output = new this.pClass(this.output);
   output.writeMessageBegin('versionInsert', Thrift.MessageType.CALL, this.seqid());
   var args = new ClientService_versionInsert_args();
-  args.clientVersion = clientVersion;
+  args.version = version;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
@@ -1674,7 +2010,7 @@ ClientServiceClient.prototype.recv_versionInsert = function(input,mtype,rseqid) 
   }
   return callback('versionInsert failed: unknown result');
 };
-ClientServiceClient.prototype.versionUpdate = function(clientVersion, callback) {
+ClientServiceClient.prototype.versionUpdate = function(version, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1685,19 +2021,19 @@ ClientServiceClient.prototype.versionUpdate = function(clientVersion, callback) 
         _defer.resolve(result);
       }
     };
-    this.send_versionUpdate(clientVersion);
+    this.send_versionUpdate(version);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_versionUpdate(clientVersion);
+    this.send_versionUpdate(version);
   }
 };
 
-ClientServiceClient.prototype.send_versionUpdate = function(clientVersion) {
+ClientServiceClient.prototype.send_versionUpdate = function(version) {
   var output = new this.pClass(this.output);
   output.writeMessageBegin('versionUpdate', Thrift.MessageType.CALL, this.seqid());
   var args = new ClientService_versionUpdate_args();
-  args.clientVersion = clientVersion;
+  args.version = version;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
@@ -1861,7 +2197,7 @@ ClientServiceClient.prototype.recv_versionSelectAll = function(input,mtype,rseqi
   }
   return callback('versionSelectAll failed: unknown result');
 };
-ClientServiceClient.prototype.versionSelect = function(clientVersion, callback) {
+ClientServiceClient.prototype.versionSelect = function(version, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1872,19 +2208,19 @@ ClientServiceClient.prototype.versionSelect = function(clientVersion, callback) 
         _defer.resolve(result);
       }
     };
-    this.send_versionSelect(clientVersion);
+    this.send_versionSelect(version);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_versionSelect(clientVersion);
+    this.send_versionSelect(version);
   }
 };
 
-ClientServiceClient.prototype.send_versionSelect = function(clientVersion) {
+ClientServiceClient.prototype.send_versionSelect = function(version) {
   var output = new this.pClass(this.output);
   output.writeMessageBegin('versionSelect', Thrift.MessageType.CALL, this.seqid());
   var args = new ClientService_versionSelect_args();
-  args.clientVersion = clientVersion;
+  args.version = version;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
@@ -1907,6 +2243,54 @@ ClientServiceClient.prototype.recv_versionSelect = function(input,mtype,rseqid) 
     return callback(null, result.success);
   }
   return callback('versionSelect failed: unknown result');
+};
+ClientServiceClient.prototype.versionSelectQuery = function(version, query, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_versionSelectQuery(version, query);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_versionSelectQuery(version, query);
+  }
+};
+
+ClientServiceClient.prototype.send_versionSelectQuery = function(version, query) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('versionSelectQuery', Thrift.MessageType.CALL, this.seqid());
+  var args = new ClientService_versionSelectQuery_args();
+  args.version = version;
+  args.query = query;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+ClientServiceClient.prototype.recv_versionSelectQuery = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new ClientService_versionSelectQuery_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('versionSelectQuery failed: unknown result');
 };
 var ClientServiceProcessor = exports.Processor = function(handler) {
   this._handler = handler;
@@ -2143,12 +2527,48 @@ ClientServiceProcessor.prototype.process_clientSelect = function(seqid, input, o
     });
   }
 };
+ClientServiceProcessor.prototype.process_clientSelectQuery = function(seqid, input, output) {
+  var args = new ClientService_clientSelectQuery_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.clientSelectQuery.length === 2) {
+    Q.fcall(this._handler.clientSelectQuery, args.clientSide, args.query)
+      .then(function(result) {
+        var result_obj = new ClientService_clientSelectQuery_result({success: result});
+        output.writeMessageBegin("clientSelectQuery", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("clientSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.clientSelectQuery(args.clientSide, args.query, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined')) {
+        result_obj = new ClientService_clientSelectQuery_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("clientSelectQuery", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("clientSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
 ClientServiceProcessor.prototype.process_versionInsert = function(seqid, input, output) {
   var args = new ClientService_versionInsert_args();
   args.read(input);
   input.readMessageEnd();
   if (this._handler.versionInsert.length === 1) {
-    Q.fcall(this._handler.versionInsert, args.clientVersion)
+    Q.fcall(this._handler.versionInsert, args.version)
       .then(function(result) {
         var result_obj = new ClientService_versionInsert_result({success: result});
         output.writeMessageBegin("versionInsert", Thrift.MessageType.REPLY, seqid);
@@ -2164,7 +2584,7 @@ ClientServiceProcessor.prototype.process_versionInsert = function(seqid, input, 
         output.flush();
       });
   } else {
-    this._handler.versionInsert(args.clientVersion, function (err, result) {
+    this._handler.versionInsert(args.version, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
         result_obj = new ClientService_versionInsert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
@@ -2184,7 +2604,7 @@ ClientServiceProcessor.prototype.process_versionUpdate = function(seqid, input, 
   args.read(input);
   input.readMessageEnd();
   if (this._handler.versionUpdate.length === 1) {
-    Q.fcall(this._handler.versionUpdate, args.clientVersion)
+    Q.fcall(this._handler.versionUpdate, args.version)
       .then(function(result) {
         var result_obj = new ClientService_versionUpdate_result({success: result});
         output.writeMessageBegin("versionUpdate", Thrift.MessageType.REPLY, seqid);
@@ -2200,7 +2620,7 @@ ClientServiceProcessor.prototype.process_versionUpdate = function(seqid, input, 
         output.flush();
       });
   } else {
-    this._handler.versionUpdate(args.clientVersion, function (err, result) {
+    this._handler.versionUpdate(args.version, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
         result_obj = new ClientService_versionUpdate_result((err !== null || typeof err === 'undefined') ? err : {success: result});
@@ -2328,7 +2748,7 @@ ClientServiceProcessor.prototype.process_versionSelect = function(seqid, input, 
   args.read(input);
   input.readMessageEnd();
   if (this._handler.versionSelect.length === 1) {
-    Q.fcall(this._handler.versionSelect, args.clientVersion)
+    Q.fcall(this._handler.versionSelect, args.version)
       .then(function(result) {
         var result_obj = new ClientService_versionSelect_result({success: result});
         output.writeMessageBegin("versionSelect", Thrift.MessageType.REPLY, seqid);
@@ -2344,7 +2764,7 @@ ClientServiceProcessor.prototype.process_versionSelect = function(seqid, input, 
         output.flush();
       });
   } else {
-    this._handler.versionSelect(args.clientVersion, function (err, result) {
+    this._handler.versionSelect(args.version, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
         result_obj = new ClientService_versionSelect_result((err !== null || typeof err === 'undefined') ? err : {success: result});
@@ -2352,6 +2772,42 @@ ClientServiceProcessor.prototype.process_versionSelect = function(seqid, input, 
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
         output.writeMessageBegin("versionSelect", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+ClientServiceProcessor.prototype.process_versionSelectQuery = function(seqid, input, output) {
+  var args = new ClientService_versionSelectQuery_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.versionSelectQuery.length === 2) {
+    Q.fcall(this._handler.versionSelectQuery, args.version, args.query)
+      .then(function(result) {
+        var result_obj = new ClientService_versionSelectQuery_result({success: result});
+        output.writeMessageBegin("versionSelectQuery", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("versionSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.versionSelectQuery(args.version, args.query, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined')) {
+        result_obj = new ClientService_versionSelectQuery_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("versionSelectQuery", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("versionSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();

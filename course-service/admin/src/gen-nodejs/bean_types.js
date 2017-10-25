@@ -481,7 +481,7 @@ Banner.prototype.write = function(output) {
   return;
 };
 
-var ClientVersion = module.exports.ClientVersion = function(args) {
+var Version = module.exports.Version = function(args) {
   this.id = null;
   this.create_time = null;
   this.update_time = null;
@@ -513,8 +513,8 @@ var ClientVersion = module.exports.ClientVersion = function(args) {
     }
   }
 };
-ClientVersion.prototype = {};
-ClientVersion.prototype.read = function(input) {
+Version.prototype = {};
+Version.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -585,8 +585,8 @@ ClientVersion.prototype.read = function(input) {
   return;
 };
 
-ClientVersion.prototype.write = function(output) {
-  output.writeStructBegin('ClientVersion');
+Version.prototype.write = function(output) {
+  output.writeStructBegin('Version');
   if (this.id !== null && this.id !== undefined) {
     output.writeFieldBegin('id', Thrift.Type.I32, 1);
     output.writeI32(this.id);

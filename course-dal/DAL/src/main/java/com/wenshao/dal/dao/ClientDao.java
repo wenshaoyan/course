@@ -9,6 +9,6 @@ import java.util.List;
  * 客户端相关操作
  */
 public interface ClientDao {
-    public List<ClientBean> clientSelect(ClientBean clientBean) throws Exception;
-    public List<ClientBean> clientSelectAll() throws Exception;
+    public List<ClientBean> select(ClientBean clientBean) throws Exception;
+    public List<ClientBean> selectAll() throws Exception;
 }

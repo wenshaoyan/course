@@ -34,7 +34,7 @@ function user(opts) {
             await next();
             return;
         }
-        if (getEnv() === 'develop') {
+        if (NODE_ENV === 'develop') {
             ctx.userInfo = {id: 1, name: 'test'};
             await next();
             return;
