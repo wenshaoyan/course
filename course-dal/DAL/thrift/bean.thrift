@@ -34,8 +34,9 @@ struct Version{
     3:string update_time
     4:string version_name
     5:string version_number
-    6:i32 client
-    7:string download_url
+    6:i32 client_id
+    7:string download_url,
+    8:string description
 
 }
 struct ClientSide{

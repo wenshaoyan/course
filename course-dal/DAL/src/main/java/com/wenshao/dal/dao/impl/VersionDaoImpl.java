@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class VersionDaoImpl implements VersionDao {
     private SqlSessionFactory sqlSessionFactory;
-    private static final String sqlTag = "mapper.clientVersionMapper";
+    private static final String sqlTag = "mapper.versionMapper";
     public VersionDaoImpl(SqlSessionFactory sqlSessionFactory){
         super();
         this.sqlSessionFactory = sqlSessionFactory;

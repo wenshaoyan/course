@@ -9,7 +9,7 @@ const apiName = 'banner';
 const bannerServiceName = getServiceConfig().dalName.banner;
 const clientService = getServiceConfig().dalName.clinet;
 router.use(async (ctx, next) => {
-    const myServer = getThriftServer(`'${bannerServiceName}'`);
+    const myServer = getThriftServer(bannerServiceName);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
@@ -21,7 +21,7 @@ router.post(apiName, routerI({
     key: "banner_insert",
     schema: banner_schema.banner_insert
 }), async (ctx, next) => {
-    const client = getThriftServer(`'${bannerServiceName}'`).getClient();
+    const client = getThriftServer(bannerServiceName).getClient();
     const banner = new bean_types.Banner();
     const params = ctx.request.body;
     SysUtil.copyObjectAttr(banner, params);
@@ -45,7 +45,7 @@ router.get(`${apiName}/:id`, routerI({
     schema: banner_schema.banner_id
 }), async (ctx, next) => {
     let id = ctx.params.id;
-    const client = getThriftServer(`'${bannerServiceName}'`).getClient();
+    const client = getThriftServer(bannerServiceName).getClient();
     try {
         ctx.body = await client.findById(id);
     } catch (e) {
@@ -58,7 +58,7 @@ router.put(`${apiName}/:id`, routerI({
 }), async (ctx, next) => {
     const id = ctx.params.id;
     const params = ctx.request.body;
-    const client = getThriftServer(`'${bannerServiceName}'`).getClient();
+    const client = getThriftServer(bannerServiceName).getClient();
     const banner = new bean_types.Banner();
     banner.image_url = params.image_url;
     banner.redirect_url = params.redirect_url;
@@ -78,7 +78,7 @@ router.delete(`${apiName}/:id`, routerI({
     key: "banner_id",
 }), async (ctx, next) => {
     let id = ctx.params.id;
-    const client = getThriftServer(`'${bannerServiceName}'`).getClient();
+    const client = getThriftServer(bannerServiceName).getClient();
     try {
         const result = await client.remove(id);
         if (result === 0) {
@@ -99,7 +99,7 @@ router.get(`${apiName}`, routerI({
     const clientSide = new bean_types.ClientSide();
     clientSide.package_name = params.package_name;
     SysUtil.copyObjectAttr(banner, params);
-    const client = getThriftServer(`'${bannerServiceName}'`).getClient();
+    const client = getThriftServer(bannerServiceName).getClient();
     const client2 = getThriftServer(`'${clientService}'`).getClient();
     try {
 

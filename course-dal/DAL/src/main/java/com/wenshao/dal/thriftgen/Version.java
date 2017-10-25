@@ -16,19 +16,21 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
   private static final org.apache.thrift.protocol.TField UPDATE_TIME_FIELD_DESC = new org.apache.thrift.protocol.TField("update_time", org.apache.thrift.protocol.TType.STRING, (short)3);
   private static final org.apache.thrift.protocol.TField VERSION_NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("version_name", org.apache.thrift.protocol.TType.STRING, (short)4);
   private static final org.apache.thrift.protocol.TField VERSION_NUMBER_FIELD_DESC = new org.apache.thrift.protocol.TField("version_number", org.apache.thrift.protocol.TType.STRING, (short)5);
-  private static final org.apache.thrift.protocol.TField CLIENT_FIELD_DESC = new org.apache.thrift.protocol.TField("client", org.apache.thrift.protocol.TType.I32, (short)6);
+  private static final org.apache.thrift.protocol.TField CLIENT_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("client_id", org.apache.thrift.protocol.TType.I32, (short)6);
   private static final org.apache.thrift.protocol.TField DOWNLOAD_URL_FIELD_DESC = new org.apache.thrift.protocol.TField("download_url", org.apache.thrift.protocol.TType.STRING, (short)7);
+  private static final org.apache.thrift.protocol.TField DESCRIPTION_FIELD_DESC = new org.apache.thrift.protocol.TField("description", org.apache.thrift.protocol.TType.STRING, (short)8);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new VersionStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new VersionTupleSchemeFactory();
 
   public int id; // required
-  public java.lang.String create_time; // required
-  public java.lang.String update_time; // required
-  public java.lang.String version_name; // required
-  public java.lang.String version_number; // required
-  public int client; // required
-  public java.lang.String download_url; // required
+  public String create_time; // required
+  public String update_time; // required
+  public String version_name; // required
+  public String version_number; // required
+  public int client_id; // required
+  public String download_url; // required
+  public String description; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -37,10 +39,11 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
     UPDATE_TIME((short)3, "update_time"),
     VERSION_NAME((short)4, "version_name"),
     VERSION_NUMBER((short)5, "version_number"),
-    CLIENT((short)6, "client"),
-    DOWNLOAD_URL((short)7, "download_url");
+    CLIENT_ID((short)6, "client_id"),
+    DOWNLOAD_URL((short)7, "download_url"),
+    DESCRIPTION((short)8, "description");
 
-    private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+    private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
     static {
       for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -63,10 +66,12 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
           return VERSION_NAME;
         case 5: // VERSION_NUMBER
           return VERSION_NUMBER;
-        case 6: // CLIENT
-          return CLIENT;
+        case 6: // CLIENT_ID
+          return CLIENT_ID;
         case 7: // DOWNLOAD_URL
           return DOWNLOAD_URL;
+        case 8: // DESCRIPTION
+          return DESCRIPTION;
         default:
           return null;
       }
@@ -78,21 +83,21 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
      */
     public static _Fields findByThriftIdOrThrow(int fieldId) {
       _Fields fields = findByThriftId(fieldId);
-      if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+      if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
       return fields;
     }
 
     /**
      * Find the _Fields constant that matches name, or null if its not found.
      */
-    public static _Fields findByName(java.lang.String name) {
+    public static _Fields findByName(String name) {
       return byName.get(name);
     }
 
     private final short _thriftId;
-    private final java.lang.String _fieldName;
+    private final String _fieldName;
 
-    _Fields(short thriftId, java.lang.String fieldName) {
+    _Fields(short thriftId, String fieldName) {
       _thriftId = thriftId;
       _fieldName = fieldName;
     }
@@ -101,14 +106,14 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
       return _thriftId;
     }
 
-    public java.lang.String getFieldName() {
+    public String getFieldName() {
       return _fieldName;
     }
   }
 
   // isset id assignments
   private static final int __ID_ISSET_ID = 0;
-  private static final int __CLIENT_ISSET_ID = 1;
+  private static final int __CLIENT_ID_ISSET_ID = 1;
   private byte __isset_bitfield = 0;
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
@@ -123,9 +128,11 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.VERSION_NUMBER, new org.apache.thrift.meta_data.FieldMetaData("version_number", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.CLIENT, new org.apache.thrift.meta_data.FieldMetaData("client", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.CLIENT_ID, new org.apache.thrift.meta_data.FieldMetaData("client_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
     tmpMap.put(_Fields.DOWNLOAD_URL, new org.apache.thrift.meta_data.FieldMetaData("download_url", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+    tmpMap.put(_Fields.DESCRIPTION, new org.apache.thrift.meta_data.FieldMetaData("description", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(Version.class, metaDataMap);
@@ -136,12 +143,13 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
 
   public Version(
     int id,
-    java.lang.String create_time,
-    java.lang.String update_time,
-    java.lang.String version_name,
-    java.lang.String version_number,
-    int client,
-    java.lang.String download_url)
+    String create_time,
+    String update_time,
+    String version_name,
+    String version_number,
+    int client_id,
+    String download_url,
+    String description)
   {
     this();
     this.id = id;
@@ -150,9 +158,10 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
     this.update_time = update_time;
     this.version_name = version_name;
     this.version_number = version_number;
-    this.client = client;
-    setClientIsSet(true);
+    this.client_id = client_id;
+    setClient_idIsSet(true);
     this.download_url = download_url;
+    this.description = description;
   }
 
   /**
@@ -173,9 +182,12 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
     if (other.isSetVersion_number()) {
       this.version_number = other.version_number;
     }
-    this.client = other.client;
+    this.client_id = other.client_id;
     if (other.isSetDownload_url()) {
       this.download_url = other.download_url;
+    }
+    if (other.isSetDescription()) {
+      this.description = other.description;
     }
   }
 
@@ -191,9 +203,10 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
     this.update_time = null;
     this.version_name = null;
     this.version_number = null;
-    setClientIsSet(false);
-    this.client = 0;
+    setClient_idIsSet(false);
+    this.client_id = 0;
     this.download_url = null;
+    this.description = null;
   }
 
   public int getId() {
@@ -219,11 +232,11 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
     __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __ID_ISSET_ID, value);
   }
 
-  public java.lang.String getCreate_time() {
+  public String getCreate_time() {
     return this.create_time;
   }
 
-  public Version setCreate_time(java.lang.String create_time) {
+  public Version setCreate_time(String create_time) {
     this.create_time = create_time;
     return this;
   }
@@ -243,11 +256,11 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
     }
   }
 
-  public java.lang.String getUpdate_time() {
+  public String getUpdate_time() {
     return this.update_time;
   }
 
-  public Version setUpdate_time(java.lang.String update_time) {
+  public Version setUpdate_time(String update_time) {
     this.update_time = update_time;
     return this;
   }
@@ -267,11 +280,11 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
     }
   }
 
-  public java.lang.String getVersion_name() {
+  public String getVersion_name() {
     return this.version_name;
   }
 
-  public Version setVersion_name(java.lang.String version_name) {
+  public Version setVersion_name(String version_name) {
     this.version_name = version_name;
     return this;
   }
@@ -291,11 +304,11 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
     }
   }
 
-  public java.lang.String getVersion_number() {
+  public String getVersion_number() {
     return this.version_number;
   }
 
-  public Version setVersion_number(java.lang.String version_number) {
+  public Version setVersion_number(String version_number) {
     this.version_number = version_number;
     return this;
   }
@@ -315,34 +328,34 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
     }
   }
 
-  public int getClient() {
-    return this.client;
+  public int getClient_id() {
+    return this.client_id;
   }
 
-  public Version setClient(int client) {
-    this.client = client;
-    setClientIsSet(true);
+  public Version setClient_id(int client_id) {
+    this.client_id = client_id;
+    setClient_idIsSet(true);
     return this;
   }
 
-  public void unsetClient() {
-    __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __CLIENT_ISSET_ID);
+  public void unsetClient_id() {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __CLIENT_ID_ISSET_ID);
   }
 
-  /** Returns true if field client is set (has been assigned a value) and false otherwise */
-  public boolean isSetClient() {
-    return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __CLIENT_ISSET_ID);
+  /** Returns true if field client_id is set (has been assigned a value) and false otherwise */
+  public boolean isSetClient_id() {
+    return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __CLIENT_ID_ISSET_ID);
   }
 
-  public void setClientIsSet(boolean value) {
-    __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __CLIENT_ISSET_ID, value);
+  public void setClient_idIsSet(boolean value) {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __CLIENT_ID_ISSET_ID, value);
   }
 
-  public java.lang.String getDownload_url() {
+  public String getDownload_url() {
     return this.download_url;
   }
 
-  public Version setDownload_url(java.lang.String download_url) {
+  public Version setDownload_url(String download_url) {
     this.download_url = download_url;
     return this;
   }
@@ -362,13 +375,37 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
     }
   }
 
-  public void setFieldValue(_Fields field, java.lang.Object value) {
+  public String getDescription() {
+    return this.description;
+  }
+
+  public Version setDescription(String description) {
+    this.description = description;
+    return this;
+  }
+
+  public void unsetDescription() {
+    this.description = null;
+  }
+
+  /** Returns true if field description is set (has been assigned a value) and false otherwise */
+  public boolean isSetDescription() {
+    return this.description != null;
+  }
+
+  public void setDescriptionIsSet(boolean value) {
+    if (!value) {
+      this.description = null;
+    }
+  }
+
+  public void setFieldValue(_Fields field, Object value) {
     switch (field) {
     case ID:
       if (value == null) {
         unsetId();
       } else {
-        setId((java.lang.Integer)value);
+        setId((Integer)value);
       }
       break;
 
@@ -376,7 +413,7 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
       if (value == null) {
         unsetCreate_time();
       } else {
-        setCreate_time((java.lang.String)value);
+        setCreate_time((String)value);
       }
       break;
 
@@ -384,7 +421,7 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
       if (value == null) {
         unsetUpdate_time();
       } else {
-        setUpdate_time((java.lang.String)value);
+        setUpdate_time((String)value);
       }
       break;
 
@@ -392,7 +429,7 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
       if (value == null) {
         unsetVersion_name();
       } else {
-        setVersion_name((java.lang.String)value);
+        setVersion_name((String)value);
       }
       break;
 
@@ -400,15 +437,15 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
       if (value == null) {
         unsetVersion_number();
       } else {
-        setVersion_number((java.lang.String)value);
+        setVersion_number((String)value);
       }
       break;
 
-    case CLIENT:
+    case CLIENT_ID:
       if (value == null) {
-        unsetClient();
+        unsetClient_id();
       } else {
-        setClient((java.lang.Integer)value);
+        setClient_id((Integer)value);
       }
       break;
 
@@ -416,14 +453,22 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
       if (value == null) {
         unsetDownload_url();
       } else {
-        setDownload_url((java.lang.String)value);
+        setDownload_url((String)value);
+      }
+      break;
+
+    case DESCRIPTION:
+      if (value == null) {
+        unsetDescription();
+      } else {
+        setDescription((String)value);
       }
       break;
 
     }
   }
 
-  public java.lang.Object getFieldValue(_Fields field) {
+  public Object getFieldValue(_Fields field) {
     switch (field) {
     case ID:
       return getId();
@@ -440,20 +485,23 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
     case VERSION_NUMBER:
       return getVersion_number();
 
-    case CLIENT:
-      return getClient();
+    case CLIENT_ID:
+      return getClient_id();
 
     case DOWNLOAD_URL:
       return getDownload_url();
 
+    case DESCRIPTION:
+      return getDescription();
+
     }
-    throw new java.lang.IllegalStateException();
+    throw new IllegalStateException();
   }
 
   /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
   public boolean isSet(_Fields field) {
     if (field == null) {
-      throw new java.lang.IllegalArgumentException();
+      throw new IllegalArgumentException();
     }
 
     switch (field) {
@@ -467,16 +515,18 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
       return isSetVersion_name();
     case VERSION_NUMBER:
       return isSetVersion_number();
-    case CLIENT:
-      return isSetClient();
+    case CLIENT_ID:
+      return isSetClient_id();
     case DOWNLOAD_URL:
       return isSetDownload_url();
+    case DESCRIPTION:
+      return isSetDescription();
     }
-    throw new java.lang.IllegalStateException();
+    throw new IllegalStateException();
   }
 
   @Override
-  public boolean equals(java.lang.Object that) {
+  public boolean equals(Object that) {
     if (that == null)
       return false;
     if (that instanceof Version)
@@ -535,12 +585,12 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
         return false;
     }
 
-    boolean this_present_client = true;
-    boolean that_present_client = true;
-    if (this_present_client || that_present_client) {
-      if (!(this_present_client && that_present_client))
+    boolean this_present_client_id = true;
+    boolean that_present_client_id = true;
+    if (this_present_client_id || that_present_client_id) {
+      if (!(this_present_client_id && that_present_client_id))
         return false;
-      if (this.client != that.client)
+      if (this.client_id != that.client_id)
         return false;
     }
 
@@ -550,6 +600,15 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
       if (!(this_present_download_url && that_present_download_url))
         return false;
       if (!this.download_url.equals(that.download_url))
+        return false;
+    }
+
+    boolean this_present_description = true && this.isSetDescription();
+    boolean that_present_description = true && that.isSetDescription();
+    if (this_present_description || that_present_description) {
+      if (!(this_present_description && that_present_description))
+        return false;
+      if (!this.description.equals(that.description))
         return false;
     }
 
@@ -578,11 +637,15 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
     if (isSetVersion_number())
       hashCode = hashCode * 8191 + version_number.hashCode();
 
-    hashCode = hashCode * 8191 + client;
+    hashCode = hashCode * 8191 + client_id;
 
     hashCode = hashCode * 8191 + ((isSetDownload_url()) ? 131071 : 524287);
     if (isSetDownload_url())
       hashCode = hashCode * 8191 + download_url.hashCode();
+
+    hashCode = hashCode * 8191 + ((isSetDescription()) ? 131071 : 524287);
+    if (isSetDescription())
+      hashCode = hashCode * 8191 + description.hashCode();
 
     return hashCode;
   }
@@ -595,7 +658,7 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
 
     int lastComparison = 0;
 
-    lastComparison = java.lang.Boolean.valueOf(isSetId()).compareTo(other.isSetId());
+    lastComparison = Boolean.valueOf(isSetId()).compareTo(other.isSetId());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -605,7 +668,7 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetCreate_time()).compareTo(other.isSetCreate_time());
+    lastComparison = Boolean.valueOf(isSetCreate_time()).compareTo(other.isSetCreate_time());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -615,7 +678,7 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetUpdate_time()).compareTo(other.isSetUpdate_time());
+    lastComparison = Boolean.valueOf(isSetUpdate_time()).compareTo(other.isSetUpdate_time());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -625,7 +688,7 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetVersion_name()).compareTo(other.isSetVersion_name());
+    lastComparison = Boolean.valueOf(isSetVersion_name()).compareTo(other.isSetVersion_name());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -635,7 +698,7 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetVersion_number()).compareTo(other.isSetVersion_number());
+    lastComparison = Boolean.valueOf(isSetVersion_number()).compareTo(other.isSetVersion_number());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -645,22 +708,32 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetClient()).compareTo(other.isSetClient());
+    lastComparison = Boolean.valueOf(isSetClient_id()).compareTo(other.isSetClient_id());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetClient()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.client, other.client);
+    if (isSetClient_id()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.client_id, other.client_id);
       if (lastComparison != 0) {
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetDownload_url()).compareTo(other.isSetDownload_url());
+    lastComparison = Boolean.valueOf(isSetDownload_url()).compareTo(other.isSetDownload_url());
     if (lastComparison != 0) {
       return lastComparison;
     }
     if (isSetDownload_url()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.download_url, other.download_url);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetDescription()).compareTo(other.isSetDescription());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetDescription()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.description, other.description);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -681,8 +754,8 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
   }
 
   @Override
-  public java.lang.String toString() {
-    java.lang.StringBuilder sb = new java.lang.StringBuilder("Version(");
+  public String toString() {
+    StringBuilder sb = new StringBuilder("Version(");
     boolean first = true;
 
     sb.append("id:");
@@ -721,8 +794,8 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
     }
     first = false;
     if (!first) sb.append(", ");
-    sb.append("client:");
-    sb.append(this.client);
+    sb.append("client_id:");
+    sb.append(this.client_id);
     first = false;
     if (!first) sb.append(", ");
     sb.append("download_url:");
@@ -730,6 +803,14 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
       sb.append("null");
     } else {
       sb.append(this.download_url);
+    }
+    first = false;
+    if (!first) sb.append(", ");
+    sb.append("description:");
+    if (this.description == null) {
+      sb.append("null");
+    } else {
+      sb.append(this.description);
     }
     first = false;
     sb.append(")");
@@ -749,7 +830,7 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
     }
   }
 
-  private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+  private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
     try {
       // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
       __isset_bitfield = 0;
@@ -817,10 +898,10 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 6: // CLIENT
+          case 6: // CLIENT_ID
             if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
-              struct.client = iprot.readI32();
-              struct.setClientIsSet(true);
+              struct.client_id = iprot.readI32();
+              struct.setClient_idIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
@@ -829,6 +910,14 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
               struct.download_url = iprot.readString();
               struct.setDownload_urlIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 8: // DESCRIPTION
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+              struct.description = iprot.readString();
+              struct.setDescriptionIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
@@ -871,12 +960,17 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
         oprot.writeString(struct.version_number);
         oprot.writeFieldEnd();
       }
-      oprot.writeFieldBegin(CLIENT_FIELD_DESC);
-      oprot.writeI32(struct.client);
+      oprot.writeFieldBegin(CLIENT_ID_FIELD_DESC);
+      oprot.writeI32(struct.client_id);
       oprot.writeFieldEnd();
       if (struct.download_url != null) {
         oprot.writeFieldBegin(DOWNLOAD_URL_FIELD_DESC);
         oprot.writeString(struct.download_url);
+        oprot.writeFieldEnd();
+      }
+      if (struct.description != null) {
+        oprot.writeFieldBegin(DESCRIPTION_FIELD_DESC);
+        oprot.writeString(struct.description);
         oprot.writeFieldEnd();
       }
       oprot.writeFieldStop();
@@ -912,13 +1006,16 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
       if (struct.isSetVersion_number()) {
         optionals.set(4);
       }
-      if (struct.isSetClient()) {
+      if (struct.isSetClient_id()) {
         optionals.set(5);
       }
       if (struct.isSetDownload_url()) {
         optionals.set(6);
       }
-      oprot.writeBitSet(optionals, 7);
+      if (struct.isSetDescription()) {
+        optionals.set(7);
+      }
+      oprot.writeBitSet(optionals, 8);
       if (struct.isSetId()) {
         oprot.writeI32(struct.id);
       }
@@ -934,18 +1031,21 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
       if (struct.isSetVersion_number()) {
         oprot.writeString(struct.version_number);
       }
-      if (struct.isSetClient()) {
-        oprot.writeI32(struct.client);
+      if (struct.isSetClient_id()) {
+        oprot.writeI32(struct.client_id);
       }
       if (struct.isSetDownload_url()) {
         oprot.writeString(struct.download_url);
+      }
+      if (struct.isSetDescription()) {
+        oprot.writeString(struct.description);
       }
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, Version struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(7);
+      java.util.BitSet incoming = iprot.readBitSet(8);
       if (incoming.get(0)) {
         struct.id = iprot.readI32();
         struct.setIdIsSet(true);
@@ -967,12 +1067,16 @@ public class Version implements org.apache.thrift.TBase<Version, Version._Fields
         struct.setVersion_numberIsSet(true);
       }
       if (incoming.get(5)) {
-        struct.client = iprot.readI32();
-        struct.setClientIsSet(true);
+        struct.client_id = iprot.readI32();
+        struct.setClient_idIsSet(true);
       }
       if (incoming.get(6)) {
         struct.download_url = iprot.readString();
         struct.setDownload_urlIsSet(true);
+      }
+      if (incoming.get(7)) {
+        struct.description = iprot.readString();
+        struct.setDescriptionIsSet(true);
       }
     }
   }

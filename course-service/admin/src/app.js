@@ -12,6 +12,7 @@ const management = require('./routes/management');
 const role = require('./routes/role');
 const banner = require('./routes/banner');
 const client = require('./routes/client');
+const version = require('./routes/version');
 
 const router_log = require('./middleware/router_log');
 const token = require('./middleware/token');
@@ -37,15 +38,18 @@ app.use(response({
     //successLog:getLogger('resSuccess'),
     failLog: getLogger('resFail')
 }));
-
 // 跨域
 app.use(cors());
 
-router.use('/user', user.routes(), user.allowedMethods());
-router.use('/management', management.routes(), management.allowedMethods());
-router.use('/role', role.routes(), role.allowedMethods());
-router.use('/banner', banner.routes(), banner.allowedMethods());
-router.use('/client', client.routes(), client.allowedMethods());
+router.use('/users', user.routes(), user.allowedMethods());
+router.use('/managements', management.routes(), management.allowedMethods());
+router.use('/roles', role.routes(), role.allowedMethods());
+router.use('/banners', banner.routes(), banner.allowedMethods());
+
+router.use('/clients', client.routes(), client.allowedMethods());
+// router.use('/clients/123/versions', version.routes(), version.allowedMethods());
+
+router.use('/versions', version.routes(), version.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
 // response

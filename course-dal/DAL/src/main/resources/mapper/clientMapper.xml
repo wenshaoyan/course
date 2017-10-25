@@ -47,7 +47,7 @@
         <include refid="order"/>
         <include refid="limit"/>
     </select>
-    <select id="count" parameterType="_ClientBean" resultMap="java.lang.Integer">
+    <select id="count" parameterType="_ClientBean" resultType="java.lang.Integer">
         <include refid="select_count"/>
         <include refid="condition"/>
     </select>

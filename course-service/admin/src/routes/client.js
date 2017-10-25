@@ -10,43 +10,39 @@ const ClientService = getServiceConfig().dalName.client;
 const routerI = require('../middleware/router_interceptor');
 const AdminSchema = require('../schema/admin_schema');
 const apiName = '/';
-const apiVersionName = '/version';
 
-router.use(async (ctx, next) => {
-    const myServer = getThriftServer(`'${ClientService}'`);
+router.use(async(ctx, next) => {
+    const myServer = getThriftServer(ClientService);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
         await next();
     }
 });
-router.get(apiName, routerI({
-    key: "client_query",
-    schema: AdminSchema.client_query
-}), async (ctx, next) => {
+router.get(apiName, async(ctx, next) => {
     const params = ctx.query;
     const clientSide = new bean_types.ClientSide(params);
-    const clientSer = getThriftServer(`'${ClientService}'`).getClient();
-    try {
-        const result = await clientSer.clientSelect(clientSide);
-        ctx.body = result;
-    }catch (e){
-        ctx.error = e;
-    }
-});
-router.get(apiVersionName, routerI({
-    key: "client_query",
-
-}), async (ctx, next) => {
-    const params = ctx.query;
-    const version = new bean_types.Version(params);
     const clientSer = getThriftServer(ClientService).getClient();
     try {
         const result = await clientSer.clientSelect(clientSide);
-        ctx.body = result;
-    }catch (e){
+        const query = new bean_types.Query();
+        query.sort_by = 'cv_version_number';
+        query.order = 'desc';
+        query.limit = 1;
+        for (let value of result){
+            const version = new bean_types.Version();
+            version.client_id = value.id;
+            const versionResult =await clientSer.versionSelectQuery(version,query);
+            value.new_version = versionResult.length === 1 ?versionResult[0]:{};
+        }
+
+        ctx.body = {
+            list: result
+        };
+    } catch (e) {
         ctx.error = e;
     }
 });
+
 module.exports = router;
 

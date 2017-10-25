@@ -11,7 +11,7 @@ const routerI = require('../middleware/router_interceptor');
 const AdminSchema = require('../schema/admin_schema');
 const apiName = '/';
 router.use(async(ctx, next) => {
-    const myServer = getThriftServer(`'${userService}'`);
+    const myServer = getThriftServer(userService);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
@@ -20,7 +20,7 @@ router.use(async(ctx, next) => {
 });
 router.get(apiName,async(ctx, next) => {
     try {
-        const client = getThriftServer(`'${userService}'`).getClient();
+        const client = getThriftServer(userService).getClient();
         const result = await client.roleSelectAll();
         result.map(value=>{
             value.permission = JSON.parse(value.permission);

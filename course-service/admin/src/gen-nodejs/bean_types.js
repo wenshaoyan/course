@@ -487,8 +487,9 @@ var Version = module.exports.Version = function(args) {
   this.update_time = null;
   this.version_name = null;
   this.version_number = null;
-  this.client = null;
+  this.client_id = null;
   this.download_url = null;
+  this.description = null;
   if (args) {
     if (args.id !== undefined && args.id !== null) {
       this.id = args.id;
@@ -505,11 +506,14 @@ var Version = module.exports.Version = function(args) {
     if (args.version_number !== undefined && args.version_number !== null) {
       this.version_number = args.version_number;
     }
-    if (args.client !== undefined && args.client !== null) {
-      this.client = args.client;
+    if (args.client_id !== undefined && args.client_id !== null) {
+      this.client_id = args.client_id;
     }
     if (args.download_url !== undefined && args.download_url !== null) {
       this.download_url = args.download_url;
+    }
+    if (args.description !== undefined && args.description !== null) {
+      this.description = args.description;
     }
   }
 };
@@ -564,7 +568,7 @@ Version.prototype.read = function(input) {
       break;
       case 6:
       if (ftype == Thrift.Type.I32) {
-        this.client = input.readI32();
+        this.client_id = input.readI32();
       } else {
         input.skip(ftype);
       }
@@ -572,6 +576,13 @@ Version.prototype.read = function(input) {
       case 7:
       if (ftype == Thrift.Type.STRING) {
         this.download_url = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 8:
+      if (ftype == Thrift.Type.STRING) {
+        this.description = input.readString();
       } else {
         input.skip(ftype);
       }
@@ -612,14 +623,19 @@ Version.prototype.write = function(output) {
     output.writeString(this.version_number);
     output.writeFieldEnd();
   }
-  if (this.client !== null && this.client !== undefined) {
-    output.writeFieldBegin('client', Thrift.Type.I32, 6);
-    output.writeI32(this.client);
+  if (this.client_id !== null && this.client_id !== undefined) {
+    output.writeFieldBegin('client_id', Thrift.Type.I32, 6);
+    output.writeI32(this.client_id);
     output.writeFieldEnd();
   }
   if (this.download_url !== null && this.download_url !== undefined) {
     output.writeFieldBegin('download_url', Thrift.Type.STRING, 7);
     output.writeString(this.download_url);
+    output.writeFieldEnd();
+  }
+  if (this.description !== null && this.description !== undefined) {
+    output.writeFieldBegin('description', Thrift.Type.STRING, 8);
+    output.writeString(this.description);
     output.writeFieldEnd();
   }
   output.writeFieldStop();

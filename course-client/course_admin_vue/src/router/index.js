@@ -59,6 +59,17 @@ export const asyncRouterMap = [
     children: [{ path: 'index', component: _import('user/index'), name: '用户管理' }]
   },
   {
+    path: '/client',
+    component: Layout,
+    code: 1002,
+    name: '客户端管理',
+    icon: 'theme',
+    children: [
+      { path: 'index', component: _import('client/index'), name: '客户端列表' },
+      { path: 'version', component: _import('client/version'), name: '版本管理' }
+    ]
+  },
+  {
     path: '/permission',
     component: Layout,
     redirect: '/permission/index',

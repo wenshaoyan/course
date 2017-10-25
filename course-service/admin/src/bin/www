@@ -89,13 +89,13 @@ async function main() {
             // 创建thrift的连接
             let myServer = await new ThriftHelp.Server()
                 .setAddress(address.data)
-                .setServer(`${name}`, require(`../gen-nodejs/${name}.js`))
+                .setServer(name, require(`../gen-nodejs/${name}.js`))
                 .setPoolNumber(2, 10)
                 .setNodeName(address.nodeName)
                 .connect();
             // 监听连接的变化 并修改
             connectZk.setServer(myServer);
-            thriftServerMap.set(`'${name}'`, myServer);
+            thriftServerMap.set(name, myServer);
             const path = await client.create()
                 .withMode(CuratorFrameworkFactory.EPHEMERAL)
                 .isAbsoluteAddress()

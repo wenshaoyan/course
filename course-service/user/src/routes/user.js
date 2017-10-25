@@ -9,7 +9,7 @@ const apiName = '/';
 const ioredis = require('ioredis');
 let redis = new ioredis(require('../config/redis.json'));
 router.use(async(ctx, next) => {
-    const myServer = getThriftServer(`'${userService}'`);
+    const myServer = getThriftServer(userService);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
@@ -21,7 +21,7 @@ router.get(apiName, routerI({
     key: "user_login",
     schema: UserSchema.user_login
 }), async(ctx, next) => {
-    const client = getThriftServer(`'${userService}'`).getClient();
+    const client = getThriftServer(userService).getClient();
     const user = new bean_types.User();
 
     const params = ctx.query;
@@ -59,7 +59,7 @@ router.post(apiName, routerI({
     key: "user_insert",
     schema: UserSchema.user_insert
 }), async function (ctx, next) {
-    const userServer = getThriftServer(`'${userService}'`);
+    const userServer = getThriftServer(userService);
     const user = new bean_types.User();
     const queryUser = new bean_types.User();
     const params = ctx.request.body;

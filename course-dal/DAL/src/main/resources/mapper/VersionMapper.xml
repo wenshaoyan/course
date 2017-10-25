@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.clientVersionMapper">
+<mapper namespace="mapper.versionMapper">
     <sql id="select_list">
         SELECT *
-        FROM t_version
+        FROM t_client_version
     </sql>
     <sql id="select_count">
         SELECT count(*)
-        FROM t_version
+        FROM t_client_version
     </sql>
     <sql id="condition">
         <where>
-            <if test="package_name != null">
-                AND client_package_name = #{package_name}
+            <if test="client_id != null">
+                AND cv_client_id = #{client_id}
             </if>
             <if test="queryBean != null">
                 <if test="queryBean.create_time_start_bean != 0 ">
@@ -41,5 +41,21 @@
             LIMIT ${queryBean.offset} ,${queryBean.limit}
         </if>
     </sql>
+    <select id="select" parameterType="_VersionBean" resultMap="versionResult">
+        <include refid="select_list"/>
+        <include refid="condition"/>
+        <include refid="order"/>
+        <include refid="limit"/>
+    </select>
+    <resultMap id="versionResult" type="_VersionBean">
+        <id property="id" column="cv_id"/>
+        <result property="create_time_bean" column="cv_create_time"/>
+        <result property="update_time_bean" column="cv_update_time"/>
+        <result property="version_name" column="cv_version_name"/>
+        <result property="version_number" column="cv_version_number"/>
+        <result property="client_id" column="cv_client_id"/>
+        <result property="download_url" column="cv_download_url"/>
+        <result property="description" column="cv_description"/>
 
+    </resultMap>
 </mapper>

@@ -25,8 +25,9 @@ public class VersionBean extends Version {
         this.setUpdate_time(version.update_time);
         this.version_name = version.version_name;
         this.version_number = version.version_number;
-        this.client = version.client;
+        this.client_id = version.client_id;
         this.download_url = version.download_url;
+        this.description = version.description;
     }
 
     public Timestamp getCreate_time_bean() {

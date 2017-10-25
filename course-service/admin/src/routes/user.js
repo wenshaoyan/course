@@ -13,7 +13,7 @@ const AdminSchema = require('../schema/admin_schema');
 const apiName = '/';
 
 router.use(async(ctx, next) => {
-    const myServer = getThriftServer(`'${userService}'`);
+    const myServer = getThriftServer(userService);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
@@ -25,7 +25,7 @@ router.get(`${apiName}`, routerI({
     key: "user_query",
     schema: AdminSchema.user_query
 }), async(ctx, next) => {
-    const client = getThriftServer(`'${userService}'`).getClient();
+    const client = getThriftServer(userService).getClient();
     const params = ctx.query;
     const user = new bean_types.User(params);
     const query = new bean_types.Query(params);
@@ -54,7 +54,7 @@ router.post(apiName, routerI({
     key: "user_insert",
     schema: AdminSchema.user_insert
 }), async function (ctx, next) {
-    const userServer = getThriftServer(`'${userService}'`);
+    const userServer = getThriftServer(userService);
     const user = new bean_types.User();
     const queryUser = new bean_types.User();
     const params = ctx.request.body;
