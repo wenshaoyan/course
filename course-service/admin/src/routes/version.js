@@ -11,8 +11,6 @@ const clientService = getServiceConfig().dalName.client;
 const routerI = require('../middleware/router_interceptor');
 const AdminSchema = require('../schema/admin_schema');
 const apiName = '/';
-// /versions/id
-// /client/:id1/versions/:id2
 router.get('/:id', async(ctx, next) => {
     console.log(ctx.params)
     console.log(ctx.query);

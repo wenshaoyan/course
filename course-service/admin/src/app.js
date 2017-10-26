@@ -45,12 +45,8 @@ router.use('/users', user.routes(), user.allowedMethods());
 router.use('/managements', management.routes(), management.allowedMethods());
 router.use('/roles', role.routes(), role.allowedMethods());
 router.use('/banners', banner.routes(), banner.allowedMethods());
-
 router.use('/clients', client.routes(), client.allowedMethods());
-// router.use('/clients/123/versions', version.routes(), version.allowedMethods());
-
 router.use('/versions', version.routes(), version.allowedMethods());
-
 app.use(router.routes(), router.allowedMethods());
 // response
 
