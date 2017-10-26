@@ -11,4 +11,6 @@ import java.util.List;
 public interface ClientDao {
     public List<ClientBean> select(ClientBean clientBean) throws Exception;
     public List<ClientBean> selectAll() throws Exception;
+    public int insert(ClientBean clientBean) throws Exception;
+    public int update(ClientBean clientBean) throws Exception;
 }

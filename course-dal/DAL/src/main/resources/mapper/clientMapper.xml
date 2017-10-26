@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.clientMapper">
-
+    <insert id="insert" parameterType="_ClientBean" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_client(client_name,client_package_name,client_create_time,client_update_time)
+        VALUES(#{name},#{package_name},#{create_time_bean},#{update_time_bean});
+    </insert>
+    <update id="update" parameterType="_ClientBean" >
+        UPDATE t_client
+        <set>
+            <if test="name != null" >
+                client_name = #{name},
+            </if>
+            <if test="package_name != null">
+                client_package_name = #{package_name},
+            </if>
+            <if test="update_time_bean != null">
+                client_update_time = #{update_time_bean},
+            </if>
+        </set>
+        WHERE client_id = #{id}
+    </update>
     <sql id="select_list">
          SELECT * FROM t_client
     </sql>

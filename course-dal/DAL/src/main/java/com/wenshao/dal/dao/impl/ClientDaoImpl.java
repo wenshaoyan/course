@@ -5,6 +5,7 @@ import com.wenshao.dal.dao.ClientDao;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,5 +36,29 @@ public class ClientDaoImpl implements ClientDao {
         sqlSession.commit();
         sqlSession.close();
         return list;
+    }
+
+    @Override
+    public int insert(ClientBean clientBean) throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        long time = new Date().getTime();
+        clientBean.setCreate_time(String.valueOf(time));
+        clientBean.setUpdate_time(String.valueOf(time));
+        sqlSession.insert(sqlTag + ".insert",clientBean);
+        sqlSession.commit();
+        sqlSession.close();
+        return clientBean.getId();
+    }
+
+    @Override
+    public int update(ClientBean clientBean) throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        long time = new Date().getTime();
+        clientBean.setUpdate_time(String.valueOf(time));
+        int update = sqlSession.update(sqlTag + ".update", clientBean);
+        System.out.println(update);
+        sqlSession.commit();
+        sqlSession.close();
+        return 1;
     }
 }

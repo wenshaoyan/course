@@ -4,6 +4,7 @@ import com.wenshao.dal.bean.ClientBean;
 import com.wenshao.dal.bean.VersionBean;
 import com.wenshao.dal.bean.QueryBean;
 import com.wenshao.dal.dao.ClientDao;
+import com.wenshao.dal.dao.UserDao;
 import com.wenshao.dal.dao.VersionDao;
 import com.wenshao.dal.dao.impl.ClientDaoImpl;
 import com.wenshao.dal.dao.impl.VersionDaoImpl;
@@ -49,12 +50,20 @@ public class ClientHandler implements ClientService.Iface{
     }
     @Override
     public int clientInsert(ClientSide clientSide) throws TException {
-        return 0;
+        try {
+            return clientDao.insert(new ClientBean(clientSide));
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     @Override
     public int clientUpdate(ClientSide clientSide) throws TException {
-        return 0;
+        try {
+            return clientDao.update(new ClientBean(clientSide));
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     @Override
