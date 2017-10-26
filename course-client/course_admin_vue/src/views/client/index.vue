@@ -43,14 +43,20 @@
       </el-table-column>
     </el-table>
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form class="small-space" :model="dialogRowData" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
-        <el-form-item label="id">
-          <span v-model="dialogRowData.id"></span>
+      <el-form class="small-space" :model="dialogRowData" :rules="clientRule" ref="dialogRowData" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
+        <el-form-item label="id" v-show="dialogStatus === 'update'">
+          <span>{{dialogRowData.id}}</span>
+        </el-form-item>
+        <el-form-item label="名称">
+          <el-input v-model="dialogRowData.name"></el-input>
+        </el-form-item>
+        <el-form-item label="包名">
+          <el-input v-model="dialogRowData.package_name"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button v-if="dialogStatus=='create'" type="primary" @click="insertData">确 定</el-button>
+        <el-button v-if="dialogStatus=='create' && !dialogRowData.id" type="primary" @click="insertData">确 定</el-button>
         <el-button v-else type="primary" @click="updateData">确 定</el-button>
       </div>
     </el-dialog>
@@ -59,7 +65,7 @@
 </template>
 
 <script>
-  import { clientQuery } from '@/api/client'
+  import { clientQuery, clientInsert, clientUpdate } from '@/api/client'
   import waves from '@/directive/waves/index.js' // 水波纹指令
 
   export default {
@@ -68,6 +74,21 @@
       waves
     },
     data() {
+      const validateName = (rule, value, callback) => {
+        if (value.length === 0) {
+          callback(new Error('名称必填'))
+        } else {
+          // callback()
+          callback(new Error('名称必填'))
+        }
+      }
+      const validatePackage = (rule, value, callback) => {
+        if (value.length === 0) {
+          callback(new Error('包名必填'))
+        } else {
+          callback()
+        }
+      }
       return {
         list: null,
         total: null,
@@ -79,12 +100,16 @@
         dialogStatus: '',
         dialogRowData: {
           id: undefined,
-          name: undefined,
+          name: '',
           create_time: undefined,
           update_time: undefined,
-          package_name: undefined
+          package_name: ''
         },
-        dialogFormVisible: false
+        dialogFormVisible: false,
+        clientRule: {
+          name: [{ required: true, trigger: 'blur', validator: validateName }],
+          package_name: [{ required: true, trigger: 'blur', validator: validatePackage }]
+        }
       }
     },
     created() {
@@ -103,14 +128,52 @@
       },
       // 插入数据
       insertData() {
-
+        this.$refs.dialogRowData.validate(valid => {
+          if (valid) {
+            clientInsert(this.dialogRowData).then(data => {
+              this.queryData()
+              this.dialogFormVisible = false
+              this.$notify({
+                title: '成功',
+                message: '添加成功',
+                type: 'success',
+                duration: 2000
+              })
+            }).catch(e => {
+              console.log(e)
+            })
+          } else {
+            console.log('=========2')
+            // throw new Error('1')
+          }
+        })
       },
       // 更新数据
       updateData() {
-
+        this.$refs.dialogRowData.validate(valid => {
+          if (valid) {
+            clientUpdate(this.dialogRowData).then(data => {
+              this.queryData()
+              this.dialogFormVisible = false
+              this.$notify({
+                title: '成功',
+                message: '更新成功',
+                type: 'success',
+                duration: 2000
+              })
+            }).catch(e => {
+              console.log(e)
+            })
+          } else {
+            console.log('=========2')
+            // throw new Error('1')
+          }
+        })
       },
       handleEditRow(row) {
+        this.resetDialogRow()
         this.dialogRowData = Object.assign({}, row)
+        this.dialogStatus = 'update'
         this.dialogFormVisible = true
       },
       handleCreate() {
@@ -120,8 +183,6 @@
       },
       handleUpdate(row) {
         this.dialogRowData = Object.assign({}, row)
-        this.dialogStatus = 'update'
-        this.dialogFormVisible = true
       },
       resetDialogRow() {
         this.dialogRowData = {
@@ -131,12 +192,7 @@
           update_time: undefined,
           package_name: undefined
         }
-      },
-      isEditStatus() {
-        console.log(this.dialogStatus)
-        return this.dialogStatus === 'update'
       }
-
     }
   }
 </script>
