@@ -52,21 +52,21 @@ const MultiWayTree = (function () {
     }
 
     // 根节点
-    const _root = Symbol('_root');
+    const _root = ('_root');
     // 根节点对应的标识符号
-    const _root_tag = Symbol('_root_tag');
+    const _root_tag = ('_root_tag');
     // 插入节点函数
-    const _func_insert_node = Symbol('_func_insert_node');
+    const _func_insert_node = ('_func_insert_node');
     // 递归树函数
-    const _func_recursion_node = Symbol('_func_recursion_node');
+    const _func_recursion_node = ('_func_recursion_node');
 
-    const _wait_allot = Symbol('_wait_allot');
+    const _wait_allot = ('_wait_allot');
     // 待分配节点队列
-    const _wait_allot_set = Symbol('_wait_allot_set');
+    const _wait_allot_set = ('_wait_allot_set');
     // 根据code对应node的映射
-    const _node_hash = Symbol('_node_hash');
+    const _node_hash = ('_node_hash');
     //
-    const _childes_wait = Symbol('_childes_wait');
+    const _childes_wait = ('_childes_wait');
 
     const insertNode = function (root, node) {
         let result;
@@ -88,7 +88,8 @@ const MultiWayTree = (function () {
     const recursion = function (list, chiles, callback) {
         let index = 0;
         for (let val of chiles) {
-            let parse = JSON.parse(JSON.stringify(val.value));
+            console.log(val.value)
+            let parse = val.value;
             if (callback instanceof Function) callback(parse);
             list.push(parse);
             recursion(list[index].next, val.childes, callback);
