@@ -12,7 +12,7 @@
       </el-table-column>
       <el-table-column align="center" label="名称">
         <template scope="scope">
-          <span>{{scope.row.name}}</span>
+          <span class="link-type" @click="redirectVersion(scope.row)">{{scope.row.name}}</span>
         </template>
       </el-table-column>
       <el-table-column align="center" label="创建时间" width="150">
@@ -165,8 +165,7 @@
               console.log(e)
             })
           } else {
-            console.log('=========2')
-            // throw new Error('1')
+            return false
           }
         })
       },
@@ -192,6 +191,14 @@
           update_time: undefined,
           package_name: undefined
         }
+      },
+      redirectVersion(row) {
+        this.$router.push({
+          path: '/client/version',
+          query: {
+            client_id: row.client_id
+          }
+        })
       }
     }
   }

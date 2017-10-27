@@ -66,7 +66,6 @@
 </template>
 
 <script>
-  import { userQuery } from '@/api/user'
   import { clientIdVersionQuery } from '@/api/client'
   import { roleQuery } from '@/api/role'
   import waves from '@/directive/waves/index.js' // 水波纹指令
@@ -84,14 +83,11 @@
         listQuery: {
           page: 1,
           limit: 10,
-          name: undefined,
-          id: undefined,
-          role_id: undefined,
           sort_by: 'user_create_time',
-          order: 'desc',
-          type: undefined,
           sort: '-user_create_time',
-          action: 'search'
+          action: 'search',
+          order: 'desc',
+          client_id: undefined
         },
         bindPage: 1,
         roleList: [],
@@ -107,10 +103,14 @@
       'listQuery.sort': 'watchSort'
     },
     created() {
+      this.initData()
       this.getRoleAll()
       this.getList()
     },
     methods: {
+      initData() {
+        this.client_id = this.$route.query.client_id
+      },
       getRoleName(id) {
         return this.roleMap ? this.roleMap.get(id) : ''
       },
