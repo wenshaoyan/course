@@ -22,7 +22,7 @@ function user(opts) {
                         "message": "身份获取失败,请重新登录",
                         "code": 305,
                         "en_message": "Please again login",
-                        "errorSource": "getUser"
+                        "error_source": "getUser"
                     };
                     return;
                 }
@@ -32,7 +32,7 @@ function user(opts) {
                     "message": "身份获取失败,请重新登录",
                     "code": 306,
                     "en_message": "Please again login",
-                    "errorSource": "getUser"
+                    "error_source": "getUser"
                 };
             }
         } else {
