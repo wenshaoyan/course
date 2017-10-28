@@ -12,6 +12,7 @@ public class VersionBean extends Version {
     private Timestamp create_time_bean;
     private Timestamp update_time_bean;
     private QueryBean queryBean;
+    public static final String TABLE_PREFIX = "cv_";
 
 
     public VersionBean() {

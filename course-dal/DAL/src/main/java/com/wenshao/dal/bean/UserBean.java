@@ -3,6 +3,9 @@ package com.wenshao.dal.bean;
 import com.wenshao.dal.thriftgen.User;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by wenshao on 2017/8/28.
  * 用户类接口
@@ -12,6 +15,9 @@ public class UserBean extends User {
     private Timestamp update_time_bean;
     private Timestamp register_time_bean;
     private QueryBean queryBean;
+    public static final String TABLE_PREFIX = "user_";
+    private Set<String> tables = new HashSet<String>();
+
 
     public UserBean() {
         super();
@@ -81,5 +87,13 @@ public class UserBean extends User {
     public User setRegister_time(String register_time) {
         if (register_time!=null)this.register_time_bean = new Timestamp(Long.parseLong(register_time));
         return super.setRegister_time(register_time);
+    }
+
+    public Set<String> getTables() {
+        return tables;
+    }
+
+    public void setTables(Set<String> tables) {
+        this.tables = tables;
     }
 }

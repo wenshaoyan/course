@@ -2,8 +2,13 @@ package com.wenshao.dal.bean;
 
 import com.wenshao.dal.thriftgen.ClientSide;
 import com.wenshao.dal.thriftgen.Query;
+import com.wenshao.dal.thriftgen.Version;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by wenshao on 2017/10/8.
@@ -13,6 +18,10 @@ public class ClientBean extends ClientSide{
     private Timestamp create_time_bean;
     private Timestamp update_time_bean;
     private QueryBean queryBean;
+    private Set<String> tables = new HashSet<String>();
+    private List<VersionBean> versionBeans;
+    public static final String TABLE_PREFIX = "client_";
+
 
     public ClientBean() {
         super();
@@ -62,5 +71,20 @@ public class ClientBean extends ClientSide{
 
     public void setQueryBean(QueryBean queryBean) {
         this.queryBean = queryBean;
+    }
+
+    public List<VersionBean> getVersionBeans() {
+        return versionBeans;
+    }
+
+    public void setVersionBeans(List<VersionBean> versionBeans) {
+        this.versionBeans = versionBeans;
+    }
+
+    public Set<String> getTables() {
+        return tables;
+    }
+    public void setTables(Set<String> tables) {
+        this.tables = tables;
     }
 }

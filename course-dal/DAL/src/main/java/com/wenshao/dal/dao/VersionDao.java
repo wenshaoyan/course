@@ -11,4 +11,6 @@ import java.util.List;
 public interface VersionDao {
     public List<VersionBean> select(VersionBean clientVersionBean) throws Exception;
     public List<VersionBean> selectAll() throws Exception;
+    public int count(VersionBean versionBean) throws Exception;
+
 }

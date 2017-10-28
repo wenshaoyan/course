@@ -13,13 +13,23 @@ public class QueryBean extends Query {
     private int update_time_start_bean;
     private int update_time_end_bean;
     private int offset;
+    private String tablePrefix;
 
     public QueryBean() {
 
     }
     public QueryBean(Query query) {
         super();
+        this.tablePrefix = "";
+        init(query);
+    }
 
+    public QueryBean(Query query,String _tablePrefix) {
+        super();
+        this.tablePrefix = _tablePrefix;
+        init(query);
+    }
+    private void init(Query query) {
         this.setCreate_time_start_bean(stringToInt(query.create_time_start));
         this.setCreate_time_end_bean(stringToInt(query.create_time_end));
         this.setUpdate_time_start_bean(stringToInt(query.update_time_start));
@@ -34,14 +44,13 @@ public class QueryBean extends Query {
         }
         if (temp != null) {
             if (this.order == null || "asc".equals(this.order)) {
-                this.setOrderByClause(temp);
+                this.setOrderByClause(this.tablePrefix+temp);
             }else{
-                this.setOrderByClause(temp+" DESC");
+                this.setOrderByClause(this.tablePrefix+temp+" DESC");
             }
         }
         if (query.page > 0) this.offset = (query.page - 1) * query.limit;
     }
-
     public String getOrderByClause() {
         return orderByClause;
     }

@@ -1,0 +1,29 @@
+1 查询客户端列表和版本列表
+    GET /clients
+    req {
+
+    }
+    reps {
+        {
+            "success": true,
+            "data": {
+                "list": [{
+                    "id": 1,
+                    "create_time": "1507419125000",
+                    "update_time": "1507419125000",
+                    "name": "app_android",
+                    "package_name": "com.wenshao.coursate",
+                    "versions": [{
+                        "id": 1,
+                        "create_time": "1508966661000",
+                        "update_time": "1508966663000",
+                        "version_name": "1.0",
+                        "version_number": "1",
+                        "client_id": 1,
+                        "download_url": "111",
+                        "description": null
+                    }]
+                }]
+             }
+        }
+    }

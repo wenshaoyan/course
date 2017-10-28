@@ -26,7 +26,7 @@ const extend = function (d1, d2) {
     return obj;
 };
 module.exports = {
-    "user_query": {
+    "userQuery": {
         "type": "object",
         "properties": extend({
             "tel": schema_public.tel,
@@ -34,7 +34,7 @@ module.exports = {
             "name": schema_public.string225
         }, query)
     },
-    "user_insert": {
+    "userInsert": {
         "type": "object",
         "properties": {
             "name": schema_public.name,
@@ -44,7 +44,7 @@ module.exports = {
         },
         "required": ["name", "tel", "device_uuid", "password"]
     },
-    "management_login": {
+    "managementLogin": {
         "type": "object",
         "properties": {
             "tel": schema_public.tel,
@@ -52,27 +52,52 @@ module.exports = {
         },
         "required": ["tel", "password"]
     },
-    "client_query": {
+    "clientQuery": {
         "type": "object",
         "properties": extend({
             "id": schema_public.idString,
             "package_name": schema_public.string225
         }, query)
     },
-    "banner_query": {
+    "bannerQuery": {
         "type": "object",
         "properties": extend({
             "id": schema_public.idString,
             "package_name": schema_public.string225
         }, query)
     },
-    "banner_insert": {
+    "bannerInsert": {
         "type": "object",
         "properties": extend({
             "id": schema_public.idString,
             "image_url": schema_public.string225,
-            "redirect_url":schema_public.string225,
-            "show_client_id":schema_public.num
+            "redirect_url": schema_public.string225,
+            "show_client_id": schema_public.num
         }, query)
     },
+    "clientInsert": {
+        "type": "object",
+        "properties": {
+            "name": schema_public.string225NotNull,
+            "package_name": schema_public.string225NotNull
+        },
+        "required": ["name", "package_name"]
+    },
+    "clientUpdate": {
+        "type": "object",
+        "properties": {
+            "name": schema_public.string225NotNull,
+            "package_name": schema_public.string225NotNull,
+            "id": schema_public.idString
+        },
+        "required": ["name", "package_name"]
+    },
+    "versionQuery":{
+        "type": "object",
+        "properties": extend({
+            "id": schema_public.idString,
+            "version_name": schema_public.string225NotNull,
+            "client_id": schema_public.idString
+        }, query)
+    }
 };

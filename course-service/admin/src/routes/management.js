@@ -23,8 +23,8 @@ router.use(async(ctx, next) => {
 });
 // 登录
 router.get(`${apiName}login`, routerI({
-    key: "management_login",
-    schema: AdminSchema.management_login
+    key: "managementLogin",
+    schema: AdminSchema.managementLogin
 }), async(ctx, next) => {
     const client = getThriftServer(userService).getClient();
     const user = new bean_types.User();

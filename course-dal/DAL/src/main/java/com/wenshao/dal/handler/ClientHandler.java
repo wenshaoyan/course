@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * Created by wenshao on 2017/10/7.
  * 客户端管理
  */
-public class ClientHandler implements ClientService.Iface{
+public class ClientHandler implements ClientService.Iface {
     private ClientDao clientDao;
     private VersionDao versionDao;
     private static Logger logger = Logger.getLogger("ClientHandler");
@@ -32,22 +32,31 @@ public class ClientHandler implements ClientService.Iface{
         versionDao = new VersionDaoImpl(_sessionFactory);
 
     }
+
     private List<ClientSide> clientQuery(ClientBean paramsBean) throws Exception {
         List<ClientSide> results = new ArrayList<ClientSide>();
-        List<ClientBean> beans  = clientDao.select(paramsBean);
+        List<ClientBean> beans = clientDao.select(paramsBean);
         for (ClientBean bean : beans) {
-            results.add((ClientSide) bean);
+            List<VersionBean> versionBeans = bean.getVersionBeans();
+            List<Version> versions = new ArrayList<Version>();
+            for (VersionBean versionBean : versionBeans) {
+                versions.add(versionBean);
+            }
+            bean.setVersions(versions);
+            results.add(bean);
         }
         return results;
     }
-    private List<Version> versionQuery(VersionBean paramsBean) throws Exception{
+
+    private List<Version> versionQuery(VersionBean paramsBean) throws Exception {
         List<Version> results = new ArrayList<Version>();
-        List<VersionBean> beans  = versionDao.select(paramsBean);
+        List<VersionBean> beans = versionDao.select(paramsBean);
         for (VersionBean bean : beans) {
             results.add((Version) bean);
         }
         return results;
     }
+
     @Override
     public int clientInsert(ClientSide clientSide) throws TException {
         try {
@@ -94,8 +103,33 @@ public class ClientHandler implements ClientService.Iface{
     public List<ClientSide> clientSelectQuery(ClientSide clientSide, Query query) throws TException {
 
         ClientBean clientBean = new ClientBean(clientSide);
-        QueryBean queryBean = new QueryBean(query);
+        QueryBean queryBean = new QueryBean(query, ClientBean.TABLE_PREFIX);
         clientBean.setQueryBean(queryBean);
+        try {
+            return clientQuery(clientBean);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
+
+    @Override
+    public List<ClientSide> clientSelectCustom(ClientSide clientSide, Custom custom) throws TException {
+        ClientBean clientBean = new ClientBean(clientSide);
+        clientBean.setTables(custom.getTables());
+        try {
+            return clientQuery(clientBean);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
+
+    @Override
+    public List<ClientSide> clientSelectQueryCustom(ClientSide clientSide, Query query, Custom custom) throws TException {
+        ClientBean clientBean = new ClientBean(clientSide);
+        QueryBean queryBean = new QueryBean(query, ClientBean.TABLE_PREFIX);
+        clientBean.setQueryBean(queryBean);
+        clientBean.setTables(custom.getTables());
+
         try {
             return clientQuery(clientBean);
         } catch (Exception e) {
@@ -140,10 +174,23 @@ public class ClientHandler implements ClientService.Iface{
     @Override
     public List<Version> versionSelectQuery(Version version, Query query) throws TException {
         VersionBean clientVersionBean = new VersionBean(version);
-        QueryBean queryBean = new QueryBean(query);
+        QueryBean queryBean = new QueryBean(query, VersionBean.TABLE_PREFIX);
+        System.out.println(version);
         clientVersionBean.setQueryBean(queryBean);
         try {
             return versionQuery(clientVersionBean);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
+
+    @Override
+    public int versionCountSelectQuery(Version version, Query query) throws TException {
+        QueryBean queryBean = new QueryBean(query);
+        VersionBean paramsBean = new VersionBean(version);
+        paramsBean.setQueryBean(queryBean);
+        try {
+            return versionDao.count(paramsBean);
         } catch (Exception e) {
             throw new TException(e);
         }

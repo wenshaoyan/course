@@ -35,7 +35,7 @@ struct Version{
     4:string version_name
     5:string version_number
     6:i32 client_id
-    7:string download_url,
+    7:string download_url
     8:string description
 
 }
@@ -45,6 +45,7 @@ struct ClientSide{
     3:string update_time
     4:string name
     5:string package_name
+    6:list<Version> versions
 }
 struct BannerList{
     1:list<Banner> data
@@ -82,4 +83,7 @@ struct Query{
     6:i32 limit,
     7:string sort_by,
     8:string order
+}
+struct Custom{
+    1:set<string> tables
 }

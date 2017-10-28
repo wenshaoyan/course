@@ -31,9 +31,30 @@ export function clientIdVersionQuery(cid, query) {
   })
 }
 export function versionQuery(query) {
+  console.log(query, '====================')
   return fetch({
     url: '/versions',
     method: 'get',
-    query: query
+    params: query
+  })
+}
+export function clientQueryPattern(pid) {
+  return fetch({
+    url: '/clients/pattern/' + pid,
+    method: 'get'
+  })
+}
+export function versionUpdate(params) {
+  return fetch({
+    url: '/versions/' + params.id,
+    method: 'put',
+    data: params
+  })
+}
+export function versionInsert(params) {
+  return fetch({
+    url: '/versions',
+    method: 'post',
+    data: params
   })
 }

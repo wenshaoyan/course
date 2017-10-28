@@ -52,6 +52,16 @@ const publicUtil = {
         type: "string",
         maxLength: 500
     },
+    string225NotNull: {     // 225长度不为空字符串
+        type: "string",
+        maxLength: 255,
+        minLength: 1
+    },
+    string500NotNull: {     // 500长度不为空字符串
+        type: "string",
+        maxLength: 500,
+        minLength: 1
+    },
     userId: {        // 用户id
         type: "string",
         maxLength: 50
@@ -98,10 +108,6 @@ const publicUtil = {
     page: {
         type: "string",
         pattern: "^(0|[1-9][0-9]*)$",
-    },
-    limit: {
-        type: "string",
-        pattern: "^[1-9][0-9]*$",
     },
     sort_by: {
         type: "string",

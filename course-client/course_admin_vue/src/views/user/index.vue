@@ -86,20 +86,20 @@
           name: undefined,
           id: undefined,
           role_id: undefined,
-          sort_by: 'user_create_time',
+          sort_by: 'create_time',
           order: 'desc',
           type: undefined,
-          sort: '-user_create_time',
+          sort: '-create_time',
           action: 'search'
         },
         bindPage: 1,
         roleList: [],
         roleMap: null,
         sortOptions: [
-          { label: '按ID升序', key: '+user_id' },
-          { label: '按ID降序', key: '-user_id' },
-          { label: '按注册时间升序', key: '+user_create_time' },
-          { label: '按注册时间降序', key: '-user_create_time' }]
+          { label: '按ID升序', key: '+id' },
+          { label: '按ID降序', key: '-id' },
+          { label: '按注册时间升序', key: '+create_time' },
+          { label: '按注册时间降序', key: '-create_time' }]
       }
     },
     watch: {

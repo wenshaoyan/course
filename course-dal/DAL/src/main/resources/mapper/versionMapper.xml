@@ -11,8 +11,14 @@
     </sql>
     <sql id="condition">
         <where>
-            <if test="client_id != null">
+            <if test="client_id != 0">
                 AND cv_client_id = #{client_id}
+            </if>
+            <if test="id != 0">
+                AND cv_id = #{id}
+            </if>
+            <if test="version_name != null">
+                AND cv_version_name = #{version_name}
             </if>
             <if test="queryBean != null">
                 <if test="queryBean.create_time_start_bean != 0 ">
@@ -46,6 +52,10 @@
         <include refid="condition"/>
         <include refid="order"/>
         <include refid="limit"/>
+    </select>
+    <select id="count" parameterType="_VersionBean" resultType="java.lang.Integer">
+        <include refid="select_count"/>
+        <include refid="condition"/>
     </select>
     <resultMap id="versionResult" type="_VersionBean">
         <id property="id" column="cv_id"/>

@@ -22,8 +22,8 @@ router.use(async(ctx, next) => {
 });
 // 查找用户
 router.get(`${apiName}`, routerI({
-    key: "user_query",
-    schema: AdminSchema.user_query
+    key: "userQuery",
+    schema: AdminSchema.userQuery
 }), async(ctx, next) => {
     const client = getThriftServer(userService).getClient();
     const params = ctx.query;
@@ -51,8 +51,8 @@ router.get(`${apiName}`, routerI({
 });
 // 添加用户
 router.post(apiName, routerI({
-    key: "user_insert",
-    schema: AdminSchema.user_insert
+    key: "userInsert",
+    schema: AdminSchema.userInsert
 }), async function (ctx, next) {
     const userServer = getThriftServer(userService);
     const user = new bean_types.User();

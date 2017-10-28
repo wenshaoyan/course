@@ -35,4 +35,13 @@ public class VersionDaoImpl implements VersionDao {
         sqlSession.close();
         return list;
     }
+
+    @Override
+    public int count(VersionBean versionBean) throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        int i = sqlSession.selectOne(sqlTag + ".count", versionBean);
+        sqlSession.commit();
+        sqlSession.close();
+        return i;
+    }
 }

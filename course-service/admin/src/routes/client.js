@@ -6,35 +6,30 @@ const router = require('koa-router')();
 const bean_types = require('../gen-nodejs/bean_types');
 const SysUtil = require('../util/sys_util');
 const logger = getLogger();
-const ClientService = getServiceConfig().dalName.client;
+const clientService = getServiceConfig().dalName.client;
 const routerI = require('../middleware/router_interceptor');
 const AdminSchema = require('../schema/admin_schema');
 
 router.use(async(ctx, next) => {
-    const myServer = getThriftServer(ClientService);
+    const myServer = getThriftServer(clientService);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
         await next();
     }
 });
-router.get('/', async(ctx, next) => {
+// 查询客户端列表和版本列表
+router.get('/', routerI({
+    key:'clientQuery',
+    schema:AdminSchema.clientQuery
+}),async(ctx, next) => {
     const params = ctx.query;
     const clientSide = new bean_types.ClientSide(params);
-    const clientSer = getThriftServer(ClientService).getClient();
+    const custom = new bean_types.Custom();
+    custom.tables = ['t_client_version'];
+    const clientSer = getThriftServer(clientService).getClient();
     try {
-        const result = await clientSer.clientSelect(clientSide);
-        const query = new bean_types.Query();
-        query.sort_by = 'cv_version_number';
-        query.order = 'desc';
-        query.limit = 1;
-        for (let value of result) {
-            const version = new bean_types.Version();
-            version.client_id = value.id;
-            const versionResult = await clientSer.versionSelectQuery(version, query);
-            value.new_version = versionResult.length === 1 ? versionResult[0] : {};
-        }
-
+        const result = await clientSer.clientSelectCustom(clientSide,custom);
         ctx.body = {
             list: result
         };
@@ -42,10 +37,36 @@ router.get('/', async(ctx, next) => {
         ctx.error = e;
     }
 });
-router.post('/', async(ctx, next) => {
+// 按模式查找 pid---  1:只查询客户端列表的数据 2 查询客户端和版本列表的数据
+router.get('/pattern/:pid',routerI({
+    key:'clientQuery'
+}), async(ctx, next) => {
+    const params = ctx.query;
+    const clientSide = new bean_types.ClientSide(params);
+    const clientSer = getThriftServer(clientService).getClient();
+    try {
+        let result;
+        if (ctx.params.pid === '2'){
+            const custom = new bean_types.Custom();
+            custom.tables = ['t_client_version'];
+            result = await clientSer.clientSelectCustom(clientSide,custom);
+        } else{
+            result = await clientSer.clientSelect(clientSide);
+        }
+        ctx.body = {
+            list: result
+        };
+    } catch (e) {
+        ctx.error = e;
+    }
+});
+router.post('/',routerI({
+    key:'clientInsert',
+    schema:AdminSchema.clientInsert
+}), async(ctx, next) => {
     const params = ctx.request.body;
     const clientSide = new bean_types.ClientSide(params);
-    const clientSer = getThriftServer(ClientService).getClient();
+    const clientSer = getThriftServer(clientService).getClient();
     try {
         let id = await clientSer.clientInsert(clientSide);
         if (id === 0) ctx.error = 'INSERT_FAIL';
@@ -55,11 +76,14 @@ router.post('/', async(ctx, next) => {
     }
 
 });
-router.put('/:id', async(ctx, next) => {
+router.put('/:id',routerI({
+    key:'clientUpdate',
+    schema:AdminSchema.clientUpdate
+}), async(ctx, next) => {
     const params = ctx.request.body;
     const clientSide = new bean_types.ClientSide(params);
     clientSide.id = ctx.params.id;
-    const clientSer = getThriftServer(ClientService).getClient();
+    const clientSer = getThriftServer(clientService).getClient();
     try {
         let rowNumber = await clientSer.clientUpdate(clientSide);
         if (rowNumber === 0) ctx.error = 'UPDATE_FAIL';
@@ -68,19 +92,27 @@ router.put('/:id', async(ctx, next) => {
         ctx.error = e;
     }
 });
-router.get('/:cid/versions', async(ctx, next) => {
+router.get('/:cid/versions',routerI({
+    key:'versionQuery',
+    schema:AdminSchema.versionQuery
+}),  async(ctx, next) => {
     const params = ctx.query;
     const cid = ctx.params.cid;
     const version = new bean_types.Version();
     const query = new bean_types.Query(params);
-    version.clent_id = cid;
-    const clientSer = getThriftServer(ClientService).getClient();
+    version.client_id = cid;
+    const clientSer = getThriftServer(clientService).getClient();
     try {
-        let result = await clientSer.versionSelectQuery(version, query);
-        console.log(result);
-        ctx.body = {
-            a: 1
+        let count = undefined;
+        let list = [];
+        if (params.action === 'search') {   // 搜索动作 请求总条数
+            // 查询满足条件的记录列表
+            count = await clientSer.versionCountSelectQuery(version, query);
+            if (count !== 0) list = await clientSer.versionSelectQuery(version, query);
+        } else {    // 翻页动作 不请求总条数
+            list = await clientSer.versionSelectQuery(version, query);
         }
+        ctx.body = {list:list,count:count}
     } catch (e) {
         ctx.error = e;
     }

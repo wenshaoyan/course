@@ -3,104 +3,104 @@
     "message":"未知错误",
     "code":1,
     "en_message":"unknown error",
-    "errorSource":"http"
+    "error_source":"http"
   },
   "THRIFT_CONNECT_ERROR":{
     "message":"数据获取失败",
     "code":2,
     "en_message":"thrift service connect error",
-    "errorSource":"thrift"
+    "error_source":"thrift"
   },
   "THRIFT_ASK_EXCEPTION":{
     "message":"数据获取失败",
     "code":3,
     "en_message":"thrift service ask exception",
-    "errorSource":"thrift"
+    "error_source":"thrift"
   },
   "PARAMS_VALID_ERROR":{
     "message":"参数验证失败",
     "code":4,
     "en_message":"Parameter validation failure",
-    "errorSource":"ajv"
+    "error_source":"ajv"
   },
   "TEL_EXIST":{
     "message":"手机号已经存在",
     "code":101,
     "en_message":"The phone number there",
-    "errorSource":"dal"
+    "error_source":"dal"
   },
 
   "TEL_ERROR_OR_PASSWORD_ERROR":{
     "message":"用户名或密码错误",
     "code":102,
     "en_message":"The user name or password error",
-    "errorSource":"dal"
+    "error_source":"dal"
   },
   "LOGIN_AGAIN":{
     "message":"请重新登录",
     "code":103,
     "en_message":"Please again login",
-    "errorSource":"user"
+    "error_source":"user"
   },
   "PACKAGE_NAME_ERROR":{
     "message":"包名不存在或为注册包名",
     "code":104,
     "en_message":"package name not exist or not register",
-    "errorSource":"dal"
+    "error_source":"dal"
   },
   "USER_ROLE_NOT_FOUND":{
     "message":"用户信息错误",
     "code":105,
     "en_message":"user info error",
-    "errorSource":"dal"
+    "error_source":"dal"
   },
   "INSERT_FAIL":{
     "message":"添加失败",
     "code":201,
     "en_message":"insert failure",
-    "errorSource":"dal"
+    "error_source":"dal"
   },
   "QUERY_FAIL":{
     "message":"查询失败",
     "code":202,
     "en_message":"query failure",
-    "errorSource":"dal"
+    "error_source":"dal"
   },
   "UPDATE_FAIL":{
     "message":"更新失败",
     "code":203,
     "en_message":"update failure",
-    "errorSource":"dal"
+    "error_source":"dal"
   },
   "DELETE_FAIL":{
     "message":"删除失败",
     "code":204,
     "en_message":"delete failure",
-    "errorSource":"dal"
+    "error_source":"dal"
   },
   "DATA_ERROR":{
     "message":"数据错误",
     "code":211,
     "en_message":"data error!",
-    "errorSource":"dal"
+    "error_source":"dal"
   },
   "TOKEN_INFO_LOSE":{
     "message":"token信息丢失",
     "code":307,
     "en_message":"token lose",
-    "errorSource":"auth"
+    "error_source":"auth"
   },
   "TOKEN_INFO_EXCEPTION":{
     "message":"token数据异常",
     "code":304,
     "en_message":"token data exception",
-    "errorSource":"get_user"
+    "error_source":"get_user"
   },
   "TOKEN_INVALID":{
     "message":"token非法",
     "code":305,
     "en_message":"INVALID TOKEN",
-    "errorSource":"get_user"
+    "error_source":"get_user"
   }
 
 }

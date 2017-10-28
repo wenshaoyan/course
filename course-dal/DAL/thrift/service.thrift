@@ -32,6 +32,9 @@ service ClientService{
     list<bean.ClientSide> clientSelectAll(),
     list<bean.ClientSide> clientSelect(1: bean.ClientSide clientSide),
     list<bean.ClientSide> clientSelectQuery(1: bean.ClientSide clientSide,2: bean.Query query),
+    list<bean.ClientSide> clientSelectCustom(1: bean.ClientSide clientSide,2:bean.Custom custom),
+    list<bean.ClientSide> clientSelectQueryCustom(1: bean.ClientSide clientSide,2: bean.Query query,3:bean.Custom custom)
+
 
     i32 versionInsert(1: bean.Version version),
     i32 versionUpdate(1: bean.Version version),
@@ -40,6 +43,7 @@ service ClientService{
     list<bean.Version> versionSelectAll(),
     list<bean.Version> versionSelect(1: bean.Version version),
     list<bean.Version> versionSelectQuery(1: bean.Version version,2: bean.Query query),
+    i32 versionCountSelectQuery(1: bean.Version version,2: bean.Query query)
 
 
 

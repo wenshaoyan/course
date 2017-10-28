@@ -66,6 +66,7 @@
 
 <script>
   import { clientQuery, clientInsert, clientUpdate } from '@/api/client'
+  import { jsonArrayFindItem } from '@/utils/sys'
   import waves from '@/directive/waves/index.js' // 水波纹指令
 
   export default {
@@ -78,8 +79,7 @@
         if (value.length === 0) {
           callback(new Error('名称必填'))
         } else {
-          // callback()
-          callback(new Error('名称必填'))
+          callback()
         }
       }
       const validatePackage = (rule, value, callback) => {
@@ -120,6 +120,13 @@
       queryData() {
         this.listLoading = true
         clientQuery().then(data => {
+          data.list.forEach(value => {
+            value.new_version = {}
+            if (value.versions && value.versions.length > 0) {
+              const maxI = jsonArrayFindItem(value.versions, 'version_name', parseInt, 'max')
+              if (maxI !== null) value.new_version.version_name = value.versions[maxI].version_name
+            }
+          })
           this.list = data.list
           this.listLoading = false
         }).catch(e => {
@@ -196,7 +203,7 @@
         this.$router.push({
           path: '/client/version',
           query: {
-            client_id: row.client_id
+            client_id: row.id
           }
         })
       }

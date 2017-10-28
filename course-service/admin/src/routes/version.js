@@ -10,11 +10,46 @@ const logger = getLogger();
 const clientService = getServiceConfig().dalName.client;
 const routerI = require('../middleware/router_interceptor');
 const AdminSchema = require('../schema/admin_schema');
-const apiName = '/';
-router.get('/:id', async(ctx, next) => {
-    console.log(ctx.params)
-    console.log(ctx.query);
-    ctx.body = {a:1}
+router.use(async(ctx, next) => {
+    const myServer = getThriftServer(clientService);
+    if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
+        ctx.error = 'THRIFT_CONNECT_ERROR';
+    } else {
+        await next();
+    }
 });
+router.get('/', async(ctx, next) => {
+    const params = ctx.query;
+    const version = new bean_types.Version(params);
+    const query = new bean_types.Query(params);
+    const clientSer = getThriftServer(clientService).getClient();
+    try {
+        let count = undefined;
+        let list = [];
+        if (params.action === 'search') {   // 搜索动作 请求总条数
+            // 查询满足条件的记录列表
+            count = await clientSer.versionCountSelectQuery(version, query);
+            if (count !== 0) list = await clientSer.versionSelectQuery(version, query);
+        } else {    // 翻页动作 不请求总条数
+            list = await clientSer.versionSelectQuery(version, query);
+        }
+        ctx.body = {list: list, count: count}
+    } catch (e) {
+        ctx.error = e;
+    }
+});
+router.post('/test', async(ctx, next) => {
+    console.log('==============')
+    await p();
+    ctx.body = {a:1}
+})
+
+const p =  ()=> {
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            resolve(1)
+        },10000)
+    })
+}
 
 module.exports = router;

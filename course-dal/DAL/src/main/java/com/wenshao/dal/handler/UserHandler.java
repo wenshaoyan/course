@@ -34,6 +34,7 @@ public class UserHandler implements UserService.Iface {
         userDao = new UserDaoImpl(_sessionFactory);
         roleDao = new RoleDaoImpl(_sessionFactory);
     }
+
     private List<User> query(UserBean paramsBean) throws Exception {
         List<User> users = new ArrayList<User>();
         List<UserBean> userBeans = userDao.select(paramsBean);
@@ -42,6 +43,7 @@ public class UserHandler implements UserService.Iface {
         }
         return users;
     }
+
     @Override
     public int userInsert(User user) throws TException {
         UserBean userBean = new UserBean(user);
@@ -94,7 +96,7 @@ public class UserHandler implements UserService.Iface {
 
     @Override
     public List<User> userQuery(Query query) throws TException {
-        QueryBean queryBean = new QueryBean(query);
+        QueryBean queryBean = new QueryBean(query, UserBean.TABLE_PREFIX);
         UserBean paramsBean = new UserBean();
         paramsBean.setQueryBean(queryBean);
         try {
@@ -106,7 +108,7 @@ public class UserHandler implements UserService.Iface {
 
     @Override
     public List<User> userSelectQuery(User user, Query query) throws TException {
-        QueryBean queryBean = new QueryBean(query);
+        QueryBean queryBean = new QueryBean(query, UserBean.TABLE_PREFIX);
         UserBean paramsBean = new UserBean(user);
         paramsBean.setQueryBean(queryBean);
         try {
@@ -118,7 +120,7 @@ public class UserHandler implements UserService.Iface {
 
     @Override
     public int userCountSelectQuery(User user, Query query) throws TException {
-        QueryBean queryBean = new QueryBean(query);
+        QueryBean queryBean = new QueryBean(query, UserBean.TABLE_PREFIX);
         UserBean paramsBean = new UserBean(user);
         paramsBean.setQueryBean(queryBean);
         try {

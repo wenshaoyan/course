@@ -23,11 +23,17 @@
     <sql id="select_list">
          SELECT * FROM t_client
     </sql>
+    <sql id="select_all_list">
+        SELECT * FROM t_client,t_client_version
+    </sql>
     <sql id="select_count">
         SELECT count(*)
         FROM t_client
     </sql>
     <sql id="condition">
+        <if test="tables.contains('t_client_version')">
+            LEFT JOIN t_client_version ON t_client_version.cv_client_id=t_client.client_id
+        </if>
         <where>
             <if test="package_name != null">
                 AND client_package_name = #{package_name}
@@ -75,7 +81,16 @@
         <result property="update_time_bean" column="client_update_time"/>
         <result property="name" column="client_name"/>
         <result property="package_name" column="client_package_name"/>
-
+        <collection property="versionBeans" ofType="_VersionBean" >
+            <id property="id" column="cv_id"/>
+            <result property="create_time_bean" column="cv_create_time"/>
+            <result property="update_time_bean" column="cv_update_time"/>
+            <result property="version_name" column="cv_version_name"/>
+            <result property="version_number" column="cv_version_number"/>
+            <result property="client_id" column="cv_client_id"/>
+            <result property="download_url" column="cv_download_url"/>
+            <result property="description" column="cv_description"/>
+        </collection>
     </resultMap>
 
 </mapper>
