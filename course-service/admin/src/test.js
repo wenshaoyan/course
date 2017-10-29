@@ -3,9 +3,10 @@
  */
 'use strict';
 const MultiWayTree = require('./lib/multi_way_tree');
-let result = require('../assets/r.json');
+let result = require('../assets/test.json');
 let multiWayTree = new MultiWayTree("code");
 result.RECORDS.forEach((value) => {
+    console.log(value)
     multiWayTree.insert(value);
 });
 let toArray = multiWayTree.toArray((value) => {

@@ -46,6 +46,6 @@
     "zookeeper":{"appenders":["console","zookeeper"],"level":"trace"},
     "thrift":{"appenders":["console","thrift"],"level":"trace"},
     "resSuccess":{"appenders":["resSuccess"],"level":"trace"},
-    "resFail":{"appenders":["resFail"],"level":"trace"}
+    "resFail":{"appenders":["console","resFail"],"level":"trace"}
   }
 }

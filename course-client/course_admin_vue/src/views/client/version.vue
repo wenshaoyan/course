@@ -7,7 +7,7 @@
       <el-input @keyup.enter.native="handleSearch" style="width: 200px;" class="filter-item" placeholder="名称" v-model="versionQuery.version_name" @change="queryParamChange('name')">
       </el-input>
 
-      <el-select clearable class="filter-item" style="width: 130px" v-model="versionQuery.client_id" placeholder="客户端列表">
+      <el-select clearable class="filter-item" style="width: 130px" v-model="versionQuery.client_id" placeholder="客户端列表" @clear="clientClear" :loading="listClientLoading" loading-text="加载中..">
         <el-option v-for="item in clientList" :key="item.id" :label="item.name" :value="item.id">
         </el-option>
       </el-select>
@@ -80,7 +80,7 @@
           <el-input v-model="dialogRowData.version_name"></el-input>
         </el-form-item>
         <el-form-item label="版本号">
-          <el-input v-model="dialogRowData.version_number"></el-input>
+          <el-input v-model.number="dialogRowData.version_number" type="number"></el-input>
         </el-form-item>
         <el-form-item label="安装文件">
           <!--<el-input v-model="dialogRowData.download_url"></el-input>-->
@@ -148,6 +148,7 @@
         list: null,
         total: null,
         listLoading: true,
+        listClientLoading: true,
         filterQuery: {
           page: 1,
           limit: 10,
@@ -263,6 +264,7 @@
           const map = new Map()
           data.list.forEach(value => map.set(value.id, value.name))
           this.clientMap = map
+          this.listClientLoading = false
         })
       },
       handleEditRow(row) {
@@ -317,6 +319,7 @@
       // 插入数据
       insertData() {
         this.$refs.dialogRowData.validate(valid => {
+          console.log(this.dialogRowData)
           if (valid) {
             versionInsert(this.dialogRowData).then(data => {
               this.getList()
@@ -388,6 +391,9 @@
       fileUploadProgress(event, file, fileList) {
         console.log('================')
         console.log(event)
+      },
+      clientClear() {
+        this.versionQuery.client_id = undefined
       }
     }
   }

@@ -1,5 +1,6 @@
 /**
  * Created by yanshaowen on 2017/10/25
+ * 客户端管理
  */
 'use strict';
 const router = require('koa-router')();

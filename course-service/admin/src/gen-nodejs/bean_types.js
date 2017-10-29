@@ -560,8 +560,8 @@ Version.prototype.read = function(input) {
       }
       break;
       case 5:
-      if (ftype == Thrift.Type.STRING) {
-        this.version_number = input.readString();
+      if (ftype == Thrift.Type.I32) {
+        this.version_number = input.readI32();
       } else {
         input.skip(ftype);
       }
@@ -619,8 +619,8 @@ Version.prototype.write = function(output) {
     output.writeFieldEnd();
   }
   if (this.version_number !== null && this.version_number !== undefined) {
-    output.writeFieldBegin('version_number', Thrift.Type.STRING, 5);
-    output.writeString(this.version_number);
+    output.writeFieldBegin('version_number', Thrift.Type.I32, 5);
+    output.writeI32(this.version_number);
     output.writeFieldEnd();
   }
   if (this.client_id !== null && this.client_id !== undefined) {

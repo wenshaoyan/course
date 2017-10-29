@@ -18,7 +18,9 @@ router.use(async(ctx, next) => {
         await next();
     }
 });
-router.get('/', async(ctx, next) => {
+router.get('/', routerI({
+    key: 'versionQuery',
+}), async(ctx, next) => {
     const params = ctx.query;
     const version = new bean_types.Version(params);
     const query = new bean_types.Query(params);
@@ -33,32 +35,42 @@ router.get('/', async(ctx, next) => {
         } else {    // 翻页动作 不请求总条数
             list = await clientSer.versionSelectQuery(version, query);
         }
-        list.forEach(value => value.download_url = getServiceConfig().publicServer +value.download_url);
+        list.forEach(value => value.download_url = getServiceConfig().publicServer + value.download_url);
         ctx.body = {list: list, count: count}
     } catch (e) {
         ctx.error = e;
     }
 });
-router.post('/', async(ctx, next) => {
+router.post('/',routerI({
+    key: 'versionInsert',
+    schema:AdminSchema.versionInsert
+}),  async(ctx, next) => {
     const params = ctx.request.body;
     const version = new bean_types.Version(params);
     const clientSer = getThriftServer(clientService).getClient();
     try {
+        console.log(version)
+
         let id = await clientSer.versionInsert(version);
         ctx.body = {
             id: id
         }
     } catch (e) {
+        console.log(e)
         ctx.error = e;
 
     }
 });
-router.put('/:id', async(ctx, next) => {
+router.put('/:id', routerI({
+    key: 'versionUpdate',
+    schema:AdminSchema.versionUpdate
+}),async(ctx, next) => {
     const params = ctx.request.body;
     const version = new bean_types.Version(params);
     version.id = ctx.params.id;
     const clientSer = getThriftServer(clientService).getClient();
     try {
+        console.log(version)
         let id = await clientSer.versionUpdate(version);
         ctx.body = {
             id: version.id

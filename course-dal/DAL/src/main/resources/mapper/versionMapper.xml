@@ -11,7 +11,7 @@
             <if test="version_name != null">
                 cv_version_name = #{version_name},
             </if>
-            <if test="version_number != null">
+            <if test="version_number != 0">
                 cv_version_number = #{version_number},
             </if>
             <if test="client_id != null">
@@ -93,6 +93,5 @@
         <result property="client_id" column="cv_client_id"/>
         <result property="download_url" column="cv_download_url"/>
         <result property="description" column="cv_description"/>
-
     </resultMap>
 </mapper>

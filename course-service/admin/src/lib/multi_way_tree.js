@@ -88,7 +88,7 @@ const MultiWayTree = (function () {
     const recursion = function (list, chiles, callback) {
         let index = 0;
         for (let val of chiles) {
-            let parse = val.value;
+            let parse = JSON.parse(JSON.stringify(val.value));
             if (callback instanceof Function) callback(parse);
             list.push(parse);
             recursion(list[index].next, val.childes, callback);
@@ -190,7 +190,6 @@ const MultiWayTree = (function () {
         toArray(callback) {
             const list = [];
             this[_func_recursion_node](list, this[_root].childes, callback);
-            console.log(this[_wait_allot_set].size)
             if (this[_wait_allot_set].size !== 0) {
                 this[_wait_allot_set].forEach((ele)=>{
                     let parse = JSON.parse(JSON.stringify(ele.value));

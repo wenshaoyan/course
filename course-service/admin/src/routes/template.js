@@ -1,6 +1,6 @@
 /**
  * Created by yanshaowen on 2017/10/25
- * 轮播图管理
+ * 模板
  */
 'use strict';
 const router = require('koa-router')();

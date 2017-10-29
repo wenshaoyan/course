@@ -92,12 +92,34 @@ module.exports = {
         },
         "required": ["name", "package_name"]
     },
-    "versionQuery":{
+    "versionQuery": {
         "type": "object",
         "properties": extend({
             "id": schema_public.idString,
             "version_name": schema_public.string225NotNull,
             "client_id": schema_public.idString
         }, query)
+    },
+    "versionInsert": {
+        "type": "object",
+        "properties": {
+            "version_name": schema_public.string225NotNull,
+            "version_number": schema_public.num,
+            "download_url": schema_public.string225NotNull,
+            "client_id": schema_public.id,
+            "description": schema_public.string225
+        },
+        "required": ["version_name", "version_number", "download_url", "client_id"]
+    },
+    "versionUpdate": {
+        "type": "object",
+        "properties": {
+            "version_name": schema_public.string225NotNull,
+            "version_number": schema_public.num,
+            "download_url": schema_public.string225NotNull,
+            "client_id": schema_public.id,
+            "description": schema_public.string225
+        },
+        "required": ["client_id"]
     }
 };
