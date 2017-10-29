@@ -33,7 +33,7 @@ struct Version{
     2:string create_time
     3:string update_time
     4:string version_name
-    5:string version_number
+    5:i32 version_number
     6:i32 client_id
     7:string download_url
     8:string description

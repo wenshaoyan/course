@@ -37,6 +37,7 @@ public class VersionDaoImpl implements VersionDao {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         long time = new Date().getTime();
         versionBean.setUpdate_time(String.valueOf(time));
+        System.out.println(versionBean);
         int update = sqlSession.update(sqlTag + ".update", versionBean);
         sqlSession.commit();
         sqlSession.close();
