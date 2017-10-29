@@ -98,7 +98,7 @@ router.get('/:cid/versions',routerI({
 }),  async(ctx, next) => {
     const params = ctx.query;
     const cid = ctx.params.cid;
-    const version = new bean_types.Version();
+    const version = new bean_types.Version(params);
     const query = new bean_types.Query(params);
     version.client_id = cid;
     const clientSer = getThriftServer(clientService).getClient();
@@ -112,6 +112,7 @@ router.get('/:cid/versions',routerI({
         } else {    // 翻页动作 不请求总条数
             list = await clientSer.versionSelectQuery(version, query);
         }
+        list.forEach(value => value.download_url = getServiceConfig().publicServer +value.download_url);
         ctx.body = {list:list,count:count}
     } catch (e) {
         ctx.error = e;

@@ -33,23 +33,39 @@ router.get('/', async(ctx, next) => {
         } else {    // 翻页动作 不请求总条数
             list = await clientSer.versionSelectQuery(version, query);
         }
+        list.forEach(value => value.download_url = getServiceConfig().publicServer +value.download_url);
         ctx.body = {list: list, count: count}
     } catch (e) {
         ctx.error = e;
     }
 });
-router.post('/test', async(ctx, next) => {
-    console.log('==============')
-    await p();
-    ctx.body = {a:1}
-})
+router.post('/', async(ctx, next) => {
+    const params = ctx.request.body;
+    const version = new bean_types.Version(params);
+    const clientSer = getThriftServer(clientService).getClient();
+    try {
+        let id = await clientSer.versionInsert(version);
+        ctx.body = {
+            id: id
+        }
+    } catch (e) {
+        ctx.error = e;
 
-const p =  ()=> {
-    return new Promise((resolve,reject)=>{
-        setTimeout(()=>{
-            resolve(1)
-        },10000)
-    })
-}
+    }
+});
+router.put('/:id', async(ctx, next) => {
+    const params = ctx.request.body;
+    const version = new bean_types.Version(params);
+    version.id = ctx.params.id;
+    const clientSer = getThriftServer(clientService).getClient();
+    try {
+        let id = await clientSer.versionUpdate(version);
+        ctx.body = {
+            id: version.id
+        }
+    } catch (e) {
+        ctx.error = e;
 
+    }
+});
 module.exports = router;

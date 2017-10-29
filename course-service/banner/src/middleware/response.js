@@ -44,7 +44,9 @@ function func(opt) {
                 success: true,
                 data: ctx.body,
                 message: "success",
-                code: 0
+                code: 0,
+                error_source:"success",
+                en_message:"success"
             };
             ctx.body = result;
             if (isSetSuccessLog) setLog(opt.successLog,result);
