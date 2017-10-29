@@ -20,3 +20,4 @@ let toArray = multiWayTree.toArray((value) => {
     delete value.user_id;
 });
 console.log(JSON.stringify(toArray))
+
