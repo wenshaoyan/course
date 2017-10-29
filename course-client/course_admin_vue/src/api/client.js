@@ -23,19 +23,23 @@ export function clientUpdate(params) {
     data: params
   })
 }
-export function clientIdVersionQuery(cid, query) {
+export function clientIdVersionQuery(cid, params) {
   return fetch({
-    url: `/clients/${cid}/versions`,
+    url: '/clients/' + cid + '/versions',
     method: 'get',
-    query: query
+    params: params
   })
+  // return fetch({
+  //   url: '/versions',
+  //   method: 'get',
+  //   params: params
+  // })
 }
-export function versionQuery(query) {
-  console.log(query, '====================')
+export function versionQuery(params) {
   return fetch({
     url: '/versions',
     method: 'get',
-    params: query
+    params: params
   })
 }
 export function clientQueryPattern(pid) {

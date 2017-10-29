@@ -56,9 +56,8 @@ public class ClientDaoImpl implements ClientDao {
         long time = new Date().getTime();
         clientBean.setUpdate_time(String.valueOf(time));
         int update = sqlSession.update(sqlTag + ".update", clientBean);
-        System.out.println(update);
         sqlSession.commit();
         sqlSession.close();
-        return 1;
+        return update;
     }
 }

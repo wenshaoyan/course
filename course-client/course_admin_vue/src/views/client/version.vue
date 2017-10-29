@@ -58,9 +58,15 @@
           <span>{{scope.row.description}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="客户端名称" width="150">
+      <el-table-column align="center" label="客户端名称" width="100">
         <template scope="scope">
           <span>{{getClientName(scope.row.client_id)}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" label="操作" width="80">
+        <template scope="scope">
+          <el-button  size="small" type="success" @click="handleEditRow(scope.row)">编辑
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -82,11 +88,12 @@
             action="http://123.207.55.204:8083/upload/apk"
             name="file"
             :show-file-list="false"
-            :on-success="fileUpdateSuccess"
-            :on-error="fileUpdateError"
+            :on-success="fileUploadSuccess"
+            :on-error="fileUploadError"
+            :on-progress="fileUploadProgress"
             :before-upload="beforeAvatarUpload">
             <el-button size="small" type="primary">点击上传</el-button>
-            <div slot="tip" class="el-upload__tip">只能上传apk文件</div>
+            <div slot="tip" class="el-upload__tip">{{this.uploadInfo}}</div>
           </el-upload>
         </el-form-item>
         <el-form-item label="更新描述">
@@ -163,7 +170,7 @@
           version_number: undefined,
           download_url: undefined,
           description: undefined,
-          client_id: versionQuery.client_id
+          client_id: undefined
         },
         textMap: {
           update: '编辑',
@@ -181,7 +188,8 @@
           { label: '按版本号升序', key: '+version_number' },
           { label: '按版本号降序', key: '-version_number' }],
         // pending: 上传中 success:成功 error:失败 await:等待上传
-        updateApkStatus: 'await'
+        updateApkStatus: 'await',
+        uploadInfo: '上传apk'
       }
     },
     watch: {
@@ -198,7 +206,8 @@
     },
     methods: {
       initData() {
-        this.versionQuery.client_id = this.$route.query.client_id
+        const temp = this.$route.query.client_id
+        this.versionQuery.client_id = temp ? +temp : temp
       },
       getClientName(id) {
         return this.clientMap ? this.clientMap.get(id) : ''
@@ -257,16 +266,23 @@
         })
       },
       handleEditRow(row) {
-        this.resetDialogRow()
-        this.dialogRowData = Object.assign({}, row)
-        this.dialogStatus = 'update'
-        this.dialogFormVisible = true
+        if (row && row.client_id) {
+          this.resetDialogRow(row.client_id)
+          this.dialogRowData = Object.assign({}, row)
+          this.dialogStatus = 'update'
+          this.uploadInfo = row.download_url
+          this.dialogFormVisible = true
+        } else {
+          this.$message({ message: '获取客户端id失败', type: 'error' })
+        }
       },
       handleCreate() {
         if (this.versionQuery.client_id) {
-          this.resetDialogRow()
+          this.resetDialogRow(this.versionQuery.client_id)
+          this.dialogRowData.client_id = this.versionQuery.client_id
           this.dialogStatus = 'create'
           this.dialogFormVisible = true
+          this.uploadInfo = '上传apk'
         } else {
           this.$message({ message: '请选择客户端后再添加', type: 'error' })
         }
@@ -278,7 +294,7 @@
           version_number: undefined,
           download_url: undefined,
           description: undefined,
-          client_id: this.versionQuery.client_id
+          client_id: undefined
         }
       },
       handleSearch() {
@@ -303,7 +319,7 @@
         this.$refs.dialogRowData.validate(valid => {
           if (valid) {
             versionInsert(this.dialogRowData).then(data => {
-              this.queryData()
+              this.getList()
               this.dialogFormVisible = false
               this.$notify({
                 title: '成功',
@@ -325,7 +341,7 @@
         this.$refs.dialogRowData.validate(valid => {
           if (valid) {
             versionUpdate(this.dialogRowData).then(data => {
-              this.queryData()
+              this.getList()
               this.dialogFormVisible = false
               this.$notify({
                 title: '成功',
@@ -341,20 +357,37 @@
           }
         })
       },
-      fileUpdateSuccess(response, file, fileList) {
-
+      fileUploadSuccess(response, file, fileList) {
+        if (response.success) {
+          try {
+            const path = response.data[0].file_path
+            const url = new URL(path)
+            this.updateApkStatus = 'success'
+            this.dialogRowData.download_url = url.pathname
+            this.uploadInfo = path
+          } catch (e) {
+            this.$message.error('数据解析异常')
+          }
+        } else {
+          this.$message.error(response.message)
+        }
       },
-      fileUpdateError(e, file, fileList) {
-        this.updateApkStatus = 'error';
+      fileUploadError(e, file, fileList) {
+        this.updateApkStatus = 'error'
+        this.$message.error('上传失败')
       },
       beforeAvatarUpload(file) {
         const isAPK = file.type === 'application/vnd.android.package-archive'
         if (!isAPK) {
           this.$message.error('只能上传apk文件')
         } else {
-          this.updateApkStatus = 'pending';
+          this.updateApkStatus = 'pending'
         }
         return isAPK
+      },
+      fileUploadProgress(event, file, fileList) {
+        console.log('================')
+        console.log(event)
       }
     }
   }

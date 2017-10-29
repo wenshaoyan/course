@@ -61,6 +61,7 @@ export const asyncRouterMap = [
   {
     path: '/client',
     component: Layout,
+    redirect: '/client/index',
     code: 1002,
     name: '客户端管理',
     icon: 'theme',

@@ -9,6 +9,9 @@ import java.util.List;
  * 版本管理表接口
  */
 public interface VersionDao {
+    public int insert(VersionBean versionBean) throws Exception;
+    public int update(VersionBean versionBean) throws Exception;
+
     public List<VersionBean> select(VersionBean clientVersionBean) throws Exception;
     public List<VersionBean> selectAll() throws Exception;
     public int count(VersionBean versionBean) throws Exception;

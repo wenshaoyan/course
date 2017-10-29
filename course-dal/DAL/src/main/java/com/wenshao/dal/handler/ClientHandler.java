@@ -139,12 +139,22 @@ public class ClientHandler implements ClientService.Iface {
 
     @Override
     public int versionInsert(Version version) throws TException {
-        return 0;
+        VersionBean versionBean = new VersionBean(version);
+        try {
+            return versionDao.insert(versionBean);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     @Override
-    public int versionUpdate(Version clientVersion) throws TException {
-        return 0;
+    public int versionUpdate(Version version) throws TException {
+        VersionBean versionBean = new VersionBean(version);
+        try {
+            return versionDao.update(versionBean);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     @Override
@@ -175,7 +185,6 @@ public class ClientHandler implements ClientService.Iface {
     public List<Version> versionSelectQuery(Version version, Query query) throws TException {
         VersionBean clientVersionBean = new VersionBean(version);
         QueryBean queryBean = new QueryBean(query, VersionBean.TABLE_PREFIX);
-        System.out.println(version);
         clientVersionBean.setQueryBean(queryBean);
         try {
             return versionQuery(clientVersionBean);
