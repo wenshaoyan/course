@@ -20,6 +20,29 @@ router.use(async(ctx, next) => {
         await next();
     }
 });
+router.get('/', async(ctx, next) => {
+    const params = ctx.query;
+    const banner = new bean_types.Banner(params);
+    const client = getThriftServer(bannerService).getClient();
+    try {
+        const result = await client.select(banner);
+        SysUtil.jsonArrayValueJoin(result,'image_url',getServiceConfig().publicServer);
+        ctx.body = result;
+    } catch (e) {
+        ctx.error = e;
+    }
 
+});
+router.post('/', async(ctx, next) => {
 
+});
+router.put('/:id', async(ctx, next) => {
+
+});
+router.patch('/:id', async(ctx, next) => {
+
+});
+router.delete('/:id', async(ctx, next) => {
+
+});
 module.exports = router;

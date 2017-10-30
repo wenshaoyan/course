@@ -71,6 +71,18 @@ export const asyncRouterMap = [
     ]
   },
   {
+    path: '/app',
+    component: Layout,
+    redirect: 'noredirect',
+    code: 1002,
+    name: 'app管理',
+    icon: 'theme',
+    children: [
+      { path: 'banner', component: _import('app/banner'), name: '轮播图' },
+      { path: 'test', component: _import('app/test'), name: '轮播图' }
+    ]
+  },
+  {
     path: '/permission',
     component: Layout,
     redirect: '/permission/index',
