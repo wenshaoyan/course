@@ -19,6 +19,7 @@
 
       <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleSearch">搜索</el-button>
       <el-button class="filter-item" type="primary" v-waves icon="edit" @click="handleCreate">添加</el-button>
+      <el-button class="filter-item" type="primary" v-waves  @click="handleCreate" v-bind:disabled="{isLocationChange}">提交位置修改</el-button>
     </div>
 
     <el-table  :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row >
@@ -111,7 +112,8 @@
                      :page-sizes="[10,20,30, 50]" :page-size="filterQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total">
       </el-pagination>
     </div>
-
+    <div class='show-d'>默认顺序 &nbsp; {{ olderList}}</div>
+    <div class='show-d'>拖拽后顺序{{newList}}</div>
 
   </div>
 </template>
@@ -120,7 +122,7 @@
   import { clientQueryPattern, versionUpdate, versionInsert } from '@/api/client'
   import { bannerQuery } from '@/api/banner'
   import waves from '@/directive/waves/index.js' // 水波纹指令
-
+  import Sortable from 'sortablejs'
   export default {
     name: 'table_demo',
     directives: {
@@ -143,6 +145,8 @@
       }
       return {
         list: null,
+        newList: [],
+        olderList: [],
         total: null,
         listLoading: true,
         listClientLoading: true,
@@ -187,7 +191,8 @@
           { label: '按版本号降序', key: '-version_number' }],
         // pending: 上传中 success:成功 error:失败 await:等待上传
         updateApkStatus: 'await',
-        uploadInfo: '上传apk'
+        uploadInfo: '上传apk',
+        isLocationChange: false
       }
     },
     watch: {
@@ -236,8 +241,29 @@
           this.list = data
           if ('count' in data) this.total = data.count
           this.listLoading = false
+          // 拖拽数据初始化
+          this.dragDataInit()
         }).catch(e => {
           this.listLoading = false
+        })
+      },
+      dragDataInit() {
+        if (!this.listLoading) {
+          this.olderList = this.list.map(v => v.id)
+          this.newList = this.olderList.slice()
+          this.$nextTick(() => {
+            this.setSort()
+          })
+        }
+      },
+      setSort() {
+        const el = document.querySelectorAll('.el-table__body-wrapper > table > tbody')[0]
+        this.sortable = Sortable.create(el, {
+          onEnd: evt => {
+            this.isLocationChange = true;
+            const tempIndex = this.newList.splice(evt.oldIndex, 1)[0]
+            this.newList.splice(evt.newIndex, 0, tempIndex)
+          }
         })
       },
       getClientAll() {
@@ -380,7 +406,7 @@
     }
   }
 </script>
-<style scoped>
+<style>
   .drag-handler{
     width: 30px;
     height: 30px;
