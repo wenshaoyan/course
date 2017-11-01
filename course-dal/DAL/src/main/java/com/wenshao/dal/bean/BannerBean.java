@@ -3,6 +3,8 @@ package com.wenshao.dal.bean;
 import com.wenshao.dal.thriftgen.Banner;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by wenshao on 2017/9/28.
@@ -11,6 +13,8 @@ import java.sql.Timestamp;
 public class BannerBean extends Banner {
     private Timestamp create_time_bean;
     private Timestamp update_time_bean;
+    private QueryBean queryBean;
+    public static final String TABLE_PREFIX = "banner_";
 
     public BannerBean() {
         super();
@@ -55,6 +59,14 @@ public class BannerBean extends Banner {
     public Banner setUpdate_time(String update_time) {
         if (update_time!=null)this.update_time_bean = new Timestamp(Long.parseLong(create_time));
         return super.setUpdate_time(update_time);
+    }
+
+    public QueryBean getQueryBean() {
+        return queryBean;
+    }
+
+    public void setQueryBean(QueryBean queryBean) {
+        this.queryBean = queryBean;
     }
 
     @Override
