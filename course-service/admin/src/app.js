@@ -35,7 +35,7 @@ app.use(router_log());
 
 app.use(response({
     jsonFile: errorSource,
-    successLog:getLogger('resSuccess'),
+    successLog: getLogger('resSuccess'),
     failLog: getLogger('resFail')
 }));
 // 跨域
@@ -47,7 +47,6 @@ router.use('/roles', role.routes(), role.allowedMethods());
 router.use('/banners', banner.routes(), banner.allowedMethods());
 router.use('/clients', client.routes(), client.allowedMethods());
 router.use('/versions', version.routes(), version.allowedMethods());
-
 
 
 app.use(router.routes(), router.allowedMethods());

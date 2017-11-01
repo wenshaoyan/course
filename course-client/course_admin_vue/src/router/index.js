@@ -78,7 +78,7 @@ export const asyncRouterMap = [
     name: 'app管理',
     icon: 'theme',
     children: [
-      { path: 'banner', component: _import('app/banner'), name: '轮播图' }
+      { path: 'banner', component: _import('app/banner'), name: 'banner' }
     ]
   },
   {

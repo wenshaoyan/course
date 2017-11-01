@@ -6,6 +6,7 @@
 const router = require('koa-router')();
 const bean_types = require('../gen-nodejs/bean_types');
 const SysUtil = require('../util/sys_util');
+const ArrayUtil = require('../util/array_util');
 const logger = getLogger();
 const bannerService = getServiceConfig().dalName.banner;
 const routerI = require('../middleware/router_interceptor');
@@ -26,7 +27,7 @@ router.get('/', async(ctx, next) => {
     const client = getThriftServer(bannerService).getClient();
     try {
         const result = await client.select(banner);
-        SysUtil.jsonArrayValueJoin(result,'image_url',getServiceConfig().publicServer);
+        ArrayUtil.valueJoin(result,'image_url',getServiceConfig().publicServer);
         ctx.body = result;
     } catch (e) {
         ctx.error = e;

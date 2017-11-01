@@ -19,7 +19,7 @@
 
       <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleSearch">搜索</el-button>
       <el-button class="filter-item" type="primary" v-waves icon="edit" @click="handleCreate">添加</el-button>
-      <el-button class="filter-item" type="primary" v-waves  @click="handleCreate" v-bind:disabled="{isLocationChange}">提交位置修改</el-button>
+      <el-button class="filter-item" type="primary" v-waves  @click="handlePostLocation" :disabled="isLocationChange">提交位置修改</el-button>
     </div>
 
     <el-table  :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row >
@@ -112,7 +112,7 @@
                      :page-sizes="[10,20,30, 50]" :page-size="filterQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total">
       </el-pagination>
     </div>
-    <div class='show-d'>默认顺序 &nbsp; {{ olderList}}</div>
+    <div class='show-d'>默认顺序 &nbsp; {{ oldList}}</div>
     <div class='show-d'>拖拽后顺序{{newList}}</div>
 
   </div>
@@ -146,7 +146,7 @@
       return {
         list: null,
         newList: [],
-        olderList: [],
+        oldList: [],
         total: null,
         listLoading: true,
         listClientLoading: true,
@@ -192,7 +192,7 @@
         // pending: 上传中 success:成功 error:失败 await:等待上传
         updateApkStatus: 'await',
         uploadInfo: '上传apk',
-        isLocationChange: false
+        isLocationChange: true
       }
     },
     watch: {
@@ -249,8 +249,8 @@
       },
       dragDataInit() {
         if (!this.listLoading) {
-          this.olderList = this.list.map(v => v.id)
-          this.newList = this.olderList.slice()
+          this.oldList = this.list.map(v => v.id)
+          this.newList = this.oldList.slice()
           this.$nextTick(() => {
             this.setSort()
           })
@@ -260,7 +260,7 @@
         const el = document.querySelectorAll('.el-table__body-wrapper > table > tbody')[0]
         this.sortable = Sortable.create(el, {
           onEnd: evt => {
-            this.isLocationChange = true;
+            this.isLocationChange = false
             const tempIndex = this.newList.splice(evt.oldIndex, 1)[0]
             this.newList.splice(evt.newIndex, 0, tempIndex)
           }
@@ -327,7 +327,6 @@
       // 插入数据
       insertData() {
         this.$refs.dialogRowData.validate(valid => {
-          console.log(this.dialogRowData)
           if (valid) {
             versionInsert(this.dialogRowData).then(data => {
               this.getList()
@@ -402,6 +401,12 @@
       },
       clientClear() {
         this.versionQuery.client_id = undefined
+      },
+      handlePostLocation() {
+        // 对比新旧数组修改的地方
+        // 提交位置修改请求
+        console.log(this.newList)
+        console.log(this.oldList)
       }
     }
   }
