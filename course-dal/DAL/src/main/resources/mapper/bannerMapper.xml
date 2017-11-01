@@ -21,8 +21,9 @@
               AND banner_id = #{id}
           </if>
       </where>
-      ORDER BY banner_show_client_id,banner_location
-
+        <if test="queryBean != null and queryBean.OrderByClause != null">
+          ORDER BY ${queryBean.OrderByClause}
+        </if>
     </select>
     <select id="selectMaxLocation" parameterType="int" resultType="java.lang.Integer">
         SELECT IFNULL(MAX(t_banner.banner_location),0) i
@@ -38,6 +39,12 @@
          </if>
          <if test="redirect_url != null">
               banner_redirect_url = #{redirect_url},
+         </if>
+         <if test="update_time_bean != null">
+             banner_update_time = #{update_time_bean},
+         </if>
+         <if test="location != 0">
+             banner_location = #{location},
          </if>
      </set>
      WHERE banner_id = #{id}

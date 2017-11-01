@@ -2,17 +2,13 @@ package com.wenshao.dal.Interceptor;
 
 import com.wenshao.dal.bean.CacheBean;
 import com.wenshao.dal.bean.CacheXmlBean;
-import com.wenshao.dal.server.Server;
-import com.wenshao.dal.thriftgen.Banner;
 import com.wenshao.dal.thriftgen.BannerList;
 import com.wenshao.dal.thriftgen.CacheService;
 import com.wenshao.dal.util.CacheClientUtil;
 import org.apache.log4j.Logger;
-import org.apache.thrift.TException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

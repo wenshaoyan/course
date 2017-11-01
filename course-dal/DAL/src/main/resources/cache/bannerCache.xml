@@ -17,5 +17,29 @@
                 <dataClass>com.wenshao.dal.thriftgen.BannerList</dataClass>
             </value>
         </entry>
+        <entry>
+            <key>selectQuery</key>
+            <value>
+                <methodGet>bannerGet</methodGet>
+                <methodPut>bannerPut</methodPut>
+                <dataClass>com.wenshao.dal.thriftgen.BannerList</dataClass>
+            </value>
+        </entry>
+        <entry>
+            <key>selectCustom</key>
+            <value>
+                <methodGet>bannerGet</methodGet>
+                <methodPut>bannerPut</methodPut>
+                <dataClass>com.wenshao.dal.thriftgen.BannerList</dataClass>
+            </value>
+        </entry>
+        <entry>
+            <key>selectQueryCustom</key>
+            <value>
+                <methodGet>bannerGet</methodGet>
+                <methodPut>bannerPut</methodPut>
+                <dataClass>com.wenshao.dal.thriftgen.BannerList</dataClass>
+            </value>
+        </entry>
     </cacheBeans>
 </cacheXmlBean>

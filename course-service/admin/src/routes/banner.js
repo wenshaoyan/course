@@ -24,10 +24,12 @@ router.use(async(ctx, next) => {
 router.get('/', async(ctx, next) => {
     const params = ctx.query;
     const banner = new bean_types.Banner(params);
+    const query = new bean_types.Query(params);
     const client = getThriftServer(bannerService).getClient();
     try {
-        const result = await client.select(banner);
+        const result = await client.selectQueryNoCache(banner,query);
         ArrayUtil.valueJoin(result,'image_url',getServiceConfig().publicServer);
+        console.log(result)
         ctx.body = result;
     } catch (e) {
         ctx.error = e;
@@ -40,8 +42,25 @@ router.post('/', async(ctx, next) => {
 router.put('/:id', async(ctx, next) => {
 
 });
+// 修改位置
 router.patch('/:id', async(ctx, next) => {
-
+    const params = ctx.query;
+    const banner = new bean_types.Banner();
+    banner.id = ctx.params.id;
+    banner.location = params.location;
+    const client = getThriftServer(bannerService).getClient();
+    try {
+        const result = await client.update(banner);
+        if (result !== 1){
+            ctx.error = 'UPDATE_FAIL';
+            return;
+        }
+        ctx.body = {
+            id: banner.id
+        };
+    } catch (e) {
+        ctx.error = e;
+    }
 });
 router.delete('/:id', async(ctx, next) => {
 

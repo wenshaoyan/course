@@ -676,6 +676,760 @@ BannerService_select_result.prototype.write = function(output) {
   return;
 };
 
+var BannerService_selectQuery_args = function(args) {
+  this.banner = null;
+  this.query = null;
+  if (args) {
+    if (args.banner !== undefined && args.banner !== null) {
+      this.banner = new bean_ttypes.Banner(args.banner);
+    }
+    if (args.query !== undefined && args.query !== null) {
+      this.query = new bean_ttypes.Query(args.query);
+    }
+  }
+};
+BannerService_selectQuery_args.prototype = {};
+BannerService_selectQuery_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.banner = new bean_ttypes.Banner();
+        this.banner.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.query = new bean_ttypes.Query();
+        this.query.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_selectQuery_args.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_selectQuery_args');
+  if (this.banner !== null && this.banner !== undefined) {
+    output.writeFieldBegin('banner', Thrift.Type.STRUCT, 1);
+    this.banner.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.query !== null && this.query !== undefined) {
+    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+    this.query.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var BannerService_selectQuery_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [bean_ttypes.Banner]);
+    }
+  }
+};
+BannerService_selectQuery_result.prototype = {};
+BannerService_selectQuery_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size64 = 0;
+        var _rtmp368;
+        this.success = [];
+        var _etype67 = 0;
+        _rtmp368 = input.readListBegin();
+        _etype67 = _rtmp368.etype;
+        _size64 = _rtmp368.size;
+        for (var _i69 = 0; _i69 < _size64; ++_i69)
+        {
+          var elem70 = null;
+          elem70 = new bean_ttypes.Banner();
+          elem70.read(input);
+          this.success.push(elem70);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_selectQuery_result.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_selectQuery_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter71 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter71))
+      {
+        iter71 = this.success[iter71];
+        iter71.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var BannerService_selectCustom_args = function(args) {
+  this.banner = null;
+  this.custom = null;
+  if (args) {
+    if (args.banner !== undefined && args.banner !== null) {
+      this.banner = new bean_ttypes.Banner(args.banner);
+    }
+    if (args.custom !== undefined && args.custom !== null) {
+      this.custom = new bean_ttypes.Custom(args.custom);
+    }
+  }
+};
+BannerService_selectCustom_args.prototype = {};
+BannerService_selectCustom_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.banner = new bean_ttypes.Banner();
+        this.banner.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.custom = new bean_ttypes.Custom();
+        this.custom.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_selectCustom_args.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_selectCustom_args');
+  if (this.banner !== null && this.banner !== undefined) {
+    output.writeFieldBegin('banner', Thrift.Type.STRUCT, 1);
+    this.banner.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.custom !== null && this.custom !== undefined) {
+    output.writeFieldBegin('custom', Thrift.Type.STRUCT, 2);
+    this.custom.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var BannerService_selectCustom_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [bean_ttypes.Banner]);
+    }
+  }
+};
+BannerService_selectCustom_result.prototype = {};
+BannerService_selectCustom_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size72 = 0;
+        var _rtmp376;
+        this.success = [];
+        var _etype75 = 0;
+        _rtmp376 = input.readListBegin();
+        _etype75 = _rtmp376.etype;
+        _size72 = _rtmp376.size;
+        for (var _i77 = 0; _i77 < _size72; ++_i77)
+        {
+          var elem78 = null;
+          elem78 = new bean_ttypes.Banner();
+          elem78.read(input);
+          this.success.push(elem78);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_selectCustom_result.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_selectCustom_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter79 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter79))
+      {
+        iter79 = this.success[iter79];
+        iter79.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var BannerService_selectQueryCustom_args = function(args) {
+  this.banner = null;
+  this.query = null;
+  this.custom = null;
+  if (args) {
+    if (args.banner !== undefined && args.banner !== null) {
+      this.banner = new bean_ttypes.Banner(args.banner);
+    }
+    if (args.query !== undefined && args.query !== null) {
+      this.query = new bean_ttypes.Query(args.query);
+    }
+    if (args.custom !== undefined && args.custom !== null) {
+      this.custom = new bean_ttypes.Custom(args.custom);
+    }
+  }
+};
+BannerService_selectQueryCustom_args.prototype = {};
+BannerService_selectQueryCustom_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.banner = new bean_ttypes.Banner();
+        this.banner.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.query = new bean_ttypes.Query();
+        this.query.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.custom = new bean_ttypes.Custom();
+        this.custom.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_selectQueryCustom_args.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_selectQueryCustom_args');
+  if (this.banner !== null && this.banner !== undefined) {
+    output.writeFieldBegin('banner', Thrift.Type.STRUCT, 1);
+    this.banner.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.query !== null && this.query !== undefined) {
+    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+    this.query.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.custom !== null && this.custom !== undefined) {
+    output.writeFieldBegin('custom', Thrift.Type.STRUCT, 3);
+    this.custom.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var BannerService_selectQueryCustom_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [bean_ttypes.Banner]);
+    }
+  }
+};
+BannerService_selectQueryCustom_result.prototype = {};
+BannerService_selectQueryCustom_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size80 = 0;
+        var _rtmp384;
+        this.success = [];
+        var _etype83 = 0;
+        _rtmp384 = input.readListBegin();
+        _etype83 = _rtmp384.etype;
+        _size80 = _rtmp384.size;
+        for (var _i85 = 0; _i85 < _size80; ++_i85)
+        {
+          var elem86 = null;
+          elem86 = new bean_ttypes.Banner();
+          elem86.read(input);
+          this.success.push(elem86);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_selectQueryCustom_result.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_selectQueryCustom_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter87 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter87))
+      {
+        iter87 = this.success[iter87];
+        iter87.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var BannerService_selectQueryCustomNotCache_args = function(args) {
+  this.banner = null;
+  this.query = null;
+  this.custom = null;
+  if (args) {
+    if (args.banner !== undefined && args.banner !== null) {
+      this.banner = new bean_ttypes.Banner(args.banner);
+    }
+    if (args.query !== undefined && args.query !== null) {
+      this.query = new bean_ttypes.Query(args.query);
+    }
+    if (args.custom !== undefined && args.custom !== null) {
+      this.custom = new bean_ttypes.Custom(args.custom);
+    }
+  }
+};
+BannerService_selectQueryCustomNotCache_args.prototype = {};
+BannerService_selectQueryCustomNotCache_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.banner = new bean_ttypes.Banner();
+        this.banner.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.query = new bean_ttypes.Query();
+        this.query.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.custom = new bean_ttypes.Custom();
+        this.custom.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_selectQueryCustomNotCache_args.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_selectQueryCustomNotCache_args');
+  if (this.banner !== null && this.banner !== undefined) {
+    output.writeFieldBegin('banner', Thrift.Type.STRUCT, 1);
+    this.banner.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.query !== null && this.query !== undefined) {
+    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+    this.query.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.custom !== null && this.custom !== undefined) {
+    output.writeFieldBegin('custom', Thrift.Type.STRUCT, 3);
+    this.custom.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var BannerService_selectQueryCustomNotCache_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [bean_ttypes.Banner]);
+    }
+  }
+};
+BannerService_selectQueryCustomNotCache_result.prototype = {};
+BannerService_selectQueryCustomNotCache_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size88 = 0;
+        var _rtmp392;
+        this.success = [];
+        var _etype91 = 0;
+        _rtmp392 = input.readListBegin();
+        _etype91 = _rtmp392.etype;
+        _size88 = _rtmp392.size;
+        for (var _i93 = 0; _i93 < _size88; ++_i93)
+        {
+          var elem94 = null;
+          elem94 = new bean_ttypes.Banner();
+          elem94.read(input);
+          this.success.push(elem94);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_selectQueryCustomNotCache_result.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_selectQueryCustomNotCache_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter95 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter95))
+      {
+        iter95 = this.success[iter95];
+        iter95.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var BannerService_selectQueryNoCache_args = function(args) {
+  this.banner = null;
+  this.query = null;
+  if (args) {
+    if (args.banner !== undefined && args.banner !== null) {
+      this.banner = new bean_ttypes.Banner(args.banner);
+    }
+    if (args.query !== undefined && args.query !== null) {
+      this.query = new bean_ttypes.Query(args.query);
+    }
+  }
+};
+BannerService_selectQueryNoCache_args.prototype = {};
+BannerService_selectQueryNoCache_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.banner = new bean_ttypes.Banner();
+        this.banner.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.query = new bean_ttypes.Query();
+        this.query.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_selectQueryNoCache_args.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_selectQueryNoCache_args');
+  if (this.banner !== null && this.banner !== undefined) {
+    output.writeFieldBegin('banner', Thrift.Type.STRUCT, 1);
+    this.banner.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.query !== null && this.query !== undefined) {
+    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+    this.query.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var BannerService_selectQueryNoCache_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [bean_ttypes.Banner]);
+    }
+  }
+};
+BannerService_selectQueryNoCache_result.prototype = {};
+BannerService_selectQueryNoCache_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size96 = 0;
+        var _rtmp3100;
+        this.success = [];
+        var _etype99 = 0;
+        _rtmp3100 = input.readListBegin();
+        _etype99 = _rtmp3100.etype;
+        _size96 = _rtmp3100.size;
+        for (var _i101 = 0; _i101 < _size96; ++_i101)
+        {
+          var elem102 = null;
+          elem102 = new bean_ttypes.Banner();
+          elem102.read(input);
+          this.success.push(elem102);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+BannerService_selectQueryNoCache_result.prototype.write = function(output) {
+  output.writeStructBegin('BannerService_selectQueryNoCache_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter103 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter103))
+      {
+        iter103 = this.success[iter103];
+        iter103.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 var BannerServiceClient = exports.Client = function(output, pClass) {
     this.output = output;
     this.pClass = pClass;
@@ -966,6 +1720,248 @@ BannerServiceClient.prototype.recv_select = function(input,mtype,rseqid) {
   }
   return callback('select failed: unknown result');
 };
+BannerServiceClient.prototype.selectQuery = function(banner, query, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_selectQuery(banner, query);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_selectQuery(banner, query);
+  }
+};
+
+BannerServiceClient.prototype.send_selectQuery = function(banner, query) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('selectQuery', Thrift.MessageType.CALL, this.seqid());
+  var args = new BannerService_selectQuery_args();
+  args.banner = banner;
+  args.query = query;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+BannerServiceClient.prototype.recv_selectQuery = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new BannerService_selectQuery_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('selectQuery failed: unknown result');
+};
+BannerServiceClient.prototype.selectCustom = function(banner, custom, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_selectCustom(banner, custom);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_selectCustom(banner, custom);
+  }
+};
+
+BannerServiceClient.prototype.send_selectCustom = function(banner, custom) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('selectCustom', Thrift.MessageType.CALL, this.seqid());
+  var args = new BannerService_selectCustom_args();
+  args.banner = banner;
+  args.custom = custom;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+BannerServiceClient.prototype.recv_selectCustom = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new BannerService_selectCustom_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('selectCustom failed: unknown result');
+};
+BannerServiceClient.prototype.selectQueryCustom = function(banner, query, custom, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_selectQueryCustom(banner, query, custom);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_selectQueryCustom(banner, query, custom);
+  }
+};
+
+BannerServiceClient.prototype.send_selectQueryCustom = function(banner, query, custom) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('selectQueryCustom', Thrift.MessageType.CALL, this.seqid());
+  var args = new BannerService_selectQueryCustom_args();
+  args.banner = banner;
+  args.query = query;
+  args.custom = custom;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+BannerServiceClient.prototype.recv_selectQueryCustom = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new BannerService_selectQueryCustom_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('selectQueryCustom failed: unknown result');
+};
+BannerServiceClient.prototype.selectQueryCustomNotCache = function(banner, query, custom, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_selectQueryCustomNotCache(banner, query, custom);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_selectQueryCustomNotCache(banner, query, custom);
+  }
+};
+
+BannerServiceClient.prototype.send_selectQueryCustomNotCache = function(banner, query, custom) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('selectQueryCustomNotCache', Thrift.MessageType.CALL, this.seqid());
+  var args = new BannerService_selectQueryCustomNotCache_args();
+  args.banner = banner;
+  args.query = query;
+  args.custom = custom;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+BannerServiceClient.prototype.recv_selectQueryCustomNotCache = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new BannerService_selectQueryCustomNotCache_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('selectQueryCustomNotCache failed: unknown result');
+};
+BannerServiceClient.prototype.selectQueryNoCache = function(banner, query, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_selectQueryNoCache(banner, query);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_selectQueryNoCache(banner, query);
+  }
+};
+
+BannerServiceClient.prototype.send_selectQueryNoCache = function(banner, query) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('selectQueryNoCache', Thrift.MessageType.CALL, this.seqid());
+  var args = new BannerService_selectQueryNoCache_args();
+  args.banner = banner;
+  args.query = query;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+BannerServiceClient.prototype.recv_selectQueryNoCache = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new BannerService_selectQueryNoCache_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('selectQueryNoCache failed: unknown result');
+};
 var BannerServiceProcessor = exports.Processor = function(handler) {
   this._handler = handler;
 }
@@ -1194,6 +2190,186 @@ BannerServiceProcessor.prototype.process_select = function(seqid, input, output)
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
         output.writeMessageBegin("select", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+BannerServiceProcessor.prototype.process_selectQuery = function(seqid, input, output) {
+  var args = new BannerService_selectQuery_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.selectQuery.length === 2) {
+    Q.fcall(this._handler.selectQuery, args.banner, args.query)
+      .then(function(result) {
+        var result_obj = new BannerService_selectQuery_result({success: result});
+        output.writeMessageBegin("selectQuery", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("selectQuery", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.selectQuery(args.banner, args.query, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined')) {
+        result_obj = new BannerService_selectQuery_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("selectQuery", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("selectQuery", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+BannerServiceProcessor.prototype.process_selectCustom = function(seqid, input, output) {
+  var args = new BannerService_selectCustom_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.selectCustom.length === 2) {
+    Q.fcall(this._handler.selectCustom, args.banner, args.custom)
+      .then(function(result) {
+        var result_obj = new BannerService_selectCustom_result({success: result});
+        output.writeMessageBegin("selectCustom", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("selectCustom", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.selectCustom(args.banner, args.custom, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined')) {
+        result_obj = new BannerService_selectCustom_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("selectCustom", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("selectCustom", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+BannerServiceProcessor.prototype.process_selectQueryCustom = function(seqid, input, output) {
+  var args = new BannerService_selectQueryCustom_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.selectQueryCustom.length === 3) {
+    Q.fcall(this._handler.selectQueryCustom, args.banner, args.query, args.custom)
+      .then(function(result) {
+        var result_obj = new BannerService_selectQueryCustom_result({success: result});
+        output.writeMessageBegin("selectQueryCustom", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("selectQueryCustom", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.selectQueryCustom(args.banner, args.query, args.custom, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined')) {
+        result_obj = new BannerService_selectQueryCustom_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("selectQueryCustom", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("selectQueryCustom", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+BannerServiceProcessor.prototype.process_selectQueryCustomNotCache = function(seqid, input, output) {
+  var args = new BannerService_selectQueryCustomNotCache_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.selectQueryCustomNotCache.length === 3) {
+    Q.fcall(this._handler.selectQueryCustomNotCache, args.banner, args.query, args.custom)
+      .then(function(result) {
+        var result_obj = new BannerService_selectQueryCustomNotCache_result({success: result});
+        output.writeMessageBegin("selectQueryCustomNotCache", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("selectQueryCustomNotCache", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.selectQueryCustomNotCache(args.banner, args.query, args.custom, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined')) {
+        result_obj = new BannerService_selectQueryCustomNotCache_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("selectQueryCustomNotCache", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("selectQueryCustomNotCache", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+BannerServiceProcessor.prototype.process_selectQueryNoCache = function(seqid, input, output) {
+  var args = new BannerService_selectQueryNoCache_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.selectQueryNoCache.length === 2) {
+    Q.fcall(this._handler.selectQueryNoCache, args.banner, args.query)
+      .then(function(result) {
+        var result_obj = new BannerService_selectQueryNoCache_result({success: result});
+        output.writeMessageBegin("selectQueryNoCache", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("selectQueryNoCache", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.selectQueryNoCache(args.banner, args.query, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined')) {
+        result_obj = new BannerService_selectQueryNoCache_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("selectQueryNoCache", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("selectQueryNoCache", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();

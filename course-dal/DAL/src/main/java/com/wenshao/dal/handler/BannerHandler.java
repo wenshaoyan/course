@@ -1,9 +1,12 @@
 package com.wenshao.dal.handler;
 
 import com.wenshao.dal.bean.BannerBean;
+import com.wenshao.dal.bean.QueryBean;
 import com.wenshao.dal.dao.impl.BannerDaoImpl;
 import com.wenshao.dal.thriftgen.Banner;
 import com.wenshao.dal.thriftgen.BannerService;
+import com.wenshao.dal.thriftgen.Custom;
+import com.wenshao.dal.thriftgen.Query;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.thrift.TException;
 
@@ -20,9 +23,16 @@ public class BannerHandler implements BannerService.Iface {
 
     public BannerHandler(SqlSessionFactory _sessionFactory) {
         bannerDao = new BannerDaoImpl(_sessionFactory);
-
     }
 
+    private List<Banner> clientQuery(BannerBean paramsBean) throws Exception {
+        List<Banner> results = new ArrayList<Banner>();
+        List<BannerBean> beans = bannerDao.select(paramsBean);
+        for (BannerBean bean : beans) {
+            results.add((Banner) bean);
+        }
+        return results;
+    }
     public int insert(Banner banner) throws TException {
         BannerBean paramsBean = new BannerBean(banner);
         try {
@@ -65,29 +75,54 @@ public class BannerHandler implements BannerService.Iface {
             List<BannerBean> bannerBeans = bannerDao.selectAll();
             for (BannerBean bean : bannerBeans) {
                 banners.add((Banner) bean);
-
             }
             return banners;
         } catch (Exception e) {
             throw new TException(e);
         }
-
     }
 
     @Override
     public List<Banner> select(Banner banner) throws TException {
-        List<Banner> banners = new ArrayList<Banner>();
-        BannerBean paramsBean = new BannerBean(banner);
+        BannerBean bannerBean = new BannerBean(banner);
         try {
-            List<BannerBean> bannerBeans = bannerDao.select(paramsBean);
-            for (BannerBean bean : bannerBeans) {
-                banners.add((Banner) bean);
-
-            }
-            return banners;
+            return  clientQuery(bannerBean);
         } catch (Exception e) {
             throw new TException(e);
         }
+    }
+
+    @Override
+    public List<Banner> selectQuery(Banner banner, Query query) throws TException {
+        BannerBean bannerBean = new BannerBean(banner);
+        QueryBean queryBean = new QueryBean(query,BannerBean.TABLE_PREFIX);
+        bannerBean.setQueryBean(queryBean);
+        try {
+            return  clientQuery(bannerBean);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
+
+    @Override
+    public List<Banner> selectCustom(Banner banner, Custom custom) throws TException {
+        return this.select(banner);
+    }
+
+    @Override
+    public List<Banner> selectQueryCustom(Banner banner, Query query, Custom custom) throws TException {
+        return this.selectQuery(banner,query);
+    }
+
+    @Override
+    public List<Banner> selectQueryCustomNotCache(Banner banner, Query query, Custom custom) throws TException {
+        return this.selectQuery(banner,query);
+    }
+
+    @Override
+    public List<Banner> selectQueryNoCache(Banner banner, Query query) throws TException {
+        System.out.println(query);
+        return this.selectQuery(banner,query);
     }
 
 }

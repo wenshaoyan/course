@@ -22,7 +22,13 @@ service BannerService{
     i32 remove(1: i32 id),
     bean.Banner findById(1: i32 id),
     list<bean.Banner> selectAll(),
-    list<bean.Banner> select(1: bean.Banner banner)
+    list<bean.Banner> select(1: bean.Banner banner),
+    list<bean.Banner> selectQuery(1: bean.Banner banner,2: bean.Query query),
+    list<bean.Banner> selectCustom(1: bean.Banner banner,2:bean.Custom custom),
+    list<bean.Banner> selectQueryCustom(1: bean.Banner banner,2: bean.Query query,3:bean.Custom custom),
+    list<bean.Banner> selectQueryCustomNotCache(1: bean.Banner banner,2: bean.Query query,3:bean.Custom custom),
+    list<bean.Banner> selectQueryNoCache(1: bean.Banner banner,2: bean.Query query)
+
 }
 service ClientService{
     i32 clientInsert(1: bean.ClientSide clientSide),

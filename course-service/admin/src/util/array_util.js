@@ -82,7 +82,7 @@ class ArrayUtil {
     }
 
     /**
-     * 按数组下标交换原数
+     * 按数组下标交换元素
      * @param list
      * @param i
      * @param j

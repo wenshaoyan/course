@@ -21,15 +21,15 @@ export function bannerInsert(data) {
 }
 export function bannerPut(id, data) {
   return fetch({
-    url: '/banners',
+    url: '/banners' + id,
     method: 'put',
     data: data
   })
 }
 export function bannerPatch(id, data) {
   return fetch({
-    url: '/banners',
-    method: 'get',
+    url: '/banners/' + id,
+    method: 'patch',
     params: data
   })
 }

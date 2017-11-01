@@ -107,20 +107,13 @@
       </div>
     </el-dialog>
 
-    <div v-show="!listLoading" class="pagination-container">
-      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="bindPage"
-                     :page-sizes="[10,20,30, 50]" :page-size="filterQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total">
-      </el-pagination>
-    </div>
-    <div class='show-d'>默认顺序 &nbsp; {{ oldList}}</div>
-    <div class='show-d'>拖拽后顺序{{newList}}</div>
 
   </div>
 </template>
 
 <script>
   import { clientQueryPattern, versionUpdate, versionInsert } from '@/api/client'
-  import { bannerQuery } from '@/api/banner'
+  import { bannerQuery, bannerPatch } from '@/api/banner'
   import waves from '@/directive/waves/index.js' // 水波纹指令
   import Sortable from 'sortablejs'
   export default {
@@ -146,15 +139,12 @@
       return {
         list: null,
         newList: [],
-        oldList: [],
         total: null,
         listLoading: true,
         listClientLoading: true,
         filterQuery: {
-          page: 1,
-          limit: 10,
-          sort_by: 'version_number',
-          sort: '-version_number',
+          sort_by: 'location',
+          sort: '+location',
           action: 'search',
           order: 'desc'
         },
@@ -185,10 +175,10 @@
           version_number: [{ validator: validateVersionNumber }]
         },
         sortOptions: [
+          { label: '按位置升序', key: '+location' },
+          { label: '按位置降序', key: '-location' },
           { label: '按创建时间升序', key: '+create_time' },
-          { label: '按创建时间降序', key: '-create_time' },
-          { label: '按版本号升序', key: '+version_number' },
-          { label: '按版本号降序', key: '-version_number' }],
+          { label: '按创建时间降序', key: '-create_time' }],
         // pending: 上传中 success:成功 error:失败 await:等待上传
         updateApkStatus: 'await',
         uploadInfo: '上传apk',
@@ -237,7 +227,7 @@
       },
       getList() {
         this.listLoading = true
-        bannerQuery().then(data => {
+        bannerQuery(this.filterQuery).then(data => {
           this.list = data
           if ('count' in data) this.total = data.count
           this.listLoading = false
@@ -249,8 +239,7 @@
       },
       dragDataInit() {
         if (!this.listLoading) {
-          this.oldList = this.list.map(v => v.id)
-          this.newList = this.oldList.slice()
+          this.newList = this.list.map(v => v.id)
           this.$nextTick(() => {
             this.setSort()
           })
@@ -308,14 +297,7 @@
         }
       },
       handleSearch() {
-        this.filterQuery.page = 1
         this.filterQuery.action = 'search'
-        this.getList()
-      },
-      handleSizeChange(val) {
-        this.filterQuery.action = 'search'
-        this.filterQuery.limit = val
-        this.filterQuery.page = 1
         this.getList()
       },
       handleCurrentChange(val) {
@@ -405,8 +387,22 @@
       handlePostLocation() {
         // 对比新旧数组修改的地方
         // 提交位置修改请求
-        console.log(this.newList)
-        console.log(this.oldList)
+        const changeList = []
+        this.newList.forEach((value, index) => {
+          changeList.push(bannerPatch(value, { location: index + 1 }))
+        })
+        if (changeList.length !== 0) {
+          this.listLoading = true
+          Promise.all(changeList).then(result => {
+            this.isLocationChange = true
+            this.listLoading = false
+            this.$message.info('修改成功')
+          }).catch(e => {
+            this.listLoading = false
+          })
+        } else {
+          this.$message.info('没有位置修改')
+        }
       }
     }
   }

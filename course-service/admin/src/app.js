@@ -4,7 +4,7 @@ const router = require('koa-router')();
 const convert = require('koa-convert');
 const json = require('koa-json');
 const bodyparser = require('koa-bodyparser')();
-const cors = require('koa-cors');
+const cors = require('koa2-cors');
 
 
 const user = require('./routes/user');
@@ -39,7 +39,9 @@ app.use(response({
     failLog: getLogger('resFail')
 }));
 // 跨域
-app.use(cors());
+app.use(cors({
+    allowMethods: ['GET', 'POST', 'DELETE', 'PATCH', 'PUT'],
+}));
 
 router.use('/users', user.routes(), user.allowedMethods());
 router.use('/managements', management.routes(), management.allowedMethods());
