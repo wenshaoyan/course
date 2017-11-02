@@ -73,16 +73,12 @@
         <el-form-item label="id" v-show="dialogStatus === 'update'">
           <span>{{dialogRowData.id}}</span>
         </el-form-item>
-        <el-form-item label="版本名称">
-          <el-input v-model="dialogRowData.version_name"></el-input>
+        <el-form-item label="跳转地址">
+          <el-input v-model="dialogRowData.redirect_url"></el-input>
         </el-form-item>
-        <el-form-item label="版本号">
-          <el-input v-model.number="dialogRowData.version_number" type="number"></el-input>
-        </el-form-item>
-        <el-form-item label="安装文件">
-          <!--<el-input v-model="dialogRowData.download_url"></el-input>-->
+        <el-form-item label="图片地址">
           <el-upload
-            action="http://123.207.55.204:8083/upload/apk"
+            action="http://123.207.55.204:8083/upload/image"
             name="file"
             :show-file-list="false"
             :on-success="fileUploadSuccess"
@@ -92,9 +88,6 @@
             <el-button size="small" type="primary">点击上传</el-button>
             <div slot="tip" class="el-upload__tip">{{this.uploadInfo}}</div>
           </el-upload>
-        </el-form-item>
-        <el-form-item label="更新描述">
-          <el-input v-model="dialogRowData.description"></el-input>
         </el-form-item>
         <el-form-item label="客户端">
           <span>{{getClientName(dialogRowData.client_id)}}</span>
@@ -112,8 +105,8 @@
 </template>
 
 <script>
-  import { clientQueryPattern, versionUpdate, versionInsert } from '@/api/client'
-  import { bannerQuery, bannerPatch } from '@/api/banner'
+  import { clientQueryPattern, versionUpdate } from '@/api/client'
+  import { bannerQuery, bannerPatch, bannerInsert } from '@/api/banner'
   import waves from '@/directive/waves/index.js' // 水波纹指令
   import Sortable from 'sortablejs'
   export default {
@@ -158,11 +151,9 @@
         clientMap: null,
         dialogRowData: {
           id: undefined,
-          version_name: undefined,
-          version_number: undefined,
-          download_url: undefined,
-          description: undefined,
-          client_id: undefined
+          redirect_url: undefined,
+          client_id: undefined,
+          image_url: undefined
         },
         textMap: {
           update: '编辑',
@@ -180,8 +171,8 @@
           { label: '按创建时间升序', key: '+create_time' },
           { label: '按创建时间降序', key: '-create_time' }],
         // pending: 上传中 success:成功 error:失败 await:等待上传
-        updateApkStatus: 'await',
-        uploadInfo: '上传apk',
+        updateImageStatus: 'await',
+        uploadInfo: '上传轮播图图片',
         isLocationChange: true
       }
     },
@@ -269,7 +260,7 @@
           this.resetDialogRow(row.client_id)
           this.dialogRowData = Object.assign({}, row)
           this.dialogStatus = 'update'
-          this.uploadInfo = row.download_url
+          this.uploadInfo = row.image_url
           this.dialogFormVisible = true
         } else {
           this.$message({ message: '获取客户端id失败', type: 'error' })
@@ -281,7 +272,7 @@
           this.dialogRowData.client_id = this.versionQuery.client_id
           this.dialogStatus = 'create'
           this.dialogFormVisible = true
-          this.uploadInfo = '上传apk'
+          this.uploadInfo = '上传轮播图图片'
         } else {
           this.$message({ message: '请选择客户端后再添加', type: 'error' })
         }
@@ -290,8 +281,7 @@
         this.dialogRowData = {
           id: undefined,
           version_name: undefined,
-          version_number: undefined,
-          download_url: undefined,
+          image_url: undefined,
           description: undefined,
           client_id: undefined
         }
@@ -310,7 +300,7 @@
       insertData() {
         this.$refs.dialogRowData.validate(valid => {
           if (valid) {
-            versionInsert(this.dialogRowData).then(data => {
+            bannerInsert(this.dialogRowData).then(data => {
               this.getList()
               this.dialogFormVisible = false
               this.$notify({
@@ -354,8 +344,8 @@
           try {
             const path = response.data[0].file_path
             const url = new URL(path)
-            this.updateApkStatus = 'success'
-            this.dialogRowData.download_url = url.pathname
+            this.updateImageStatus = 'success'
+            this.dialogRowData.image_url = url.pathname
             this.uploadInfo = path
           } catch (e) {
             this.$message.error('数据解析异常')
@@ -365,15 +355,15 @@
         }
       },
       fileUploadError(e, file, fileList) {
-        this.updateApkStatus = 'error'
+        this.updateImageStatus = 'error'
         this.$message.error('上传失败')
       },
       beforeAvatarUpload(file) {
-        const isAPK = file.type === 'application/vnd.android.package-archive'
+        const isAPK = file.type === 'image/jpeg'
         if (!isAPK) {
-          this.$message.error('只能上传apk文件')
+          this.$message.error('只能上传图片')
         } else {
-          this.updateApkStatus = 'pending'
+          this.updateImageStatus = 'pending'
         }
         return isAPK
       },

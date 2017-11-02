@@ -13,7 +13,7 @@ const routerI = require('../middleware/router_interceptor');
 const AdminSchema = require('../schema/admin_schema');
 const apiName = '/';
 
-router.use(async(ctx, next) => {
+router.use(async (ctx, next) => {
     const myServer = getThriftServer(bannerService);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
@@ -21,29 +21,41 @@ router.use(async(ctx, next) => {
         await next();
     }
 });
-router.get('/', async(ctx, next) => {
+router.get('/', async (ctx, next) => {
     const params = ctx.query;
     const banner = new bean_types.Banner(params);
     const query = new bean_types.Query(params);
     const client = getThriftServer(bannerService).getClient();
     try {
-        const result = await client.selectQueryNoCache(banner,query);
-        ArrayUtil.valueJoin(result,'image_url',getServiceConfig().publicServer);
-        console.log(result)
+        const result = await client.selectQueryNoCache(banner, query);
+        ArrayUtil.valueJoin(result, 'image_url', getServiceConfig().publicServer);
         ctx.body = result;
     } catch (e) {
         ctx.error = e;
     }
 
 });
-router.post('/', async(ctx, next) => {
+router.post('/', async (ctx, next) => {
+    const params = ctx.request.body;
+    const banner = new bean_types.Banner(params);
+    banner.show_client_id = params.client_id;
+    const client = getThriftServer(bannerService).getClient();
+    try {
+        console.log(banner)
+        const id = await client.insert(banner);
+        ctx.body = {
+            id: id
+        };
+    } catch (e) {
+        ctx.error = e;
+    }
 
 });
-router.put('/:id', async(ctx, next) => {
+router.put('/:id', async (ctx, next) => {
 
 });
 // 修改位置
-router.patch('/:id', async(ctx, next) => {
+router.patch('/:id', async (ctx, next) => {
     const params = ctx.query;
     const banner = new bean_types.Banner();
     banner.id = ctx.params.id;
@@ -51,7 +63,7 @@ router.patch('/:id', async(ctx, next) => {
     const client = getThriftServer(bannerService).getClient();
     try {
         const result = await client.update(banner);
-        if (result !== 1){
+        if (result !== 1) {
             ctx.error = 'UPDATE_FAIL';
             return;
         }
@@ -62,7 +74,7 @@ router.patch('/:id', async(ctx, next) => {
         ctx.error = e;
     }
 });
-router.delete('/:id', async(ctx, next) => {
+router.delete('/:id', async (ctx, next) => {
 
 });
 module.exports = router;

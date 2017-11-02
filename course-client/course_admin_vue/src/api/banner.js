@@ -15,7 +15,7 @@ export function bannerQuery(query) {
 export function bannerInsert(data) {
   return fetch({
     url: '/banners',
-    method: 'get',
+    method: 'post',
     data: data
   })
 }
