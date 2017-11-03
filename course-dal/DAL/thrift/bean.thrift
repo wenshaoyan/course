@@ -25,7 +25,7 @@ struct Banner{
     4:i32 user_id
     5:string image_url
     6:string redirect_url
-    7:i32 show_client_id
+    7:i32 client_id
     8:i32 location
 }
 struct Version{

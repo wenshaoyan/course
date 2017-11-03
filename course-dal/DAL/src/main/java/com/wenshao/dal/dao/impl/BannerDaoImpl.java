@@ -23,7 +23,7 @@ public class BannerDaoImpl implements BannerDao{
     public int insert(BannerBean bannerBean) throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         // 查找当前客户端的最大的location
-        int i = sqlSession.selectOne(sqlTag + ".selectMaxLocation", bannerBean.getShow_client_id());
+        int i = sqlSession.selectOne(sqlTag + ".selectMaxLocation", bannerBean.getClient_id());
         bannerBean.setLocation(i+1);
         sqlSession.insert(sqlTag + ".insert", bannerBean);
         sqlSession.commit();

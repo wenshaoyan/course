@@ -279,15 +279,11 @@
         }
       },
       handleCreate() {
-        if (this.versionQuery.client_id) {
-          this.resetDialogRow(this.versionQuery.client_id)
-          this.dialogRowData.client_id = this.versionQuery.client_id
-          this.dialogStatus = 'create'
-          this.dialogFormVisible = true
-          this.uploadInfo = '上传apk'
-        } else {
-          this.$message({ message: '请选择客户端后再添加', type: 'error' })
-        }
+        this.resetDialogRow(this.versionQuery.client_id)
+        this.dialogRowData.client_id = this.versionQuery.client_id
+        this.dialogStatus = 'create'
+        this.dialogFormVisible = true
+        this.uploadInfo = '上传apk'
       },
       resetDialogRow() {
         this.dialogRowData = {

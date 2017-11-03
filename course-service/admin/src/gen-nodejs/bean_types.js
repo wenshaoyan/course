@@ -326,7 +326,7 @@ var Banner = module.exports.Banner = function(args) {
   this.user_id = null;
   this.image_url = null;
   this.redirect_url = null;
-  this.show_client_id = null;
+  this.client_id = null;
   this.location = null;
   if (args) {
     if (args.id !== undefined && args.id !== null) {
@@ -347,8 +347,8 @@ var Banner = module.exports.Banner = function(args) {
     if (args.redirect_url !== undefined && args.redirect_url !== null) {
       this.redirect_url = args.redirect_url;
     }
-    if (args.show_client_id !== undefined && args.show_client_id !== null) {
-      this.show_client_id = args.show_client_id;
+    if (args.client_id !== undefined && args.client_id !== null) {
+      this.client_id = args.client_id;
     }
     if (args.location !== undefined && args.location !== null) {
       this.location = args.location;
@@ -413,7 +413,7 @@ Banner.prototype.read = function(input) {
       break;
       case 7:
       if (ftype == Thrift.Type.I32) {
-        this.show_client_id = input.readI32();
+        this.client_id = input.readI32();
       } else {
         input.skip(ftype);
       }
@@ -466,9 +466,9 @@ Banner.prototype.write = function(output) {
     output.writeString(this.redirect_url);
     output.writeFieldEnd();
   }
-  if (this.show_client_id !== null && this.show_client_id !== undefined) {
-    output.writeFieldBegin('show_client_id', Thrift.Type.I32, 7);
-    output.writeI32(this.show_client_id);
+  if (this.client_id !== null && this.client_id !== undefined) {
+    output.writeFieldBegin('client_id', Thrift.Type.I32, 7);
+    output.writeI32(this.client_id);
     output.writeFieldEnd();
   }
   if (this.location !== null && this.location !== undefined) {

@@ -38,7 +38,7 @@ router.get('/', async (ctx, next) => {
 router.post('/', async (ctx, next) => {
     const params = ctx.request.body;
     const banner = new bean_types.Banner(params);
-    banner.show_client_id = params.client_id;
+    banner.client_id = params.client_id;
     const client = getThriftServer(bannerService).getClient();
     try {
         console.log(banner)

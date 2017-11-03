@@ -28,7 +28,7 @@ public class BannerBean extends Banner {
         this.user_id = banner.user_id;
         this.image_url = banner.image_url;
         this.redirect_url = banner.redirect_url;
-        this.show_client_id = banner.show_client_id;
+        this.client_id = banner.client_id;
         this.location = banner.location;
     }
 
@@ -80,7 +80,7 @@ public class BannerBean extends Banner {
                 ", user_id=" + user_id +
                 ", image_url='" + image_url + '\'' +
                 ", redirect_url='" + redirect_url + '\'' +
-                ", show_client_id=" + show_client_id +
+                ", client_id=" + client_id +
                 ", location=" + location +
                 '}';
     }

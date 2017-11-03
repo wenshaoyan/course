@@ -1,13 +1,10 @@
 <template>
   <div class="app-container calendar-list-container">
     <div class="filter-container">
-      <el-input @keyup.enter.native="handleSearch" style="width: 200px;" class="filter-item" placeholder="id" v-model="versionQuery.id" @change="queryParamChange('id')">
+      <el-input @keyup.enter.native="handleSearch" style="width: 200px;" class="filter-item" placeholder="id" v-model="beanQuery.id" @change="queryParamChange('id')">
       </el-input>
 
-      <el-input @keyup.enter.native="handleSearch" style="width: 200px;" class="filter-item" placeholder="名称" v-model="versionQuery.version_name" @change="queryParamChange('name')">
-      </el-input>
-
-      <el-select clearable class="filter-item" style="width: 130px" v-model="versionQuery.client_id" placeholder="客户端列表" @clear="clientClear" :loading="listClientLoading" loading-text="加载中..">
+      <el-select clearable class="filter-item" style="width: 130px" v-model="beanQuery.client_id" placeholder="客户端列表" @clear="clientClear" :loading="listClientLoading" loading-text="加载中..">
         <el-option v-for="item in clientList" :key="item.id" :label="item.name" :value="item.id">
         </el-option>
       </el-select>
@@ -47,7 +44,7 @@
       </el-table-column>
       <el-table-column align="center" label="客户端名称" width="150">
         <template scope="scope">
-          <span>{{getClientName(scope.row.show_client_id)}}</span>
+          <span>{{getClientName(scope.row.client_id)}}</span>
         </template>
       </el-table-column>
       <el-table-column align="center" label="图片" >
@@ -69,14 +66,14 @@
     </el-table>
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form class="small-space" :model="dialogRowData" :rules="versionRule" ref="dialogRowData" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
+      <el-form class="small-space" :model="dialogRowData" :rules="rules" ref="dialogRowData" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
         <el-form-item label="id" v-show="dialogStatus === 'update'">
           <span>{{dialogRowData.id}}</span>
         </el-form-item>
-        <el-form-item label="跳转地址">
+        <el-form-item label="跳转地址" prop="redirect_url">
           <el-input v-model="dialogRowData.redirect_url"></el-input>
         </el-form-item>
-        <el-form-item label="图片地址">
+        <el-form-item label="图片地址" prop="image_url">
           <el-upload
             action="http://123.207.55.204:8083/upload/image"
             name="file"
@@ -89,7 +86,7 @@
             <div slot="tip" class="el-upload__tip">{{this.uploadInfo}}</div>
           </el-upload>
         </el-form-item>
-        <el-form-item label="客户端">
+        <el-form-item label="客户端" prop="client_id">
           <span>{{getClientName(dialogRowData.client_id)}}</span>
         </el-form-item>
       </el-form>
@@ -99,8 +96,6 @@
         <el-button v-else type="primary" @click="updateData">确 定</el-button>
       </div>
     </el-dialog>
-
-
   </div>
 </template>
 
@@ -115,21 +110,17 @@
       waves
     },
     data() {
-      const validateVersionName = (rule, value, callback) => {
-        if (value.length === 0) {
-          callback(new Error('名称必填'))
-        } else {
-          callback()
-        }
-      }
-      const validateVersionNumber = (rule, value, callback) => {
-        if (!Number.isInteger(value)) {
-          callback(new Error('输入整数'))
-        } else {
-          callback()
-        }
-      }
       return {
+        ruleForm: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        },
         list: null,
         newList: [],
         total: null,
@@ -141,10 +132,9 @@
           action: 'search',
           order: 'desc'
         },
-        versionQuery: {
+        beanQuery: {
           client_id: undefined,
-          id: undefined,
-          version_name: undefined
+          id: undefined
         },
         bindPage: 1,
         clientList: [],
@@ -161,9 +151,17 @@
         },
         dialogStatus: '',
         dialogFormVisible: false,
-        versionRule: {
-          version_name: [{ validator: validateVersionName }],
-          version_number: [{ validator: validateVersionNumber }]
+        rules: {
+          image_url: [
+            { required: true, message: '上传图片', trigger: 'blur' },
+            { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          ],
+          redirect_url: [
+            { required: true, message: '跳转地区必填', trigger: 'blur' }
+          ],
+          client_id: [
+            { required: true, message: '请输入活动名称', trigger: 'blur' }
+          ]
         },
         sortOptions: [
           { label: '按位置升序', key: '+location' },
@@ -174,11 +172,12 @@
         updateImageStatus: 'await',
         uploadInfo: '上传轮播图图片',
         isLocationChange: true
+
       }
     },
     watch: {
       'filterQuery.sort': 'watchSort',
-      'versionQuery.client_id': 'clientIdChange'
+      'beanQuery.client_id': 'clientIdChange'
     },
     created() {
       // 初始化数据
@@ -191,14 +190,14 @@
     methods: {
       initData() {
         const temp = this.$route.query.client_id
-        this.versionQuery.client_id = temp ? +temp : temp
+        this.beanQuery.client_id = temp ? +temp : temp
       },
       getClientName(id) {
         return this.clientMap ? this.clientMap.get(id) : ''
       },
       queryParamChange(keyName) {
-        if (keyName in this.versionQuery && this.versionQuery[keyName] === '') {
-          this.versionQuery[keyName] = undefined
+        if (keyName in this.beanQuery && this.beanQuery[keyName] === '') {
+          this.beanQuery[keyName] = undefined
         }
       },
       watchSort() {
@@ -213,12 +212,14 @@
       },
       clientIdChange() {
         // 修改没有生效
-        this.$route.query.client_id = this.versionQuery.client_id
+        this.$route.query.client_id = this.beanQuery.client_id
         // alert(this.$route.query.client_id)
       },
       getList() {
         this.listLoading = true
-        bannerQuery(this.filterQuery).then(data => {
+        let query = Object.assign({}, this.filterQuery)
+        query = Object.assign(query, this.beanQuery)
+        bannerQuery(query).then(data => {
           this.list = data
           if ('count' in data) this.total = data.count
           this.listLoading = false
@@ -267,9 +268,9 @@
         }
       },
       handleCreate() {
-        if (this.versionQuery.client_id) {
-          this.resetDialogRow(this.versionQuery.client_id)
-          this.dialogRowData.client_id = this.versionQuery.client_id
+        if (this.beanQuery.client_id) {
+          this.resetDialogRow()
+          this.dialogRowData.client_id = this.beanQuery.client_id
           this.dialogStatus = 'create'
           this.dialogFormVisible = true
           this.uploadInfo = '上传轮播图图片'
@@ -280,11 +281,10 @@
       resetDialogRow() {
         this.dialogRowData = {
           id: undefined,
-          version_name: undefined,
           image_url: undefined,
-          description: undefined,
           client_id: undefined
         }
+        console.log(this.$refs.dialogRowData)
       },
       handleSearch() {
         this.filterQuery.action = 'search'
@@ -298,10 +298,11 @@
       },
       // 插入数据
       insertData() {
-        this.$refs.dialogRowData.validate(valid => {
+        this.$refs.dialogRowData.validate((valid) => {
           if (valid) {
             bannerInsert(this.dialogRowData).then(data => {
               this.getList()
+              this.resetForm()
               this.dialogFormVisible = false
               this.$notify({
                 title: '成功',
@@ -313,8 +314,7 @@
               console.log(e)
             })
           } else {
-            console.log('=========2')
-            // throw new Error('1')
+            return false
           }
         })
       },
@@ -372,7 +372,7 @@
         console.log(event)
       },
       clientClear() {
-        this.versionQuery.client_id = undefined
+        this.beanQuery.client_id = undefined
       },
       handlePostLocation() {
         // 对比新旧数组修改的地方
@@ -393,6 +393,9 @@
         } else {
           this.$message.info('没有位置修改')
         }
+      },
+      resetForm() {
+        this.$refs.dialogRowData.resetFields()
       }
     }
   }

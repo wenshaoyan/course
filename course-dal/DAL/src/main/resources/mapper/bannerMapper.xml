@@ -3,56 +3,88 @@
 <mapper namespace="mapper.bannerMapper">
     <insert id="insert" parameterType="_BannerBean" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_banner(banner_create_time,banner_update_time,banner_user_id,
-        banner_image_url,banner_redirect_url,banner_show_client_id,banner_location)
-        VALUES(NOW(3),NOW(3),#{user_id},#{image_url},#{redirect_url},#{show_client_id},#{location})
+        banner_image_url,banner_redirect_url,banner_client_id,banner_location)
+        VALUES(NOW(3),NOW(3),#{user_id},#{image_url},#{redirect_url},#{client_id},#{location})
 
     </insert>
-    <select parameterType="_BannerBean" id="select" resultMap="bannerResult">
-      select *
-      from t_banner
-      <where>
-          <if test="show_client_id != 0 and  show_client_id != null" >
-              banner_show_client_id = #{show_client_id}
-          </if>
-          <if test="user_id != 0 and user_id != null">
-              AND banner_user_id = #{user_id}
-          </if>
-          <if test="id != 0 and id != null">
-              AND banner_id = #{id}
-          </if>
-      </where>
-        <if test="queryBean != null and queryBean.OrderByClause != null">
-          ORDER BY ${queryBean.OrderByClause}
-        </if>
-    </select>
-    <select id="selectMaxLocation" parameterType="int" resultType="java.lang.Integer">
+    <sql id="select_list">
+        select *
+        from t_banner
+    </sql>
+    <sql id="select_max">
         SELECT IFNULL(MAX(t_banner.banner_location),0) i
         FROM t_banner
-        WHERE t_banner.banner_show_client_id=#{id}
+    </sql>
+    <sql id="condition">
+        <where>
+            <if test="client_id != 0 " >
+                banner_client_id = #{client_id}
+            </if>
+            <if test="user_id != 0 and user_id != null">
+                AND banner_user_id = #{user_id}
+            </if>
+            <if test="id != 0 and id != null">
+                AND banner_id = #{id}
+            </if>
+        </where>
+    </sql>
+    <sql id="order">
+        <if test="queryBean != null and queryBean.OrderByClause != null">
+            ORDER BY ${queryBean.OrderByClause}
+        </if>
+    </sql>
+    <sql id="limit">
+        <if test="queryBean != null and queryBean.limit != 0">
+            LIMIT ${queryBean.offset} ,${queryBean.limit}
+        </if>
+    </sql>
+    <sql id="update_table">
+        UPDATE t_banner
+    </sql>
+    <sql id="delete_table">
+        DELETE FROM t_banner
+    </sql>
+    <sql id="update_set">
+        <set>
+            <if test="image_url != null" >
+                banner_image_url = #{image_url},
+            </if>
+            <if test="redirect_url != null">
+                banner_redirect_url = #{redirect_url},
+            </if>
+            <if test="update_time_bean != null">
+                banner_update_time = #{update_time_bean},
+            </if>
+            <if test="location != 0">
+                banner_location = #{location},
+            </if>
+        </set>
+    </sql>
+
+
+
+    <select parameterType="_BannerBean" id="select" resultMap="bannerResult">
+      <include refid="select_list"/>
+      <include refid="condition"/>
+      <include refid="order"/>
+      <include refid="limit"/>
+    </select>
+
+    <select id="selectMaxLocation" parameterType="int" resultType="java.lang.Integer">
+        <include refid="select_max"/>
+        <include refid="condition"/>
     </select>
 
     <update id="update" parameterType="_BannerBean" >
-     UPDATE t_banner
-     <set>
-         <if test="image_url != null" >
-             banner_image_url = #{image_url},
-         </if>
-         <if test="redirect_url != null">
-              banner_redirect_url = #{redirect_url},
-         </if>
-         <if test="update_time_bean != null">
-             banner_update_time = #{update_time_bean},
-         </if>
-         <if test="location != 0">
-             banner_location = #{location},
-         </if>
-     </set>
-     WHERE banner_id = #{id}
+        <include refid="update_table" />
+        <include refid="update_set" />
+        <include refid="condition" />
     </update>
-
     <delete id="remove" parameterType="int">
-        DELETE FROM t_banner WHERE t_banner.banner_id = #{id}
+        <include refid="delete_table"/>
+        <include refid="condition"/>
     </delete>
+
     <resultMap id="bannerResult" type="_BannerBean">
         <id property="id" column="banner_id"/>
         <result property="create_time_bean" column="banner_create_time"/>
@@ -60,7 +92,7 @@
         <result property="user_id" column="banner_user_id"/>
         <result property="redirect_url" column="banner_redirect_url"/>
         <result property="image_url" column="banner_image_url"/>
-        <result property="show_client_id" column="banner_show_client_id"/>
+        <result property="client_id" column="banner_client_id"/>
         <result property="location" column="banner_location"/>
     </resultMap>
 </mapper>
