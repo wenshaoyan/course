@@ -10,9 +10,12 @@ import java.util.List;
  */
 public interface CourseDao {
     public int insert(CourseBean courseBean) throws Exception;
+    public int update(CourseBean courseBean) throws Exception;
+    public int remove(CourseBean courseBean) throws Exception;
     public CourseBean findById(int id) throws Exception;
-
     public List<CourseBean> select(CourseBean courseBean) throws Exception;
-    public List<CourseBean> selectAll() throws Exception;
+    public int count(CourseBean courseBean) throws Exception;
+
+
 
 }

@@ -78,7 +78,18 @@ export const asyncRouterMap = [
     name: 'app管理',
     icon: 'theme',
     children: [
-      { path: 'banner', component: _import('app/banner'), name: 'banner' }
+      { path: 'banner', component: _import('app/banner'), name: '轮播图' }
+    ]
+  },
+  {
+    path: '/app',
+    component: Layout,
+    redirect: 'noredirect',
+    code: 1002,
+    name: '课程',
+    icon: 'theme',
+    children: [
+      { path: 'index', component: _import('course/index'), name: '课程管理' }
     ]
   },
   {

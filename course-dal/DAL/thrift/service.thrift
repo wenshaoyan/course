@@ -19,7 +19,7 @@ service UserService{
 service BannerService{
     i32 insert(1: bean.Banner banner),
     i32 update(1: bean.Banner banner),
-    i32 remove(1: i32 id),
+    i32 remove(1: bean.Banner banner),
     bean.Banner findById(1: i32 id),
     list<bean.Banner> selectAll(),
     list<bean.Banner> select(1: bean.Banner banner),
@@ -62,14 +62,19 @@ service CacheService{
 service CourseService{
     i32 courseInsert(1: bean.Course course),
     i32 courseUpdate(1: bean.Course course),
-    i32 courseRemove(1: i32 id),
+    i32 courseRemove(1: bean.Course course),
     bean.Course courseFindById(1: i32 id),
-    list<bean.Course> courseSelectAll(),
     list<bean.Course> courseSelect(1: bean.Course course),
+    list<bean.Course> courseSelectQuery(1: bean.Course course,2: bean.Query query),
+    list<bean.Course> courseSelectCustom(1: bean.Course course,2:bean.Custom custom),
+    list<bean.Course> courseSelectQueryCustom(1: bean.Course course,2: bean.Query query,3:bean.Custom custom),
+    list<bean.Course> courseSelectQueryCustomNotCache(1: bean.Course course,2: bean.Query query,3:bean.Custom custom),
+    list<bean.Course> courseSelectQueryNoCache(1: bean.Course course,2: bean.Query query),
+    i32 courseCountSelectQuery(1: bean.Course course,2: bean.Query query),
 
     string videoInsert(1: bean.Video video),
     i32 videoUpdate(1: bean.Video video),
-    i32 videoRemove(1: string id),
+    i32 videoRemove(1: bean.Video video),
     bean.Video versionFindById(1: string id),
     list<bean.Video> videoSelectAll(),
     list<bean.Video> videoSelect(1: bean.Video video)

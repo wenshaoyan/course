@@ -5,7 +5,8 @@
   "dalName": {
     "user": "UserService",
     "banner": "BannerService",
-    "client": "ClientService"
+    "client": "ClientService",
+    "course": "CourseService"
   },
   "publicServer": "http://123.207.55.204:8083",
   "tokenTime": 604800000

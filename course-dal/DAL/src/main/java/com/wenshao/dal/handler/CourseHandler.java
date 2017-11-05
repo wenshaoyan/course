@@ -1,10 +1,10 @@
 package com.wenshao.dal.handler;
 
+import com.wenshao.dal.bean.CourseBean;
+import com.wenshao.dal.bean.QueryBean;
 import com.wenshao.dal.dao.CourseDao;
 import com.wenshao.dal.dao.impl.CourseDaoImpl;
-import com.wenshao.dal.thriftgen.Course;
-import com.wenshao.dal.thriftgen.CourseService;
-import com.wenshao.dal.thriftgen.Video;
+import com.wenshao.dal.thriftgen.*;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.thrift.TException;
 
@@ -25,6 +25,17 @@ public class CourseHandler implements CourseService.Iface {
 
     }
 
+    private List<Course> courseQuery(Course course, Query query, Custom custom) throws Exception {
+        CourseBean courseBean = new CourseBean(course);
+        if (query != null) courseBean.setQueryBean(new QueryBean(query,CourseBean.TABLE_PREFIX));
+        if (custom != null) courseBean.setTables(custom.getTables());
+        List<Course> results = new ArrayList<Course>();
+        List<CourseBean> beans = courseDao.select(courseBean);
+        for (CourseBean bean : beans) {
+            results.add(bean);
+        }
+        return results;
+    }
 
     @Override
     public int courseInsert(Course course) throws TException {
@@ -37,7 +48,7 @@ public class CourseHandler implements CourseService.Iface {
     }
 
     @Override
-    public int courseRemove(int id) throws TException {
+    public int courseRemove(Course course) throws TException {
         return 0;
     }
 
@@ -47,13 +58,58 @@ public class CourseHandler implements CourseService.Iface {
     }
 
     @Override
-    public List<Course> courseSelectAll() throws TException {
-        return null;
+    public List<Course> courseSelect(Course course) throws TException {
+        try {
+            return this.courseQuery(course, null, null);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     @Override
-    public List<Course> courseSelect(Course course) throws TException {
-        return null;
+    public List<Course> courseSelectQuery(Course course, Query query) throws TException {
+        try {
+            return this.courseQuery(course, query, null);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
+
+    @Override
+    public List<Course> courseSelectCustom(Course course, Custom custom) throws TException {
+        try {
+            return this.courseQuery(course, null, custom);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
+
+    @Override
+    public List<Course> courseSelectQueryCustom(Course course, Query query, Custom custom) throws TException {
+        try {
+            return this.courseQuery(course, query, custom);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
+
+    @Override
+    public List<Course> courseSelectQueryCustomNotCache(Course course, Query query, Custom custom) throws TException {
+        return this.courseSelectQueryCustom(course, query, custom);
+    }
+
+    @Override
+    public List<Course> courseSelectQueryNoCache(Course course, Query query) throws TException {
+        return this.courseSelectQuery(course, query);
+    }
+
+    @Override
+    public int courseCountSelectQuery(Course course, Query query) throws TException {
+        try {
+            return courseDao.count(new CourseBean(course));
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     @Override
@@ -67,7 +123,7 @@ public class CourseHandler implements CourseService.Iface {
     }
 
     @Override
-    public int videoRemove(String id) throws TException {
+    public int videoRemove(Video video) throws TException {
         return 0;
     }
 

@@ -4,6 +4,7 @@
     <properties resource="db.properties" />
     <typeAliases>
         <typeAlias type="com.wenshao.dal.bean.CourseBean" alias="_CourseBean"/>
+        <typeAlias type="com.wenshao.dal.thriftgen.CourseTypeAll" alias="_CourseTypeAll"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">

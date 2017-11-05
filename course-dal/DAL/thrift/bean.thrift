@@ -50,6 +50,21 @@ struct ClientSide{
 struct BannerList{
     1:list<Banner> data
 }
+struct CourseType{
+    1:i32 id
+    2:string name
+}
+struct CourseTypeGroup{
+    1:i32 id
+    2:string name
+    3:list<CourseType> courseTypes
+}
+struct CourseTypeAll{
+    1:i32 id
+    2:string name
+    3:i32 group_id
+    4:string group_name
+}
 struct Course{
     1:i32 id
     2:string title
@@ -59,8 +74,8 @@ struct Course{
     6:string describe
     7:i32 status
     8:i32 author_id
-    9:i32 type
-    10:string image
+    9:CourseTypeAll courseTypeAll
+    10:string image_url
 }
 struct Video{
     1:string id

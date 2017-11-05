@@ -52,9 +52,11 @@
           <img :src="scope.row.image_url" height="200" width="400"/>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="操作" width="80">
+      <el-table-column align="center" label="操作" width="150">
         <template scope="scope">
           <el-button  size="small" type="success" @click="handleEditRow(scope.row)">编辑
+          </el-button>
+          <el-button  size="small" type="danger" @click="handleDeleteRow(scope.row)">删除
           </el-button>
         </template>
       </el-table-column>
@@ -65,7 +67,7 @@
       </el-table-column>
     </el-table>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" @close="cancelDialog">
       <el-form class="small-space" :model="dialogRowData" :rules="rules" ref="dialogRowData" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
         <el-form-item label="id" v-show="dialogStatus === 'update'">
           <span>{{dialogRowData.id}}</span>
@@ -91,7 +93,7 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button @click="cancelDialog">取 消</el-button>
         <el-button v-if="dialogStatus=='create' && !dialogRowData.id" type="primary" @click="insertData">确 定</el-button>
         <el-button v-else type="primary" @click="updateData">确 定</el-button>
       </div>
@@ -100,8 +102,8 @@
 </template>
 
 <script>
-  import { clientQueryPattern, versionUpdate } from '@/api/client'
-  import { bannerQuery, bannerPatch, bannerInsert } from '@/api/banner'
+  import { clientQueryPattern } from '@/api/client'
+  import { bannerQuery, bannerPatch, bannerInsert, bannerPut, bannerDelete } from '@/api/banner'
   import waves from '@/directive/waves/index.js' // 水波纹指令
   import Sortable from 'sortablejs'
   export default {
@@ -111,16 +113,6 @@
     },
     data() {
       return {
-        ruleForm: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        },
         list: null,
         newList: [],
         total: null,
@@ -154,13 +146,14 @@
         rules: {
           image_url: [
             { required: true, message: '上传图片', trigger: 'blur' },
-            { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+            { min: 1, max: 200, message: '长度在1至200', trigger: 'blur' }
           ],
           redirect_url: [
-            { required: true, message: '跳转地区必填', trigger: 'blur' }
+            { required: true, message: '跳转地址必填', trigger: 'blur' },
+            { min: 1, max: 50, message: '长度在1至50', trigger: 'blur' }
           ],
           client_id: [
-            { required: true, message: '请输入活动名称', trigger: 'blur' }
+            { required: true, message: '数据获取失败', trigger: 'blur', type: 'number' }
           ]
         },
         sortOptions: [
@@ -258,14 +251,33 @@
       },
       handleEditRow(row) {
         if (row && row.client_id) {
-          this.resetDialogRow(row.client_id)
+          const path = row.image_url
+          const url = new URL(path)
+          this.resetDialogRow()
           this.dialogRowData = Object.assign({}, row)
+          this.dialogRowData.image_url = url.pathname
           this.dialogStatus = 'update'
           this.uploadInfo = row.image_url
           this.dialogFormVisible = true
         } else {
           this.$message({ message: '获取客户端id失败', type: 'error' })
         }
+      },
+      handleDeleteRow(row) {
+        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          bannerDelete(row.id).then(data => {
+            this.getList()
+            this.$message.success('删除成功')
+          }).catch(e => {
+            console.log(e)
+          })
+        }).catch(() => {
+          this.$message.info('已取消删除')
+        })
       },
       handleCreate() {
         if (this.beanQuery.client_id) {
@@ -284,7 +296,6 @@
           image_url: undefined,
           client_id: undefined
         }
-        console.log(this.$refs.dialogRowData)
       },
       handleSearch() {
         this.filterQuery.action = 'search'
@@ -322,7 +333,7 @@
       updateData() {
         this.$refs.dialogRowData.validate(valid => {
           if (valid) {
-            versionUpdate(this.dialogRowData).then(data => {
+            bannerPut(this.dialogRowData.id, this.dialogRowData).then(data => {
               this.getList()
               this.dialogFormVisible = false
               this.$notify({
@@ -386,7 +397,7 @@
           Promise.all(changeList).then(result => {
             this.isLocationChange = true
             this.listLoading = false
-            this.$message.info('修改成功')
+            this.$message.success('修改成功')
           }).catch(e => {
             this.listLoading = false
           })
@@ -396,6 +407,10 @@
       },
       resetForm() {
         this.$refs.dialogRowData.resetFields()
+      },
+      cancelDialog() {
+        this.dialogFormVisible = false
+        this.resetForm()
       }
     }
   }

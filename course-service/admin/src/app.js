@@ -13,6 +13,7 @@ const role = require('./routes/role');
 const banner = require('./routes/banner');
 const client = require('./routes/client');
 const version = require('./routes/version');
+const course = require('./routes/course');
 
 const router_log = require('./middleware/router_log');
 const token = require('./middleware/token');
@@ -49,6 +50,7 @@ router.use('/roles', role.routes(), role.allowedMethods());
 router.use('/banners', banner.routes(), banner.allowedMethods());
 router.use('/clients', client.routes(), client.allowedMethods());
 router.use('/versions', version.routes(), version.allowedMethods());
+router.use('/courses', course.routes(), course.allowedMethods());
 
 
 app.use(router.routes(), router.allowedMethods());

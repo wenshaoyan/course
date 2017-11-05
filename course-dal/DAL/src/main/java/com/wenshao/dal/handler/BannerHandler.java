@@ -50,10 +50,11 @@ public class BannerHandler implements BannerService.Iface {
             throw new TException(e);
         }
     }
-
-    public int remove(int id) throws TException {
+    @Override
+    public int remove(Banner banner) throws TException {
+        BannerBean bannerBean = new BannerBean(banner);
         try {
-            return  bannerDao.remove(id);
+            return  bannerDao.remove(bannerBean);
 
         } catch (Exception e) {
             throw new TException(e);

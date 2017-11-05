@@ -872,6 +872,275 @@ BannerList.prototype.write = function(output) {
   return;
 };
 
+var CourseType = module.exports.CourseType = function(args) {
+  this.id = null;
+  this.name = null;
+  if (args) {
+    if (args.id !== undefined && args.id !== null) {
+      this.id = args.id;
+    }
+    if (args.name !== undefined && args.name !== null) {
+      this.name = args.name;
+    }
+  }
+};
+CourseType.prototype = {};
+CourseType.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.name = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CourseType.prototype.write = function(output) {
+  output.writeStructBegin('CourseType');
+  if (this.id !== null && this.id !== undefined) {
+    output.writeFieldBegin('id', Thrift.Type.I32, 1);
+    output.writeI32(this.id);
+    output.writeFieldEnd();
+  }
+  if (this.name !== null && this.name !== undefined) {
+    output.writeFieldBegin('name', Thrift.Type.STRING, 2);
+    output.writeString(this.name);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var CourseTypeGroup = module.exports.CourseTypeGroup = function(args) {
+  this.id = null;
+  this.name = null;
+  this.courseTypes = null;
+  if (args) {
+    if (args.id !== undefined && args.id !== null) {
+      this.id = args.id;
+    }
+    if (args.name !== undefined && args.name !== null) {
+      this.name = args.name;
+    }
+    if (args.courseTypes !== undefined && args.courseTypes !== null) {
+      this.courseTypes = Thrift.copyList(args.courseTypes, [ttypes.CourseType]);
+    }
+  }
+};
+CourseTypeGroup.prototype = {};
+CourseTypeGroup.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.name = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.LIST) {
+        var _size16 = 0;
+        var _rtmp320;
+        this.courseTypes = [];
+        var _etype19 = 0;
+        _rtmp320 = input.readListBegin();
+        _etype19 = _rtmp320.etype;
+        _size16 = _rtmp320.size;
+        for (var _i21 = 0; _i21 < _size16; ++_i21)
+        {
+          var elem22 = null;
+          elem22 = new ttypes.CourseType();
+          elem22.read(input);
+          this.courseTypes.push(elem22);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CourseTypeGroup.prototype.write = function(output) {
+  output.writeStructBegin('CourseTypeGroup');
+  if (this.id !== null && this.id !== undefined) {
+    output.writeFieldBegin('id', Thrift.Type.I32, 1);
+    output.writeI32(this.id);
+    output.writeFieldEnd();
+  }
+  if (this.name !== null && this.name !== undefined) {
+    output.writeFieldBegin('name', Thrift.Type.STRING, 2);
+    output.writeString(this.name);
+    output.writeFieldEnd();
+  }
+  if (this.courseTypes !== null && this.courseTypes !== undefined) {
+    output.writeFieldBegin('courseTypes', Thrift.Type.LIST, 3);
+    output.writeListBegin(Thrift.Type.STRUCT, this.courseTypes.length);
+    for (var iter23 in this.courseTypes)
+    {
+      if (this.courseTypes.hasOwnProperty(iter23))
+      {
+        iter23 = this.courseTypes[iter23];
+        iter23.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var CourseTypeAll = module.exports.CourseTypeAll = function(args) {
+  this.id = null;
+  this.name = null;
+  this.group_id = null;
+  this.group_name = null;
+  if (args) {
+    if (args.id !== undefined && args.id !== null) {
+      this.id = args.id;
+    }
+    if (args.name !== undefined && args.name !== null) {
+      this.name = args.name;
+    }
+    if (args.group_id !== undefined && args.group_id !== null) {
+      this.group_id = args.group_id;
+    }
+    if (args.group_name !== undefined && args.group_name !== null) {
+      this.group_name = args.group_name;
+    }
+  }
+};
+CourseTypeAll.prototype = {};
+CourseTypeAll.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.name = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.I32) {
+        this.group_id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 4:
+      if (ftype == Thrift.Type.STRING) {
+        this.group_name = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CourseTypeAll.prototype.write = function(output) {
+  output.writeStructBegin('CourseTypeAll');
+  if (this.id !== null && this.id !== undefined) {
+    output.writeFieldBegin('id', Thrift.Type.I32, 1);
+    output.writeI32(this.id);
+    output.writeFieldEnd();
+  }
+  if (this.name !== null && this.name !== undefined) {
+    output.writeFieldBegin('name', Thrift.Type.STRING, 2);
+    output.writeString(this.name);
+    output.writeFieldEnd();
+  }
+  if (this.group_id !== null && this.group_id !== undefined) {
+    output.writeFieldBegin('group_id', Thrift.Type.I32, 3);
+    output.writeI32(this.group_id);
+    output.writeFieldEnd();
+  }
+  if (this.group_name !== null && this.group_name !== undefined) {
+    output.writeFieldBegin('group_name', Thrift.Type.STRING, 4);
+    output.writeString(this.group_name);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 var Course = module.exports.Course = function(args) {
   this.id = null;
   this.title = null;
@@ -881,8 +1150,8 @@ var Course = module.exports.Course = function(args) {
   this.describe = null;
   this.status = null;
   this.author_id = null;
-  this.type = null;
-  this.image = null;
+  this.courseTypeAll = null;
+  this.image_url = null;
   if (args) {
     if (args.id !== undefined && args.id !== null) {
       this.id = args.id;
@@ -908,11 +1177,11 @@ var Course = module.exports.Course = function(args) {
     if (args.author_id !== undefined && args.author_id !== null) {
       this.author_id = args.author_id;
     }
-    if (args.type !== undefined && args.type !== null) {
-      this.type = args.type;
+    if (args.courseTypeAll !== undefined && args.courseTypeAll !== null) {
+      this.courseTypeAll = new ttypes.CourseTypeAll(args.courseTypeAll);
     }
-    if (args.image !== undefined && args.image !== null) {
-      this.image = args.image;
+    if (args.image_url !== undefined && args.image_url !== null) {
+      this.image_url = args.image_url;
     }
   }
 };
@@ -987,15 +1256,16 @@ Course.prototype.read = function(input) {
       }
       break;
       case 9:
-      if (ftype == Thrift.Type.I32) {
-        this.type = input.readI32();
+      if (ftype == Thrift.Type.STRUCT) {
+        this.courseTypeAll = new ttypes.CourseTypeAll();
+        this.courseTypeAll.read(input);
       } else {
         input.skip(ftype);
       }
       break;
       case 10:
       if (ftype == Thrift.Type.STRING) {
-        this.image = input.readString();
+        this.image_url = input.readString();
       } else {
         input.skip(ftype);
       }
@@ -1051,14 +1321,14 @@ Course.prototype.write = function(output) {
     output.writeI32(this.author_id);
     output.writeFieldEnd();
   }
-  if (this.type !== null && this.type !== undefined) {
-    output.writeFieldBegin('type', Thrift.Type.I32, 9);
-    output.writeI32(this.type);
+  if (this.courseTypeAll !== null && this.courseTypeAll !== undefined) {
+    output.writeFieldBegin('courseTypeAll', Thrift.Type.STRUCT, 9);
+    this.courseTypeAll.write(output);
     output.writeFieldEnd();
   }
-  if (this.image !== null && this.image !== undefined) {
-    output.writeFieldBegin('image', Thrift.Type.STRING, 10);
-    output.writeString(this.image);
+  if (this.image_url !== null && this.image_url !== undefined) {
+    output.writeFieldBegin('image_url', Thrift.Type.STRING, 10);
+    output.writeString(this.image_url);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -1446,18 +1716,18 @@ Custom.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.SET) {
-        var _size16 = 0;
-        var _rtmp320;
+        var _size24 = 0;
+        var _rtmp328;
         this.tables = [];
-        var _etype19 = 0;
-        _rtmp320 = input.readSetBegin();
-        _etype19 = _rtmp320.etype;
-        _size16 = _rtmp320.size;
-        for (var _i21 = 0; _i21 < _size16; ++_i21)
+        var _etype27 = 0;
+        _rtmp328 = input.readSetBegin();
+        _etype27 = _rtmp328.etype;
+        _size24 = _rtmp328.size;
+        for (var _i29 = 0; _i29 < _size24; ++_i29)
         {
-          var elem22 = null;
-          elem22 = input.readString();
-          this.tables.push(elem22);
+          var elem30 = null;
+          elem30 = input.readString();
+          this.tables.push(elem30);
         }
         input.readSetEnd();
       } else {
@@ -1481,12 +1751,12 @@ Custom.prototype.write = function(output) {
   if (this.tables !== null && this.tables !== undefined) {
     output.writeFieldBegin('tables', Thrift.Type.SET, 1);
     output.writeSetBegin(Thrift.Type.STRING, this.tables.length);
-    for (var iter23 in this.tables)
+    for (var iter31 in this.tables)
     {
-      if (this.tables.hasOwnProperty(iter23))
+      if (this.tables.hasOwnProperty(iter31))
       {
-        iter23 = this.tables[iter23];
-        output.writeString(iter23);
+        iter31 = this.tables[iter31];
+        output.writeString(iter31);
       }
     }
     output.writeSetEnd();

@@ -1,5 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.courseMapper">
+    <sql id="select_list">
+        SELECT *
+        FROM t_course
+    </sql>
+    <sql id="select_count">
+        SELECT count(*)
+        FROM t_course
+    </sql>
+    <sql id="condition">
+        <if test="tables.contains('t_course_type')">
+            INNER JOIN t_course_type ON t_course_type.ct_id=t_course.course_type
+        </if>
+        <if test="tables.contains('t_course_type_group')">
+            INNER JOIN t_course_type_group ON t_course_type_group.ctg_id=t_course_type.ct_group_id
+        </if>
+        <where>
+            <if test="id != 0">
+                AND course_id = #{id}
+            </if>
+            <if test="queryBean != null">
+                <if test="queryBean.create_time_start_bean != 0 ">
+                    AND UNIX_TIMESTAMP(t_user.user_create_time)>#{queryBean.create_time_start_bean}
+                </if>
+                <if test="queryBean.create_time_end_bean != 0 ">
+                    AND UNIX_TIMESTAMP(t_user.user_create_time)>#{queryBean.create_time_end_bean}
+                </if>
+                <if test="queryBean.update_time_start_bean !=0 ">
+                    AND UNIX_TIMESTAMP(t_user.user_update_time)>#{queryBean.update_time_start_bean}
+                </if>
+                <if test="queryBean.update_time_end_bean !=0 ">
+                    AND UNIX_TIMESTAMP(t_user.user_update_time)>#{queryBean.update_time_end_bean}
+                </if>
+            </if>
 
+        </where>
+    </sql>
+    <sql id="order">
+        <if test="queryBean != null and queryBean.OrderByClause != null">
+            ORDER BY ${queryBean.OrderByClause}
+
+        </if>
+    </sql>
+    <sql id="limit">
+        <if test="queryBean != null and queryBean.limit != 0">
+            LIMIT ${queryBean.offset} ,${queryBean.limit}
+        </if>
+    </sql>
+    <select id="select" parameterType="_CourseBean" resultMap="courseResult">
+        <include refid="select_list"/>
+        <include refid="condition"/>
+        <include refid="order"/>
+        <include refid="limit"/>
+    </select>
+    <select id="count" parameterType="_CourseBean" resultType="java.lang.Integer">
+        <include refid="select_count"/>
+        <include refid="condition"/>
+    </select>
+
+    <resultMap id="courseResult" type="_CourseBean">
+        <id property="id" column="course_id"/>
+        <result property="create_time_bean" column="course_create_time"/>
+        <result property="update_time_bean" column="course_update_time"/>
+        <result property="title" column="course_title"/>
+        <result property="price" column="course_price"/>
+        <result property="describe" column="course_describe"/>
+        <result property="status" column="course_status"/>
+        <result property="author_id" column="course_author_id"/>
+        <result property="image_url" column="course_image_url"/>
+        <collection property="courseTypeAll" ofType="_CourseTypeAll" >
+            <id property="id" column="ct_id"/>
+            <result property="name" column="ct_name"/>
+            <result property="group_id" column="ctg_id"/>
+            <result property="group_name" column="ctg_name"/>
+        </collection>
+    </resultMap>
 </mapper>

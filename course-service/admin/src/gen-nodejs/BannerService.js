@@ -230,10 +230,10 @@ BannerService_update_result.prototype.write = function(output) {
 };
 
 var BannerService_remove_args = function(args) {
-  this.id = null;
+  this.banner = null;
   if (args) {
-    if (args.id !== undefined && args.id !== null) {
-      this.id = args.id;
+    if (args.banner !== undefined && args.banner !== null) {
+      this.banner = new bean_ttypes.Banner(args.banner);
     }
   }
 };
@@ -252,8 +252,9 @@ BannerService_remove_args.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.I32) {
-        this.id = input.readI32();
+      if (ftype == Thrift.Type.STRUCT) {
+        this.banner = new bean_ttypes.Banner();
+        this.banner.read(input);
       } else {
         input.skip(ftype);
       }
@@ -272,9 +273,9 @@ BannerService_remove_args.prototype.read = function(input) {
 
 BannerService_remove_args.prototype.write = function(output) {
   output.writeStructBegin('BannerService_remove_args');
-  if (this.id !== null && this.id !== undefined) {
-    output.writeFieldBegin('id', Thrift.Type.I32, 1);
-    output.writeI32(this.id);
+  if (this.banner !== null && this.banner !== undefined) {
+    output.writeFieldBegin('banner', Thrift.Type.STRUCT, 1);
+    this.banner.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -1533,7 +1534,7 @@ BannerServiceClient.prototype.recv_update = function(input,mtype,rseqid) {
   }
   return callback('update failed: unknown result');
 };
-BannerServiceClient.prototype.remove = function(id, callback) {
+BannerServiceClient.prototype.remove = function(banner, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -1544,19 +1545,19 @@ BannerServiceClient.prototype.remove = function(id, callback) {
         _defer.resolve(result);
       }
     };
-    this.send_remove(id);
+    this.send_remove(banner);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_remove(id);
+    this.send_remove(banner);
   }
 };
 
-BannerServiceClient.prototype.send_remove = function(id) {
+BannerServiceClient.prototype.send_remove = function(banner) {
   var output = new this.pClass(this.output);
   output.writeMessageBegin('remove', Thrift.MessageType.CALL, this.seqid());
   var args = new BannerService_remove_args();
-  args.id = id;
+  args.banner = banner;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
@@ -2058,7 +2059,7 @@ BannerServiceProcessor.prototype.process_remove = function(seqid, input, output)
   args.read(input);
   input.readMessageEnd();
   if (this._handler.remove.length === 1) {
-    Q.fcall(this._handler.remove, args.id)
+    Q.fcall(this._handler.remove, args.banner)
       .then(function(result) {
         var result_obj = new BannerService_remove_result({success: result});
         output.writeMessageBegin("remove", Thrift.MessageType.REPLY, seqid);
@@ -2074,7 +2075,7 @@ BannerServiceProcessor.prototype.process_remove = function(seqid, input, output)
         output.flush();
       });
   } else {
-    this._handler.remove(args.id, function (err, result) {
+    this._handler.remove(args.banner, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
         result_obj = new BannerService_remove_result((err !== null || typeof err === 'undefined') ? err : {success: result});

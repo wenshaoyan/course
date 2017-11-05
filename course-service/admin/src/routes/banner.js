@@ -52,6 +52,23 @@ router.post('/', async (ctx, next) => {
 
 });
 router.put('/:id', async (ctx, next) => {
+    const params = ctx.request.body;
+    const banner = new bean_types.Banner(params);
+    banner.id = ctx.params.id;
+    const client = getThriftServer(bannerService).getClient();
+    try {
+        console.log(banner)
+        const result = await client.update(banner);
+        if (result !== 1) {
+            ctx.error = 'UPDATE_FAIL';
+            return;
+        }
+        ctx.body = {
+            id: banner.id
+        };
+    } catch (e) {
+        ctx.error = e;
+    }
 
 });
 // 修改位置
@@ -75,6 +92,21 @@ router.patch('/:id', async (ctx, next) => {
     }
 });
 router.delete('/:id', async (ctx, next) => {
-
+    const params = ctx.params;
+    const banner = new bean_types.Banner();
+    banner.id = params.id
+    const client = getThriftServer(bannerService).getClient();
+    try {
+        const result = await client.remove(banner);
+        if (result !== 1) {
+            ctx.error = 'DELETE_FAIL';
+            return;
+        }
+        ctx.body = {
+            id: params.id
+        };
+    } catch (e) {
+        ctx.error = e;
+    }
 });
 module.exports = router;

@@ -21,7 +21,7 @@ export function bannerInsert(data) {
 }
 export function bannerPut(id, data) {
   return fetch({
-    url: '/banners' + id,
+    url: '/banners/' + id,
     method: 'put',
     data: data
   })
@@ -31,5 +31,11 @@ export function bannerPatch(id, data) {
     url: '/banners/' + id,
     method: 'patch',
     params: data
+  })
+}
+export function bannerDelete(id) {
+  return fetch({
+    url: '/banners/' + id,
+    method: 'delete'
   })
 }

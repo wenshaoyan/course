@@ -70,7 +70,7 @@
       <include refid="limit"/>
     </select>
 
-    <select id="selectMaxLocation" parameterType="int" resultType="java.lang.Integer">
+    <select id="selectMaxLocation" parameterType="_BannerBean" resultType="java.lang.Integer">
         <include refid="select_max"/>
         <include refid="condition"/>
     </select>
@@ -80,7 +80,7 @@
         <include refid="update_set" />
         <include refid="condition" />
     </update>
-    <delete id="remove" parameterType="int">
+    <delete id="remove" parameterType="_BannerBean">
         <include refid="delete_table"/>
         <include refid="condition"/>
     </delete>

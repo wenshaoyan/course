@@ -23,7 +23,7 @@ public class BannerDaoImpl implements BannerDao{
     public int insert(BannerBean bannerBean) throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         // 查找当前客户端的最大的location
-        int i = sqlSession.selectOne(sqlTag + ".selectMaxLocation", bannerBean.getClient_id());
+        int i = sqlSession.selectOne(sqlTag + ".selectMaxLocation", bannerBean);
         bannerBean.setLocation(i+1);
         sqlSession.insert(sqlTag + ".insert", bannerBean);
         sqlSession.commit();
@@ -39,9 +39,9 @@ public class BannerDaoImpl implements BannerDao{
         return result;
     }
     @Override
-    public int remove(int id) throws Exception {
+    public int remove(BannerBean bannerBean) throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        int result = sqlSession.delete(sqlTag + ".remove", id);
+        int result = sqlSession.delete(sqlTag + ".remove", bannerBean);
         sqlSession.commit();
         sqlSession.close();
         return result;
