@@ -89,7 +89,8 @@ export const asyncRouterMap = [
     name: '课程',
     icon: 'theme',
     children: [
-      { path: 'index', component: _import('course/index'), name: '课程管理' }
+      { path: 'index', component: _import('course/index'), name: '课程管理' },
+      { path: 'test', component: _import('app/test'), name: '测试' }
     ]
   },
   {

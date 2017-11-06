@@ -48,9 +48,6 @@
       },
       test(e) {
         console.log(this.createdTimes)
-      },
-      abc() {
-        alert(1)
       }
     }
   }
