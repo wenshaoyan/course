@@ -43,18 +43,25 @@ class ConnectZk {
     set server(value) {
         this._server = value;
     }
-    setServer(_server){
-        this.server =_server;
+
+    setServer(_server) {
+        this.server = _server;
     }
 
     async getServer() {
         const childrenData = await this.getChildNodeList();
         let serverAddress = childrenData[Math.floor((Math.random() * childrenData.length))];
-
+        //if (!serverAddress) this.preNodeList = childrenData;
         if (!this.server) { // 初始化
-            const path = `${this.parentPath}/${serverAddress}`;
-            this.preNodeList = childrenData;
-            return await this.getChildNodeData(path);
+            if (serverAddress){     // 存在对应的服务节点
+                const path = `${this.parentPath}/${serverAddress}`;
+                this.preNodeList = childrenData;
+                return await this.getChildNodeData(path);
+            }else{  // 不存在对应的服务节点
+                // this.preNodeList = childrenData;
+
+            }
+
         }
         if (childrenData.length > this.preNodeList.length) { // 当前的节点个数大于上一次的节点
             this.preNodeList = childrenData;
@@ -68,7 +75,7 @@ class ConnectZk {
             this.preNodeList = childrenData;
             if (childrenData.indexOf(this.server.getNodeName()) === -1) {
                 const path = `${this.parentPath}/${serverAddress}`;
-                return await this.getChildNodeData( path);
+                return await this.getChildNodeData(path);
             } else {  // 删除的不是当前连接的节点
 
             }
@@ -83,7 +90,7 @@ class ConnectZk {
     async  getChildNodeList() {
         const childrenData = await this.client.getChildren()
             .unwantedNamespace()
-            .setWatcher(this.client, (__client, event)=>{
+            .setWatcher(this.client, (__client, event) => {
                 const type = event.getType();
                 if (type === 4) {        // 子节点变化
                     this.getServer();
@@ -95,24 +102,25 @@ class ConnectZk {
             if (this.server && typeof this.server === 'object') {
                 this.server.close();
             } else {
-                console.warn('UserServer not found');
+                console.warn(this.parentPath+' 没有子节点');
             }
         }
         return childrenData;
     }
+
     // 获取子节点的数据
     async getChildNodeData(_path) {
         const split = _path.split('/');
         const childData = await
-        this.client.getData()
-            .unwantedNamespace()
-            .setWatcher(this.client, (__client, event)=> {
-                const type = event.getType();
-                if (type === 3) {        // 节点修改
-                    this.getChildNodeData(event.getPath());
-                }
-            })
-            .forPath(_path);
+            this.client.getData()
+                .unwantedNamespace()
+                .setWatcher(this.client, (__client, event) => {
+                    const type = event.getType();
+                    if (type === 3) {        // 节点修改
+                        this.getChildNodeData(event.getPath());
+                    }
+                })
+                .forPath(_path);
         if (this.server && typeof this.server === 'object') {
             this.server.setNodeName(split[split.length - 1]);
             this.server.setAddress(childData);

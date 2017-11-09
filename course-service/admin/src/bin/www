@@ -7,6 +7,7 @@
 
 const debug = require('debug')('demo:server');
 const http = require('http');
+const os = require('os');
 
 // 加载log4js
 const log4js = require('log4js');
@@ -33,10 +34,20 @@ const thriftServerMap = new Map();
 global.getThriftServer = function (name) {
     return thriftServerMap.get(name);
 };
-// 获取
-// 导入ip的工具类
-const IpUtil = require('../util/ip_util');
-
+// 获取本地ip
+const localIp = (function(){
+    const interfaces = os.networkInterfaces();
+    for(let devName in interfaces){
+        let iface = interfaces[devName];
+        for(let i=0;i<iface.length;i++){
+            let alias = iface[i];
+            if(alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal){
+                return alias.address;
+            }
+        }
+    }
+})();
+if (!localIp) throw new Error('获取本地ip地址失败');
 
 const app = require('../app');
 
@@ -99,7 +110,7 @@ async function main() {
             const path = await client.create()
                 .withMode(CuratorFrameworkFactory.EPHEMERAL)
                 .isAbsoluteAddress()
-                .forPath(`/${IpUtil.getLocalIp()}`, `${IpUtil.getLocalIp()}:${serviceConfig.port}`);
+                .forPath(localIp, `${localIp}:${serviceConfig.port}`);
 
         }
 

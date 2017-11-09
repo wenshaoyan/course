@@ -5,7 +5,7 @@
 const os = require('os');
 
 
-const localIp = ()=>{
+const localIp = (function(){
     const interfaces = os.networkInterfaces();
     for(let devName in interfaces){
         let iface = interfaces[devName];
@@ -16,14 +16,11 @@ const localIp = ()=>{
             }
         }
     }
-};
+})();
 class IpUtil{
     // 获取内网ip
     static getLocalIp(){
-        return localIp();
-    }
-    static getNetIp(){
-
+        return localIp;
     }
 
 }
