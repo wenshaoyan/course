@@ -89,6 +89,18 @@
     "code":307,
     "en_message":"token lose",
     "error_source":"auth"
+  },
+  "TOKEN_INFO_EXCEPTION":{
+    "message":"token数据异常",
+    "code":304,
+    "en_message":"token data exception",
+    "error_source":"get_user"
+  },
+  "TOKEN_INVALID":{
+    "message":"token非法",
+    "code":305,
+    "en_message":"INVALID TOKEN",
+    "error_source":"get_user"
   }
 
 }
