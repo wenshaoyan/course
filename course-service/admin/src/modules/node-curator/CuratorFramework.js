@@ -14,7 +14,8 @@ class CuratorFramework {
         this._client = zookeeper.createClient(curatorFrameworkFactory.address);
         this._curatorFrameworkFactory = curatorFrameworkFactory;
         this._client.once('connected', async() => {
-            this.curatorFrameworkFactory.logger.info('zookeeper connect succeed');
+            if (this.curatorFrameworkFactory.isPrintLog())
+                this.curatorFrameworkFactory.logger.info('zookeeper connect succeed');
             const createBuilder = this.create()
                 .creatingParentContainersIfNeeded()
                 .unwantedNamespace();
@@ -45,8 +46,10 @@ class CuratorFramework {
     }
 
     start() {
-        this.curatorFrameworkFactory.logger.info('zookeeper connecting..');
+        if (this.curatorFrameworkFactory.isPrintLog())
+            this.curatorFrameworkFactory.logger.info('zookeeper connecting..');
         this.client.connect();
+        return this;
     }
 
     create() {

@@ -3,11 +3,15 @@
  */
 'use strict';
 class ConnectZk {
-    constructor(_parentPath, _client) {
+    constructor(_parentPath, _client,_logger) {
         this._parentPath = _parentPath;
         this._preNodeList = null;
         this._client = _client;
         this._server = null;
+        this._logger = false;
+        if (_logger && _logger.info instanceof Function) this._logger = _logger;
+        this._logger = _logger;
+
     }
 
     get parentPath() {
@@ -48,10 +52,26 @@ class ConnectZk {
         this.server = _server;
     }
 
+
+    get logger() {
+        return this._logger;
+    }
+
+    set logger(value) {
+        this._logger = value;
+    }
+
     async getServer() {
-        const childrenData = await this.getChildNodeList();
-        let serverAddress = childrenData[Math.floor((Math.random() * childrenData.length))];
-        //if (!serverAddress) this.preNodeList = childrenData;
+        let childrenData;
+        try{
+            childrenData = await this.getChildNodeList();
+        }catch (e){ // 指定节点不存在
+            throw new Error(`${this.parentPath} not exist`);
+        }
+        let serverAddress;
+        if (childrenData){
+            serverAddress = childrenData[Math.floor((Math.random() * childrenData.length))];
+        }
         if (!this.server) { // 初始化
             if (serverAddress){     // 存在对应的服务节点
                 const path = `${this.parentPath}/${serverAddress}`;
@@ -59,13 +79,13 @@ class ConnectZk {
                 return await this.getChildNodeData(path);
             }else{  // 不存在对应的服务节点
                 // this.preNodeList = childrenData;
-
+                this.preNodeList = [];
+                return {data: null};
             }
-
         }
         if (childrenData.length > this.preNodeList.length) { // 当前的节点个数大于上一次的节点
             this.preNodeList = childrenData;
-            if (this.server.connectionStatus === 2) {   // 当前为断开 需要重连
+            if (this.server.connectionStatus === 2 || this.server.connectionStatus === 0) {   // 当前为断开 需要重连
                 const path = `${this.parentPath}/${serverAddress}`;
                 return await this.getChildNodeData(path);
             } else if (this.server.connectionStatus === 1) {  // 增加新节点不处理
@@ -97,12 +117,11 @@ class ConnectZk {
                 }
             })
             .forPath(this.parentPath);
-
         if (childrenData.length === 0) {
             if (this.server && typeof this.server === 'object') {
                 this.server.close();
             } else {
-                console.warn(this.parentPath+' 没有子节点');
+                this.logger.warn(this.parentPath+' 没有子节点');
             }
         }
         return childrenData;
@@ -110,22 +129,27 @@ class ConnectZk {
 
     // 获取子节点的数据
     async getChildNodeData(_path) {
-        const split = _path.split('/');
-        const childData = await
-            this.client.getData()
-                .unwantedNamespace()
-                .setWatcher(this.client, (__client, event) => {
-                    const type = event.getType();
-                    if (type === 3) {        // 节点修改
-                        this.getChildNodeData(event.getPath());
-                    }
-                })
-                .forPath(_path);
-        if (this.server && typeof this.server === 'object') {
-            this.server.setNodeName(split[split.length - 1]);
-            this.server.setAddress(childData);
+        try {
+            const split = _path.split('/');
+            const childData = await
+                this.client.getData()
+                    .unwantedNamespace()
+                    .setWatcher(this.client, (__client, event) => {
+                        const type = event.getType();
+                        if (type === 3) {        // 节点修改
+                            this.getChildNodeData(event.getPath());
+                        }
+                    })
+                    .forPath(_path);
+            if (this.server && typeof this.server === 'object') {
+                this.server.setNodeName(_path);
+                this.server.setAddress(childData);
+            }
+            return {data: childData};
+        }catch (e){
+            console.log(e)
         }
-        return {data: childData, nodeName: split[split.length - 1]};
+
 
     }
 }
