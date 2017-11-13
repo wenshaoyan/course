@@ -18,19 +18,22 @@ router.use(async (ctx, next) => {
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
+        ctx.poolTag = SysUtil.getUuid();
         await next();
+        myServer.release(ctx.poolTag);
     }
 });
 router.get('/', async (ctx, next) => {
     const params = ctx.query;
     const banner = new bean_types.Banner(params);
     const query = new bean_types.Query(params);
-    const client = getThriftServer(bannerService).getClient();
     try {
+        const client = await getThriftServer(bannerService).getClient(ctx.poolTag);
         const result = await client.selectQueryNoCache(banner, query);
         ArrayUtil.valueJoin(result, 'image_url', getServiceConfig().publicServer);
         ctx.body = result;
     } catch (e) {
+        console.log(e)
         ctx.error = e;
     }
 

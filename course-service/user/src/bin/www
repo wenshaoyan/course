@@ -7,6 +7,7 @@
 
 const debug = require('debug')('demo:server');
 const http = require('http');
+const os = require('os');
 
 // 加载log4js
 const log4js = require('log4js');
@@ -21,11 +22,13 @@ global.getServiceConfig = () => {
     return serviceConfig;
 };
 const envSet = new Set(['develop', 'production']);
+
 function getEnv() {
     let env = process.env.NODE_ENV;
     if (env && envSet.has(env)) return env;
     return 'develop';
 }
+
 global.NODE_ENV = getEnv();
 
 
@@ -33,10 +36,20 @@ const thriftServerMap = new Map();
 global.getThriftServer = function (name) {
     return thriftServerMap.get(name);
 };
-// 获取
-// 导入ip的工具类
-const IpUtil = require('../util/ip_util');
-
+// 获取本地ip
+const localIp = (function () {
+    const interfaces = os.networkInterfaces();
+    for (let devName in interfaces) {
+        let iface = interfaces[devName];
+        for (let i = 0; i < iface.length; i++) {
+            let alias = iface[i];
+            if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+                return alias.address;
+            }
+        }
+    }
+})();
+if (!localIp) throw new Error('获取本地ip地址失败');
 
 const app = require('../app');
 
@@ -82,16 +95,15 @@ async function main() {
         for (let key in serviceConfig.dalName) {
             const name = serviceConfig.dalName[key];
             let parentPath = `/dal/${getEnv()}/${name}`;
-
-            const connectZk = new ThriftHelp.ConnectZk(parentPath, client);
-
+            const connectZk = new ThriftHelp.ConnectZk(parentPath, client,getLogger('zookeeper'));
             const address = await connectZk.getServer();    // 获取连接dal的地址
             // 创建thrift的连接
             let myServer = await new ThriftHelp.Server()
+                .setServer(require(`../gen-nodejs/${name}.js`))
                 .setAddress(address.data)
-                .setServer(name, require(`../gen-nodejs/${name}.js`))
                 .setPoolNumber(2, 10)
-                .setNodeName(address.nodeName)
+                .setNodeName(name)
+                .setLogger(getLogger('thrift'))
                 .connect();
             // 监听连接的变化 并修改
             connectZk.setServer(myServer);
@@ -99,8 +111,7 @@ async function main() {
             const path = await client.create()
                 .withMode(CuratorFrameworkFactory.EPHEMERAL)
                 .isAbsoluteAddress()
-                .forPath(`/${IpUtil.getLocalIp()}`, `${IpUtil.getLocalIp()}:${serviceConfig.port}`);
-
+                .forPath(localIp, `${localIp}:${serviceConfig.port}`);
         }
 
         server.listen(port);
@@ -113,6 +124,7 @@ async function main() {
 
     }
 }
+
 process.on('exit', (code) => {
     logger.error('process exit!');
     logger.info('zookeeper session close!');

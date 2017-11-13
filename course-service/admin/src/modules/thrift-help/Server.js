@@ -7,6 +7,9 @@ const transport = thrift.TFramedTransport;
 const protocol = thrift.TBinaryProtocol;
 const logger = getLogger('thrift');
 const ConnectZk = require('./ConnectZk');
+const genericPool = require('generic-pool');
+const _poolTagObject = {};
+
 const Server = (function () {
     const _isPrintLog = Symbol('_isPrintLog');
     class Server {
@@ -19,11 +22,9 @@ const Server = (function () {
             this._connectionStatus = 0; // 0 待连接 1 连接成功 2 连接断开
             this._min = 1;
             this._max = 10;
-            this._freeClients = [];
-            this._busyClients = [];
             this._client = null;
-            this._nodeName = null;
             this[_isPrintLog] = false;
+            this._pool = null;
         }
 
 
@@ -95,16 +96,6 @@ const Server = (function () {
             this._max = value;
         }
 
-
-        get nodeName() {
-            return this._nodeName;
-        }
-
-        set nodeName(value) {
-            this._nodeName = value;
-        }
-
-
         get connectZk() {
             return this._connectZk;
         }
@@ -120,6 +111,15 @@ const Server = (function () {
         set logger(value) {
             if (value && value.info instanceof Function) this[_isPrintLog] = true;
             this._logger = value;
+        }
+
+
+        get pool() {
+            return this._pool;
+        }
+
+        set pool(value) {
+            this._pool = value;
         }
 
         setAddress(address) {
@@ -143,15 +143,6 @@ const Server = (function () {
             return this.host + ':' + this.port;
         }
 
-        setNodeName(_nodeName) {
-            this.nodeName = _nodeName;
-            return this;
-        }
-
-        getNodeName() {
-            return this.nodeName;
-        }
-
         setServer(_serverObject) {
             this.serverObject = _serverObject;
             return this;
@@ -168,6 +159,7 @@ const Server = (function () {
             return this;
         }
 
+
         connect() {
             if (this.connectionStatus === 0 || this.connectionStatus === 1) {
                 return this;
@@ -178,29 +170,74 @@ const Server = (function () {
 
         _connect() {
             this.close();
-            this.connection = thrift.createConnection(this.host, this.port, {
-                transport: transport,
-                protocol: protocol
-            });
-            this.connection.on('error', (err) => {
-                logger.error(err);
-                this.connectionStatus = 2;
-                if (this.errorCallback instanceof Function) this.errorCallback(err);
-            });
-            this._client = thrift.createClient(this.serverObject, this.connection);
+            this._initPool();
+            const cHost = this.host;
+            const cPort = this.port;
+            const cServerObject = this.serverObject;
+            // this._client = thrift.createClient(this.serverObject, this.connection);
+            const factory = {
+                create: function () {
+                    return new Promise(function (resolve, reject) {
+                        let con;
+                        con = thrift.createConnection(cHost, cPort, {
+                            transport: transport,
+                            protocol: protocol
+                        });
+                        con.on('error', (err) => {
+                            logger.error(err);
+                            reject(err);
+                            // this.connectionStatus = 2;
+                            // if (this.errorCallback instanceof Function) this.errorCallback(err);
+                        });
+                        const client = thrift.createClient(cServerObject, con);
+                        resolve(client);
+                    })
+                },
+                destroy: function (client) {
+                    return new Promise(function (resolve) {
+                        resolve();
+                        client.end();
+                    })
+                }
+            };
+            this.pool = genericPool.createPool(factory, {max: this.max, min: this.min});
             this.connectionStatus = 1;
             logger.info(`connect ${this.host}:${this.port} `);
         }
 
-        getClient() {
-            return this._client;
+        getClient(uuid) {
+            if (!uuid || typeof uuid !== 'string') {
+                throw new Error('uuid error');
+            }
+
+            const resourcePromise = this.pool.acquire();
+            return resourcePromise.then(client => {
+                let list = _poolTagObject[uuid];
+                if (list && list instanceof Array) {
+                    list.push(client);
+                } else {
+                    _poolTagObject[uuid] = [client];
+                }
+                return client;
+            }).catch(e => {
+                throw e;
+            });
+
         }
 
+        // 清空连接池
+        _initPool() {
+            if (this.pool) {
+                this.pool.clear();
+                this.pool = null;
+            }
+        }
+
+
         close() {
-            if (this.connection) {
+            if (this.connectionStatus === 1) {
                 this.connectionStatus = 2;
-                this.connection.end();
-                this.connection = null;
+                this._initPool()
             }
         }
 
@@ -211,6 +248,19 @@ const Server = (function () {
             }
             throw new Error('func not is Logger object');
 
+        }
+
+        release(uuid) {
+            if (!uuid || typeof uuid !== 'string') {
+                throw new Error('uuid error');
+            }
+            let list = _poolTagObject[uuid];
+            if (list && list instanceof Array && this.pool) {
+                list.forEach(c => {
+                    this.pool.release(c);
+                });
+                delete _poolTagObject[uuid];
+            }
         }
     }
     return Server;

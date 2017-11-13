@@ -102,7 +102,6 @@ async function main() {
                 .setServer(require(`../gen-nodejs/${name}.js`))
                 .setAddress(address.data)
                 .setPoolNumber(2, 10)
-                .setNodeName(name)
                 .setLogger(getLogger('thrift'))
                 .connect();
             // 监听连接的变化 并修改
