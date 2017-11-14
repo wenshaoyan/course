@@ -1,0 +1,16 @@
+
+function closeIptables(){
+	iptables -L
+	
+}
+function closeSelinux(){
+	sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config 
+	
+}
+function main(){
+	closeIptables
+	closeSelinux
+	reboot
+}
+
+main
