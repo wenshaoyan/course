@@ -12,6 +12,7 @@ const _poolTagObject = {};
 
 const Server = (function () {
     const _isPrintLog = Symbol('_isPrintLog');
+    const _poolUuid = Symbol('_poolUuid');
     class Server {
         constructor() {
             this._host = '127.0.0.1';
@@ -25,6 +26,8 @@ const Server = (function () {
             this._client = null;
             this[_isPrintLog] = false;
             this._pool = null;
+            this[_poolUuid] = new Date().getTime()+Math.floor(Math.random()*1000);
+            _poolTagObject[this[_poolUuid]] = {}
         }
 
 
@@ -200,6 +203,7 @@ const Server = (function () {
                     })
                 }
             };
+            console.log({max: this.max, min: this.min})
             this.pool = genericPool.createPool(factory, {max: this.max, min: this.min});
             this.connectionStatus = 1;
             logger.info(`connect ${this.host}:${this.port} `);
@@ -212,7 +216,8 @@ const Server = (function () {
 
             const resourcePromise = this.pool.acquire();
             return resourcePromise.then(client => {
-                let list = _poolTagObject[uuid];
+
+                let list = _poolTagObject[this[_poolUuid]][uuid];
                 if (list && list instanceof Array) {
                     list.push(client);
                 } else {
@@ -230,6 +235,7 @@ const Server = (function () {
             if (this.pool) {
                 this.pool.clear();
                 this.pool = null;
+
             }
         }
 
@@ -237,7 +243,7 @@ const Server = (function () {
         close() {
             if (this.connectionStatus === 1) {
                 this.connectionStatus = 2;
-                this._initPool()
+                this._initPool();
             }
         }
 
@@ -254,7 +260,7 @@ const Server = (function () {
             if (!uuid || typeof uuid !== 'string') {
                 throw new Error('uuid error');
             }
-            let list = _poolTagObject[uuid];
+            let list = _poolTagObject[this[_poolUuid]][uuid];
             if (list && list instanceof Array && this.pool) {
                 list.forEach(c => {
                     this.pool.release(c);

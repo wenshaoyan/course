@@ -3,7 +3,8 @@
   "zkServer":"123.207.55.204:2181,123.207.55.204:2182,123.207.55.204:2183",
   "serverName":"BannerHttp",
   "dalName": {
-    "banner": "BannerService"
+    "banner": "BannerService",
+    "client": "ClientService"
   },
   "publicServer":"http://123.207.55.204:8083"
 

@@ -41,7 +41,7 @@ app.use(response({
     failLog:getLogger('resFail')
 }));
 
-router.use('/', banner.routes(),banner.allowedMethods());
+router.use('/banners', banner.routes(),banner.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
 // response
