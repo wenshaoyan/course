@@ -16,7 +16,9 @@ router.use(async(ctx, next) => {
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
+        ctx.poolTag = SysUtil.getUuid();
         await next();
+        myServer.release(ctx.poolTag);
     }
 });
 // 查询客户端列表和版本列表
@@ -28,8 +30,8 @@ router.get('/', routerI({
     const clientSide = new bean_types.ClientSide(params);
     const custom = new bean_types.Custom();
     custom.tables = ['t_client_version'];
-    const clientSer = getThriftServer(clientService).getClient();
     try {
+        const clientSer = await getThriftServer(clientService).getClient(ctx.poolTag);
         const result = await clientSer.clientSelectCustom(clientSide,custom);
         ctx.body = {
             list: result
@@ -44,8 +46,8 @@ router.get('/pattern/:pid',routerI({
 }), async(ctx, next) => {
     const params = ctx.query;
     const clientSide = new bean_types.ClientSide(params);
-    const clientSer = getThriftServer(clientService).getClient();
     try {
+        const clientSer = await getThriftServer(clientService).getClient(ctx.poolTag);
         let result;
         if (ctx.params.pid === '2'){
             const custom = new bean_types.Custom();
@@ -67,8 +69,8 @@ router.post('/',routerI({
 }), async(ctx, next) => {
     const params = ctx.request.body;
     const clientSide = new bean_types.ClientSide(params);
-    const clientSer = getThriftServer(clientService).getClient();
     try {
+        const clientSer = await getThriftServer(clientService).getClient(ctx.poolTag);
         let id = await clientSer.clientInsert(clientSide);
         if (id === 0) ctx.error = 'INSERT_FAIL';
         else ctx.body = {id: id};
@@ -84,8 +86,8 @@ router.put('/:id',routerI({
     const params = ctx.request.body;
     const clientSide = new bean_types.ClientSide(params);
     clientSide.id = ctx.params.id;
-    const clientSer = getThriftServer(clientService).getClient();
     try {
+        const clientSer = await getThriftServer(clientService).getClient(ctx.poolTag);
         let rowNumber = await clientSer.clientUpdate(clientSide);
         if (rowNumber === 0) ctx.error = 'UPDATE_FAIL';
         else ctx.body = {id: clientSide.id};
@@ -102,8 +104,9 @@ router.get('/:cid/versions',routerI({
     const version = new bean_types.Version(params);
     const query = new bean_types.Query(params);
     version.client_id = cid;
-    const clientSer = getThriftServer(clientService).getClient();
     try {
+        const clientSer = await getThriftServer(clientService).getClient(ctx.poolTag);
+
         let count = undefined;
         let list = [];
         if (params.action === 'search') {   // 搜索动作 请求总条数

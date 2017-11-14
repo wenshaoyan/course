@@ -142,7 +142,6 @@ class ConnectZk {
                     })
                     .forPath(_path);
             if (this.server && typeof this.server === 'object') {
-                this.server.setNodeName(_path);
                 this.server.setAddress(childData);
             }
             return {data: childData};

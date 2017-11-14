@@ -101,7 +101,7 @@ async function main() {
             let myServer = await new ThriftHelp.Server()
                 .setServer(require(`../gen-nodejs/${name}.js`))
                 .setAddress(address.data)
-                .setPoolNumber(2, 10)
+                .setPoolNumber(1, 2)
                 .setLogger(getLogger('thrift'))
                 .connect();
             // 监听连接的变化 并修改

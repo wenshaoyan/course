@@ -15,7 +15,9 @@ router.use(async(ctx, next) => {
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
+        ctx.poolTag = SysUtil.getUuid();
         await next();
+        myServer.release(ctx.poolTag);
     }
 });
 router.get('/', routerI({
@@ -24,8 +26,8 @@ router.get('/', routerI({
     const params = ctx.query;
     const version = new bean_types.Version(params);
     const query = new bean_types.Query(params);
-    const clientSer = getThriftServer(clientService).getClient();
     try {
+        const clientSer = getThriftServer(clientService).getClient(ctx.poolTag);
         let count = undefined;
         let list = [];
         if (params.action === 'search') {   // 搜索动作 请求总条数
@@ -47,10 +49,8 @@ router.post('/',routerI({
 }),  async(ctx, next) => {
     const params = ctx.request.body;
     const version = new bean_types.Version(params);
-    const clientSer = getThriftServer(clientService).getClient();
     try {
-        console.log(version)
-
+        const clientSer = getThriftServer(clientService).getClient(ctx.poolTag);
         let id = await clientSer.versionInsert(version);
         ctx.body = {
             id: id
@@ -68,9 +68,8 @@ router.put('/:id', routerI({
     const params = ctx.request.body;
     const version = new bean_types.Version(params);
     version.id = ctx.params.id;
-    const clientSer = getThriftServer(clientService).getClient();
     try {
-        console.log(version)
+        const clientSer = getThriftServer(clientService).getClient(ctx.poolTag);
         let id = await clientSer.versionUpdate(version);
         ctx.body = {
             id: version.id

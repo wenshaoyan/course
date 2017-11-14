@@ -18,7 +18,9 @@ router.use(async(ctx, next) => {
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
+        ctx.poolTag = SysUtil.getUuid();
         await next();
+        myServer.release(ctx.poolTag);
     }
 });
 // 登录
@@ -26,14 +28,12 @@ router.get(`${apiName}login`, routerI({
     key: "managementLogin",
     schema: AdminSchema.managementLogin
 }), async(ctx, next) => {
-    const client = getThriftServer(userService).getClient();
     const user = new bean_types.User();
-
     const params = ctx.query;
-
     user.tel = params.tel;
     user.password = params.password;
     try {
+        const client = await getThriftServer(userService).getClient(ctx.poolTag);
         const result = await client.userSelect(user);
         if (result.length === 0) {
             ctx.error = 'TEL_ERROR_OR_PASSWORD_ERROR';

@@ -15,12 +15,14 @@ router.use(async(ctx, next) => {
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
+        ctx.poolTag = SysUtil.getUuid();
         await next();
+        myServer.release(ctx.poolTag);
     }
 });
 router.get(apiName,async(ctx, next) => {
     try {
-        const client = getThriftServer(userService).getClient();
+        const client = await getThriftServer(userService).getClient(ctx.poolTag);
         const result = await client.roleSelectAll();
         result.map(value=>{
             value.permission = JSON.parse(value.permission);

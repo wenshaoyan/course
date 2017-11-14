@@ -10,26 +10,39 @@ const logger = getLogger();
 const userService = getServiceConfig().dalName.user;
 const routerI = require('../middleware/router_interceptor');
 const AdminSchema = require('../schema/admin_schema');
-const apiName = '/';
 
-router.use(async(ctx, next) => {
+const userList = async (poolTag) => {
+    const list = [];
+    for (let i = 0; i<1;i++){
+        const client = await getThriftServer(userService).getClient(poolTag);
+        list.push(client.userSelectAll());
+    }
+    return Promise.all(list);
+
+};
+
+
+router.use(async (ctx, next) => {
     const myServer = getThriftServer(userService);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
+        ctx.poolTag = SysUtil.getUuid();
         await next();
+        //myServer.release(ctx.poolTag);
     }
 });
+
 // 查找用户
-router.get(`${apiName}`, routerI({
+router.get('/', routerI({
     key: "userQuery",
     schema: AdminSchema.userQuery
-}), async(ctx, next) => {
-    const client = getThriftServer(userService).getClient();
+}), async (ctx, next) => {
     const params = ctx.query;
     const user = new bean_types.User(params);
     const query = new bean_types.Query(params);
     try {
+        const client = await getThriftServer(userService).getClient(ctx.poolTag);
         let userResult = [];
         let count = undefined;
         if (params.action === 'search') {   // 搜索动作 请求总条数
@@ -37,6 +50,8 @@ router.get(`${apiName}`, routerI({
             count = await client.userCountSelectQuery(user, query);
             if (count !== 0) userResult = await client.userSelectQuery(user, query);
         } else {    // 翻页动作 不请求总条数
+            const r = await userList(ctx.poolTag);
+            console.log(r)
             userResult = await client.userSelectQuery(user, query);
         }
         userResult.map(value => {
@@ -50,7 +65,7 @@ router.get(`${apiName}`, routerI({
     }
 });
 // 添加用户
-router.post(apiName, routerI({
+router.post('/', routerI({
     key: "userInsert",
     schema: AdminSchema.userInsert
 }), async function (ctx, next) {
@@ -83,7 +98,7 @@ router.post(apiName, routerI({
         ctx.error = e;
     }
 });
-router.get('test', async(ctx, next) => {
+router.get('test', async (ctx, next) => {
     logger.info(ctx, ctx.userInfo);
 });
 

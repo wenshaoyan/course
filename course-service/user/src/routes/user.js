@@ -13,7 +13,9 @@ router.use(async(ctx, next) => {
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
+        ctx.poolTag = SysUtil.getUuid();
         await next();
+        myServer.release(ctx.poolTag);
     }
 });
 // 登录
@@ -21,7 +23,6 @@ router.get(apiName, routerI({
     key: "user_login",
     schema: UserSchema.user_login
 }), async(ctx, next) => {
-    const client = getThriftServer(userService).getClient();
     const user = new bean_types.User();
 
     const params = ctx.query;
@@ -29,6 +30,7 @@ router.get(apiName, routerI({
     user.tel = params.tel;
     user.password = params.password;
     try {
+        const client = await getThriftServer(userService).getClient(ctx.poolTag);
         const result = await client.userSelect(user);
         if (result.length === 0) {
             ctx.error = 'TEL_ERROR_OR_PASSWORD_ERROR';
@@ -59,7 +61,6 @@ router.post(apiName, routerI({
     key: "user_insert",
     schema: UserSchema.user_insert
 }), async function (ctx, next) {
-    const userServer = getThriftServer(userService);
     const user = new bean_types.User();
     const queryUser = new bean_types.User();
     const params = ctx.request.body;
@@ -69,10 +70,9 @@ router.post(apiName, routerI({
     user.device_uuid = params.device_uuid;
     user.password = params.password;
     user.role_id = 100;
-
     queryUser.tel = user.tel;
-    const client = userServer.getClient();
     try {
+        const client = await getThriftServer(userService).getClient(ctx.poolTag);
         const users = await client.userSelect(queryUser);
         if (users.length !== 0) {
             ctx.error = 'TEL_EXIST';

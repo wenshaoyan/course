@@ -4,6 +4,7 @@
  */
 'use strict';
 const crypto = require('crypto');
+const uuid = require('node-uuid');
 
 class SysUtil{
     static md5(str){
@@ -44,6 +45,9 @@ class SysUtil{
             }
         }
         return obj;
+    }
+    static getUuid() {
+        return uuid.v4().replace(/-/g, '');
     }
 
 }
