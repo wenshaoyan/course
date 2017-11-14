@@ -26,10 +26,10 @@ router.get('/', async(ctx, next) => {
     const params = ctx.query;
     const course = new bean_types.Course(params);
     const query = new bean_types.Query(params);
-    const client = getThriftServer(courseService).getClient();
     const custom = new bean_types.Custom();
     custom.tables = ['t_course_type', 't_course_type_group'];
     try {
+        const client = await getThriftServer(courseService).getClient(ctx.poolTag);
         let count = undefined;
         let list = [];
         if (params.action === 'search') {   // 搜索动作 请求总条数

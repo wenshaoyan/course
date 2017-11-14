@@ -38,7 +38,16 @@
       "numBackups": 5,
       "compress": true,
       "encoding": "utf-8"
+    },
+    "resUnknown":{
+      "type":"file",
+      "filename": "../logs/resUnknown.log",
+      "maxLogSze":10485760,
+      "numBackups": 5,
+      "compress": true,
+      "encoding": "utf-8"
     }
+
   },
   "categories": {
     "default": { "appenders": ["console"], "level":"trace" },
@@ -46,6 +55,7 @@
     "zookeeper":{"appenders":["console","zookeeper"],"level":"trace"},
     "thrift":{"appenders":["console","thrift"],"level":"trace"},
     "resSuccess":{"appenders":["resSuccess"],"level":"trace"},
-    "resFail":{"appenders":["console","resFail"],"level":"trace"}
+    "resFail":{"appenders":["console","resFail"],"level":"trace"},
+    "resUnknown":{"appenders":["console","resUnknown"],"level":"trace"}
   }
 }

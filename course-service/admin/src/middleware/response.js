@@ -25,6 +25,7 @@ function func(opt) {
     let source = {};
     let isSetSuccessLog = false;
     let isSetFailLog = false;
+    let isSetUnknownLog = false;
     if (opt && typeof opt === 'object') {
         if (opt.jsonFile && typeof opt.jsonFile === 'object') {
             source = opt.jsonFile;
@@ -34,6 +35,9 @@ function func(opt) {
         }
         if (opt.failLog && typeof opt.failLog === 'object') {
             isSetFailLog = true;
+        }
+        if (opt.unknownLog && typeof opt.unknownLog === 'object') {
+            isSetUnknownLog = true;
         }
     }
 
@@ -81,7 +85,8 @@ function func(opt) {
             if (typeof errorValue === 'object'){
                 copyObjectAttr(messageObject, source['UNKNOWN_ERROR']);
                 ctx.body = messageObject;
-                if (isSetFailLog) setLog(opt.failLog,messageObject);
+                // if (isSetFailLog) setLog(opt.failLog,messageObject);
+                if (isSetUnknownLog) setLog(opt.unknownLog,errorValue);
             }
 
 

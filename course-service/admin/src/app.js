@@ -37,7 +37,9 @@ app.use(router_log());
 app.use(response({
     jsonFile: errorSource,
     successLog: getLogger('resSuccess'),
-    failLog: getLogger('resFail')
+    failLog: getLogger('resFail'),
+    unknownLog:getLogger('resUnknown')
+
 }));
 // 跨域
 app.use(cors({

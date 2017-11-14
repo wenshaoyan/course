@@ -10,7 +10,6 @@ const logger = getLogger();
 const userService = getServiceConfig().dalName.user;
 const routerI = require('../middleware/router_interceptor');
 const AdminSchema = require('../schema/admin_schema');
-const apiName = '/';
 const ioredis = require('ioredis');
 let redis = new ioredis(require('../config/redis.json'));
 router.use(async(ctx, next) => {
@@ -24,7 +23,7 @@ router.use(async(ctx, next) => {
     }
 });
 // 登录
-router.get(`${apiName}login`, routerI({
+router.get('/login', routerI({
     key: "managementLogin",
     schema: AdminSchema.managementLogin
 }), async(ctx, next) => {
@@ -60,7 +59,7 @@ router.get(`${apiName}login`, routerI({
     }
 });
 // 通过tokenid取用户信息
-router.get(`${apiName}token`, async(ctx, next) => {
+router.get('/token', async(ctx, next) => {
     if (NODE_ENV === 'develop'){
         ctx.body = {
             "id": 10095,

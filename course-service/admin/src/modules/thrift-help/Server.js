@@ -203,7 +203,6 @@ const Server = (function () {
                     })
                 }
             };
-            console.log({max: this.max, min: this.min})
             this.pool = genericPool.createPool(factory, {max: this.max, min: this.min});
             this.connectionStatus = 1;
             logger.info(`connect ${this.host}:${this.port} `);

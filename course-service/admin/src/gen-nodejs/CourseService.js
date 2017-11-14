@@ -16,2098 +16,2098 @@ var ttypes = require('./service_types');
 //HELPER FUNCTIONS AND STRUCTURES
 
 var CourseService_courseInsert_args = function(args) {
-  this.course = null;
-  if (args) {
-    if (args.course !== undefined && args.course !== null) {
-      this.course = new bean_ttypes.Course(args.course);
+    this.course = null;
+    if (args) {
+        if (args.course !== undefined && args.course !== null) {
+            this.course = new bean_ttypes.Course(args.course);
+        }
     }
-  }
 };
 CourseService_courseInsert_args.prototype = {};
 CourseService_courseInsert_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.course = new bean_ttypes.Course();
-        this.course.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.course = new bean_ttypes.Course();
+                    this.course.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseInsert_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseInsert_args');
-  if (this.course !== null && this.course !== undefined) {
-    output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
-    this.course.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseInsert_args');
+    if (this.course !== null && this.course !== undefined) {
+        output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
+        this.course.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseInsert_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = args.success;
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = args.success;
+        }
     }
-  }
 };
 CourseService_courseInsert_result.prototype = {};
 CourseService_courseInsert_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.I32) {
-        this.success = input.readI32();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.I32) {
+                    this.success = input.readI32();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseInsert_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseInsert_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.I32, 0);
-    output.writeI32(this.success);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseInsert_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.I32, 0);
+        output.writeI32(this.success);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseUpdate_args = function(args) {
-  this.course = null;
-  if (args) {
-    if (args.course !== undefined && args.course !== null) {
-      this.course = new bean_ttypes.Course(args.course);
+    this.course = null;
+    if (args) {
+        if (args.course !== undefined && args.course !== null) {
+            this.course = new bean_ttypes.Course(args.course);
+        }
     }
-  }
 };
 CourseService_courseUpdate_args.prototype = {};
 CourseService_courseUpdate_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.course = new bean_ttypes.Course();
-        this.course.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.course = new bean_ttypes.Course();
+                    this.course.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseUpdate_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseUpdate_args');
-  if (this.course !== null && this.course !== undefined) {
-    output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
-    this.course.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseUpdate_args');
+    if (this.course !== null && this.course !== undefined) {
+        output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
+        this.course.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseUpdate_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = args.success;
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = args.success;
+        }
     }
-  }
 };
 CourseService_courseUpdate_result.prototype = {};
 CourseService_courseUpdate_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.I32) {
-        this.success = input.readI32();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.I32) {
+                    this.success = input.readI32();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseUpdate_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseUpdate_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.I32, 0);
-    output.writeI32(this.success);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseUpdate_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.I32, 0);
+        output.writeI32(this.success);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseRemove_args = function(args) {
-  this.course = null;
-  if (args) {
-    if (args.course !== undefined && args.course !== null) {
-      this.course = new bean_ttypes.Course(args.course);
+    this.course = null;
+    if (args) {
+        if (args.course !== undefined && args.course !== null) {
+            this.course = new bean_ttypes.Course(args.course);
+        }
     }
-  }
 };
 CourseService_courseRemove_args.prototype = {};
 CourseService_courseRemove_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.course = new bean_ttypes.Course();
-        this.course.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.course = new bean_ttypes.Course();
+                    this.course.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseRemove_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseRemove_args');
-  if (this.course !== null && this.course !== undefined) {
-    output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
-    this.course.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseRemove_args');
+    if (this.course !== null && this.course !== undefined) {
+        output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
+        this.course.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseRemove_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = args.success;
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = args.success;
+        }
     }
-  }
 };
 CourseService_courseRemove_result.prototype = {};
 CourseService_courseRemove_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.I32) {
-        this.success = input.readI32();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.I32) {
+                    this.success = input.readI32();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseRemove_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseRemove_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.I32, 0);
-    output.writeI32(this.success);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseRemove_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.I32, 0);
+        output.writeI32(this.success);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseFindById_args = function(args) {
-  this.id = null;
-  if (args) {
-    if (args.id !== undefined && args.id !== null) {
-      this.id = args.id;
+    this.id = null;
+    if (args) {
+        if (args.id !== undefined && args.id !== null) {
+            this.id = args.id;
+        }
     }
-  }
 };
 CourseService_courseFindById_args.prototype = {};
 CourseService_courseFindById_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.I32) {
-        this.id = input.readI32();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.I32) {
+                    this.id = input.readI32();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseFindById_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseFindById_args');
-  if (this.id !== null && this.id !== undefined) {
-    output.writeFieldBegin('id', Thrift.Type.I32, 1);
-    output.writeI32(this.id);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseFindById_args');
+    if (this.id !== null && this.id !== undefined) {
+        output.writeFieldBegin('id', Thrift.Type.I32, 1);
+        output.writeI32(this.id);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseFindById_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = new bean_ttypes.Course(args.success);
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = new bean_ttypes.Course(args.success);
+        }
     }
-  }
 };
 CourseService_courseFindById_result.prototype = {};
 CourseService_courseFindById_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.success = new bean_ttypes.Course();
-        this.success.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.success = new bean_ttypes.Course();
+                    this.success.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseFindById_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseFindById_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
-    this.success.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseFindById_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+        this.success.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseSelect_args = function(args) {
-  this.course = null;
-  if (args) {
-    if (args.course !== undefined && args.course !== null) {
-      this.course = new bean_ttypes.Course(args.course);
+    this.course = null;
+    if (args) {
+        if (args.course !== undefined && args.course !== null) {
+            this.course = new bean_ttypes.Course(args.course);
+        }
     }
-  }
 };
 CourseService_courseSelect_args.prototype = {};
 CourseService_courseSelect_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.course = new bean_ttypes.Course();
-        this.course.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.course = new bean_ttypes.Course();
+                    this.course.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseSelect_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseSelect_args');
-  if (this.course !== null && this.course !== undefined) {
-    output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
-    this.course.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseSelect_args');
+    if (this.course !== null && this.course !== undefined) {
+        output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
+        this.course.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseSelect_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.Course]);
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = Thrift.copyList(args.success, [bean_ttypes.Course]);
+        }
     }
-  }
 };
 CourseService_courseSelect_result.prototype = {};
 CourseService_courseSelect_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size168 = 0;
-        var _rtmp3172;
-        this.success = [];
-        var _etype171 = 0;
-        _rtmp3172 = input.readListBegin();
-        _etype171 = _rtmp3172.etype;
-        _size168 = _rtmp3172.size;
-        for (var _i173 = 0; _i173 < _size168; ++_i173)
-        {
-          var elem174 = null;
-          elem174 = new bean_ttypes.Course();
-          elem174.read(input);
-          this.success.push(elem174);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
         }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.LIST) {
+                    var _size168 = 0;
+                    var _rtmp3172;
+                    this.success = [];
+                    var _etype171 = 0;
+                    _rtmp3172 = input.readListBegin();
+                    _etype171 = _rtmp3172.etype;
+                    _size168 = _rtmp3172.size;
+                    for (var _i173 = 0; _i173 < _size168; ++_i173)
+                    {
+                        var elem174 = null;
+                        elem174 = new bean_ttypes.Course();
+                        elem174.read(input);
+                        this.success.push(elem174);
+                    }
+                    input.readListEnd();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseSelect_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseSelect_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter175 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter175))
-      {
-        iter175 = this.success[iter175];
-        iter175.write(output);
-      }
+    output.writeStructBegin('CourseService_courseSelect_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+        output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+        for (var iter175 in this.success)
+        {
+            if (this.success.hasOwnProperty(iter175))
+            {
+                iter175 = this.success[iter175];
+                iter175.write(output);
+            }
+        }
+        output.writeListEnd();
+        output.writeFieldEnd();
     }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseSelectQuery_args = function(args) {
-  this.course = null;
-  this.query = null;
-  if (args) {
-    if (args.course !== undefined && args.course !== null) {
-      this.course = new bean_ttypes.Course(args.course);
+    this.course = null;
+    this.query = null;
+    if (args) {
+        if (args.course !== undefined && args.course !== null) {
+            this.course = new bean_ttypes.Course(args.course);
+        }
+        if (args.query !== undefined && args.query !== null) {
+            this.query = new bean_ttypes.Query(args.query);
+        }
     }
-    if (args.query !== undefined && args.query !== null) {
-      this.query = new bean_ttypes.Query(args.query);
-    }
-  }
 };
 CourseService_courseSelectQuery_args.prototype = {};
 CourseService_courseSelectQuery_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.course = new bean_ttypes.Course();
-        this.course.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.query = new bean_ttypes.Query();
-        this.query.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.course = new bean_ttypes.Course();
+                    this.course.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 2:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.query = new bean_ttypes.Query();
+                    this.query.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseSelectQuery_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseSelectQuery_args');
-  if (this.course !== null && this.course !== undefined) {
-    output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
-    this.course.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.query !== null && this.query !== undefined) {
-    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
-    this.query.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseSelectQuery_args');
+    if (this.course !== null && this.course !== undefined) {
+        output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
+        this.course.write(output);
+        output.writeFieldEnd();
+    }
+    if (this.query !== null && this.query !== undefined) {
+        output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+        this.query.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseSelectQuery_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.Course]);
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = Thrift.copyList(args.success, [bean_ttypes.Course]);
+        }
     }
-  }
 };
 CourseService_courseSelectQuery_result.prototype = {};
 CourseService_courseSelectQuery_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size176 = 0;
-        var _rtmp3180;
-        this.success = [];
-        var _etype179 = 0;
-        _rtmp3180 = input.readListBegin();
-        _etype179 = _rtmp3180.etype;
-        _size176 = _rtmp3180.size;
-        for (var _i181 = 0; _i181 < _size176; ++_i181)
-        {
-          var elem182 = null;
-          elem182 = new bean_ttypes.Course();
-          elem182.read(input);
-          this.success.push(elem182);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
         }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.LIST) {
+                    var _size176 = 0;
+                    var _rtmp3180;
+                    this.success = [];
+                    var _etype179 = 0;
+                    _rtmp3180 = input.readListBegin();
+                    _etype179 = _rtmp3180.etype;
+                    _size176 = _rtmp3180.size;
+                    for (var _i181 = 0; _i181 < _size176; ++_i181)
+                    {
+                        var elem182 = null;
+                        elem182 = new bean_ttypes.Course();
+                        elem182.read(input);
+                        this.success.push(elem182);
+                    }
+                    input.readListEnd();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseSelectQuery_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseSelectQuery_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter183 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter183))
-      {
-        iter183 = this.success[iter183];
-        iter183.write(output);
-      }
+    output.writeStructBegin('CourseService_courseSelectQuery_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+        output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+        for (var iter183 in this.success)
+        {
+            if (this.success.hasOwnProperty(iter183))
+            {
+                iter183 = this.success[iter183];
+                iter183.write(output);
+            }
+        }
+        output.writeListEnd();
+        output.writeFieldEnd();
     }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseSelectCustom_args = function(args) {
-  this.course = null;
-  this.custom = null;
-  if (args) {
-    if (args.course !== undefined && args.course !== null) {
-      this.course = new bean_ttypes.Course(args.course);
+    this.course = null;
+    this.custom = null;
+    if (args) {
+        if (args.course !== undefined && args.course !== null) {
+            this.course = new bean_ttypes.Course(args.course);
+        }
+        if (args.custom !== undefined && args.custom !== null) {
+            this.custom = new bean_ttypes.Custom(args.custom);
+        }
     }
-    if (args.custom !== undefined && args.custom !== null) {
-      this.custom = new bean_ttypes.Custom(args.custom);
-    }
-  }
 };
 CourseService_courseSelectCustom_args.prototype = {};
 CourseService_courseSelectCustom_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.course = new bean_ttypes.Course();
-        this.course.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.custom = new bean_ttypes.Custom();
-        this.custom.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.course = new bean_ttypes.Course();
+                    this.course.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 2:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.custom = new bean_ttypes.Custom();
+                    this.custom.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseSelectCustom_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseSelectCustom_args');
-  if (this.course !== null && this.course !== undefined) {
-    output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
-    this.course.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.custom !== null && this.custom !== undefined) {
-    output.writeFieldBegin('custom', Thrift.Type.STRUCT, 2);
-    this.custom.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseSelectCustom_args');
+    if (this.course !== null && this.course !== undefined) {
+        output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
+        this.course.write(output);
+        output.writeFieldEnd();
+    }
+    if (this.custom !== null && this.custom !== undefined) {
+        output.writeFieldBegin('custom', Thrift.Type.STRUCT, 2);
+        this.custom.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseSelectCustom_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.Course]);
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = Thrift.copyList(args.success, [bean_ttypes.Course]);
+        }
     }
-  }
 };
 CourseService_courseSelectCustom_result.prototype = {};
 CourseService_courseSelectCustom_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size184 = 0;
-        var _rtmp3188;
-        this.success = [];
-        var _etype187 = 0;
-        _rtmp3188 = input.readListBegin();
-        _etype187 = _rtmp3188.etype;
-        _size184 = _rtmp3188.size;
-        for (var _i189 = 0; _i189 < _size184; ++_i189)
-        {
-          var elem190 = null;
-          elem190 = new bean_ttypes.Course();
-          elem190.read(input);
-          this.success.push(elem190);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
         }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.LIST) {
+                    var _size184 = 0;
+                    var _rtmp3188;
+                    this.success = [];
+                    var _etype187 = 0;
+                    _rtmp3188 = input.readListBegin();
+                    _etype187 = _rtmp3188.etype;
+                    _size184 = _rtmp3188.size;
+                    for (var _i189 = 0; _i189 < _size184; ++_i189)
+                    {
+                        var elem190 = null;
+                        elem190 = new bean_ttypes.Course();
+                        elem190.read(input);
+                        this.success.push(elem190);
+                    }
+                    input.readListEnd();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseSelectCustom_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseSelectCustom_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter191 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter191))
-      {
-        iter191 = this.success[iter191];
-        iter191.write(output);
-      }
+    output.writeStructBegin('CourseService_courseSelectCustom_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+        output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+        for (var iter191 in this.success)
+        {
+            if (this.success.hasOwnProperty(iter191))
+            {
+                iter191 = this.success[iter191];
+                iter191.write(output);
+            }
+        }
+        output.writeListEnd();
+        output.writeFieldEnd();
     }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseSelectQueryCustom_args = function(args) {
-  this.course = null;
-  this.query = null;
-  this.custom = null;
-  if (args) {
-    if (args.course !== undefined && args.course !== null) {
-      this.course = new bean_ttypes.Course(args.course);
+    this.course = null;
+    this.query = null;
+    this.custom = null;
+    if (args) {
+        if (args.course !== undefined && args.course !== null) {
+            this.course = new bean_ttypes.Course(args.course);
+        }
+        if (args.query !== undefined && args.query !== null) {
+            this.query = new bean_ttypes.Query(args.query);
+        }
+        if (args.custom !== undefined && args.custom !== null) {
+            this.custom = new bean_ttypes.Custom(args.custom);
+        }
     }
-    if (args.query !== undefined && args.query !== null) {
-      this.query = new bean_ttypes.Query(args.query);
-    }
-    if (args.custom !== undefined && args.custom !== null) {
-      this.custom = new bean_ttypes.Custom(args.custom);
-    }
-  }
 };
 CourseService_courseSelectQueryCustom_args.prototype = {};
 CourseService_courseSelectQueryCustom_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.course = new bean_ttypes.Course();
-        this.course.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.query = new bean_ttypes.Query();
-        this.query.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 3:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.custom = new bean_ttypes.Custom();
-        this.custom.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.course = new bean_ttypes.Course();
+                    this.course.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 2:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.query = new bean_ttypes.Query();
+                    this.query.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 3:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.custom = new bean_ttypes.Custom();
+                    this.custom.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseSelectQueryCustom_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseSelectQueryCustom_args');
-  if (this.course !== null && this.course !== undefined) {
-    output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
-    this.course.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.query !== null && this.query !== undefined) {
-    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
-    this.query.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.custom !== null && this.custom !== undefined) {
-    output.writeFieldBegin('custom', Thrift.Type.STRUCT, 3);
-    this.custom.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseSelectQueryCustom_args');
+    if (this.course !== null && this.course !== undefined) {
+        output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
+        this.course.write(output);
+        output.writeFieldEnd();
+    }
+    if (this.query !== null && this.query !== undefined) {
+        output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+        this.query.write(output);
+        output.writeFieldEnd();
+    }
+    if (this.custom !== null && this.custom !== undefined) {
+        output.writeFieldBegin('custom', Thrift.Type.STRUCT, 3);
+        this.custom.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseSelectQueryCustom_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.Course]);
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = Thrift.copyList(args.success, [bean_ttypes.Course]);
+        }
     }
-  }
 };
 CourseService_courseSelectQueryCustom_result.prototype = {};
 CourseService_courseSelectQueryCustom_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size192 = 0;
-        var _rtmp3196;
-        this.success = [];
-        var _etype195 = 0;
-        _rtmp3196 = input.readListBegin();
-        _etype195 = _rtmp3196.etype;
-        _size192 = _rtmp3196.size;
-        for (var _i197 = 0; _i197 < _size192; ++_i197)
-        {
-          var elem198 = null;
-          elem198 = new bean_ttypes.Course();
-          elem198.read(input);
-          this.success.push(elem198);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
         }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.LIST) {
+                    var _size192 = 0;
+                    var _rtmp3196;
+                    this.success = [];
+                    var _etype195 = 0;
+                    _rtmp3196 = input.readListBegin();
+                    _etype195 = _rtmp3196.etype;
+                    _size192 = _rtmp3196.size;
+                    for (var _i197 = 0; _i197 < _size192; ++_i197)
+                    {
+                        var elem198 = null;
+                        elem198 = new bean_ttypes.Course();
+                        elem198.read(input);
+                        this.success.push(elem198);
+                    }
+                    input.readListEnd();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseSelectQueryCustom_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseSelectQueryCustom_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter199 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter199))
-      {
-        iter199 = this.success[iter199];
-        iter199.write(output);
-      }
+    output.writeStructBegin('CourseService_courseSelectQueryCustom_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+        output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+        for (var iter199 in this.success)
+        {
+            if (this.success.hasOwnProperty(iter199))
+            {
+                iter199 = this.success[iter199];
+                iter199.write(output);
+            }
+        }
+        output.writeListEnd();
+        output.writeFieldEnd();
     }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseSelectQueryCustomNotCache_args = function(args) {
-  this.course = null;
-  this.query = null;
-  this.custom = null;
-  if (args) {
-    if (args.course !== undefined && args.course !== null) {
-      this.course = new bean_ttypes.Course(args.course);
+    this.course = null;
+    this.query = null;
+    this.custom = null;
+    if (args) {
+        if (args.course !== undefined && args.course !== null) {
+            this.course = new bean_ttypes.Course(args.course);
+        }
+        if (args.query !== undefined && args.query !== null) {
+            this.query = new bean_ttypes.Query(args.query);
+        }
+        if (args.custom !== undefined && args.custom !== null) {
+            this.custom = new bean_ttypes.Custom(args.custom);
+        }
     }
-    if (args.query !== undefined && args.query !== null) {
-      this.query = new bean_ttypes.Query(args.query);
-    }
-    if (args.custom !== undefined && args.custom !== null) {
-      this.custom = new bean_ttypes.Custom(args.custom);
-    }
-  }
 };
 CourseService_courseSelectQueryCustomNotCache_args.prototype = {};
 CourseService_courseSelectQueryCustomNotCache_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.course = new bean_ttypes.Course();
-        this.course.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.query = new bean_ttypes.Query();
-        this.query.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 3:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.custom = new bean_ttypes.Custom();
-        this.custom.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.course = new bean_ttypes.Course();
+                    this.course.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 2:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.query = new bean_ttypes.Query();
+                    this.query.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 3:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.custom = new bean_ttypes.Custom();
+                    this.custom.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseSelectQueryCustomNotCache_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseSelectQueryCustomNotCache_args');
-  if (this.course !== null && this.course !== undefined) {
-    output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
-    this.course.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.query !== null && this.query !== undefined) {
-    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
-    this.query.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.custom !== null && this.custom !== undefined) {
-    output.writeFieldBegin('custom', Thrift.Type.STRUCT, 3);
-    this.custom.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseSelectQueryCustomNotCache_args');
+    if (this.course !== null && this.course !== undefined) {
+        output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
+        this.course.write(output);
+        output.writeFieldEnd();
+    }
+    if (this.query !== null && this.query !== undefined) {
+        output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+        this.query.write(output);
+        output.writeFieldEnd();
+    }
+    if (this.custom !== null && this.custom !== undefined) {
+        output.writeFieldBegin('custom', Thrift.Type.STRUCT, 3);
+        this.custom.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseSelectQueryCustomNotCache_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.Course]);
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = Thrift.copyList(args.success, [bean_ttypes.Course]);
+        }
     }
-  }
 };
 CourseService_courseSelectQueryCustomNotCache_result.prototype = {};
 CourseService_courseSelectQueryCustomNotCache_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size200 = 0;
-        var _rtmp3204;
-        this.success = [];
-        var _etype203 = 0;
-        _rtmp3204 = input.readListBegin();
-        _etype203 = _rtmp3204.etype;
-        _size200 = _rtmp3204.size;
-        for (var _i205 = 0; _i205 < _size200; ++_i205)
-        {
-          var elem206 = null;
-          elem206 = new bean_ttypes.Course();
-          elem206.read(input);
-          this.success.push(elem206);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
         }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.LIST) {
+                    var _size200 = 0;
+                    var _rtmp3204;
+                    this.success = [];
+                    var _etype203 = 0;
+                    _rtmp3204 = input.readListBegin();
+                    _etype203 = _rtmp3204.etype;
+                    _size200 = _rtmp3204.size;
+                    for (var _i205 = 0; _i205 < _size200; ++_i205)
+                    {
+                        var elem206 = null;
+                        elem206 = new bean_ttypes.Course();
+                        elem206.read(input);
+                        this.success.push(elem206);
+                    }
+                    input.readListEnd();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseSelectQueryCustomNotCache_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseSelectQueryCustomNotCache_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter207 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter207))
-      {
-        iter207 = this.success[iter207];
-        iter207.write(output);
-      }
+    output.writeStructBegin('CourseService_courseSelectQueryCustomNotCache_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+        output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+        for (var iter207 in this.success)
+        {
+            if (this.success.hasOwnProperty(iter207))
+            {
+                iter207 = this.success[iter207];
+                iter207.write(output);
+            }
+        }
+        output.writeListEnd();
+        output.writeFieldEnd();
     }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseSelectQueryNoCache_args = function(args) {
-  this.course = null;
-  this.query = null;
-  if (args) {
-    if (args.course !== undefined && args.course !== null) {
-      this.course = new bean_ttypes.Course(args.course);
+    this.course = null;
+    this.query = null;
+    if (args) {
+        if (args.course !== undefined && args.course !== null) {
+            this.course = new bean_ttypes.Course(args.course);
+        }
+        if (args.query !== undefined && args.query !== null) {
+            this.query = new bean_ttypes.Query(args.query);
+        }
     }
-    if (args.query !== undefined && args.query !== null) {
-      this.query = new bean_ttypes.Query(args.query);
-    }
-  }
 };
 CourseService_courseSelectQueryNoCache_args.prototype = {};
 CourseService_courseSelectQueryNoCache_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.course = new bean_ttypes.Course();
-        this.course.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.query = new bean_ttypes.Query();
-        this.query.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.course = new bean_ttypes.Course();
+                    this.course.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 2:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.query = new bean_ttypes.Query();
+                    this.query.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseSelectQueryNoCache_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseSelectQueryNoCache_args');
-  if (this.course !== null && this.course !== undefined) {
-    output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
-    this.course.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.query !== null && this.query !== undefined) {
-    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
-    this.query.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseSelectQueryNoCache_args');
+    if (this.course !== null && this.course !== undefined) {
+        output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
+        this.course.write(output);
+        output.writeFieldEnd();
+    }
+    if (this.query !== null && this.query !== undefined) {
+        output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+        this.query.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseSelectQueryNoCache_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.Course]);
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = Thrift.copyList(args.success, [bean_ttypes.Course]);
+        }
     }
-  }
 };
 CourseService_courseSelectQueryNoCache_result.prototype = {};
 CourseService_courseSelectQueryNoCache_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size208 = 0;
-        var _rtmp3212;
-        this.success = [];
-        var _etype211 = 0;
-        _rtmp3212 = input.readListBegin();
-        _etype211 = _rtmp3212.etype;
-        _size208 = _rtmp3212.size;
-        for (var _i213 = 0; _i213 < _size208; ++_i213)
-        {
-          var elem214 = null;
-          elem214 = new bean_ttypes.Course();
-          elem214.read(input);
-          this.success.push(elem214);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
         }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.LIST) {
+                    var _size208 = 0;
+                    var _rtmp3212;
+                    this.success = [];
+                    var _etype211 = 0;
+                    _rtmp3212 = input.readListBegin();
+                    _etype211 = _rtmp3212.etype;
+                    _size208 = _rtmp3212.size;
+                    for (var _i213 = 0; _i213 < _size208; ++_i213)
+                    {
+                        var elem214 = null;
+                        elem214 = new bean_ttypes.Course();
+                        elem214.read(input);
+                        this.success.push(elem214);
+                    }
+                    input.readListEnd();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseSelectQueryNoCache_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseSelectQueryNoCache_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter215 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter215))
-      {
-        iter215 = this.success[iter215];
-        iter215.write(output);
-      }
+    output.writeStructBegin('CourseService_courseSelectQueryNoCache_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+        output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+        for (var iter215 in this.success)
+        {
+            if (this.success.hasOwnProperty(iter215))
+            {
+                iter215 = this.success[iter215];
+                iter215.write(output);
+            }
+        }
+        output.writeListEnd();
+        output.writeFieldEnd();
     }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseCountSelectQuery_args = function(args) {
-  this.course = null;
-  this.query = null;
-  if (args) {
-    if (args.course !== undefined && args.course !== null) {
-      this.course = new bean_ttypes.Course(args.course);
+    this.course = null;
+    this.query = null;
+    if (args) {
+        if (args.course !== undefined && args.course !== null) {
+            this.course = new bean_ttypes.Course(args.course);
+        }
+        if (args.query !== undefined && args.query !== null) {
+            this.query = new bean_ttypes.Query(args.query);
+        }
     }
-    if (args.query !== undefined && args.query !== null) {
-      this.query = new bean_ttypes.Query(args.query);
-    }
-  }
 };
 CourseService_courseCountSelectQuery_args.prototype = {};
 CourseService_courseCountSelectQuery_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.course = new bean_ttypes.Course();
-        this.course.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.query = new bean_ttypes.Query();
-        this.query.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.course = new bean_ttypes.Course();
+                    this.course.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 2:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.query = new bean_ttypes.Query();
+                    this.query.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseCountSelectQuery_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseCountSelectQuery_args');
-  if (this.course !== null && this.course !== undefined) {
-    output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
-    this.course.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.query !== null && this.query !== undefined) {
-    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
-    this.query.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseCountSelectQuery_args');
+    if (this.course !== null && this.course !== undefined) {
+        output.writeFieldBegin('course', Thrift.Type.STRUCT, 1);
+        this.course.write(output);
+        output.writeFieldEnd();
+    }
+    if (this.query !== null && this.query !== undefined) {
+        output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+        this.query.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_courseCountSelectQuery_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = args.success;
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = args.success;
+        }
     }
-  }
 };
 CourseService_courseCountSelectQuery_result.prototype = {};
 CourseService_courseCountSelectQuery_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.I32) {
-        this.success = input.readI32();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.I32) {
+                    this.success = input.readI32();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_courseCountSelectQuery_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_courseCountSelectQuery_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.I32, 0);
-    output.writeI32(this.success);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_courseCountSelectQuery_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.I32, 0);
+        output.writeI32(this.success);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_videoInsert_args = function(args) {
-  this.video = null;
-  if (args) {
-    if (args.video !== undefined && args.video !== null) {
-      this.video = new bean_ttypes.Video(args.video);
+    this.video = null;
+    if (args) {
+        if (args.video !== undefined && args.video !== null) {
+            this.video = new bean_ttypes.Video(args.video);
+        }
     }
-  }
 };
 CourseService_videoInsert_args.prototype = {};
 CourseService_videoInsert_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.video = new bean_ttypes.Video();
-        this.video.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.video = new bean_ttypes.Video();
+                    this.video.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_videoInsert_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_videoInsert_args');
-  if (this.video !== null && this.video !== undefined) {
-    output.writeFieldBegin('video', Thrift.Type.STRUCT, 1);
-    this.video.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_videoInsert_args');
+    if (this.video !== null && this.video !== undefined) {
+        output.writeFieldBegin('video', Thrift.Type.STRUCT, 1);
+        this.video.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_videoInsert_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = args.success;
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = args.success;
+        }
     }
-  }
 };
 CourseService_videoInsert_result.prototype = {};
 CourseService_videoInsert_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.STRING) {
-        this.success = input.readString();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.STRING) {
+                    this.success = input.readString();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_videoInsert_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_videoInsert_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.STRING, 0);
-    output.writeString(this.success);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_videoInsert_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.STRING, 0);
+        output.writeString(this.success);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_videoUpdate_args = function(args) {
-  this.video = null;
-  if (args) {
-    if (args.video !== undefined && args.video !== null) {
-      this.video = new bean_ttypes.Video(args.video);
+    this.video = null;
+    if (args) {
+        if (args.video !== undefined && args.video !== null) {
+            this.video = new bean_ttypes.Video(args.video);
+        }
     }
-  }
 };
 CourseService_videoUpdate_args.prototype = {};
 CourseService_videoUpdate_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.video = new bean_ttypes.Video();
-        this.video.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.video = new bean_ttypes.Video();
+                    this.video.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_videoUpdate_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_videoUpdate_args');
-  if (this.video !== null && this.video !== undefined) {
-    output.writeFieldBegin('video', Thrift.Type.STRUCT, 1);
-    this.video.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_videoUpdate_args');
+    if (this.video !== null && this.video !== undefined) {
+        output.writeFieldBegin('video', Thrift.Type.STRUCT, 1);
+        this.video.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_videoUpdate_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = args.success;
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = args.success;
+        }
     }
-  }
 };
 CourseService_videoUpdate_result.prototype = {};
 CourseService_videoUpdate_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.I32) {
-        this.success = input.readI32();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.I32) {
+                    this.success = input.readI32();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_videoUpdate_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_videoUpdate_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.I32, 0);
-    output.writeI32(this.success);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_videoUpdate_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.I32, 0);
+        output.writeI32(this.success);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_videoRemove_args = function(args) {
-  this.video = null;
-  if (args) {
-    if (args.video !== undefined && args.video !== null) {
-      this.video = new bean_ttypes.Video(args.video);
+    this.video = null;
+    if (args) {
+        if (args.video !== undefined && args.video !== null) {
+            this.video = new bean_ttypes.Video(args.video);
+        }
     }
-  }
 };
 CourseService_videoRemove_args.prototype = {};
 CourseService_videoRemove_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.video = new bean_ttypes.Video();
-        this.video.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.video = new bean_ttypes.Video();
+                    this.video.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_videoRemove_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_videoRemove_args');
-  if (this.video !== null && this.video !== undefined) {
-    output.writeFieldBegin('video', Thrift.Type.STRUCT, 1);
-    this.video.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_videoRemove_args');
+    if (this.video !== null && this.video !== undefined) {
+        output.writeFieldBegin('video', Thrift.Type.STRUCT, 1);
+        this.video.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_videoRemove_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = args.success;
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = args.success;
+        }
     }
-  }
 };
 CourseService_videoRemove_result.prototype = {};
 CourseService_videoRemove_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.I32) {
-        this.success = input.readI32();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.I32) {
+                    this.success = input.readI32();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_videoRemove_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_videoRemove_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.I32, 0);
-    output.writeI32(this.success);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_videoRemove_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.I32, 0);
+        output.writeI32(this.success);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_versionFindById_args = function(args) {
-  this.id = null;
-  if (args) {
-    if (args.id !== undefined && args.id !== null) {
-      this.id = args.id;
+    this.id = null;
+    if (args) {
+        if (args.id !== undefined && args.id !== null) {
+            this.id = args.id;
+        }
     }
-  }
 };
 CourseService_versionFindById_args.prototype = {};
 CourseService_versionFindById_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.id = input.readString();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRING) {
+                    this.id = input.readString();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_versionFindById_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_versionFindById_args');
-  if (this.id !== null && this.id !== undefined) {
-    output.writeFieldBegin('id', Thrift.Type.STRING, 1);
-    output.writeString(this.id);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_versionFindById_args');
+    if (this.id !== null && this.id !== undefined) {
+        output.writeFieldBegin('id', Thrift.Type.STRING, 1);
+        output.writeString(this.id);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_versionFindById_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = new bean_ttypes.Video(args.success);
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = new bean_ttypes.Video(args.success);
+        }
     }
-  }
 };
 CourseService_versionFindById_result.prototype = {};
 CourseService_versionFindById_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.success = new bean_ttypes.Video();
-        this.success.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.success = new bean_ttypes.Video();
+                    this.success.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_versionFindById_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_versionFindById_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
-    this.success.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_versionFindById_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+        this.success.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_videoSelectAll_args = function(args) {
 };
 CourseService_videoSelectAll_args.prototype = {};
 CourseService_videoSelectAll_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
+    input.readStructBegin();
+    while (true)
+    {
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        input.skip(ftype);
+        input.readFieldEnd();
     }
-    input.skip(ftype);
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_videoSelectAll_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_videoSelectAll_args');
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_videoSelectAll_args');
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_videoSelectAll_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.Video]);
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = Thrift.copyList(args.success, [bean_ttypes.Video]);
+        }
     }
-  }
 };
 CourseService_videoSelectAll_result.prototype = {};
 CourseService_videoSelectAll_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size216 = 0;
-        var _rtmp3220;
-        this.success = [];
-        var _etype219 = 0;
-        _rtmp3220 = input.readListBegin();
-        _etype219 = _rtmp3220.etype;
-        _size216 = _rtmp3220.size;
-        for (var _i221 = 0; _i221 < _size216; ++_i221)
-        {
-          var elem222 = null;
-          elem222 = new bean_ttypes.Video();
-          elem222.read(input);
-          this.success.push(elem222);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
         }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.LIST) {
+                    var _size216 = 0;
+                    var _rtmp3220;
+                    this.success = [];
+                    var _etype219 = 0;
+                    _rtmp3220 = input.readListBegin();
+                    _etype219 = _rtmp3220.etype;
+                    _size216 = _rtmp3220.size;
+                    for (var _i221 = 0; _i221 < _size216; ++_i221)
+                    {
+                        var elem222 = null;
+                        elem222 = new bean_ttypes.Video();
+                        elem222.read(input);
+                        this.success.push(elem222);
+                    }
+                    input.readListEnd();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_videoSelectAll_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_videoSelectAll_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter223 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter223))
-      {
-        iter223 = this.success[iter223];
-        iter223.write(output);
-      }
+    output.writeStructBegin('CourseService_videoSelectAll_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+        output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+        for (var iter223 in this.success)
+        {
+            if (this.success.hasOwnProperty(iter223))
+            {
+                iter223 = this.success[iter223];
+                iter223.write(output);
+            }
+        }
+        output.writeListEnd();
+        output.writeFieldEnd();
     }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_videoSelect_args = function(args) {
-  this.video = null;
-  if (args) {
-    if (args.video !== undefined && args.video !== null) {
-      this.video = new bean_ttypes.Video(args.video);
+    this.video = null;
+    if (args) {
+        if (args.video !== undefined && args.video !== null) {
+            this.video = new bean_ttypes.Video(args.video);
+        }
     }
-  }
 };
 CourseService_videoSelect_args.prototype = {};
 CourseService_videoSelect_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.video = new bean_ttypes.Video();
-        this.video.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
+        }
+        switch (fid)
+        {
+            case 1:
+                if (ftype == Thrift.Type.STRUCT) {
+                    this.video = new bean_ttypes.Video();
+                    this.video.read(input);
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_videoSelect_args.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_videoSelect_args');
-  if (this.video !== null && this.video !== undefined) {
-    output.writeFieldBegin('video', Thrift.Type.STRUCT, 1);
-    this.video.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeStructBegin('CourseService_videoSelect_args');
+    if (this.video !== null && this.video !== undefined) {
+        output.writeFieldBegin('video', Thrift.Type.STRUCT, 1);
+        this.video.write(output);
+        output.writeFieldEnd();
+    }
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseService_videoSelect_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.Video]);
+    this.success = null;
+    if (args) {
+        if (args.success !== undefined && args.success !== null) {
+            this.success = Thrift.copyList(args.success, [bean_ttypes.Video]);
+        }
     }
-  }
 };
 CourseService_videoSelect_result.prototype = {};
 CourseService_videoSelect_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
+    input.readStructBegin();
+    while (true)
     {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size224 = 0;
-        var _rtmp3228;
-        this.success = [];
-        var _etype227 = 0;
-        _rtmp3228 = input.readListBegin();
-        _etype227 = _rtmp3228.etype;
-        _size224 = _rtmp3228.size;
-        for (var _i229 = 0; _i229 < _size224; ++_i229)
-        {
-          var elem230 = null;
-          elem230 = new bean_ttypes.Video();
-          elem230.read(input);
-          this.success.push(elem230);
+        var ret = input.readFieldBegin();
+        var fname = ret.fname;
+        var ftype = ret.ftype;
+        var fid = ret.fid;
+        if (ftype == Thrift.Type.STOP) {
+            break;
         }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
+        switch (fid)
+        {
+            case 0:
+                if (ftype == Thrift.Type.LIST) {
+                    var _size224 = 0;
+                    var _rtmp3228;
+                    this.success = [];
+                    var _etype227 = 0;
+                    _rtmp3228 = input.readListBegin();
+                    _etype227 = _rtmp3228.etype;
+                    _size224 = _rtmp3228.size;
+                    for (var _i229 = 0; _i229 < _size224; ++_i229)
+                    {
+                        var elem230 = null;
+                        elem230 = new bean_ttypes.Video();
+                        elem230.read(input);
+                        this.success.push(elem230);
+                    }
+                    input.readListEnd();
+                } else {
+                    input.skip(ftype);
+                }
+                break;
+            case 0:
+                input.skip(ftype);
+                break;
+            default:
+                input.skip(ftype);
+        }
+        input.readFieldEnd();
     }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
+    input.readStructEnd();
+    return;
 };
 
 CourseService_videoSelect_result.prototype.write = function(output) {
-  output.writeStructBegin('CourseService_videoSelect_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter231 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter231))
-      {
-        iter231 = this.success[iter231];
-        iter231.write(output);
-      }
+    output.writeStructBegin('CourseService_videoSelect_result');
+    if (this.success !== null && this.success !== undefined) {
+        output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+        output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+        for (var iter231 in this.success)
+        {
+            if (this.success.hasOwnProperty(iter231))
+            {
+                iter231 = this.success[iter231];
+                iter231.write(output);
+            }
+        }
+        output.writeListEnd();
+        output.writeFieldEnd();
     }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
+    output.writeFieldStop();
+    output.writeStructEnd();
+    return;
 };
 
 var CourseServiceClient = exports.Client = function(output, pClass) {
@@ -2120,1439 +2120,1439 @@ CourseServiceClient.prototype = {};
 CourseServiceClient.prototype.seqid = function() { return this._seqid; };
 CourseServiceClient.prototype.new_seqid = function() { return this._seqid += 1; };
 CourseServiceClient.prototype.courseInsert = function(course, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_courseInsert(course);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_courseInsert(course);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_courseInsert(course);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_courseInsert(course);
+    }
 };
 
 CourseServiceClient.prototype.send_courseInsert = function(course) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('courseInsert', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_courseInsert_args();
-  args.course = course;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('courseInsert', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_courseInsert_args();
+    args.course = course;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_courseInsert = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_courseInsert_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_courseInsert_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('courseInsert failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('courseInsert failed: unknown result');
 };
 CourseServiceClient.prototype.courseUpdate = function(course, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_courseUpdate(course);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_courseUpdate(course);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_courseUpdate(course);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_courseUpdate(course);
+    }
 };
 
 CourseServiceClient.prototype.send_courseUpdate = function(course) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('courseUpdate', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_courseUpdate_args();
-  args.course = course;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('courseUpdate', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_courseUpdate_args();
+    args.course = course;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_courseUpdate = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_courseUpdate_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_courseUpdate_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('courseUpdate failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('courseUpdate failed: unknown result');
 };
 CourseServiceClient.prototype.courseRemove = function(course, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_courseRemove(course);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_courseRemove(course);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_courseRemove(course);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_courseRemove(course);
+    }
 };
 
 CourseServiceClient.prototype.send_courseRemove = function(course) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('courseRemove', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_courseRemove_args();
-  args.course = course;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('courseRemove', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_courseRemove_args();
+    args.course = course;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_courseRemove = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_courseRemove_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_courseRemove_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('courseRemove failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('courseRemove failed: unknown result');
 };
 CourseServiceClient.prototype.courseFindById = function(id, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_courseFindById(id);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_courseFindById(id);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_courseFindById(id);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_courseFindById(id);
+    }
 };
 
 CourseServiceClient.prototype.send_courseFindById = function(id) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('courseFindById', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_courseFindById_args();
-  args.id = id;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('courseFindById', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_courseFindById_args();
+    args.id = id;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_courseFindById = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_courseFindById_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_courseFindById_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('courseFindById failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('courseFindById failed: unknown result');
 };
 CourseServiceClient.prototype.courseSelect = function(course, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_courseSelect(course);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_courseSelect(course);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_courseSelect(course);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_courseSelect(course);
+    }
 };
 
 CourseServiceClient.prototype.send_courseSelect = function(course) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('courseSelect', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_courseSelect_args();
-  args.course = course;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('courseSelect', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_courseSelect_args();
+    args.course = course;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_courseSelect = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_courseSelect_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_courseSelect_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('courseSelect failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('courseSelect failed: unknown result');
 };
 CourseServiceClient.prototype.courseSelectQuery = function(course, query, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_courseSelectQuery(course, query);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_courseSelectQuery(course, query);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_courseSelectQuery(course, query);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_courseSelectQuery(course, query);
+    }
 };
 
 CourseServiceClient.prototype.send_courseSelectQuery = function(course, query) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('courseSelectQuery', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_courseSelectQuery_args();
-  args.course = course;
-  args.query = query;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('courseSelectQuery', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_courseSelectQuery_args();
+    args.course = course;
+    args.query = query;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_courseSelectQuery = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_courseSelectQuery_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_courseSelectQuery_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('courseSelectQuery failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('courseSelectQuery failed: unknown result');
 };
 CourseServiceClient.prototype.courseSelectCustom = function(course, custom, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_courseSelectCustom(course, custom);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_courseSelectCustom(course, custom);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_courseSelectCustom(course, custom);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_courseSelectCustom(course, custom);
+    }
 };
 
 CourseServiceClient.prototype.send_courseSelectCustom = function(course, custom) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('courseSelectCustom', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_courseSelectCustom_args();
-  args.course = course;
-  args.custom = custom;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('courseSelectCustom', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_courseSelectCustom_args();
+    args.course = course;
+    args.custom = custom;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_courseSelectCustom = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_courseSelectCustom_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_courseSelectCustom_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('courseSelectCustom failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('courseSelectCustom failed: unknown result');
 };
 CourseServiceClient.prototype.courseSelectQueryCustom = function(course, query, custom, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_courseSelectQueryCustom(course, query, custom);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_courseSelectQueryCustom(course, query, custom);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_courseSelectQueryCustom(course, query, custom);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_courseSelectQueryCustom(course, query, custom);
+    }
 };
 
 CourseServiceClient.prototype.send_courseSelectQueryCustom = function(course, query, custom) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('courseSelectQueryCustom', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_courseSelectQueryCustom_args();
-  args.course = course;
-  args.query = query;
-  args.custom = custom;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('courseSelectQueryCustom', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_courseSelectQueryCustom_args();
+    args.course = course;
+    args.query = query;
+    args.custom = custom;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_courseSelectQueryCustom = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_courseSelectQueryCustom_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_courseSelectQueryCustom_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('courseSelectQueryCustom failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('courseSelectQueryCustom failed: unknown result');
 };
 CourseServiceClient.prototype.courseSelectQueryCustomNotCache = function(course, query, custom, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_courseSelectQueryCustomNotCache(course, query, custom);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_courseSelectQueryCustomNotCache(course, query, custom);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_courseSelectQueryCustomNotCache(course, query, custom);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_courseSelectQueryCustomNotCache(course, query, custom);
+    }
 };
 
 CourseServiceClient.prototype.send_courseSelectQueryCustomNotCache = function(course, query, custom) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('courseSelectQueryCustomNotCache', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_courseSelectQueryCustomNotCache_args();
-  args.course = course;
-  args.query = query;
-  args.custom = custom;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('courseSelectQueryCustomNotCache', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_courseSelectQueryCustomNotCache_args();
+    args.course = course;
+    args.query = query;
+    args.custom = custom;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_courseSelectQueryCustomNotCache = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_courseSelectQueryCustomNotCache_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_courseSelectQueryCustomNotCache_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('courseSelectQueryCustomNotCache failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('courseSelectQueryCustomNotCache failed: unknown result');
 };
 CourseServiceClient.prototype.courseSelectQueryNoCache = function(course, query, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_courseSelectQueryNoCache(course, query);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_courseSelectQueryNoCache(course, query);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_courseSelectQueryNoCache(course, query);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_courseSelectQueryNoCache(course, query);
+    }
 };
 
 CourseServiceClient.prototype.send_courseSelectQueryNoCache = function(course, query) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('courseSelectQueryNoCache', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_courseSelectQueryNoCache_args();
-  args.course = course;
-  args.query = query;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('courseSelectQueryNoCache', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_courseSelectQueryNoCache_args();
+    args.course = course;
+    args.query = query;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_courseSelectQueryNoCache = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_courseSelectQueryNoCache_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_courseSelectQueryNoCache_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('courseSelectQueryNoCache failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('courseSelectQueryNoCache failed: unknown result');
 };
 CourseServiceClient.prototype.courseCountSelectQuery = function(course, query, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_courseCountSelectQuery(course, query);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_courseCountSelectQuery(course, query);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_courseCountSelectQuery(course, query);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_courseCountSelectQuery(course, query);
+    }
 };
 
 CourseServiceClient.prototype.send_courseCountSelectQuery = function(course, query) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('courseCountSelectQuery', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_courseCountSelectQuery_args();
-  args.course = course;
-  args.query = query;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('courseCountSelectQuery', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_courseCountSelectQuery_args();
+    args.course = course;
+    args.query = query;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_courseCountSelectQuery = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_courseCountSelectQuery_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_courseCountSelectQuery_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('courseCountSelectQuery failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('courseCountSelectQuery failed: unknown result');
 };
 CourseServiceClient.prototype.videoInsert = function(video, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_videoInsert(video);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_videoInsert(video);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_videoInsert(video);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_videoInsert(video);
+    }
 };
 
 CourseServiceClient.prototype.send_videoInsert = function(video) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('videoInsert', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_videoInsert_args();
-  args.video = video;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('videoInsert', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_videoInsert_args();
+    args.video = video;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_videoInsert = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_videoInsert_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_videoInsert_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('videoInsert failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('videoInsert failed: unknown result');
 };
 CourseServiceClient.prototype.videoUpdate = function(video, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_videoUpdate(video);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_videoUpdate(video);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_videoUpdate(video);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_videoUpdate(video);
+    }
 };
 
 CourseServiceClient.prototype.send_videoUpdate = function(video) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('videoUpdate', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_videoUpdate_args();
-  args.video = video;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('videoUpdate', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_videoUpdate_args();
+    args.video = video;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_videoUpdate = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_videoUpdate_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_videoUpdate_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('videoUpdate failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('videoUpdate failed: unknown result');
 };
 CourseServiceClient.prototype.videoRemove = function(video, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_videoRemove(video);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_videoRemove(video);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_videoRemove(video);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_videoRemove(video);
+    }
 };
 
 CourseServiceClient.prototype.send_videoRemove = function(video) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('videoRemove', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_videoRemove_args();
-  args.video = video;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('videoRemove', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_videoRemove_args();
+    args.video = video;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_videoRemove = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_videoRemove_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_videoRemove_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('videoRemove failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('videoRemove failed: unknown result');
 };
 CourseServiceClient.prototype.versionFindById = function(id, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_versionFindById(id);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_versionFindById(id);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_versionFindById(id);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_versionFindById(id);
+    }
 };
 
 CourseServiceClient.prototype.send_versionFindById = function(id) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('versionFindById', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_versionFindById_args();
-  args.id = id;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('versionFindById', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_versionFindById_args();
+    args.id = id;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_versionFindById = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_versionFindById_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_versionFindById_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('versionFindById failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('versionFindById failed: unknown result');
 };
 CourseServiceClient.prototype.videoSelectAll = function(callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_videoSelectAll();
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_videoSelectAll();
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_videoSelectAll();
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_videoSelectAll();
+    }
 };
 
 CourseServiceClient.prototype.send_videoSelectAll = function() {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('videoSelectAll', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_videoSelectAll_args();
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('videoSelectAll', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_videoSelectAll_args();
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_videoSelectAll = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_videoSelectAll_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_videoSelectAll_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('videoSelectAll failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('videoSelectAll failed: unknown result');
 };
 CourseServiceClient.prototype.videoSelect = function(video, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_videoSelect(video);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_videoSelect(video);
-  }
+    this._seqid = this.new_seqid();
+    if (callback === undefined) {
+        var _defer = Q.defer();
+        this._reqs[this.seqid()] = function(error, result) {
+            if (error) {
+                _defer.reject(error);
+            } else {
+                _defer.resolve(result);
+            }
+        };
+        this.send_videoSelect(video);
+        return _defer.promise;
+    } else {
+        this._reqs[this.seqid()] = callback;
+        this.send_videoSelect(video);
+    }
 };
 
 CourseServiceClient.prototype.send_videoSelect = function(video) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('videoSelect', Thrift.MessageType.CALL, this.seqid());
-  var args = new CourseService_videoSelect_args();
-  args.video = video;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
+    var output = new this.pClass(this.output);
+    output.writeMessageBegin('videoSelect', Thrift.MessageType.CALL, this.seqid());
+    var args = new CourseService_videoSelect_args();
+    args.video = video;
+    args.write(output);
+    output.writeMessageEnd();
+    return this.output.flush();
 };
 
 CourseServiceClient.prototype.recv_videoSelect = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
+    var callback = this._reqs[rseqid] || function() {};
+    delete this._reqs[rseqid];
+    if (mtype == Thrift.MessageType.EXCEPTION) {
+        var x = new Thrift.TApplicationException();
+        x.read(input);
+        input.readMessageEnd();
+        return callback(x);
+    }
+    var result = new CourseService_videoSelect_result();
+    result.read(input);
     input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CourseService_videoSelect_result();
-  result.read(input);
-  input.readMessageEnd();
 
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('videoSelect failed: unknown result');
+    if (null !== result.success) {
+        return callback(null, result.success);
+    }
+    return callback('videoSelect failed: unknown result');
 };
 var CourseServiceProcessor = exports.Processor = function(handler) {
-  this._handler = handler;
-}
-;
+        this._handler = handler;
+    }
+    ;
 CourseServiceProcessor.prototype.process = function(input, output) {
-  var r = input.readMessageBegin();
-  if (this['process_' + r.fname]) {
-    return this['process_' + r.fname].call(this, r.rseqid, input, output);
-  } else {
-    input.skip(Thrift.Type.STRUCT);
-    input.readMessageEnd();
-    var x = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN_METHOD, 'Unknown function ' + r.fname);
-    output.writeMessageBegin(r.fname, Thrift.MessageType.EXCEPTION, r.rseqid);
-    x.write(output);
-    output.writeMessageEnd();
-    output.flush();
-  }
+    var r = input.readMessageBegin();
+    if (this['process_' + r.fname]) {
+        return this['process_' + r.fname].call(this, r.rseqid, input, output);
+    } else {
+        input.skip(Thrift.Type.STRUCT);
+        input.readMessageEnd();
+        var x = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN_METHOD, 'Unknown function ' + r.fname);
+        output.writeMessageBegin(r.fname, Thrift.MessageType.EXCEPTION, r.rseqid);
+        x.write(output);
+        output.writeMessageEnd();
+        output.flush();
+    }
 }
 ;
 CourseServiceProcessor.prototype.process_courseInsert = function(seqid, input, output) {
-  var args = new CourseService_courseInsert_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.courseInsert.length === 1) {
-    Q.fcall(this._handler.courseInsert, args.course)
-      .then(function(result) {
-        var result_obj = new CourseService_courseInsert_result({success: result});
-        output.writeMessageBegin("courseInsert", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseInsert", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.courseInsert(args.course, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_courseInsert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("courseInsert", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseInsert", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_courseInsert_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.courseInsert.length === 1) {
+        Q.fcall(this._handler.courseInsert, args.course)
+            .then(function(result) {
+                var result_obj = new CourseService_courseInsert_result({success: result});
+                output.writeMessageBegin("courseInsert", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseInsert", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.courseInsert(args.course, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_courseInsert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("courseInsert", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseInsert", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_courseUpdate = function(seqid, input, output) {
-  var args = new CourseService_courseUpdate_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.courseUpdate.length === 1) {
-    Q.fcall(this._handler.courseUpdate, args.course)
-      .then(function(result) {
-        var result_obj = new CourseService_courseUpdate_result({success: result});
-        output.writeMessageBegin("courseUpdate", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseUpdate", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.courseUpdate(args.course, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_courseUpdate_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("courseUpdate", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseUpdate", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_courseUpdate_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.courseUpdate.length === 1) {
+        Q.fcall(this._handler.courseUpdate, args.course)
+            .then(function(result) {
+                var result_obj = new CourseService_courseUpdate_result({success: result});
+                output.writeMessageBegin("courseUpdate", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseUpdate", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.courseUpdate(args.course, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_courseUpdate_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("courseUpdate", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseUpdate", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_courseRemove = function(seqid, input, output) {
-  var args = new CourseService_courseRemove_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.courseRemove.length === 1) {
-    Q.fcall(this._handler.courseRemove, args.course)
-      .then(function(result) {
-        var result_obj = new CourseService_courseRemove_result({success: result});
-        output.writeMessageBegin("courseRemove", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseRemove", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.courseRemove(args.course, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_courseRemove_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("courseRemove", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseRemove", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_courseRemove_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.courseRemove.length === 1) {
+        Q.fcall(this._handler.courseRemove, args.course)
+            .then(function(result) {
+                var result_obj = new CourseService_courseRemove_result({success: result});
+                output.writeMessageBegin("courseRemove", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseRemove", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.courseRemove(args.course, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_courseRemove_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("courseRemove", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseRemove", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_courseFindById = function(seqid, input, output) {
-  var args = new CourseService_courseFindById_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.courseFindById.length === 1) {
-    Q.fcall(this._handler.courseFindById, args.id)
-      .then(function(result) {
-        var result_obj = new CourseService_courseFindById_result({success: result});
-        output.writeMessageBegin("courseFindById", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseFindById", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.courseFindById(args.id, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_courseFindById_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("courseFindById", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseFindById", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_courseFindById_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.courseFindById.length === 1) {
+        Q.fcall(this._handler.courseFindById, args.id)
+            .then(function(result) {
+                var result_obj = new CourseService_courseFindById_result({success: result});
+                output.writeMessageBegin("courseFindById", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseFindById", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.courseFindById(args.id, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_courseFindById_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("courseFindById", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseFindById", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_courseSelect = function(seqid, input, output) {
-  var args = new CourseService_courseSelect_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.courseSelect.length === 1) {
-    Q.fcall(this._handler.courseSelect, args.course)
-      .then(function(result) {
-        var result_obj = new CourseService_courseSelect_result({success: result});
-        output.writeMessageBegin("courseSelect", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseSelect", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.courseSelect(args.course, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_courseSelect_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("courseSelect", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseSelect", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_courseSelect_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.courseSelect.length === 1) {
+        Q.fcall(this._handler.courseSelect, args.course)
+            .then(function(result) {
+                var result_obj = new CourseService_courseSelect_result({success: result});
+                output.writeMessageBegin("courseSelect", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseSelect", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.courseSelect(args.course, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_courseSelect_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("courseSelect", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseSelect", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_courseSelectQuery = function(seqid, input, output) {
-  var args = new CourseService_courseSelectQuery_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.courseSelectQuery.length === 2) {
-    Q.fcall(this._handler.courseSelectQuery, args.course, args.query)
-      .then(function(result) {
-        var result_obj = new CourseService_courseSelectQuery_result({success: result});
-        output.writeMessageBegin("courseSelectQuery", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.courseSelectQuery(args.course, args.query, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_courseSelectQuery_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("courseSelectQuery", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_courseSelectQuery_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.courseSelectQuery.length === 2) {
+        Q.fcall(this._handler.courseSelectQuery, args.course, args.query)
+            .then(function(result) {
+                var result_obj = new CourseService_courseSelectQuery_result({success: result});
+                output.writeMessageBegin("courseSelectQuery", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.courseSelectQuery(args.course, args.query, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_courseSelectQuery_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("courseSelectQuery", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_courseSelectCustom = function(seqid, input, output) {
-  var args = new CourseService_courseSelectCustom_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.courseSelectCustom.length === 2) {
-    Q.fcall(this._handler.courseSelectCustom, args.course, args.custom)
-      .then(function(result) {
-        var result_obj = new CourseService_courseSelectCustom_result({success: result});
-        output.writeMessageBegin("courseSelectCustom", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseSelectCustom", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.courseSelectCustom(args.course, args.custom, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_courseSelectCustom_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("courseSelectCustom", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseSelectCustom", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_courseSelectCustom_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.courseSelectCustom.length === 2) {
+        Q.fcall(this._handler.courseSelectCustom, args.course, args.custom)
+            .then(function(result) {
+                var result_obj = new CourseService_courseSelectCustom_result({success: result});
+                output.writeMessageBegin("courseSelectCustom", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseSelectCustom", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.courseSelectCustom(args.course, args.custom, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_courseSelectCustom_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("courseSelectCustom", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseSelectCustom", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_courseSelectQueryCustom = function(seqid, input, output) {
-  var args = new CourseService_courseSelectQueryCustom_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.courseSelectQueryCustom.length === 3) {
-    Q.fcall(this._handler.courseSelectQueryCustom, args.course, args.query, args.custom)
-      .then(function(result) {
-        var result_obj = new CourseService_courseSelectQueryCustom_result({success: result});
-        output.writeMessageBegin("courseSelectQueryCustom", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseSelectQueryCustom", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.courseSelectQueryCustom(args.course, args.query, args.custom, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_courseSelectQueryCustom_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("courseSelectQueryCustom", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseSelectQueryCustom", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_courseSelectQueryCustom_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.courseSelectQueryCustom.length === 3) {
+        Q.fcall(this._handler.courseSelectQueryCustom, args.course, args.query, args.custom)
+            .then(function(result) {
+                var result_obj = new CourseService_courseSelectQueryCustom_result({success: result});
+                output.writeMessageBegin("courseSelectQueryCustom", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseSelectQueryCustom", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.courseSelectQueryCustom(args.course, args.query, args.custom, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_courseSelectQueryCustom_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("courseSelectQueryCustom", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseSelectQueryCustom", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_courseSelectQueryCustomNotCache = function(seqid, input, output) {
-  var args = new CourseService_courseSelectQueryCustomNotCache_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.courseSelectQueryCustomNotCache.length === 3) {
-    Q.fcall(this._handler.courseSelectQueryCustomNotCache, args.course, args.query, args.custom)
-      .then(function(result) {
-        var result_obj = new CourseService_courseSelectQueryCustomNotCache_result({success: result});
-        output.writeMessageBegin("courseSelectQueryCustomNotCache", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseSelectQueryCustomNotCache", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.courseSelectQueryCustomNotCache(args.course, args.query, args.custom, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_courseSelectQueryCustomNotCache_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("courseSelectQueryCustomNotCache", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseSelectQueryCustomNotCache", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_courseSelectQueryCustomNotCache_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.courseSelectQueryCustomNotCache.length === 3) {
+        Q.fcall(this._handler.courseSelectQueryCustomNotCache, args.course, args.query, args.custom)
+            .then(function(result) {
+                var result_obj = new CourseService_courseSelectQueryCustomNotCache_result({success: result});
+                output.writeMessageBegin("courseSelectQueryCustomNotCache", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseSelectQueryCustomNotCache", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.courseSelectQueryCustomNotCache(args.course, args.query, args.custom, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_courseSelectQueryCustomNotCache_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("courseSelectQueryCustomNotCache", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseSelectQueryCustomNotCache", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_courseSelectQueryNoCache = function(seqid, input, output) {
-  var args = new CourseService_courseSelectQueryNoCache_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.courseSelectQueryNoCache.length === 2) {
-    Q.fcall(this._handler.courseSelectQueryNoCache, args.course, args.query)
-      .then(function(result) {
-        var result_obj = new CourseService_courseSelectQueryNoCache_result({success: result});
-        output.writeMessageBegin("courseSelectQueryNoCache", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseSelectQueryNoCache", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.courseSelectQueryNoCache(args.course, args.query, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_courseSelectQueryNoCache_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("courseSelectQueryNoCache", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseSelectQueryNoCache", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_courseSelectQueryNoCache_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.courseSelectQueryNoCache.length === 2) {
+        Q.fcall(this._handler.courseSelectQueryNoCache, args.course, args.query)
+            .then(function(result) {
+                var result_obj = new CourseService_courseSelectQueryNoCache_result({success: result});
+                output.writeMessageBegin("courseSelectQueryNoCache", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseSelectQueryNoCache", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.courseSelectQueryNoCache(args.course, args.query, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_courseSelectQueryNoCache_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("courseSelectQueryNoCache", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseSelectQueryNoCache", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_courseCountSelectQuery = function(seqid, input, output) {
-  var args = new CourseService_courseCountSelectQuery_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.courseCountSelectQuery.length === 2) {
-    Q.fcall(this._handler.courseCountSelectQuery, args.course, args.query)
-      .then(function(result) {
-        var result_obj = new CourseService_courseCountSelectQuery_result({success: result});
-        output.writeMessageBegin("courseCountSelectQuery", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseCountSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.courseCountSelectQuery(args.course, args.query, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_courseCountSelectQuery_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("courseCountSelectQuery", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseCountSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_courseCountSelectQuery_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.courseCountSelectQuery.length === 2) {
+        Q.fcall(this._handler.courseCountSelectQuery, args.course, args.query)
+            .then(function(result) {
+                var result_obj = new CourseService_courseCountSelectQuery_result({success: result});
+                output.writeMessageBegin("courseCountSelectQuery", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseCountSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.courseCountSelectQuery(args.course, args.query, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_courseCountSelectQuery_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("courseCountSelectQuery", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("courseCountSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_videoInsert = function(seqid, input, output) {
-  var args = new CourseService_videoInsert_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.videoInsert.length === 1) {
-    Q.fcall(this._handler.videoInsert, args.video)
-      .then(function(result) {
-        var result_obj = new CourseService_videoInsert_result({success: result});
-        output.writeMessageBegin("videoInsert", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("videoInsert", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.videoInsert(args.video, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_videoInsert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("videoInsert", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("videoInsert", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_videoInsert_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.videoInsert.length === 1) {
+        Q.fcall(this._handler.videoInsert, args.video)
+            .then(function(result) {
+                var result_obj = new CourseService_videoInsert_result({success: result});
+                output.writeMessageBegin("videoInsert", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("videoInsert", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.videoInsert(args.video, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_videoInsert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("videoInsert", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("videoInsert", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_videoUpdate = function(seqid, input, output) {
-  var args = new CourseService_videoUpdate_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.videoUpdate.length === 1) {
-    Q.fcall(this._handler.videoUpdate, args.video)
-      .then(function(result) {
-        var result_obj = new CourseService_videoUpdate_result({success: result});
-        output.writeMessageBegin("videoUpdate", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("videoUpdate", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.videoUpdate(args.video, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_videoUpdate_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("videoUpdate", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("videoUpdate", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_videoUpdate_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.videoUpdate.length === 1) {
+        Q.fcall(this._handler.videoUpdate, args.video)
+            .then(function(result) {
+                var result_obj = new CourseService_videoUpdate_result({success: result});
+                output.writeMessageBegin("videoUpdate", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("videoUpdate", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.videoUpdate(args.video, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_videoUpdate_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("videoUpdate", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("videoUpdate", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_videoRemove = function(seqid, input, output) {
-  var args = new CourseService_videoRemove_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.videoRemove.length === 1) {
-    Q.fcall(this._handler.videoRemove, args.video)
-      .then(function(result) {
-        var result_obj = new CourseService_videoRemove_result({success: result});
-        output.writeMessageBegin("videoRemove", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("videoRemove", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.videoRemove(args.video, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_videoRemove_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("videoRemove", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("videoRemove", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_videoRemove_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.videoRemove.length === 1) {
+        Q.fcall(this._handler.videoRemove, args.video)
+            .then(function(result) {
+                var result_obj = new CourseService_videoRemove_result({success: result});
+                output.writeMessageBegin("videoRemove", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("videoRemove", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.videoRemove(args.video, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_videoRemove_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("videoRemove", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("videoRemove", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_versionFindById = function(seqid, input, output) {
-  var args = new CourseService_versionFindById_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.versionFindById.length === 1) {
-    Q.fcall(this._handler.versionFindById, args.id)
-      .then(function(result) {
-        var result_obj = new CourseService_versionFindById_result({success: result});
-        output.writeMessageBegin("versionFindById", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("versionFindById", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.versionFindById(args.id, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_versionFindById_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("versionFindById", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("versionFindById", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_versionFindById_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.versionFindById.length === 1) {
+        Q.fcall(this._handler.versionFindById, args.id)
+            .then(function(result) {
+                var result_obj = new CourseService_versionFindById_result({success: result});
+                output.writeMessageBegin("versionFindById", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("versionFindById", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.versionFindById(args.id, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_versionFindById_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("versionFindById", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("versionFindById", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_videoSelectAll = function(seqid, input, output) {
-  var args = new CourseService_videoSelectAll_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.videoSelectAll.length === 0) {
-    Q.fcall(this._handler.videoSelectAll)
-      .then(function(result) {
-        var result_obj = new CourseService_videoSelectAll_result({success: result});
-        output.writeMessageBegin("videoSelectAll", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("videoSelectAll", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.videoSelectAll(function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_videoSelectAll_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("videoSelectAll", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("videoSelectAll", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_videoSelectAll_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.videoSelectAll.length === 0) {
+        Q.fcall(this._handler.videoSelectAll)
+            .then(function(result) {
+                var result_obj = new CourseService_videoSelectAll_result({success: result});
+                output.writeMessageBegin("videoSelectAll", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("videoSelectAll", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.videoSelectAll(function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_videoSelectAll_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("videoSelectAll", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("videoSelectAll", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
 CourseServiceProcessor.prototype.process_videoSelect = function(seqid, input, output) {
-  var args = new CourseService_videoSelect_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.videoSelect.length === 1) {
-    Q.fcall(this._handler.videoSelect, args.video)
-      .then(function(result) {
-        var result_obj = new CourseService_videoSelect_result({success: result});
-        output.writeMessageBegin("videoSelect", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("videoSelect", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.videoSelect(args.video, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CourseService_videoSelect_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("videoSelect", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("videoSelect", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
+    var args = new CourseService_videoSelect_args();
+    args.read(input);
+    input.readMessageEnd();
+    if (this._handler.videoSelect.length === 1) {
+        Q.fcall(this._handler.videoSelect, args.video)
+            .then(function(result) {
+                var result_obj = new CourseService_videoSelect_result({success: result});
+                output.writeMessageBegin("videoSelect", Thrift.MessageType.REPLY, seqid);
+                result_obj.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            }, function (err) {
+                var result;
+                result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("videoSelect", Thrift.MessageType.EXCEPTION, seqid);
+                result.write(output);
+                output.writeMessageEnd();
+                output.flush();
+            });
+    } else {
+        this._handler.videoSelect(args.video, function (err, result) {
+            var result_obj;
+            if ((err === null || typeof err === 'undefined')) {
+                result_obj = new CourseService_videoSelect_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+                output.writeMessageBegin("videoSelect", Thrift.MessageType.REPLY, seqid);
+            } else {
+                result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+                output.writeMessageBegin("videoSelect", Thrift.MessageType.EXCEPTION, seqid);
+            }
+            result_obj.write(output);
+            output.writeMessageEnd();
+            output.flush();
+        });
+    }
 };
