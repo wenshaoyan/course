@@ -1,11 +1,14 @@
 package com.wenshao.dal.server;
 
+import com.mongodb.client.MongoCollection;
 import com.wenshao.dal.handler.DynamicCacheProxyHandler;
 import com.wenshao.dal.handler.UserHandler;
 import com.wenshao.dal.thriftgen.UserService;
+import com.wenshao.dal.util.MongoDBUtil;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.bson.Document;
 
 
 import java.io.IOException;

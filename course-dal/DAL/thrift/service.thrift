@@ -51,9 +51,6 @@ service ClientService{
     list<bean.Version> versionSelectQuery(1: bean.Version version,2: bean.Query query),
     i32 versionCountSelectQuery(1: bean.Version version,2: bean.Query query)
 
-
-
-
 }
 service CacheService{
     void bannerPut(1: string key,2:bean.BannerList banners)
