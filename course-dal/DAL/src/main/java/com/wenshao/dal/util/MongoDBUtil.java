@@ -96,13 +96,12 @@ public enum MongoDBUtil {
     /**
      * 获取DB实例 - 指定DB
      *
-     * @param dbName
-     * @return
+     * @param dbName    数据库名
+     * @return          MongoDatabase对象
      */
-    public MongoDatabase getDB(String dbName) {
+    private MongoDatabase getDB(String dbName) {
         if (dbName != null && !"".equals(dbName)) {
-            MongoDatabase database = mongoClient.getDatabase(dbName);
-            return database;
+            return mongoClient.getDatabase(dbName);
         }
         return null;
     }
@@ -110,25 +109,24 @@ public enum MongoDBUtil {
     /**
      * 获取collection对象 - 指定Collection
      *
-     * @param collName
-     * @return
+     * @param collName      集合名称
+     * @return              集合
      */
     public MongoCollection<Document> getCollection(String collName) {
         if (null == collName || "".equals(collName)) {
             return null;
         }
-
-        MongoCollection<org.bson.Document> collection = mongoClient.getDatabase(instance.dbName).getCollection(collName);
-        return collection;
+        return mongoClient.getDatabase(dbName).getCollection(collName);
     }
 
     /**
-     * 查询DB下的所有表名
+     * 返回库下的所有集合名称
+     * @return      集合名称列表
      */
-    public List<String> getAllCollections(String dbName) {
-        MongoIterable<String> colls = getDB(dbName).listCollectionNames();
+    public List<String> getAllCollections() {
+        MongoIterable<String> cols = getDB(dbName).listCollectionNames();
         List<String> _list = new ArrayList<String>();
-        for (String s : colls) {
+        for (String s : cols) {
             _list.add(s);
         }
         return _list;
@@ -137,9 +135,8 @@ public enum MongoDBUtil {
     /**
      * 获取所有数据库名称列表
      *
-     * @return
      */
-    public MongoIterable<String> getAllDBNames() {
+    private MongoIterable<String> getAllDBNames() {
         MongoIterable<String> s = mongoClient.listDatabaseNames();
         return s;
     }
@@ -147,32 +144,30 @@ public enum MongoDBUtil {
     /**
      * 删除一个数据库
      */
-    public void dropDB(String dbName) {
+    private void dropDB(String dbName) {
         getDB(dbName).drop();
     }
 
     /**
      * 查找对象 - 根据主键_id
      *
-     * @param coll
-     * @param id
-     * @return
+     * @param coll      集合对象
+     * @param id        id
+     * @return          Document对象
      */
     public Document findById(MongoCollection<Document> coll, String id) {
-        ObjectId _idobj = null;
+        ObjectId _idObj = null;
         try {
-            _idobj = new ObjectId(id);
+            _idObj = new ObjectId(id);
         } catch (Exception e) {
             return null;
         }
-        Document myDoc = coll.find(Filters.eq("_id", _idobj)).first();
-        return myDoc;
+        return coll.find(Filters.eq("_id", _idObj)).first();
     }
 
     /** 统计数 */
     public int getCount(MongoCollection<Document> coll) {
-        int count = (int) coll.count();
-        return count;
+        return (int) coll.count();
     }
 
     /** 条件查询 */
@@ -216,13 +211,13 @@ public enum MongoDBUtil {
      * @return
      */
     public Document updateById(MongoCollection<Document> coll, String id, Document newdoc) {
-        ObjectId _idobj = null;
+        ObjectId _idObj = null;
         try {
-            _idobj = new ObjectId(id);
+            _idObj = new ObjectId(id);
         } catch (Exception e) {
             return null;
         }
-        Bson filter = Filters.eq("_id", _idobj);
+        Bson filter = Filters.eq("_id", _idObj);
         // coll.replaceOne(filter, newdoc); // 完全替代
         coll.updateOne(filter, new Document("$set", newdoc));
         return newdoc;

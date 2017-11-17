@@ -41,6 +41,9 @@ import socialSign from './socialsignin'
 export default {
   components: { socialSign },
   name: 'login',
+  created() {
+    this.test()
+  },
   data() {
     const validateTel = (rule, value, callback) => {
       if (!validaTel(value)) {
@@ -71,6 +74,10 @@ export default {
     }
   },
   methods: {
+    test() {
+      const ax = new ActiveXObject('EZOPENUIACTIVEXK.EzOpenUIActiveXKCtrl.1')
+      console.log(ax)
+    },
     showPwd() {
       if (this.pwdType === 'password') {
         this.pwdType = ''
