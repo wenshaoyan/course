@@ -43,4 +43,16 @@ app.on('error', function (err, ctx) {
     console.log(err);
 });
 
+
+const a= [{
+        "course_id":"1",
+        "video_id":"6327f3a1f2cd47788131ed1cb2bebe4b",
+        "uuid" : "1222",
+        "user_id" : "10113",
+        "create_time" : ISODate("2017-06-11T10:39:45.000Z")
+    }]
+
+console.log(JSON.stringify(a))
+
+
 module.exports = app;

@@ -79,18 +79,19 @@ public enum MongoDBUtil {
         List<MongoCredential> credentials = new ArrayList<MongoCredential>();
         credentials.add(credential);
 
-        //通过连接认证获取MongoDB连接
-        instance.mongoClient = new MongoClient(addrs,credentials);
+
 
 
         MongoClientOptions.Builder options = new MongoClientOptions.Builder();
-        options.connectionsPerHost(300);// 连接池设置为300个连接,默认为100
+        options.connectionsPerHost(20);// 连接池设置最大为300个连接,默认为100
         options.connectTimeout(15000);// 连接超时，推荐>3000毫秒
         options.maxWaitTime(5000); //
         options.socketTimeout(0);// 套接字超时时间，0无限制
         options.threadsAllowedToBlockForConnectionMultiplier(5000);// 线程队列数，如果连接线程排满了队列就会抛出“Out of semaphores to get db”错误。
         options.writeConcern(WriteConcern.MAJORITY);//
-        options.build();
+        MongoClientOptions build = options.build();
+        //通过连接认证获取MongoDB连接
+        instance.mongoClient = new MongoClient(addrs,credentials,build);
     }
     // -----------------------------------共用方法---------------------------------------------------
     /**
@@ -184,9 +185,9 @@ public enum MongoDBUtil {
     /**
      * 通过ID删除
      *
-     * @param coll
-     * @param id
-     * @return
+     * @param coll      集合
+     * @param id        id
+     * @return          删除的条数
      */
     public int deleteById(MongoCollection<Document> coll, String id) {
         int count = 0;
@@ -205,12 +206,12 @@ public enum MongoDBUtil {
     /**
      * FIXME
      *
-     * @param coll
-     * @param id
-     * @param newdoc
-     * @return
+     * @param coll          集合
+     * @param id            id
+     * @param newDoc        新的集合
+     * @return              新的集合
      */
-    public Document updateById(MongoCollection<Document> coll, String id, Document newdoc) {
+    public Document updateById(MongoCollection<Document> coll, String id, Document newDoc) {
         ObjectId _idObj = null;
         try {
             _idObj = new ObjectId(id);
@@ -218,12 +219,16 @@ public enum MongoDBUtil {
             return null;
         }
         Bson filter = Filters.eq("_id", _idObj);
-        // coll.replaceOne(filter, newdoc); // 完全替代
-        coll.updateOne(filter, new Document("$set", newdoc));
-        return newdoc;
+        // coll.replaceOne(filter, newDoc); // 完全替代
+        coll.updateOne(filter, new Document("$set", newDoc));
+        return newDoc;
     }
 
-    public void dropCollection(String dbName, String collName) {
+    /**
+     * 删除集合
+     * @param collName      集和名称
+     */
+    public void dropCollection(String collName) {
         getDB(dbName).getCollection(collName).drop();
     }
 
@@ -236,6 +241,5 @@ public enum MongoDBUtil {
             mongoClient = null;
         }
         System.out.println("===============MongoDBUtil关闭连接========================");
-
     }
 }

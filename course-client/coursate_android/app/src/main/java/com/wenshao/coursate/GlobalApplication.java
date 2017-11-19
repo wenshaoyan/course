@@ -1,6 +1,7 @@
 package com.wenshao.coursate;
 
 import android.app.Application;
+import android.app.Service;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
@@ -22,6 +23,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.wenshao.coursate.config.ServerConfig;
 
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -83,6 +85,7 @@ public class GlobalApplication extends Application {
         HttpHeaders headers = new HttpHeaders();
 
         headers.put("package_name", mContext.getPackageName());
+        headers.put("env", ServerConfig.ENV);
         builder.cookieJar(new CookieJarImpl(new SPCookieStore(this)));
         OkGo.getInstance().init(this)
                 .setOkHttpClient(builder.build())               //建议设置OkHttpClient，不设置将使用默认的
