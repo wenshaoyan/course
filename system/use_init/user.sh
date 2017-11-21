@@ -12,5 +12,4 @@ function main(){
     su - wenshao
 }
 
-  
 main

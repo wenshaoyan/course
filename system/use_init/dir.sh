@@ -1,6 +1,6 @@
 function check(){
-    if [ ! -d "/data" ] then  
-　　    exit 1  
+    if [ ! -d "/data" ] ; then  
+        exit 1  
     fi
 }
 
