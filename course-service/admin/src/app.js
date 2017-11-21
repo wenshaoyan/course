@@ -16,7 +16,6 @@ const version = require('./routes/version');
 const course = require('./routes/course');
 
 const router_log = require('./middleware/router_log');
-const token = require('./middleware/token');
 const getUser = require('./middleware/get_user');
 const response = require('./middleware/response');
 const errorSource = require('./config/error_source.json');
