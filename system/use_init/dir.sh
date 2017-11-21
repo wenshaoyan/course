@@ -12,7 +12,5 @@ function createDir(){
 function main(){
     check
     createDir
-
 }
-
-main
+main 
