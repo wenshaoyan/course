@@ -226,7 +226,7 @@ public enum MongoDBUtil {
 
     /**
      * 删除集合
-     * @param collName      集和名称
+     * @param collName      集合名称
      */
     public void dropCollection(String collName) {
         getDB(dbName).getCollection(collName).drop();
