@@ -1,20 +1,23 @@
 package com.wenshao.coursate.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.Button;
 
-import com.daquexian.flexiblerichtextview.FlexibleRichTextView;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+
 import com.wenshao.coursate.R;
-import com.youth.banner.Banner;
+import com.wenshao.coursate.activity.AnswerActivity;
+import com.wenshao.coursate.adapter.QuestionAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by wenshao on 2017/12/3.
@@ -35,12 +38,24 @@ public class QuestionBankFragment extends Fragment{
         mView = inflater.inflate(R.layout.fragment_question_bank, null);
         mContext = getContext();
         initUi();
-        // initData();
         return mView;
     }
 
+
+
     private void initUi() {
-        FlexibleRichTextView richTextView  = (FlexibleRichTextView)mView.findViewById(R.id.test_text);
+
+        final Button start  = (Button)mView.findViewById(R.id.start);
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, AnswerActivity.class));
+            }
+        });
+
+    }
+
+    /*FlexibleRichTextView richTextView  = (FlexibleRichTextView)mView.findViewById(R.id.test_text);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("$$\\sum_{i=1}^n a_i=0$$,");
 
@@ -66,6 +81,5 @@ public class QuestionBankFragment extends Fragment{
         stringBuilder.append("$$ x=\\frac{3}{2} $$");
         stringBuilder.append("$$ \\[ \\sum_{k=1}^n k^2 = \\frac{1}{2} n (n+1).\\] $$");
 
-        richTextView.setText(stringBuilder.toString());
-    }
+        richTextView.setText(stringBuilder.toString());*/
 }

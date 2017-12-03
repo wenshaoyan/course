@@ -18,4 +18,9 @@
     <string name="hm_new">最新</string>
     <string name="title_title">标题.标题</string>
     <string name="view_all"><![CDATA[查看全部>]]></string>
+
+
+    <!--答题系统-->
+    <string name="start_answer">开始答题</string>
+    <string name="answer_time_default">15:00</string>
 </resources>

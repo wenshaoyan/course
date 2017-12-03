@@ -4,16 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1111"/>
-    <com.daquexian.flexiblerichtextview.FlexibleRichTextView
-        android:id="@+id/test_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp" />
+        android:text="开始考试" />
+
+    <!--<com.daquexian.flexiblerichtextview.FlexibleRichTextView-->
+        <!--android:id="@+id/test_text"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_margin="10dp" />-->
 
 </LinearLayout>

@@ -14,4 +14,16 @@
     <item name="child_tv" type="id">child_tv</item>
     <item name="title_item" type="id">title_video</item>
     <item name="watch_item" type="id">watch_video</item>
+
+    <!--答题系统-->
+    <item name="answer_back" type="id">answer_back</item>
+    <item name="toolbar_answer_time" type="id">toolbar_answer_time</item>
+    <item name="toolbar_answer_title" type="id">toolbar_answer_title</item>
+    <item name="vp_question" type="id">vp_question</item>
+    <item name="ll_buttons" type="id">ll_buttons</item>
+    <item name="question_pre" type="id">question_pre</item>
+    <item name="question_next" type="id">question_next</item>
+    <item name="question_list" type="id">question_list</item>
+    <item name="question_error_list" type="id">question_error_list</item>
+
 </resources>

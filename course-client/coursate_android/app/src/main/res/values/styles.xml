@@ -1,5 +1,12 @@
 <resources>
 
+    <style name="menu_bottom_text">
+        <item name="android:textColor">@color/menu_bottom_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -26,6 +33,13 @@
         <item name="android:dividerHeight">1dp</item>
         <item name="actionBarSize">45dp</item>
     </style>
-
+    <style name="answerTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/answer_main_bg</item>
+        <item name="colorPrimaryDark">@color/mainPrimaryDark</item>
+        <item name="colorAccent">@color/mainBackground</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:dividerHeight">1dp</item>
+        <item name="actionBarSize">54dp</item>
+    </style>
 
 </resources>

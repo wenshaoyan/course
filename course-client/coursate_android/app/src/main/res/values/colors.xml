@@ -12,4 +12,10 @@
     <color name="text_dec_color">#acabab</color>
     <color name="title_color">#ff333333</color>
 
+
+
+    <color name="answer_layout_bg">#EAEAEA</color>
+    <color name="menu_bottom_text">#F2F8FF</color>
+    <color name="answer_main_bg">#288DF5</color>
+
 </resources>
