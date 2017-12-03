@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import com.wenshao.coursate.R;
 import com.wenshao.coursate.adapter.ViewPagerAdapter;
 import com.wenshao.coursate.fragment.HomeFragment;
+import com.wenshao.coursate.fragment.QuestionBankFragment;
 import com.wenshao.coursate.util.BottomNavigationViewHelper;
 
 /**
@@ -106,6 +107,9 @@ public class IndexActivity extends ToolBarActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         adapter.addFragment(HomeFragment.newInstance());
+        adapter.addFragment(HomeFragment.newInstance());
+        adapter.addFragment(HomeFragment.newInstance());
+        adapter.addFragment(QuestionBankFragment.newInstance());
         adapter.addFragment(HomeFragment.newInstance());
         viewPager.setAdapter(adapter);
     }

@@ -25,6 +25,8 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.wenshao.coursate.config.ServerConfig;
 
+import org.scilab.forge.jlatexmath.core.AjLatexMath;
+
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
@@ -46,8 +48,11 @@ public class GlobalApplication extends Application {
         mContext = getApplicationContext();
         intiUniversal();
         initOkGo();
+        initAjLatexMath();
         //initRefresh();
     }
+
+
 
 
     private void intiUniversal() {
@@ -118,5 +123,10 @@ public class GlobalApplication extends Application {
                 return new ClassicsFooter(context).setSpinnerStyle(SpinnerStyle.Translate);
             }
         });
+    }
+
+    private void initAjLatexMath() {
+        AjLatexMath.init(mContext); // init library: load fonts, create paint, etc.
+
     }
 }

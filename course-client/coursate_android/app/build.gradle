@@ -45,6 +45,7 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:4.1.1'
     compile 'com.github.donkingliang:GroupedRecyclerViewAdapter:1.0.4'
     compile 'com.makeramen:roundedimageview:2.3.0'
+    compile 'com.github.daquexian:FlexibleRichTextView:0.8.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
 
 

@@ -132,8 +132,6 @@ public class GroupedListAdapter extends GroupedRecyclerViewAdapter {
 
     @Override
     public int getHeaderLayout(int viewType) {
-        System.out.println("===================");
-
         return R.layout.adapter_header;
     }
 

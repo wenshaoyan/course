@@ -11,7 +11,7 @@ public class ServerConfig {
      */
     private final static String HTTP_ADDRESS = "http://123.207.55.204";
     private final static String HTTP_PORT = "8082";
-    public final static String ENV = "develop";
+    public final static String ENV = "production";
 
 //    private final static String HTTP_ADDRESS = "http://192.168.1.100";
 //    private final static String HTTP_PORT = "10001";
