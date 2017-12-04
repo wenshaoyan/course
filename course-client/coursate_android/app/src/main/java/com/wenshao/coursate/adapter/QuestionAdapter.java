@@ -45,9 +45,9 @@ public class QuestionAdapter extends PagerAdapter {
 
         QuestionBean questionBean = mListData.get(position);
 
-        setQuestionType(questionBean.getType(),questionType);
+        setQuestionType(questionBean.getType(), questionType);
         questionTitle.setText(questionBean.getTitle());
-        addOption(questionOptions,questionBean.getOptions());
+        addOption(questionOptions, questionBean.getOptions());
 
         container.addView(view);
         return view;
@@ -63,8 +63,8 @@ public class QuestionAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
-    private void setQuestionType(String type,TextView view){
-        switch (type){
+    private void setQuestionType(String type, TextView view) {
+        switch (type) {
             case QuestionBean.CHOOSE_TYPE:
                 view.setText("(单选题)");
                 break;
@@ -74,25 +74,29 @@ public class QuestionAdapter extends PagerAdapter {
         }
 
     }
-    private void addOption(RadioGroup radiogroup,List<String> list){
-        if (list == null){
+
+    private void addOption(RadioGroup radiogroup, List<String> list) {
+        if (list == null) {
             return;
         }
         int i = DensityUtil.dip2px(mContext, 10);
-        for(String e: list){
-            RadioButton button=new RadioButton(mContext);
+        for (String e : list) {
+            RadioButton button = new RadioButton(mContext);
 
             radiogroup.addView(button);
 
-            LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) button
-                    .getLayoutParams();
+            /*LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) button
+                    .getLayoutParams();*/
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
             button.setLayoutParams(layoutParams);
-            button.setPadding(i,i,i,i);
+            button.setPadding(i, i, i, i);
             button.setText(e);
         }
 
 
     }
+
     private class ViewHolder {
         TextView questionType;
         TextView questionTitle;
