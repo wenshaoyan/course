@@ -16,6 +16,9 @@ import android.widget.TextView;
 
 import com.wenshao.coursate.R;
 import com.wenshao.coursate.adapter.QuestionAdapter;
+import com.wenshao.coursate.bean.QuestionBean;
+
+import org.scilab.forge.jlatexmath.core.AjLatexMath;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,19 +61,12 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         mVpQuestion = (ViewPager) findViewById(R.id.vp_question);
 
 
+
     }
     private void initData() {
-        List<String> strings = new ArrayList<>();
-        strings.add("1");
-        strings.add("1");
-        strings.add("1");
-        strings.add("1");
-        strings.add("1");
-        strings.add("1");
-        strings.add("1");
 
-        QuestionAdapter questionAdapter = new QuestionAdapter(mContext, strings);
-
+        List<QuestionBean> questionBeans = produceData();
+        QuestionAdapter questionAdapter = new QuestionAdapter(mContext,questionBeans);
 
         mVpQuestion.setAdapter(questionAdapter);
         mVpQuestion.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -124,6 +120,49 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
+    }
+
+    private List<QuestionBean> produceData(){
+        ArrayList<QuestionBean> questionBeans = new ArrayList<>();
+
+        QuestionBean questionBean1 = new QuestionBean();
+        questionBean1.setId("1");
+        questionBean1.setTitle("您的年龄是？");
+        questionBean1.setType("choose");
+        questionBean1.setAnalysis("戴维的法阵");
+        questionBean1.setCorrect_answer("1");
+        questionBean1.setScore(10);
+        List<String> options1 = new ArrayList<>();
+        options1.add("18岁以下");
+        options1.add("18岁至25岁");
+        options1.add("25岁至35岁");
+        options1.add("35岁至45岁");
+        options1.add("45岁以上");
+        questionBean1.setOptions(options1);
+        questionBean1.setIsSingle(1);
+
+
+        QuestionBean questionBean2 = new QuestionBean();
+        questionBean2.setId("2");
+        questionBean2.setTitle("您的工作是？");
+        questionBean2.setType("choose");
+        questionBean2.setAnalysis("戴维的法阵");
+        questionBean2.setCorrect_answer("1");
+        questionBean2.setScore(10);
+        List<String> options2 = new ArrayList<>();
+        options2.add("学生");
+        options2.add("公务单位");
+        options2.add("工薪一族");
+        options2.add("自己当老板");
+        options2.add("其他");
+        questionBean2.setIsSingle(1);
+        questionBean2.setOptions(options2);
+
+        questionBeans.add(questionBean1);
+        questionBeans.add(questionBean2);
+        return questionBeans;
+
 
     }
 }

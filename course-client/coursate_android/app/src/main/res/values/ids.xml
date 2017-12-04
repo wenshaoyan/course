@@ -25,5 +25,8 @@
     <item name="question_next" type="id">question_next</item>
     <item name="question_list" type="id">question_list</item>
     <item name="question_error_list" type="id">question_error_list</item>
+    <item name="question_type" type="id">question_type</item>
+    <item name="question_title" type="id">question_title</item>
+    <item name="question_options" type="id">question_options</item>
 
 </resources>

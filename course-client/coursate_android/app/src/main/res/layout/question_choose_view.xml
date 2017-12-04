@@ -3,15 +3,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="15dp"
     android:background="@android:color/white">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="11" />
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="111222"/>
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@id/question_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/question_type"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@id/question_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/question_title"
+            android:textSize="16sp" />
+    </LinearLayout>
+    <RadioGroup
+        android:id="@id/question_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp">
+
+        <!--<RadioButton
+            android:id="@+id/femaleGroupID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="female" />
+        <RadioButton
+            android:id="@+id/maleGroupID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:text="male"/>-->
+    </RadioGroup>
+
 </LinearLayout>

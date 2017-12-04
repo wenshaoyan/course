@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Coursate</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="text_app_describe">每个人的学习工具</string>
+    <string name="text_loading_load">加载中...</string>
+    <string name="text_immediately_test">立即体验</string>
+    <string name="text_skip">跳过</string>
+    <string name="text_next">下一步</string>
+    <string name="title_activity_main1">MainActivity1</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="hm_all">分类</string>
+    <string name="hm_hot">最热</string>
+    <string name="hm_live">直播</string>
+    <string name="hm_new">最新</string>
+    <string name="title_title">标题.标题</string>
+    <string name="view_all"><![CDATA[查看全部>]]></string>
+
+
+    <!--答题系统-->
+    <string name="start_answer">开始答题</string>
+    <string name="answer_time_default">15:00</string>
+</resources>
