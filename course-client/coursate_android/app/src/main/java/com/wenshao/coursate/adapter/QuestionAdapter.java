@@ -1,7 +1,9 @@
 package com.wenshao.coursate.adapter;
 
 import android.content.Context;
+import android.support.annotation.IdRes;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,18 +14,27 @@ import android.widget.TextView;
 
 import com.wenshao.coursate.R;
 import com.wenshao.coursate.bean.QuestionBean;
+import com.wenshao.coursate.listener.AnswerListener;
 import com.wenshao.coursate.util.DensityUtil;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wenshao on 2017/12/3.
  * 问答系统问题适配器
  */
 
-public class QuestionAdapter extends PagerAdapter {
+public class QuestionAdapter extends PagerAdapter implements RadioGroup.OnCheckedChangeListener {
     private Context mContext;
     private List<QuestionBean> mListData;
+    private final static String[] SERIAL_NUMBER = {"A.", "B.", "C.", "D.", "E.", "F.", "G."};
+    private final static String TAG = "QuestionAdapter";
+    private final static int[] OPTION_ID = {R.id.option_0, R.id.option_1, R.id.option_2, R.id.option_3, R.id.option_4,
+            R.id.option_5, R.id.option_6};
+
+    private AnswerListener mAnswerListener;
 
     public QuestionAdapter(Context context, List<QuestionBean> listData) {
         mContext = context;
@@ -48,7 +59,7 @@ public class QuestionAdapter extends PagerAdapter {
         setQuestionType(questionBean.getType(), questionType);
         questionTitle.setText(questionBean.getTitle());
         addOption(questionOptions, questionBean.getOptions());
-
+        questionOptions.setOnCheckedChangeListener(this);
         container.addView(view);
         return view;
     }
@@ -79,22 +90,49 @@ public class QuestionAdapter extends PagerAdapter {
         if (list == null) {
             return;
         }
+        if (list.size() > SERIAL_NUMBER.length) {
+            return;
+        }
         int i = DensityUtil.dip2px(mContext, 10);
+        int index = 0;
         for (String e : list) {
             RadioButton button = new RadioButton(mContext);
-
             radiogroup.addView(button);
-
+            button.setId(OPTION_ID[index]);
             /*LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) button
                     .getLayoutParams();*/
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
             button.setLayoutParams(layoutParams);
             button.setPadding(i, i, i, i);
-            button.setText(e);
+            button.setText(SERIAL_NUMBER[index] + " " + e);
+
+            index++;
         }
+    }
 
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+        int checkIndex = 0;
+        for (int j = 0; j < OPTION_ID.length; j++) {
+            int v = OPTION_ID[j];
+            if (v == i) {
+                checkIndex = j;
+                break;
+            }
+        }
+        if (mAnswerListener != null) mAnswerListener.onAnswerComplete();
+        Log.i(TAG, "onCheckedChanged: " + SERIAL_NUMBER[checkIndex]);
 
+    }
+
+    /**
+     * 设置监听事件
+     *
+     * @param answerListener AnswerListener对象
+     */
+    public void setAnswerListener(AnswerListener answerListener) {
+        mAnswerListener = answerListener;
     }
 
     private class ViewHolder {

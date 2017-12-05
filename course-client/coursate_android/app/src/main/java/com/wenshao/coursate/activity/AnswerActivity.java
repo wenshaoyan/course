@@ -3,8 +3,9 @@ package com.wenshao.coursate.activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -17,8 +18,7 @@ import android.widget.TextView;
 import com.wenshao.coursate.R;
 import com.wenshao.coursate.adapter.QuestionAdapter;
 import com.wenshao.coursate.bean.QuestionBean;
-
-import org.scilab.forge.jlatexmath.core.AjLatexMath;
+import com.wenshao.coursate.listener.AnswerListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,14 +36,15 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
     private TextView mToolbarShowTime;
     private TextView mToolbarTitle;
     private ViewPager mVpQuestion;
+    private int mQuestionMaxIndex;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext =this;
+        mContext = this;
         setContentView(R.layout.activity_answer);
         ActionBar supportActionBar = getSupportActionBar();
-        if (supportActionBar!=null)supportActionBar.setDisplayHomeAsUpEnabled(false);
+        if (supportActionBar != null) supportActionBar.setDisplayHomeAsUpEnabled(false);
         initUi();
         initData();
     }
@@ -59,35 +60,46 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         mQuestionNext.setOnClickListener(this);
 
         mVpQuestion = (ViewPager) findViewById(R.id.vp_question);
-
-
-
     }
+
     private void initData() {
 
         List<QuestionBean> questionBeans = produceData();
-        QuestionAdapter questionAdapter = new QuestionAdapter(mContext,questionBeans);
+        mQuestionMaxIndex = questionBeans.size() - 1;
+        QuestionAdapter questionAdapter = new QuestionAdapter(mContext, questionBeans);
 
         mVpQuestion.setAdapter(questionAdapter);
         mVpQuestion.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.i(TAG,"onPageScrolled");
+                Log.i(TAG, "onPageScrolled");
             }
 
             @Override
             public void onPageSelected(int position) {
-                Log.i(TAG,"onPageSelected");
+                Log.i(TAG, "onPageSelected");
 
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                Log.i(TAG,"onPageScrollStateChanged");
+                Log.i(TAG, "onPageScrollStateChanged");
+
+            }
+        });
+
+        questionAdapter.setAnswerListener(new AnswerListener() {
+            @Override
+            public void onAnswerComplete() {
+                boolean b = nextQuestion();
+                if (!b){    // 答题完成 提示提交答题
+                    Log.i(TAG, "onAnswerComplete: "+"===========");
+                }
 
             }
         });
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         /*switch (item.getItemId()) {
@@ -97,6 +109,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         }*/
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onCreateCustomToolBar(Toolbar toolbar) {
         super.onCreateCustomToolBar(toolbar);
@@ -108,10 +121,12 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
     private void showToolbarHome() {
         mToolbar.removeAllViews();  //清除原有的toolbar
         View inflate = getLayoutInflater().inflate(R.layout.toolbar_answer, mToolbar);
-        mToolbarShowTime =(TextView) inflate.findViewById(R.id.toolbar_answer_time);
-        mToolbarTitle =(TextView) inflate.findViewById(R.id.toolbar_answer_title);
-        Drawable drawable1 = getBaseContext().getResources().getDrawable(
-                R.drawable.icon_practice_time);
+        mToolbarShowTime = (TextView) inflate.findViewById(R.id.toolbar_answer_time);
+        mToolbarTitle = (TextView) inflate.findViewById(R.id.toolbar_answer_title);
+//        Drawable drawable1 = getBaseContext().getResources().getDrawable(
+//                R.drawable.icon_practice_time);
+        Drawable drawable1 = ContextCompat.getDrawable(mContext, R.drawable.icon_practice_time);
+
         drawable1.setBounds(0, 0, drawable1.getMinimumWidth(),
                 drawable1.getMinimumHeight());
         mToolbarShowTime.setCompoundDrawables(drawable1, null, null, null);
@@ -120,10 +135,42 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.question_next:
+                nextQuestion();
+                break;
+            case R.id.question_pre:
+                preQuestion();
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 下一题
+     */
+    private boolean nextQuestion() {
+        int currentItem = mVpQuestion.getCurrentItem();
+        if (currentItem < mQuestionMaxIndex) { // 可以移动
+            mVpQuestion.setCurrentItem(currentItem+1);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 上一题
+     */
+    private void preQuestion() {
+        int currentItem = mVpQuestion.getCurrentItem();
+        if (currentItem != 0) { // 可以移动
+            mVpQuestion.setCurrentItem(currentItem - 1);
+        }
 
     }
 
-    private List<QuestionBean> produceData(){
+    private List<QuestionBean> produceData() {
         ArrayList<QuestionBean> questionBeans = new ArrayList<>();
 
         QuestionBean questionBean1 = new QuestionBean();
@@ -162,7 +209,6 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         questionBeans.add(questionBean1);
         questionBeans.add(questionBean2);
         return questionBeans;
-
 
     }
 }

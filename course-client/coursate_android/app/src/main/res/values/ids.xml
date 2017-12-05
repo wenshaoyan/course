@@ -28,5 +28,12 @@
     <item name="question_type" type="id">question_type</item>
     <item name="question_title" type="id">question_title</item>
     <item name="question_options" type="id">question_options</item>
+    <item name="option_0" type="id">option_1</item>
+    <item name="option_1" type="id">option_1</item>
+    <item name="option_2" type="id">option_2</item>
+    <item name="option_3" type="id">option_3</item>
+    <item name="option_4" type="id">option_4</item>
+    <item name="option_5" type="id">option_5</item>
+    <item name="option_6" type="id">option_6</item>
 
 </resources>

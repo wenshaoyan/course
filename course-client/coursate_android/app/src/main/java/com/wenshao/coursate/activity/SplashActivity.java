@@ -89,9 +89,8 @@ public class SplashActivity extends Activity {
         if (guideVersion == 0) { // 跳往引导页面
             nextIntent = new Intent(mContext, GuideActivity.class);
 
-        } else {  //
-            //Intent intent = new Intent(mContext, GuideActivity.class);
-            //startActivity(intent);
+        } else {  // 跳往首页
+            nextIntent = new Intent(mContext,IndexActivity.class);
         }
 
     }

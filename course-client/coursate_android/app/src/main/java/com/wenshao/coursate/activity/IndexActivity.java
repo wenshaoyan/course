@@ -13,9 +13,11 @@ import android.view.MenuItem;
 
 import com.wenshao.coursate.R;
 import com.wenshao.coursate.adapter.ViewPagerAdapter;
+import com.wenshao.coursate.constant.SpConstant;
 import com.wenshao.coursate.fragment.HomeFragment;
 import com.wenshao.coursate.fragment.QuestionBankFragment;
 import com.wenshao.coursate.util.BottomNavigationViewHelper;
+import com.wenshao.coursate.util.SpUtil;
 
 /**
  * Created by wenshao on 2017/9/24.
@@ -36,7 +38,7 @@ public class IndexActivity extends ToolBarActivity {
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar!=null)supportActionBar.setDisplayHomeAsUpEnabled(false);
         initViewPager();
-
+        SpUtil.putInt(mContext, SpConstant.GUIDE_VERSION, 1);
     }
 
     private void initViewPager() {
@@ -49,7 +51,6 @@ public class IndexActivity extends ToolBarActivity {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
-
                             case R.id.item_home:
                                 viewPager.setCurrentItem(0);
                                 break;
@@ -112,6 +113,7 @@ public class IndexActivity extends ToolBarActivity {
         adapter.addFragment(QuestionBankFragment.newInstance());
         adapter.addFragment(HomeFragment.newInstance());
         viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(3);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
