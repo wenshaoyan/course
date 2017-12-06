@@ -23,4 +23,6 @@
     <!--答题系统-->
     <string name="start_answer">开始答题</string>
     <string name="answer_time_default">15:00</string>
+    <string name="unanswered">未答</string>
+    <string name="answered">已答</string>
 </resources>

@@ -2,6 +2,7 @@ package com.wenshao.coursate.activity;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,21 +11,31 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.wenshao.coursate.R;
 import com.wenshao.coursate.adapter.QuestionAdapter;
+import com.wenshao.coursate.adapter.QuestionOutlineListAdapter;
 import com.wenshao.coursate.bean.QuestionBean;
 import com.wenshao.coursate.listener.AnswerListener;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static android.R.id.list;
 
 /**
  * Created by wenshao on 2017/12/3.
@@ -55,7 +66,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
                 mVpQuestion.setCurrentItem(currentItem + 1);
             } else if (msg.what == 2) {
                 int currentItem = mVpQuestion.getCurrentItem();
-                mQuestionListTitle.setText((currentItem+1)+"/"+(mQuestionMaxIndex+1));
+                mQuestionListTitle.setText((currentItem + 1) + "/" + (mQuestionMaxIndex + 1));
             }
 
         }
@@ -155,6 +166,31 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
 
     }
 
+    protected void actionAlertDialog() {
+
+        AlertDialog.Builder builder;
+        AlertDialog alertDialog;
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        View view = inflater.inflate(R.layout.dialog_question_outline, null);
+        ListView listView = (ListView) view.findViewById(R.id.question_outline_list);
+        QuestionOutlineListAdapter adapter = new QuestionOutlineListAdapter(mContext, R.layout.question_item_view, mListData);
+        listView.setAdapter(adapter);
+        builder = new AlertDialog.Builder(mContext);
+        builder.setView(view);
+        alertDialog = builder.create();
+        alertDialog.show();
+
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int widthPixels = dm.widthPixels;
+        int heightPixels = dm.heightPixels;
+        android.view.WindowManager.LayoutParams p = alertDialog.getWindow().getAttributes();  //获取对话框当前的参数值
+        p.width = (int) (widthPixels * 0.9);   //高度设置为屏幕的0.3
+        p.height = (int) (heightPixels * 0.9);    //宽度设置为屏幕的0.5
+        alertDialog.getWindow().setAttributes(p);     //设置生效
+
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -163,6 +199,9 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
                 break;
             case R.id.question_pre:
                 preQuestion();
+                break;
+            case R.id.question_list:
+                actionAlertDialog();
                 break;
             default:
                 break;

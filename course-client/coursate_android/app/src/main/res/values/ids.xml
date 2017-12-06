@@ -36,5 +36,7 @@
     <item name="option_4" type="id">option_4</item>
     <item name="option_5" type="id">option_5</item>
     <item name="option_6" type="id">option_6</item>
+    <item name="question_outline_list" type="id">question_outline_list</item>
+    <item name="question_status" type="id">question_status</item>
 
 </resources>

@@ -20,8 +20,8 @@
     <color name="question_type">#2B89E9</color>
     <color name="question_title">#2F2F2F</color>
     <color name="practice_test_result_text">#9a9a9a</color>
-    <color name="practice_test_result_right_text">#61bc31</color>
-    <color name="practice_test_result_wrong_text">#d53235</color>
+    <color name="question_answered">#5CB85C</color>
+    <color name="question_unanswered">#D43F3A</color>
     <color name="practice_test_result_statistics_text">#2991f4</color>
 
 </resources>
