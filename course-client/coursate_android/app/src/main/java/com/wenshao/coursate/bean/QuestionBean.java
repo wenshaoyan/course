@@ -18,7 +18,9 @@ public class QuestionBean {
     private String correct_answer;  // 正确答案
     private int score;              // 分值
     private List<String> options;       // 问题选项
-    private int isSingle;           // 是否单选
+    private boolean isSingle;           // 是否单选
+    private QuestionAnswerBean questionAnswerBean;
+    private boolean isInit;         // 是否被初始化
 
 
     public String getId() {
@@ -77,12 +79,28 @@ public class QuestionBean {
         this.options = options;
     }
 
-    public int getIsSingle() {
+    public boolean isSingle() {
         return isSingle;
     }
 
-    public void setIsSingle(int isSingle) {
-        this.isSingle = isSingle;
+    public void setSingle(boolean single) {
+        isSingle = single;
+    }
+
+    public boolean isInit() {
+        return isInit;
+    }
+
+    public void setInit(boolean init) {
+        isInit = init;
+    }
+
+    public QuestionAnswerBean getQuestionAnswerBean() {
+        return questionAnswerBean;
+    }
+
+    public void setQuestionAnswerBean(QuestionAnswerBean questionAnswerBean) {
+        this.questionAnswerBean = questionAnswerBean;
     }
 
     @Override

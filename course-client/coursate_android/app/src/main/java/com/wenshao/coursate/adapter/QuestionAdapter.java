@@ -13,10 +13,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.wenshao.coursate.R;
+import com.wenshao.coursate.bean.QuestionAnswerBean;
 import com.wenshao.coursate.bean.QuestionBean;
 import com.wenshao.coursate.listener.AnswerListener;
 import com.wenshao.coursate.util.DensityUtil;
+import com.wenshao.coursate.view.CustomRadioGroup;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +29,7 @@ import java.util.Map;
  * 问答系统问题适配器
  */
 
-public class QuestionAdapter extends PagerAdapter implements RadioGroup.OnCheckedChangeListener {
+public class QuestionAdapter extends PagerAdapter implements CustomRadioGroup.OnCheckedChangeListener {
     private Context mContext;
     private List<QuestionBean> mListData;
     private final static String[] SERIAL_NUMBER = {"A.", "B.", "C.", "D.", "E.", "F.", "G."};
@@ -35,10 +38,22 @@ public class QuestionAdapter extends PagerAdapter implements RadioGroup.OnChecke
             R.id.option_5, R.id.option_6};
 
     private AnswerListener mAnswerListener;
+    private Map<String, Integer> dataIndexMap = new HashMap<>();
+    private List<View> mListView = new ArrayList<>();
+
 
     public QuestionAdapter(Context context, List<QuestionBean> listData) {
         mContext = context;
         mListData = listData;
+        int index = 0;
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+
+
+        for (QuestionBean questionBean : listData) {
+            dataIndexMap.put(questionBean.getId(), index++);
+            View view = inflater.inflate(R.layout.question_choose_view, null);
+            mListView.add(view);
+        }
     }
 
     @Override
@@ -48,18 +63,27 @@ public class QuestionAdapter extends PagerAdapter implements RadioGroup.OnChecke
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(R.layout.question_choose_view, null);
-        TextView questionType = (TextView) view.findViewById(R.id.question_type);
-        TextView questionTitle = (TextView) view.findViewById(R.id.question_title);
-        RadioGroup questionOptions = (RadioGroup) view.findViewById(R.id.question_options);
+        View view = mListView.get(position);
 
         QuestionBean questionBean = mListData.get(position);
+        // view 已经加载过数据
+        if (questionBean.isInit()) {
+            container.addView(view);
+            return view;
+        }
+
+        CustomRadioGroup questionOptions = (CustomRadioGroup) view.findViewById(R.id.question_options);
+
+        TextView questionType = (TextView) view.findViewById(R.id.question_type);
+        TextView questionTitle = (TextView) view.findViewById(R.id.question_title);
+
 
         setQuestionType(questionBean.getType(), questionType);
         questionTitle.setText(questionBean.getTitle());
         addOption(questionOptions, questionBean.getOptions());
         questionOptions.setOnCheckedChangeListener(this);
+        questionOptions.setBusinessId(questionBean.getId());
+        questionBean.setInit(true); // 设置状态为已经初始化
         container.addView(view);
         return view;
     }
@@ -71,6 +95,7 @@ public class QuestionAdapter extends PagerAdapter implements RadioGroup.OnChecke
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
+        Log.i(TAG, "destroyItem: ");
         container.removeView((View) object);
     }
 
@@ -113,6 +138,7 @@ public class QuestionAdapter extends PagerAdapter implements RadioGroup.OnChecke
 
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+        CustomRadioGroup customRadioGroup = (CustomRadioGroup) radioGroup;
         int checkIndex = 0;
         for (int j = 0; j < OPTION_ID.length; j++) {
             int v = OPTION_ID[j];
@@ -121,9 +147,33 @@ public class QuestionAdapter extends PagerAdapter implements RadioGroup.OnChecke
                 break;
             }
         }
+        // 触发单选答题完成事件
         if (mAnswerListener != null) mAnswerListener.onAnswerComplete();
-        Log.i(TAG, "onCheckedChanged: " + SERIAL_NUMBER[checkIndex]);
 
+        QuestionAnswerBean questionAnswerBean = new QuestionAnswerBean();
+        questionAnswerBean.setContent(String.valueOf(checkIndex));
+        questionAnswerBean.setAnswer_time(1);
+
+        setQuestionAnswer(customRadioGroup, questionAnswerBean);
+        Log.i(TAG, "onCheckedChanged: " + SERIAL_NUMBER[checkIndex] + "========" + customRadioGroup.getBusinessId());
+
+    }
+
+    /**
+     * 设置问题的用户回答
+     *
+     * @return 是否设置成功
+     */
+    private boolean setQuestionAnswer(CustomRadioGroup customRadioGroup, QuestionAnswerBean questionAnswerBean) {
+        if (dataIndexMap.containsKey(customRadioGroup.getBusinessId())) {
+            int indexes = dataIndexMap.get(customRadioGroup.getBusinessId());
+            if (mListData.size() > indexes) {
+                QuestionBean questionBean = mListData.get(indexes);
+                questionBean.setQuestionAnswerBean(questionAnswerBean);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

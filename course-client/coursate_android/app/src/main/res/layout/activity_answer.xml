@@ -62,7 +62,7 @@
                 android:src="@drawable/ic_practice_tatal_index" />
 
             <TextView
-                android:id="@+id/activity_prepare_test_totalTv"
+                android:id="@id/question_list_title"
                 style="@style/menu_bottom_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

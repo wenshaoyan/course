@@ -184,14 +184,14 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             // 执行开始刷新的动画 一次刷新中执行一次
             @Override
             public void onHeaderStartAnimator(RefreshHeader header, int headerHeight, int extendHeight) {
-                Log.i(TAG, "onHeaderStartAnimator");
+                // Log.i(TAG, "onHeaderStartAnimator");
 
             }
 
             // 刷新动画介绍 一次刷新中执行一次
             @Override
             public void onHeaderFinish(RefreshHeader header, boolean success) {
-                Log.i(TAG, "onHeaderFinish");
+                // Log.i(TAG, "onHeaderFinish");
 
             }
 
@@ -229,7 +229,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             // 状态改变  状态包括 None:空闲状态 PullDownToRefresh:下拉状态  ReleaseToRefresh:释放状态 Refreshing:刷新中  RefreshFinish:刷新完成
             @Override
             public void onStateChanged(RefreshLayout refreshLayout, RefreshState oldState, RefreshState newState) {
-                Log.i(TAG, "333" + oldState.name() + "========" + newState.name());
+                // Log.i(TAG, "333" + oldState.name() + "========" + newState.name());
 
             }
         });

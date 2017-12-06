@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <attr name="business_id" format="string" />
     <declare-styleable name="MainFontTextView">
 
     </declare-styleable>
+    <declare-styleable name="CustomRadioGroup">
+        <attr name="business_id"/>
+    </declare-styleable>
+
 </resources>

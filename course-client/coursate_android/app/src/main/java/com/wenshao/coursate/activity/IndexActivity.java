@@ -104,7 +104,7 @@ public class IndexActivity extends ToolBarActivity {
         setupViewPager(viewPager);
     }
 
-    private void setupViewPager(ViewPager viewPager) {
+    private void setupViewPager(final ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         adapter.addFragment(HomeFragment.newInstance());

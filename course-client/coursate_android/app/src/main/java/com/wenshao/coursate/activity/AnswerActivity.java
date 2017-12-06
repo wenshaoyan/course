@@ -3,6 +3,8 @@ package com.wenshao.coursate.activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -21,6 +23,7 @@ import com.wenshao.coursate.bean.QuestionBean;
 import com.wenshao.coursate.listener.AnswerListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,11 +35,31 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
     private Context mContext;
     private MenuItem menuItem;
     private final static String TAG = "AnswerActivity";
+    private List<QuestionBean> mListData;
+
     private Toolbar mToolbar;
     private TextView mToolbarShowTime;
     private TextView mToolbarTitle;
     private ViewPager mVpQuestion;
     private int mQuestionMaxIndex;
+    private LinearLayout mQuestionList;
+    private TextView mQuestionListTitle;
+    private LinearLayout mQuestionErrorList;
+    private LinearLayout mQuestionPre;
+    private LinearLayout mQuestionNext;
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == 1) {   // 下一题
+                int currentItem = mVpQuestion.getCurrentItem();
+                mVpQuestion.setCurrentItem(currentItem + 1);
+            } else if (msg.what == 2) {
+                int currentItem = mVpQuestion.getCurrentItem();
+                mQuestionListTitle.setText((currentItem+1)+"/"+(mQuestionMaxIndex+1));
+            }
+
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,10 +73,11 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
     }
 
     private void initUi() {
-        LinearLayout mQuestionErrorList = (LinearLayout) findViewById(R.id.question_error_list);
-        LinearLayout mQuestionList = (LinearLayout) findViewById(R.id.question_list);
-        LinearLayout mQuestionPre = (LinearLayout) findViewById(R.id.question_pre);
-        LinearLayout mQuestionNext = (LinearLayout) findViewById(R.id.question_next);
+        mQuestionErrorList = (LinearLayout) findViewById(R.id.question_error_list);
+        mQuestionList = (LinearLayout) findViewById(R.id.question_list);
+        mQuestionListTitle = (TextView) findViewById(R.id.question_list_title);
+        mQuestionPre = (LinearLayout) findViewById(R.id.question_pre);
+        mQuestionNext = (LinearLayout) findViewById(R.id.question_next);
         mQuestionErrorList.setOnClickListener(this);
         mQuestionList.setOnClickListener(this);
         mQuestionPre.setOnClickListener(this);
@@ -64,26 +88,26 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
 
     private void initData() {
 
-        List<QuestionBean> questionBeans = produceData();
-        mQuestionMaxIndex = questionBeans.size() - 1;
-        QuestionAdapter questionAdapter = new QuestionAdapter(mContext, questionBeans);
+        mListData = produceData();
+        mQuestionMaxIndex = mListData.size() - 1;
+        QuestionAdapter questionAdapter = new QuestionAdapter(mContext, mListData);
 
         mVpQuestion.setAdapter(questionAdapter);
         mVpQuestion.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.i(TAG, "onPageScrolled");
+
             }
 
             @Override
             public void onPageSelected(int position) {
-                Log.i(TAG, "onPageSelected");
+                // Log.i(TAG, "onPageSelected: =============");
+                mHandler.sendEmptyMessage(2);
 
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                Log.i(TAG, "onPageScrollStateChanged");
 
             }
         });
@@ -91,9 +115,9 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         questionAdapter.setAnswerListener(new AnswerListener() {
             @Override
             public void onAnswerComplete() {
-                boolean b = nextQuestion();
-                if (!b){    // 答题完成 提示提交答题
-                    Log.i(TAG, "onAnswerComplete: "+"===========");
+                boolean b = nextQuestion(500);
+                if (!b) {    // 答题完成 提示提交答题
+                    Log.i(TAG, "onAnswerComplete: " + "===========");
                 }
 
             }
@@ -123,8 +147,6 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         View inflate = getLayoutInflater().inflate(R.layout.toolbar_answer, mToolbar);
         mToolbarShowTime = (TextView) inflate.findViewById(R.id.toolbar_answer_time);
         mToolbarTitle = (TextView) inflate.findViewById(R.id.toolbar_answer_title);
-//        Drawable drawable1 = getBaseContext().getResources().getDrawable(
-//                R.drawable.icon_practice_time);
         Drawable drawable1 = ContextCompat.getDrawable(mContext, R.drawable.icon_practice_time);
 
         drawable1.setBounds(0, 0, drawable1.getMinimumWidth(),
@@ -137,7 +159,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.question_next:
-                nextQuestion();
+                nextQuestion(10);
                 break;
             case R.id.question_pre:
                 preQuestion();
@@ -150,10 +172,11 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
     /**
      * 下一题
      */
-    private boolean nextQuestion() {
-        int currentItem = mVpQuestion.getCurrentItem();
+    private boolean nextQuestion(final int time) {
+        final int currentItem = mVpQuestion.getCurrentItem();
         if (currentItem < mQuestionMaxIndex) { // 可以移动
-            mVpQuestion.setCurrentItem(currentItem+1);
+            // 延时加载下一题
+            mHandler.sendEmptyMessageDelayed(1, time);
             return true;
         }
         return false;
@@ -187,7 +210,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         options1.add("35岁至45岁");
         options1.add("45岁以上");
         questionBean1.setOptions(options1);
-        questionBean1.setIsSingle(1);
+        questionBean1.setSingle(true);
 
 
         QuestionBean questionBean2 = new QuestionBean();
@@ -203,11 +226,109 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         options2.add("工薪一族");
         options2.add("自己当老板");
         options2.add("其他");
-        questionBean2.setIsSingle(1);
+        questionBean2.setSingle(true);
         questionBean2.setOptions(options2);
+
+
+        QuestionBean questionBean3 = new QuestionBean();
+        questionBean3.setId("3");
+        questionBean3.setTitle("工笔是哪种绘画形式的技法3");
+        questionBean3.setType("choose");
+        questionBean3.setAnalysis("戴维的法阵");
+        questionBean3.setCorrect_answer("1");
+        questionBean3.setScore(10);
+        List<String> options3 = new ArrayList<>();
+        options3.add("水彩画");
+        options3.add("油画");
+        options3.add("水粉画");
+        options3.add("国画");
+        questionBean3.setSingle(true);
+        questionBean3.setOptions(options3);
+
+        QuestionBean questionBean4 = new QuestionBean();
+        questionBean4.setId("4");
+        questionBean4.setTitle("工笔是哪种绘画形式的技4");
+        questionBean4.setType("choose");
+        questionBean4.setAnalysis("戴维的法阵");
+        questionBean4.setCorrect_answer("1");
+        questionBean4.setScore(10);
+        List<String> options4 = new ArrayList<>();
+        options4.add("水彩画");
+        options4.add("油画");
+        options4.add("水粉画");
+        options4.add("国画");
+        questionBean4.setSingle(true);
+        questionBean4.setOptions(options4);
+
+        QuestionBean questionBean5 = new QuestionBean();
+        questionBean5.setId("5");
+        questionBean5.setTitle("工笔是哪种绘画形式的技5");
+        questionBean5.setType("choose");
+        questionBean5.setAnalysis("戴维的法阵");
+        questionBean5.setCorrect_answer("1");
+        questionBean5.setScore(10);
+        List<String> options5 = new ArrayList<>();
+        options5.add("水彩画");
+        options5.add("油画");
+        options5.add("水粉画");
+        options5.add("国画");
+        questionBean5.setSingle(true);
+        questionBean5.setOptions(options5);
+
+        QuestionBean questionBean6 = new QuestionBean();
+        questionBean6.setId("6");
+        questionBean6.setTitle("工笔是哪种绘画形式的技法6");
+        questionBean6.setType("choose");
+        questionBean6.setAnalysis("戴维的法阵");
+        questionBean6.setCorrect_answer("1");
+        questionBean6.setScore(10);
+        List<String> options6 = new ArrayList<>();
+        options6.add("水彩画");
+        options6.add("油画");
+        options6.add("水粉画");
+        options6.add("国画");
+        questionBean6.setSingle(true);
+        questionBean6.setOptions(options6);
+
+        QuestionBean questionBean7 = new QuestionBean();
+        questionBean7.setId("7");
+        questionBean7.setTitle("工笔是哪种绘画形式的技7");
+        questionBean7.setType("choose");
+        questionBean7.setAnalysis("戴维的法阵");
+        questionBean7.setCorrect_answer("1");
+        questionBean7.setScore(10);
+        List<String> options7 = new ArrayList<>();
+        options7.add("水彩画");
+        options7.add("油画");
+        options7.add("水粉画");
+        options7.add("国画");
+        questionBean7.setSingle(true);
+        questionBean7.setOptions(options7);
+
+
+        QuestionBean questionBean8 = new QuestionBean();
+        questionBean8.setId("8");
+        questionBean8.setTitle("工笔是哪种绘画形式的技法8");
+        questionBean8.setType("choose");
+        questionBean8.setAnalysis("戴维的法阵");
+        questionBean8.setCorrect_answer("1");
+        questionBean8.setScore(10);
+        List<String> options8 = new ArrayList<>();
+        options8.add("水彩画");
+        options8.add("油画");
+        options8.add("水粉画");
+        options8.add("国画");
+        questionBean8.setSingle(true);
+        questionBean8.setOptions(options8);
 
         questionBeans.add(questionBean1);
         questionBeans.add(questionBean2);
+        questionBeans.add(questionBean3);
+        questionBeans.add(questionBean4);
+        questionBeans.add(questionBean5);
+        questionBeans.add(questionBean6);
+        questionBeans.add(questionBean7);
+        questionBeans.add(questionBean8);
         return questionBeans;
 
     }
