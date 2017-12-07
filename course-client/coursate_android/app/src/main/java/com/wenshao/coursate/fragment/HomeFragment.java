@@ -114,6 +114,16 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         mRecyclerView = (RecyclerView) mView.findViewById(R.id.rv_list);
         mRefreshLayout.setEnableScrollContentWhenLoaded(false);//是否在加载完成时滚动列表显示新的内容
 
+        // NestedScrollView嵌套RecyclerView时滑动不流畅问题的解决办法
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+        layoutManager.setSmoothScrollbarEnabled(true);
+        layoutManager.setAutoMeasureEnabled(true);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setNestedScrollingEnabled(false);
+
+
+
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         GroupedListAdapter adapter = new GroupedListAdapter(mContext, GroupModel.getGroups(10, 10));
