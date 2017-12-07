@@ -14,124 +14,126 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srlEnableHorizontalDrag="true" />
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <com.youth.banner.Banner xmlns:banner="http://schemas.android.com/apk/res-auto"
-            android:id="@id/banner"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            banner:delay_time="5000"
-            banner:indicator_drawable_selected="@drawable/shape_banner_selected"
-            banner:indicator_drawable_unselected="@drawable/shape_banner_unselected"
-            banner:indicator_height="8dp"
-            banner:indicator_margin="10dp"
-            banner:indicator_width="8dp"
-            banner:scroll_time="1000" />
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_marginLeft="16.0dp"
-            android:layout_marginRight="16.0dp"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
-
-            <FrameLayout
-                android:id="@id/hm_hot"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.0"
-                android:background="?selectableItemBackgroundBorderless">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:drawablePadding="2.0dp"
-                    android:drawableTop="@drawable/icon_home_hot"
-                    android:gravity="center"
-                    android:text="@string/hm_hot"
-                    android:textColor="@color/caption_color"
-                    android:textSize="11.0sp" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@id/hm_new"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1.0"
-                android:background="?selectableItemBackgroundBorderless">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:drawablePadding="2.0dp"
-                    android:drawableTop="@drawable/icon_home_new"
-                    android:gravity="center"
-                    android:text="@string/hm_new"
-                    android:textColor="@color/caption_color"
-                    android:textSize="11.0sp" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@id/hm_live"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1.0"
-                android:background="?selectableItemBackgroundBorderless">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:drawablePadding="2.0dip"
-                    android:drawableTop="@drawable/icon_home_live"
-                    android:gravity="center"
-                    android:text="@string/hm_live"
-                    android:textColor="@color/caption_color"
-                    android:textSize="11.0sp" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@id/hm_all"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1.0"
-                android:background="?selectableItemBackgroundBorderless">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:drawablePadding="2.0dip"
-                    android:drawableTop="@drawable/icon_home_classify"
-                    android:gravity="center"
-                    android:text="@string/hm_all"
-                    android:textColor="@color/caption_color"
-                    android:textSize="11.0sp" />
-            </FrameLayout>
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/divider_color" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@id/rv_list"
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never"
-            />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:focusableInTouchMode="true">
+
+            <com.youth.banner.Banner xmlns:banner="http://schemas.android.com/apk/res-auto"
+                android:id="@id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                banner:delay_time="5000"
+                banner:indicator_drawable_selected="@drawable/shape_banner_selected"
+                banner:indicator_drawable_unselected="@drawable/shape_banner_unselected"
+                banner:indicator_height="8dp"
+                banner:indicator_margin="10dp"
+                banner:indicator_width="8dp"
+                banner:scroll_time="1000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginLeft="16.0dp"
+                android:layout_marginRight="16.0dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@id/hm_hot"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:background="?selectableItemBackgroundBorderless">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawablePadding="2.0dp"
+                        android:drawableTop="@drawable/icon_home_hot"
+                        android:gravity="center"
+                        android:text="@string/hm_hot"
+                        android:textColor="@color/caption_color"
+                        android:textSize="11.0sp" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@id/hm_new"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.0"
+                    android:background="?selectableItemBackgroundBorderless">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawablePadding="2.0dp"
+                        android:drawableTop="@drawable/icon_home_new"
+                        android:gravity="center"
+                        android:text="@string/hm_new"
+                        android:textColor="@color/caption_color"
+                        android:textSize="11.0sp" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@id/hm_live"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.0"
+                    android:background="?selectableItemBackgroundBorderless">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawablePadding="2.0dip"
+                        android:drawableTop="@drawable/icon_home_live"
+                        android:gravity="center"
+                        android:text="@string/hm_live"
+                        android:textColor="@color/caption_color"
+                        android:textSize="11.0sp" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@id/hm_all"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.0"
+                    android:background="?selectableItemBackgroundBorderless">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawablePadding="2.0dip"
+                        android:drawableTop="@drawable/icon_home_classify"
+                        android:gravity="center"
+                        android:text="@string/hm_all"
+                        android:textColor="@color/caption_color"
+                        android:textSize="11.0sp" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/divider_color" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>
