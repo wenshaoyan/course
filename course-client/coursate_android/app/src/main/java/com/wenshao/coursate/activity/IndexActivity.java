@@ -113,7 +113,7 @@ public class IndexActivity extends ToolBarActivity {
         adapter.addFragment(QuestionBankFragment.newInstance());
         adapter.addFragment(HomeFragment.newInstance());
         viewPager.setAdapter(adapter);
-        viewPager.setCurrentItem(3);
+        viewPager.setCurrentItem(0);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
