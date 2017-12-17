@@ -1,6 +1,8 @@
 package com.wenshao.coursate.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -16,10 +18,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -179,15 +183,18 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         builder.setView(view);
         alertDialog = builder.create();
         alertDialog.show();
-
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int widthPixels = dm.widthPixels;
         int heightPixels = dm.heightPixels;
-        android.view.WindowManager.LayoutParams p = alertDialog.getWindow().getAttributes();  //获取对话框当前的参数值
-        p.width = (int) (widthPixels * 0.9);   //高度设置为屏幕的0.3
-        p.height = (int) (heightPixels * 0.9);    //宽度设置为屏幕的0.5
-        alertDialog.getWindow().setAttributes(p);     //设置生效
+        Window window = alertDialog.getWindow();
+        android.view.WindowManager.LayoutParams p = window.getAttributes();  //获取对话框当前的参数值
+        p.width = (int) (widthPixels * 0.85);   //高度设置为屏幕的0.85
+        p.height = (int) (heightPixels * 0.85);    //宽度设置为屏幕的0.85
+        window.setGravity(Gravity.CENTER);
+        window.getDecorView().setPadding(0, 0, 0, 0);
+        //window.setBackgroundDrawable(new ColorDrawable());
+        window.setAttributes(p);     //设置生效
 
     }
 
