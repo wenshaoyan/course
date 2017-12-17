@@ -66,10 +66,10 @@ shape drawable xml文件中定义的一个几何图形，定义在res/drawable/�
 
     -->
     <padding
-        android:bottom="10dp"
-        android:left="10dp"
-        android:right="10dp"
-        android:top="10dp" />
+        android:bottom="2dp"
+        android:left="8dp"
+        android:right="8dp"
+        android:top="2dp" />
 
     <!--
        size 大小

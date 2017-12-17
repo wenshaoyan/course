@@ -175,7 +175,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         ListView listView = (ListView) view.findViewById(R.id.question_outline_list);
         QuestionOutlineListAdapter adapter = new QuestionOutlineListAdapter(mContext, R.layout.question_item_view, mListData);
         listView.setAdapter(adapter);
-        builder = new AlertDialog.Builder(mContext);
+        builder = new AlertDialog.Builder(mContext,R.style.questionOutlineAlertDialog);
         builder.setView(view);
         alertDialog = builder.create();
         alertDialog.show();
