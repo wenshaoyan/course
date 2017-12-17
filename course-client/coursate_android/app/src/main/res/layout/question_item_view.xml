@@ -10,5 +10,21 @@
         android:layout_height="wrap_content"
         android:background="@drawable/shape_answered_icon"
         android:textColor="@android:color/white"
-        android:textSize="13sp"/>
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:id="@id/question_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="15sp"
+        android:textColor="@android:color/white"/>
 </LinearLayout>

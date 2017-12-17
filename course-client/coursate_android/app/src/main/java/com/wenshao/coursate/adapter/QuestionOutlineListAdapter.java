@@ -41,6 +41,7 @@ public class QuestionOutlineListAdapter extends ArrayAdapter {
 
         View view = inflater.inflate(mResourceId, null);
         TextView question_status = (TextView) view.findViewById(R.id.question_status);
+        TextView question_title = (TextView) view.findViewById(R.id.question_title);
         if (questionBean != null && questionBean.getQuestionAnswerBean()!=null){
             question_status.setBackgroundResource(R.drawable.shape_answered_icon);
             question_status.setText(R.string.answered);
@@ -48,6 +49,7 @@ public class QuestionOutlineListAdapter extends ArrayAdapter {
             question_status.setBackgroundResource(R.drawable.shape_unanswered_icon);
             question_status.setText(R.string.unanswered);
         }
+        question_title.setText(questionBean != null ? questionBean.getTitle() : null);
         return view;
 
     }
