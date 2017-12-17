@@ -40,6 +40,8 @@
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:dividerHeight">1dp</item>
         <item name="actionBarSize">54dp</item>
+
+        <!--<item name="android:windowAnimationStyle">@+android:style/Animation.Translucent</item>-->
     </style>
 
     <style name="questionOutlineAlertDialog" parent="Theme.AppCompat.Light.Dialog">

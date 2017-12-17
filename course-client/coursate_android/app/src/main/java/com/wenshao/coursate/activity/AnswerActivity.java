@@ -347,7 +347,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
 
         QuestionBean questionBean8 = new QuestionBean();
         questionBean8.setId("8");
-        questionBean8.setTitle("工笔是哪种绘画形式的技法8");
+        questionBean8.setTitle("工笔是哪种绘画形式的技法81111111111111111111111111111");
         questionBean8.setType("choose");
         questionBean8.setAnalysis("戴维的法阵");
         questionBean8.setCorrect_answer("1");

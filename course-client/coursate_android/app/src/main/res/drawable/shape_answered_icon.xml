@@ -30,11 +30,11 @@ shape drawable xml文件中定义的一个几何图形，定义在res/drawable/�
 
     -->
     <corners
-        android:bottomLeftRadius="3dp"
-        android:bottomRightRadius="3dp"
-        android:radius="3dp"
-        android:topLeftRadius="3dp"
-        android:topRightRadius="3dp" />
+        android:bottomLeftRadius="7dp"
+        android:bottomRightRadius="7dp"
+        android:radius="7dp"
+        android:topLeftRadius="7dp"
+        android:topRightRadius="7dp" />
 
     <!--
         渐变色
@@ -66,10 +66,10 @@ shape drawable xml文件中定义的一个几何图形，定义在res/drawable/�
 
     -->
     <padding
-        android:bottom="2dp"
-        android:left="8dp"
-        android:right="8dp"
-        android:top="2dp" />
+        android:bottom="1dp"
+        android:left="5dp"
+        android:right="5dp"
+        android:top="1dp" />
 
     <!--
        size 大小
@@ -77,7 +77,7 @@ shape drawable xml文件中定义的一个几何图形，定义在res/drawable/�
        android:height 整型 高度
 
     -->
-    <size android:width="5dp" android:height="5dp" />
+    <size android:width="35dp" android:height="5dp" />
 
     <!--
         内部填充
