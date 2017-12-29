@@ -34,7 +34,7 @@ public class BannerServer{
             // 设置缓存对象
             Reader resourceAsReader = Resources.getResourceAsReader("cache/bannerCache.xml");
             
-            Server server = new Server(processor, 9091,resourceAsReader);
+            Server server = new Server(processor, 9091);
             server.startService();
         } catch (IOException e) {
             e.printStackTrace();
