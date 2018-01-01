@@ -1,5 +1,6 @@
 package com.wenshao.coursate.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
@@ -14,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -25,6 +27,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -161,22 +165,30 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         mToolbar.removeAllViews();  //清除原有的toolbar
         View inflate = getLayoutInflater().inflate(R.layout.toolbar_answer, mToolbar);
         mToolbarShowTime = (TextView) inflate.findViewById(R.id.toolbar_answer_time);
-        mToolbarTitle = (TextView) inflate.findViewById(R.id.toolbar_answer_title);
-        Drawable drawable1 = ContextCompat.getDrawable(mContext, R.drawable.icon_practice_time);
+        ImageView answer_back = (ImageView) inflate.findViewById(R.id.answer_back);
+        /*Drawable drawable1 = ContextCompat.getDrawable(mContext, R.drawable.icon_practice_time);
 
         drawable1.setBounds(0, 0, drawable1.getMinimumWidth(),
                 drawable1.getMinimumHeight());
-        mToolbarShowTime.setCompoundDrawables(drawable1, null, null, null);
+        mToolbarShowTime.setCompoundDrawables(drawable1, null, null, null);*/
 
+        answer_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnswerActivity.this.onBackPressed();
+            }
+        });
     }
 
     protected void actionAlertDialog() {
 
         AlertDialog.Builder builder;
-        AlertDialog alertDialog;
+        final AlertDialog alertDialog;
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.dialog_question_outline, null);
         ListView listView = (ListView) view.findViewById(R.id.question_outline_list);
+        Button dialog_close = (Button) view.findViewById(R.id.dialog_close);
+
         QuestionOutlineListAdapter adapter = new QuestionOutlineListAdapter(mContext, R.layout.question_item_view, mListData);
         listView.setAdapter(adapter);
         builder = new AlertDialog.Builder(mContext,R.style.questionOutlineAlertDialog);
@@ -196,6 +208,13 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         //window.setBackgroundDrawable(new ColorDrawable());
         window.setAttributes(p);     //设置生效
 
+
+        dialog_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.cancel();
+            }
+        });
     }
 
     @Override
@@ -236,7 +255,6 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         if (currentItem != 0) { // 可以移动
             mVpQuestion.setCurrentItem(currentItem - 1);
         }
-
     }
 
     private List<QuestionBean> produceData() {
@@ -378,4 +396,5 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         return questionBeans;
 
     }
+
 }
