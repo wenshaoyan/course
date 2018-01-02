@@ -18,7 +18,6 @@
     <!--答题系统-->
     <item name="answer_back" type="id">answer_back</item>
     <item name="toolbar_answer_time" type="id">toolbar_answer_time</item>
-    <item name="toolbar_answer_title" type="id">toolbar_answer_title</item>
     <item name="vp_question" type="id">vp_question</item>
     <item name="ll_buttons" type="id">ll_buttons</item>
     <item name="question_pre" type="id">question_pre</item>
@@ -38,5 +37,6 @@
     <item name="option_6" type="id">option_6</item>
     <item name="question_outline_list" type="id">question_outline_list</item>
     <item name="question_status" type="id">question_status</item>
+    <item name="dialog_close" type="id">dialog_close</item>
 
 </resources>
