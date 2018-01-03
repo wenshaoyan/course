@@ -24,16 +24,16 @@ app.proxy = true;
 
 // 从请求头中获取user-info
 app.use(getUser({
-	"Unchecked": ['/user'],
-	"salt": "wenshao"
+    "Unchecked": ['/user'],
+    "salt": "wenshao"
 }));
 // logger
 app.use(router_log());
 
 app.use(response({
-	jsonFile: errorSource,
-	failLog: getLogger('resFail'),
-	unknownLog: getLogger('resUnknown')
+    jsonFile: errorSource,
+    failLog: getLogger('resFail'),
+    unknownLog: getLogger('resUnknown')
 }));
 
 router.use('/:serverName', write.routes(), write.allowedMethods());
@@ -41,7 +41,7 @@ router.use('/:serverName', write.routes(), write.allowedMethods());
 app.use(router.routes(), router.allowedMethods());
 // response
 app.on('error', function (err, ctx) {
-	console.log(err);
+    console.log(err);
 });
 
 module.exports = app;

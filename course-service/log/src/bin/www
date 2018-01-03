@@ -73,10 +73,10 @@ const server = http.createServer(app.callback());
  */
 let client;
 client = CuratorFrameworkFactory.builder()
-    .connectString(serviceConfig.zkServer)
-    .namespace(`http/${getEnv()}/${serviceConfig.serverName}`)
-    .setLogger(getLogger('zookeeper'))
-    .build(main);
+.connectString(serviceConfig.zkServer)
+.namespace(`http/${getEnv()}/${serviceConfig.serverName}`)
+.setLogger(getLogger('zookeeper'))
+.build(main);
 client.start();
 
 

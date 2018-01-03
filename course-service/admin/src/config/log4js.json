@@ -26,7 +26,7 @@
     },
     "thriftLogCentre":{
       "type": "logFaces-HTTP",
-      "url": "${logUrl}/thrift"
+      "url": "${logUrl}"
     },
     "resSuccess":{
       "type": "dateFile",
