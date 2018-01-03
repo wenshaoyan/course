@@ -3,9 +3,17 @@
  */
 'use strict';
 const router = require('koa-router')();
-router.post('/:env/:salt/:appender',async (ctx, next) => {
-	console.log(ctx.params);
+const Log = require('../schema/log');
+const moment = require('moment');
+router.post('/:env/:salt/:appender', async (ctx, next) => {
+	const params = ctx.params;
+	const reqBody = ctx.request.body;
+	const dynamicLog = Log.dynamicModel(params.serverName, moment().format('YYYYMM'));
+	const log = new dynamicLog(reqBody);
 	ctx.body = 'ok';
+	log.save().catch(e => {
+		console.error(e);
+	})
 });
 
 module.exports = router;

@@ -32,12 +32,11 @@ app.use(router_log());
 
 app.use(response({
 	jsonFile: errorSource,
-	successLog: getLogger('resSuccess'),
 	failLog: getLogger('resFail'),
-	unknownLog:getLogger('resUnknown')
+	unknownLog: getLogger('resUnknown')
 }));
 
-router.use('/AdminHttp', write.routes(), write.allowedMethods());
+router.use('/:serverName', write.routes(), write.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
 // response
