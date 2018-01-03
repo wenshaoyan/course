@@ -24,6 +24,10 @@
       "compress": true,
       "encoding": "utf-8"
     },
+    "thriftLogCentre":{
+      "type": "logFaces-HTTP",
+      "url": "${logUrl}/thrift"
+    },
     "resSuccess":{
       "type": "dateFile",
       "filename": "../logs/resSuccess",
@@ -53,7 +57,7 @@
     "default": { "appenders": ["console"], "level":"trace" },
     "router":{"appenders":["console","router"],"level":"trace"},
     "zookeeper":{"appenders":["console","zookeeper"],"level":"trace"},
-    "thrift":{"appenders":["console","thrift"],"level":"trace"},
+    "thrift":{"appenders":["console","thrift","thriftLogCentre"],"level":"trace"},
     "resSuccess":{"appenders":["resSuccess"],"level":"trace"},
     "resFail":{"appenders":["console","resFail"],"level":"trace"},
     "resUnknown":{"appenders":["console","resUnknown"],"level":"trace"}
