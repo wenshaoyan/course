@@ -1,0 +1,163 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ *
+ */
+
+const debug = require('debug')('demo:server');
+const http = require('http');
+const os = require('os');
+
+// 加载log4js
+const log4js = require('log4js');
+const log4jsConfig = require('../config/log4js.json');
+global.getLogger = log4js.getLogger;
+const logger = getLogger();
+
+// 定义全局变量
+let serviceConfig = require('../config/service.json');
+log4js.configure(log4jsConfig);
+global.getServiceConfig = () => {
+    return serviceConfig;
+};
+const envSet = new Set(['develop', 'production']);
+
+function getEnv() {
+    let env = process.env.NODE_ENV;
+    if (env && envSet.has(env)) return env;
+    return 'develop';
+}
+
+global.NODE_ENV = getEnv();
+
+
+// 获取本地ip
+const localIp = (function () {
+    const interfaces = os.networkInterfaces();
+    for (let devName in interfaces) {
+        let iface = interfaces[devName];
+        for (let i = 0; i < iface.length; i++) {
+            let alias = iface[i];
+            if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+                return alias.address;
+            }
+        }
+    }
+})();
+if (!localIp) throw new Error('获取本地ip地址失败');
+
+const app = require('../app');
+
+// 连接zookeeper
+const Curator = require('../modules/node-curator');
+const CuratorFrameworkFactory = Curator.CuratorFrameworkFactory;
+const Stat = Curator.Stat;
+
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(serviceConfig.port || '3001');
+// app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+const server = http.createServer(app.callback());
+
+/**
+ * zookeeper start
+ */
+let client;
+client = CuratorFrameworkFactory.builder()
+    .connectString(serviceConfig.zkServer)
+    .namespace(`http/${getEnv()}/${serviceConfig.serverName}`)
+    .setLogger(getLogger('zookeeper'))
+    .build(main);
+client.start();
+
+
+async function main() {
+    try {
+        server.listen(port);
+        server.on('error', onError);
+        server.on('listening', onListening);
+        logger.debug(`server start succeed :port=${port}`);
+    } catch (e) {
+        console.log(e);
+        process.exit();
+
+    }
+}
+
+process.on('exit', (code) => {
+    logger.error('process exit!');
+    logger.info('zookeeper session close!');
+    // client = null;
+    //process.exit();
+    //client.close();
+
+});
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+    let port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+
+    return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+
+    let bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
+
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+    let addr = server.address();
+    let bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
+    debug('Listening on ' + bind);
+}
