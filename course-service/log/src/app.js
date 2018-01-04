@@ -9,8 +9,11 @@ const router = require('koa-router')();
 const convert = require('koa-convert');
 const bodyparser = require('koa-bodyparser')();
 const json = require('koa-json');
+const pug = require('pug');
+const views = require('koa-views');
 
 const write = require('./routers/write');
+const log = require('./routers/log');
 
 const router_log = require('./middleware/router_log');
 const getUser = require('./middleware/get_user');
@@ -21,6 +24,7 @@ const errorSource = require('./config/error_source.json');
 app.use(convert(bodyparser));
 app.use(convert(json()));
 app.proxy = true;
+app.use(views(__dirname+'/views', { extension: 'pug' }));
 
 // 从请求头中获取user-info
 app.use(getUser({
@@ -35,8 +39,8 @@ app.use(response({
     failLog: getLogger('resFail'),
     unknownLog: getLogger('resUnknown')
 }));
-
-router.use('/:serverName', write.routes(), write.allowedMethods());
+router.use('/log',log.routes(), log.allowedMethods());
+// router.use('/:serverName', write.routes(), write.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
 // response

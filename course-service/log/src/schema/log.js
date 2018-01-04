@@ -13,7 +13,7 @@ const LogSchema = new Schema({
 });
 
 function dynamicModel(serverName, date) {
-    return mongoose.model(serverName + '_Log_' + date, LogSchema);
+    return mongoose.model(serverName + '_' + date, LogSchema);
 }
 
 module.exports = {dynamicModel};
