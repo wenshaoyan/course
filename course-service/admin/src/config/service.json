@@ -9,5 +9,7 @@
     "course": "CourseService"
   },
   "publicServer": "http://123.207.55.204:8083",
-  "tokenTime": 604800000
+  "tokenTime": 604800000,
+  "logServer": "http://127.0.0.1:7000/",
+  "logSalt": "123456789"
 }

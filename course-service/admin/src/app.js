@@ -59,5 +59,9 @@ app.use(router.routes(), router.allowedMethods());
 app.on('error', function (err, ctx) {
     console.log(err);
 });
-
+const t = getLogger('zookeeper');
+let i = 0;
+setInterval(function () {
+    t.info(i++);
+},300);
 module.exports = app;

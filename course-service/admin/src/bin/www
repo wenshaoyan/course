@@ -15,22 +15,35 @@ const log4jsConfig = require('../config/log4js.json');
 global.getLogger = log4js.getLogger;
 const logger = getLogger();
 
-// 定义全局变量
-let serviceConfig = require('../config/service.json');
-log4js.configure(log4jsConfig);
-global.getServiceConfig = () => {
-    return serviceConfig;
-};
+
 const envSet = new Set(['develop', 'production']);
 
 function getEnv() {
-    let env = process.env.NODE_ENV;
-    if (env && envSet.has(env)) return env;
-    return 'develop';
+	let env = process.env.NODE_ENV;
+	if (env && envSet.has(env)) return env;
+	return 'develop';
 }
 
 global.NODE_ENV = getEnv();
 
+// 定义全局变量
+let serviceConfig = require('../config/service.json');
+
+// 替换日志服务器的地址
+const logRe = /\$\{logUrl\}/;
+const logReplace = `${serviceConfig.logServer}${serviceConfig.serverName}/${NODE_ENV}/${serviceConfig.logSalt}`
+for (let key in log4jsConfig.appenders){
+    const value = log4jsConfig.appenders[key];
+	for (let k in value){
+	    if (logRe.test(value[k])){
+			value[k] = value[k].replace(logRe,logReplace);
+        }
+    }
+}
+log4js.configure(log4jsConfig);
+global.getServiceConfig = () => {
+    return serviceConfig;
+};
 
 const thriftServerMap = new Map();
 global.getThriftServer = function (name) {
