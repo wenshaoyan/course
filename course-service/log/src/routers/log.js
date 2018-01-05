@@ -18,7 +18,13 @@ router.get('/', async (ctx, next) => {
 router.get('/search', async (ctx, next) => {
     const params = ctx.query;
     // 参数检查
-
+    if (!moment(params.startTime).isValid()){
+        params.startTime = moment().startOf('hour').format(formatTime);
+    }
+    if (!moment(params.endTime).isValid()){
+        params.endTime = moment().format(formatTime);
+    }
+    // 动态加载
     if (params.isTail === '1') {
         params.startTime = moment().subtract(5, 'seconds').format(formatTime);
         params.endTime = moment().format(formatTime);
