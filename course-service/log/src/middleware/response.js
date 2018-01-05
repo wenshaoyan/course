@@ -45,7 +45,6 @@ function func(opt) {
         await next();
         if (ctx.body && ctx.type !== 'text/html') {
 
-            console.log(ctx.body)
             const result = {
                 success: true,
                 data: ctx.body,

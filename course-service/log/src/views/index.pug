@@ -1,8 +1,268 @@
-html
+doctype html
+html(lang="en")
     head
+        meta(charset="UTF-8")
+        |
+        title Title
+        |
+        style.
+            .recordContent {
+                word-break: break-all;
+            }
 
+            .paragraph {
+                margin: 10px;
+            }
+
+            .searchHead {
+                color: #109917;
+            }
+
+            .showUp {
+                padding: 0px
+            }
     body
-        select(name="")
-            option(value="0") DIVCSS5
+        div
+            span 服务列表
             |
-            option(value="1") DIVCSS5
+            select#serverName
+                each item in serviceList
+                    option(value = item) #{item}
+            |
+            span 起始时间
+            |
+            input#startTime(value=startTime)
+            |
+            span 结束时间
+            |
+            input#endTime(value=endTime)
+            |
+            span 关键字
+            |
+            input#searchText
+            |
+            label
+                input#isTail(type="checkbox", value="")
+                | 动态
+            |
+            button(onclick="getData(true)") 搜索
+        div#content
+        script.
+            //通过createXHR()函数创建一个XHR对象：
+            function createXHR() {
+                if (window.XMLHttpRequest) {    //IE7+、Firefox、Opera、Chrome 和Safari
+                    return new XMLHttpRequest();
+                } else if (window.ActiveXObject) {   //IE6 及以下
+                    var versions = ['MSXML2.XMLHttp', 'Microsoft.XMLHTTP'];
+                    for (var i = 0, len = versions.length; i < len; i++) {
+                        try {
+                            return new ActiveXObject(version[i]);
+                            break;
+                        } catch (e) {
+                            //跳过
+                        }
+                    }
+                } else {
+                    throw new Error('浏览器不支持XHR对象！');
+                }
+            }
+            //封装ajax，参数为一个对象
+            function ajax(obj) {
+                var xhr = createXHR();  //创建XHR对象
+                //通过使用JS随机字符串解决IE浏览器第二次默认获取缓存的问题
+                obj.url = obj.url + '?rand=' + Math.random();
+                obj.data = params(obj.data);  //通过params()将名值对转换成字符串
+                //若是GET请求，则将数据加到url后面
+                if (obj.method === 'get') {
+                    obj.url += obj.url.indexOf('?') == -1 ? '?' + obj.data : '&' + obj.data;
+                }
+                if (obj.async === true) {   //true表示异步，false表示同步
+                    //使用异步调用的时候，需要触发readystatechange 事件
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4) {   //判断对象的状态是否交互完成
+                            callback();      //回调
+                        }
+                    };
+                }
+                //在使用XHR对象时，必须先调用open()方法，
+                //它接受三个参数：请求类型(get、post)、请求的URL和表示是否异步。
+                xhr.open(obj.method, obj.url, obj.async);
+                if (obj.method === 'post') {
+                    //post方式需要自己设置http的请求头，来模仿表单提交。
+                    //放在open方法之后，send方法之前。
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.send(obj.data);     //post方式将数据放在send()方法里
+                } else {
+                    xhr.send(null);     //get方式则填null
+                }
+                if (obj.async === false) {  //同步
+                    callback();
+                }
+
+                function callback() {
+                    if (xhr.status == 200) {  //判断http的交互是否成功，200表示成功
+                        obj.success(xhr.responseText);          //回调传递参数
+                    } else {
+                        alert('获取数据错误！错误代号：' + xhr.status + '，错误信息：' + xhr.statusText);
+                    }
+                }
+            }
+            //名值对转换为字符串
+            function params(data) {
+                var arr = [];
+                for (var i in data) {
+                    //特殊字符传参产生的问题可以使用encodeURIComponent()进行编码处理
+                    arr.push(encodeURIComponent(i) + '=' + encodeURIComponent(data[i]));
+                }
+                return arr.join('&');
+            }
+        script.
+            let timer;
+            function showUpClick(ele) {
+                const currentContent = ele.parentNode.nextElementSibling;
+                if (currentContent.style.display === "block") {
+                    currentContent.style.display = "none";
+                    ele.innerHTML = '+';
+                } else {
+                    ele.innerHTML = '-';
+                    currentContent.style.display = "block";
+                }
+            }
+            function createParagraph(params) {
+                const div = document.createElement('div');
+                const span = document.createElement('span');
+                const button = document.createElement('button');
+                const searchHead = document.createElement('div')
+                const con = document.createElement('div')
+
+                div.className = 'paragraph';
+
+                searchHead.className = 'searchHead';
+
+                let spanInnerText = `服务:${params.serverName}; 开始时间=${params.startTime ? params.startTime : ''};`
+                spanInnerText += `结束时间=${params.endTime ? params.endTime : ''};`
+                spanInnerText += `关键字=${params.searchText ? params.searchText : ''};动态=${params.isTail ? '是' : '否'}`;
+                span.innerText = spanInnerText
+                button.className = 'showUp';
+                button.onclick = function (ev) {
+                    showUpClick(this);
+                };
+                button.innerText = '-';
+
+                searchHead.appendChild(button);
+                searchHead.appendChild(span);
+
+                con.style.display = 'block';
+
+                div.appendChild(searchHead);
+                div.appendChild(con);
+
+                return div;
+
+            }
+
+            // 对Date的扩展，将 Date 转化为指定格式的String
+            // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
+            // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+            // 例子：
+            // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
+            // (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18
+            const dateFormat = function (d,fmt) { //author: meizz
+                if (!fmt) fmt = 'yyyy-MM-dd hh:mm:ss.S';
+                var o = {
+                    "M+": d.getMonth() + 1,                 //月份
+                    "d+": d.getDate(),                    //日
+                    "h+": d.getHours(),                   //小时
+                    "m+": d.getMinutes(),                 //分
+                    "s+": d.getSeconds(),                 //秒
+                    "q+": Math.floor((d.getMonth() + 3) / 3), //季度
+                    "S": d.getMilliseconds()             //毫秒
+                };
+                if (/(y+)/.test(fmt))
+                    fmt = fmt.replace(RegExp.$1, (d.getFullYear() + "").substr(4 - RegExp.$1.length));
+                for (var k in o)
+                    if (new RegExp("(" + k + ")").test(fmt))
+                        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                return fmt;
+            }
+            /*
+            * 追加最后一个div的content
+            * */
+            function appendContent(data) {
+                const paragraphList = document.getElementsByClassName('paragraph');
+                const paragraph = paragraphList[paragraphList.length - 1];
+                const con = paragraph.childNodes[1];
+
+                for (let value of data) {
+                    const c = document.createElement('div');
+                    c.className = 'recordContent';
+                    let divData = '';
+                    divData += dateFormat(new Date(value.t)) + ' ';
+                    divData += value.p + ' ';
+                    divData += value.g + ' ';
+                    divData += value.m + ' ';
+                    c.innerText = divData;
+                    con.appendChild(c);
+                }
+
+            }
+            /**
+             * 获取请求参数
+             */
+            function getParams() {
+
+                const params = {};
+                const serviceSelect = document.getElementById("serverName");
+                params.serverName = serviceSelect.options[serviceSelect.selectedIndex].value;
+                params.startTime = document.getElementById('startTime').value;
+                params.endTime = document.getElementById('endTime').value;
+                params.searchText = document.getElementById('searchText').value;
+                console.log('========================', params.searchText)
+
+                if (!params.searchText) delete params.searchText;
+
+                params.isTail = document.getElementById('isTail').checked ? 1 : 0;
+                return params;
+            }
+            /**
+             * 请求数据
+             */
+            function getData(isInit) {
+                const params = getParams();
+                const root = document.getElementById('content');
+                if (timer) clearTimeout(timer);
+                if (params.isTail) {
+                    getDataAction(isInit,params,root);
+                    timer = setInterval(function () {
+                        getDataAction(false,params,root);
+                    }, 5000);
+                } else {
+                    getDataAction(isInit,params,root);
+                }
+
+            }
+            function getDataAction(isInit,params,root) {
+
+                ajax({
+                    method: "get",
+                    url: "search",
+                    data: params,
+                    async: true,
+                    success: function (msg) {
+                        if (!params.isTail || isInit) {
+                            root.appendChild(createParagraph(params));
+                        }
+                        appendContent(JSON.parse(msg).data);
+
+
+                    },
+                    error: function () {
+                        console.log("error")
+                        // alert('请求失败')
+                    }
+                })
+            }
+            window.onload = function () {
+                getData(true);
+            };
+

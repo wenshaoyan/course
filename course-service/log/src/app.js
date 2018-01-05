@@ -20,7 +20,16 @@ const getUser = require('./middleware/get_user');
 const response = require('./middleware/response');
 const errorSource = require('./config/error_source.json');
 
+const compress = require('koa-compress');
+
 // middlewares
+app.use(convert(compress({
+    filter: function (content_type) {
+        return /text/i.test(content_type)
+    },
+    threshold: 2048,
+    flush: require('zlib').Z_SYNC_FLUSH
+})));
 app.use(convert(bodyparser));
 app.use(convert(json()));
 app.proxy = true;
@@ -40,7 +49,7 @@ app.use(response({
     unknownLog: getLogger('resUnknown')
 }));
 router.use('/log',log.routes(), log.allowedMethods());
-// router.use('/:serverName', write.routes(), write.allowedMethods());
+router.use('/:serverName', write.routes(), write.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
 // response

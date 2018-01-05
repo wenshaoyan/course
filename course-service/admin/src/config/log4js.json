@@ -16,6 +16,10 @@
       "compress": true,
       "encoding": "utf-8"
     },
+    "zookeeperLogCentre":{
+      "type": "logFaces-HTTP",
+      "url": "${logUrl}"
+    },
     "thrift":{
       "type":"file",
       "filename": "../logs/thrift.log",
@@ -56,7 +60,7 @@
   "categories": {
     "default": { "appenders": ["console"], "level":"trace" },
     "router":{"appenders":["console","router"],"level":"trace"},
-    "zookeeper":{"appenders":["console","zookeeper"],"level":"trace"},
+    "zookeeper":{"appenders":["console","zookeeper","zookeeperLogCentre"],"level":"trace"},
     "thrift":{"appenders":["console","thrift","thriftLogCentre"],"level":"trace"},
     "resSuccess":{"appenders":["resSuccess"],"level":"trace"},
     "resFail":{"appenders":["console","resFail"],"level":"trace"},

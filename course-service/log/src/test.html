@@ -3,20 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .recordContent {
+            word-break: break-all;
+        }
+
+        .paragraph {
+            margin: 10px;
+        }
+
+        .searchHead {
+            color: #109917;
+        }
+
+        .showUp {
+            padding: 0px
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <span>服务列表</span>
-        <select>
-            <option value="1">a</option>
-            <option value="2">b</option>
-        </select>
-        <span>起始时间</span>
-        <input >
-        <span>结束时间</span>
-        <input >
+<div>
+    <span>服务列表</span>
+    <select id="serverName">
+        <option value="1">a</option>
+        <option value="2">b</option>
+    </select>
+    <span>起始时间</span>
+    <input id="startTime" value="2017-01-01 09-09">
+    <span>结束时间</span>
+    <input id="endTime" value="2017-02-01">
+    <span id="searchText">关键字</span>
+    <input>
+    <label><input type="radio" value="">动态</label>
+    <button onclick="getData()">搜索</button>
+</div>
 
+<div>
+    <div class="paragraph">
+        <div class="searchHead">
+            <button class="showUp" onclick="showUpClick(this)">-</button>
+            <span>服务:1; 开始时间=2017-01-01; 结束时间=2017-02-02; 关键字=123;动态=是</span>
+        </div>
+        <div style="display: block">
+            <div class="recordContent">2222</div>
+            <div class="recordContent">222222</div>
+        </div>
     </div>
+    <div class="paragraph">
+        <div class="searchHead">
+            <button class="showUp" onclick="showUpClick(this)">-</button>
+            <span>服务:1; 开始时间=2017-01-01; 结束时间=2017-02-02; 关键字=123;动态=是</span>
+        </div>
+        <div style="display: block">
+            <div class="recordContent">2222</div>
+            <div class="recordContent">222222</div>
+        </div>
+    </div>
+</div>
+<script>
+    //通过createXHR()函数创建一个XHR对象：
+    function createXHR() {
+        if (window.XMLHttpRequest) {    //IE7+、Firefox、Opera、Chrome 和Safari
+            return new XMLHttpRequest();
+        } else if (window.ActiveXObject) {   //IE6 及以下
+            var versions = ['MSXML2.XMLHttp', 'Microsoft.XMLHTTP'];
+            for (var i = 0, len = versions.length; i < len; i++) {
+                try {
+                    return new ActiveXObject(version[i]);
+                    break;
+                } catch (e) {
+                //跳过
+                }
+            }
+        } else {
+            throw new Error('浏览器不支持XHR对象！');
+        }
+    }
 
+    //封装ajax，参数为一个对象
+    function ajax(obj) {
+        var xhr = createXHR();  //创建XHR对象
+        //通过使用JS随机字符串解决IE浏览器第二次默认获取缓存的问题
+        obj.url = obj.url + '?rand=' + Math.random();
+        obj.data = params(obj.data);  //通过params()将名值对转换成字符串
+        //若是GET请求，则将数据加到url后面
+        if (obj.method === 'get') {
+            obj.url += obj.url.indexOf('?') == -1 ? '?' + obj.data : '&' + obj.data;
+        }
+        if (obj.async === true) {   //true表示异步，false表示同步
+            //使用异步调用的时候，需要触发readystatechange 事件
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {   //判断对象的状态是否交互完成
+                    callback();      //回调
+                }
+            };
+        }
+        //在使用XHR对象时，必须先调用open()方法，
+        //它接受三个参数：请求类型(get、post)、请求的URL和表示是否异步。
+        xhr.open(obj.method, obj.url, obj.async);
+        if (obj.method === 'post') {
+        //post方式需要自己设置http的请求头，来模仿表单提交。
+        //放在open方法之后，send方法之前。
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(obj.data);     //post方式将数据放在send()方法里
+        } else {
+            xhr.send(null);     //get方式则填null
+        }
+        if (obj.async === false) {  //同步
+            callback();
+        }
+
+        function callback() {
+            if (xhr.status == 200) {  //判断http的交互是否成功，200表示成功
+                obj.success(xhr.responseText);          //回调传递参数
+            } else {
+                alert('获取数据错误！错误代号：' + xhr.status + '，错误信息：' + xhr.statusText);
+            }
+        }
+    }
+
+    //名值对转换为字符串
+    function params(data) {
+        var arr = [];
+        for (var i in data) {
+            //特殊字符传参产生的问题可以使用encodeURIComponent()进行编码处理
+            arr.push(encodeURIComponent(i) + '=' + encodeURIComponent(data[i]));
+        }
+        return arr.join('&');
+    }
+</script>
+<script>
+    function showUpClick(ele) {
+        const currentContent = ele.parentNode.nextElementSibling;
+        if (currentContent.style.display === "block") {
+            currentContent.style.display = "none";
+            ele.innerHTML = '+';
+        } else {
+            ele.innerHTML = '-';
+            currentContent.style.display = "block";
+        }
+    }
+
+    /**
+     * 获取请求参数
+     */
+    function getParams() {
+        const params = {};
+        const serviceSelect = document.getElementById("serverName");
+        params.serverName = serviceSelect.options[serviceSelect.selectedIndex].value;
+
+        params.startTime = document.getElementById('startTime').value;
+        params.endTime = document.getElementById('endTime').value;
+        params.searchText = document.getElementById('searchText').value;
+        return params;
+    }
+
+    /**
+     * 请求数据
+     */
+    function getData() {
+        const params = getParams();
+        ajax({
+            method: "get",
+            url: "ajax.php",
+            data: params,
+            success: function (msg) {
+                console.log(msg);
+            },
+            error: function () {
+                console.log("error")
+                // alert('请求失败')
+            }
+        })
+    }
+    window.onload = function () {
+        getData();
+    };
+</script>
 </body>
 </html>
