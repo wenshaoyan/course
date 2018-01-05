@@ -5,7 +5,7 @@
   "publicServer": "http://123.207.55.204:8083",
   "mongodbServer": "mongodb://123.207.55.204/course",
   "mongodbOptions": {
-    "poolSize": 5,
+    "poolSize": 10,
     "user": "course",
     "pass": "19930314106"
   }

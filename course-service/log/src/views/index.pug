@@ -21,8 +21,149 @@ html(lang="en")
             .showUp {
                 padding: 0px
             }
+
+            .nav {
+                width: 100%;
+                height: 30px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                background: rgba(147, 128, 153, 0.51);
+            }
+
+            /*正在加载效果*/
+            .spinner {
+                margin: 100px auto;
+                width: 20px;
+                height: 20px;
+                position: relative;
+            }
+
+            .container1 > div, .container2 > div, .container3 > div {
+                width: 6px;
+                height: 6px;
+                background-color: #333;
+
+                border-radius: 100%;
+                position: absolute;
+                -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
+                animation: bouncedelay 1.2s infinite ease-in-out;
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+            }
+
+            .spinner .spinner-container {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+
+            .container2 {
+                -webkit-transform: rotateZ(45deg);
+                transform: rotateZ(45deg);
+            }
+
+            .container3 {
+                -webkit-transform: rotateZ(90deg);
+                transform: rotateZ(90deg);
+            }
+
+            .circle1 {
+                top: 0;
+                left: 0;
+            }
+
+            .circle2 {
+                top: 0;
+                right: 0;
+            }
+
+            .circle3 {
+                right: 0;
+                bottom: 0;
+            }
+
+            .circle4 {
+                left: 0;
+                bottom: 0;
+            }
+
+            .container2 .circle1 {
+                -webkit-animation-delay: -1.1s;
+                animation-delay: -1.1s;
+            }
+
+            .container3 .circle1 {
+                -webkit-animation-delay: -1.0s;
+                animation-delay: -1.0s;
+            }
+
+            .container1 .circle2 {
+                -webkit-animation-delay: -0.9s;
+                animation-delay: -0.9s;
+            }
+
+            .container2 .circle2 {
+                -webkit-animation-delay: -0.8s;
+                animation-delay: -0.8s;
+            }
+
+            .container3 .circle2 {
+                -webkit-animation-delay: -0.7s;
+                animation-delay: -0.7s;
+            }
+
+            .container1 .circle3 {
+                -webkit-animation-delay: -0.6s;
+                animation-delay: -0.6s;
+            }
+
+            .container2 .circle3 {
+                -webkit-animation-delay: -0.5s;
+                animation-delay: -0.5s;
+            }
+
+            .container3 .circle3 {
+                -webkit-animation-delay: -0.4s;
+                animation-delay: -0.4s;
+            }
+
+            .container1 .circle4 {
+                -webkit-animation-delay: -0.3s;
+                animation-delay: -0.3s;
+            }
+
+            .container2 .circle4 {
+                -webkit-animation-delay: -0.2s;
+                animation-delay: -0.2s;
+            }
+
+            .container3 .circle4 {
+                -webkit-animation-delay: -0.1s;
+                animation-delay: -0.1s;
+            }
+
+            @-webkit-keyframes bouncedelay {
+                0%, 80%, 100% {
+                    -webkit-transform: scale(0.0)
+                }
+                40% {
+                    -webkit-transform: scale(1.0)
+                }
+            }
+
+            @keyframes bouncedelay {
+                0%, 80%, 100% {
+                    transform: scale(0.0);
+                    -webkit-transform: scale(0.0);
+                }
+                40% {
+                    transform: scale(1.0);
+                    -webkit-transform: scale(1.0);
+                }
+            }
     body
-        div
+        div(class='nav')
             span 服务列表
             |
             select#serverName
@@ -46,7 +187,40 @@ html(lang="en")
                 | 动态
             |
             button(onclick="getData(true)") 搜索
-        div#content
+            |
+            label
+                input#isRoll(type="checkbox", value="")
+                | 滚动
+            |
+        div#content(style="margin-top:30px")
+        div#spinner.spinner
+            .spinner-container.container1
+                .circle1
+                |
+                .circle2
+                |
+                .circle3
+                |
+                .circle4
+            |
+            .spinner-container.container2
+                .circle1
+                |
+                .circle2
+                |
+                .circle3
+                |
+                .circle4
+            |
+            .spinner-container.container3
+                .circle1
+                |
+                .circle2
+                |
+                .circle3
+                |
+                .circle4
+
         script.
             //通过createXHR()函数创建一个XHR对象：
             function createXHR() {
@@ -167,7 +341,7 @@ html(lang="en")
             // 例子：
             // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
             // (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18
-            const dateFormat = function (d,fmt) { //author: meizz
+            const dateFormat = function (d, fmt) { //author: meizz
                 if (!fmt) fmt = 'yyyy-MM-dd hh:mm:ss.S';
                 var o = {
                     "M+": d.getMonth() + 1,                 //月份
@@ -204,6 +378,10 @@ html(lang="en")
                     c.innerText = divData;
                     con.appendChild(c);
                 }
+                console.log(document.getElementById('isRoll').checked);
+                if (document.getElementById('isRoll').checked) {
+                    con.childNodes[con.childNodes.length - 1].scrollIntoView();
+                }
 
             }
             /**
@@ -217,7 +395,6 @@ html(lang="en")
                 params.startTime = document.getElementById('startTime').value;
                 params.endTime = document.getElementById('endTime').value;
                 params.searchText = document.getElementById('searchText').value;
-                console.log('========================', params.searchText)
 
                 if (!params.searchText) delete params.searchText;
 
@@ -232,17 +409,33 @@ html(lang="en")
                 const root = document.getElementById('content');
                 if (timer) clearTimeout(timer);
                 if (params.isTail) {
-                    getDataAction(isInit,params,root);
+                    getDataAction(isInit, params, root);
                     timer = setInterval(function () {
-                        getDataAction(false,params,root);
+                        getDataAction(false, params, root);
                     }, 5000);
                 } else {
-                    getDataAction(isInit,params,root);
+                    getDataAction(isInit, params, root);
                 }
 
             }
-            function getDataAction(isInit,params,root) {
-
+            /*
+            * 显示正在加载
+            * 
+            * */
+            function showLoading() {
+                document.getElementById('spinner').style.display = 'block';
+            }
+            /*
+            * 隐藏正在加载
+            *
+            * */
+            function hideLoading() {
+                setTimeout(function () {
+                    document.getElementById('spinner').style.display = 'none';
+                },500);
+            }
+            function getDataAction(isInit, params, root) {
+                showLoading();
                 ajax({
                     method: "get",
                     url: "search",
@@ -253,12 +446,13 @@ html(lang="en")
                             root.appendChild(createParagraph(params));
                         }
                         appendContent(JSON.parse(msg).data);
-
+                        hideLoading();
 
                     },
                     error: function () {
                         console.log("error")
                         // alert('请求失败')
+                        hideLoading();
                     }
                 })
             }

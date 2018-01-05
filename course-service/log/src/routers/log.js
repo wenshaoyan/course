@@ -11,7 +11,7 @@ router.get('/', async (ctx, next) => {
 
     await ctx.render('index', {
         serviceList: collList,
-        startTime: moment().startOf('day').format(formatTime),
+        startTime: moment().startOf('hour').format(formatTime),
         endTime: moment().format(formatTime),
     });
 });

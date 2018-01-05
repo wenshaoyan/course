@@ -15,5 +15,8 @@ const LogSchema = new Schema({
 function dynamicModel(serverName, date) {
     return mongoose.model(serverName + '_' + date, LogSchema);
 }
+function getCollName() {
+
+}
 
 module.exports = {dynamicModel};
