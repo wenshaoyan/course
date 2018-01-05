@@ -38,6 +38,19 @@
         android:textColor="@android:color/white"
         android:textSize="21sp"
         android:text="@string/answer_time_default"/>
-
+    <TextView
+        android:id="@id/toolbar_answer_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="10dp"
+        android:drawablePadding="3dp"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:text="@string/post"/>
 
 </RelativeLayout>

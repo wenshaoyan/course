@@ -1,11 +1,7 @@
 package com.wenshao.coursate.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -40,8 +36,9 @@ import com.wenshao.coursate.bean.QuestionBean;
 import com.wenshao.coursate.listener.AnswerListener;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static android.R.id.list;
 
@@ -57,8 +54,6 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
     private List<QuestionBean> mListData;
 
     private Toolbar mToolbar;
-    private TextView mToolbarShowTime;
-    private TextView mToolbarTitle;
     private ViewPager mVpQuestion;
     private int mQuestionMaxIndex;
     private LinearLayout mQuestionList;
@@ -66,6 +61,11 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
     private LinearLayout mQuestionErrorList;
     private LinearLayout mQuestionPre;
     private LinearLayout mQuestionNext;
+    private TextView toolbar_answer_time;
+
+    private long midTime = 20;
+    private Timer timerCountDown = new Timer();
+
     private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -75,6 +75,10 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
             } else if (msg.what == 2) {
                 int currentItem = mVpQuestion.getCurrentItem();
                 mQuestionListTitle.setText((currentItem + 1) + "/" + (mQuestionMaxIndex + 1));
+            } else if (msg.what == 3) { // 更新时间
+                toolbar_answer_time.setText(AnswerActivity.this.getCurrentFormat());
+            } else if (msg.what == 4) { // 显示提交提示框
+                AnswerActivity.this.popupPostHint();
             }
 
         }
@@ -89,6 +93,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         if (supportActionBar != null) supportActionBar.setDisplayHomeAsUpEnabled(false);
         initUi();
         initData();
+        startCountDown();
     }
 
     private void initUi() {
@@ -164,13 +169,15 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
     private void showToolbarHome() {
         mToolbar.removeAllViews();  //清除原有的toolbar
         View inflate = getLayoutInflater().inflate(R.layout.toolbar_answer, mToolbar);
-        mToolbarShowTime = (TextView) inflate.findViewById(R.id.toolbar_answer_time);
+        toolbar_answer_time = (TextView) inflate.findViewById(R.id.toolbar_answer_time);
         ImageView answer_back = (ImageView) inflate.findViewById(R.id.answer_back);
+        TextView toolbar_answer_post = (TextView) inflate.findViewById(R.id.toolbar_answer_post);
         /*Drawable drawable1 = ContextCompat.getDrawable(mContext, R.drawable.icon_practice_time);
 
         drawable1.setBounds(0, 0, drawable1.getMinimumWidth(),
                 drawable1.getMinimumHeight());
         mToolbarShowTime.setCompoundDrawables(drawable1, null, null, null);*/
+
 
         answer_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,6 +185,13 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
                 AnswerActivity.this.onBackPressed();
             }
         });
+        toolbar_answer_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnswerActivity.this.popupPostHint();
+            }
+        });
+        // toolbar_answer_post.setText();
     }
 
     protected void actionAlertDialog() {
@@ -191,7 +205,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
 
         QuestionOutlineListAdapter adapter = new QuestionOutlineListAdapter(mContext, R.layout.question_item_view, mListData);
         listView.setAdapter(adapter);
-        builder = new AlertDialog.Builder(mContext,R.style.questionOutlineAlertDialog);
+        builder = new AlertDialog.Builder(mContext, R.style.questionOutlineAlertDialog);
         builder.setView(view);
         alertDialog = builder.create();
         alertDialog.show();
@@ -207,14 +221,21 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         window.getDecorView().setPadding(0, 0, 0, 0);
         //window.setBackgroundDrawable(new ColorDrawable());
         window.setAttributes(p);     //设置生效
-
-
         dialog_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialog.cancel();
             }
         });
+        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                AnswerActivity.this.goonCountDown();
+            }
+        });
+
+        // 中断定时器
+        this.breakCountDown();
     }
 
     @Override
@@ -255,6 +276,87 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         if (currentItem != 0) { // 可以移动
             mVpQuestion.setCurrentItem(currentItem - 1);
         }
+    }
+
+    /**
+     * 弹出提交提示框
+     */
+    private void popupPostHint() {
+        breakCountDown();
+        new AlertDialog.Builder(mContext).setTitle("是否提交")//设置对话框标题
+                .setMessage("请确认所有数据都保存后再推出系统！")//设置显示的内容
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {//添加确定按钮
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
+                        Log.i("onClick", " 请保存数据！");
+                    }
+                })
+                .setNegativeButton("返回", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AnswerActivity.this.goonCountDown();
+                    }
+                })
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        AnswerActivity.this.goonCountDown();
+                    }
+                })
+                .show();//在按键响应事件中显示此对话框
+    }
+
+    /**
+     * 获取当前midTime对应的格式化时间
+     *
+     * @return 时间
+     */
+    private String getCurrentFormat() {
+        long hh = midTime / 60 / 60 % 60;
+        long mm = midTime / 60 % 60;
+        long ss = midTime % 60;
+        return hh + ":" + mm + ":" + ss;
+    }
+
+    /**
+     * 开启新倒计时
+     */
+    private void startCountDown() {
+        if (midTime <= 0) return;
+        if (timerCountDown == null) timerCountDown = new Timer();
+        timerCountDown.schedule(new TimerTask() {
+            public void run() {
+                midTime--;
+                if (midTime == 0) mHandler.sendEmptyMessage(4);  // 时间到 弹出提交提示框
+                else mHandler.sendEmptyMessage(3);
+            }
+        }, 0, 1000);
+    }
+
+    /**
+     * 中断倒计时
+     */
+    private void breakCountDown() {
+        if (timerCountDown != null) {
+            timerCountDown.cancel();
+            timerCountDown = null;
+        }
+
+    }
+
+    /**
+     * 结束倒计时
+     */
+    private void endCountDown() {
+        this.breakCountDown();
+        midTime = 0;
+    }
+
+    /**
+     * 继续倒计时
+     */
+    private void goonCountDown() {
+        this.startCountDown();
     }
 
     private List<QuestionBean> produceData() {
@@ -397,4 +499,9 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.endCountDown();
+    }
 }

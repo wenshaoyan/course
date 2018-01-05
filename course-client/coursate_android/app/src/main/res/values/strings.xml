@@ -25,4 +25,5 @@
     <string name="answer_time_default">15:00</string>
     <string name="unanswered">未答</string>
     <string name="answered">已答</string>
+    <string name="post">提交</string>
 </resources>
