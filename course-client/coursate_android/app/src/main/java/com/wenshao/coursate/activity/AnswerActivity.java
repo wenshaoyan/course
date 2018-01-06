@@ -2,27 +2,22 @@ package com.wenshao.coursate.activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.SystemClock;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,6 +27,7 @@ import android.widget.TextView;
 import com.wenshao.coursate.R;
 import com.wenshao.coursate.adapter.QuestionAdapter;
 import com.wenshao.coursate.adapter.QuestionOutlineListAdapter;
+import com.wenshao.coursate.bean.QuestionAnswerBean;
 import com.wenshao.coursate.bean.QuestionBean;
 import com.wenshao.coursate.listener.AnswerListener;
 
@@ -39,8 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import static android.R.id.list;
 
 /**
  * Created by wenshao on 2017/12/3.
@@ -62,9 +56,11 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
     private LinearLayout mQuestionPre;
     private LinearLayout mQuestionNext;
     private TextView toolbar_answer_time;
+    private TextView toolbar_answer_post;
 
     private long midTime = 20;
     private Timer timerCountDown = new Timer();
+    private String pageStatus = "answer";
 
     private final Handler mHandler = new Handler() {
         @Override
@@ -135,7 +131,6 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
 
             }
         });
-
         questionAdapter.setAnswerListener(new AnswerListener() {
             @Override
             public void onAnswerComplete() {
@@ -171,7 +166,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         View inflate = getLayoutInflater().inflate(R.layout.toolbar_answer, mToolbar);
         toolbar_answer_time = (TextView) inflate.findViewById(R.id.toolbar_answer_time);
         ImageView answer_back = (ImageView) inflate.findViewById(R.id.answer_back);
-        TextView toolbar_answer_post = (TextView) inflate.findViewById(R.id.toolbar_answer_post);
+        toolbar_answer_post = (TextView) inflate.findViewById(R.id.toolbar_answer_post);
         /*Drawable drawable1 = ContextCompat.getDrawable(mContext, R.drawable.icon_practice_time);
 
         drawable1.setBounds(0, 0, drawable1.getMinimumWidth(),
@@ -188,7 +183,9 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         toolbar_answer_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AnswerActivity.this.popupPostHint();
+                if (pageStatus.equals("answer")) AnswerActivity.this.popupPostHint();
+                else if (pageStatus.equals("query")) reopenActivity();
+
             }
         });
         // toolbar_answer_post.setText();
@@ -288,7 +285,12 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {//添加确定按钮
                     @Override
                     public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
-                        Log.i("onClick", " 请保存数据！");
+                        setAdapterShowInfo();
+                        checkQuestion();
+                        // 回到第一个
+                        mVpQuestion.setCurrentItem(0);
+                        // 设置当前页面的状态  answer:答题状态 query:查看状态
+                        setPageStatus("query");
                     }
                 })
                 .setNegativeButton("返回", new DialogInterface.OnClickListener() {
@@ -359,13 +361,67 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         this.startCountDown();
     }
 
+    /**
+     * 打分
+     */
+    private void checkQuestion() {
+        float totalScore = 0;
+        for (QuestionBean questionBean : mListData) {
+            QuestionAnswerBean questionAnswerBean = questionBean.getQuestionAnswerBean();
+            if (questionAnswerBean != null) {    // 已答
+                if (questionBean.getType().equals(QuestionBean.RADIO_CHOOSE_TYPE)) { // 单选题打分规则
+                    if (questionBean.getCorrect_answer().equals(questionAnswerBean.getContent())) {  // 答对
+                        totalScore += questionBean.getScore();
+                    } else {
+
+                    }
+                } else if (questionBean.getType().equals(QuestionBean.MULTIPLE_CHOOSE_TYPE)) {   // 多选题打分规则
+
+                }
+
+            } else {    // 未答
+
+            }
+        }
+        Log.i(TAG, "checkQuestion: " + totalScore);
+
+    }
+
+    /**
+     * 设置adapter中显示解析详情
+     */
+    private void setAdapterShowInfo(){
+        QuestionAdapter questionAdapter = (QuestionAdapter)mVpQuestion.getAdapter();
+        questionAdapter.setShowInfo(true);
+    }
+
+    /**
+     * 设置当前页面的状态
+     * @param status answer:答题状态 query:查看状态
+     */
+    private void setPageStatus(String status){
+        if (status.equals("query")){
+            pageStatus = status;
+            endCountDown();
+            toolbar_answer_time.setText("查看解析");
+            toolbar_answer_post.setText("重新答题");
+        }
+
+    }
+    /**
+     * 重新打开当前的AnswerActivity
+     */
+    public void reopenActivity() {
+        startActivity(new Intent(mContext,AnswerActivity.class));
+        finish();
+    }
     private List<QuestionBean> produceData() {
         ArrayList<QuestionBean> questionBeans = new ArrayList<>();
 
         QuestionBean questionBean1 = new QuestionBean();
         questionBean1.setId("1");
         questionBean1.setTitle("您的年龄是？");
-        questionBean1.setType("choose");
+        questionBean1.setType("rc");
         questionBean1.setAnalysis("戴维的法阵");
         questionBean1.setCorrect_answer("1");
         questionBean1.setScore(10);
@@ -382,7 +438,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         QuestionBean questionBean2 = new QuestionBean();
         questionBean2.setId("2");
         questionBean2.setTitle("您的工作是？");
-        questionBean2.setType("choose");
+        questionBean2.setType("rc");
         questionBean2.setAnalysis("戴维的法阵");
         questionBean2.setCorrect_answer("1");
         questionBean2.setScore(10);
@@ -399,7 +455,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         QuestionBean questionBean3 = new QuestionBean();
         questionBean3.setId("3");
         questionBean3.setTitle("工笔是哪种绘画形式的技法3");
-        questionBean3.setType("choose");
+        questionBean3.setType("rc");
         questionBean3.setAnalysis("戴维的法阵");
         questionBean3.setCorrect_answer("1");
         questionBean3.setScore(10);
@@ -414,7 +470,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         QuestionBean questionBean4 = new QuestionBean();
         questionBean4.setId("4");
         questionBean4.setTitle("工笔是哪种绘画形式的技4");
-        questionBean4.setType("choose");
+        questionBean4.setType("rc");
         questionBean4.setAnalysis("戴维的法阵");
         questionBean4.setCorrect_answer("1");
         questionBean4.setScore(10);
@@ -429,7 +485,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         QuestionBean questionBean5 = new QuestionBean();
         questionBean5.setId("5");
         questionBean5.setTitle("工笔是哪种绘画形式的技5");
-        questionBean5.setType("choose");
+        questionBean5.setType("rc");
         questionBean5.setAnalysis("戴维的法阵");
         questionBean5.setCorrect_answer("1");
         questionBean5.setScore(10);
@@ -444,7 +500,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         QuestionBean questionBean6 = new QuestionBean();
         questionBean6.setId("6");
         questionBean6.setTitle("工笔是哪种绘画形式的技法6");
-        questionBean6.setType("choose");
+        questionBean6.setType("rc");
         questionBean6.setAnalysis("戴维的法阵");
         questionBean6.setCorrect_answer("1");
         questionBean6.setScore(10);
@@ -459,7 +515,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         QuestionBean questionBean7 = new QuestionBean();
         questionBean7.setId("7");
         questionBean7.setTitle("工笔是哪种绘画形式的技7");
-        questionBean7.setType("choose");
+        questionBean7.setType("rc");
         questionBean7.setAnalysis("戴维的法阵");
         questionBean7.setCorrect_answer("1");
         questionBean7.setScore(10);
@@ -475,7 +531,7 @@ public class AnswerActivity extends ToolBarActivity implements View.OnClickListe
         QuestionBean questionBean8 = new QuestionBean();
         questionBean8.setId("8");
         questionBean8.setTitle("工笔是哪种绘画形式的技法81111111111111111111111111111");
-        questionBean8.setType("choose");
+        questionBean8.setType("rc");
         questionBean8.setAnalysis("戴维的法阵");
         questionBean8.setCorrect_answer("1");
         questionBean8.setScore(10);

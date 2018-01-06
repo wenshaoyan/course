@@ -39,5 +39,8 @@
     <item name="question_outline_list" type="id">question_outline_list</item>
     <item name="question_status" type="id">question_status</item>
     <item name="dialog_close" type="id">dialog_close</item>
+    <item name="answer_info" type="id">answer_info</item>
+    <item name="answer_info_correct" type="id">answer_info_correct</item>
+    <item name="answer_info_analysis" type="id">answer_info_analysis</item>
 
 </resources>

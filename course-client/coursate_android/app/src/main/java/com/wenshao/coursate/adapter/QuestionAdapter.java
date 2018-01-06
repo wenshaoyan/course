@@ -40,6 +40,7 @@ public class QuestionAdapter extends PagerAdapter implements CustomRadioGroup.On
     private AnswerListener mAnswerListener;
     private Map<String, Integer> dataIndexMap = new HashMap<>();
     private List<View> mListView = new ArrayList<>();
+    private boolean isShowInfo = false;
 
 
     public QuestionAdapter(Context context, List<QuestionBean> listData) {
@@ -64,7 +65,14 @@ public class QuestionAdapter extends PagerAdapter implements CustomRadioGroup.On
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View view = mListView.get(position);
+        // 判断是否显示解析
+        LinearLayout answer_info = (LinearLayout) view.findViewById(R.id.answer_info);
+        CustomRadioGroup questionOptions = (CustomRadioGroup) view.findViewById(R.id.question_options);
 
+        if (isShowInfo) {
+            answer_info.setVisibility(View.VISIBLE);
+            disableRadioGroup(questionOptions);
+        }
         QuestionBean questionBean = mListData.get(position);
         // view 已经加载过数据
         if (questionBean.isInit()) {
@@ -72,11 +80,25 @@ public class QuestionAdapter extends PagerAdapter implements CustomRadioGroup.On
             return view;
         }
 
-        CustomRadioGroup questionOptions = (CustomRadioGroup) view.findViewById(R.id.question_options);
 
         TextView questionType = (TextView) view.findViewById(R.id.question_type);
         TextView questionTitle = (TextView) view.findViewById(R.id.question_title);
+        TextView answer_info_correct = (TextView) view.findViewById(R.id.answer_info_correct);
+        TextView answer_info_analysis = (TextView) view.findViewById(R.id.answer_info_analysis);
 
+        // 设置正确答案
+
+        try{
+            int i = Integer.parseInt(questionBean.getCorrect_answer());
+            String s =  "正确答案："+SERIAL_NUMBER[i];
+            answer_info_correct.setText(s);
+        }catch (Exception e){
+            Log.i(TAG, "instantiateItem:Correct_answer的值异常"+questionBean.getCorrect_answer());
+        }
+
+        // 设置解析
+        String s1 = "解析："+questionBean.getAnalysis();
+        answer_info_analysis.setText(s1);
 
         setQuestionType(questionBean.getType(), questionType);
         questionTitle.setText(questionBean.getTitle());
@@ -101,7 +123,7 @@ public class QuestionAdapter extends PagerAdapter implements CustomRadioGroup.On
 
     private void setQuestionType(String type, TextView view) {
         switch (type) {
-            case QuestionBean.CHOOSE_TYPE:
+            case QuestionBean.RADIO_CHOOSE_TYPE:
                 view.setText("(单选题)");
                 break;
             default:
@@ -155,8 +177,6 @@ public class QuestionAdapter extends PagerAdapter implements CustomRadioGroup.On
         questionAnswerBean.setAnswer_time(1);
 
         setQuestionAnswer(customRadioGroup, questionAnswerBean);
-        Log.i(TAG, "onCheckedChanged: " + SERIAL_NUMBER[checkIndex] + "========" + customRadioGroup.getBusinessId());
-
     }
 
     /**
@@ -183,6 +203,20 @@ public class QuestionAdapter extends PagerAdapter implements CustomRadioGroup.On
      */
     public void setAnswerListener(AnswerListener answerListener) {
         mAnswerListener = answerListener;
+    }
+
+    public void setShowInfo(boolean b){
+        this.isShowInfo = b;
+    }
+
+    public boolean isShowInfo() {
+        return isShowInfo;
+    }
+
+    public void disableRadioGroup(RadioGroup testRadioGroup) {
+        for (int i = 0; i < testRadioGroup.getChildCount(); i++) {
+            testRadioGroup.getChildAt(i).setEnabled(false);
+        }
     }
 
     private class ViewHolder {

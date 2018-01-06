@@ -9,7 +9,8 @@ import java.util.List;
  */
 
 public class QuestionBean {
-    public final static String CHOOSE_TYPE = "choose";
+    public final static String RADIO_CHOOSE_TYPE = "rc";    // 单选
+    public final static String MULTIPLE_CHOOSE_TYPE = "mc"; // 多选
 
     private String id;               // 问题id
     private String title;           // 问题题目

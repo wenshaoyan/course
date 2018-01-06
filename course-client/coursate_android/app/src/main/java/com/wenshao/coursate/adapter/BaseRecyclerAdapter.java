@@ -106,7 +106,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<SmartV
 
     /**
      * Notifies the attached observers that the underlying data has been changed
-     * and any View reflecting the data set should refresh itself.
+     * and any View reflecting the data set should reopenActivity itself.
      */
     public void notifyListDataSetChanged() {
         mDataSetObservable.notifyChanged();
