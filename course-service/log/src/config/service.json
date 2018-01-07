@@ -3,10 +3,10 @@
   "zkServer": "123.207.55.204:2181,123.207.55.204:2182,123.207.55.204:2183",
   "serverName": "Log",
   "publicServer": "http://123.207.55.204:8083",
-  "mongodbServer": "mongodb://123.207.55.204/course",
+  "mongodbServer": "mongodb://120.92.108.221/log",
   "mongodbOptions": {
     "poolSize": 10,
-    "user": "course",
+    "user": "log",
     "pass": "19930314106"
   }
 }
