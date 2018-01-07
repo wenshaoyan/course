@@ -42,5 +42,8 @@
     <item name="answer_info" type="id">answer_info</item>
     <item name="answer_info_correct" type="id">answer_info_correct</item>
     <item name="answer_info_analysis" type="id">answer_info_analysis</item>
+    <item name="papers_list" type="id">papers_list</item>
+    <item name="papers_item_title" type="id">papers_item_title</item>
+
 
 </resources>

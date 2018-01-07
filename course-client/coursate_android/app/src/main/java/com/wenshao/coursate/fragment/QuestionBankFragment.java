@@ -8,12 +8,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 
 import com.wenshao.coursate.R;
 import com.wenshao.coursate.activity.AnswerActivity;
+import com.wenshao.coursate.adapter.PapersAdapter;
 import com.wenshao.coursate.adapter.QuestionAdapter;
+import com.wenshao.coursate.bean.PaperBean;
+import com.wenshao.coursate.listener.PaperListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +32,7 @@ import java.util.List;
 public class QuestionBankFragment extends Fragment{
     private Context mContext;
     private View mView;
+    private ListView papers_list;
 
     private static final String TAG = "QuestionBankFragment";
     public static QuestionBankFragment newInstance() {
@@ -38,22 +44,35 @@ public class QuestionBankFragment extends Fragment{
         mView = inflater.inflate(R.layout.fragment_question_bank, null);
         mContext = getContext();
         initUi();
+        initData();
         return mView;
     }
 
 
 
     private void initUi() {
-
-        final Button start  = (Button)mView.findViewById(R.id.start);
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(mContext, AnswerActivity.class));
-            }
-        });
+        papers_list = (ListView) mView.findViewById(R.id.papers_list);
 
     }
+    private void initData(){
+        PapersAdapter papersAdapter = new PapersAdapter(getPaperList(), mContext);
+        papersAdapter.setPaperListener(new PaperListener() {
+            @Override
+            public void onPaperOpenListener() {
+                startActivity(new Intent(mContext,AnswerActivity.class));
+            }
+        });
+        papers_list.setAdapter(papersAdapter);
+
+
+    }
+    private List<PaperBean> getPaperList(){
+        ArrayList<PaperBean> paperBeen = new ArrayList<>();
+        paperBeen.add(new PaperBean(1,"数据库系统原理"));
+
+        return paperBeen;
+    }
+
 
     /*FlexibleRichTextView richTextView  = (FlexibleRichTextView)mView.findViewById(R.id.test_text);
         StringBuilder stringBuilder = new StringBuilder();
