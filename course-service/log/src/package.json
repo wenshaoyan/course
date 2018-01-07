@@ -20,7 +20,8 @@
     "moment": "^2.20.1",
     "mongoose": "^5.0.0-rc1",
     "node-uuid": "^1.4.8",
-    "node-zookeeper-client": "^0.2.2"
+    "node-zookeeper-client": "^0.2.2",
+    "pug": "^2.0.0-rc.4"
   },
   "devDependencies": {
     "nodemon": "^1.8.1"
