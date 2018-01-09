@@ -41,9 +41,6 @@ import socialSign from './socialsignin'
 export default {
   components: { socialSign },
   name: 'login',
-  created() {
-    this.test()
-  },
   data() {
     const validateTel = (rule, value, callback) => {
       if (!validaTel(value)) {
@@ -74,10 +71,6 @@ export default {
     }
   },
   methods: {
-    test() {
-      const ax = new ActiveXObject('EZOPENUIACTIVEXK.EzOpenUIActiveXKCtrl.1')
-      console.log(ax)
-    },
     showPwd() {
       if (this.pwdType === 'password') {
         this.pwdType = ''
@@ -101,31 +94,7 @@ export default {
           return false
         }
       })
-    },
-    afterQRScan() {
-          // const hash = window.location.hash.slice(1)
-          // const hashObj = getQueryObject(hash)
-          // const originUrl = window.location.origin
-          // history.replaceState({}, '', originUrl)
-          // const codeMap = {
-          //   wechat: 'code',
-          //   tencent: 'code'
-          // }
-          // const codeName = hashObj[codeMap[this.auth_type]]
-          // if (!codeName) {
-          //   alert('第三方登录失败')
-          // } else {
-          //   this.$store.dispatch('LoginByThirdparty', codeName).then(() => {
-          //     this.$router.push({ path: '/' })
-          //   })
-          // }
     }
-  },
-  created() {
-        // window.addEventListener('hashchange', this.afterQRScan)
-  },
-  destroyed() {
-        // window.removeEventListener('hashchange', this.afterQRScan)
   }
 }
 </script>
