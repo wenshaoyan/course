@@ -14,6 +14,9 @@ const banner = require('./routes/banner');
 const client = require('./routes/client');
 const version = require('./routes/version');
 const course = require('./routes/course');
+const topicBank = require('./routes/topic_bank');
+const topic = require('./routes/topic');
+const topicOption = require('./routes/topic_option');
 
 const router_log = require('./middleware/router_log');
 const getUser = require('./middleware/get_user');
@@ -52,6 +55,9 @@ router.use('/banners', banner.routes(), banner.allowedMethods());
 router.use('/clients', client.routes(), client.allowedMethods());
 router.use('/versions', version.routes(), version.allowedMethods());
 router.use('/courses', course.routes(), course.allowedMethods());
+router.use('/topic-banks', topicBank.routes(), topicBank.allowedMethods());
+router.use('/topics', topic.routes(), topic.allowedMethods());
+router.use('/topic-options', topicOption.routes(), topicOption.allowedMethods());
 
 
 app.use(router.routes(), router.allowedMethods());

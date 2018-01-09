@@ -1767,3 +1767,471 @@ Custom.prototype.write = function(output) {
   return;
 };
 
+var TopicOption = module.exports.TopicOption = function(args) {
+  this.id = null;
+  this.context = null;
+  this.topic_id = null;
+  this.create_time = null;
+  this.update_time = null;
+  if (args) {
+    if (args.id !== undefined && args.id !== null) {
+      this.id = args.id;
+    }
+    if (args.context !== undefined && args.context !== null) {
+      this.context = args.context;
+    }
+    if (args.topic_id !== undefined && args.topic_id !== null) {
+      this.topic_id = args.topic_id;
+    }
+    if (args.create_time !== undefined && args.create_time !== null) {
+      this.create_time = args.create_time;
+    }
+    if (args.update_time !== undefined && args.update_time !== null) {
+      this.update_time = args.update_time;
+    }
+  }
+};
+TopicOption.prototype = {};
+TopicOption.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.context = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.I32) {
+        this.topic_id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 4:
+      if (ftype == Thrift.Type.STRING) {
+        this.create_time = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 5:
+      if (ftype == Thrift.Type.STRING) {
+        this.update_time = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+TopicOption.prototype.write = function(output) {
+  output.writeStructBegin('TopicOption');
+  if (this.id !== null && this.id !== undefined) {
+    output.writeFieldBegin('id', Thrift.Type.I32, 1);
+    output.writeI32(this.id);
+    output.writeFieldEnd();
+  }
+  if (this.context !== null && this.context !== undefined) {
+    output.writeFieldBegin('context', Thrift.Type.STRING, 2);
+    output.writeString(this.context);
+    output.writeFieldEnd();
+  }
+  if (this.topic_id !== null && this.topic_id !== undefined) {
+    output.writeFieldBegin('topic_id', Thrift.Type.I32, 3);
+    output.writeI32(this.topic_id);
+    output.writeFieldEnd();
+  }
+  if (this.create_time !== null && this.create_time !== undefined) {
+    output.writeFieldBegin('create_time', Thrift.Type.STRING, 4);
+    output.writeString(this.create_time);
+    output.writeFieldEnd();
+  }
+  if (this.update_time !== null && this.update_time !== undefined) {
+    output.writeFieldBegin('update_time', Thrift.Type.STRING, 5);
+    output.writeString(this.update_time);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var Topic = module.exports.Topic = function(args) {
+  this.id = null;
+  this.title = null;
+  this.type = null;
+  this.analysis = null;
+  this.correct_answer = null;
+  this.score = null;
+  this.create_time = null;
+  this.update_time = null;
+  this.topicOptions = null;
+  if (args) {
+    if (args.id !== undefined && args.id !== null) {
+      this.id = args.id;
+    }
+    if (args.title !== undefined && args.title !== null) {
+      this.title = args.title;
+    }
+    if (args.type !== undefined && args.type !== null) {
+      this.type = args.type;
+    }
+    if (args.analysis !== undefined && args.analysis !== null) {
+      this.analysis = args.analysis;
+    }
+    if (args.correct_answer !== undefined && args.correct_answer !== null) {
+      this.correct_answer = args.correct_answer;
+    }
+    if (args.score !== undefined && args.score !== null) {
+      this.score = args.score;
+    }
+    if (args.create_time !== undefined && args.create_time !== null) {
+      this.create_time = args.create_time;
+    }
+    if (args.update_time !== undefined && args.update_time !== null) {
+      this.update_time = args.update_time;
+    }
+    if (args.topicOptions !== undefined && args.topicOptions !== null) {
+      this.topicOptions = Thrift.copyList(args.topicOptions, [ttypes.TopicOption]);
+    }
+  }
+};
+Topic.prototype = {};
+Topic.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.title = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.STRING) {
+        this.type = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 4:
+      if (ftype == Thrift.Type.STRING) {
+        this.analysis = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 5:
+      if (ftype == Thrift.Type.STRING) {
+        this.correct_answer = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 6:
+      if (ftype == Thrift.Type.DOUBLE) {
+        this.score = input.readDouble();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 7:
+      if (ftype == Thrift.Type.STRING) {
+        this.create_time = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 8:
+      if (ftype == Thrift.Type.STRING) {
+        this.update_time = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 9:
+      if (ftype == Thrift.Type.LIST) {
+        var _size32 = 0;
+        var _rtmp336;
+        this.topicOptions = [];
+        var _etype35 = 0;
+        _rtmp336 = input.readListBegin();
+        _etype35 = _rtmp336.etype;
+        _size32 = _rtmp336.size;
+        for (var _i37 = 0; _i37 < _size32; ++_i37)
+        {
+          var elem38 = null;
+          elem38 = new ttypes.TopicOption();
+          elem38.read(input);
+          this.topicOptions.push(elem38);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+Topic.prototype.write = function(output) {
+  output.writeStructBegin('Topic');
+  if (this.id !== null && this.id !== undefined) {
+    output.writeFieldBegin('id', Thrift.Type.I32, 1);
+    output.writeI32(this.id);
+    output.writeFieldEnd();
+  }
+  if (this.title !== null && this.title !== undefined) {
+    output.writeFieldBegin('title', Thrift.Type.STRING, 2);
+    output.writeString(this.title);
+    output.writeFieldEnd();
+  }
+  if (this.type !== null && this.type !== undefined) {
+    output.writeFieldBegin('type', Thrift.Type.STRING, 3);
+    output.writeString(this.type);
+    output.writeFieldEnd();
+  }
+  if (this.analysis !== null && this.analysis !== undefined) {
+    output.writeFieldBegin('analysis', Thrift.Type.STRING, 4);
+    output.writeString(this.analysis);
+    output.writeFieldEnd();
+  }
+  if (this.correct_answer !== null && this.correct_answer !== undefined) {
+    output.writeFieldBegin('correct_answer', Thrift.Type.STRING, 5);
+    output.writeString(this.correct_answer);
+    output.writeFieldEnd();
+  }
+  if (this.score !== null && this.score !== undefined) {
+    output.writeFieldBegin('score', Thrift.Type.DOUBLE, 6);
+    output.writeDouble(this.score);
+    output.writeFieldEnd();
+  }
+  if (this.create_time !== null && this.create_time !== undefined) {
+    output.writeFieldBegin('create_time', Thrift.Type.STRING, 7);
+    output.writeString(this.create_time);
+    output.writeFieldEnd();
+  }
+  if (this.update_time !== null && this.update_time !== undefined) {
+    output.writeFieldBegin('update_time', Thrift.Type.STRING, 8);
+    output.writeString(this.update_time);
+    output.writeFieldEnd();
+  }
+  if (this.topicOptions !== null && this.topicOptions !== undefined) {
+    output.writeFieldBegin('topicOptions', Thrift.Type.LIST, 9);
+    output.writeListBegin(Thrift.Type.STRUCT, this.topicOptions.length);
+    for (var iter39 in this.topicOptions)
+    {
+      if (this.topicOptions.hasOwnProperty(iter39))
+      {
+        iter39 = this.topicOptions[iter39];
+        iter39.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var TopicBank = module.exports.TopicBank = function(args) {
+  this.id = null;
+  this.name = null;
+  this.type = null;
+  this.create_time = null;
+  this.update_time = null;
+  this.topics = null;
+  if (args) {
+    if (args.id !== undefined && args.id !== null) {
+      this.id = args.id;
+    }
+    if (args.name !== undefined && args.name !== null) {
+      this.name = args.name;
+    }
+    if (args.type !== undefined && args.type !== null) {
+      this.type = args.type;
+    }
+    if (args.create_time !== undefined && args.create_time !== null) {
+      this.create_time = args.create_time;
+    }
+    if (args.update_time !== undefined && args.update_time !== null) {
+      this.update_time = args.update_time;
+    }
+    if (args.topics !== undefined && args.topics !== null) {
+      this.topics = Thrift.copyList(args.topics, [ttypes.Topic]);
+    }
+  }
+};
+TopicBank.prototype = {};
+TopicBank.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.name = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.STRING) {
+        this.type = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 4:
+      if (ftype == Thrift.Type.STRING) {
+        this.create_time = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 5:
+      if (ftype == Thrift.Type.STRING) {
+        this.update_time = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 6:
+      if (ftype == Thrift.Type.LIST) {
+        var _size40 = 0;
+        var _rtmp344;
+        this.topics = [];
+        var _etype43 = 0;
+        _rtmp344 = input.readListBegin();
+        _etype43 = _rtmp344.etype;
+        _size40 = _rtmp344.size;
+        for (var _i45 = 0; _i45 < _size40; ++_i45)
+        {
+          var elem46 = null;
+          elem46 = new ttypes.Topic();
+          elem46.read(input);
+          this.topics.push(elem46);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+TopicBank.prototype.write = function(output) {
+  output.writeStructBegin('TopicBank');
+  if (this.id !== null && this.id !== undefined) {
+    output.writeFieldBegin('id', Thrift.Type.I32, 1);
+    output.writeI32(this.id);
+    output.writeFieldEnd();
+  }
+  if (this.name !== null && this.name !== undefined) {
+    output.writeFieldBegin('name', Thrift.Type.STRING, 2);
+    output.writeString(this.name);
+    output.writeFieldEnd();
+  }
+  if (this.type !== null && this.type !== undefined) {
+    output.writeFieldBegin('type', Thrift.Type.STRING, 3);
+    output.writeString(this.type);
+    output.writeFieldEnd();
+  }
+  if (this.create_time !== null && this.create_time !== undefined) {
+    output.writeFieldBegin('create_time', Thrift.Type.STRING, 4);
+    output.writeString(this.create_time);
+    output.writeFieldEnd();
+  }
+  if (this.update_time !== null && this.update_time !== undefined) {
+    output.writeFieldBegin('update_time', Thrift.Type.STRING, 5);
+    output.writeString(this.update_time);
+    output.writeFieldEnd();
+  }
+  if (this.topics !== null && this.topics !== undefined) {
+    output.writeFieldBegin('topics', Thrift.Type.LIST, 6);
+    output.writeListBegin(Thrift.Type.STRUCT, this.topics.length);
+    for (var iter47 in this.topics)
+    {
+      if (this.topics.hasOwnProperty(iter47))
+      {
+        iter47 = this.topics[iter47];
+        iter47.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+

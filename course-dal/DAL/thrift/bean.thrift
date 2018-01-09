@@ -102,3 +102,30 @@ struct Query{
 struct Custom{
     1:set<string> tables
 }
+struct TopicOption{
+    1:i32 id
+    2:string context
+    3:i32 topic_id
+    4:string create_time
+    5:string update_time
+
+}
+struct Topic{
+    1:i32 id
+    2:string title
+    3:string type
+    4:string analysis
+    5:string correct_answer
+    6:double score
+    7:string create_time
+    8:string update_time
+    9:list<TopicOption> topicOptions
+}
+struct TopicBank{
+    1:i32 id
+    2:string name
+    3:string type
+    4:string create_time
+    5:string update_time
+    6:list<Topic> topics
+}

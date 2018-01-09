@@ -76,3 +76,17 @@ service CourseService{
     list<bean.Video> videoSelectAll(),
     list<bean.Video> videoSelect(1: bean.Video video)
 }
+# 公共服务
+service CommonService{
+    i32 topicOptionInsert(1: bean.TopicOption topicOption),
+
+
+    i32 topicInsert(1: bean.Topic topic),
+    list<bean.Topic> topicSelect(1: bean.Topic topic),
+
+
+    i32 topicBankInsert(1: bean.TopicBank topicBank),
+    list<bean.TopicBank> topicBankSelect(1: bean.TopicBank topicBank),
+
+
+}

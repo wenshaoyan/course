@@ -6,7 +6,8 @@
     "user": "UserService",
     "banner": "BannerService",
     "client": "ClientService",
-    "course": "CourseService"
+    "course": "CourseService",
+    "common": "CommonService"
   },
   "publicServer": "http://123.207.55.204:8083",
   "tokenTime": 604800000,

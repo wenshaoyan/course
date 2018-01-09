@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.bannerMapper">
+    <insert id="insert" parameterType="_TopicBean" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_topic(topic_create_time,topic_update_time,topic_title,
+        topic_type,topic_analysis,topic_correct_answer,topic_score)
+        VALUES(NOW(3),NOW(3),#{title},#{type},#{analysis},#{correct_answer},#{score})
+    </insert>
+    <sql id="select_list">
+        select *
+        from t_topic
+    </sql>
+    <sql id="select_max">
+        SELECT IFNULL(MAX(t_topic.topic_id),0) i
+        FROM t_topic
+    </sql>
+    <sql id="condition">
+        <where>
+            <if test="topic_id != 0 " >
+                topic_id = #{id}
+            </if>
+        </where>
+    </sql>
+    <sql id="order">
+        <if test="queryBean != null and queryBean.OrderByClause != null">
+            ORDER BY ${queryBean.OrderByClause}
+        </if>
+    </sql>
+    <sql id="limit">
+        <if test="queryBean != null and queryBean.limit != 0">
+            LIMIT ${queryBean.offset} ,${queryBean.limit}
+        </if>
+    </sql>
+    <sql id="update_table">
+        UPDATE t_topic
+    </sql>
+    <sql id="delete_table">
+        DELETE FROM t_topic
+    </sql>
+    <sql id="update_set">
+        <set>
+            <if test="title != null" >
+                topic_title = #{title},
+            </if>
+            <if test="type != null">
+                topic_type = #{type},
+            </if>
+            <if test="analysis != null">
+                topic_analysis = #{analysis},
+            </if>
+            <if test="correct_answer != null">
+                topic_correct_answer = #{correct_answer},
+            </if>
+            <if test="score != null">
+                topic_score = #{score},
+            </if>
+        </set>
+    </sql>
+
+
+
+    <select id="select" parameterType="_TopicBean"  resultMap="topicResult">
+      <include refid="select_list"/>
+      <include refid="condition"/>
+      <include refid="order"/>
+      <include refid="limit"/>
+    </select>
+
+    <select id="selectMaxLocation" parameterType="_TopicBean" resultType="java.lang.Integer">
+        <include refid="select_max"/>
+        <include refid="condition"/>
+    </select>
+
+    <update id="update" parameterType="_TopicBean" >
+        <include refid="update_table" />
+        <include refid="update_set" />
+        <include refid="condition" />
+    </update>
+    <delete id="remove" parameterType="_TopicBean">
+        <include refid="delete_table"/>
+        <include refid="condition"/>
+    </delete>
+
+    <resultMap id="topicResult" type="_TopicBean">
+        <id property="id" column="topic_id"/>
+        <result property="create_time_bean" column="topic_create_time"/>
+        <result property="update_time_bean" column="topic_update_time"/>
+        <result property="title" column="topic_title"/>
+        <result property="type" column="topic_type"/>
+        <result property="analysis" column="topic_analysis"/>
+        <result property="correct_answer" column="topic_correct_answer"/>
+        <result property="score" column="topic_score"/>
+    </resultMap>
+</mapper>
