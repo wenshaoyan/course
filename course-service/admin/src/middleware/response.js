@@ -88,6 +88,7 @@ function func(opt) {
                 // if (isSetFailLog) setLog(opt.failLog,messageObject);
                 if (isSetUnknownLog) setLog(opt.unknownLog,errorValue);
             }
+            console.log('=======2222')
 
 
         }

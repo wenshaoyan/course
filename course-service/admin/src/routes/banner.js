@@ -28,7 +28,7 @@ router.get('/', async (ctx, next) => {
     const banner = new bean_types.Banner(params);
     const query = new bean_types.Query(params);
     try {
-        const client =   getThriftServer(bannerService).getClient(ctx.poolTag);
+        const client = await getThriftServer(bannerService).getClient(ctx.poolTag);
         const result = await client.selectQueryNoCache(banner, query);
         ArrayUtil.valueJoin(result, 'image_url', getServiceConfig().publicServer);
         ctx.body = result;
