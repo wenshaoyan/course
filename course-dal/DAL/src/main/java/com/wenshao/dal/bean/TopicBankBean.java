@@ -4,6 +4,8 @@ import com.wenshao.dal.thriftgen.TopicBank;
 import com.wenshao.dal.thriftgen.TopicOption;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by wenshao on 2018/1/9.
@@ -14,6 +16,7 @@ public class TopicBankBean extends TopicBank{
     private Timestamp update_time_bean;
     private QueryBean queryBean;
     public static final String TABLE_PREFIX = "tb_";
+    private Set<String> tables = new HashSet<String>();
 
     public TopicBankBean(){
         super();
@@ -61,5 +64,12 @@ public class TopicBankBean extends TopicBank{
 
     public void setQueryBean(QueryBean queryBean) {
         this.queryBean = queryBean;
+    }
+    public Set<String> getTables() {
+        return tables;
+    }
+
+    public void setTables(Set<String> tables) {
+        this.tables = tables;
     }
 }

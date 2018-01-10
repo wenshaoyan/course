@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.bannerMapper">
+<mapper namespace="mapper.topicBankMapper">
     <insert id="insert" parameterType="_TopicBean" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO t_topic(topic_create_time,topic_update_time,topic_title,
-        topic_type,topic_analysis,topic_correct_answer,topic_score)
-        VALUES(NOW(3),NOW(3),#{title},#{type},#{analysis},#{correct_answer},#{score})
+        INSERT INTO t_topic_bank(tb_create_time,tb_update_time,tb_name,tb_type)
+        VALUES(NOW(3),NOW(3),#{name},#{type})
     </insert>
     <sql id="select_list">
         select *
-        from t_topic
+        from t_topic_bank
+    </sql>
+    <sql id="include_topicOption">
+        LEFT JOIN (
+            SELECT *
+            FROM t_topic
+            INNER JOIN t_topic_relation ON t_topic_relation.tr_topic_id=t_topic.topic_id
+            LEFT JOIN t_topic_option ON t_topic_option.to_topic_id=t_topic.topic_id
+        ) AS topic ON t_topic_bank.tb_id=topic.tr_tb_id
+    </sql>
+    <sql id="include_topic">
+      LEFT JOIN t_topic_relation ON t_topic_bank.tb_id=t_topic_relation.tr_tb_id
     </sql>
     <sql id="select_max">
         SELECT IFNULL(MAX(t_topic.topic_id),0) i
-        FROM t_topic
+        FROM t_topic_bank
     </sql>
     <sql id="condition">
         <where>
-            <if test="topic_id != 0 " >
-                topic_id = #{id}
+            <if test="id != 0 " >
+                tb_id = #{id}
             </if>
         </where>
     </sql>
@@ -32,63 +42,60 @@
         </if>
     </sql>
     <sql id="update_table">
-        UPDATE t_topic
+        UPDATE t_topic_bank
     </sql>
     <sql id="delete_table">
-        DELETE FROM t_topic
+        DELETE FROM t_topic_bank
     </sql>
     <sql id="update_set">
         <set>
             <if test="title != null" >
-                topic_title = #{title},
+                tb_name = #{name},
             </if>
             <if test="type != null">
-                topic_type = #{type},
-            </if>
-            <if test="analysis != null">
-                topic_analysis = #{analysis},
-            </if>
-            <if test="correct_answer != null">
-                topic_correct_answer = #{correct_answer},
-            </if>
-            <if test="score != null">
-                topic_score = #{score},
+                tb_type = #{type},
             </if>
         </set>
     </sql>
 
 
 
-    <select id="select" parameterType="_TopicBean"  resultMap="topicResult">
-      <include refid="select_list"/>
-      <include refid="condition"/>
-      <include refid="order"/>
-      <include refid="limit"/>
+    <select id="select" parameterType="_TopicBankBean"  resultMap="topicBankResult">
+        <include refid="select_list"/>
+        <if test="tables != null and tables.size() == 1">
+            <if test="tables.contains('topic')" >
+                <include refid="include_topicOption"/>
+            </if>
+            <if test="tables.contains('topicOption')" >
+                <include refid="include_topicOption"/>
+            </if>
+        </if>
+        <include refid="condition"/>
+        <include refid="order"/>
+        <include refid="limit"/>
     </select>
 
-    <select id="selectMaxLocation" parameterType="_TopicBean" resultType="java.lang.Integer">
+    <select id="selectMaxLocation" parameterType="_TopicBankBean" resultType="java.lang.Integer">
         <include refid="select_max"/>
         <include refid="condition"/>
     </select>
 
-    <update id="update" parameterType="_TopicBean" >
+    <update id="update" parameterType="_TopicBankBean" >
         <include refid="update_table" />
         <include refid="update_set" />
         <include refid="condition" />
     </update>
-    <delete id="remove" parameterType="_TopicBean">
+    <delete id="remove" parameterType="_TopicBankBean">
         <include refid="delete_table"/>
         <include refid="condition"/>
     </delete>
 
-    <resultMap id="topicResult" type="_TopicBean">
-        <id property="id" column="topic_id"/>
-        <result property="create_time_bean" column="topic_create_time"/>
-        <result property="update_time_bean" column="topic_update_time"/>
-        <result property="title" column="topic_title"/>
-        <result property="type" column="topic_type"/>
-        <result property="analysis" column="topic_analysis"/>
-        <result property="correct_answer" column="topic_correct_answer"/>
-        <result property="score" column="topic_score"/>
+    <resultMap id="topicBankResult" type="_TopicBankBean">
+        <id property="id" column="tb_id"/>
+        <result property="create_time_bean" column="tb_create_time"/>
+        <result property="update_time_bean" column="tb_update_time"/>
+        <result property="name" column="tb_name"/>
+        <result property="type" column="tb_type"/>
+        <collection property="topics" ofType="_TopicBean" resultMap="mapper.topicMapper.topicResult" />
     </resultMap>
 </mapper>

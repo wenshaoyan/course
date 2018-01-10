@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.bannerMapper">
+<mapper namespace="mapper.topicOptionMapper">
     <insert id="insert" parameterType="_TopicBean" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_topic(topic_create_time,topic_update_time,topic_title,
         topic_type,topic_analysis,topic_correct_answer,topic_score)
         VALUES(NOW(3),NOW(3),#{title},#{type},#{analysis},#{correct_answer},#{score})
     </insert>
     <sql id="select_list">
-        select *
-        from t_topic
+        SELECT *
+        FROM t_topic_option
     </sql>
     <sql id="select_max">
         SELECT IFNULL(MAX(t_topic.topic_id),0) i
@@ -16,8 +16,8 @@
     </sql>
     <sql id="condition">
         <where>
-            <if test="topic_id != 0 " >
-                topic_id = #{id}
+            <if test="id != 0 " >
+                to_id = #{id}
             </if>
         </where>
     </sql>
@@ -32,10 +32,10 @@
         </if>
     </sql>
     <sql id="update_table">
-        UPDATE t_topic
+        UPDATE t_topic_option
     </sql>
     <sql id="delete_table">
-        DELETE FROM t_topic
+        DELETE FROM t_topic_option
     </sql>
     <sql id="update_set">
         <set>
@@ -59,7 +59,7 @@
 
 
 
-    <select id="select" parameterType="_TopicBean"  resultMap="topicResult">
+    <select id="select" parameterType="_TopicBean"  resultMap="topicOptionResult">
       <include refid="select_list"/>
       <include refid="condition"/>
       <include refid="order"/>
@@ -81,14 +81,11 @@
         <include refid="condition"/>
     </delete>
 
-    <resultMap id="topicResult" type="_TopicBean">
-        <id property="id" column="topic_id"/>
-        <result property="create_time_bean" column="topic_create_time"/>
-        <result property="update_time_bean" column="topic_update_time"/>
-        <result property="title" column="topic_title"/>
-        <result property="type" column="topic_type"/>
-        <result property="analysis" column="topic_analysis"/>
-        <result property="correct_answer" column="topic_correct_answer"/>
-        <result property="score" column="topic_score"/>
+    <resultMap id="topicOptionResult" type="_TopicOptionBean">
+        <id property="id" column="to_id"/>
+        <result property="create_time_bean" column="to_create_time"/>
+        <result property="update_time_bean" column="to_update_time"/>
+        <result property="context" column="to_context"/>
+        <result property="topic_id" column="to_topic_id"/>
     </resultMap>
 </mapper>

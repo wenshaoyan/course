@@ -14,10 +14,19 @@
         SELECT IFNULL(MAX(t_topic.topic_id),0) i
         FROM t_topic
     </sql>
+    <sql id="include_topicOption">
+        ,t_topic_option
+    </sql>
     <sql id="condition">
         <where>
             <if test="id != 0 " >
-                topic_id = #{id}
+                t_topic.topic_id = #{id}
+            </if>
+
+            <if test="tables != null">
+                <if test="tables.contains('topicOption')" >
+                    t_topic.topic_id = t_topic_option.to_topic_id
+                </if>
             </if>
         </where>
     </sql>
@@ -61,6 +70,11 @@
 
     <select id="select" parameterType="_TopicBean"  resultMap="topicResult">
       <include refid="select_list"/>
+      <if test="tables != null">
+          <if test="tables.contains('topicOption')" >
+              <include refid="include_topicOption"/>
+          </if>
+      </if>
       <include refid="condition"/>
       <include refid="order"/>
       <include refid="limit"/>
@@ -90,5 +104,6 @@
         <result property="analysis" column="topic_analysis"/>
         <result property="correct_answer" column="topic_correct_answer"/>
         <result property="score" column="topic_score"/>
+        <collection property="topicOptions" ofType="_TopicOptionBean" resultMap="mapper.topicOptionMapper.topicOptionResult" />
     </resultMap>
 </mapper>

@@ -3,6 +3,8 @@ package com.wenshao.dal.bean;
 import com.wenshao.dal.thriftgen.TopicOption;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by wenshao on 2018/1/9.
@@ -13,6 +15,7 @@ public class TopicOptionBean extends TopicOption{
     private Timestamp update_time_bean;
     private QueryBean queryBean;
     public static final String TABLE_PREFIX = "to_";
+    private Set<String> tables = new HashSet<String>();
 
     public TopicOptionBean(){
         super();
@@ -60,5 +63,12 @@ public class TopicOptionBean extends TopicOption{
 
     public void setQueryBean(QueryBean queryBean) {
         this.queryBean = queryBean;
+    }
+    public Set<String> getTables() {
+        return tables;
+    }
+
+    public void setTables(Set<String> tables) {
+        this.tables = tables;
     }
 }

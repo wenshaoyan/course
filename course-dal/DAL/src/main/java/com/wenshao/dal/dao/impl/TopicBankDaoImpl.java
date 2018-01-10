@@ -37,21 +37,11 @@ public class TopicBankDaoImpl implements BaseDao<TopicBankBean> {
     }
 
     @Override
-    public TopicBankBean findById(int id) throws Exception {
-        return null;
-    }
-
-    @Override
     public List<TopicBankBean> select(TopicBankBean bean) throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         List<TopicBankBean> list = sqlSession.selectList(sqlTag + ".select",bean);
         sqlSession.commit();
         sqlSession.close();
         return list;
-    }
-
-    @Override
-    public List<TopicBankBean> selectAll() throws Exception {
-        return null;
     }
 }

@@ -28,7 +28,6 @@ public class TopicDaoImpl implements BaseDao<TopicBean> {
         sqlSession.close();
         return bean.id;
     }
-
     @Override
     public int update(TopicBean bean) throws Exception {
         return 0;
@@ -38,12 +37,6 @@ public class TopicDaoImpl implements BaseDao<TopicBean> {
     public int remove(TopicBean bean) throws Exception {
         return 0;
     }
-
-    @Override
-    public TopicBean findById(int id) throws Exception {
-        return null;
-    }
-
     @Override
     public List<TopicBean> select(TopicBean bean) throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -53,8 +46,4 @@ public class TopicDaoImpl implements BaseDao<TopicBean> {
         return list;
     }
 
-    @Override
-    public List<TopicBean> selectAll() throws Exception {
-        return null;
-    }
 }

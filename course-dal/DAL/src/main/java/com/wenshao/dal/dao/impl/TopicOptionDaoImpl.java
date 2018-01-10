@@ -3,6 +3,7 @@ package com.wenshao.dal.dao.impl;
 import com.wenshao.dal.bean.TopicOptionBean;
 import com.wenshao.dal.dao.BaseDao;
 import com.wenshao.dal.thriftgen.TopicOption;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
@@ -35,17 +36,13 @@ public class TopicOptionDaoImpl implements BaseDao<TopicOptionBean> {
     }
 
     @Override
-    public TopicOptionBean findById(int id) throws Exception {
-        return null;
-    }
-
-    @Override
     public List<TopicOptionBean> select(TopicOptionBean bean) throws Exception {
-        return null;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        List<TopicOptionBean> list = sqlSession.selectList(sqlTag + ".select",bean);
+        sqlSession.commit();
+        sqlSession.close();
+        return list;
     }
 
-    @Override
-    public List<TopicOptionBean> selectAll() throws Exception {
-        return null;
-    }
+
 }
