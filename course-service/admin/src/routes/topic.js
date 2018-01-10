@@ -32,6 +32,15 @@ router.get('/', async (ctx, next) => {
         ctx.error = e;
     }
 });
-
+router.post('/', async (ctx, next) => {
+    const params = ctx.request.body;
+    try {
+        const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
+        ctx.body = await client.topicInsert(new Topic(params));
+    } catch (e) {
+        console.log(e);
+        ctx.error = e;
+    }
+});
 
 module.exports = router;

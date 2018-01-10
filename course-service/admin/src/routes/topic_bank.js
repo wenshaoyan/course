@@ -18,7 +18,6 @@ router.use(async(ctx, next) => {
     } else {
         ctx.poolTag = SysUtil.getUuid();
         await next();
-        console.log('==============')
         myServer.release(ctx.poolTag);
     }
 });
@@ -27,6 +26,16 @@ router.get('/', async (ctx, next) => {
     try {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
         ctx.body = await client.topicBankSelectCustom(new TopicBank(),new Custom({tables: ['topic']}));
+    } catch (e) {
+        console.log(e);
+        ctx.error = e;
+    }
+});
+router.post('/', async (ctx, next) => {
+    const params = ctx.request.body;
+    try {
+        const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
+        ctx.body = await client.topicBankInsert(new TopicBank(params));
     } catch (e) {
         console.log(e);
         ctx.error = e;
