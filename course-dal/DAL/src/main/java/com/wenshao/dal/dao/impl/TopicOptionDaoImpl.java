@@ -22,7 +22,11 @@ public class TopicOptionDaoImpl implements BaseDao<TopicOptionBean> {
     }
     @Override
     public int insert(TopicOptionBean bean) throws Exception {
-        return 0;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        sqlSession.insert(sqlTag + ".insert", bean);
+        sqlSession.commit();
+        sqlSession.close();
+        return bean.id;
     }
 
     @Override

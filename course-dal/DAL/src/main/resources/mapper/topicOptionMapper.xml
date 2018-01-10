@@ -2,9 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.topicOptionMapper">
     <insert id="insert" parameterType="_TopicBean" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO t_topic(topic_create_time,topic_update_time,topic_title,
-        topic_type,topic_analysis,topic_correct_answer,topic_score)
-        VALUES(NOW(3),NOW(3),#{title},#{type},#{analysis},#{correct_answer},#{score})
+        INSERT INTO t_topic_option(to_create_time,to_update_time,to_context,to_topic_id)
+        VALUES(NOW(3),NOW(3),#{context},#{topic_id})
     </insert>
     <sql id="select_list">
         SELECT *
@@ -12,7 +11,7 @@
     </sql>
     <sql id="select_max">
         SELECT IFNULL(MAX(t_topic.topic_id),0) i
-        FROM t_topic
+        FROM t_topic_option
     </sql>
     <sql id="condition">
         <where>

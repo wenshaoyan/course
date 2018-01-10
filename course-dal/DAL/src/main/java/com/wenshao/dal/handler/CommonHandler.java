@@ -35,7 +35,7 @@ public class CommonHandler implements CommonService.Iface {
     private List<TopicOption> topicOptionQuery(TopicOption params, Query query, Custom custom) throws Exception {
         List<TopicOption> results = new ArrayList<TopicOption>();
         TopicOptionBean paramsBean = new TopicOptionBean(params);
-        if (query != null) paramsBean.setQueryBean(new QueryBean(query,TopicOptionBean.TABLE_PREFIX));
+        if (query != null) paramsBean.setQueryBean(new QueryBean(query, TopicOptionBean.TABLE_PREFIX));
         if (custom != null) paramsBean.setTables(custom.getTables());
         List<TopicOptionBean> beans = topicOptionDao.select(paramsBean);
         for (TopicOptionBean bean : beans) {
@@ -47,7 +47,7 @@ public class CommonHandler implements CommonService.Iface {
     private List<Topic> topicQuery(Topic params, Query query, Custom custom) throws Exception {
         List<Topic> results = new ArrayList<Topic>();
         TopicBean paramsBean = new TopicBean(params);
-        if (query != null) paramsBean.setQueryBean(new QueryBean(query,TopicBean.TABLE_PREFIX));
+        if (query != null) paramsBean.setQueryBean(new QueryBean(query, TopicBean.TABLE_PREFIX));
         if (custom != null) paramsBean.setTables(custom.getTables());
         List<TopicBean> beans = topicDao.select(paramsBean);
         for (TopicBean bean : beans) {
@@ -59,7 +59,7 @@ public class CommonHandler implements CommonService.Iface {
     private List<TopicBank> topicBankQuery(TopicBank params, Query query, Custom custom) throws Exception {
         List<TopicBank> results = new ArrayList<TopicBank>();
         TopicBankBean paramsBean = new TopicBankBean(params);
-        if (query != null) paramsBean.setQueryBean(new QueryBean(query,TopicBankBean.TABLE_PREFIX));
+        if (query != null) paramsBean.setQueryBean(new QueryBean(query, TopicBankBean.TABLE_PREFIX));
         if (custom != null) paramsBean.setTables(custom.getTables());
         List<TopicBankBean> beans = topicBankDao.select(paramsBean);
         for (TopicBankBean bean : beans) {
@@ -95,32 +95,48 @@ public class CommonHandler implements CommonService.Iface {
 
     @Override
     public List<TopicOption> topicOptionSelect(TopicOption topicOption) throws TException {
-        return null;
+        try {
+            return topicOptionQuery(topicOption, null, null);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     @Override
     public List<TopicOption> topicOptionSelectQuery(TopicOption topicOption, Query query) throws TException {
-        return null;
+        try {
+            return topicOptionQuery(topicOption, query, null);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     @Override
     public List<TopicOption> topicOptionSelectCustom(TopicOption topicOption, Custom custom) throws TException {
-        return null;
+        try {
+            return topicOptionQuery(topicOption, null, custom);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     @Override
     public List<TopicOption> topicOptionSelectQueryCustom(TopicOption topicOption, Query query, Custom custom) throws TException {
-        return null;
+        try {
+            return topicOptionQuery(topicOption, query, custom);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     @Override
     public List<TopicOption> topicOptionSelectQueryCustomNotCache(TopicOption topicOption, Query query, Custom custom) throws TException {
-        return null;
+        return topicOptionSelectQueryCustom(topicOption, query, custom);
     }
 
     @Override
     public List<TopicOption> topicOptionSelectQueryNoCache(TopicOption topicOption, Query query) throws TException {
-        return null;
+        return topicOptionSelectQuery(topicOption, query);
     }
 
     @Override
@@ -156,7 +172,7 @@ public class CommonHandler implements CommonService.Iface {
     @Override
     public List<Topic> topicSelect(Topic topic) throws TException {
         try {
-            return topicQuery(topic,null,null);
+            return topicQuery(topic, null, null);
         } catch (Exception e) {
             throw new TException(e);
         }
@@ -164,27 +180,39 @@ public class CommonHandler implements CommonService.Iface {
 
     @Override
     public List<Topic> topicSelectQuery(Topic topic, Query query) throws TException {
-        return null;
+        try {
+            return topicQuery(topic, query, null);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     @Override
     public List<Topic> topicSelectCustom(Topic topic, Custom custom) throws TException {
-        return null;
+        try {
+            return topicQuery(topic, null, custom);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     @Override
     public List<Topic> topicSelectQueryCustom(Topic topic, Query query, Custom custom) throws TException {
-        return null;
+        try {
+            return topicQuery(topic, query, custom);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
     }
 
     @Override
     public List<Topic> topicSelectQueryCustomNotCache(Topic topic, Query query, Custom custom) throws TException {
-        return null;
+        return topicSelectQueryCustom(topic, query, custom);
     }
 
     @Override
     public List<Topic> topicSelectQueryNoCache(Topic topic, Query query) throws TException {
-        return null;
+        return topicSelectQuery(topic, query);
     }
 
     @Override
@@ -220,7 +248,7 @@ public class CommonHandler implements CommonService.Iface {
     @Override
     public List<TopicBank> topicBankSelect(TopicBank topicBank) throws TException {
         try {
-            return topicBankQuery(topicBank,null,null);
+            return topicBankQuery(topicBank, null, null);
         } catch (Exception e) {
             throw new TException(e);
         }
@@ -229,7 +257,7 @@ public class CommonHandler implements CommonService.Iface {
     @Override
     public List<TopicBank> topicBankSelectQuery(TopicBank topicBank, Query query) throws TException {
         try {
-            return topicBankQuery(topicBank,query,null);
+            return topicBankQuery(topicBank, query, null);
         } catch (Exception e) {
             throw new TException(e);
         }
@@ -238,7 +266,7 @@ public class CommonHandler implements CommonService.Iface {
     @Override
     public List<TopicBank> topicBankSelectCustom(TopicBank topicBank, Custom custom) throws TException {
         try {
-            return topicBankQuery(topicBank,null,custom);
+            return topicBankQuery(topicBank, null, custom);
         } catch (Exception e) {
             throw new TException(e);
         }
@@ -247,7 +275,7 @@ public class CommonHandler implements CommonService.Iface {
     @Override
     public List<TopicBank> topicBankSelectQueryCustom(TopicBank topicBank, Query query, Custom custom) throws TException {
         try {
-            return topicBankQuery(topicBank,query,custom);
+            return topicBankQuery(topicBank, query, custom);
         } catch (Exception e) {
             throw new TException(e);
         }
@@ -255,12 +283,12 @@ public class CommonHandler implements CommonService.Iface {
 
     @Override
     public List<TopicBank> topicBankSelectQueryCustomNotCache(TopicBank topicBank, Query query, Custom custom) throws TException {
-        return topicBankSelectQueryCustom(topicBank,query,custom);
+        return topicBankSelectQueryCustom(topicBank, query, custom);
     }
 
     @Override
     public List<TopicBank> topicBankSelectQueryNoCache(TopicBank topicBank, Query query) throws TException {
-        return topicBankSelectQuery(topicBank,query);
+        return topicBankSelectQuery(topicBank, query);
     }
 
     @Override
