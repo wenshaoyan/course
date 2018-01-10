@@ -220,7 +220,7 @@ const Server = (function () {
                 if (list && list instanceof Array) {
                     list.push(client);
                 } else {
-                    _poolTagObject[uuid] = [client];
+                    _poolTagObject[this[_poolUuid]][uuid] = [client];
                 }
                 return client;
             }).catch(e => {
