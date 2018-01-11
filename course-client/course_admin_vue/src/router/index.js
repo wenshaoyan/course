@@ -93,6 +93,17 @@ export const asyncRouterMap = [
     ]
   },
   {
+    path: '/answer',
+    component: Layout,
+    redirect: 'noredirect',
+    code: 1002,
+    name: '答题系统',
+    icon: 'theme',
+    children: [
+      { path: 'topic', component: _import('answer/topic'), name: '题目管理' }
+    ]
+  },
+  {
     path: '/permission',
     component: Layout,
     redirect: '/permission/index',
