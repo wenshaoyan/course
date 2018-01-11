@@ -351,14 +351,15 @@ public class WordToHtml {
      * @param s
      */
     public static void analysisHtmlString(String s) {
-
+        //s = "1<br/>2<br/>3<br/>";
+        System.out.println(s);
         String q[] = s.split("<br/>");
         LinkedList<String> list = new LinkedList<String>();
 
         //清除空字符
         for (int i = 0; i < q.length; i++) {
+            System.out.println(q[i].toString()+"============");
             if (StringUtils.isNotBlank(q[i].toString().replaceAll("</?[^>]+>", "").trim())) {
-
                 list.add(q[i].toString().trim());
             }
         }
@@ -376,6 +377,7 @@ public class WordToHtml {
         int askNum = 0;
         /***********试卷基础数据赋值*********************/
         for (int i = 0; i < ws.length; i++) {
+            System.out.println( ws[i]);
             String delHtml = ws[i].toString().replaceAll("</?[^>]+>", "").trim();//去除html
             if (delHtml.contains("、单选题")) {
                 String numScore = numScore(delHtml);
