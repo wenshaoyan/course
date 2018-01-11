@@ -55,7 +55,6 @@ router.patch('/topics', async (ctx, next) => {
 // 删除关联
 router.delete('/topics', async (ctx, next) => {
     const params = ctx.request.body;
-    console.log(params)
     try {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
         ctx.body = await client.topicBankRemoveTopic(params.tb_id,params.topic_id);

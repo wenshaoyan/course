@@ -6,7 +6,9 @@ import com.wenshao.dal.dao.BaseDao;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wenshao on 2017/9/28.
@@ -47,5 +49,25 @@ public class TopicBankDaoImpl implements BaseDao<TopicBankBean> {
         sqlSession.commit();
         sqlSession.close();
         return list;
+    }
+    public int addTopic(int tb_id,int topic_id){
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put("tb_id",tb_id);
+        map.put("topic_id",topic_id);
+        int i = sqlSession.insert(sqlTag + ".addTopic", map);
+        sqlSession.commit();
+        sqlSession.close();
+        return i;
+    }
+    public int removeTopic(int tb_id,int topic_id){
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put("tb_id",tb_id);
+        map.put("topic_id",topic_id);
+        int i = sqlSession.delete(sqlTag + ".removeTopic", map);
+        sqlSession.commit();
+        sqlSession.close();
+        return i;
     }
 }

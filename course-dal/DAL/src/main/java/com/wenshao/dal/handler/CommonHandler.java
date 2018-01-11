@@ -295,4 +295,22 @@ public class CommonHandler implements CommonService.Iface {
     public int topicBankCountSelectQuery(TopicBank topicBank, Query query) throws TException {
         return 0;
     }
+
+    @Override
+    public int topicBankAddTopic(int tb_id, int topic_id) throws TException {
+        try {
+            return topicBankDao.addTopic(tb_id,topic_id);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
+
+    @Override
+    public int topicBankRemoveTopic(int tb_id, int topic_id) throws TException {
+        try {
+            return topicBankDao.removeTopic(tb_id,topic_id);
+        } catch (Exception e) {
+            throw new TException(e);
+        }
+    }
 }

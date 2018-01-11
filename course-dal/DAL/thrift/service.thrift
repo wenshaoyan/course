@@ -114,5 +114,6 @@ service CommonService{
     list<bean.TopicBank> topicBankSelectQueryCustomNotCache(1: bean.TopicBank topicBank,2: bean.Query query,3:bean.Custom custom),
     list<bean.TopicBank> topicBankSelectQueryNoCache(1: bean.TopicBank topicBank,2: bean.Query query),
     i32 topicBankCountSelectQuery(1: bean.TopicBank topicBank,2: bean.Query query),
-
+    i32 topicBankAddTopic(1: i32 tb_id, 2: i32 topic_id),
+    i32 topicBankRemoveTopic(1: i32 tb_id, 2: i32 topic_id),
 }

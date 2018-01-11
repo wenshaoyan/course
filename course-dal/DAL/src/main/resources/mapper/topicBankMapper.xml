@@ -5,6 +5,12 @@
         INSERT INTO t_topic_bank(tb_create_time,tb_update_time,tb_name,tb_type)
         VALUES(NOW(3),NOW(3),#{name},#{type})
     </insert>
+    <insert id="addTopic" parameterType="java.util.Map" >
+      INSERT INTO t_topic_relation(tr_topic_id,tr_tb_id) VALUES(#{topic_id},#{tb_id})
+    </insert>
+    <delete id="removeTopic" parameterType="java.util.Map" >
+      DELETE FROM t_topic_relation WHERE tr_topic_id=#{topic_id} AND tr_tb_id=#{tb_id}
+    </delete>
     <sql id="select_list">
         select *
         from t_topic_bank

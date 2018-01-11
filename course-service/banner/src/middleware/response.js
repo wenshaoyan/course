@@ -39,7 +39,7 @@ function func(opt) {
 
     return async function (ctx, next) {
         await next();
-        if ('body' in ctx) {
+        if ('body' in ctx && ctx.body !== null && ctx.body !== undefined) {
             const result = {
                 success: true,
                 data: ctx.body,
