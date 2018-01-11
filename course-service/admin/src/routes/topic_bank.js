@@ -41,5 +41,27 @@ router.post('/', async (ctx, next) => {
         ctx.error = e;
     }
 });
-
+// 关联题目
+router.patch('/topics', async (ctx, next) => {
+    const params = ctx.request.body;
+    try {
+        const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
+        ctx.body = await client.topicBankAddTopic(params.tb_id,params.topic_id);
+    } catch (e) {
+        console.log(e);
+        ctx.error = e;
+    }
+});
+// 删除关联
+router.delete('/topics', async (ctx, next) => {
+    const params = ctx.request.body;
+    console.log(params)
+    try {
+        const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
+        ctx.body = await client.topicBankRemoveTopic(params.tb_id,params.topic_id);
+    } catch (e) {
+        console.log(e);
+        ctx.error = e;
+    }
+});
 module.exports = router;

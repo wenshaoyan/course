@@ -4314,6 +4314,244 @@ CommonService_topicBankCountSelectQuery_result.prototype.write = function(output
   return;
 };
 
+var CommonService_topicBankAddTopic_args = function(args) {
+  this.tb_id = null;
+  this.topic_id = null;
+  if (args) {
+    if (args.tb_id !== undefined && args.tb_id !== null) {
+      this.tb_id = args.tb_id;
+    }
+    if (args.topic_id !== undefined && args.topic_id !== null) {
+      this.topic_id = args.topic_id;
+    }
+  }
+};
+CommonService_topicBankAddTopic_args.prototype = {};
+CommonService_topicBankAddTopic_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.tb_id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.I32) {
+        this.topic_id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CommonService_topicBankAddTopic_args.prototype.write = function(output) {
+  output.writeStructBegin('CommonService_topicBankAddTopic_args');
+  if (this.tb_id !== null && this.tb_id !== undefined) {
+    output.writeFieldBegin('tb_id', Thrift.Type.I32, 1);
+    output.writeI32(this.tb_id);
+    output.writeFieldEnd();
+  }
+  if (this.topic_id !== null && this.topic_id !== undefined) {
+    output.writeFieldBegin('topic_id', Thrift.Type.I32, 2);
+    output.writeI32(this.topic_id);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var CommonService_topicBankAddTopic_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = args.success;
+    }
+  }
+};
+CommonService_topicBankAddTopic_result.prototype = {};
+CommonService_topicBankAddTopic_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.I32) {
+        this.success = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CommonService_topicBankAddTopic_result.prototype.write = function(output) {
+  output.writeStructBegin('CommonService_topicBankAddTopic_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.I32, 0);
+    output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var CommonService_topicBankRemoveTopic_args = function(args) {
+  this.tb_id = null;
+  this.topic_id = null;
+  if (args) {
+    if (args.tb_id !== undefined && args.tb_id !== null) {
+      this.tb_id = args.tb_id;
+    }
+    if (args.topic_id !== undefined && args.topic_id !== null) {
+      this.topic_id = args.topic_id;
+    }
+  }
+};
+CommonService_topicBankRemoveTopic_args.prototype = {};
+CommonService_topicBankRemoveTopic_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.tb_id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.I32) {
+        this.topic_id = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CommonService_topicBankRemoveTopic_args.prototype.write = function(output) {
+  output.writeStructBegin('CommonService_topicBankRemoveTopic_args');
+  if (this.tb_id !== null && this.tb_id !== undefined) {
+    output.writeFieldBegin('tb_id', Thrift.Type.I32, 1);
+    output.writeI32(this.tb_id);
+    output.writeFieldEnd();
+  }
+  if (this.topic_id !== null && this.topic_id !== undefined) {
+    output.writeFieldBegin('topic_id', Thrift.Type.I32, 2);
+    output.writeI32(this.topic_id);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var CommonService_topicBankRemoveTopic_result = function(args) {
+  this.success = null;
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = args.success;
+    }
+  }
+};
+CommonService_topicBankRemoveTopic_result.prototype = {};
+CommonService_topicBankRemoveTopic_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.I32) {
+        this.success = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CommonService_topicBankRemoveTopic_result.prototype.write = function(output) {
+  output.writeStructBegin('CommonService_topicBankRemoveTopic_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.I32, 0);
+    output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 var CommonServiceClient = exports.Client = function(output, pClass) {
     this.output = output;
     this.pClass = pClass;
@@ -5898,6 +6136,102 @@ CommonServiceClient.prototype.recv_topicBankCountSelectQuery = function(input,mt
   }
   return callback('topicBankCountSelectQuery failed: unknown result');
 };
+CommonServiceClient.prototype.topicBankAddTopic = function(tb_id, topic_id, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_topicBankAddTopic(tb_id, topic_id);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_topicBankAddTopic(tb_id, topic_id);
+  }
+};
+
+CommonServiceClient.prototype.send_topicBankAddTopic = function(tb_id, topic_id) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('topicBankAddTopic', Thrift.MessageType.CALL, this.seqid());
+  var args = new CommonService_topicBankAddTopic_args();
+  args.tb_id = tb_id;
+  args.topic_id = topic_id;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+CommonServiceClient.prototype.recv_topicBankAddTopic = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new CommonService_topicBankAddTopic_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('topicBankAddTopic failed: unknown result');
+};
+CommonServiceClient.prototype.topicBankRemoveTopic = function(tb_id, topic_id, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_topicBankRemoveTopic(tb_id, topic_id);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_topicBankRemoveTopic(tb_id, topic_id);
+  }
+};
+
+CommonServiceClient.prototype.send_topicBankRemoveTopic = function(tb_id, topic_id) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('topicBankRemoveTopic', Thrift.MessageType.CALL, this.seqid());
+  var args = new CommonService_topicBankRemoveTopic_args();
+  args.tb_id = tb_id;
+  args.topic_id = topic_id;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+CommonServiceClient.prototype.recv_topicBankRemoveTopic = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new CommonService_topicBankRemoveTopic_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('topicBankRemoveTopic failed: unknown result');
+};
 var CommonServiceProcessor = exports.Processor = function(handler) {
   this._handler = handler;
 }
@@ -7098,6 +7432,78 @@ CommonServiceProcessor.prototype.process_topicBankCountSelectQuery = function(se
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
         output.writeMessageBegin("topicBankCountSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+CommonServiceProcessor.prototype.process_topicBankAddTopic = function(seqid, input, output) {
+  var args = new CommonService_topicBankAddTopic_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.topicBankAddTopic.length === 2) {
+    Q.fcall(this._handler.topicBankAddTopic, args.tb_id, args.topic_id)
+      .then(function(result) {
+        var result_obj = new CommonService_topicBankAddTopic_result({success: result});
+        output.writeMessageBegin("topicBankAddTopic", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("topicBankAddTopic", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.topicBankAddTopic(args.tb_id, args.topic_id, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined')) {
+        result_obj = new CommonService_topicBankAddTopic_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("topicBankAddTopic", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("topicBankAddTopic", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+CommonServiceProcessor.prototype.process_topicBankRemoveTopic = function(seqid, input, output) {
+  var args = new CommonService_topicBankRemoveTopic_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.topicBankRemoveTopic.length === 2) {
+    Q.fcall(this._handler.topicBankRemoveTopic, args.tb_id, args.topic_id)
+      .then(function(result) {
+        var result_obj = new CommonService_topicBankRemoveTopic_result({success: result});
+        output.writeMessageBegin("topicBankRemoveTopic", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("topicBankRemoveTopic", Thrift.MessageType.EXCEPTION, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.topicBankRemoveTopic(args.tb_id, args.topic_id, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined')) {
+        result_obj = new CommonService_topicBankRemoveTopic_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("topicBankRemoveTopic", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("topicBankRemoveTopic", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();

@@ -43,7 +43,7 @@ function func(opt) {
 
     return async function (ctx, next) {
         await next();
-        if (ctx.body) {
+        if ('body' in ctx) {
             const result = {
                 success: true,
                 data: ctx.body,
