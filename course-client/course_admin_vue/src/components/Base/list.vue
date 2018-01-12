@@ -2,7 +2,7 @@
 <template>
   <div class="app-container calendar-list-container">
     <el-table  :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row
-               :default-sort="{prop: 'id', order: 'descending'}" @sort-change="sortChange" >
+                @sort-change="sortChange" >
       <el-table-column v-for="(item,key) in listFields" align="center"
                        :key="key" :label="item.name" :width="item.width" :prop="key"
                        :filters="item.type === 'select' ? item.options : null"
@@ -82,7 +82,7 @@
         list: [],
         listLoading: true,
         restful: new Restful(this.prefix),
-        queryData: this.$router.query
+        queryData: {}
       }
     },
     mounted() {
@@ -96,13 +96,12 @@
           prop: 'id',
           order: 'ascending'
         }
-        for (const key in this.queryData) {
+        for (const key in this.$route.query) {
           if (reOrder.test(key)) {
             result.prop = key.substr(6, key.length - 7)
             result.order = this.queryData[key] % 2 ? 'ascending' : 'descending'
           }
         }
-        console.log(result)
         return result
       },
       renderHeader(createElement, { _self }) {
