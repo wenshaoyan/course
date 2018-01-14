@@ -100,7 +100,7 @@ export const asyncRouterMap = [
     name: '答题系统',
     icon: 'theme',
     children: [
-      { path: 'topic', component: _import('answer/topic'), name: '题目管理' }
+      { path: 'topic', component: _import('answer/test'), name: '题目管理' }
     ]
   },
   {

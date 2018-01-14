@@ -1,15 +1,32 @@
-<!-- :filters="[{ text: '家', value: '家' }, { text: '公司', value: '公司' }]"-->
+<!-- :filters="[{ text: '家', value: '家' }, { text: '公司', value: '公司' }]"
+
+<el-table-column v-for="(item,key) in listFields" align="center"
+                       :key="key" :label="item.name" :width="item.width" :prop="key"
+                       :filters="item.type === 'select' ? item.options : null"
+                       :sortable="item.order ? 'custom' : false"
+                       :render-header="renderHeader"
+      >
+        <template scope="scope">
+          <span>{{filter(item, scope.row, key)}}</span>
+        </template>
+      </el-table-column>
+-->
 <template>
   <div class="app-container calendar-list-container">
     <el-table  :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row
                 @sort-change="sortChange" >
-      <el-table-column v-for="(item,key) in listFields" align="center"
-                       :key="key" :label="item.name" :width="item.width" :prop="key"
-                       :filters="item.type === 'select' ? item.options : null"
-                       :sortable="item.order ? 'custom' : false"
-      >
+      <el-table-column  align="center"
+                       width="auth" prop="id"
+                       :render-header="renderHeader">
         <template scope="scope">
-          <span>{{filter(item, scope.row, key)}}</span>
+          <span>{{scope.row}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column  align="center"
+                        width="auth" prop="name"
+                        :render-header="renderHeader">
+        <template scope="scope">
+          <span>{{scope.row.name}}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -37,8 +54,8 @@
    *  search[field]=value
    * }
    */
-  import waves from '@/directive/waves/index.js' // 水波纹指令
   import moment from 'moment'
+  let a = 0
   const formatTime = (d, row) => {
     const f = 'YYYY-MM-DD HH:mm:s'
     const m = moment(Number(d))
@@ -48,9 +65,6 @@
   const reOrder = /^order\[.*\]/
   // const reSearch = /^search\[.*\]/
   export default {
-    directives: {
-      waves
-    },
     props: {
       prefix: {
         type: String,
@@ -104,8 +118,9 @@
         }
         return result
       },
-      renderHeader(createElement, { _self }) {
-        return 'b'
+      renderHeader(h, params) {
+        console.log(params)
+        return 'a' + a++
       },
       sortChange(obj) {
         let maxOrderIndex = 0
@@ -132,7 +147,7 @@
         this.queryData[`order[${obj.prop}]`] = orderIndex % 2 ? 1 : 2
         // 如果需要多个字段排序 需要替换为该行代码
         // this.queryData[`order[${obj.prop}]`] = orderIndex
-        this.reset()
+        // this.reset()
       },
       reset() {
         // this.$route.query = { b: 2 }

@@ -9,8 +9,11 @@ import './icons' // icon
 import './errorLog'// error log
 import './permission' // 权限
 import './mock'  // 该项目所有请求使用mockjs模拟
+import 'font-awesome/css/font-awesome.css'
 
+// 注册到全局
 Vue.use(ElementUI)
+
 
 // register global utility filters.
 Object.keys(filters).forEach(key => {
