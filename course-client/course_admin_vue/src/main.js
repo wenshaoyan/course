@@ -14,7 +14,6 @@ import 'font-awesome/css/font-awesome.css'
 // 注册到全局
 Vue.use(ElementUI)
 
-
 // register global utility filters.
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
