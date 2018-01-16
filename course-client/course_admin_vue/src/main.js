@@ -10,7 +10,7 @@ import './errorLog'// error log
 import './permission' // 权限
 import './mock'  // 该项目所有请求使用mockjs模拟
 import 'font-awesome/css/font-awesome.css'
-import Kiko from '../modules/kiko'
+import Kiko from '../modules/kiko-rascalhao'
 
 Vue.use(Kiko)
 // 注册到全局

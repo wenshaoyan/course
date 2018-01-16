@@ -1,13 +1,7 @@
 <template>
   <div style="margin: 100px" >
     <div id="root" class="container">
-      <button type="button" class="button is-primary" @click="show()">显示</button>
-      <div>111</div>
-      <div>111</div>
-      <div>111</div>
-      <div>111</div>
-      <div>111</div>
-      <modal-select v-if="showModal" @fireclose="showModal = false"></modal-select>
+      <button type="button" class="button is-primary" @click="show">显示</button>
     </div>
   </div>
 </template>
@@ -23,8 +17,20 @@
       }
     },
     methods: {
-      show() {
-        this.showModal = true
+      show($event) {
+        // this.showModal = true
+        // this.$kiko_message('这是一个message');
+        this.$kiko_tooltip($event, {
+          direction: 'top',
+          background: '#13CE66',
+          color: '#fff',
+          time: -1,
+          type: "select",
+          isMultiple: true,
+          options: {
+            1: 'a'
+          }
+        })
       }
     }
   }
