@@ -1,0 +1,76 @@
+{
+  "_from": "kiko-rascalhao@^1.0.0",
+  "_id": "kiko-rascalhao@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-AhYrG3RxE+NWVySy93Nkz9U83uI=",
+  "_location": "/kiko-rascalhao",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "kiko-rascalhao@^1.0.0",
+    "name": "kiko-rascalhao",
+    "escapedName": "kiko-rascalhao",
+    "rawSpec": "^1.0.0",
+    "saveSpec": null,
+    "fetchSpec": "^1.0.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "http://npm.yin126.com/kiko-rascalhao/-/kiko-rascalhao-1.0.0.tgz",
+  "_shasum": "02162b1b747113e3565724b2f77364cfd53cdee2",
+  "_spec": "kiko-rascalhao@^1.0.0",
+  "_where": "D:\\project\\course\\course-client\\course_admin_vue",
+  "author": {
+    "name": "zhanghao"
+  },
+  "bugs": {
+    "url": "https://github.com/rascalHao/kiko/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "async-validator": "1.6.9",
+    "babel-helper-vue-jsx-merge-props": "^2.0.0",
+    "deepmerge": "^1.2.0",
+    "throttle-debounce": "^1.0.1"
+  },
+  "deprecated": false,
+  "description": "a pop-up component based vue2.0",
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-module-resolver": "^2.2.0",
+    "babel-plugin-syntax-jsx": "^6.8.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-plugin-transform-vue-jsx": "^3.3.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.3.2",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "babel-register": "^6.22.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "homepage": "https://github.com/rascalHao/kiko#readme",
+  "keywords": [
+    "vue",
+    "pop-up",
+    "弹窗"
+  ],
+  "license": "ISC",
+  "main": "./index.js",
+  "name": "kiko-rascalhao",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rascalHao/kiko.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}

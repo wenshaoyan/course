@@ -1,8 +1,17 @@
 <template>
   <div style="margin: 100px" >
-    <div id="root" class="container">
-      <button type="button" class="button is-primary" @click="show">显示</button>
-    </div>
+    <table border="1">
+      <tr>
+        <th @click="show">姓名</th>
+        <th @click="show">电话</th>
+        <th @click="show">电话</th>
+      </tr>
+      <tr>
+        <td>Bill Gates</td>
+        <td>555 77 854</td>
+        <td>555 77 855</td>
+      </tr>
+    </table>
   </div>
 </template>
 
