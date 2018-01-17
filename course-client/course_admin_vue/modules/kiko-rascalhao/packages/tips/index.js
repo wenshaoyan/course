@@ -3,7 +3,7 @@ import ToolTip from './src/main.vue'
 
 ToolTip.installToolTip = function(event, opt) {
   // 停止冒泡
-  event.stopPropagation();
+  event.stopPropagation()
 
   const options = opt
 
@@ -16,7 +16,7 @@ ToolTip.installToolTip = function(event, opt) {
   });
   ['height', 'width'].forEach(function(property) {
     rect[property] = event.target.getBoundingClientRect()[property]
-  });
+  })
   options.rect = rect
   const toolTip = Vue.extend(ToolTip)
   const component = new toolTip({

@@ -101,7 +101,7 @@ export const asyncRouterMap = [
     icon: 'theme',
     children: [
       { path: 'topic', component: _import('answer/topic'), name: '题目管理' },
-      { path: 'test1', component: _import('answer/test1'), name: '题目管理' }
+      { path: 'test1', component: _import('answer/test'), name: '题目管理' }
     ]
   },
   {

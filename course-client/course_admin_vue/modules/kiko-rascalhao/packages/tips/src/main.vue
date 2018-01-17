@@ -28,9 +28,9 @@
         isShow: true,
         time: 3000,
         content: '',
-        direction: 'right',
-        background: 'red',
-        color: '#fff',
+        direction: 'top',
+        background: '#fff',
+        color: '#000',
         arrowStyleObject: '',
         options: {},
         type: 'text',
@@ -138,7 +138,8 @@
     color: #fff;
     white-space: nowrap;
 /*    word-wrap: break-word;*/
-    z-index: 99999999
+    z-index: 99999999;
+    font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif
   }
   .kiko-tool-tip.left {
     transform: translate(-100%, -50%);
@@ -206,3 +207,84 @@
     transform: translate(-50%, 0);
   }
 </style>
+
+
+<!--
+<html>
+	<head>
+		<style>
+			label {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    font-size: 13px;
+}
+
+label:before {
+    content: "";
+    display: inline-block;
+
+    width: 16px;
+    height: 16px;
+
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: #aaa;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+}
+
+.radio label:before {
+    border-radius: 8px;
+}
+.checkbox label:before {
+    border-radius: 3px;
+}
+
+
+input[type=radio],
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=radio]:checked + label:before {
+    content: "\2022";
+    color: #f3f3f3;
+    font-size: 30px;
+    text-align: center;
+    line-height: 13px;
+}
+input[type=checkbox]:checked + label:before {
+    content: "\2713";
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    font-size: 15px;
+    color: #f3f3f3;
+    text-align: center;
+    line-height: 15px;
+}
+
+		</style>
+	</head>
+	<body>
+		<div class="radio">
+    <input id="male" type="radio" name="gender" value="male">
+    <label for="male">Male</label>
+    <input id="female" type="radio" name="gender" value="female">
+    <label for="female">Female</label>
+</div>
+
+
+// checkbox input
+<div class="checkbox">
+    <input id="check1" type="checkbox" name="check" value="check1">
+    <label for="check1">Checkbox No. 1</label>
+
+    <input id="check2" type="checkbox" name="check" value="check2">
+    <label for="check2">Checkbox No. 2</label>
+</div>
+	</body>
+</html>
+-->
