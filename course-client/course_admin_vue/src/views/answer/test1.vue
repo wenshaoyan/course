@@ -2,9 +2,30 @@
   <div style="margin: 100px" >
     <table border="1">
       <tr>
-        <th @click="show">姓名</th>
-        <th @click="show">电话</th>
-        <th @click="show">电话</th>
+        <th>
+          <label>姓名</label>
+          <div>
+            <i @click="showSort">排序</i>
+            <i @click="showSearch">搜索</i>
+            <i @click="showSelect">过滤</i>
+          </div>
+        </th>
+        <th>
+          <label>电话</label>
+          <div>
+            <i @click="showSort">排序</i>
+            <i @click="showSearch">搜索</i>
+            <i @click="showSelect">过滤</i>
+          </div>
+        </th>
+        <th>
+          <label>电话</label>
+          <div>
+            <i @click="showSort">排序</i>
+            <i @click="showSearch">搜索</i>
+            <i @click="showSelect">过滤</i>
+          </div>
+        </th>
       </tr>
       <tr>
         <td>Bill Gates</td>
@@ -26,7 +47,34 @@
       }
     },
     methods: {
-      show($event) {
+      showSort($event) {
+        // this.showModal = true
+        // this.$kiko_message('这是一个message');
+        this.$kiko_tooltip($event, {
+          direction: 'top',
+          background: '#13CE66',
+          color: '#fff',
+          time: -1,
+          type: "sort"
+        })
+      },
+      showSearch($event) {
+        // this.showModal = true
+        // this.$kiko_message('这是一个message');
+        this.$kiko_tooltip($event, {
+          direction: 'top',
+          background: '#13CE66',
+          color: '#fff',
+          time: -1,
+          type: "search",
+          isMultiple: true,
+          options: {
+            1: 'a',
+            2: 'b'
+          }
+        })
+      },
+      showSelect($event) {
         // this.showModal = true
         // this.$kiko_message('这是一个message');
         this.$kiko_tooltip($event, {
@@ -37,7 +85,8 @@
           type: "select",
           isMultiple: true,
           options: {
-            1: 'a'
+            1: 'a',
+            2: 'b'
           }
         })
       }

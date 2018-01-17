@@ -2,13 +2,22 @@
   <div v-if="isShow" id="kiko_tool_tip" @click="divClick" class="kiko-tool-tip" :class="{'left': direction === 'left', 'right': direction === 'right', 'top': direction === 'top', 'bottom': direction === 'bottom'}" :style="{'background-color': background, 'color': color, 'top': top, 'left': left}">
     <div v-if="type === 'select'" v-for="(item, key) in options">
       <div>
-        <input type="checkbox" :value="key" v-model="checkedNames">
-        <label :for="item">Jack</label>
+        <input type="checkbox" :value="key" v-model="selectData">
+        <label :for="key">{{item}}</label>
       </div>
     </div>
-    <div>Checked names: {{ checkedNames }}</div>
+    <div v-if="type === 'search'">
+      <input v-model="searchData">
+    </div>
+    <div v-if="type === 'sort'">
+      <div>
+        <label>asc<input type="radio" v-model="sortData" value="asc"/></label>
+        <label>desc<input type="radio" v-model="sortData" value="desc"/></label>
+      </div>
+    </div>
     <div class="arrow" :style="arrowStyleObject"></div>
   </div>
+
 </template>
 
 <script type="text/javascript">
@@ -27,7 +36,9 @@
         type: 'text',
         isMultiple: false,
         context: '1',
-        checkedNames: []
+        selectData: [],
+        searchData: '',
+        sortData: ''
       }
     },
     beforeMount() {
@@ -106,6 +117,11 @@
       divClick($event) {
         // 停止事件冒泡
         $event.stopPropagation();
+      }
+    },
+    watch: {
+      sortData(o, n) {
+        console.log(o, n)
       }
     }
   }
