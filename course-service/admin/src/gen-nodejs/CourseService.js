@@ -71,9 +71,17 @@ CourseService_courseInsert_args.prototype.write = function(output) {
 
 var CourseService_courseInsert_result = function(args) {
   this.success = null;
+  this.qe = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.qe = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = args.success;
+    }
+    if (args.qe !== undefined && args.qe !== null) {
+      this.qe = args.qe;
     }
   }
 };
@@ -98,9 +106,14 @@ CourseService_courseInsert_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.qe = new bean_ttypes.RequestException();
+        this.qe.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -115,6 +128,11 @@ CourseService_courseInsert_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  if (this.qe !== null && this.qe !== undefined) {
+    output.writeFieldBegin('qe', Thrift.Type.STRUCT, 1);
+    this.qe.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -178,9 +196,17 @@ CourseService_courseUpdate_args.prototype.write = function(output) {
 
 var CourseService_courseUpdate_result = function(args) {
   this.success = null;
+  this.qe = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.qe = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = args.success;
+    }
+    if (args.qe !== undefined && args.qe !== null) {
+      this.qe = args.qe;
     }
   }
 };
@@ -205,9 +231,14 @@ CourseService_courseUpdate_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.qe = new bean_ttypes.RequestException();
+        this.qe.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -222,6 +253,11 @@ CourseService_courseUpdate_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  if (this.qe !== null && this.qe !== undefined) {
+    output.writeFieldBegin('qe', Thrift.Type.STRUCT, 1);
+    this.qe.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -285,9 +321,17 @@ CourseService_courseRemove_args.prototype.write = function(output) {
 
 var CourseService_courseRemove_result = function(args) {
   this.success = null;
+  this.qe = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.qe = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = args.success;
+    }
+    if (args.qe !== undefined && args.qe !== null) {
+      this.qe = args.qe;
     }
   }
 };
@@ -312,9 +356,14 @@ CourseService_courseRemove_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.qe = new bean_ttypes.RequestException();
+        this.qe.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -329,6 +378,11 @@ CourseService_courseRemove_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  if (this.qe !== null && this.qe !== undefined) {
+    output.writeFieldBegin('qe', Thrift.Type.STRUCT, 1);
+    this.qe.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -391,9 +445,17 @@ CourseService_courseFindById_args.prototype.write = function(output) {
 
 var CourseService_courseFindById_result = function(args) {
   this.success = null;
+  this.qe = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.qe = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = new bean_ttypes.Course(args.success);
+    }
+    if (args.qe !== undefined && args.qe !== null) {
+      this.qe = args.qe;
     }
   }
 };
@@ -419,9 +481,14 @@ CourseService_courseFindById_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.qe = new bean_ttypes.RequestException();
+        this.qe.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -436,6 +503,11 @@ CourseService_courseFindById_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
     this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.qe !== null && this.qe !== undefined) {
+    output.writeFieldBegin('qe', Thrift.Type.STRUCT, 1);
+    this.qe.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -2161,6 +2233,9 @@ CourseServiceClient.prototype.recv_courseInsert = function(input,mtype,rseqid) {
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.qe) {
+    return callback(result.qe);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -2208,6 +2283,9 @@ CourseServiceClient.prototype.recv_courseUpdate = function(input,mtype,rseqid) {
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.qe) {
+    return callback(result.qe);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -2255,6 +2333,9 @@ CourseServiceClient.prototype.recv_courseRemove = function(input,mtype,rseqid) {
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.qe) {
+    return callback(result.qe);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -2302,6 +2383,9 @@ CourseServiceClient.prototype.recv_courseFindById = function(input,mtype,rseqid)
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.qe) {
+    return callback(result.qe);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -2958,8 +3042,13 @@ CourseServiceProcessor.prototype.process_courseInsert = function(seqid, input, o
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseInsert", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CourseService_courseInsert_result(err);
+          output.writeMessageBegin("courseInsert", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("courseInsert", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -2967,7 +3056,7 @@ CourseServiceProcessor.prototype.process_courseInsert = function(seqid, input, o
   } else {
     this._handler.courseInsert(args.course, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CourseService_courseInsert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("courseInsert", Thrift.MessageType.REPLY, seqid);
       } else {
@@ -2994,8 +3083,13 @@ CourseServiceProcessor.prototype.process_courseUpdate = function(seqid, input, o
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseUpdate", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CourseService_courseUpdate_result(err);
+          output.writeMessageBegin("courseUpdate", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("courseUpdate", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -3003,7 +3097,7 @@ CourseServiceProcessor.prototype.process_courseUpdate = function(seqid, input, o
   } else {
     this._handler.courseUpdate(args.course, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CourseService_courseUpdate_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("courseUpdate", Thrift.MessageType.REPLY, seqid);
       } else {
@@ -3030,8 +3124,13 @@ CourseServiceProcessor.prototype.process_courseRemove = function(seqid, input, o
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseRemove", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CourseService_courseRemove_result(err);
+          output.writeMessageBegin("courseRemove", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("courseRemove", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -3039,7 +3138,7 @@ CourseServiceProcessor.prototype.process_courseRemove = function(seqid, input, o
   } else {
     this._handler.courseRemove(args.course, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CourseService_courseRemove_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("courseRemove", Thrift.MessageType.REPLY, seqid);
       } else {
@@ -3066,8 +3165,13 @@ CourseServiceProcessor.prototype.process_courseFindById = function(seqid, input,
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("courseFindById", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CourseService_courseFindById_result(err);
+          output.writeMessageBegin("courseFindById", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("courseFindById", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -3075,7 +3179,7 @@ CourseServiceProcessor.prototype.process_courseFindById = function(seqid, input,
   } else {
     this._handler.courseFindById(args.id, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CourseService_courseFindById_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("courseFindById", Thrift.MessageType.REPLY, seqid);
       } else {

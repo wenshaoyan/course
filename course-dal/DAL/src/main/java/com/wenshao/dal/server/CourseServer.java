@@ -24,7 +24,7 @@ public class CourseServer {
             //构建sqlSession的工厂
             SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
             // 创建代理对象
-            DynamicCacheProxyHandler dynamicCacheProxyHandler = new DynamicCacheProxyHandler();
+            DynamicCacheProxyHandler dynamicCacheProxyHandler = new DynamicCacheProxyHandler("CourseService");
             CourseService.Iface handler = new CourseHandler(sessionFactory);
             CourseService.Iface handlerProxy = (CourseService.Iface)dynamicCacheProxyHandler.bind(handler);
             CourseService.Processor processor = new CourseService.Processor(handlerProxy);

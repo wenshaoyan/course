@@ -32,6 +32,7 @@ router.get('/', async(ctx, next) => {
         const client = await getThriftServer(courseService).getClient(ctx.poolTag);
         let count = undefined;
         let list = [];
+        console.log(await client.courseInsert());
         if (params.action === 'search') {   // 搜索动作 请求总条数
             // 查询满足条件的记录列表
             count = await client.courseCountSelectQuery(course, query);

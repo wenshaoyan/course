@@ -2,6 +2,9 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <properties resource="db.properties" />
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
     <typeAliases>
         <typeAlias type="com.wenshao.dal.bean.UserBean" alias="_UserBean"/>
         <typeAlias type="com.wenshao.dal.bean.RoleBean" alias="_RoleBean"/>

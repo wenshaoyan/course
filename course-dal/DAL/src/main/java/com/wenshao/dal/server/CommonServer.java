@@ -23,7 +23,7 @@ public class CommonServer {
             SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
 
             // 创建代理对象
-            DynamicCacheProxyHandler dynamicCacheProxyHandler = new DynamicCacheProxyHandler();
+            DynamicCacheProxyHandler dynamicCacheProxyHandler = new DynamicCacheProxyHandler("CommonService");
             CommonService.Iface handler = new CommonHandler(sessionFactory);
             CommonService.Iface handlerProxy = (CommonService.Iface)dynamicCacheProxyHandler.bind(handler);
             CommonService.Processor processor = new CommonService.Processor(handlerProxy);

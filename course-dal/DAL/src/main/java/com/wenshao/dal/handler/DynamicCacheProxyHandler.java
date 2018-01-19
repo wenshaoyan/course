@@ -1,6 +1,8 @@
 package com.wenshao.dal.handler;
 
 import com.wenshao.dal.Interceptor.CacheInterceptor;
+import com.wenshao.dal.thriftgen.RequestException;
+import com.wenshao.dal.util.ExceptionUtil;
 import com.wenshao.dal.util.MD5Util;
 import org.apache.thrift.TException;
 
@@ -16,6 +18,10 @@ import java.util.List;
  * 反射实现缓存拦截器
  */
 public class DynamicCacheProxyHandler implements InvocationHandler {
+    private String serverName;
+    public DynamicCacheProxyHandler(String _serverName){
+        this.serverName = _serverName;
+    }
     // 声明被代理对象
     private Object business;
 
@@ -56,7 +62,7 @@ public class DynamicCacheProxyHandler implements InvocationHandler {
      * 　　* @throws Throwable
      */
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws TException {
+    public Object invoke(Object proxy, Method method, Object[] args) throws RequestException {
         Object result = null;
 
         String md5Key = null;
@@ -70,12 +76,17 @@ public class DynamicCacheProxyHandler implements InvocationHandler {
             } else {
                 return result;
             }
-        } catch (TException e){
-            e.printStackTrace();
-            throw new TException(e);
         } catch (Exception e) {     // 反射的结果
-            e.printStackTrace();
-            throw new TException(e);
+            Throwable cause = e.getCause();
+            RequestException qe;
+            if (cause instanceof RequestException){
+                qe = (RequestException)cause;
+            } else {
+                qe = ExceptionUtil.getUnknownE();
+            }
+            qe.serverName = this.serverName;
+            qe.methodName = method.getName();
+            throw qe;
         }
     }
 

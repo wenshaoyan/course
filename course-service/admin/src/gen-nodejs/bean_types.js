@@ -11,6 +11,107 @@ var Q = thrift.Q;
 
 
 var ttypes = module.exports = {};
+var RequestException = module.exports.RequestException = function(args) {
+  Thrift.TException.call(this, "RequestException");
+  this.name = "RequestException";
+  this.code = null;
+  this.message = null;
+  this.serverName = null;
+  this.methodName = null;
+  if (args) {
+    if (args.code !== undefined && args.code !== null) {
+      this.code = args.code;
+    }
+    if (args.message !== undefined && args.message !== null) {
+      this.message = args.message;
+    }
+    if (args.serverName !== undefined && args.serverName !== null) {
+      this.serverName = args.serverName;
+    }
+    if (args.methodName !== undefined && args.methodName !== null) {
+      this.methodName = args.methodName;
+    }
+  }
+};
+Thrift.inherits(RequestException, Thrift.TException);
+RequestException.prototype.name = 'RequestException';
+RequestException.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.code = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.message = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.STRING) {
+        this.serverName = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 4:
+      if (ftype == Thrift.Type.STRING) {
+        this.methodName = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+RequestException.prototype.write = function(output) {
+  output.writeStructBegin('RequestException');
+  if (this.code !== null && this.code !== undefined) {
+    output.writeFieldBegin('code', Thrift.Type.I32, 1);
+    output.writeI32(this.code);
+    output.writeFieldEnd();
+  }
+  if (this.message !== null && this.message !== undefined) {
+    output.writeFieldBegin('message', Thrift.Type.STRING, 2);
+    output.writeString(this.message);
+    output.writeFieldEnd();
+  }
+  if (this.serverName !== null && this.serverName !== undefined) {
+    output.writeFieldBegin('serverName', Thrift.Type.STRING, 3);
+    output.writeString(this.serverName);
+    output.writeFieldEnd();
+  }
+  if (this.methodName !== null && this.methodName !== undefined) {
+    output.writeFieldBegin('methodName', Thrift.Type.STRING, 4);
+    output.writeString(this.methodName);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 var User = module.exports.User = function(args) {
   this.id = null;
   this.name = null;

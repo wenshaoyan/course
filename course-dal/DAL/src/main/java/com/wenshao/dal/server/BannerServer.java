@@ -27,7 +27,7 @@ public class BannerServer{
             //构建sqlSession的工厂
             SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
             // 创建代理对象
-            DynamicCacheProxyHandler dynamicCacheProxyHandler = new DynamicCacheProxyHandler();
+            DynamicCacheProxyHandler dynamicCacheProxyHandler = new DynamicCacheProxyHandler("BannerService");
             BannerService.Iface handler = new BannerHandler(sessionFactory);
             BannerService.Iface handlerProxy = (BannerService.Iface)dynamicCacheProxyHandler.bind(handler);
             BannerService.Processor processor = new BannerService.Processor(handlerProxy);

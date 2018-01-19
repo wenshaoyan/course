@@ -27,7 +27,7 @@ public class ClientServer {
             SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
 
             // 创建代理对象
-            DynamicCacheProxyHandler dynamicCacheProxyHandler = new DynamicCacheProxyHandler();
+            DynamicCacheProxyHandler dynamicCacheProxyHandler = new DynamicCacheProxyHandler("ClientService");
             ClientService.Iface handler = new ClientHandler(sessionFactory);
             ClientService.Iface handlerProxy = (ClientService.Iface)dynamicCacheProxyHandler.bind(handler);
             ClientService.Processor processor = new ClientService.Processor(handlerProxy);

@@ -21,7 +21,7 @@ public class TopicOptionDaoImpl implements BaseDao<TopicOptionBean> {
 
     }
     @Override
-    public int insert(TopicOptionBean bean) throws Exception {
+    public int insert(TopicOptionBean bean) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         sqlSession.insert(sqlTag + ".insert", bean);
         sqlSession.commit();
@@ -30,17 +30,17 @@ public class TopicOptionDaoImpl implements BaseDao<TopicOptionBean> {
     }
 
     @Override
-    public int update(TopicOptionBean bean) throws Exception {
+    public int update(TopicOptionBean bean) {
         return 0;
     }
 
     @Override
-    public int remove(TopicOptionBean bean) throws Exception {
+    public int remove(TopicOptionBean bean) {
         return 0;
     }
 
     @Override
-    public List<TopicOptionBean> select(TopicOptionBean bean) throws Exception {
+    public List<TopicOptionBean> select(TopicOptionBean bean) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         List<TopicOptionBean> list = sqlSession.selectList(sqlTag + ".select",bean);
         sqlSession.commit();

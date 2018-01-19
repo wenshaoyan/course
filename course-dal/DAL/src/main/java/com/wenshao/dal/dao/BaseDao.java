@@ -1,5 +1,7 @@
 package com.wenshao.dal.dao;
 
+import com.wenshao.dal.thriftgen.RequestException;
+
 import java.util.List;
 
 /**
@@ -7,8 +9,8 @@ import java.util.List;
  * 基础的接口
  */
 public interface BaseDao<T> {
-    public int insert(T bean) throws Exception;
-    public int update(T bean) throws Exception;
-    public int remove(T bean) throws Exception;
-    public List<T> select(T bean) throws Exception;
+    public int insert(T bean);
+    public int update(T bean);
+    public int remove(T bean);
+    public List<T> select(T bean);
 }

@@ -1,4 +1,10 @@
 namespace java com.wenshao.dal.thriftgen
+exception RequestException{
+    1: i32 code,
+    2: string message,
+    3: string serverName,
+    4: string methodName
+}
 struct User{
     1: i32 id,
     2: string name,

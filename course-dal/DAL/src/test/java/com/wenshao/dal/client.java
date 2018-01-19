@@ -1,8 +1,7 @@
 package com.wenshao.dal;
 
 import com.google.common.base.Objects;
-import com.wenshao.dal.thriftgen.User;
-import com.wenshao.dal.thriftgen.UserService;
+import com.wenshao.dal.thriftgen.*;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
@@ -17,7 +16,7 @@ import org.apache.thrift.transport.TTransportException;
 public class client {
     private static int port = 9090;
     private static String ip = "localhost";
-    private static UserService.Client client;
+    private static CourseService.Client client;
     private static TTransport transport;
     /**
      * 创建 TTransport
@@ -52,7 +51,7 @@ public class client {
      * 创建客户端
      * @return
      */
-    public static UserService.Client createClient(TTransport transport){
+    public static CourseService.Client createClient(TTransport transport){
         if(Objects.equal(transport, null)){
             return null;
         }
@@ -60,7 +59,7 @@ public class client {
         if(Objects.equal(protocol, null)){
             return null;
         }
-        UserService.Client client = new UserService.Client(protocol);
+        CourseService.Client client = new CourseService.Client(protocol);
         return client;
     }
     public static void main(String[] args) {
@@ -85,11 +84,16 @@ public class client {
             user.update_time = "2017-01-01";
             user.device_uuid = "1111";
 
-            //System.out.println(client.insert(user));
-        } catch (TException e) {
+            System.out.println(client.courseInsert(new Course()));
+        } catch (RequestException e) {
+            System.out.println("===================1");
             e.printStackTrace();
-        }
-        finally {
+        } catch (TTransportException e) {
+            e.printStackTrace();
+        } catch (TException e) {
+            System.out.println("===================2");
+            e.printStackTrace();
+        } finally {
             // 关闭 TTransport
             closeTTransport(transport);
         }

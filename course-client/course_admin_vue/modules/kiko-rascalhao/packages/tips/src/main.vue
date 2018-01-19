@@ -1,18 +1,18 @@
 <template>
   <div v-if="isShow" id="kiko_tool_tip" @click="divClick" class="kiko-tool-tip" :class="{'left': direction === 'left', 'right': direction === 'right', 'top': direction === 'top', 'bottom': direction === 'bottom'}" :style="{'background-color': background, 'color': color, 'top': top, 'left': left}">
     <div v-if="type === 'select'" v-for="(item, key) in options">
-      <div>
-        <input type="checkbox" :value="key" v-model="selectData">
-        <label :for="key">{{item}}</label>
-      </div>
+        <input type="checkbox" :value="key" v-model="selectData" class="">
+        <label :for="key" class="" >{{item}}</label>
     </div>
     <div v-if="type === 'search'">
       <input v-model="searchData">
     </div>
     <div v-if="type === 'sort'">
-      <div>
-        <label>asc<input type="radio" v-model="sortData" value="asc"/></label>
-        <label>desc<input type="radio" v-model="sortData" value="desc"/></label>
+      <div class="radio-div">
+        <input type="radio" value="asc" v-model="sortData" class="">
+        <label class="" >asc</label>
+        <input type="radio" value="desc" v-model="sortData" class="">
+        <label class="" >desc</label>
       </div>
     </div>
     <div class="arrow" :style="arrowStyleObject"></div>
@@ -74,7 +74,6 @@
       }
     },
     mounted() {
-      console.log(this.options)
       this.initColor()
       if (this.time !== -1) this.hidden()
       // 点击其他地方隐藏
@@ -121,6 +120,9 @@
     },
     watch: {
       sortData(o, n) {
+        console.log(o, n)
+      },
+      selectData(o, n) {
         console.log(o, n)
       }
     }
@@ -206,6 +208,59 @@
     border-right: 10px solid transparent;
     transform: translate(-50%, 0);
   }
+  .my-label {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    font-size: 13px;
+  }
+
+  .my-label:before {
+    content: "";
+    display: inline-block;
+
+    width: 16px;
+    height: 16px;
+
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: #aaa;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+  }
+
+  .radio-div label:before {
+    border-radius: 8px;
+  }
+  .my-checkbox label:before {
+    border-radius: 3px;
+  }
+
+
+  .my-radio,
+  .my-checkbox {
+    display: none;
+  }
+
+  .my-radio + label:before {
+    content: "\2022";
+    color: #f3f3f3;
+    font-size: 30px;
+    text-align: center;
+    line-height: 16px;
+  }
+  .my-checkbox + label:before {
+    content: "\2713";
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    font-size: 15px;
+    color: #f3f3f3;
+    text-align: center;
+    line-height: 18px;
+  }
+
 </style>
 
 

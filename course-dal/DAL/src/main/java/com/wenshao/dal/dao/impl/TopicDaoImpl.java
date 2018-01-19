@@ -4,6 +4,7 @@ import com.wenshao.dal.bean.BannerBean;
 import com.wenshao.dal.bean.TopicBean;
 import com.wenshao.dal.dao.BannerDao;
 import com.wenshao.dal.dao.BaseDao;
+import com.wenshao.dal.thriftgen.RequestException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -21,7 +22,7 @@ public class TopicDaoImpl implements BaseDao<TopicBean> {
         this.sqlSessionFactory = sqlSessionFactory;
     }
     @Override
-    public int insert(TopicBean bean) throws Exception {
+    public int insert(TopicBean bean) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         sqlSession.insert(sqlTag + ".insert", bean);
         sqlSession.commit();
@@ -29,16 +30,16 @@ public class TopicDaoImpl implements BaseDao<TopicBean> {
         return bean.id;
     }
     @Override
-    public int update(TopicBean bean) throws Exception {
+    public int update(TopicBean bean) {
         return 0;
     }
 
     @Override
-    public int remove(TopicBean bean) throws Exception {
+    public int remove(TopicBean bean) {
         return 0;
     }
     @Override
-    public List<TopicBean> select(TopicBean bean) throws Exception {
+    public List<TopicBean> select(TopicBean bean) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         List<TopicBean> list = sqlSession.selectList(sqlTag + ".select",bean);
         sqlSession.commit();

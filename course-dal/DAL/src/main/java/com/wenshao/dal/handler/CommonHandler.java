@@ -8,6 +8,7 @@ import com.wenshao.dal.dao.impl.TopicBankDaoImpl;
 import com.wenshao.dal.dao.impl.TopicDaoImpl;
 import com.wenshao.dal.dao.impl.TopicOptionDaoImpl;
 import com.wenshao.dal.thriftgen.*;
+import com.wenshao.dal.util.ExceptionUtil;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.thrift.TException;
 
@@ -69,12 +70,14 @@ public class CommonHandler implements CommonService.Iface {
     }
 
     @Override
-    public int topicOptionInsert(TopicOption topicOption) throws TException {
+    public int topicOptionInsert(TopicOption topicOption) throws RequestException,TException {
         TopicOptionBean paramsBean = new TopicOptionBean(topicOption);
         try {
             return topicOptionDao.insert(paramsBean);
         } catch (Exception e) {
-            throw new TException(e);
+            RequestException re = ExceptionUtil.getSqlE();
+            re.setMessage(e.getMessage());
+            throw re;
         }
     }
 

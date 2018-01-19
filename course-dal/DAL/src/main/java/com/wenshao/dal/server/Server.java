@@ -4,6 +4,7 @@ import com.wenshao.dal.bean.CacheXmlBean;
 import com.wenshao.dal.constant.ZKConstant;
 import com.wenshao.dal.thriftgen.CacheService;
 import com.wenshao.dal.util.CacheClientUtil;
+import com.wenshao.dal.util.ExceptionUtil;
 import com.wenshao.dal.util.IPUtil;
 import com.wenshao.dal.util.JaxbUtil;
 import org.apache.curator.framework.CuratorFramework;
@@ -38,7 +39,8 @@ import java.util.regex.Pattern;
  * Created by wenshao on 2017/9/6
  */
 public class Server {
-    private static Logger logger = Logger.getLogger(String.valueOf(Server.class));
+    private static Logger logger = Logger.getLogger(Server.class);
+    private static Logger logger1 = Logger.getLogger(ExceptionUtil.class);
     private static final Pattern serverNamePattern = Pattern.compile(".*\\.(.*)\\$.*");
 
     private TProcessor processor;
@@ -81,7 +83,10 @@ public class Server {
             serverParams.protocolFactory(new TBinaryProtocol.Factory());
             TServer server = new TThreadedSelectorServer(serverParams);
             String serverName = getServerName(processor.getClass().getName());
+            System.out.println(ExceptionUtil.class);
+            logger1.info("=++++++++=");
             logger.debug(serverName + " start service " + this.port);
+
             this.startZK(serverName);
             if (this.cacheReader != null) {
                 // 连接缓存服务器

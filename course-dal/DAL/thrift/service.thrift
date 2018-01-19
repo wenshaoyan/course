@@ -57,10 +57,10 @@ service CacheService{
     bean.BannerList bannerGet(1: string key)
 }
 service CourseService{
-    i32 courseInsert(1: bean.Course course),
-    i32 courseUpdate(1: bean.Course course),
-    i32 courseRemove(1: bean.Course course),
-    bean.Course courseFindById(1: i32 id),
+    i32 courseInsert(1: bean.Course course) throws (1: bean.RequestException qe),
+    i32 courseUpdate(1: bean.Course course) throws (1: bean.RequestException qe),
+    i32 courseRemove(1: bean.Course course) throws (1: bean.RequestException qe),
+    bean.Course courseFindById(1: i32 id) throws (1: bean.RequestException qe),
     list<bean.Course> courseSelect(1: bean.Course course),
     list<bean.Course> courseSelectQuery(1: bean.Course course,2: bean.Query query),
     list<bean.Course> courseSelectCustom(1: bean.Course course,2:bean.Custom custom),

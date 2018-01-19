@@ -1,7 +1,6 @@
 package com.wenshao.dal.dao.impl;
 
 import com.wenshao.dal.bean.TopicBankBean;
-import com.wenshao.dal.bean.TopicOptionBean;
 import com.wenshao.dal.dao.BaseDao;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -24,7 +23,7 @@ public class TopicBankDaoImpl implements BaseDao<TopicBankBean> {
     }
 
     @Override
-    public int insert(TopicBankBean bean) throws Exception {
+    public int insert(TopicBankBean bean) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         sqlSession.insert(sqlTag + ".insert", bean);
         sqlSession.commit();
@@ -33,17 +32,17 @@ public class TopicBankDaoImpl implements BaseDao<TopicBankBean> {
     }
 
     @Override
-    public int update(TopicBankBean bean) throws Exception {
+    public int update(TopicBankBean bean) {
         return 0;
     }
 
     @Override
-    public int remove(TopicBankBean bean) throws Exception {
+    public int remove(TopicBankBean bean) {
         return 0;
     }
 
     @Override
-    public List<TopicBankBean> select(TopicBankBean bean) throws Exception {
+    public List<TopicBankBean> select(TopicBankBean bean) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         List<TopicBankBean> list = sqlSession.selectList(sqlTag + ".select",bean);
         sqlSession.commit();

@@ -5,6 +5,7 @@ import com.wenshao.dal.bean.QueryBean;
 import com.wenshao.dal.dao.CourseDao;
 import com.wenshao.dal.dao.impl.CourseDaoImpl;
 import com.wenshao.dal.thriftgen.*;
+import com.wenshao.dal.util.ExceptionUtil;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.thrift.TException;
 
@@ -38,8 +39,8 @@ public class CourseHandler implements CourseService.Iface {
     }
 
     @Override
-    public int courseInsert(Course course) throws TException {
-        return 0;
+    public int courseInsert(Course course) throws RequestException {
+        throw ExceptionUtil.getParameterE();
     }
 
     @Override
