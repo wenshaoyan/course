@@ -5,7 +5,8 @@ import com.wenshao.dal.bean.CacheXmlBean;
 import com.wenshao.dal.thriftgen.BannerList;
 import com.wenshao.dal.thriftgen.CacheService;
 import com.wenshao.dal.util.CacheClientUtil;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -17,7 +18,7 @@ import java.util.Map;
  * 缓存拦截器
  */
 public class CacheInterceptor {
-    private static Logger logger = Logger.getLogger(String.valueOf(CacheInterceptor.class));
+    private static Logger logger = LogManager.getLogger(String.valueOf(CacheInterceptor.class));
 
     // 在 action 之前调用
     public Object before(String actionName, String md5Key) {

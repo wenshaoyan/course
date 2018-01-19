@@ -1,14 +1,15 @@
 package com.wenshao.dal.util;
 
 import com.wenshao.dal.thriftgen.RequestException;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Created by wenshao on 2018/1/19.
  * 标准化异常
  */
 public class ExceptionUtil {
-    private static Logger logger = Logger.getLogger(ExceptionUtil.class);
+    private static Logger logger = LogManager.getLogger(ExceptionUtil.class);
 
     public static RequestException getUnknownE(){
         RequestException qe = new RequestException();

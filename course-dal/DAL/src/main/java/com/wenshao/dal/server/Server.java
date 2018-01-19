@@ -10,7 +10,8 @@ import com.wenshao.dal.util.JaxbUtil;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryNTimes;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.thrift.TMultiplexedProcessor;
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
@@ -39,8 +40,7 @@ import java.util.regex.Pattern;
  * Created by wenshao on 2017/9/6
  */
 public class Server {
-    private static Logger logger = Logger.getLogger(Server.class);
-    private static Logger logger1 = Logger.getLogger(ExceptionUtil.class);
+    private static Logger logger = LogManager.getLogger(Server.class);
     private static final Pattern serverNamePattern = Pattern.compile(".*\\.(.*)\\$.*");
 
     private TProcessor processor;
@@ -83,8 +83,6 @@ public class Server {
             serverParams.protocolFactory(new TBinaryProtocol.Factory());
             TServer server = new TThreadedSelectorServer(serverParams);
             String serverName = getServerName(processor.getClass().getName());
-            System.out.println(ExceptionUtil.class);
-            logger1.info("=++++++++=");
             logger.debug(serverName + " start service " + this.port);
 
             this.startZK(serverName);

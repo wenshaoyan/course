@@ -11,7 +11,8 @@ import com.wenshao.dal.thriftgen.Role;
 import com.wenshao.dal.thriftgen.User;
 import com.wenshao.dal.thriftgen.UserService;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.thrift.TException;
 
 import java.sql.Timestamp;
@@ -27,7 +28,7 @@ import java.util.List;
 public class UserHandler implements UserService.Iface {
     private UserDaoImpl userDao;
     private RoleDaoImpl roleDao;
-    private static Logger logger = Logger.getLogger(String.valueOf(UserHandler.class));
+    private static Logger logger = LogManager.getLogger(String.valueOf(UserHandler.class));
 
 
     public UserHandler(SqlSessionFactory _sessionFactory) {
