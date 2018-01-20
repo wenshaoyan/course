@@ -3,7 +3,7 @@
 <configuration>
     <properties resource="db.properties" />
     <settings>
-        <setting name="logImpl" value="LOG4J"/>
+        <setting name="logImpl" value="LOG4J2"/>
     </settings>
     <typeAliases>
         <typeAlias type="com.wenshao.dal.bean.CourseBean" alias="_CourseBean"/>
