@@ -122,7 +122,6 @@ public class BannerHandler implements BannerService.Iface {
 
     @Override
     public List<Banner> selectQueryNoCache(Banner banner, Query query) throws TException {
-        System.out.println(query);
         return this.selectQuery(banner,query);
     }
 

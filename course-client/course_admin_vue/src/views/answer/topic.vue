@@ -15,22 +15,41 @@
           id: {
             name: 'id',
             width: 'auto',
-            type: 'search',
-            order: true
+            types: {
+            	search: {
+            		show: true,
+              },
+              order: {
+                show: true,
+              }
+            }
           },
           name: {
             name: '题库名称',
             width: 'auto',
-            order: true
+            types: {
+              search: {
+                show: true,
+              },
+              order: {
+                show: true,
+              }
+            }
           },
           type: {
             name: '题库类型',
             width: 'auto',
-            type: 'select',
-            options: [{
-              text: 'sat_paper',
-              value: '真题试卷'
-            }],
+            types: {
+              search: {
+                show: true,
+              },
+              order: {
+                show: true,
+              },
+              select: {
+                show: true,
+              }
+            },
             filter: (d, row) => {
               let v = typeMap.get(d)
               if (v === null || v === undefined) v = '类型错误'

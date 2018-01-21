@@ -2,11 +2,34 @@
 <Configuration status="WARN">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <PatternLayout pattern="%d{YYYY-MM-DD HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
+
     </Appenders>
     <Loggers>
-        <Root level="debug">
+        <Logger name="com.wenshao.dal.server.Server" level="debug" additivity="true">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="log4j.logger.java.sql.ResultSet" level="debug">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="java.sql.Connection" level="debug">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="java.sql.Statement" level="debug">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="java.sql.PreparedStatement" level="debug">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <!--打印sql-->
+        <Logger name="mapper" level="debug">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="Console"/>
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>

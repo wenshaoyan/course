@@ -1,18 +1,38 @@
 <template>
   <div v-if="isShow" id="kiko_tool_tip" @click="divClick" class="kiko-tool-tip" :class="{'left': direction === 'left', 'right': direction === 'right', 'top': direction === 'top', 'bottom': direction === 'bottom'}" :style="{'background-color': background, 'color': color, 'top': top, 'left': left}">
-    <div v-if="type === 'select'" v-for="(item, key) in options">
-        <input type="checkbox" :value="key" v-model="selectData" class="">
-        <label :for="key" class="" >{{item}}</label>
+    <div v-if="type === 'select'">
+      <el-checkbox-group v-for="(item, key) in options" :key="key" v-model="selectData" @change="selectChange" align="left">
+          <!--<input type="checkbox" :value="key" v-model="selectData" class="">
+          <label :for="key" class="" >{{item}}</label>-->
+        <el-checkbox :label="key">{{item}}</el-checkbox>
+      </el-checkbox-group>
+      <div style="margin: 5px">
+        <el-button type="primary" size="mini" @click="screen">筛选</el-button>
+        <el-button type="success" size="mini" @click="save">确定</el-button>
+        <el-button type="warning" size="mini" @click="cancel">取消</el-button>
+      </div>
     </div>
     <div v-if="type === 'search'">
-      <input v-model="searchData">
+      <el-input
+        placeholder="请输入内容"
+        v-model="searchData"
+        clearable>
+      </el-input>
+      <div style="margin: 5px">
+        <el-button type="primary" size="mini" @click="screen">筛选</el-button>
+        <el-button type="success" size="mini" @click="save">确定</el-button>
+        <el-button type="warning" size="mini" @click="cancel">取消</el-button>
+      </div>
     </div>
     <div v-if="type === 'sort'">
-      <div class="radio-div">
-        <input type="radio" value="asc" v-model="sortData" class="">
-        <label class="" >asc</label>
-        <input type="radio" value="desc" v-model="sortData" class="">
-        <label class="" >desc</label>
+      <el-radio-group v-model="sortData" @change="sortChange">
+        <el-radio label="asc">顺序</el-radio>
+        <el-radio label="desc">倒序</el-radio>
+      </el-radio-group>
+      <div style="margin: 5px">
+        <el-button type="primary" size="mini" @click="screen">筛选</el-button>
+        <el-button type="success" size="mini" @click="save">确定</el-button>
+        <el-button type="warning" size="mini" @click="cancel">取消</el-button>
       </div>
     </div>
     <div class="arrow" :style="arrowStyleObject"></div>
@@ -28,7 +48,7 @@
         isShow: true,
         time: 3000,
         content: '',
-        direction: 'top',
+        direction: 'right',
         background: '#fff',
         color: '#000',
         arrowStyleObject: '',
@@ -38,7 +58,10 @@
         context: '1',
         selectData: [],
         searchData: '',
-        sortData: ''
+        sortData: '',
+        callback: null,
+        default: null,
+        initData: ''  // 打开弹窗前的初始化数据
       }
     },
     beforeMount() {
@@ -53,7 +76,7 @@
           case 'top':
             return (this.rect.top - 12) + 'px'
           case 'bottom':
-            return (this.rect.top + 12) + 'px'
+            return (this.rect.top - 12) + 'px'
           case 'left':
             return (this.rect.top + this.rect.height / 2) + 'px'
           case 'right':
@@ -75,10 +98,20 @@
     },
     mounted() {
       this.initColor()
+      this.initData = JSON.stringify({
+        selectData: this.selectData,
+        searchData: this.searchData,
+        sortData: this.sortData
+      })
       if (this.time !== -1) this.hidden()
       // 点击其他地方隐藏
       document.onclick = () => {
         this.hidden()
+      }
+      if (this.default !== null && this.default !== undefined) {
+      	this.selectData = this.default
+        this.searchData = this.default
+        this.sortData = this.default
       }
     },
     methods: {
@@ -116,14 +149,39 @@
       divClick($event) {
         // 停止事件冒泡
         $event.stopPropagation();
-      }
-    },
-    watch: {
-      sortData(o, n) {
-        console.log(o, n)
       },
-      selectData(o, n) {
-        console.log(o, n)
+      selectChange() {},
+      sortChange() {},
+      screen() {
+        this.change()
+        this.hidden()
+      },
+      save() {
+        this.change()
+        this.hidden()
+      },
+      change() {
+        if (this.callback && this.callback instanceof Function) {
+        	let data = null
+          if (this.type === 'select') {
+            data = this.selectData
+          } else if (this.type === 'search') {
+            data = this.searchData
+          } else if (this.type === 'sort') {
+            data = this.sortData
+          }
+          if (data) {
+            this.callback(data)
+          }
+        }
+      },
+      cancel() {
+      	// 还原修改前的数据
+        const parse = JSON.parse(this.initData)
+        this.selectData = parse.selectData
+        this.sortData = parse.sortData
+        this.searchData = parse.searchData
+        this.hidden()
       }
     }
   }
@@ -131,10 +189,10 @@
 
 <style type="text/css">
   .kiko-tool-tip {
+    box-shadow: 3px 3px 3px 3px #888888;
     display: block;
     position: absolute;
     position: fixed;
-    background-color: #3695CC;
     padding: 10px 10px;
     border-radius: 5px;
     color: #fff;
@@ -208,138 +266,7 @@
     border-right: 10px solid transparent;
     transform: translate(-50%, 0);
   }
-  .my-label {
-    display: inline-block;
-    cursor: pointer;
-    position: relative;
-    padding-left: 25px;
-    margin-right: 15px;
-    font-size: 13px;
-  }
-
-  .my-label:before {
-    content: "";
-    display: inline-block;
-
-    width: 16px;
-    height: 16px;
-
-    margin-right: 10px;
-    position: absolute;
-    left: 0;
-    bottom: 1px;
-    background-color: #aaa;
-    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
-  }
-
-  .radio-div label:before {
-    border-radius: 8px;
-  }
-  .my-checkbox label:before {
-    border-radius: 3px;
-  }
-
-
-  .my-radio,
-  .my-checkbox {
-    display: none;
-  }
-
-  .my-radio + label:before {
-    content: "\2022";
-    color: #f3f3f3;
-    font-size: 30px;
-    text-align: center;
-    line-height: 16px;
-  }
-  .my-checkbox + label:before {
-    content: "\2713";
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
-    font-size: 15px;
-    color: #f3f3f3;
-    text-align: center;
-    line-height: 18px;
-  }
 
 </style>
 
 
-<!--
-<html>
-	<head>
-		<style>
-			label {
-    display: inline-block;
-    cursor: pointer;
-    position: relative;
-    padding-left: 25px;
-    margin-right: 15px;
-    font-size: 13px;
-}
-
-label:before {
-    content: "";
-    display: inline-block;
-
-    width: 16px;
-    height: 16px;
-
-    margin-right: 10px;
-    position: absolute;
-    left: 0;
-    bottom: 1px;
-    background-color: #aaa;
-    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
-}
-
-.radio label:before {
-    border-radius: 8px;
-}
-.checkbox label:before {
-    border-radius: 3px;
-}
-
-
-input[type=radio],
-input[type=checkbox] {
-    display: none;
-}
-
-input[type=radio]:checked + label:before {
-    content: "\2022";
-    color: #f3f3f3;
-    font-size: 30px;
-    text-align: center;
-    line-height: 13px;
-}
-input[type=checkbox]:checked + label:before {
-    content: "\2713";
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
-    font-size: 15px;
-    color: #f3f3f3;
-    text-align: center;
-    line-height: 15px;
-}
-
-		</style>
-	</head>
-	<body>
-		<div class="radio">
-    <input id="male" type="radio" name="gender" value="male">
-    <label for="male">Male</label>
-    <input id="female" type="radio" name="gender" value="female">
-    <label for="female">Female</label>
-</div>
-
-
-// checkbox input
-<div class="checkbox">
-    <input id="check1" type="checkbox" name="check" value="check1">
-    <label for="check1">Checkbox No. 1</label>
-
-    <input id="check2" type="checkbox" name="check" value="check2">
-    <label for="check2">Checkbox No. 2</label>
-</div>
-	</body>
-</html>
--->
