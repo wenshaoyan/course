@@ -5,6 +5,7 @@
         <div>search:{{searchData}}</div>
         <div>sort:{{sortData}}</div>
         <div>select:{{selectData}}</div>
+        <div>datetime:{{datetimeData}}</div>
       </el-collapse-item>
     </el-collapse>
 
@@ -44,6 +45,16 @@
               {{sub(getSelectValue(key))}}
             </el-tag>
             <i v-if="!selectData[key]  && 'select' in item.types && item.types.select && item.types.select.show" class="fa fa-filter i-child-3" @click="showSelect($event,key,item.types.select)"></i>
+            <el-tag
+              v-if="datetimeData[key]"
+              size="small"
+              type="danger"
+              closable
+              :disable-transitions="false"
+              @close="handleClose(key,'datetime')">
+              {{sub(searchData[key])}}
+            </el-tag>
+            <i v-if="!datetimeData[key]  && 'select' in item.types && item.types.datetime && item.types.datetime.show" class="fa fa-calendar i-child-3" @click="showDatetime($event,key,item.types.datetime)"></i>
           </div>
         </th>
       </tr>
@@ -93,10 +104,12 @@
       const searchFields = {}
       const sortFields = {}
       const selectFields = {}
+      const datetimeFields = {}
       for (let key in this.listFields) {
         searchFields[key] = undefined;
         sortFields[key] = undefined;
         selectFields[key] = undefined;
+        datetimeFields[key] = undefined;
       }
       return {
         restful: new Restful(this.prefix),
@@ -105,6 +118,7 @@
         searchData: searchFields,
         sortData: sortFields,
         selectData: selectFields,
+        datetimeData: datetimeFields,
         data: [],
         optionsButtons: false
       }
@@ -177,10 +191,21 @@
           }
         })
       },
+      showDatetime($event, prop, $c) {
+        this.$kiko_tooltip($event, {
+          time: -1,
+          type: "datetime",
+          default: this.datetimeData[prop],
+          callback: (data) => {
+            this.changeData(prop, 'datetime', data)
+          }
+        })
+      },
       getActionData(action) {
         if (action === 'select') return this.selectData
         else if (action === 'search') return this.searchData
         else if (action === 'sort') return this.sortData
+        else if (action === 'datetime') return this.datetimeData
       },
       changeData(prop, action, _data) {
         const data = this.getActionData(action);

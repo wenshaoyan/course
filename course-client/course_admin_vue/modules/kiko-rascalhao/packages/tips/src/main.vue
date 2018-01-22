@@ -35,6 +35,22 @@
         <el-button type="warning" size="mini" @click="cancel">取消</el-button>
       </div>
     </div>
+    <div v-if="type === 'datetime'">
+      <el-date-picker
+        v-model="datetimeData"
+        type="datetimerange"
+        :picker-options="pickerOptions"
+        range-separator="至"
+        start-placeholder="开始日期"
+        end-placeholder="结束日期"
+        align="right">
+      </el-date-picker>
+      <div style="margin: 5px">
+        <el-button type="primary" size="mini" @click="screen">筛选</el-button>
+        <el-button type="success" size="mini" @click="save">确定</el-button>
+        <el-button type="warning" size="mini" @click="cancel">取消</el-button>
+      </div>
+    </div>
     <div class="arrow" :style="arrowStyleObject"></div>
   </div>
 
@@ -59,6 +75,34 @@
         selectData: [],
         searchData: '',
         sortData: '',
+        datetimeData: '',
+        pickerOptions: {
+          shortcuts: [{
+            text: '最近一周',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近一个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近三个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+              picker.$emit('pick', [start, end]);
+            }
+          }]
+        },
         callback: null,
         default: null,
         initData: ''  // 打开弹窗前的初始化数据
@@ -112,6 +156,7 @@
       	this.selectData = this.default
         this.searchData = this.default
         this.sortData = this.default
+        this.datetimeData = this.default
       }
     },
     methods: {
@@ -169,6 +214,8 @@
             data = this.searchData
           } else if (this.type === 'sort') {
             data = this.sortData
+          } else if (this.type === 'datetime') {
+            data = this.datetimeData
           }
           if (data) {
             this.callback(data)

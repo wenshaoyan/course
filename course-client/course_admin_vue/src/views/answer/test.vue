@@ -61,7 +61,12 @@
             create_time: {
               name: '创建时间',
               width: '120',
-              filter: 'formatTime'
+              filter: 'formatTime',
+              types: {
+                datetime: {
+                  show: true
+                }
+              }
             },
             update_time: {
               name: '更新时间',
