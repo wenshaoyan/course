@@ -17,6 +17,9 @@ ToolTip.installToolTip = function(event, opt) {
   ['height', 'width'].forEach(function(property) {
     rect[property] = event.target.getBoundingClientRect()[property]
   })
+  if (rect.left > 1000) {
+    options.direction = 'left'
+  }
   options.rect = rect
   const toolTip = Vue.extend(ToolTip)
   const component = new toolTip({

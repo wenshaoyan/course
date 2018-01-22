@@ -52,9 +52,9 @@
               closable
               :disable-transitions="false"
               @close="handleClose(key,'datetime')">
-              {{sub(searchData[key])}}
+              {{sub(datetimeData[key])}}
             </el-tag>
-            <i v-if="!datetimeData[key]  && 'select' in item.types && item.types.datetime && item.types.datetime.show" class="fa fa-calendar i-child-3" @click="showDatetime($event,key,item.types.datetime)"></i>
+            <i v-if="!datetimeData[key]  && 'datetime' in item.types && item.types.datetime && item.types.datetime.show" class="fa fa-calendar i-child-3" @click="showDatetime($event,key,item.types.datetime)"></i>
           </div>
         </th>
       </tr>
@@ -71,6 +71,18 @@
       </tr>
       </tbody>
     </table>
+
+    <div class="block">
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="pages.currentPage"
+        :page-sizes="[20, 30, 50]"
+        :page-size="20"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="pages.total">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -79,7 +91,7 @@
   import Restful from '@/api/restful'
   import moment from 'moment'
   const formatTime = (d, row) => {
-    const f = 'YYYY-MM-DD HH:mm:sss'
+    const f = 'YYYY-MM-DD HH:mm:ss.SSS'
     const m = moment(Number(d))
     return m.format(f)
   }
@@ -119,6 +131,10 @@
         sortData: sortFields,
         selectData: selectFields,
         datetimeData: datetimeFields,
+        pages: {
+          currentPage: 0,
+          total: 100,
+        },
         data: [],
         optionsButtons: false
       }
@@ -197,6 +213,8 @@
           type: "datetime",
           default: this.datetimeData[prop],
           callback: (data) => {
+            data[0] = moment(data[0]).format('YYYY-MM-DD HH:mm:ss')
+            data[1] = moment(data[1]).format('YYYY-MM-DD HH:mm:ss')
             this.changeData(prop, 'datetime', data)
           }
         })
@@ -233,10 +251,22 @@
         return list.toString()
       },
       sub(str) {
-        if(str.length>6){
+      	if (str instanceof Array) {
+          const d1 = moment(str[0]).format('YYYY-MM-DD');
+          const d2 = moment(str[1]).format('YYYY-MM-DD');
+          return d1 + '至' + d2
+        }
+        if(str.length > 6){
           return str.substring(0,6)+"...";
         }
         return str
+      },
+      // page
+      handleSizeChange() {
+
+      },
+      handleCurrentChange() {
+
       }
     }
   }
@@ -292,5 +322,9 @@
   }
   .i-child-1{
     width: 90%;
+  }
+  .block{
+    padding: 30px 24px;
+    border-bottom: 1px solid #eff2f6;
   }
 </style>

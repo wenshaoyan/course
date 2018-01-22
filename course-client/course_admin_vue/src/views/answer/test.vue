@@ -71,7 +71,12 @@
             update_time: {
               name: '更新时间',
               width: '120',
-              filter: 'formatTime'
+              filter: 'formatTime',
+              types: {
+                datetime: {
+                  show: true
+                }
+              }
             },
             _options: {
               name: '选项',

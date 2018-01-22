@@ -23,10 +23,10 @@ router.use(async (ctx, next) => {
 });
 router.get('/', async (ctx, next) => {
     const params = ctx.query;
-    console.log(params);
     try {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
-        ctx.body = await client.topicSelect(new Topic());
+
+        ctx.body = await client.topicSelect(new Topic(params));
     } catch (e) {
         console.log(e);
         ctx.error = e;

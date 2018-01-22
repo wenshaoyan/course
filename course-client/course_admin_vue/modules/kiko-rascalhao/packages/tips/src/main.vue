@@ -145,7 +145,8 @@
       this.initData = JSON.stringify({
         selectData: this.selectData,
         searchData: this.searchData,
-        sortData: this.sortData
+        sortData: this.sortData,
+        datetimeData: this.datetimeData
       })
       if (this.time !== -1) this.hidden()
       // 点击其他地方隐藏
@@ -228,6 +229,7 @@
         this.selectData = parse.selectData
         this.sortData = parse.sortData
         this.searchData = parse.searchData
+        this.datetimeData = parse.datetimeData
         this.hidden()
       }
     }
