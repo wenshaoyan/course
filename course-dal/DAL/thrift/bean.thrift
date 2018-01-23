@@ -106,7 +106,9 @@ struct Query{
     8:string order
 }
 struct Custom{
-    1:set<string> tables
+    1:set<string> tables,
+    2:map<string,list<string>> selects,
+    3:map<string,> scopes
 }
 struct TopicOption{
     1:i32 id
