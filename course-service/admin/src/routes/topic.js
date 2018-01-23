@@ -25,13 +25,29 @@ router.get('/', async (ctx, next) => {
     const params = ctx.query;
     try {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
-
         ctx.body = await client.topicSelect(new Topic(params));
     } catch (e) {
         console.log(e);
         ctx.error = e;
     }
 });
+{
+    search: {
+
+    },
+
+}
+router.get('/counts', async (ctx, next) => {
+    const params = ctx.query;
+    try {
+        const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
+        ctx.body = await client.topicCountSelectQuery(new Topic(params));
+    } catch (e) {
+        console.log(e);
+        ctx.error = e;
+    }
+});
+
 router.post('/', async (ctx, next) => {
     const params = ctx.request.body;
     try {
