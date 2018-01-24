@@ -31,19 +31,19 @@
                                 and ${field} != #{value}
                             </when>
                             <when test="op == 'gt'" >
-                                and ${field} > #{value}
+                                and ${field} &gt; #{value}
                             </when>
                             <when test="op == 'gte'" >
-                                and ${field} >= #{value}
+                                and ${field} &gt;= #{value}
                             </when>
                             <when test="op == 'lt'" >
-                                and ${field} < #{value}
+                                and ${field} &lt;  #{value}
                             </when>
                             <when test="op == 'lte'" >
-                                and ${field} <= #{value}
+                                and ${field} &lt;= #{value}
                             </when>
                             <when test="op == 'between'" >
-                                and ${field} <= #{value}
+                                and ${field} &lt; #{value}
                             </when>
                         </choose>
                     </foreach>
@@ -91,7 +91,7 @@
 
 
 
-    <select id="select" parameterType="_AbstractSql"  resultMap="topicOptionResult">
+    <select id="select" parameterType="_AbstractSqlBean"  resultMap="topicOptionResult">
       <include refid="select_list"/>
       <include refid="condition"/>
     </select>

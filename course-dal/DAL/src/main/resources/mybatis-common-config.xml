@@ -9,7 +9,7 @@
         <typeAlias type="com.wenshao.dal.bean.TopicBean" alias="_TopicBean"/>
         <typeAlias type="com.wenshao.dal.bean.TopicOptionBean" alias="_TopicOptionBean"/>
         <typeAlias type="com.wenshao.dal.bean.TopicBankBean" alias="_TopicBankBean"/>
-        <typeAlias type="com.wenshao.dal.thriftgen.AbstractSql" alias="_AbstractSql"/>
+        <typeAlias type="com.wenshao.dal.bean.AbstractSqlBean" alias="_AbstractSqlBean"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
