@@ -18,34 +18,12 @@
     -->
     <sql id="condition">
         <where>
-            <if test="where">
-            <foreach collection="where" index="field" item="cons" separator="or" >
+            <if test="whereObject">
+            <foreach collection="whereObject" index="field" item="cons" separator="or" >
                 <if test="cons">
                 <trim prefix="(" suffix=")" prefixOverrides="and" >
                     <foreach collection="cons" item="value" index="op" >
-                        <choose >
-                            <when test="op == 'eq'" >
-                                and ${field} = #{value}
-                            </when>
-                            <when test="op == 'ne'" >
-                                and ${field} != #{value}
-                            </when>
-                            <when test="op == 'gt'" >
-                                and ${field} &gt; #{value}
-                            </when>
-                            <when test="op == 'gte'" >
-                                and ${field} &gt;= #{value}
-                            </when>
-                            <when test="op == 'lt'" >
-                                and ${field} &lt;  #{value}
-                            </when>
-                            <when test="op == 'lte'" >
-                                and ${field} &lt;= #{value}
-                            </when>
-                            <when test="op == 'between'" >
-                                and ${field} &lt; #{value}
-                            </when>
-                        </choose>
+                        AND ${field} ${value}
                     </foreach>
                 </trim>
                 </if>

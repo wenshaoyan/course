@@ -23,7 +23,7 @@
             <AppenderRef ref="Console"/>
         </Logger>
         <!--打印sql-->
-        <Logger name="mapper" level="debug">
+        <Logger name="com.wenshao.dal.dao" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
 

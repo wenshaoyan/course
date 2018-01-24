@@ -1,7 +1,7 @@
 package com.wenshao.dal.bean;
 
 import com.wenshao.dal.thriftgen.AbstractSql;
-import com.wenshao.dal.util.ExceptionUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -13,30 +13,32 @@ import java.util.*;
  * eq: '1'
  */
 public class AbstractSqlBean extends AbstractSql {
-    private Map<String, Map<String, Object>> whereObject = new HashMap<String, Map<String, Object>>();
-    private final static Set<String> conSet = new HashSet<String>();
+    private Map<String, Map<String, String>> whereObject = new HashMap<String, Map<String, String>>();
+    private final static Map<String, String> conMap = new HashMap<String, String>();
     private final static Set<String> valueTypeSet = new HashSet<String>();
-    private Map<String,String> fieldsMap;
+    private Map<String, String> fieldsMap;
+
     static {
-        conSet.add("eq");
-        conSet.add("ne");
-        conSet.add("gt");
-        conSet.add("gte");
-        conSet.add("lt");
-        conSet.add("lte");
-        conSet.add("between");
-        conSet.add("notBetween");
-        conSet.add("in");
-        conSet.add("notIn");
-        conSet.add("like");
-        conSet.add("notLike");
+        conMap.put("eq", " = ");
+        conMap.put("ne", " != ");
+        conMap.put("gt", " > ");
+        conMap.put("gte", " >= ");
+        conMap.put("lt", " < ");
+        conMap.put("lte", " <= ");
+        conMap.put("between", " BETWEEN ");
+        conMap.put("notBetween", " NOT BETWEEN ");
+        conMap.put("in", " IN ");
+        conMap.put("notIn", " NOT IN ");
+        conMap.put("like", " LIKE ");
+        conMap.put("notLike", " NOT LIKE ");
     }
-    public AbstractSqlBean(AbstractSql abstractSql,  Class clazz) {
+
+    public AbstractSqlBean(AbstractSql abstractSql, Class clazz) {
         super(abstractSql);
         Map<String, Map<String, String>> where = this.where;
         Object classObject = null;
         try {
-            Class<?> aClass  = null;
+            Class<?> aClass = null;
             aClass = Class.forName(clazz.getName());
             classObject = aClass.newInstance();
 
@@ -56,51 +58,54 @@ public class AbstractSqlBean extends AbstractSql {
             if (queryValue.containsKey("type")) {
                 valueType = queryValue.get("type");
             }
-            Map<String, Object> consObject = new HashMap<String, Object>();
+            Map<String, String> consObject = new HashMap<String, String>();
             for (Map.Entry<String, String> map : queryValue.entrySet()) {
                 String conValue = map.getValue();
                 String conKey = map.getKey();
-                if (conSet.contains(conKey)) {
-                    Object v = conValue;
-                    if (valueType != null) {
-                        try {
-                            if ("int".equals(valueType)) {
-                                v = Integer.parseInt(conValue);
-                            }
-                            consObject.put(conKey, v);
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-                    } else if (fieldsMap.containsKey(queryField)) {
-
+                if (conMap.containsKey(conKey)) {
+                    if (valueType == null && fieldsMap.containsKey(queryField)) {
+                        valueType = fieldsMap.get(queryField);
                     }
-
+                    if ("number".equals(valueType) && StringUtils.isNumeric(conValue)) {
+                        conValue = conMap.get(conKey) + conValue;
+                    } else if ("string".equals(valueType)) {
+                        conValue = conMap.get(conKey) + "'" + conValue + "'";
+                    } else {
+                        conValue = null;
+                    }
+                    if (conValue != null) consObject.put(conKey, conValue);
                 }
-
             }
-
+            if (!consObject.isEmpty()) {
+                whereObject.put(queryField, consObject);
+            }
         }
     }
 
-    private void typeConvert () {
+    private void typeConvert() {
 
     }
-    private void getFieldsInfo(Object o){
-        Field[] fields=o.getClass().getDeclaredFields();
-        Map<String,String> infoMap = null;
-        for (Field field : fields) {
-            infoMap = new HashMap<String, String>();
-            String s = null;
 
-            infoMap.put(field.getName(),field.getType().getName());
+    private void getFieldsInfo(Object o) {
+        Field[] fields = o.getClass().getDeclaredFields();
+        Map<String, String> infoMap = new HashMap<String, String>();
+        for (Field field : fields) {
+            String s = field.getType().getName();
+            if ("java.lang.String".equals(s)) {
+                s = "string";
+            } else if ("int".equals(s)) {
+                s = "number";
+            }
+            infoMap.put(field.getName(), s);
         }
         this.fieldsMap = infoMap;
     }
-    public Map<String, Map<String, Object>> getWhereObject() {
+
+    public Map<String, Map<String, String>> getWhereObject() {
         return whereObject;
     }
 
-    public void setWhereObject(Map<String, Map<String, Object>> whereObject) {
+    public void setWhereObject(Map<String, Map<String, String>> whereObject) {
         this.whereObject = whereObject;
     }
 

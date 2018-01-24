@@ -13,34 +13,37 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
 
   private static final org.apache.thrift.protocol.TField SELECTS_FIELD_DESC = new org.apache.thrift.protocol.TField("selects", org.apache.thrift.protocol.TType.LIST, (short)1);
   private static final org.apache.thrift.protocol.TField WHERE_FIELD_DESC = new org.apache.thrift.protocol.TField("where", org.apache.thrift.protocol.TType.MAP, (short)2);
-  private static final org.apache.thrift.protocol.TField ORDER_FIELD_DESC = new org.apache.thrift.protocol.TField("order", org.apache.thrift.protocol.TType.STRING, (short)3);
-  private static final org.apache.thrift.protocol.TField GROUP_FIELD_DESC = new org.apache.thrift.protocol.TField("group", org.apache.thrift.protocol.TType.STRING, (short)4);
-  private static final org.apache.thrift.protocol.TField LIMIT_FIELD_DESC = new org.apache.thrift.protocol.TField("limit", org.apache.thrift.protocol.TType.LIST, (short)5);
-  private static final org.apache.thrift.protocol.TField LEFT_JOIN_FIELD_DESC = new org.apache.thrift.protocol.TField("left_join", org.apache.thrift.protocol.TType.MAP, (short)6);
-  private static final org.apache.thrift.protocol.TField INNER_JOIN_FIELD_DESC = new org.apache.thrift.protocol.TField("inner_join", org.apache.thrift.protocol.TType.MAP, (short)7);
+  private static final org.apache.thrift.protocol.TField WHERE_LIST_FIELD_DESC = new org.apache.thrift.protocol.TField("where_list", org.apache.thrift.protocol.TType.MAP, (short)3);
+  private static final org.apache.thrift.protocol.TField ORDER_FIELD_DESC = new org.apache.thrift.protocol.TField("order", org.apache.thrift.protocol.TType.STRING, (short)4);
+  private static final org.apache.thrift.protocol.TField GROUP_FIELD_DESC = new org.apache.thrift.protocol.TField("group", org.apache.thrift.protocol.TType.STRING, (short)5);
+  private static final org.apache.thrift.protocol.TField LIMIT_FIELD_DESC = new org.apache.thrift.protocol.TField("limit", org.apache.thrift.protocol.TType.LIST, (short)6);
+  private static final org.apache.thrift.protocol.TField LEFT_JOIN_FIELD_DESC = new org.apache.thrift.protocol.TField("left_join", org.apache.thrift.protocol.TType.MAP, (short)7);
+  private static final org.apache.thrift.protocol.TField INNER_JOIN_FIELD_DESC = new org.apache.thrift.protocol.TField("inner_join", org.apache.thrift.protocol.TType.MAP, (short)8);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new AbstractSqlStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new AbstractSqlTupleSchemeFactory();
 
-  public java.util.List<java.lang.String> selects; // required
-  public java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> where; // required
-  public java.lang.String order; // required
-  public java.lang.String group; // required
-  public java.util.List<java.lang.String> limit; // required
-  public java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> left_join; // required
-  public java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> inner_join; // required
+  public java.util.List<String> selects; // required
+  public java.util.Map<String,java.util.Map<String,String>> where; // required
+  public java.util.Map<String,java.util.Map<String,java.util.List<String>>> where_list; // required
+  public String order; // required
+  public String group; // required
+  public java.util.List<String> limit; // required
+  public java.util.Map<String,java.util.Map<String,String>> left_join; // required
+  public java.util.Map<String,java.util.Map<String,String>> inner_join; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
     SELECTS((short)1, "selects"),
     WHERE((short)2, "where"),
-    ORDER((short)3, "order"),
-    GROUP((short)4, "group"),
-    LIMIT((short)5, "limit"),
-    LEFT_JOIN((short)6, "left_join"),
-    INNER_JOIN((short)7, "inner_join");
+    WHERE_LIST((short)3, "where_list"),
+    ORDER((short)4, "order"),
+    GROUP((short)5, "group"),
+    LIMIT((short)6, "limit"),
+    LEFT_JOIN((short)7, "left_join"),
+    INNER_JOIN((short)8, "inner_join");
 
-    private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+    private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
     static {
       for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -57,15 +60,17 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
           return SELECTS;
         case 2: // WHERE
           return WHERE;
-        case 3: // ORDER
+        case 3: // WHERE_LIST
+          return WHERE_LIST;
+        case 4: // ORDER
           return ORDER;
-        case 4: // GROUP
+        case 5: // GROUP
           return GROUP;
-        case 5: // LIMIT
+        case 6: // LIMIT
           return LIMIT;
-        case 6: // LEFT_JOIN
+        case 7: // LEFT_JOIN
           return LEFT_JOIN;
-        case 7: // INNER_JOIN
+        case 8: // INNER_JOIN
           return INNER_JOIN;
         default:
           return null;
@@ -78,21 +83,21 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
      */
     public static _Fields findByThriftIdOrThrow(int fieldId) {
       _Fields fields = findByThriftId(fieldId);
-      if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+      if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
       return fields;
     }
 
     /**
      * Find the _Fields constant that matches name, or null if its not found.
      */
-    public static _Fields findByName(java.lang.String name) {
+    public static _Fields findByName(String name) {
       return byName.get(name);
     }
 
     private final short _thriftId;
-    private final java.lang.String _fieldName;
+    private final String _fieldName;
 
-    _Fields(short thriftId, java.lang.String fieldName) {
+    _Fields(short thriftId, String fieldName) {
       _thriftId = thriftId;
       _fieldName = fieldName;
     }
@@ -101,7 +106,7 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       return _thriftId;
     }
 
-    public java.lang.String getFieldName() {
+    public String getFieldName() {
       return _fieldName;
     }
   }
@@ -119,6 +124,13 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
             new org.apache.thrift.meta_data.MapMetaData(org.apache.thrift.protocol.TType.MAP, 
                 new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING), 
                 new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)))));
+    tmpMap.put(_Fields.WHERE_LIST, new org.apache.thrift.meta_data.FieldMetaData("where_list", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.MapMetaData(org.apache.thrift.protocol.TType.MAP, 
+            new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING), 
+            new org.apache.thrift.meta_data.MapMetaData(org.apache.thrift.protocol.TType.MAP, 
+                new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING), 
+                new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+                    new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING))))));
     tmpMap.put(_Fields.ORDER, new org.apache.thrift.meta_data.FieldMetaData("order", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.GROUP, new org.apache.thrift.meta_data.FieldMetaData("group", org.apache.thrift.TFieldRequirementType.DEFAULT, 
@@ -146,17 +158,19 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
   }
 
   public AbstractSql(
-    java.util.List<java.lang.String> selects,
-    java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> where,
-    java.lang.String order,
-    java.lang.String group,
-    java.util.List<java.lang.String> limit,
-    java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> left_join,
-    java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> inner_join)
+    java.util.List<String> selects,
+    java.util.Map<String,java.util.Map<String,String>> where,
+    java.util.Map<String,java.util.Map<String,java.util.List<String>>> where_list,
+    String order,
+    String group,
+    java.util.List<String> limit,
+    java.util.Map<String,java.util.Map<String,String>> left_join,
+    java.util.Map<String,java.util.Map<String,String>> inner_join)
   {
     this();
     this.selects = selects;
     this.where = where;
+    this.where_list = where_list;
     this.order = order;
     this.group = group;
     this.limit = limit;
@@ -169,23 +183,49 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
    */
   public AbstractSql(AbstractSql other) {
     if (other.isSetSelects()) {
-      java.util.List<java.lang.String> __this__selects = new java.util.ArrayList<java.lang.String>(other.selects);
+      java.util.List<String> __this__selects = new java.util.ArrayList<String>(other.selects);
       this.selects = __this__selects;
     }
     if (other.isSetWhere()) {
-      java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> __this__where = new java.util.HashMap<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>(other.where.size());
-      for (java.util.Map.Entry<java.lang.String, java.util.Map<java.lang.String,java.lang.String>> other_element : other.where.entrySet()) {
+      java.util.Map<String,java.util.Map<String,String>> __this__where = new java.util.HashMap<String,java.util.Map<String,String>>(other.where.size());
+      for (java.util.Map.Entry<String, java.util.Map<String,String>> other_element : other.where.entrySet()) {
 
-        java.lang.String other_element_key = other_element.getKey();
-        java.util.Map<java.lang.String,java.lang.String> other_element_value = other_element.getValue();
+        String other_element_key = other_element.getKey();
+        java.util.Map<String,String> other_element_value = other_element.getValue();
 
-        java.lang.String __this__where_copy_key = other_element_key;
+        String __this__where_copy_key = other_element_key;
 
-        java.util.Map<java.lang.String,java.lang.String> __this__where_copy_value = new java.util.HashMap<java.lang.String,java.lang.String>(other_element_value);
+        java.util.Map<String,String> __this__where_copy_value = new java.util.HashMap<String,String>(other_element_value);
 
         __this__where.put(__this__where_copy_key, __this__where_copy_value);
       }
       this.where = __this__where;
+    }
+    if (other.isSetWhere_list()) {
+      java.util.Map<String,java.util.Map<String,java.util.List<String>>> __this__where_list = new java.util.HashMap<String,java.util.Map<String,java.util.List<String>>>(other.where_list.size());
+      for (java.util.Map.Entry<String, java.util.Map<String,java.util.List<String>>> other_element : other.where_list.entrySet()) {
+
+        String other_element_key = other_element.getKey();
+        java.util.Map<String,java.util.List<String>> other_element_value = other_element.getValue();
+
+        String __this__where_list_copy_key = other_element_key;
+
+        java.util.Map<String,java.util.List<String>> __this__where_list_copy_value = new java.util.HashMap<String,java.util.List<String>>(other_element_value.size());
+        for (java.util.Map.Entry<String, java.util.List<String>> other_element_value_element : other_element_value.entrySet()) {
+
+          String other_element_value_element_key = other_element_value_element.getKey();
+          java.util.List<String> other_element_value_element_value = other_element_value_element.getValue();
+
+          String __this__where_list_copy_value_copy_key = other_element_value_element_key;
+
+          java.util.List<String> __this__where_list_copy_value_copy_value = new java.util.ArrayList<String>(other_element_value_element_value);
+
+          __this__where_list_copy_value.put(__this__where_list_copy_value_copy_key, __this__where_list_copy_value_copy_value);
+        }
+
+        __this__where_list.put(__this__where_list_copy_key, __this__where_list_copy_value);
+      }
+      this.where_list = __this__where_list;
     }
     if (other.isSetOrder()) {
       this.order = other.order;
@@ -194,34 +234,34 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       this.group = other.group;
     }
     if (other.isSetLimit()) {
-      java.util.List<java.lang.String> __this__limit = new java.util.ArrayList<java.lang.String>(other.limit);
+      java.util.List<String> __this__limit = new java.util.ArrayList<String>(other.limit);
       this.limit = __this__limit;
     }
     if (other.isSetLeft_join()) {
-      java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> __this__left_join = new java.util.HashMap<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>(other.left_join.size());
-      for (java.util.Map.Entry<java.lang.String, java.util.Map<java.lang.String,java.lang.String>> other_element : other.left_join.entrySet()) {
+      java.util.Map<String,java.util.Map<String,String>> __this__left_join = new java.util.HashMap<String,java.util.Map<String,String>>(other.left_join.size());
+      for (java.util.Map.Entry<String, java.util.Map<String,String>> other_element : other.left_join.entrySet()) {
 
-        java.lang.String other_element_key = other_element.getKey();
-        java.util.Map<java.lang.String,java.lang.String> other_element_value = other_element.getValue();
+        String other_element_key = other_element.getKey();
+        java.util.Map<String,String> other_element_value = other_element.getValue();
 
-        java.lang.String __this__left_join_copy_key = other_element_key;
+        String __this__left_join_copy_key = other_element_key;
 
-        java.util.Map<java.lang.String,java.lang.String> __this__left_join_copy_value = new java.util.HashMap<java.lang.String,java.lang.String>(other_element_value);
+        java.util.Map<String,String> __this__left_join_copy_value = new java.util.HashMap<String,String>(other_element_value);
 
         __this__left_join.put(__this__left_join_copy_key, __this__left_join_copy_value);
       }
       this.left_join = __this__left_join;
     }
     if (other.isSetInner_join()) {
-      java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> __this__inner_join = new java.util.HashMap<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>(other.inner_join.size());
-      for (java.util.Map.Entry<java.lang.String, java.util.Map<java.lang.String,java.lang.String>> other_element : other.inner_join.entrySet()) {
+      java.util.Map<String,java.util.Map<String,String>> __this__inner_join = new java.util.HashMap<String,java.util.Map<String,String>>(other.inner_join.size());
+      for (java.util.Map.Entry<String, java.util.Map<String,String>> other_element : other.inner_join.entrySet()) {
 
-        java.lang.String other_element_key = other_element.getKey();
-        java.util.Map<java.lang.String,java.lang.String> other_element_value = other_element.getValue();
+        String other_element_key = other_element.getKey();
+        java.util.Map<String,String> other_element_value = other_element.getValue();
 
-        java.lang.String __this__inner_join_copy_key = other_element_key;
+        String __this__inner_join_copy_key = other_element_key;
 
-        java.util.Map<java.lang.String,java.lang.String> __this__inner_join_copy_value = new java.util.HashMap<java.lang.String,java.lang.String>(other_element_value);
+        java.util.Map<String,String> __this__inner_join_copy_value = new java.util.HashMap<String,String>(other_element_value);
 
         __this__inner_join.put(__this__inner_join_copy_key, __this__inner_join_copy_value);
       }
@@ -237,6 +277,7 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
   public void clear() {
     this.selects = null;
     this.where = null;
+    this.where_list = null;
     this.order = null;
     this.group = null;
     this.limit = null;
@@ -248,22 +289,22 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
     return (this.selects == null) ? 0 : this.selects.size();
   }
 
-  public java.util.Iterator<java.lang.String> getSelectsIterator() {
+  public java.util.Iterator<String> getSelectsIterator() {
     return (this.selects == null) ? null : this.selects.iterator();
   }
 
-  public void addToSelects(java.lang.String elem) {
+  public void addToSelects(String elem) {
     if (this.selects == null) {
-      this.selects = new java.util.ArrayList<java.lang.String>();
+      this.selects = new java.util.ArrayList<String>();
     }
     this.selects.add(elem);
   }
 
-  public java.util.List<java.lang.String> getSelects() {
+  public java.util.List<String> getSelects() {
     return this.selects;
   }
 
-  public AbstractSql setSelects(java.util.List<java.lang.String> selects) {
+  public AbstractSql setSelects(java.util.List<String> selects) {
     this.selects = selects;
     return this;
   }
@@ -287,18 +328,18 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
     return (this.where == null) ? 0 : this.where.size();
   }
 
-  public void putToWhere(java.lang.String key, java.util.Map<java.lang.String,java.lang.String> val) {
+  public void putToWhere(String key, java.util.Map<String,String> val) {
     if (this.where == null) {
-      this.where = new java.util.HashMap<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>();
+      this.where = new java.util.HashMap<String,java.util.Map<String,String>>();
     }
     this.where.put(key, val);
   }
 
-  public java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> getWhere() {
+  public java.util.Map<String,java.util.Map<String,String>> getWhere() {
     return this.where;
   }
 
-  public AbstractSql setWhere(java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> where) {
+  public AbstractSql setWhere(java.util.Map<String,java.util.Map<String,String>> where) {
     this.where = where;
     return this;
   }
@@ -318,11 +359,46 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
     }
   }
 
-  public java.lang.String getOrder() {
+  public int getWhere_listSize() {
+    return (this.where_list == null) ? 0 : this.where_list.size();
+  }
+
+  public void putToWhere_list(String key, java.util.Map<String,java.util.List<String>> val) {
+    if (this.where_list == null) {
+      this.where_list = new java.util.HashMap<String,java.util.Map<String,java.util.List<String>>>();
+    }
+    this.where_list.put(key, val);
+  }
+
+  public java.util.Map<String,java.util.Map<String,java.util.List<String>>> getWhere_list() {
+    return this.where_list;
+  }
+
+  public AbstractSql setWhere_list(java.util.Map<String,java.util.Map<String,java.util.List<String>>> where_list) {
+    this.where_list = where_list;
+    return this;
+  }
+
+  public void unsetWhere_list() {
+    this.where_list = null;
+  }
+
+  /** Returns true if field where_list is set (has been assigned a value) and false otherwise */
+  public boolean isSetWhere_list() {
+    return this.where_list != null;
+  }
+
+  public void setWhere_listIsSet(boolean value) {
+    if (!value) {
+      this.where_list = null;
+    }
+  }
+
+  public String getOrder() {
     return this.order;
   }
 
-  public AbstractSql setOrder(java.lang.String order) {
+  public AbstractSql setOrder(String order) {
     this.order = order;
     return this;
   }
@@ -342,11 +418,11 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
     }
   }
 
-  public java.lang.String getGroup() {
+  public String getGroup() {
     return this.group;
   }
 
-  public AbstractSql setGroup(java.lang.String group) {
+  public AbstractSql setGroup(String group) {
     this.group = group;
     return this;
   }
@@ -370,22 +446,22 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
     return (this.limit == null) ? 0 : this.limit.size();
   }
 
-  public java.util.Iterator<java.lang.String> getLimitIterator() {
+  public java.util.Iterator<String> getLimitIterator() {
     return (this.limit == null) ? null : this.limit.iterator();
   }
 
-  public void addToLimit(java.lang.String elem) {
+  public void addToLimit(String elem) {
     if (this.limit == null) {
-      this.limit = new java.util.ArrayList<java.lang.String>();
+      this.limit = new java.util.ArrayList<String>();
     }
     this.limit.add(elem);
   }
 
-  public java.util.List<java.lang.String> getLimit() {
+  public java.util.List<String> getLimit() {
     return this.limit;
   }
 
-  public AbstractSql setLimit(java.util.List<java.lang.String> limit) {
+  public AbstractSql setLimit(java.util.List<String> limit) {
     this.limit = limit;
     return this;
   }
@@ -409,18 +485,18 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
     return (this.left_join == null) ? 0 : this.left_join.size();
   }
 
-  public void putToLeft_join(java.lang.String key, java.util.Map<java.lang.String,java.lang.String> val) {
+  public void putToLeft_join(String key, java.util.Map<String,String> val) {
     if (this.left_join == null) {
-      this.left_join = new java.util.HashMap<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>();
+      this.left_join = new java.util.HashMap<String,java.util.Map<String,String>>();
     }
     this.left_join.put(key, val);
   }
 
-  public java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> getLeft_join() {
+  public java.util.Map<String,java.util.Map<String,String>> getLeft_join() {
     return this.left_join;
   }
 
-  public AbstractSql setLeft_join(java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> left_join) {
+  public AbstractSql setLeft_join(java.util.Map<String,java.util.Map<String,String>> left_join) {
     this.left_join = left_join;
     return this;
   }
@@ -444,18 +520,18 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
     return (this.inner_join == null) ? 0 : this.inner_join.size();
   }
 
-  public void putToInner_join(java.lang.String key, java.util.Map<java.lang.String,java.lang.String> val) {
+  public void putToInner_join(String key, java.util.Map<String,String> val) {
     if (this.inner_join == null) {
-      this.inner_join = new java.util.HashMap<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>();
+      this.inner_join = new java.util.HashMap<String,java.util.Map<String,String>>();
     }
     this.inner_join.put(key, val);
   }
 
-  public java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> getInner_join() {
+  public java.util.Map<String,java.util.Map<String,String>> getInner_join() {
     return this.inner_join;
   }
 
-  public AbstractSql setInner_join(java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>> inner_join) {
+  public AbstractSql setInner_join(java.util.Map<String,java.util.Map<String,String>> inner_join) {
     this.inner_join = inner_join;
     return this;
   }
@@ -475,13 +551,13 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
     }
   }
 
-  public void setFieldValue(_Fields field, java.lang.Object value) {
+  public void setFieldValue(_Fields field, Object value) {
     switch (field) {
     case SELECTS:
       if (value == null) {
         unsetSelects();
       } else {
-        setSelects((java.util.List<java.lang.String>)value);
+        setSelects((java.util.List<String>)value);
       }
       break;
 
@@ -489,7 +565,15 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       if (value == null) {
         unsetWhere();
       } else {
-        setWhere((java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>)value);
+        setWhere((java.util.Map<String,java.util.Map<String,String>>)value);
+      }
+      break;
+
+    case WHERE_LIST:
+      if (value == null) {
+        unsetWhere_list();
+      } else {
+        setWhere_list((java.util.Map<String,java.util.Map<String,java.util.List<String>>>)value);
       }
       break;
 
@@ -497,7 +581,7 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       if (value == null) {
         unsetOrder();
       } else {
-        setOrder((java.lang.String)value);
+        setOrder((String)value);
       }
       break;
 
@@ -505,7 +589,7 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       if (value == null) {
         unsetGroup();
       } else {
-        setGroup((java.lang.String)value);
+        setGroup((String)value);
       }
       break;
 
@@ -513,7 +597,7 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       if (value == null) {
         unsetLimit();
       } else {
-        setLimit((java.util.List<java.lang.String>)value);
+        setLimit((java.util.List<String>)value);
       }
       break;
 
@@ -521,7 +605,7 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       if (value == null) {
         unsetLeft_join();
       } else {
-        setLeft_join((java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>)value);
+        setLeft_join((java.util.Map<String,java.util.Map<String,String>>)value);
       }
       break;
 
@@ -529,20 +613,23 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       if (value == null) {
         unsetInner_join();
       } else {
-        setInner_join((java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>)value);
+        setInner_join((java.util.Map<String,java.util.Map<String,String>>)value);
       }
       break;
 
     }
   }
 
-  public java.lang.Object getFieldValue(_Fields field) {
+  public Object getFieldValue(_Fields field) {
     switch (field) {
     case SELECTS:
       return getSelects();
 
     case WHERE:
       return getWhere();
+
+    case WHERE_LIST:
+      return getWhere_list();
 
     case ORDER:
       return getOrder();
@@ -560,13 +647,13 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       return getInner_join();
 
     }
-    throw new java.lang.IllegalStateException();
+    throw new IllegalStateException();
   }
 
   /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
   public boolean isSet(_Fields field) {
     if (field == null) {
-      throw new java.lang.IllegalArgumentException();
+      throw new IllegalArgumentException();
     }
 
     switch (field) {
@@ -574,6 +661,8 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       return isSetSelects();
     case WHERE:
       return isSetWhere();
+    case WHERE_LIST:
+      return isSetWhere_list();
     case ORDER:
       return isSetOrder();
     case GROUP:
@@ -585,11 +674,11 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
     case INNER_JOIN:
       return isSetInner_join();
     }
-    throw new java.lang.IllegalStateException();
+    throw new IllegalStateException();
   }
 
   @Override
-  public boolean equals(java.lang.Object that) {
+  public boolean equals(Object that) {
     if (that == null)
       return false;
     if (that instanceof AbstractSql)
@@ -618,6 +707,15 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       if (!(this_present_where && that_present_where))
         return false;
       if (!this.where.equals(that.where))
+        return false;
+    }
+
+    boolean this_present_where_list = true && this.isSetWhere_list();
+    boolean that_present_where_list = true && that.isSetWhere_list();
+    if (this_present_where_list || that_present_where_list) {
+      if (!(this_present_where_list && that_present_where_list))
+        return false;
+      if (!this.where_list.equals(that.where_list))
         return false;
     }
 
@@ -681,6 +779,10 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
     if (isSetWhere())
       hashCode = hashCode * 8191 + where.hashCode();
 
+    hashCode = hashCode * 8191 + ((isSetWhere_list()) ? 131071 : 524287);
+    if (isSetWhere_list())
+      hashCode = hashCode * 8191 + where_list.hashCode();
+
     hashCode = hashCode * 8191 + ((isSetOrder()) ? 131071 : 524287);
     if (isSetOrder())
       hashCode = hashCode * 8191 + order.hashCode();
@@ -712,7 +814,7 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
 
     int lastComparison = 0;
 
-    lastComparison = java.lang.Boolean.valueOf(isSetSelects()).compareTo(other.isSetSelects());
+    lastComparison = Boolean.valueOf(isSetSelects()).compareTo(other.isSetSelects());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -722,7 +824,7 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetWhere()).compareTo(other.isSetWhere());
+    lastComparison = Boolean.valueOf(isSetWhere()).compareTo(other.isSetWhere());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -732,7 +834,17 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetOrder()).compareTo(other.isSetOrder());
+    lastComparison = Boolean.valueOf(isSetWhere_list()).compareTo(other.isSetWhere_list());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetWhere_list()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.where_list, other.where_list);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetOrder()).compareTo(other.isSetOrder());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -742,7 +854,7 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetGroup()).compareTo(other.isSetGroup());
+    lastComparison = Boolean.valueOf(isSetGroup()).compareTo(other.isSetGroup());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -752,7 +864,7 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetLimit()).compareTo(other.isSetLimit());
+    lastComparison = Boolean.valueOf(isSetLimit()).compareTo(other.isSetLimit());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -762,7 +874,7 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetLeft_join()).compareTo(other.isSetLeft_join());
+    lastComparison = Boolean.valueOf(isSetLeft_join()).compareTo(other.isSetLeft_join());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -772,7 +884,7 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetInner_join()).compareTo(other.isSetInner_join());
+    lastComparison = Boolean.valueOf(isSetInner_join()).compareTo(other.isSetInner_join());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -798,8 +910,8 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
   }
 
   @Override
-  public java.lang.String toString() {
-    java.lang.StringBuilder sb = new java.lang.StringBuilder("AbstractSql(");
+  public String toString() {
+    StringBuilder sb = new StringBuilder("AbstractSql(");
     boolean first = true;
 
     sb.append("selects:");
@@ -815,6 +927,14 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       sb.append("null");
     } else {
       sb.append(this.where);
+    }
+    first = false;
+    if (!first) sb.append(", ");
+    sb.append("where_list:");
+    if (this.where_list == null) {
+      sb.append("null");
+    } else {
+      sb.append(this.where_list);
     }
     first = false;
     if (!first) sb.append(", ");
@@ -874,7 +994,7 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
     }
   }
 
-  private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+  private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
     try {
       read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
     } catch (org.apache.thrift.TException te) {
@@ -904,8 +1024,8 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
                 org.apache.thrift.protocol.TList _list32 = iprot.readListBegin();
-                struct.selects = new java.util.ArrayList<java.lang.String>(_list32.size);
-                java.lang.String _elem33;
+                struct.selects = new java.util.ArrayList<String>(_list32.size);
+                String _elem33;
                 for (int _i34 = 0; _i34 < _list32.size; ++_i34)
                 {
                   _elem33 = iprot.readString();
@@ -922,17 +1042,17 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
             if (schemeField.type == org.apache.thrift.protocol.TType.MAP) {
               {
                 org.apache.thrift.protocol.TMap _map35 = iprot.readMapBegin();
-                struct.where = new java.util.HashMap<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>(2*_map35.size);
-                java.lang.String _key36;
-                java.util.Map<java.lang.String,java.lang.String> _val37;
+                struct.where = new java.util.HashMap<String,java.util.Map<String,String>>(2*_map35.size);
+                String _key36;
+                java.util.Map<String,String> _val37;
                 for (int _i38 = 0; _i38 < _map35.size; ++_i38)
                 {
                   _key36 = iprot.readString();
                   {
                     org.apache.thrift.protocol.TMap _map39 = iprot.readMapBegin();
-                    _val37 = new java.util.HashMap<java.lang.String,java.lang.String>(2*_map39.size);
-                    java.lang.String _key40;
-                    java.lang.String _val41;
+                    _val37 = new java.util.HashMap<String,String>(2*_map39.size);
+                    String _key40;
+                    String _val41;
                     for (int _i42 = 0; _i42 < _map39.size; ++_i42)
                     {
                       _key40 = iprot.readString();
@@ -950,7 +1070,49 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 3: // ORDER
+          case 3: // WHERE_LIST
+            if (schemeField.type == org.apache.thrift.protocol.TType.MAP) {
+              {
+                org.apache.thrift.protocol.TMap _map43 = iprot.readMapBegin();
+                struct.where_list = new java.util.HashMap<String,java.util.Map<String,java.util.List<String>>>(2*_map43.size);
+                String _key44;
+                java.util.Map<String,java.util.List<String>> _val45;
+                for (int _i46 = 0; _i46 < _map43.size; ++_i46)
+                {
+                  _key44 = iprot.readString();
+                  {
+                    org.apache.thrift.protocol.TMap _map47 = iprot.readMapBegin();
+                    _val45 = new java.util.HashMap<String,java.util.List<String>>(2*_map47.size);
+                    String _key48;
+                    java.util.List<String> _val49;
+                    for (int _i50 = 0; _i50 < _map47.size; ++_i50)
+                    {
+                      _key48 = iprot.readString();
+                      {
+                        org.apache.thrift.protocol.TList _list51 = iprot.readListBegin();
+                        _val49 = new java.util.ArrayList<String>(_list51.size);
+                        String _elem52;
+                        for (int _i53 = 0; _i53 < _list51.size; ++_i53)
+                        {
+                          _elem52 = iprot.readString();
+                          _val49.add(_elem52);
+                        }
+                        iprot.readListEnd();
+                      }
+                      _val45.put(_key48, _val49);
+                    }
+                    iprot.readMapEnd();
+                  }
+                  struct.where_list.put(_key44, _val45);
+                }
+                iprot.readMapEnd();
+              }
+              struct.setWhere_listIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 4: // ORDER
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
               struct.order = iprot.readString();
               struct.setOrderIsSet(true);
@@ -958,7 +1120,7 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 4: // GROUP
+          case 5: // GROUP
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
               struct.group = iprot.readString();
               struct.setGroupIsSet(true);
@@ -966,16 +1128,16 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 5: // LIMIT
+          case 6: // LIMIT
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
-                org.apache.thrift.protocol.TList _list43 = iprot.readListBegin();
-                struct.limit = new java.util.ArrayList<java.lang.String>(_list43.size);
-                java.lang.String _elem44;
-                for (int _i45 = 0; _i45 < _list43.size; ++_i45)
+                org.apache.thrift.protocol.TList _list54 = iprot.readListBegin();
+                struct.limit = new java.util.ArrayList<String>(_list54.size);
+                String _elem55;
+                for (int _i56 = 0; _i56 < _list54.size; ++_i56)
                 {
-                  _elem44 = iprot.readString();
-                  struct.limit.add(_elem44);
+                  _elem55 = iprot.readString();
+                  struct.limit.add(_elem55);
                 }
                 iprot.readListEnd();
               }
@@ -984,30 +1146,30 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 6: // LEFT_JOIN
+          case 7: // LEFT_JOIN
             if (schemeField.type == org.apache.thrift.protocol.TType.MAP) {
               {
-                org.apache.thrift.protocol.TMap _map46 = iprot.readMapBegin();
-                struct.left_join = new java.util.HashMap<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>(2*_map46.size);
-                java.lang.String _key47;
-                java.util.Map<java.lang.String,java.lang.String> _val48;
-                for (int _i49 = 0; _i49 < _map46.size; ++_i49)
+                org.apache.thrift.protocol.TMap _map57 = iprot.readMapBegin();
+                struct.left_join = new java.util.HashMap<String,java.util.Map<String,String>>(2*_map57.size);
+                String _key58;
+                java.util.Map<String,String> _val59;
+                for (int _i60 = 0; _i60 < _map57.size; ++_i60)
                 {
-                  _key47 = iprot.readString();
+                  _key58 = iprot.readString();
                   {
-                    org.apache.thrift.protocol.TMap _map50 = iprot.readMapBegin();
-                    _val48 = new java.util.HashMap<java.lang.String,java.lang.String>(2*_map50.size);
-                    java.lang.String _key51;
-                    java.lang.String _val52;
-                    for (int _i53 = 0; _i53 < _map50.size; ++_i53)
+                    org.apache.thrift.protocol.TMap _map61 = iprot.readMapBegin();
+                    _val59 = new java.util.HashMap<String,String>(2*_map61.size);
+                    String _key62;
+                    String _val63;
+                    for (int _i64 = 0; _i64 < _map61.size; ++_i64)
                     {
-                      _key51 = iprot.readString();
-                      _val52 = iprot.readString();
-                      _val48.put(_key51, _val52);
+                      _key62 = iprot.readString();
+                      _val63 = iprot.readString();
+                      _val59.put(_key62, _val63);
                     }
                     iprot.readMapEnd();
                   }
-                  struct.left_join.put(_key47, _val48);
+                  struct.left_join.put(_key58, _val59);
                 }
                 iprot.readMapEnd();
               }
@@ -1016,30 +1178,30 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 7: // INNER_JOIN
+          case 8: // INNER_JOIN
             if (schemeField.type == org.apache.thrift.protocol.TType.MAP) {
               {
-                org.apache.thrift.protocol.TMap _map54 = iprot.readMapBegin();
-                struct.inner_join = new java.util.HashMap<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>(2*_map54.size);
-                java.lang.String _key55;
-                java.util.Map<java.lang.String,java.lang.String> _val56;
-                for (int _i57 = 0; _i57 < _map54.size; ++_i57)
+                org.apache.thrift.protocol.TMap _map65 = iprot.readMapBegin();
+                struct.inner_join = new java.util.HashMap<String,java.util.Map<String,String>>(2*_map65.size);
+                String _key66;
+                java.util.Map<String,String> _val67;
+                for (int _i68 = 0; _i68 < _map65.size; ++_i68)
                 {
-                  _key55 = iprot.readString();
+                  _key66 = iprot.readString();
                   {
-                    org.apache.thrift.protocol.TMap _map58 = iprot.readMapBegin();
-                    _val56 = new java.util.HashMap<java.lang.String,java.lang.String>(2*_map58.size);
-                    java.lang.String _key59;
-                    java.lang.String _val60;
-                    for (int _i61 = 0; _i61 < _map58.size; ++_i61)
+                    org.apache.thrift.protocol.TMap _map69 = iprot.readMapBegin();
+                    _val67 = new java.util.HashMap<String,String>(2*_map69.size);
+                    String _key70;
+                    String _val71;
+                    for (int _i72 = 0; _i72 < _map69.size; ++_i72)
                     {
-                      _key59 = iprot.readString();
-                      _val60 = iprot.readString();
-                      _val56.put(_key59, _val60);
+                      _key70 = iprot.readString();
+                      _val71 = iprot.readString();
+                      _val67.put(_key70, _val71);
                     }
                     iprot.readMapEnd();
                   }
-                  struct.inner_join.put(_key55, _val56);
+                  struct.inner_join.put(_key66, _val67);
                 }
                 iprot.readMapEnd();
               }
@@ -1067,9 +1229,9 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
         oprot.writeFieldBegin(SELECTS_FIELD_DESC);
         {
           oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.selects.size()));
-          for (java.lang.String _iter62 : struct.selects)
+          for (String _iter73 : struct.selects)
           {
-            oprot.writeString(_iter62);
+            oprot.writeString(_iter73);
           }
           oprot.writeListEnd();
         }
@@ -1079,15 +1241,43 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
         oprot.writeFieldBegin(WHERE_FIELD_DESC);
         {
           oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.MAP, struct.where.size()));
-          for (java.util.Map.Entry<java.lang.String, java.util.Map<java.lang.String,java.lang.String>> _iter63 : struct.where.entrySet())
+          for (java.util.Map.Entry<String, java.util.Map<String,String>> _iter74 : struct.where.entrySet())
           {
-            oprot.writeString(_iter63.getKey());
+            oprot.writeString(_iter74.getKey());
             {
-              oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, _iter63.getValue().size()));
-              for (java.util.Map.Entry<java.lang.String, java.lang.String> _iter64 : _iter63.getValue().entrySet())
+              oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, _iter74.getValue().size()));
+              for (java.util.Map.Entry<String, String> _iter75 : _iter74.getValue().entrySet())
               {
-                oprot.writeString(_iter64.getKey());
-                oprot.writeString(_iter64.getValue());
+                oprot.writeString(_iter75.getKey());
+                oprot.writeString(_iter75.getValue());
+              }
+              oprot.writeMapEnd();
+            }
+          }
+          oprot.writeMapEnd();
+        }
+        oprot.writeFieldEnd();
+      }
+      if (struct.where_list != null) {
+        oprot.writeFieldBegin(WHERE_LIST_FIELD_DESC);
+        {
+          oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.MAP, struct.where_list.size()));
+          for (java.util.Map.Entry<String, java.util.Map<String,java.util.List<String>>> _iter76 : struct.where_list.entrySet())
+          {
+            oprot.writeString(_iter76.getKey());
+            {
+              oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.LIST, _iter76.getValue().size()));
+              for (java.util.Map.Entry<String, java.util.List<String>> _iter77 : _iter76.getValue().entrySet())
+              {
+                oprot.writeString(_iter77.getKey());
+                {
+                  oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, _iter77.getValue().size()));
+                  for (String _iter78 : _iter77.getValue())
+                  {
+                    oprot.writeString(_iter78);
+                  }
+                  oprot.writeListEnd();
+                }
               }
               oprot.writeMapEnd();
             }
@@ -1110,9 +1300,9 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
         oprot.writeFieldBegin(LIMIT_FIELD_DESC);
         {
           oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.limit.size()));
-          for (java.lang.String _iter65 : struct.limit)
+          for (String _iter79 : struct.limit)
           {
-            oprot.writeString(_iter65);
+            oprot.writeString(_iter79);
           }
           oprot.writeListEnd();
         }
@@ -1122,15 +1312,15 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
         oprot.writeFieldBegin(LEFT_JOIN_FIELD_DESC);
         {
           oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.MAP, struct.left_join.size()));
-          for (java.util.Map.Entry<java.lang.String, java.util.Map<java.lang.String,java.lang.String>> _iter66 : struct.left_join.entrySet())
+          for (java.util.Map.Entry<String, java.util.Map<String,String>> _iter80 : struct.left_join.entrySet())
           {
-            oprot.writeString(_iter66.getKey());
+            oprot.writeString(_iter80.getKey());
             {
-              oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, _iter66.getValue().size()));
-              for (java.util.Map.Entry<java.lang.String, java.lang.String> _iter67 : _iter66.getValue().entrySet())
+              oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, _iter80.getValue().size()));
+              for (java.util.Map.Entry<String, String> _iter81 : _iter80.getValue().entrySet())
               {
-                oprot.writeString(_iter67.getKey());
-                oprot.writeString(_iter67.getValue());
+                oprot.writeString(_iter81.getKey());
+                oprot.writeString(_iter81.getValue());
               }
               oprot.writeMapEnd();
             }
@@ -1143,15 +1333,15 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
         oprot.writeFieldBegin(INNER_JOIN_FIELD_DESC);
         {
           oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.MAP, struct.inner_join.size()));
-          for (java.util.Map.Entry<java.lang.String, java.util.Map<java.lang.String,java.lang.String>> _iter68 : struct.inner_join.entrySet())
+          for (java.util.Map.Entry<String, java.util.Map<String,String>> _iter82 : struct.inner_join.entrySet())
           {
-            oprot.writeString(_iter68.getKey());
+            oprot.writeString(_iter82.getKey());
             {
-              oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, _iter68.getValue().size()));
-              for (java.util.Map.Entry<java.lang.String, java.lang.String> _iter69 : _iter68.getValue().entrySet())
+              oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, _iter82.getValue().size()));
+              for (java.util.Map.Entry<String, String> _iter83 : _iter82.getValue().entrySet())
               {
-                oprot.writeString(_iter69.getKey());
-                oprot.writeString(_iter69.getValue());
+                oprot.writeString(_iter83.getKey());
+                oprot.writeString(_iter83.getValue());
               }
               oprot.writeMapEnd();
             }
@@ -1184,43 +1374,69 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       if (struct.isSetWhere()) {
         optionals.set(1);
       }
-      if (struct.isSetOrder()) {
+      if (struct.isSetWhere_list()) {
         optionals.set(2);
       }
-      if (struct.isSetGroup()) {
+      if (struct.isSetOrder()) {
         optionals.set(3);
       }
-      if (struct.isSetLimit()) {
+      if (struct.isSetGroup()) {
         optionals.set(4);
       }
-      if (struct.isSetLeft_join()) {
+      if (struct.isSetLimit()) {
         optionals.set(5);
       }
-      if (struct.isSetInner_join()) {
+      if (struct.isSetLeft_join()) {
         optionals.set(6);
       }
-      oprot.writeBitSet(optionals, 7);
+      if (struct.isSetInner_join()) {
+        optionals.set(7);
+      }
+      oprot.writeBitSet(optionals, 8);
       if (struct.isSetSelects()) {
         {
           oprot.writeI32(struct.selects.size());
-          for (java.lang.String _iter70 : struct.selects)
+          for (String _iter84 : struct.selects)
           {
-            oprot.writeString(_iter70);
+            oprot.writeString(_iter84);
           }
         }
       }
       if (struct.isSetWhere()) {
         {
           oprot.writeI32(struct.where.size());
-          for (java.util.Map.Entry<java.lang.String, java.util.Map<java.lang.String,java.lang.String>> _iter71 : struct.where.entrySet())
+          for (java.util.Map.Entry<String, java.util.Map<String,String>> _iter85 : struct.where.entrySet())
           {
-            oprot.writeString(_iter71.getKey());
+            oprot.writeString(_iter85.getKey());
             {
-              oprot.writeI32(_iter71.getValue().size());
-              for (java.util.Map.Entry<java.lang.String, java.lang.String> _iter72 : _iter71.getValue().entrySet())
+              oprot.writeI32(_iter85.getValue().size());
+              for (java.util.Map.Entry<String, String> _iter86 : _iter85.getValue().entrySet())
               {
-                oprot.writeString(_iter72.getKey());
-                oprot.writeString(_iter72.getValue());
+                oprot.writeString(_iter86.getKey());
+                oprot.writeString(_iter86.getValue());
+              }
+            }
+          }
+        }
+      }
+      if (struct.isSetWhere_list()) {
+        {
+          oprot.writeI32(struct.where_list.size());
+          for (java.util.Map.Entry<String, java.util.Map<String,java.util.List<String>>> _iter87 : struct.where_list.entrySet())
+          {
+            oprot.writeString(_iter87.getKey());
+            {
+              oprot.writeI32(_iter87.getValue().size());
+              for (java.util.Map.Entry<String, java.util.List<String>> _iter88 : _iter87.getValue().entrySet())
+              {
+                oprot.writeString(_iter88.getKey());
+                {
+                  oprot.writeI32(_iter88.getValue().size());
+                  for (String _iter89 : _iter88.getValue())
+                  {
+                    oprot.writeString(_iter89);
+                  }
+                }
               }
             }
           }
@@ -1235,24 +1451,24 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       if (struct.isSetLimit()) {
         {
           oprot.writeI32(struct.limit.size());
-          for (java.lang.String _iter73 : struct.limit)
+          for (String _iter90 : struct.limit)
           {
-            oprot.writeString(_iter73);
+            oprot.writeString(_iter90);
           }
         }
       }
       if (struct.isSetLeft_join()) {
         {
           oprot.writeI32(struct.left_join.size());
-          for (java.util.Map.Entry<java.lang.String, java.util.Map<java.lang.String,java.lang.String>> _iter74 : struct.left_join.entrySet())
+          for (java.util.Map.Entry<String, java.util.Map<String,String>> _iter91 : struct.left_join.entrySet())
           {
-            oprot.writeString(_iter74.getKey());
+            oprot.writeString(_iter91.getKey());
             {
-              oprot.writeI32(_iter74.getValue().size());
-              for (java.util.Map.Entry<java.lang.String, java.lang.String> _iter75 : _iter74.getValue().entrySet())
+              oprot.writeI32(_iter91.getValue().size());
+              for (java.util.Map.Entry<String, String> _iter92 : _iter91.getValue().entrySet())
               {
-                oprot.writeString(_iter75.getKey());
-                oprot.writeString(_iter75.getValue());
+                oprot.writeString(_iter92.getKey());
+                oprot.writeString(_iter92.getValue());
               }
             }
           }
@@ -1261,15 +1477,15 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
       if (struct.isSetInner_join()) {
         {
           oprot.writeI32(struct.inner_join.size());
-          for (java.util.Map.Entry<java.lang.String, java.util.Map<java.lang.String,java.lang.String>> _iter76 : struct.inner_join.entrySet())
+          for (java.util.Map.Entry<String, java.util.Map<String,String>> _iter93 : struct.inner_join.entrySet())
           {
-            oprot.writeString(_iter76.getKey());
+            oprot.writeString(_iter93.getKey());
             {
-              oprot.writeI32(_iter76.getValue().size());
-              for (java.util.Map.Entry<java.lang.String, java.lang.String> _iter77 : _iter76.getValue().entrySet())
+              oprot.writeI32(_iter93.getValue().size());
+              for (java.util.Map.Entry<String, String> _iter94 : _iter93.getValue().entrySet())
               {
-                oprot.writeString(_iter77.getKey());
-                oprot.writeString(_iter77.getValue());
+                oprot.writeString(_iter94.getKey());
+                oprot.writeString(_iter94.getValue());
               }
             }
           }
@@ -1280,115 +1496,150 @@ public class AbstractSql implements org.apache.thrift.TBase<AbstractSql, Abstrac
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, AbstractSql struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(7);
+      java.util.BitSet incoming = iprot.readBitSet(8);
       if (incoming.get(0)) {
         {
-          org.apache.thrift.protocol.TList _list78 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-          struct.selects = new java.util.ArrayList<java.lang.String>(_list78.size);
-          java.lang.String _elem79;
-          for (int _i80 = 0; _i80 < _list78.size; ++_i80)
+          org.apache.thrift.protocol.TList _list95 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+          struct.selects = new java.util.ArrayList<String>(_list95.size);
+          String _elem96;
+          for (int _i97 = 0; _i97 < _list95.size; ++_i97)
           {
-            _elem79 = iprot.readString();
-            struct.selects.add(_elem79);
+            _elem96 = iprot.readString();
+            struct.selects.add(_elem96);
           }
         }
         struct.setSelectsIsSet(true);
       }
       if (incoming.get(1)) {
         {
-          org.apache.thrift.protocol.TMap _map81 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.MAP, iprot.readI32());
-          struct.where = new java.util.HashMap<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>(2*_map81.size);
-          java.lang.String _key82;
-          java.util.Map<java.lang.String,java.lang.String> _val83;
-          for (int _i84 = 0; _i84 < _map81.size; ++_i84)
+          org.apache.thrift.protocol.TMap _map98 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.MAP, iprot.readI32());
+          struct.where = new java.util.HashMap<String,java.util.Map<String,String>>(2*_map98.size);
+          String _key99;
+          java.util.Map<String,String> _val100;
+          for (int _i101 = 0; _i101 < _map98.size; ++_i101)
           {
-            _key82 = iprot.readString();
+            _key99 = iprot.readString();
             {
-              org.apache.thrift.protocol.TMap _map85 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-              _val83 = new java.util.HashMap<java.lang.String,java.lang.String>(2*_map85.size);
-              java.lang.String _key86;
-              java.lang.String _val87;
-              for (int _i88 = 0; _i88 < _map85.size; ++_i88)
+              org.apache.thrift.protocol.TMap _map102 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+              _val100 = new java.util.HashMap<String,String>(2*_map102.size);
+              String _key103;
+              String _val104;
+              for (int _i105 = 0; _i105 < _map102.size; ++_i105)
               {
-                _key86 = iprot.readString();
-                _val87 = iprot.readString();
-                _val83.put(_key86, _val87);
+                _key103 = iprot.readString();
+                _val104 = iprot.readString();
+                _val100.put(_key103, _val104);
               }
             }
-            struct.where.put(_key82, _val83);
+            struct.where.put(_key99, _val100);
           }
         }
         struct.setWhereIsSet(true);
       }
       if (incoming.get(2)) {
+        {
+          org.apache.thrift.protocol.TMap _map106 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.MAP, iprot.readI32());
+          struct.where_list = new java.util.HashMap<String,java.util.Map<String,java.util.List<String>>>(2*_map106.size);
+          String _key107;
+          java.util.Map<String,java.util.List<String>> _val108;
+          for (int _i109 = 0; _i109 < _map106.size; ++_i109)
+          {
+            _key107 = iprot.readString();
+            {
+              org.apache.thrift.protocol.TMap _map110 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.LIST, iprot.readI32());
+              _val108 = new java.util.HashMap<String,java.util.List<String>>(2*_map110.size);
+              String _key111;
+              java.util.List<String> _val112;
+              for (int _i113 = 0; _i113 < _map110.size; ++_i113)
+              {
+                _key111 = iprot.readString();
+                {
+                  org.apache.thrift.protocol.TList _list114 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+                  _val112 = new java.util.ArrayList<String>(_list114.size);
+                  String _elem115;
+                  for (int _i116 = 0; _i116 < _list114.size; ++_i116)
+                  {
+                    _elem115 = iprot.readString();
+                    _val112.add(_elem115);
+                  }
+                }
+                _val108.put(_key111, _val112);
+              }
+            }
+            struct.where_list.put(_key107, _val108);
+          }
+        }
+        struct.setWhere_listIsSet(true);
+      }
+      if (incoming.get(3)) {
         struct.order = iprot.readString();
         struct.setOrderIsSet(true);
       }
-      if (incoming.get(3)) {
+      if (incoming.get(4)) {
         struct.group = iprot.readString();
         struct.setGroupIsSet(true);
       }
-      if (incoming.get(4)) {
+      if (incoming.get(5)) {
         {
-          org.apache.thrift.protocol.TList _list89 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-          struct.limit = new java.util.ArrayList<java.lang.String>(_list89.size);
-          java.lang.String _elem90;
-          for (int _i91 = 0; _i91 < _list89.size; ++_i91)
+          org.apache.thrift.protocol.TList _list117 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+          struct.limit = new java.util.ArrayList<String>(_list117.size);
+          String _elem118;
+          for (int _i119 = 0; _i119 < _list117.size; ++_i119)
           {
-            _elem90 = iprot.readString();
-            struct.limit.add(_elem90);
+            _elem118 = iprot.readString();
+            struct.limit.add(_elem118);
           }
         }
         struct.setLimitIsSet(true);
       }
-      if (incoming.get(5)) {
+      if (incoming.get(6)) {
         {
-          org.apache.thrift.protocol.TMap _map92 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.MAP, iprot.readI32());
-          struct.left_join = new java.util.HashMap<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>(2*_map92.size);
-          java.lang.String _key93;
-          java.util.Map<java.lang.String,java.lang.String> _val94;
-          for (int _i95 = 0; _i95 < _map92.size; ++_i95)
+          org.apache.thrift.protocol.TMap _map120 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.MAP, iprot.readI32());
+          struct.left_join = new java.util.HashMap<String,java.util.Map<String,String>>(2*_map120.size);
+          String _key121;
+          java.util.Map<String,String> _val122;
+          for (int _i123 = 0; _i123 < _map120.size; ++_i123)
           {
-            _key93 = iprot.readString();
+            _key121 = iprot.readString();
             {
-              org.apache.thrift.protocol.TMap _map96 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-              _val94 = new java.util.HashMap<java.lang.String,java.lang.String>(2*_map96.size);
-              java.lang.String _key97;
-              java.lang.String _val98;
-              for (int _i99 = 0; _i99 < _map96.size; ++_i99)
+              org.apache.thrift.protocol.TMap _map124 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+              _val122 = new java.util.HashMap<String,String>(2*_map124.size);
+              String _key125;
+              String _val126;
+              for (int _i127 = 0; _i127 < _map124.size; ++_i127)
               {
-                _key97 = iprot.readString();
-                _val98 = iprot.readString();
-                _val94.put(_key97, _val98);
+                _key125 = iprot.readString();
+                _val126 = iprot.readString();
+                _val122.put(_key125, _val126);
               }
             }
-            struct.left_join.put(_key93, _val94);
+            struct.left_join.put(_key121, _val122);
           }
         }
         struct.setLeft_joinIsSet(true);
       }
-      if (incoming.get(6)) {
+      if (incoming.get(7)) {
         {
-          org.apache.thrift.protocol.TMap _map100 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.MAP, iprot.readI32());
-          struct.inner_join = new java.util.HashMap<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>(2*_map100.size);
-          java.lang.String _key101;
-          java.util.Map<java.lang.String,java.lang.String> _val102;
-          for (int _i103 = 0; _i103 < _map100.size; ++_i103)
+          org.apache.thrift.protocol.TMap _map128 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.MAP, iprot.readI32());
+          struct.inner_join = new java.util.HashMap<String,java.util.Map<String,String>>(2*_map128.size);
+          String _key129;
+          java.util.Map<String,String> _val130;
+          for (int _i131 = 0; _i131 < _map128.size; ++_i131)
           {
-            _key101 = iprot.readString();
+            _key129 = iprot.readString();
             {
-              org.apache.thrift.protocol.TMap _map104 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-              _val102 = new java.util.HashMap<java.lang.String,java.lang.String>(2*_map104.size);
-              java.lang.String _key105;
-              java.lang.String _val106;
-              for (int _i107 = 0; _i107 < _map104.size; ++_i107)
+              org.apache.thrift.protocol.TMap _map132 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+              _val130 = new java.util.HashMap<String,String>(2*_map132.size);
+              String _key133;
+              String _val134;
+              for (int _i135 = 0; _i135 < _map132.size; ++_i135)
               {
-                _key105 = iprot.readString();
-                _val106 = iprot.readString();
-                _val102.put(_key105, _val106);
+                _key133 = iprot.readString();
+                _val134 = iprot.readString();
+                _val130.put(_key133, _val134);
               }
             }
-            struct.inner_join.put(_key101, _val102);
+            struct.inner_join.put(_key129, _val130);
           }
         }
         struct.setInner_joinIsSet(true);

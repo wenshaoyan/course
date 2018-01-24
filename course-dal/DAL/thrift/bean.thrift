@@ -108,15 +108,15 @@ struct Query{
 struct Custom{
     1:set<string> tables
 }
-
 struct AbstractSql{
     1:list<string> selects
     2:map<string,map<string,string>> where
-    3:string order
-    4:string group
-    5:list<string> limit
-    6:map<string,map<string,string>> left_join
-    7:map<string,map<string,string>> inner_join
+    3:map<string,map<string,list<string>>> where_list
+    4:string order
+    5:string group
+    6:list<string> limit
+    7:map<string,map<string,string>> left_join
+    8:map<string,map<string,string>> inner_join
 }
 struct TopicOption{
     1:i32 to_id
