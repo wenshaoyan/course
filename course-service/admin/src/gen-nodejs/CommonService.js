@@ -444,10 +444,10 @@ CommonService_topicOptionFindById_result.prototype.write = function(output) {
 };
 
 var CommonService_topicOptionSelect_args = function(args) {
-  this.topicOption = null;
+  this.abstractSql = null;
   if (args) {
-    if (args.topicOption !== undefined && args.topicOption !== null) {
-      this.topicOption = new bean_ttypes.TopicOption(args.topicOption);
+    if (args.abstractSql !== undefined && args.abstractSql !== null) {
+      this.abstractSql = new bean_ttypes.AbstractSql(args.abstractSql);
     }
   }
 };
@@ -467,8 +467,8 @@ CommonService_topicOptionSelect_args.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRUCT) {
-        this.topicOption = new bean_ttypes.TopicOption();
-        this.topicOption.read(input);
+        this.abstractSql = new bean_ttypes.AbstractSql();
+        this.abstractSql.read(input);
       } else {
         input.skip(ftype);
       }
@@ -487,9 +487,9 @@ CommonService_topicOptionSelect_args.prototype.read = function(input) {
 
 CommonService_topicOptionSelect_args.prototype.write = function(output) {
   output.writeStructBegin('CommonService_topicOptionSelect_args');
-  if (this.topicOption !== null && this.topicOption !== undefined) {
-    output.writeFieldBegin('topicOption', Thrift.Type.STRUCT, 1);
-    this.topicOption.write(output);
+  if (this.abstractSql !== null && this.abstractSql !== undefined) {
+    output.writeFieldBegin('abstractSql', Thrift.Type.STRUCT, 1);
+    this.abstractSql.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -573,20 +573,16 @@ CommonService_topicOptionSelect_result.prototype.write = function(output) {
   return;
 };
 
-var CommonService_topicOptionSelectQuery_args = function(args) {
-  this.topicOption = null;
-  this.query = null;
+var CommonService_topicOptionSelectNoCache_args = function(args) {
+  this.abstractSql = null;
   if (args) {
-    if (args.topicOption !== undefined && args.topicOption !== null) {
-      this.topicOption = new bean_ttypes.TopicOption(args.topicOption);
-    }
-    if (args.query !== undefined && args.query !== null) {
-      this.query = new bean_ttypes.Query(args.query);
+    if (args.abstractSql !== undefined && args.abstractSql !== null) {
+      this.abstractSql = new bean_ttypes.AbstractSql(args.abstractSql);
     }
   }
 };
-CommonService_topicOptionSelectQuery_args.prototype = {};
-CommonService_topicOptionSelectQuery_args.prototype.read = function(input) {
+CommonService_topicOptionSelectNoCache_args.prototype = {};
+CommonService_topicOptionSelectNoCache_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -601,20 +597,15 @@ CommonService_topicOptionSelectQuery_args.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRUCT) {
-        this.topicOption = new bean_ttypes.TopicOption();
-        this.topicOption.read(input);
+        this.abstractSql = new bean_ttypes.AbstractSql();
+        this.abstractSql.read(input);
       } else {
         input.skip(ftype);
       }
       break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.query = new bean_ttypes.Query();
-        this.query.read(input);
-      } else {
+      case 0:
         input.skip(ftype);
-      }
-      break;
+        break;
       default:
         input.skip(ftype);
     }
@@ -624,16 +615,11 @@ CommonService_topicOptionSelectQuery_args.prototype.read = function(input) {
   return;
 };
 
-CommonService_topicOptionSelectQuery_args.prototype.write = function(output) {
-  output.writeStructBegin('CommonService_topicOptionSelectQuery_args');
-  if (this.topicOption !== null && this.topicOption !== undefined) {
-    output.writeFieldBegin('topicOption', Thrift.Type.STRUCT, 1);
-    this.topicOption.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.query !== null && this.query !== undefined) {
-    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
-    this.query.write(output);
+CommonService_topicOptionSelectNoCache_args.prototype.write = function(output) {
+  output.writeStructBegin('CommonService_topicOptionSelectNoCache_args');
+  if (this.abstractSql !== null && this.abstractSql !== undefined) {
+    output.writeFieldBegin('abstractSql', Thrift.Type.STRUCT, 1);
+    this.abstractSql.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -641,7 +627,7 @@ CommonService_topicOptionSelectQuery_args.prototype.write = function(output) {
   return;
 };
 
-var CommonService_topicOptionSelectQuery_result = function(args) {
+var CommonService_topicOptionSelectNoCache_result = function(args) {
   this.success = null;
   if (args) {
     if (args.success !== undefined && args.success !== null) {
@@ -649,8 +635,8 @@ var CommonService_topicOptionSelectQuery_result = function(args) {
     }
   }
 };
-CommonService_topicOptionSelectQuery_result.prototype = {};
-CommonService_topicOptionSelectQuery_result.prototype.read = function(input) {
+CommonService_topicOptionSelectNoCache_result.prototype = {};
+CommonService_topicOptionSelectNoCache_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -696,8 +682,8 @@ CommonService_topicOptionSelectQuery_result.prototype.read = function(input) {
   return;
 };
 
-CommonService_topicOptionSelectQuery_result.prototype.write = function(output) {
-  output.writeStructBegin('CommonService_topicOptionSelectQuery_result');
+CommonService_topicOptionSelectNoCache_result.prototype.write = function(output) {
+  output.writeStructBegin('CommonService_topicOptionSelectNoCache_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
@@ -710,737 +696,6 @@ CommonService_topicOptionSelectQuery_result.prototype.write = function(output) {
       }
     }
     output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var CommonService_topicOptionSelectCustom_args = function(args) {
-  this.topicOption = null;
-  this.custom = null;
-  if (args) {
-    if (args.topicOption !== undefined && args.topicOption !== null) {
-      this.topicOption = new bean_ttypes.TopicOption(args.topicOption);
-    }
-    if (args.custom !== undefined && args.custom !== null) {
-      this.custom = new bean_ttypes.Custom(args.custom);
-    }
-  }
-};
-CommonService_topicOptionSelectCustom_args.prototype = {};
-CommonService_topicOptionSelectCustom_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.topicOption = new bean_ttypes.TopicOption();
-        this.topicOption.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.custom = new bean_ttypes.Custom();
-        this.custom.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-CommonService_topicOptionSelectCustom_args.prototype.write = function(output) {
-  output.writeStructBegin('CommonService_topicOptionSelectCustom_args');
-  if (this.topicOption !== null && this.topicOption !== undefined) {
-    output.writeFieldBegin('topicOption', Thrift.Type.STRUCT, 1);
-    this.topicOption.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.custom !== null && this.custom !== undefined) {
-    output.writeFieldBegin('custom', Thrift.Type.STRUCT, 2);
-    this.custom.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var CommonService_topicOptionSelectCustom_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.TopicOption]);
-    }
-  }
-};
-CommonService_topicOptionSelectCustom_result.prototype = {};
-CommonService_topicOptionSelectCustom_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size248 = 0;
-        var _rtmp3252;
-        this.success = [];
-        var _etype251 = 0;
-        _rtmp3252 = input.readListBegin();
-        _etype251 = _rtmp3252.etype;
-        _size248 = _rtmp3252.size;
-        for (var _i253 = 0; _i253 < _size248; ++_i253)
-        {
-          var elem254 = null;
-          elem254 = new bean_ttypes.TopicOption();
-          elem254.read(input);
-          this.success.push(elem254);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-CommonService_topicOptionSelectCustom_result.prototype.write = function(output) {
-  output.writeStructBegin('CommonService_topicOptionSelectCustom_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter255 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter255))
-      {
-        iter255 = this.success[iter255];
-        iter255.write(output);
-      }
-    }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var CommonService_topicOptionSelectQueryCustom_args = function(args) {
-  this.topicOption = null;
-  this.query = null;
-  this.custom = null;
-  if (args) {
-    if (args.topicOption !== undefined && args.topicOption !== null) {
-      this.topicOption = new bean_ttypes.TopicOption(args.topicOption);
-    }
-    if (args.query !== undefined && args.query !== null) {
-      this.query = new bean_ttypes.Query(args.query);
-    }
-    if (args.custom !== undefined && args.custom !== null) {
-      this.custom = new bean_ttypes.Custom(args.custom);
-    }
-  }
-};
-CommonService_topicOptionSelectQueryCustom_args.prototype = {};
-CommonService_topicOptionSelectQueryCustom_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.topicOption = new bean_ttypes.TopicOption();
-        this.topicOption.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.query = new bean_ttypes.Query();
-        this.query.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 3:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.custom = new bean_ttypes.Custom();
-        this.custom.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-CommonService_topicOptionSelectQueryCustom_args.prototype.write = function(output) {
-  output.writeStructBegin('CommonService_topicOptionSelectQueryCustom_args');
-  if (this.topicOption !== null && this.topicOption !== undefined) {
-    output.writeFieldBegin('topicOption', Thrift.Type.STRUCT, 1);
-    this.topicOption.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.query !== null && this.query !== undefined) {
-    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
-    this.query.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.custom !== null && this.custom !== undefined) {
-    output.writeFieldBegin('custom', Thrift.Type.STRUCT, 3);
-    this.custom.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var CommonService_topicOptionSelectQueryCustom_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.TopicOption]);
-    }
-  }
-};
-CommonService_topicOptionSelectQueryCustom_result.prototype = {};
-CommonService_topicOptionSelectQueryCustom_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size256 = 0;
-        var _rtmp3260;
-        this.success = [];
-        var _etype259 = 0;
-        _rtmp3260 = input.readListBegin();
-        _etype259 = _rtmp3260.etype;
-        _size256 = _rtmp3260.size;
-        for (var _i261 = 0; _i261 < _size256; ++_i261)
-        {
-          var elem262 = null;
-          elem262 = new bean_ttypes.TopicOption();
-          elem262.read(input);
-          this.success.push(elem262);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-CommonService_topicOptionSelectQueryCustom_result.prototype.write = function(output) {
-  output.writeStructBegin('CommonService_topicOptionSelectQueryCustom_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter263 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter263))
-      {
-        iter263 = this.success[iter263];
-        iter263.write(output);
-      }
-    }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var CommonService_topicOptionSelectQueryCustomNotCache_args = function(args) {
-  this.topicOption = null;
-  this.query = null;
-  this.custom = null;
-  if (args) {
-    if (args.topicOption !== undefined && args.topicOption !== null) {
-      this.topicOption = new bean_ttypes.TopicOption(args.topicOption);
-    }
-    if (args.query !== undefined && args.query !== null) {
-      this.query = new bean_ttypes.Query(args.query);
-    }
-    if (args.custom !== undefined && args.custom !== null) {
-      this.custom = new bean_ttypes.Custom(args.custom);
-    }
-  }
-};
-CommonService_topicOptionSelectQueryCustomNotCache_args.prototype = {};
-CommonService_topicOptionSelectQueryCustomNotCache_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.topicOption = new bean_ttypes.TopicOption();
-        this.topicOption.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.query = new bean_ttypes.Query();
-        this.query.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 3:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.custom = new bean_ttypes.Custom();
-        this.custom.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-CommonService_topicOptionSelectQueryCustomNotCache_args.prototype.write = function(output) {
-  output.writeStructBegin('CommonService_topicOptionSelectQueryCustomNotCache_args');
-  if (this.topicOption !== null && this.topicOption !== undefined) {
-    output.writeFieldBegin('topicOption', Thrift.Type.STRUCT, 1);
-    this.topicOption.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.query !== null && this.query !== undefined) {
-    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
-    this.query.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.custom !== null && this.custom !== undefined) {
-    output.writeFieldBegin('custom', Thrift.Type.STRUCT, 3);
-    this.custom.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var CommonService_topicOptionSelectQueryCustomNotCache_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.TopicOption]);
-    }
-  }
-};
-CommonService_topicOptionSelectQueryCustomNotCache_result.prototype = {};
-CommonService_topicOptionSelectQueryCustomNotCache_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size264 = 0;
-        var _rtmp3268;
-        this.success = [];
-        var _etype267 = 0;
-        _rtmp3268 = input.readListBegin();
-        _etype267 = _rtmp3268.etype;
-        _size264 = _rtmp3268.size;
-        for (var _i269 = 0; _i269 < _size264; ++_i269)
-        {
-          var elem270 = null;
-          elem270 = new bean_ttypes.TopicOption();
-          elem270.read(input);
-          this.success.push(elem270);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-CommonService_topicOptionSelectQueryCustomNotCache_result.prototype.write = function(output) {
-  output.writeStructBegin('CommonService_topicOptionSelectQueryCustomNotCache_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter271 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter271))
-      {
-        iter271 = this.success[iter271];
-        iter271.write(output);
-      }
-    }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var CommonService_topicOptionSelectQueryNoCache_args = function(args) {
-  this.topicOption = null;
-  this.query = null;
-  if (args) {
-    if (args.topicOption !== undefined && args.topicOption !== null) {
-      this.topicOption = new bean_ttypes.TopicOption(args.topicOption);
-    }
-    if (args.query !== undefined && args.query !== null) {
-      this.query = new bean_ttypes.Query(args.query);
-    }
-  }
-};
-CommonService_topicOptionSelectQueryNoCache_args.prototype = {};
-CommonService_topicOptionSelectQueryNoCache_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.topicOption = new bean_ttypes.TopicOption();
-        this.topicOption.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.query = new bean_ttypes.Query();
-        this.query.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-CommonService_topicOptionSelectQueryNoCache_args.prototype.write = function(output) {
-  output.writeStructBegin('CommonService_topicOptionSelectQueryNoCache_args');
-  if (this.topicOption !== null && this.topicOption !== undefined) {
-    output.writeFieldBegin('topicOption', Thrift.Type.STRUCT, 1);
-    this.topicOption.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.query !== null && this.query !== undefined) {
-    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
-    this.query.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var CommonService_topicOptionSelectQueryNoCache_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [bean_ttypes.TopicOption]);
-    }
-  }
-};
-CommonService_topicOptionSelectQueryNoCache_result.prototype = {};
-CommonService_topicOptionSelectQueryNoCache_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size272 = 0;
-        var _rtmp3276;
-        this.success = [];
-        var _etype275 = 0;
-        _rtmp3276 = input.readListBegin();
-        _etype275 = _rtmp3276.etype;
-        _size272 = _rtmp3276.size;
-        for (var _i277 = 0; _i277 < _size272; ++_i277)
-        {
-          var elem278 = null;
-          elem278 = new bean_ttypes.TopicOption();
-          elem278.read(input);
-          this.success.push(elem278);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-CommonService_topicOptionSelectQueryNoCache_result.prototype.write = function(output) {
-  output.writeStructBegin('CommonService_topicOptionSelectQueryNoCache_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter279 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter279))
-      {
-        iter279 = this.success[iter279];
-        iter279.write(output);
-      }
-    }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var CommonService_topicOptionCountSelectQuery_args = function(args) {
-  this.topicOption = null;
-  this.query = null;
-  if (args) {
-    if (args.topicOption !== undefined && args.topicOption !== null) {
-      this.topicOption = new bean_ttypes.TopicOption(args.topicOption);
-    }
-    if (args.query !== undefined && args.query !== null) {
-      this.query = new bean_ttypes.Query(args.query);
-    }
-  }
-};
-CommonService_topicOptionCountSelectQuery_args.prototype = {};
-CommonService_topicOptionCountSelectQuery_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.topicOption = new bean_ttypes.TopicOption();
-        this.topicOption.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.query = new bean_ttypes.Query();
-        this.query.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-CommonService_topicOptionCountSelectQuery_args.prototype.write = function(output) {
-  output.writeStructBegin('CommonService_topicOptionCountSelectQuery_args');
-  if (this.topicOption !== null && this.topicOption !== undefined) {
-    output.writeFieldBegin('topicOption', Thrift.Type.STRUCT, 1);
-    this.topicOption.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.query !== null && this.query !== undefined) {
-    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
-    this.query.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var CommonService_topicOptionCountSelectQuery_result = function(args) {
-  this.success = null;
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = args.success;
-    }
-  }
-};
-CommonService_topicOptionCountSelectQuery_result.prototype = {};
-CommonService_topicOptionCountSelectQuery_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-      if (ftype == Thrift.Type.I32) {
-        this.success = input.readI32();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 0:
-        input.skip(ftype);
-        break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-CommonService_topicOptionCountSelectQuery_result.prototype.write = function(output) {
-  output.writeStructBegin('CommonService_topicOptionCountSelectQuery_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.I32, 0);
-    output.writeI32(this.success);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -1954,19 +1209,19 @@ CommonService_topicSelect_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size280 = 0;
-        var _rtmp3284;
+        var _size248 = 0;
+        var _rtmp3252;
         this.success = [];
-        var _etype283 = 0;
-        _rtmp3284 = input.readListBegin();
-        _etype283 = _rtmp3284.etype;
-        _size280 = _rtmp3284.size;
-        for (var _i285 = 0; _i285 < _size280; ++_i285)
+        var _etype251 = 0;
+        _rtmp3252 = input.readListBegin();
+        _etype251 = _rtmp3252.etype;
+        _size248 = _rtmp3252.size;
+        for (var _i253 = 0; _i253 < _size248; ++_i253)
         {
-          var elem286 = null;
-          elem286 = new bean_ttypes.Topic();
-          elem286.read(input);
-          this.success.push(elem286);
+          var elem254 = null;
+          elem254 = new bean_ttypes.Topic();
+          elem254.read(input);
+          this.success.push(elem254);
         }
         input.readListEnd();
       } else {
@@ -1990,12 +1245,12 @@ CommonService_topicSelect_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter287 in this.success)
+    for (var iter255 in this.success)
     {
-      if (this.success.hasOwnProperty(iter287))
+      if (this.success.hasOwnProperty(iter255))
       {
-        iter287 = this.success[iter287];
-        iter287.write(output);
+        iter255 = this.success[iter255];
+        iter255.write(output);
       }
     }
     output.writeListEnd();
@@ -2098,19 +1353,19 @@ CommonService_topicSelectQuery_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size288 = 0;
-        var _rtmp3292;
+        var _size256 = 0;
+        var _rtmp3260;
         this.success = [];
-        var _etype291 = 0;
-        _rtmp3292 = input.readListBegin();
-        _etype291 = _rtmp3292.etype;
-        _size288 = _rtmp3292.size;
-        for (var _i293 = 0; _i293 < _size288; ++_i293)
+        var _etype259 = 0;
+        _rtmp3260 = input.readListBegin();
+        _etype259 = _rtmp3260.etype;
+        _size256 = _rtmp3260.size;
+        for (var _i261 = 0; _i261 < _size256; ++_i261)
         {
-          var elem294 = null;
-          elem294 = new bean_ttypes.Topic();
-          elem294.read(input);
-          this.success.push(elem294);
+          var elem262 = null;
+          elem262 = new bean_ttypes.Topic();
+          elem262.read(input);
+          this.success.push(elem262);
         }
         input.readListEnd();
       } else {
@@ -2134,12 +1389,12 @@ CommonService_topicSelectQuery_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter295 in this.success)
+    for (var iter263 in this.success)
     {
-      if (this.success.hasOwnProperty(iter295))
+      if (this.success.hasOwnProperty(iter263))
       {
-        iter295 = this.success[iter295];
-        iter295.write(output);
+        iter263 = this.success[iter263];
+        iter263.write(output);
       }
     }
     output.writeListEnd();
@@ -2242,19 +1497,19 @@ CommonService_topicSelectCustom_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size296 = 0;
-        var _rtmp3300;
+        var _size264 = 0;
+        var _rtmp3268;
         this.success = [];
-        var _etype299 = 0;
-        _rtmp3300 = input.readListBegin();
-        _etype299 = _rtmp3300.etype;
-        _size296 = _rtmp3300.size;
-        for (var _i301 = 0; _i301 < _size296; ++_i301)
+        var _etype267 = 0;
+        _rtmp3268 = input.readListBegin();
+        _etype267 = _rtmp3268.etype;
+        _size264 = _rtmp3268.size;
+        for (var _i269 = 0; _i269 < _size264; ++_i269)
         {
-          var elem302 = null;
-          elem302 = new bean_ttypes.Topic();
-          elem302.read(input);
-          this.success.push(elem302);
+          var elem270 = null;
+          elem270 = new bean_ttypes.Topic();
+          elem270.read(input);
+          this.success.push(elem270);
         }
         input.readListEnd();
       } else {
@@ -2278,12 +1533,12 @@ CommonService_topicSelectCustom_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter303 in this.success)
+    for (var iter271 in this.success)
     {
-      if (this.success.hasOwnProperty(iter303))
+      if (this.success.hasOwnProperty(iter271))
       {
-        iter303 = this.success[iter303];
-        iter303.write(output);
+        iter271 = this.success[iter271];
+        iter271.write(output);
       }
     }
     output.writeListEnd();
@@ -2403,19 +1658,19 @@ CommonService_topicSelectQueryCustom_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size304 = 0;
-        var _rtmp3308;
+        var _size272 = 0;
+        var _rtmp3276;
         this.success = [];
-        var _etype307 = 0;
-        _rtmp3308 = input.readListBegin();
-        _etype307 = _rtmp3308.etype;
-        _size304 = _rtmp3308.size;
-        for (var _i309 = 0; _i309 < _size304; ++_i309)
+        var _etype275 = 0;
+        _rtmp3276 = input.readListBegin();
+        _etype275 = _rtmp3276.etype;
+        _size272 = _rtmp3276.size;
+        for (var _i277 = 0; _i277 < _size272; ++_i277)
         {
-          var elem310 = null;
-          elem310 = new bean_ttypes.Topic();
-          elem310.read(input);
-          this.success.push(elem310);
+          var elem278 = null;
+          elem278 = new bean_ttypes.Topic();
+          elem278.read(input);
+          this.success.push(elem278);
         }
         input.readListEnd();
       } else {
@@ -2439,12 +1694,12 @@ CommonService_topicSelectQueryCustom_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter311 in this.success)
+    for (var iter279 in this.success)
     {
-      if (this.success.hasOwnProperty(iter311))
+      if (this.success.hasOwnProperty(iter279))
       {
-        iter311 = this.success[iter311];
-        iter311.write(output);
+        iter279 = this.success[iter279];
+        iter279.write(output);
       }
     }
     output.writeListEnd();
@@ -2564,19 +1819,19 @@ CommonService_topicSelectQueryCustomNotCache_result.prototype.read = function(in
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size312 = 0;
-        var _rtmp3316;
+        var _size280 = 0;
+        var _rtmp3284;
         this.success = [];
-        var _etype315 = 0;
-        _rtmp3316 = input.readListBegin();
-        _etype315 = _rtmp3316.etype;
-        _size312 = _rtmp3316.size;
-        for (var _i317 = 0; _i317 < _size312; ++_i317)
+        var _etype283 = 0;
+        _rtmp3284 = input.readListBegin();
+        _etype283 = _rtmp3284.etype;
+        _size280 = _rtmp3284.size;
+        for (var _i285 = 0; _i285 < _size280; ++_i285)
         {
-          var elem318 = null;
-          elem318 = new bean_ttypes.Topic();
-          elem318.read(input);
-          this.success.push(elem318);
+          var elem286 = null;
+          elem286 = new bean_ttypes.Topic();
+          elem286.read(input);
+          this.success.push(elem286);
         }
         input.readListEnd();
       } else {
@@ -2600,12 +1855,12 @@ CommonService_topicSelectQueryCustomNotCache_result.prototype.write = function(o
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter319 in this.success)
+    for (var iter287 in this.success)
     {
-      if (this.success.hasOwnProperty(iter319))
+      if (this.success.hasOwnProperty(iter287))
       {
-        iter319 = this.success[iter319];
-        iter319.write(output);
+        iter287 = this.success[iter287];
+        iter287.write(output);
       }
     }
     output.writeListEnd();
@@ -2708,19 +1963,19 @@ CommonService_topicSelectQueryNoCache_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size320 = 0;
-        var _rtmp3324;
+        var _size288 = 0;
+        var _rtmp3292;
         this.success = [];
-        var _etype323 = 0;
-        _rtmp3324 = input.readListBegin();
-        _etype323 = _rtmp3324.etype;
-        _size320 = _rtmp3324.size;
-        for (var _i325 = 0; _i325 < _size320; ++_i325)
+        var _etype291 = 0;
+        _rtmp3292 = input.readListBegin();
+        _etype291 = _rtmp3292.etype;
+        _size288 = _rtmp3292.size;
+        for (var _i293 = 0; _i293 < _size288; ++_i293)
         {
-          var elem326 = null;
-          elem326 = new bean_ttypes.Topic();
-          elem326.read(input);
-          this.success.push(elem326);
+          var elem294 = null;
+          elem294 = new bean_ttypes.Topic();
+          elem294.read(input);
+          this.success.push(elem294);
         }
         input.readListEnd();
       } else {
@@ -2744,12 +1999,12 @@ CommonService_topicSelectQueryNoCache_result.prototype.write = function(output) 
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter327 in this.success)
+    for (var iter295 in this.success)
     {
-      if (this.success.hasOwnProperty(iter327))
+      if (this.success.hasOwnProperty(iter295))
       {
-        iter327 = this.success[iter327];
-        iter327.write(output);
+        iter295 = this.success[iter295];
+        iter295.write(output);
       }
     }
     output.writeListEnd();
@@ -3387,19 +2642,19 @@ CommonService_topicBankSelect_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size328 = 0;
-        var _rtmp3332;
+        var _size296 = 0;
+        var _rtmp3300;
         this.success = [];
-        var _etype331 = 0;
-        _rtmp3332 = input.readListBegin();
-        _etype331 = _rtmp3332.etype;
-        _size328 = _rtmp3332.size;
-        for (var _i333 = 0; _i333 < _size328; ++_i333)
+        var _etype299 = 0;
+        _rtmp3300 = input.readListBegin();
+        _etype299 = _rtmp3300.etype;
+        _size296 = _rtmp3300.size;
+        for (var _i301 = 0; _i301 < _size296; ++_i301)
         {
-          var elem334 = null;
-          elem334 = new bean_ttypes.TopicBank();
-          elem334.read(input);
-          this.success.push(elem334);
+          var elem302 = null;
+          elem302 = new bean_ttypes.TopicBank();
+          elem302.read(input);
+          this.success.push(elem302);
         }
         input.readListEnd();
       } else {
@@ -3423,12 +2678,12 @@ CommonService_topicBankSelect_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter335 in this.success)
+    for (var iter303 in this.success)
     {
-      if (this.success.hasOwnProperty(iter335))
+      if (this.success.hasOwnProperty(iter303))
       {
-        iter335 = this.success[iter335];
-        iter335.write(output);
+        iter303 = this.success[iter303];
+        iter303.write(output);
       }
     }
     output.writeListEnd();
@@ -3531,19 +2786,19 @@ CommonService_topicBankSelectQuery_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size336 = 0;
-        var _rtmp3340;
+        var _size304 = 0;
+        var _rtmp3308;
         this.success = [];
-        var _etype339 = 0;
-        _rtmp3340 = input.readListBegin();
-        _etype339 = _rtmp3340.etype;
-        _size336 = _rtmp3340.size;
-        for (var _i341 = 0; _i341 < _size336; ++_i341)
+        var _etype307 = 0;
+        _rtmp3308 = input.readListBegin();
+        _etype307 = _rtmp3308.etype;
+        _size304 = _rtmp3308.size;
+        for (var _i309 = 0; _i309 < _size304; ++_i309)
         {
-          var elem342 = null;
-          elem342 = new bean_ttypes.TopicBank();
-          elem342.read(input);
-          this.success.push(elem342);
+          var elem310 = null;
+          elem310 = new bean_ttypes.TopicBank();
+          elem310.read(input);
+          this.success.push(elem310);
         }
         input.readListEnd();
       } else {
@@ -3567,12 +2822,12 @@ CommonService_topicBankSelectQuery_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter343 in this.success)
+    for (var iter311 in this.success)
     {
-      if (this.success.hasOwnProperty(iter343))
+      if (this.success.hasOwnProperty(iter311))
       {
-        iter343 = this.success[iter343];
-        iter343.write(output);
+        iter311 = this.success[iter311];
+        iter311.write(output);
       }
     }
     output.writeListEnd();
@@ -3675,19 +2930,19 @@ CommonService_topicBankSelectCustom_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size344 = 0;
-        var _rtmp3348;
+        var _size312 = 0;
+        var _rtmp3316;
         this.success = [];
-        var _etype347 = 0;
-        _rtmp3348 = input.readListBegin();
-        _etype347 = _rtmp3348.etype;
-        _size344 = _rtmp3348.size;
-        for (var _i349 = 0; _i349 < _size344; ++_i349)
+        var _etype315 = 0;
+        _rtmp3316 = input.readListBegin();
+        _etype315 = _rtmp3316.etype;
+        _size312 = _rtmp3316.size;
+        for (var _i317 = 0; _i317 < _size312; ++_i317)
         {
-          var elem350 = null;
-          elem350 = new bean_ttypes.TopicBank();
-          elem350.read(input);
-          this.success.push(elem350);
+          var elem318 = null;
+          elem318 = new bean_ttypes.TopicBank();
+          elem318.read(input);
+          this.success.push(elem318);
         }
         input.readListEnd();
       } else {
@@ -3711,12 +2966,12 @@ CommonService_topicBankSelectCustom_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter351 in this.success)
+    for (var iter319 in this.success)
     {
-      if (this.success.hasOwnProperty(iter351))
+      if (this.success.hasOwnProperty(iter319))
       {
-        iter351 = this.success[iter351];
-        iter351.write(output);
+        iter319 = this.success[iter319];
+        iter319.write(output);
       }
     }
     output.writeListEnd();
@@ -3836,19 +3091,19 @@ CommonService_topicBankSelectQueryCustom_result.prototype.read = function(input)
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size352 = 0;
-        var _rtmp3356;
+        var _size320 = 0;
+        var _rtmp3324;
         this.success = [];
-        var _etype355 = 0;
-        _rtmp3356 = input.readListBegin();
-        _etype355 = _rtmp3356.etype;
-        _size352 = _rtmp3356.size;
-        for (var _i357 = 0; _i357 < _size352; ++_i357)
+        var _etype323 = 0;
+        _rtmp3324 = input.readListBegin();
+        _etype323 = _rtmp3324.etype;
+        _size320 = _rtmp3324.size;
+        for (var _i325 = 0; _i325 < _size320; ++_i325)
         {
-          var elem358 = null;
-          elem358 = new bean_ttypes.TopicBank();
-          elem358.read(input);
-          this.success.push(elem358);
+          var elem326 = null;
+          elem326 = new bean_ttypes.TopicBank();
+          elem326.read(input);
+          this.success.push(elem326);
         }
         input.readListEnd();
       } else {
@@ -3872,12 +3127,12 @@ CommonService_topicBankSelectQueryCustom_result.prototype.write = function(outpu
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter359 in this.success)
+    for (var iter327 in this.success)
     {
-      if (this.success.hasOwnProperty(iter359))
+      if (this.success.hasOwnProperty(iter327))
       {
-        iter359 = this.success[iter359];
-        iter359.write(output);
+        iter327 = this.success[iter327];
+        iter327.write(output);
       }
     }
     output.writeListEnd();
@@ -3997,19 +3252,19 @@ CommonService_topicBankSelectQueryCustomNotCache_result.prototype.read = functio
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size360 = 0;
-        var _rtmp3364;
+        var _size328 = 0;
+        var _rtmp3332;
         this.success = [];
-        var _etype363 = 0;
-        _rtmp3364 = input.readListBegin();
-        _etype363 = _rtmp3364.etype;
-        _size360 = _rtmp3364.size;
-        for (var _i365 = 0; _i365 < _size360; ++_i365)
+        var _etype331 = 0;
+        _rtmp3332 = input.readListBegin();
+        _etype331 = _rtmp3332.etype;
+        _size328 = _rtmp3332.size;
+        for (var _i333 = 0; _i333 < _size328; ++_i333)
         {
-          var elem366 = null;
-          elem366 = new bean_ttypes.TopicBank();
-          elem366.read(input);
-          this.success.push(elem366);
+          var elem334 = null;
+          elem334 = new bean_ttypes.TopicBank();
+          elem334.read(input);
+          this.success.push(elem334);
         }
         input.readListEnd();
       } else {
@@ -4033,12 +3288,12 @@ CommonService_topicBankSelectQueryCustomNotCache_result.prototype.write = functi
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter367 in this.success)
+    for (var iter335 in this.success)
     {
-      if (this.success.hasOwnProperty(iter367))
+      if (this.success.hasOwnProperty(iter335))
       {
-        iter367 = this.success[iter367];
-        iter367.write(output);
+        iter335 = this.success[iter335];
+        iter335.write(output);
       }
     }
     output.writeListEnd();
@@ -4141,19 +3396,19 @@ CommonService_topicBankSelectQueryNoCache_result.prototype.read = function(input
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size368 = 0;
-        var _rtmp3372;
+        var _size336 = 0;
+        var _rtmp3340;
         this.success = [];
-        var _etype371 = 0;
-        _rtmp3372 = input.readListBegin();
-        _etype371 = _rtmp3372.etype;
-        _size368 = _rtmp3372.size;
-        for (var _i373 = 0; _i373 < _size368; ++_i373)
+        var _etype339 = 0;
+        _rtmp3340 = input.readListBegin();
+        _etype339 = _rtmp3340.etype;
+        _size336 = _rtmp3340.size;
+        for (var _i341 = 0; _i341 < _size336; ++_i341)
         {
-          var elem374 = null;
-          elem374 = new bean_ttypes.TopicBank();
-          elem374.read(input);
-          this.success.push(elem374);
+          var elem342 = null;
+          elem342 = new bean_ttypes.TopicBank();
+          elem342.read(input);
+          this.success.push(elem342);
         }
         input.readListEnd();
       } else {
@@ -4177,12 +3432,12 @@ CommonService_topicBankSelectQueryNoCache_result.prototype.write = function(outp
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter375 in this.success)
+    for (var iter343 in this.success)
     {
-      if (this.success.hasOwnProperty(iter375))
+      if (this.success.hasOwnProperty(iter343))
       {
-        iter375 = this.success[iter375];
-        iter375.write(output);
+        iter343 = this.success[iter343];
+        iter343.write(output);
       }
     }
     output.writeListEnd();
@@ -4749,7 +4004,7 @@ CommonServiceClient.prototype.recv_topicOptionFindById = function(input,mtype,rs
   }
   return callback('topicOptionFindById failed: unknown result');
 };
-CommonServiceClient.prototype.topicOptionSelect = function(topicOption, callback) {
+CommonServiceClient.prototype.topicOptionSelect = function(abstractSql, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -4760,19 +4015,19 @@ CommonServiceClient.prototype.topicOptionSelect = function(topicOption, callback
         _defer.resolve(result);
       }
     };
-    this.send_topicOptionSelect(topicOption);
+    this.send_topicOptionSelect(abstractSql);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_topicOptionSelect(topicOption);
+    this.send_topicOptionSelect(abstractSql);
   }
 };
 
-CommonServiceClient.prototype.send_topicOptionSelect = function(topicOption) {
+CommonServiceClient.prototype.send_topicOptionSelect = function(abstractSql) {
   var output = new this.pClass(this.output);
   output.writeMessageBegin('topicOptionSelect', Thrift.MessageType.CALL, this.seqid());
   var args = new CommonService_topicOptionSelect_args();
-  args.topicOption = topicOption;
+  args.abstractSql = abstractSql;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
@@ -4796,7 +4051,7 @@ CommonServiceClient.prototype.recv_topicOptionSelect = function(input,mtype,rseq
   }
   return callback('topicOptionSelect failed: unknown result');
 };
-CommonServiceClient.prototype.topicOptionSelectQuery = function(topicOption, query, callback) {
+CommonServiceClient.prototype.topicOptionSelectNoCache = function(abstractSql, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -4807,26 +4062,25 @@ CommonServiceClient.prototype.topicOptionSelectQuery = function(topicOption, que
         _defer.resolve(result);
       }
     };
-    this.send_topicOptionSelectQuery(topicOption, query);
+    this.send_topicOptionSelectNoCache(abstractSql);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_topicOptionSelectQuery(topicOption, query);
+    this.send_topicOptionSelectNoCache(abstractSql);
   }
 };
 
-CommonServiceClient.prototype.send_topicOptionSelectQuery = function(topicOption, query) {
+CommonServiceClient.prototype.send_topicOptionSelectNoCache = function(abstractSql) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('topicOptionSelectQuery', Thrift.MessageType.CALL, this.seqid());
-  var args = new CommonService_topicOptionSelectQuery_args();
-  args.topicOption = topicOption;
-  args.query = query;
+  output.writeMessageBegin('topicOptionSelectNoCache', Thrift.MessageType.CALL, this.seqid());
+  var args = new CommonService_topicOptionSelectNoCache_args();
+  args.abstractSql = abstractSql;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-CommonServiceClient.prototype.recv_topicOptionSelectQuery = function(input,mtype,rseqid) {
+CommonServiceClient.prototype.recv_topicOptionSelectNoCache = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -4835,256 +4089,14 @@ CommonServiceClient.prototype.recv_topicOptionSelectQuery = function(input,mtype
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new CommonService_topicOptionSelectQuery_result();
+  var result = new CommonService_topicOptionSelectNoCache_result();
   result.read(input);
   input.readMessageEnd();
 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('topicOptionSelectQuery failed: unknown result');
-};
-CommonServiceClient.prototype.topicOptionSelectCustom = function(topicOption, custom, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_topicOptionSelectCustom(topicOption, custom);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_topicOptionSelectCustom(topicOption, custom);
-  }
-};
-
-CommonServiceClient.prototype.send_topicOptionSelectCustom = function(topicOption, custom) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('topicOptionSelectCustom', Thrift.MessageType.CALL, this.seqid());
-  var args = new CommonService_topicOptionSelectCustom_args();
-  args.topicOption = topicOption;
-  args.custom = custom;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
-};
-
-CommonServiceClient.prototype.recv_topicOptionSelectCustom = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
-    input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CommonService_topicOptionSelectCustom_result();
-  result.read(input);
-  input.readMessageEnd();
-
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('topicOptionSelectCustom failed: unknown result');
-};
-CommonServiceClient.prototype.topicOptionSelectQueryCustom = function(topicOption, query, custom, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_topicOptionSelectQueryCustom(topicOption, query, custom);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_topicOptionSelectQueryCustom(topicOption, query, custom);
-  }
-};
-
-CommonServiceClient.prototype.send_topicOptionSelectQueryCustom = function(topicOption, query, custom) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('topicOptionSelectQueryCustom', Thrift.MessageType.CALL, this.seqid());
-  var args = new CommonService_topicOptionSelectQueryCustom_args();
-  args.topicOption = topicOption;
-  args.query = query;
-  args.custom = custom;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
-};
-
-CommonServiceClient.prototype.recv_topicOptionSelectQueryCustom = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
-    input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CommonService_topicOptionSelectQueryCustom_result();
-  result.read(input);
-  input.readMessageEnd();
-
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('topicOptionSelectQueryCustom failed: unknown result');
-};
-CommonServiceClient.prototype.topicOptionSelectQueryCustomNotCache = function(topicOption, query, custom, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_topicOptionSelectQueryCustomNotCache(topicOption, query, custom);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_topicOptionSelectQueryCustomNotCache(topicOption, query, custom);
-  }
-};
-
-CommonServiceClient.prototype.send_topicOptionSelectQueryCustomNotCache = function(topicOption, query, custom) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('topicOptionSelectQueryCustomNotCache', Thrift.MessageType.CALL, this.seqid());
-  var args = new CommonService_topicOptionSelectQueryCustomNotCache_args();
-  args.topicOption = topicOption;
-  args.query = query;
-  args.custom = custom;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
-};
-
-CommonServiceClient.prototype.recv_topicOptionSelectQueryCustomNotCache = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
-    input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CommonService_topicOptionSelectQueryCustomNotCache_result();
-  result.read(input);
-  input.readMessageEnd();
-
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('topicOptionSelectQueryCustomNotCache failed: unknown result');
-};
-CommonServiceClient.prototype.topicOptionSelectQueryNoCache = function(topicOption, query, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_topicOptionSelectQueryNoCache(topicOption, query);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_topicOptionSelectQueryNoCache(topicOption, query);
-  }
-};
-
-CommonServiceClient.prototype.send_topicOptionSelectQueryNoCache = function(topicOption, query) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('topicOptionSelectQueryNoCache', Thrift.MessageType.CALL, this.seqid());
-  var args = new CommonService_topicOptionSelectQueryNoCache_args();
-  args.topicOption = topicOption;
-  args.query = query;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
-};
-
-CommonServiceClient.prototype.recv_topicOptionSelectQueryNoCache = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
-    input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CommonService_topicOptionSelectQueryNoCache_result();
-  result.read(input);
-  input.readMessageEnd();
-
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('topicOptionSelectQueryNoCache failed: unknown result');
-};
-CommonServiceClient.prototype.topicOptionCountSelectQuery = function(topicOption, query, callback) {
-  this._seqid = this.new_seqid();
-  if (callback === undefined) {
-    var _defer = Q.defer();
-    this._reqs[this.seqid()] = function(error, result) {
-      if (error) {
-        _defer.reject(error);
-      } else {
-        _defer.resolve(result);
-      }
-    };
-    this.send_topicOptionCountSelectQuery(topicOption, query);
-    return _defer.promise;
-  } else {
-    this._reqs[this.seqid()] = callback;
-    this.send_topicOptionCountSelectQuery(topicOption, query);
-  }
-};
-
-CommonServiceClient.prototype.send_topicOptionCountSelectQuery = function(topicOption, query) {
-  var output = new this.pClass(this.output);
-  output.writeMessageBegin('topicOptionCountSelectQuery', Thrift.MessageType.CALL, this.seqid());
-  var args = new CommonService_topicOptionCountSelectQuery_args();
-  args.topicOption = topicOption;
-  args.query = query;
-  args.write(output);
-  output.writeMessageEnd();
-  return this.output.flush();
-};
-
-CommonServiceClient.prototype.recv_topicOptionCountSelectQuery = function(input,mtype,rseqid) {
-  var callback = this._reqs[rseqid] || function() {};
-  delete this._reqs[rseqid];
-  if (mtype == Thrift.MessageType.EXCEPTION) {
-    var x = new Thrift.TApplicationException();
-    x.read(input);
-    input.readMessageEnd();
-    return callback(x);
-  }
-  var result = new CommonService_topicOptionCountSelectQuery_result();
-  result.read(input);
-  input.readMessageEnd();
-
-  if (null !== result.success) {
-    return callback(null, result.success);
-  }
-  return callback('topicOptionCountSelectQuery failed: unknown result');
+  return callback('topicOptionSelectNoCache failed: unknown result');
 };
 CommonServiceClient.prototype.topicInsert = function(topic, callback) {
   this._seqid = this.new_seqid();
@@ -6400,7 +5412,7 @@ CommonServiceProcessor.prototype.process_topicOptionSelect = function(seqid, inp
   args.read(input);
   input.readMessageEnd();
   if (this._handler.topicOptionSelect.length === 1) {
-    Q.fcall(this._handler.topicOptionSelect, args.topicOption)
+    Q.fcall(this._handler.topicOptionSelect, args.abstractSql)
       .then(function(result) {
         var result_obj = new CommonService_topicOptionSelect_result({success: result});
         output.writeMessageBegin("topicOptionSelect", Thrift.MessageType.REPLY, seqid);
@@ -6416,7 +5428,7 @@ CommonServiceProcessor.prototype.process_topicOptionSelect = function(seqid, inp
         output.flush();
       });
   } else {
-    this._handler.topicOptionSelect(args.topicOption, function (err, result) {
+    this._handler.topicOptionSelect(args.abstractSql, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
         result_obj = new CommonService_topicOptionSelect_result((err !== null || typeof err === 'undefined') ? err : {success: result});
@@ -6431,215 +5443,35 @@ CommonServiceProcessor.prototype.process_topicOptionSelect = function(seqid, inp
     });
   }
 };
-CommonServiceProcessor.prototype.process_topicOptionSelectQuery = function(seqid, input, output) {
-  var args = new CommonService_topicOptionSelectQuery_args();
+CommonServiceProcessor.prototype.process_topicOptionSelectNoCache = function(seqid, input, output) {
+  var args = new CommonService_topicOptionSelectNoCache_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.topicOptionSelectQuery.length === 2) {
-    Q.fcall(this._handler.topicOptionSelectQuery, args.topicOption, args.query)
+  if (this._handler.topicOptionSelectNoCache.length === 1) {
+    Q.fcall(this._handler.topicOptionSelectNoCache, args.abstractSql)
       .then(function(result) {
-        var result_obj = new CommonService_topicOptionSelectQuery_result({success: result});
-        output.writeMessageBegin("topicOptionSelectQuery", Thrift.MessageType.REPLY, seqid);
+        var result_obj = new CommonService_topicOptionSelectNoCache_result({success: result});
+        output.writeMessageBegin("topicOptionSelectNoCache", Thrift.MessageType.REPLY, seqid);
         result_obj.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         var result;
         result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("topicOptionSelectNoCache", Thrift.MessageType.EXCEPTION, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.topicOptionSelectQuery(args.topicOption, args.query, function (err, result) {
+    this._handler.topicOptionSelectNoCache(args.abstractSql, function (err, result) {
       var result_obj;
       if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CommonService_topicOptionSelectQuery_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("topicOptionSelectQuery", Thrift.MessageType.REPLY, seqid);
+        result_obj = new CommonService_topicOptionSelectNoCache_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("topicOptionSelectNoCache", Thrift.MessageType.REPLY, seqid);
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
-};
-CommonServiceProcessor.prototype.process_topicOptionSelectCustom = function(seqid, input, output) {
-  var args = new CommonService_topicOptionSelectCustom_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.topicOptionSelectCustom.length === 2) {
-    Q.fcall(this._handler.topicOptionSelectCustom, args.topicOption, args.custom)
-      .then(function(result) {
-        var result_obj = new CommonService_topicOptionSelectCustom_result({success: result});
-        output.writeMessageBegin("topicOptionSelectCustom", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionSelectCustom", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.topicOptionSelectCustom(args.topicOption, args.custom, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CommonService_topicOptionSelectCustom_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("topicOptionSelectCustom", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionSelectCustom", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
-};
-CommonServiceProcessor.prototype.process_topicOptionSelectQueryCustom = function(seqid, input, output) {
-  var args = new CommonService_topicOptionSelectQueryCustom_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.topicOptionSelectQueryCustom.length === 3) {
-    Q.fcall(this._handler.topicOptionSelectQueryCustom, args.topicOption, args.query, args.custom)
-      .then(function(result) {
-        var result_obj = new CommonService_topicOptionSelectQueryCustom_result({success: result});
-        output.writeMessageBegin("topicOptionSelectQueryCustom", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionSelectQueryCustom", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.topicOptionSelectQueryCustom(args.topicOption, args.query, args.custom, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CommonService_topicOptionSelectQueryCustom_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("topicOptionSelectQueryCustom", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionSelectQueryCustom", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
-};
-CommonServiceProcessor.prototype.process_topicOptionSelectQueryCustomNotCache = function(seqid, input, output) {
-  var args = new CommonService_topicOptionSelectQueryCustomNotCache_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.topicOptionSelectQueryCustomNotCache.length === 3) {
-    Q.fcall(this._handler.topicOptionSelectQueryCustomNotCache, args.topicOption, args.query, args.custom)
-      .then(function(result) {
-        var result_obj = new CommonService_topicOptionSelectQueryCustomNotCache_result({success: result});
-        output.writeMessageBegin("topicOptionSelectQueryCustomNotCache", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionSelectQueryCustomNotCache", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.topicOptionSelectQueryCustomNotCache(args.topicOption, args.query, args.custom, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CommonService_topicOptionSelectQueryCustomNotCache_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("topicOptionSelectQueryCustomNotCache", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionSelectQueryCustomNotCache", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
-};
-CommonServiceProcessor.prototype.process_topicOptionSelectQueryNoCache = function(seqid, input, output) {
-  var args = new CommonService_topicOptionSelectQueryNoCache_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.topicOptionSelectQueryNoCache.length === 2) {
-    Q.fcall(this._handler.topicOptionSelectQueryNoCache, args.topicOption, args.query)
-      .then(function(result) {
-        var result_obj = new CommonService_topicOptionSelectQueryNoCache_result({success: result});
-        output.writeMessageBegin("topicOptionSelectQueryNoCache", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionSelectQueryNoCache", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.topicOptionSelectQueryNoCache(args.topicOption, args.query, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CommonService_topicOptionSelectQueryNoCache_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("topicOptionSelectQueryNoCache", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionSelectQueryNoCache", Thrift.MessageType.EXCEPTION, seqid);
-      }
-      result_obj.write(output);
-      output.writeMessageEnd();
-      output.flush();
-    });
-  }
-};
-CommonServiceProcessor.prototype.process_topicOptionCountSelectQuery = function(seqid, input, output) {
-  var args = new CommonService_topicOptionCountSelectQuery_args();
-  args.read(input);
-  input.readMessageEnd();
-  if (this._handler.topicOptionCountSelectQuery.length === 2) {
-    Q.fcall(this._handler.topicOptionCountSelectQuery, args.topicOption, args.query)
-      .then(function(result) {
-        var result_obj = new CommonService_topicOptionCountSelectQuery_result({success: result});
-        output.writeMessageBegin("topicOptionCountSelectQuery", Thrift.MessageType.REPLY, seqid);
-        result_obj.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      }, function (err) {
-        var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionCountSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
-        result.write(output);
-        output.writeMessageEnd();
-        output.flush();
-      });
-  } else {
-    this._handler.topicOptionCountSelectQuery(args.topicOption, args.query, function (err, result) {
-      var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
-        result_obj = new CommonService_topicOptionCountSelectQuery_result((err !== null || typeof err === 'undefined') ? err : {success: result});
-        output.writeMessageBegin("topicOptionCountSelectQuery", Thrift.MessageType.REPLY, seqid);
-      } else {
-        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionCountSelectQuery", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("topicOptionSelectNoCache", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();

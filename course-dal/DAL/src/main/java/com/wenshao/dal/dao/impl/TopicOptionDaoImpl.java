@@ -2,6 +2,7 @@ package com.wenshao.dal.dao.impl;
 
 import com.wenshao.dal.bean.TopicOptionBean;
 import com.wenshao.dal.dao.BaseDao;
+import com.wenshao.dal.thriftgen.AbstractSql;
 import com.wenshao.dal.thriftgen.TopicOption;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -26,7 +27,7 @@ public class TopicOptionDaoImpl implements BaseDao<TopicOptionBean> {
         sqlSession.insert(sqlTag + ".insert", bean);
         sqlSession.commit();
         sqlSession.close();
-        return bean.id;
+        return bean.to_id;
     }
 
     @Override
@@ -40,12 +41,18 @@ public class TopicOptionDaoImpl implements BaseDao<TopicOptionBean> {
     }
 
     @Override
-    public List<TopicOptionBean> select(TopicOptionBean bean) {
+    public List<TopicOptionBean> select2(AbstractSql abstractSql) {
+        System.out.println(abstractSql);
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<TopicOptionBean> list = sqlSession.selectList(sqlTag + ".select",bean);
+        List<TopicOptionBean> list = sqlSession.selectList(sqlTag + ".select",abstractSql);
         sqlSession.commit();
         sqlSession.close();
         return list;
+    }
+
+    @Override
+    public List<TopicOptionBean> select(TopicOptionBean bean) {
+        return null;
     }
 
 

@@ -1,5 +1,6 @@
 package com.wenshao.dal.dao;
 
+import com.wenshao.dal.thriftgen.AbstractSql;
 import com.wenshao.dal.thriftgen.RequestException;
 
 import java.util.List;
@@ -12,5 +13,6 @@ public interface BaseDao<T> {
     public int insert(T bean);
     public int update(T bean);
     public int remove(T bean);
+    public List<T> select2(AbstractSql abstractSql);
     public List<T> select(T bean);
 }

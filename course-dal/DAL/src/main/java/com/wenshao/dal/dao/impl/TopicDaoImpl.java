@@ -4,6 +4,7 @@ import com.wenshao.dal.bean.BannerBean;
 import com.wenshao.dal.bean.TopicBean;
 import com.wenshao.dal.dao.BannerDao;
 import com.wenshao.dal.dao.BaseDao;
+import com.wenshao.dal.thriftgen.AbstractSql;
 import com.wenshao.dal.thriftgen.RequestException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -38,6 +39,12 @@ public class TopicDaoImpl implements BaseDao<TopicBean> {
     public int remove(TopicBean bean) {
         return 0;
     }
+
+    @Override
+    public List<TopicBean> select2(AbstractSql abstractSql) {
+        return null;
+    }
+
     @Override
     public List<TopicBean> select(TopicBean bean) {
         SqlSession sqlSession = sqlSessionFactory.openSession();

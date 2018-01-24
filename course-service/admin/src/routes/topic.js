@@ -31,12 +31,6 @@ router.get('/', async (ctx, next) => {
         ctx.error = e;
     }
 });
-{
-    search: {
-
-    },
-
-}
 router.get('/counts', async (ctx, next) => {
     const params = ctx.query;
     try {

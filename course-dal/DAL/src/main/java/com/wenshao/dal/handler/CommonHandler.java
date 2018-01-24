@@ -1,14 +1,13 @@
 package com.wenshao.dal.handler;
 
-import com.wenshao.dal.bean.QueryBean;
-import com.wenshao.dal.bean.TopicBankBean;
-import com.wenshao.dal.bean.TopicBean;
-import com.wenshao.dal.bean.TopicOptionBean;
+import com.wenshao.dal.bean.*;
+import com.wenshao.dal.dao.TopicOptionDao;
 import com.wenshao.dal.dao.impl.TopicBankDaoImpl;
 import com.wenshao.dal.dao.impl.TopicDaoImpl;
 import com.wenshao.dal.dao.impl.TopicOptionDaoImpl;
 import com.wenshao.dal.thriftgen.*;
 import com.wenshao.dal.util.ExceptionUtil;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.thrift.TException;
 
@@ -26,24 +25,15 @@ public class CommonHandler implements CommonService.Iface {
     private TopicDaoImpl topicDao;
     private TopicOptionDaoImpl topicOptionDao;
     private TopicBankDaoImpl topicBankDao;
+    private SqlSessionFactory sessionFactory;
 
     public CommonHandler(SqlSessionFactory _sessionFactory) {
         topicDao = new TopicDaoImpl(_sessionFactory);
         topicOptionDao = new TopicOptionDaoImpl(_sessionFactory);
         topicBankDao = new TopicBankDaoImpl(_sessionFactory);
+        sessionFactory = _sessionFactory;
     }
 
-    private List<TopicOption> topicOptionQuery(TopicOption params, Query query, Custom custom) throws Exception {
-        List<TopicOption> results = new ArrayList<TopicOption>();
-        TopicOptionBean paramsBean = new TopicOptionBean(params);
-        if (query != null) paramsBean.setQueryBean(new QueryBean(query, TopicOptionBean.TABLE_PREFIX));
-        if (custom != null) paramsBean.setTables(custom.getTables());
-        List<TopicOptionBean> beans = topicOptionDao.select(paramsBean);
-        for (TopicOptionBean bean : beans) {
-            results.add((TopicOption) bean);
-        }
-        return results;
-    }
 
     private List<Topic> topicQuery(Topic params, Query query, Custom custom) throws Exception {
         List<Topic> results = new ArrayList<Topic>();
@@ -97,54 +87,16 @@ public class CommonHandler implements CommonService.Iface {
     }
 
     @Override
-    public List<TopicOption> topicOptionSelect(TopicOption topicOption) throws TException {
-        try {
-            return topicOptionQuery(topicOption, null, null);
-        } catch (Exception e) {
-            throw new TException(e);
-        }
+    public List<TopicOption> topicOptionSelect(AbstractSql abstractSql) throws TException {
+        SqlSession sqlSession = sessionFactory.openSession();
+        TopicOptionDao dao = sqlSession.getMapper(TopicOptionDao.class);
+
+        return dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
     }
 
     @Override
-    public List<TopicOption> topicOptionSelectQuery(TopicOption topicOption, Query query) throws TException {
-        try {
-            return topicOptionQuery(topicOption, query, null);
-        } catch (Exception e) {
-            throw new TException(e);
-        }
-    }
-
-    @Override
-    public List<TopicOption> topicOptionSelectCustom(TopicOption topicOption, Custom custom) throws TException {
-        try {
-            return topicOptionQuery(topicOption, null, custom);
-        } catch (Exception e) {
-            throw new TException(e);
-        }
-    }
-
-    @Override
-    public List<TopicOption> topicOptionSelectQueryCustom(TopicOption topicOption, Query query, Custom custom) throws TException {
-        try {
-            return topicOptionQuery(topicOption, query, custom);
-        } catch (Exception e) {
-            throw new TException(e);
-        }
-    }
-
-    @Override
-    public List<TopicOption> topicOptionSelectQueryCustomNotCache(TopicOption topicOption, Query query, Custom custom) throws TException {
-        return topicOptionSelectQueryCustom(topicOption, query, custom);
-    }
-
-    @Override
-    public List<TopicOption> topicOptionSelectQueryNoCache(TopicOption topicOption, Query query) throws TException {
-        return topicOptionSelectQuery(topicOption, query);
-    }
-
-    @Override
-    public int topicOptionCountSelectQuery(TopicOption topicOption, Query query) throws TException {
-        return 0;
+    public List<TopicOption> topicOptionSelectNoCache(AbstractSql abstractSql) throws TException {
+        return null;
     }
 
     @Override

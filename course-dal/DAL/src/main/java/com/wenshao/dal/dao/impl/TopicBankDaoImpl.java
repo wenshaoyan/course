@@ -2,6 +2,7 @@ package com.wenshao.dal.dao.impl;
 
 import com.wenshao.dal.bean.TopicBankBean;
 import com.wenshao.dal.dao.BaseDao;
+import com.wenshao.dal.thriftgen.AbstractSql;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -39,6 +40,11 @@ public class TopicBankDaoImpl implements BaseDao<TopicBankBean> {
     @Override
     public int remove(TopicBankBean bean) {
         return 0;
+    }
+
+    @Override
+    public List<TopicBankBean> select2(AbstractSql abstractSql) {
+        return null;
     }
 
     @Override

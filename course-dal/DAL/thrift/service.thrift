@@ -82,13 +82,15 @@ service CommonService{
     i32 topicOptionUpdate(1: bean.TopicOption topicOption),
     i32 topicOptionRemove(1: bean.TopicOption topicOption),
     bean.TopicOption topicOptionFindById(1: i32 id),
-    list<bean.TopicOption> topicOptionSelect(1: bean.TopicOption topicOption),
-    list<bean.TopicOption> topicOptionSelectQuery(1: bean.TopicOption topicOption,2: bean.Query query),
-    list<bean.TopicOption> topicOptionSelectCustom(1: bean.TopicOption topicOption,2:bean.Custom custom),
-    list<bean.TopicOption> topicOptionSelectQueryCustom(1: bean.TopicOption topicOption,2: bean.Query query,3:bean.Custom custom),
-    list<bean.TopicOption> topicOptionSelectQueryCustomNotCache(1: bean.TopicOption topicOption,2: bean.Query query,3:bean.Custom custom),
-    list<bean.TopicOption> topicOptionSelectQueryNoCache(1: bean.TopicOption topicOption,2: bean.Query query),
-    i32 topicOptionCountSelectQuery(1: bean.TopicOption topicOption,2: bean.Query query),
+    list<bean.TopicOption> topicOptionSelect(1: bean.AbstractSql abstractSql),
+    list<bean.TopicOption> topicOptionSelectNoCache(1: bean.AbstractSql abstractSql),
+
+    #list<bean.TopicOption> topicOptionSelectQuery(1: bean.TopicOption topicOption,2: bean.Query query),
+    #list<bean.TopicOption> topicOptionSelectCustom(1: bean.TopicOption topicOption,2:bean.Custom custom),
+    #list<bean.TopicOption> topicOptionSelectQueryCustom(1: bean.TopicOption topicOption,2: bean.Query query,3:bean.Custom custom),
+    #list<bean.TopicOption> topicOptionSelectQueryCustomNotCache(1: bean.TopicOption topicOption,2: bean.Query query,3:bean.Custom custom),
+    #list<bean.TopicOption> topicOptionSelectQueryNoCache(1: bean.TopicOption topicOption,2: bean.Query query),
+    #i32 topicOptionCountSelectQuery(1: bean.TopicOption topicOption,2: bean.Query query),
 
 
     i32 topicInsert(1: bean.Topic topic),

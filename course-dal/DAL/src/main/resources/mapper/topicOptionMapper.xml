@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.topicOptionMapper">
+<mapper namespace="com.wenshao.dal.dao.TopicOptionDao">
     <insert id="insert" parameterType="_TopicBean" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_topic_option(to_create_time,to_update_time,to_context,to_topic_id)
         VALUES(NOW(3),NOW(3),#{context},#{topic_id})
@@ -13,10 +13,43 @@
         SELECT IFNULL(MAX(t_topic.topic_id),0) i
         FROM t_topic_option
     </sql>
+    <!--op:
+     eq:1
+    -->
     <sql id="condition">
         <where>
-            <if test="id != 0 " >
-                to_id = #{id}
+            <if test="where">
+            <foreach collection="where" index="field" item="cons" separator="or" >
+                <if test="cons">
+                <trim prefix="(" suffix=")" prefixOverrides="and" >
+                    <foreach collection="cons" item="value" index="op" >
+                        <choose >
+                            <when test="op == 'eq'" >
+                                and ${field} = #{value}
+                            </when>
+                            <when test="op == 'ne'" >
+                                and ${field} != #{value}
+                            </when>
+                            <when test="op == 'gt'" >
+                                and ${field} > #{value}
+                            </when>
+                            <when test="op == 'gte'" >
+                                and ${field} >= #{value}
+                            </when>
+                            <when test="op == 'lt'" >
+                                and ${field} < #{value}
+                            </when>
+                            <when test="op == 'lte'" >
+                                and ${field} <= #{value}
+                            </when>
+                            <when test="op == 'between'" >
+                                and ${field} <= #{value}
+                            </when>
+                        </choose>
+                    </foreach>
+                </trim>
+                </if>
+            </foreach>
             </if>
         </where>
     </sql>
@@ -58,11 +91,9 @@
 
 
 
-    <select id="select" parameterType="_TopicBean"  resultMap="topicOptionResult">
+    <select id="select" parameterType="_AbstractSql"  resultMap="topicOptionResult">
       <include refid="select_list"/>
       <include refid="condition"/>
-      <include refid="order"/>
-      <include refid="limit"/>
     </select>
 
     <select id="selectMaxLocation" parameterType="_TopicBean" resultType="java.lang.Integer">
@@ -81,10 +112,10 @@
     </delete>
 
     <resultMap id="topicOptionResult" type="_TopicOptionBean">
-        <id property="id" column="to_id"/>
-        <result property="create_time_bean" column="to_create_time"/>
-        <result property="update_time_bean" column="to_update_time"/>
-        <result property="context" column="to_context"/>
-        <result property="topic_id" column="to_topic_id"/>
+        <id property="to_id" column="to_id"/>
+        <result property="to_create_time" column="to_create_time"/>
+        <result property="to_update_time" column="to_update_time"/>
+        <result property="to_context" column="to_context"/>
+        <result property="to_topic_id" column="to_topic_id"/>
     </resultMap>
 </mapper>

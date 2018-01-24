@@ -4,7 +4,7 @@
  */
 'use strict';
 const router = require('koa-router')();
-const { TopicOption } = require('../gen-nodejs/bean_types');
+const { TopicOption, AbstractSql } = require('../gen-nodejs/bean_types');
 const SysUtil = require('../util/sys_util');
 const logger = getLogger();
 const CommonService = getServiceConfig().dalName.common;
@@ -26,7 +26,13 @@ router.get('/', async (ctx, next) => {
     const params = ctx.query;
     try {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
-        ctx.body = await client.topicOptionSelect(new TopicOption());
+        ctx.body = await client.topicOptionSelect(new AbstractSql({
+            where: {
+                to_id: {
+                    eq: '5'
+                }
+            }
+        }));
     } catch (e) {
         console.log(e);
         ctx.error = e;

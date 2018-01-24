@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wenshao.dal.dao.UserAutoMapper" >
+  <resultMap id="BaseResultMap" type="com.wenshao.dal.bean.UserAuto" >
+    <result column="to_id" property="toId" jdbcType="INTEGER" />
+    <result column="to_context" property="toContext" jdbcType="VARCHAR" />
+    <result column="to_topic_id" property="toTopicId" jdbcType="INTEGER" />
+    <result column="to_create_time" property="toCreateTime" jdbcType="TIMESTAMP" />
+    <result column="to_update_time" property="toUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    to_id, to_context, to_topic_id, to_create_time, to_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wenshao.dal.bean.UserAutoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_topic_option
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.wenshao.dal.bean.UserAutoExample" >
+    delete from t_topic_option
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wenshao.dal.bean.UserAuto" >
+    insert into t_topic_option (to_id, to_context, to_topic_id, 
+      to_create_time, to_update_time)
+    values (#{toId,jdbcType=INTEGER}, #{toContext,jdbcType=VARCHAR}, #{toTopicId,jdbcType=INTEGER}, 
+      #{toCreateTime,jdbcType=TIMESTAMP}, #{toUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wenshao.dal.bean.UserAuto" >
+    insert into t_topic_option
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="toId != null" >
+        to_id,
+      </if>
+      <if test="toContext != null" >
+        to_context,
+      </if>
+      <if test="toTopicId != null" >
+        to_topic_id,
+      </if>
+      <if test="toCreateTime != null" >
+        to_create_time,
+      </if>
+      <if test="toUpdateTime != null" >
+        to_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="toId != null" >
+        #{toId,jdbcType=INTEGER},
+      </if>
+      <if test="toContext != null" >
+        #{toContext,jdbcType=VARCHAR},
+      </if>
+      <if test="toTopicId != null" >
+        #{toTopicId,jdbcType=INTEGER},
+      </if>
+      <if test="toCreateTime != null" >
+        #{toCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toUpdateTime != null" >
+        #{toUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wenshao.dal.bean.UserAutoExample" resultType="java.lang.Integer" >
+    select count(*) from t_topic_option
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_topic_option
+    <set >
+      <if test="record.toId != null" >
+        to_id = #{record.toId,jdbcType=INTEGER},
+      </if>
+      <if test="record.toContext != null" >
+        to_context = #{record.toContext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toTopicId != null" >
+        to_topic_id = #{record.toTopicId,jdbcType=INTEGER},
+      </if>
+      <if test="record.toCreateTime != null" >
+        to_create_time = #{record.toCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.toUpdateTime != null" >
+        to_update_time = #{record.toUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_topic_option
+    set to_id = #{record.toId,jdbcType=INTEGER},
+      to_context = #{record.toContext,jdbcType=VARCHAR},
+      to_topic_id = #{record.toTopicId,jdbcType=INTEGER},
+      to_create_time = #{record.toCreateTime,jdbcType=TIMESTAMP},
+      to_update_time = #{record.toUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.wenshao.dal.bean.UserAutoExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_topic_option
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

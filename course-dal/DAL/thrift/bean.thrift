@@ -106,16 +106,24 @@ struct Query{
     8:string order
 }
 struct Custom{
-    1:set<string> tables,
-    2:map<string,list<string>> selects,
-    3:map<string,> scopes
+    1:set<string> tables
+}
+
+struct AbstractSql{
+    1:list<string> selects
+    2:map<string,map<string,string>> where
+    3:string order
+    4:string group
+    5:list<string> limit
+    6:map<string,map<string,string>> left_join
+    7:map<string,map<string,string>> inner_join
 }
 struct TopicOption{
-    1:i32 id
-    2:string context
-    3:i32 topic_id
-    4:string create_time
-    5:string update_time
+    1:i32 to_id
+    2:string to_context
+    3:i32 to_topic_id
+    4:string to_create_time
+    5:string to_update_time
 
 }
 struct Topic{
