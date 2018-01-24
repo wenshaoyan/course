@@ -16,6 +16,7 @@ public class AbstractSqlBean extends AbstractSql {
     private Map<String, Map<String, Object>> whereObject = new HashMap<String, Map<String, Object>>();
     private final static Set<String> conSet = new HashSet<String>();
     private final static Set<String> valueTypeSet = new HashSet<String>();
+    private Map<String,String> fieldsMap;
     static {
         conSet.add("eq");
         conSet.add("ne");
@@ -33,12 +34,12 @@ public class AbstractSqlBean extends AbstractSql {
     public AbstractSqlBean(AbstractSql abstractSql,  Class clazz) {
         super(abstractSql);
         Map<String, Map<String, String>> where = this.where;
-        Class<?> aClass  = null;
+        Object classObject = null;
         try {
-
+            Class<?> aClass  = null;
             aClass = Class.forName(clazz.getName());
-            Object o = aClass.newInstance();
-            List<Map<String,Object>> list = getFieldsInfo(o);
+            classObject = aClass.newInstance();
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -46,6 +47,7 @@ public class AbstractSqlBean extends AbstractSql {
         } catch (InstantiationException e) {
             e.printStackTrace();
         }
+        getFieldsInfo(classObject);
 
         for (Map.Entry<String, Map<String, String>> entry : where.entrySet()) {
             Map<String, String> queryValue = entry.getValue();
@@ -69,6 +71,8 @@ public class AbstractSqlBean extends AbstractSql {
                         }catch (Exception e){
                             e.printStackTrace();
                         }
+                    } else if (fieldsMap.containsKey(queryField)) {
+
                     }
 
                 }
@@ -81,20 +85,16 @@ public class AbstractSqlBean extends AbstractSql {
     private void typeConvert () {
 
     }
-    private List<Map<String,Object>> getFieldsInfo(Object o){
+    private void getFieldsInfo(Object o){
         Field[] fields=o.getClass().getDeclaredFields();
-        String[] fieldNames=new String[fields.length];
-        List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-        Map<String,Object> infoMap = null;
+        Map<String,String> infoMap = null;
         for (Field field : fields) {
-            infoMap = new HashMap<String, Object>();
-            infoMap.put("type", field.getType().toString());
-            System.out.println(field.getType().toString());
-            infoMap.put("name", field.getName());
-            System.out.println(field.getName());
-            list.add(infoMap);
+            infoMap = new HashMap<String, String>();
+            String s = null;
+
+            infoMap.put(field.getName(),field.getType().getName());
         }
-        return list;
+        this.fieldsMap = infoMap;
     }
     public Map<String, Map<String, Object>> getWhereObject() {
         return whereObject;
