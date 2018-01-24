@@ -37,13 +37,13 @@ public class AbstractSqlBean extends AbstractSql {
         try {
 
             aClass = Class.forName(clazz.getName());
-            System.out.println(clazz);
-            System.out.println(aClass);
-            List<Map<String,Object>> list = getFieldsInfo(aClass);
-
-            //aClass.getField()
-            // aClass.getField()
+            Object o = aClass.newInstance();
+            List<Map<String,Object>> list = getFieldsInfo(o);
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
             e.printStackTrace();
         }
 
