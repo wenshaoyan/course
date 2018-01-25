@@ -3,6 +3,7 @@ package com.wenshao.dal.dao;
 import com.wenshao.dal.bean.AbstractSqlBean;
 import com.wenshao.dal.thriftgen.AbstractSql;
 import com.wenshao.dal.thriftgen.TopicOption;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,5 +12,5 @@ import java.util.List;
  *
  */
 public interface TopicOptionDao {
-    List<TopicOption> select(AbstractSqlBean abstractSqlBean);
+    List<TopicOption> select(@Param("abstractSql") AbstractSqlBean abstractSqlBean);
 }

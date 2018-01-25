@@ -17,28 +17,35 @@ import java.util.*;
  */
 public class AbstractSqlBean extends AbstractSql {
     private Map<String, Map<String, String>> whereObject = new HashMap<String, Map<String, String>>();
-    private final static Map<String, String> conMap = new HashMap<String, String>();
+    private final static Map<String, String> conditionMap = new HashMap<String, String>();
     private final static Set<String> valueTypeSet = new HashSet<String>();
     private Map<String, String> fieldsMap;
+    private String limitObject;
 
     static {
-        conMap.put("eq", " = ");
-        conMap.put("ne", " != ");
-        conMap.put("gt", " > ");
-        conMap.put("gte", " >= ");
-        conMap.put("lt", " < ");
-        conMap.put("lte", " <= ");
-        conMap.put("between", " BETWEEN ");
-        conMap.put("notBetween", " NOT BETWEEN ");
-        conMap.put("any", " IN ");
-        conMap.put("notAny", " NOT IN ");
-        conMap.put("like", " LIKE ");
-        conMap.put("notLike", " NOT LIKE ");
+        conditionMap.put("eq", " = ");
+        conditionMap.put("ne", " != ");
+        conditionMap.put("gt", " > ");
+        conditionMap.put("gte", " >= ");
+        conditionMap.put("lt", " < ");
+        conditionMap.put("lte", " <= ");
+        conditionMap.put("between", " BETWEEN ");
+        conditionMap.put("notBetween", " NOT BETWEEN ");
+        conditionMap.put("any", " IN ");
+        conditionMap.put("notAny", " NOT IN ");
+        conditionMap.put("like", " LIKE ");
+        conditionMap.put("notLike", " NOT LIKE ");
     }
 
     public AbstractSqlBean(AbstractSql abstractSql, Class clazz) throws RequestException {
         super(abstractSql);
-        Map<String, Where> where = this.where;
+        initClazz(clazz);
+        initWhere();
+        initOrder();
+        initLimit();
+    }
+
+    private void initClazz(Class clazz) throws RequestException {
         try {
             Class<?> aClass = Class.forName(clazz.getName());
             Object classObject = aClass.newInstance();
@@ -50,7 +57,13 @@ public class AbstractSqlBean extends AbstractSql {
         } catch (InstantiationException e) {
             throw ExceptionUtil.getClassE(e);
         }
+    }
 
+    /**
+     * 初始化whereObject
+     */
+    private void initWhere() {
+        Map<String, Where> where = this.where;
         for (Map.Entry<String, Where> entry : where.entrySet()) {
             Where queryValue = entry.getValue();
             String queryField = entry.getKey();
@@ -61,36 +74,36 @@ public class AbstractSqlBean extends AbstractSql {
             Map<String, String> consObject = new HashMap<String, String>();
 
             if (queryValue.getEq() != null) {
-                String conValue = getSqlValueByString("eq", queryValue.getEq(), valueType, queryField);
+                String conValue = combineSqlConditionByString("eq", queryValue.getEq(), valueType, queryField);
                 if (conValue != null) consObject.put("eq", conValue);
             }
             if (queryValue.getNe() != null) {
-                String conValue = getSqlValueByString("ne", queryValue.getNe(), valueType, queryField);
+                String conValue = combineSqlConditionByString("ne", queryValue.getNe(), valueType, queryField);
                 if (conValue != null) consObject.put("ne", conValue);
             }
 
             if (queryValue.getGt() != null) {
-                String conValue = getSqlValueByString("gt", queryValue.getGt(), valueType, queryField);
+                String conValue = combineSqlConditionByString("gt", queryValue.getGt(), valueType, queryField);
                 if (conValue != null) consObject.put("gt", conValue);
             }
             if (queryValue.getGte() != null) {
-                String conValue = getSqlValueByString("gte", queryValue.getGte(), valueType, queryField);
+                String conValue = combineSqlConditionByString("gte", queryValue.getGte(), valueType, queryField);
                 if (conValue != null) consObject.put("gte", conValue);
             }
             if (queryValue.getLt() != null) {
-                String conValue = getSqlValueByString("lt", queryValue.getLt(), valueType, queryField);
+                String conValue = combineSqlConditionByString("lt", queryValue.getLt(), valueType, queryField);
                 if (conValue != null) consObject.put("lt", conValue);
             }
             if (queryValue.getLte() != null) {
-                String conValue = getSqlValueByString("lte", queryValue.getLte(), valueType, queryField);
+                String conValue = combineSqlConditionByString("lte", queryValue.getLte(), valueType, queryField);
                 if (conValue != null) consObject.put("lte", conValue);
             }
             if (queryValue.getLike() != null) {
-                String conValue = getSqlValueByString("like", queryValue.getLike(), valueType, queryField);
+                String conValue = combineSqlConditionByString("like", queryValue.getLike(), valueType, queryField);
                 if (conValue != null) consObject.put("like", conValue);
             }
             if (queryValue.getNotLike() != null) {
-                String conValue = getSqlValueByString("notLike", queryValue.getLike(), valueType, queryField);
+                String conValue = combineSqlConditionByString("notLike", queryValue.getNotLike(), valueType, queryField);
                 if (conValue != null) consObject.put("notLike", conValue);
             }
             if (queryValue.getBetween() != null) {
@@ -115,59 +128,100 @@ public class AbstractSqlBean extends AbstractSql {
         }
     }
 
+    private void initOrder() {
+
+    }
+
+    private void initLimit() {
+        if (this.limit !=null && this.limit.size() != 0) {
+            if (this.limit.size() == 1) {
+                this.limitObject = String.valueOf(this.limit.get(0));
+            }
+            if (this.limit.size() == 2) {
+                this.limitObject = String.valueOf(this.limit.get(0)) +
+                        " OFFSET "+ String.valueOf(this.limit.get(1));
+            }
+        }
+    }
+
+    /**
+     * 类型转换  主要区分是否加单引号 防止sql注入 number 类型不行加单引号 否则需要加
+     *
+     * @param valueType 转化后的值类型
+     * @param value     转换前的值
+     * @param key       conditionMap中的key  用户判断like,notLike
+     * @return 转换后
+     */
     private String typeConvert(String valueType, String value, String key) {
         if ("number".equals(valueType) && StringUtils.isNumeric(value)) {
             if ("like".equals(key) || "notLike".equals(key)) {
                 value = "'%" + value + "%'";
             }
-        } else if ("string".equals(valueType)) {
+        } else {
             if ("like".equals(key) || "notLike".equals(key)) {
                 value = "'%" + value + "%'";
             } else {
                 value = "'" + value + "'";
             }
-        } else {
-            value = null;
         }
         return value;
     }
 
-    private String getSqlValueByString(String conKey, String conValue, String valueType, String queryField) {
+    /**
+     * 组合出sql的过滤添加  传递的值为字符串
+     *
+     * @param conditionKey   conditionMap中的key
+     * @param conditionValue 组合前的value
+     * @param valueType      在where中value类型
+     * @param queryField     当前where的的查询字段 用于拼接sql
+     * @return 组合后的sql语句
+     */
+    private String combineSqlConditionByString(String conditionKey, String conditionValue, String valueType, String queryField) {
+        // 判断是否被指定了value的类型 如果没指定 则通过反射获取当前对象中属性的类型
         if (valueType == null && fieldsMap.containsKey(queryField)) {
             valueType = fieldsMap.get(queryField);
         }
-        conValue = typeConvert(valueType, conValue,conKey);
-        if (conValue != null) {
-            conValue = conMap.get(conKey) + conValue;
+        conditionValue = typeConvert(valueType, conditionValue, conditionKey);
+        if (conditionValue != null) {
+            conditionValue = conditionMap.get(conditionKey) + conditionValue;
         }
-        return conValue;
+        return conditionValue;
     }
 
-    private String getSqlValueByList(String conKey, List<String> conValue, String valueType, String queryField) {
+    /**
+     * 组合出sql的过滤添加  传递的值为字符串
+     *
+     * @param conditionKey   conditionMap中的key
+     * @param conditionValue 组合前的value
+     * @param valueType      在where中value类型
+     * @param queryField     当前where的的查询字段 用于拼接sql
+     * @return 组合后的sql语句
+     */
+    private String getSqlValueByList(String conditionKey, List<String> conditionValue, String valueType, String queryField) {
         if (valueType == null && fieldsMap.containsKey(queryField)) {
             valueType = fieldsMap.get(queryField);
         }
-        if ("between".equals(conKey) || "notBetween".equals(conKey)) {
-            if (conValue.size() != 2) {
+        if ("between".equals(conditionKey) || "notBetween".equals(conditionKey)) {
+            if (conditionValue.size() != 2) {
                 return null;
             } else {
                 String conValueTool = null;
-                String conValue1 = typeConvert(valueType, conValue.get(0), conKey);
-                String conValue2 = typeConvert(valueType, conValue.get(1), conKey);
+                String conValue1 = typeConvert(valueType, conditionValue.get(0), conditionKey);
+                String conValue2 = typeConvert(valueType, conditionValue.get(1), conditionKey);
                 if (conValue1 != null && conValue2 != null) {
-                    conValueTool = conMap.get(conKey) + conValue1 + " AND " + conValue2;
+                    conValueTool = conditionMap.get(conditionKey) + conValue1 + " AND " + conValue2;
                 }
                 return conValueTool;
             }
         }
-        if ("any".equals(conKey) || "notAny".equals(conKey)) {
-            if (conValue.size() == 0) {
+        if ("any".equals(conditionKey) || "notAny".equals(conditionKey)) {
+            if (conditionValue.size() == 0) {
                 return null;
             } else {
-                StringBuffer tool = new StringBuffer();
+                StringBuilder tool = new StringBuilder();
                 tool.append("(");
-                for (String v : conValue) {
-                    v = typeConvert(valueType, v, conKey);
+                for (String v : conditionValue) {
+                    v = typeConvert(valueType, v, conditionKey);
                     if (v == null) {
                         return null;
                     }
@@ -176,12 +230,17 @@ public class AbstractSqlBean extends AbstractSql {
                 }
                 tool.deleteCharAt(tool.length() - 1);
                 tool.append(')');
-                return conMap.get(conKey) + tool;
+                return conditionMap.get(conditionKey) + tool;
             }
         }
         return null;
     }
 
+    /**
+     * 通过反射获取字段对应类型简称( number  string )
+     *
+     * @param o 对应对象的类型
+     */
     private void getFieldsInfo(Object o) {
         Field[] fields = o.getClass().getDeclaredFields();
         Map<String, String> infoMap = new HashMap<String, String>();
@@ -205,5 +264,11 @@ public class AbstractSqlBean extends AbstractSql {
         this.whereObject = whereObject;
     }
 
+    public String getLimitObject() {
+        return limitObject;
+    }
 
+    public void setLimitObject(String limitObject) {
+        this.limitObject = limitObject;
+    }
 }

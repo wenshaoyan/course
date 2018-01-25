@@ -18,9 +18,9 @@
     -->
     <sql id="condition">
         <where>
-            <if test="whereObject">
+            <if test="abstractSql and abstractSql.whereObject">
                 <trim prefix="(" suffix=")" prefixOverrides="and" >
-                    <foreach collection="whereObject" index="field" item="cons" >
+                    <foreach collection="abstractSql.whereObject" index="field" item="cons" >
                         <if test="cons">
                             <foreach collection="cons" item="value" index="op" >
                                 AND ${field} ${value}
@@ -31,14 +31,20 @@
             </if>
         </where>
     </sql>
+    <sql id="group">
+        <if test="abstractSql and abstractSql.group">
+            GROUP BY ${abstractSql.group}
+        </if>
+    </sql>
+
     <sql id="order">
-        <if test="order">
-            ORDER BY ${order}
+        <if test="abstractSql and abstractSql.order">
+            ORDER BY ${abstractSql.order}
         </if>
     </sql>
     <sql id="limit">
-        <if test="limit">
-            LIMIT ${limit}
+        <if test="abstractSql and abstractSql.limitObject">
+            LIMIT ${abstractSql.limitObject}
         </if>
     </sql>
     <sql id="update_table">
@@ -68,8 +74,11 @@
     </sql>
 
     <select id="select" parameterType="_AbstractSqlBean"  resultMap="topicOptionResult">
-      <include refid="select_list"/>
-      <include refid="condition"/>
+        <include refid="select_list"/>
+        <include refid="condition"/>
+        <include refid="group"/>
+        <include refid="order"/>
+        <include refid="limit"/>
     </select>
 
     <select id="selectMaxLocation" parameterType="_TopicBean" resultType="java.lang.Integer">

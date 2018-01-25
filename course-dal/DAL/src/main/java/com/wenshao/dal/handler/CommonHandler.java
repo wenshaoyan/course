@@ -9,11 +9,11 @@ import com.wenshao.dal.thriftgen.*;
 import com.wenshao.dal.util.ExceptionUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.log4j.Logger;
 import org.apache.thrift.TException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Created by wenshao on 2018/1/9.
@@ -65,7 +65,7 @@ public class CommonHandler implements CommonService.Iface {
         try {
             return topicOptionDao.insert(paramsBean);
         } catch (Exception e) {
-            RequestException re = ExceptionUtil.getSqlE();
+            RequestException re = ExceptionUtil.getSqlExecE(e);
             re.setMessage(e.getMessage());
             throw re;
         }
@@ -89,6 +89,7 @@ public class CommonHandler implements CommonService.Iface {
     @Override
     public List<TopicOption> topicOptionSelect(AbstractSql abstractSql) throws TException {
         SqlSession sqlSession = sessionFactory.openSession();
+        logger.info("======================");
         TopicOptionDao dao = sqlSession.getMapper(TopicOptionDao.class);
         return dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
     }
