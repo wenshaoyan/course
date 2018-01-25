@@ -77,7 +77,6 @@ public class DynamicCacheProxyHandler implements InvocationHandler {
                 return result;
             }
         } catch (Exception e) {     // 反射的结果
-            e.printStackTrace();
             Throwable cause = e.getCause();
             RequestException qe;
             if (cause instanceof RequestException){

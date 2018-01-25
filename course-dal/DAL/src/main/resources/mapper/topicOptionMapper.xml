@@ -19,26 +19,26 @@
     <sql id="condition">
         <where>
             <if test="whereObject">
-            <foreach collection="whereObject" index="field" item="cons" separator="or" >
-                <if test="cons">
                 <trim prefix="(" suffix=")" prefixOverrides="and" >
-                    <foreach collection="cons" item="value" index="op" >
-                        AND ${field} ${value}
+                    <foreach collection="whereObject" index="field" item="cons" >
+                        <if test="cons">
+                            <foreach collection="cons" item="value" index="op" >
+                                AND ${field} ${value}
+                            </foreach>
+                        </if>
                     </foreach>
                 </trim>
-                </if>
-            </foreach>
             </if>
         </where>
     </sql>
     <sql id="order">
-        <if test="queryBean != null and queryBean.OrderByClause != null">
-            ORDER BY ${queryBean.OrderByClause}
+        <if test="order">
+            ORDER BY ${order}
         </if>
     </sql>
     <sql id="limit">
-        <if test="queryBean != null and queryBean.limit != 0">
-            LIMIT ${queryBean.offset} ,${queryBean.limit}
+        <if test="limit">
+            LIMIT ${limit}
         </if>
     </sql>
     <sql id="update_table">
@@ -66,8 +66,6 @@
             </if>
         </set>
     </sql>
-
-
 
     <select id="select" parameterType="_AbstractSqlBean"  resultMap="topicOptionResult">
       <include refid="select_list"/>

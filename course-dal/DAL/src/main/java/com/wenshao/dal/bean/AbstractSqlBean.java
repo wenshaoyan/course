@@ -1,6 +1,9 @@
 package com.wenshao.dal.bean;
 
 import com.wenshao.dal.thriftgen.AbstractSql;
+import com.wenshao.dal.thriftgen.RequestException;
+import com.wenshao.dal.thriftgen.Where;
+import com.wenshao.dal.util.ExceptionUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
@@ -27,54 +30,84 @@ public class AbstractSqlBean extends AbstractSql {
         conMap.put("lte", " <= ");
         conMap.put("between", " BETWEEN ");
         conMap.put("notBetween", " NOT BETWEEN ");
-        conMap.put("in", " IN ");
-        conMap.put("notIn", " NOT IN ");
+        conMap.put("any", " IN ");
+        conMap.put("notAny", " NOT IN ");
         conMap.put("like", " LIKE ");
         conMap.put("notLike", " NOT LIKE ");
     }
 
-    public AbstractSqlBean(AbstractSql abstractSql, Class clazz) {
+    public AbstractSqlBean(AbstractSql abstractSql, Class clazz) throws RequestException {
         super(abstractSql);
-        Map<String, Map<String, String>> where = this.where;
-        Object classObject = null;
+        Map<String, Where> where = this.where;
         try {
-            Class<?> aClass = null;
-            aClass = Class.forName(clazz.getName());
-            classObject = aClass.newInstance();
-
+            Class<?> aClass = Class.forName(clazz.getName());
+            Object classObject = aClass.newInstance();
+            getFieldsInfo(classObject);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            throw ExceptionUtil.getClassE(e);
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            throw ExceptionUtil.getClassE(e);
         } catch (InstantiationException e) {
-            e.printStackTrace();
+            throw ExceptionUtil.getClassE(e);
         }
-        getFieldsInfo(classObject);
 
-        for (Map.Entry<String, Map<String, String>> entry : where.entrySet()) {
-            Map<String, String> queryValue = entry.getValue();
+        for (Map.Entry<String, Where> entry : where.entrySet()) {
+            Where queryValue = entry.getValue();
             String queryField = entry.getKey();
             String valueType = null;
-            if (queryValue.containsKey("type")) {
-                valueType = queryValue.get("type");
+            if (queryValue.getType() != null) {
+                valueType = queryValue.getType();
             }
             Map<String, String> consObject = new HashMap<String, String>();
-            for (Map.Entry<String, String> map : queryValue.entrySet()) {
-                String conValue = map.getValue();
-                String conKey = map.getKey();
-                if (conMap.containsKey(conKey)) {
-                    if (valueType == null && fieldsMap.containsKey(queryField)) {
-                        valueType = fieldsMap.get(queryField);
-                    }
-                    if ("number".equals(valueType) && StringUtils.isNumeric(conValue)) {
-                        conValue = conMap.get(conKey) + conValue;
-                    } else if ("string".equals(valueType)) {
-                        conValue = conMap.get(conKey) + "'" + conValue + "'";
-                    } else {
-                        conValue = null;
-                    }
-                    if (conValue != null) consObject.put(conKey, conValue);
-                }
+
+            if (queryValue.getEq() != null) {
+                String conValue = getSqlValueByString("eq", queryValue.getEq(), valueType, queryField);
+                if (conValue != null) consObject.put("eq", conValue);
+            }
+            if (queryValue.getNe() != null) {
+                String conValue = getSqlValueByString("ne", queryValue.getNe(), valueType, queryField);
+                if (conValue != null) consObject.put("ne", conValue);
+            }
+
+            if (queryValue.getGt() != null) {
+                String conValue = getSqlValueByString("gt", queryValue.getGt(), valueType, queryField);
+                if (conValue != null) consObject.put("gt", conValue);
+            }
+            if (queryValue.getGte() != null) {
+                String conValue = getSqlValueByString("gte", queryValue.getGte(), valueType, queryField);
+                if (conValue != null) consObject.put("gte", conValue);
+            }
+            if (queryValue.getLt() != null) {
+                String conValue = getSqlValueByString("lt", queryValue.getLt(), valueType, queryField);
+                if (conValue != null) consObject.put("lt", conValue);
+            }
+            if (queryValue.getLte() != null) {
+                String conValue = getSqlValueByString("lte", queryValue.getLte(), valueType, queryField);
+                if (conValue != null) consObject.put("lte", conValue);
+            }
+            if (queryValue.getLike() != null) {
+                String conValue = getSqlValueByString("like", queryValue.getLike(), valueType, queryField);
+                if (conValue != null) consObject.put("like", conValue);
+            }
+            if (queryValue.getNotLike() != null) {
+                String conValue = getSqlValueByString("notLike", queryValue.getLike(), valueType, queryField);
+                if (conValue != null) consObject.put("notLike", conValue);
+            }
+            if (queryValue.getBetween() != null) {
+                String conValue = getSqlValueByList("between", queryValue.getBetween(), valueType, queryField);
+                if (conValue != null) consObject.put("between", conValue);
+            }
+            if (queryValue.getNotBetween() != null) {
+                String conValue = getSqlValueByList("notBetween", queryValue.getNotBetween(), valueType, queryField);
+                if (conValue != null) consObject.put("notBetween", conValue);
+            }
+            if (queryValue.getAny() != null) {
+                String conValue = getSqlValueByList("any", queryValue.getAny(), valueType, queryField);
+                if (conValue != null) consObject.put("any", conValue);
+            }
+            if (queryValue.getNotAny() != null) {
+                String conValue = getSqlValueByList("notAny", queryValue.getNotAny(), valueType, queryField);
+                if (conValue != null) consObject.put("notAny", conValue);
             }
             if (!consObject.isEmpty()) {
                 whereObject.put(queryField, consObject);
@@ -82,8 +115,71 @@ public class AbstractSqlBean extends AbstractSql {
         }
     }
 
-    private void typeConvert() {
+    private String typeConvert(String valueType, String value, String key) {
+        if ("number".equals(valueType) && StringUtils.isNumeric(value)) {
+            if ("like".equals(key) || "notLike".equals(key)) {
+                value = "'%" + value + "%'";
+            }
+        } else if ("string".equals(valueType)) {
+            if ("like".equals(key) || "notLike".equals(key)) {
+                value = "'%" + value + "%'";
+            } else {
+                value = "'" + value + "'";
+            }
+        } else {
+            value = null;
+        }
+        return value;
+    }
 
+    private String getSqlValueByString(String conKey, String conValue, String valueType, String queryField) {
+        if (valueType == null && fieldsMap.containsKey(queryField)) {
+            valueType = fieldsMap.get(queryField);
+        }
+        conValue = typeConvert(valueType, conValue,conKey);
+        if (conValue != null) {
+            conValue = conMap.get(conKey) + conValue;
+        }
+        return conValue;
+    }
+
+    private String getSqlValueByList(String conKey, List<String> conValue, String valueType, String queryField) {
+        if (valueType == null && fieldsMap.containsKey(queryField)) {
+            valueType = fieldsMap.get(queryField);
+        }
+        if ("between".equals(conKey) || "notBetween".equals(conKey)) {
+            if (conValue.size() != 2) {
+                return null;
+            } else {
+                String conValueTool = null;
+                String conValue1 = typeConvert(valueType, conValue.get(0), conKey);
+                String conValue2 = typeConvert(valueType, conValue.get(1), conKey);
+                if (conValue1 != null && conValue2 != null) {
+                    conValueTool = conMap.get(conKey) + conValue1 + " AND " + conValue2;
+                }
+                return conValueTool;
+            }
+        }
+        if ("any".equals(conKey) || "notAny".equals(conKey)) {
+            if (conValue.size() == 0) {
+                return null;
+            } else {
+                StringBuffer tool = new StringBuffer();
+                tool.append("(");
+                for (String v : conValue) {
+                    v = typeConvert(valueType, v, conKey);
+                    if (v == null) {
+                        return null;
+                    }
+                    tool.append(v);
+                    tool.append(",");
+                }
+                tool.deleteCharAt(tool.length() - 1);
+                tool.append(')');
+                return conMap.get(conKey) + tool;
+            }
+        }
+        return null;
     }
 
     private void getFieldsInfo(Object o) {

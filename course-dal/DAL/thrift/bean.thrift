@@ -3,7 +3,8 @@ exception RequestException{
     1: i32 code,
     2: string message,
     3: string serverName,
-    4: string methodName
+    4: string methodName,
+    5: string fullMessage
 }
 struct User{
     1: i32 id,
@@ -108,15 +109,29 @@ struct Query{
 struct Custom{
     1:set<string> tables
 }
+struct Where{
+    1:string type
+    2:string eq
+    3:string ne
+    4:string gt
+    5:string gte
+    6:string lt
+    7:string lte
+    8:list<string> between
+    9:list<string> notBetween
+    10:list<string> any
+    11:list<string> notAny
+    12:string like
+    13:string notLike
+}
 struct AbstractSql{
     1:list<string> selects
-    2:map<string,map<string,string>> where
-    3:map<string,map<string,list<string>>> where_list
-    4:string order
-    5:string group
-    6:list<string> limit
-    7:map<string,map<string,string>> left_join
-    8:map<string,map<string,string>> inner_join
+    2:map<string,Where> where
+    3:string order
+    4:string group
+    5:list<i32> limit
+    6:map<string,map<string,string>> left_join
+    7:map<string,map<string,string>> inner_join
 }
 struct TopicOption{
     1:i32 to_id

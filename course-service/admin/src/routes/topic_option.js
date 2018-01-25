@@ -4,7 +4,8 @@
  */
 'use strict';
 const router = require('koa-router')();
-const { TopicOption, AbstractSql } = require('../gen-nodejs/bean_types');
+const { TopicOption } = require('../gen-nodejs/bean_types');
+const AbstractSqlBean = require('../bean/AbstractSqlBean');
 const SysUtil = require('../util/sys_util');
 const logger = getLogger();
 const CommonService = getServiceConfig().dalName.common;
@@ -26,15 +27,27 @@ router.get('/', async (ctx, next) => {
     const params = ctx.query;
     try {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
-        ctx.body = await client.topicOptionSelect(new AbstractSql({
+
+        ctx.body = await client.topicOptionSelect(new AbstractSqlBean({
             where: {
-                to_id: {
-                    eq: '5'
-                }
-            }
+	            to_id: {
+		            between: ['1','10'],
+                },
+                to_create_time: {
+	                between: ['2018-01-24 16:20:21.000','2018-01-25 16:44:21.000']
+                },
+                to_topic_id: {
+	                noAny: ['1', '2']
+                },
+	            to_context: {
+	            	notLike: "2"
+	            }
+            },
+            order: 'to_create_time DESC',
+            group: 'to_id',
+            limit: [0, 10]
         }));
     } catch (e) {
-        console.log(e);
         ctx.error = e;
     }
 });
@@ -44,7 +57,6 @@ router.post('/', async (ctx, next) => {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
         ctx.body = await client.topicOptionInsert(new TopicOption(params));
     } catch (e) {
-        console.log(e);
         ctx.error = e;
     }
 });

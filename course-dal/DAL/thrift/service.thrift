@@ -82,8 +82,8 @@ service CommonService{
     i32 topicOptionUpdate(1: bean.TopicOption topicOption),
     i32 topicOptionRemove(1: bean.TopicOption topicOption),
     bean.TopicOption topicOptionFindById(1: i32 id),
-    list<bean.TopicOption> topicOptionSelect(1: bean.AbstractSql abstractSql),
-    list<bean.TopicOption> topicOptionSelectNoCache(1: bean.AbstractSql abstractSql),
+    list<bean.TopicOption> topicOptionSelect(1: bean.AbstractSql abstractSql) throws (1: bean.RequestException re),
+    list<bean.TopicOption> topicOptionSelectNoCache(1: bean.AbstractSql abstractSql) throws (1: bean.RequestException re),
 
     #list<bean.TopicOption> topicOptionSelectQuery(1: bean.TopicOption topicOption,2: bean.Query query),
     #list<bean.TopicOption> topicOptionSelectCustom(1: bean.TopicOption topicOption,2:bean.Custom custom),

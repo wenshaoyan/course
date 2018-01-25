@@ -90,7 +90,6 @@ public class CommonHandler implements CommonService.Iface {
     public List<TopicOption> topicOptionSelect(AbstractSql abstractSql) throws TException {
         SqlSession sqlSession = sessionFactory.openSession();
         TopicOptionDao dao = sqlSession.getMapper(TopicOptionDao.class);
-
         return dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
     }
 
