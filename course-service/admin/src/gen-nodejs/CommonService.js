@@ -499,9 +499,17 @@ CommonService_topicOptionSelect_args.prototype.write = function(output) {
 
 var CommonService_topicOptionSelect_result = function(args) {
   this.success = null;
+  this.re = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.re = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = Thrift.copyList(args.success, [bean_ttypes.TopicOption]);
+    }
+    if (args.re !== undefined && args.re !== null) {
+      this.re = args.re;
     }
   }
 };
@@ -540,9 +548,14 @@ CommonService_topicOptionSelect_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.re = new bean_ttypes.RequestException();
+        this.re.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -566,6 +579,11 @@ CommonService_topicOptionSelect_result.prototype.write = function(output) {
       }
     }
     output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.re !== null && this.re !== undefined) {
+    output.writeFieldBegin('re', Thrift.Type.STRUCT, 1);
+    this.re.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -629,9 +647,17 @@ CommonService_topicOptionSelectNoCache_args.prototype.write = function(output) {
 
 var CommonService_topicOptionSelectNoCache_result = function(args) {
   this.success = null;
+  this.re = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.re = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = Thrift.copyList(args.success, [bean_ttypes.TopicOption]);
+    }
+    if (args.re !== undefined && args.re !== null) {
+      this.re = args.re;
     }
   }
 };
@@ -670,9 +696,14 @@ CommonService_topicOptionSelectNoCache_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.re = new bean_ttypes.RequestException();
+        this.re.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -696,6 +727,11 @@ CommonService_topicOptionSelectNoCache_result.prototype.write = function(output)
       }
     }
     output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.re !== null && this.re !== undefined) {
+    output.writeFieldBegin('re', Thrift.Type.STRUCT, 1);
+    this.re.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -4046,6 +4082,9 @@ CommonServiceClient.prototype.recv_topicOptionSelect = function(input,mtype,rseq
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.re) {
+    return callback(result.re);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -4093,6 +4132,9 @@ CommonServiceClient.prototype.recv_topicOptionSelectNoCache = function(input,mty
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.re) {
+    return callback(result.re);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -5421,8 +5463,13 @@ CommonServiceProcessor.prototype.process_topicOptionSelect = function(seqid, inp
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionSelect", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CommonService_topicOptionSelect_result(err);
+          output.writeMessageBegin("topicOptionSelect", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("topicOptionSelect", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -5430,7 +5477,7 @@ CommonServiceProcessor.prototype.process_topicOptionSelect = function(seqid, inp
   } else {
     this._handler.topicOptionSelect(args.abstractSql, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CommonService_topicOptionSelect_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("topicOptionSelect", Thrift.MessageType.REPLY, seqid);
       } else {
@@ -5457,8 +5504,13 @@ CommonServiceProcessor.prototype.process_topicOptionSelectNoCache = function(seq
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionSelectNoCache", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CommonService_topicOptionSelectNoCache_result(err);
+          output.writeMessageBegin("topicOptionSelectNoCache", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("topicOptionSelectNoCache", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -5466,7 +5518,7 @@ CommonServiceProcessor.prototype.process_topicOptionSelectNoCache = function(seq
   } else {
     this._handler.topicOptionSelectNoCache(args.abstractSql, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CommonService_topicOptionSelectNoCache_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("topicOptionSelectNoCache", Thrift.MessageType.REPLY, seqid);
       } else {

@@ -37,17 +37,21 @@ router.get('/', async (ctx, next) => {
 	                between: ['2018-01-24 16:20:21.000','2018-01-25 16:44:21.000']
                 },
                 to_topic_id: {
-	                noAny: ['1', '2']
+	                noAny: ['1', '2', '5']
                 },
 	            to_context: {
-	            	notLike: "2"
+	            	notLike: "12"
 	            }
+            },
+            include:{
+
             },
             order: 'to_create_time DESC',
             group: 'to_id',
-            limit: [0, 10]
+            limit: [10, 0]
         }));
     } catch (e) {
+        console.log(e.fullMessage)
         ctx.error = e;
     }
 });
