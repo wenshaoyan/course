@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BaseMapper">
+    <sql id="Base_Condition">
+        <where>
+            <if test="abstractSql and abstractSql.whereObject">
+                <trim prefix="(" suffix=")" prefixOverrides="and" >
+                    <foreach collection="abstractSql.whereObject" index="field" item="cons" >
+                        <if test="cons">
+                            <foreach collection="cons" item="value" index="op" >
+                                AND ${field} ${value}
+                            </foreach>
+                        </if>
+                    </foreach>
+                </trim>
+            </if>
+        </where>
+    </sql>
+    <sql id="Base_Group">
+        <if test="abstractSql and abstractSql.group">
+            GROUP BY ${abstractSql.group}
+        </if>
+    </sql>
+    <sql id="Base_Order">
+        <if test="abstractSql and abstractSql.order">
+            ORDER BY ${abstractSql.order}
+        </if>
+    </sql>
+    <sql id="Base_Limit">
+        <if test="abstractSql and abstractSql.limitObject">
+            LIMIT ${abstractSql.limitObject}
+        </if>
+    </sql>
+
+</mapper>

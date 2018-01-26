@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.topicBankMapper">
+<mapper namespace="com.wenshao.dal.dao.TopicBankDao">
     <insert id="insert" parameterType="_TopicBean" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_topic_bank(tb_create_time,tb_update_time,tb_name,tb_type)
         VALUES(NOW(3),NOW(3),#{name},#{type})
@@ -16,36 +16,14 @@
         from t_topic_bank
     </sql>
     <sql id="include_topicOption">
-        LEFT JOIN (
-            SELECT *
-            FROM t_topic
-            INNER JOIN t_topic_relation ON t_topic_relation.tr_topic_id=t_topic.topic_id
-            LEFT JOIN t_topic_option ON t_topic_option.to_topic_id=t_topic.topic_id
-        ) AS topic ON t_topic_bank.tb_id=topic.tr_tb_id
+        t_topic_option ON t_topic_option.to_topic_id=t_topic.topic_id
     </sql>
     <sql id="include_topic">
-      LEFT JOIN t_topic_relation ON t_topic_bank.tb_id=t_topic_relation.tr_tb_id
+        t_topic ON t_topic.topic_tb_id = t_topic_bank.tb_id
     </sql>
     <sql id="select_max">
         SELECT IFNULL(MAX(t_topic.topic_id),0) i
         FROM t_topic_bank
-    </sql>
-    <sql id="condition">
-        <where>
-            <if test="id != 0 " >
-                tb_id = #{id}
-            </if>
-        </where>
-    </sql>
-    <sql id="order">
-        <if test="queryBean != null and queryBean.OrderByClause != null">
-            ORDER BY ${queryBean.OrderByClause}
-        </if>
-    </sql>
-    <sql id="limit">
-        <if test="queryBean != null and queryBean.limit != 0">
-            LIMIT ${queryBean.offset} ,${queryBean.limit}
-        </if>
     </sql>
     <sql id="update_table">
         UPDATE t_topic_bank
@@ -63,37 +41,30 @@
             </if>
         </set>
     </sql>
-
-
-
-    <select id="select" parameterType="_TopicBankBean"  resultMap="topicBankResult">
+    <select id="select" parameterType="_AbstractSqlBean"  resultMap="topicBankResult">
         <include refid="select_list"/>
-        <if test="tables != null and tables.size() == 1">
-            <if test="tables.contains('topic')" >
-                <include refid="include_topicOption"/>
-            </if>
-            <if test="tables.contains('topicOption')" >
-                <include refid="include_topicOption"/>
-            </if>
+        <if test="abstractSql and abstractSql.includes">
+            
         </if>
-        <include refid="condition"/>
-        <include refid="order"/>
-        <include refid="limit"/>
+        <include refid="Base_Condition"/>
+        <include refid="Base_Group"/>
+        <include refid="Base_Order"/>
+        <include refid="Base_Limit"/>
     </select>
 
     <select id="selectMaxLocation" parameterType="_TopicBankBean" resultType="java.lang.Integer">
         <include refid="select_max"/>
-        <include refid="condition"/>
+        <include refid="Base_Condition"/>
     </select>
 
     <update id="update" parameterType="_TopicBankBean" >
         <include refid="update_table" />
         <include refid="update_set" />
-        <include refid="condition" />
+        <include refid="Base_Condition" />
     </update>
     <delete id="remove" parameterType="_TopicBankBean">
         <include refid="delete_table"/>
-        <include refid="condition"/>
+        <include refid="Base_Condition"/>
     </delete>
 
     <resultMap id="topicBankResult" type="_TopicBankBean">

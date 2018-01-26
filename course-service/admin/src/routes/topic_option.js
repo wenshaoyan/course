@@ -27,7 +27,6 @@ router.get('/', async (ctx, next) => {
     const params = ctx.query;
     try {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
-
         ctx.body = await client.topicOptionSelect(new AbstractSqlBean({
             where: {
 	            to_id: {
@@ -43,9 +42,14 @@ router.get('/', async (ctx, next) => {
 	            	notLike: "12"
 	            }
             },
-            include:{
-
-            },
+            includes: [{
+	            association: 'topic',
+	            required: false,
+	            includes:[{
+		            association: 'topic_option',
+		            required: false,
+	            }]
+            }],
             order: 'to_create_time DESC',
             group: 'to_id',
             limit: [10, 0]

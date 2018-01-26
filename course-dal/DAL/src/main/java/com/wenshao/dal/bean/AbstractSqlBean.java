@@ -64,6 +64,9 @@ public class AbstractSqlBean extends AbstractSql {
      */
     private void initWhere() {
         Map<String, Where> where = this.where;
+        if (where == null) {
+            return;
+        }
         for (Map.Entry<String, Where> entry : where.entrySet()) {
             Where queryValue = entry.getValue();
             String queryField = entry.getKey();

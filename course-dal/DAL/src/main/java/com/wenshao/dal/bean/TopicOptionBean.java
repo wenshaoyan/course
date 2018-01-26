@@ -11,16 +11,14 @@ import java.util.Set;
  * 题目对象
  */
 public class TopicOptionBean extends TopicOption{
-
+    private final static String tableName = "t_topic_option";
     public TopicOptionBean(){
         super();
     }
     public TopicOptionBean(TopicOption bean) {
         super();
-        this.to_id = bean.to_id;
-        this.to_create_time = bean.to_create_time;
-        this.to_context = bean.to_context;
-        this.to_topic_id = bean.to_topic_id;
     }
-
+    public static String getTableName() {
+        return tableName;
+    }
 }

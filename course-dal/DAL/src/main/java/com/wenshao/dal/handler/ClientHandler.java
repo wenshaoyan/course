@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 public class ClientHandler implements ClientService.Iface {
     private ClientDao clientDao;
     private VersionDao versionDao;
-    private static Logger logger = Logger.getLogger("ClientHandler");
+//    private static Logger logger = Logger.getLogger("ClientHandler");
 
     public ClientHandler(SqlSessionFactory _sessionFactory) {
         clientDao = new ClientDaoImpl(_sessionFactory);

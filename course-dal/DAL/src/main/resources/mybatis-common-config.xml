@@ -30,6 +30,7 @@
         <mapper resource="mapper/topicMapper.xml"/>
         <mapper resource="mapper/topicOptionMapper.xml"/>
         <mapper resource="mapper/topicBankMapper.xml"/>
+        <mapper resource="mapper/BaseMapper.xml"/>
     </mappers>
 
 </configuration>

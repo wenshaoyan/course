@@ -124,14 +124,19 @@ struct Where{
     12:string like
     13:string notLike
 }
+struct Include{
+    1: string association
+    2: bool isRequired
+    3: Where where
+    4: list<Include> includes
+}
 struct AbstractSql{
     1:list<string> selects
     2:map<string,Where> where
     3:string order
     4:string group
     5:list<i32> limit
-    6:map<string,map<string,string>> left_join
-    7:map<string,map<string,string>> inner_join
+    6:list<Include> includes
 }
 struct TopicOption{
     1:i32 to_id

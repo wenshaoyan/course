@@ -13,40 +13,7 @@
         SELECT IFNULL(MAX(t_topic.topic_id),0) i
         FROM t_topic_option
     </sql>
-    <!--op:
-     eq:1
-    -->
-    <sql id="condition">
-        <where>
-            <if test="abstractSql and abstractSql.whereObject">
-                <trim prefix="(" suffix=")" prefixOverrides="and" >
-                    <foreach collection="abstractSql.whereObject" index="field" item="cons" >
-                        <if test="cons">
-                            <foreach collection="cons" item="value" index="op" >
-                                AND ${field} ${value}
-                            </foreach>
-                        </if>
-                    </foreach>
-                </trim>
-            </if>
-        </where>
-    </sql>
-    <sql id="group">
-        <if test="abstractSql and abstractSql.group">
-            GROUP BY ${abstractSql.group}
-        </if>
-    </sql>
 
-    <sql id="order">
-        <if test="abstractSql and abstractSql.order">
-            ORDER BY ${abstractSql.order}
-        </if>
-    </sql>
-    <sql id="limit">
-        <if test="abstractSql and abstractSql.limitObject">
-            LIMIT ${abstractSql.limitObject}
-        </if>
-    </sql>
     <sql id="update_table">
         UPDATE t_topic_option
     </sql>
@@ -72,28 +39,27 @@
             </if>
         </set>
     </sql>
-
     <select id="select" parameterType="_AbstractSqlBean"  resultMap="topicOptionResult">
         <include refid="select_list"/>
-        <include refid="condition"/>
-        <include refid="group"/>
-        <include refid="order"/>
-        <include refid="limit"/>
+        <include refid="BaseMapper.Base_Condition"/>
+        <include refid="BaseMapper.Base_Group"/>
+        <include refid="BaseMapper.Base_Order"/>
+        <include refid="BaseMapper.Base_Limit"/>
     </select>
 
     <select id="selectMaxLocation" parameterType="_TopicBean" resultType="java.lang.Integer">
         <include refid="select_max"/>
-        <include refid="condition"/>
+        <include refid="BaseMapper.Base_Condition"/>
     </select>
 
     <update id="update" parameterType="_TopicBean" >
         <include refid="update_table" />
         <include refid="update_set" />
-        <include refid="condition" />
+        <include refid="BaseMapper.Base_Condition" />
     </update>
     <delete id="remove" parameterType="_TopicBean">
         <include refid="delete_table"/>
-        <include refid="condition"/>
+        <include refid="BaseMapper.Base_Condition"/>
     </delete>
 
     <resultMap id="topicOptionResult" type="_TopicOptionBean">
