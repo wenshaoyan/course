@@ -5,6 +5,7 @@
 'use strict';
 const router = require('koa-router')();
 const { Topic } = require('../gen-nodejs/bean_types');
+const { AbstractSqlBean } = require('../bean/AbstractSqlBean');
 const SysUtil = require('../util/sys_util');
 const logger = getLogger();
 const CommonService = getServiceConfig().dalName.common;
@@ -35,7 +36,9 @@ router.get('/counts', async (ctx, next) => {
     const params = ctx.query;
     try {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
-        ctx.body = await client.topicCountSelectQuery(new Topic(params));
+        ctx.body = await client.topicSelect(new AbstractSqlBean({
+
+        }));
     } catch (e) {
         console.log(e);
         ctx.error = e;
