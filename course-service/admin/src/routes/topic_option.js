@@ -5,7 +5,7 @@
 'use strict';
 const router = require('koa-router')();
 const { TopicOption } = require('../gen-nodejs/bean_types');
-const AbstractSqlBean = require('../bean/AbstractSqlBean');
+const { AbstractSqlBean } = require('../modules/ws-core');
 const SysUtil = require('../util/sys_util');
 const logger = getLogger();
 const CommonService = getServiceConfig().dalName.common;
@@ -42,14 +42,7 @@ router.get('/', async (ctx, next) => {
 	            	notLike: "12"
 	            }
             },
-            includes: [{
-	            association: 'topic',
-	            required: false,
-	            includes:[{
-		            association: 'topic_option',
-		            required: false,
-	            }]
-            }],
+            mode: "topic+option",
             order: 'to_create_time DESC',
             group: 'to_id',
             limit: [10, 0]

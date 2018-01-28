@@ -2343,6 +2343,7 @@ var AbstractSql = module.exports.AbstractSql = function(args) {
   this.group = null;
   this.limit = null;
   this.includes = null;
+  this.mode = null;
   if (args) {
     if (args.selects !== undefined && args.selects !== null) {
       this.selects = Thrift.copyList(args.selects, [null]);
@@ -2361,6 +2362,9 @@ var AbstractSql = module.exports.AbstractSql = function(args) {
     }
     if (args.includes !== undefined && args.includes !== null) {
       this.includes = Thrift.copyList(args.includes, [ttypes.Include]);
+    }
+    if (args.mode !== undefined && args.mode !== null) {
+      this.mode = args.mode;
     }
   }
 };
@@ -2478,6 +2482,13 @@ AbstractSql.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
+      case 7:
+      if (ftype == Thrift.Type.STRING) {
+        this.mode = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -2554,6 +2565,11 @@ AbstractSql.prototype.write = function(output) {
       }
     }
     output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.mode !== null && this.mode !== undefined) {
+    output.writeFieldBegin('mode', Thrift.Type.STRING, 7);
+    output.writeString(this.mode);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -2676,39 +2692,39 @@ TopicOption.prototype.write = function(output) {
 };
 
 var Topic = module.exports.Topic = function(args) {
-  this.id = null;
-  this.title = null;
-  this.type = null;
-  this.analysis = null;
-  this.correct_answer = null;
-  this.score = null;
-  this.create_time = null;
-  this.update_time = null;
+  this.topic_id = null;
+  this.topic_title = null;
+  this.topic_type = null;
+  this.topic_analysis = null;
+  this.topic_correct_answer = null;
+  this.topic_score = null;
+  this.topic_create_time = null;
+  this.topic_update_time = null;
   this.topicOptions = null;
   if (args) {
-    if (args.id !== undefined && args.id !== null) {
-      this.id = args.id;
+    if (args.topic_id !== undefined && args.topic_id !== null) {
+      this.topic_id = args.topic_id;
     }
-    if (args.title !== undefined && args.title !== null) {
-      this.title = args.title;
+    if (args.topic_title !== undefined && args.topic_title !== null) {
+      this.topic_title = args.topic_title;
     }
-    if (args.type !== undefined && args.type !== null) {
-      this.type = args.type;
+    if (args.topic_type !== undefined && args.topic_type !== null) {
+      this.topic_type = args.topic_type;
     }
-    if (args.analysis !== undefined && args.analysis !== null) {
-      this.analysis = args.analysis;
+    if (args.topic_analysis !== undefined && args.topic_analysis !== null) {
+      this.topic_analysis = args.topic_analysis;
     }
-    if (args.correct_answer !== undefined && args.correct_answer !== null) {
-      this.correct_answer = args.correct_answer;
+    if (args.topic_correct_answer !== undefined && args.topic_correct_answer !== null) {
+      this.topic_correct_answer = args.topic_correct_answer;
     }
-    if (args.score !== undefined && args.score !== null) {
-      this.score = args.score;
+    if (args.topic_score !== undefined && args.topic_score !== null) {
+      this.topic_score = args.topic_score;
     }
-    if (args.create_time !== undefined && args.create_time !== null) {
-      this.create_time = args.create_time;
+    if (args.topic_create_time !== undefined && args.topic_create_time !== null) {
+      this.topic_create_time = args.topic_create_time;
     }
-    if (args.update_time !== undefined && args.update_time !== null) {
-      this.update_time = args.update_time;
+    if (args.topic_update_time !== undefined && args.topic_update_time !== null) {
+      this.topic_update_time = args.topic_update_time;
     }
     if (args.topicOptions !== undefined && args.topicOptions !== null) {
       this.topicOptions = Thrift.copyList(args.topicOptions, [ttypes.TopicOption]);
@@ -2731,56 +2747,56 @@ Topic.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.I32) {
-        this.id = input.readI32();
+        this.topic_id = input.readI32();
       } else {
         input.skip(ftype);
       }
       break;
       case 2:
       if (ftype == Thrift.Type.STRING) {
-        this.title = input.readString();
+        this.topic_title = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 3:
       if (ftype == Thrift.Type.STRING) {
-        this.type = input.readString();
+        this.topic_type = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 4:
       if (ftype == Thrift.Type.STRING) {
-        this.analysis = input.readString();
+        this.topic_analysis = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 5:
       if (ftype == Thrift.Type.STRING) {
-        this.correct_answer = input.readString();
+        this.topic_correct_answer = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 6:
       if (ftype == Thrift.Type.DOUBLE) {
-        this.score = input.readDouble();
+        this.topic_score = input.readDouble();
       } else {
         input.skip(ftype);
       }
       break;
       case 7:
       if (ftype == Thrift.Type.STRING) {
-        this.create_time = input.readString();
+        this.topic_create_time = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 8:
       if (ftype == Thrift.Type.STRING) {
-        this.update_time = input.readString();
+        this.topic_update_time = input.readString();
       } else {
         input.skip(ftype);
       }
@@ -2817,44 +2833,44 @@ Topic.prototype.read = function(input) {
 
 Topic.prototype.write = function(output) {
   output.writeStructBegin('Topic');
-  if (this.id !== null && this.id !== undefined) {
-    output.writeFieldBegin('id', Thrift.Type.I32, 1);
-    output.writeI32(this.id);
+  if (this.topic_id !== null && this.topic_id !== undefined) {
+    output.writeFieldBegin('topic_id', Thrift.Type.I32, 1);
+    output.writeI32(this.topic_id);
     output.writeFieldEnd();
   }
-  if (this.title !== null && this.title !== undefined) {
-    output.writeFieldBegin('title', Thrift.Type.STRING, 2);
-    output.writeString(this.title);
+  if (this.topic_title !== null && this.topic_title !== undefined) {
+    output.writeFieldBegin('topic_title', Thrift.Type.STRING, 2);
+    output.writeString(this.topic_title);
     output.writeFieldEnd();
   }
-  if (this.type !== null && this.type !== undefined) {
-    output.writeFieldBegin('type', Thrift.Type.STRING, 3);
-    output.writeString(this.type);
+  if (this.topic_type !== null && this.topic_type !== undefined) {
+    output.writeFieldBegin('topic_type', Thrift.Type.STRING, 3);
+    output.writeString(this.topic_type);
     output.writeFieldEnd();
   }
-  if (this.analysis !== null && this.analysis !== undefined) {
-    output.writeFieldBegin('analysis', Thrift.Type.STRING, 4);
-    output.writeString(this.analysis);
+  if (this.topic_analysis !== null && this.topic_analysis !== undefined) {
+    output.writeFieldBegin('topic_analysis', Thrift.Type.STRING, 4);
+    output.writeString(this.topic_analysis);
     output.writeFieldEnd();
   }
-  if (this.correct_answer !== null && this.correct_answer !== undefined) {
-    output.writeFieldBegin('correct_answer', Thrift.Type.STRING, 5);
-    output.writeString(this.correct_answer);
+  if (this.topic_correct_answer !== null && this.topic_correct_answer !== undefined) {
+    output.writeFieldBegin('topic_correct_answer', Thrift.Type.STRING, 5);
+    output.writeString(this.topic_correct_answer);
     output.writeFieldEnd();
   }
-  if (this.score !== null && this.score !== undefined) {
-    output.writeFieldBegin('score', Thrift.Type.DOUBLE, 6);
-    output.writeDouble(this.score);
+  if (this.topic_score !== null && this.topic_score !== undefined) {
+    output.writeFieldBegin('topic_score', Thrift.Type.DOUBLE, 6);
+    output.writeDouble(this.topic_score);
     output.writeFieldEnd();
   }
-  if (this.create_time !== null && this.create_time !== undefined) {
-    output.writeFieldBegin('create_time', Thrift.Type.STRING, 7);
-    output.writeString(this.create_time);
+  if (this.topic_create_time !== null && this.topic_create_time !== undefined) {
+    output.writeFieldBegin('topic_create_time', Thrift.Type.STRING, 7);
+    output.writeString(this.topic_create_time);
     output.writeFieldEnd();
   }
-  if (this.update_time !== null && this.update_time !== undefined) {
-    output.writeFieldBegin('update_time', Thrift.Type.STRING, 8);
-    output.writeString(this.update_time);
+  if (this.topic_update_time !== null && this.topic_update_time !== undefined) {
+    output.writeFieldBegin('topic_update_time', Thrift.Type.STRING, 8);
+    output.writeString(this.topic_update_time);
     output.writeFieldEnd();
   }
   if (this.topicOptions !== null && this.topicOptions !== undefined) {
@@ -2877,27 +2893,27 @@ Topic.prototype.write = function(output) {
 };
 
 var TopicBank = module.exports.TopicBank = function(args) {
-  this.id = null;
-  this.name = null;
-  this.type = null;
-  this.create_time = null;
-  this.update_time = null;
+  this.tb_id = null;
+  this.tb_name = null;
+  this.tb_type = null;
+  this.tb_create_time = null;
+  this.tb_update_time = null;
   this.topics = null;
   if (args) {
-    if (args.id !== undefined && args.id !== null) {
-      this.id = args.id;
+    if (args.tb_id !== undefined && args.tb_id !== null) {
+      this.tb_id = args.tb_id;
     }
-    if (args.name !== undefined && args.name !== null) {
-      this.name = args.name;
+    if (args.tb_name !== undefined && args.tb_name !== null) {
+      this.tb_name = args.tb_name;
     }
-    if (args.type !== undefined && args.type !== null) {
-      this.type = args.type;
+    if (args.tb_type !== undefined && args.tb_type !== null) {
+      this.tb_type = args.tb_type;
     }
-    if (args.create_time !== undefined && args.create_time !== null) {
-      this.create_time = args.create_time;
+    if (args.tb_create_time !== undefined && args.tb_create_time !== null) {
+      this.tb_create_time = args.tb_create_time;
     }
-    if (args.update_time !== undefined && args.update_time !== null) {
-      this.update_time = args.update_time;
+    if (args.tb_update_time !== undefined && args.tb_update_time !== null) {
+      this.tb_update_time = args.tb_update_time;
     }
     if (args.topics !== undefined && args.topics !== null) {
       this.topics = Thrift.copyList(args.topics, [ttypes.Topic]);
@@ -2920,35 +2936,35 @@ TopicBank.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.I32) {
-        this.id = input.readI32();
+        this.tb_id = input.readI32();
       } else {
         input.skip(ftype);
       }
       break;
       case 2:
       if (ftype == Thrift.Type.STRING) {
-        this.name = input.readString();
+        this.tb_name = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 3:
       if (ftype == Thrift.Type.STRING) {
-        this.type = input.readString();
+        this.tb_type = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 4:
       if (ftype == Thrift.Type.STRING) {
-        this.create_time = input.readString();
+        this.tb_create_time = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 5:
       if (ftype == Thrift.Type.STRING) {
-        this.update_time = input.readString();
+        this.tb_update_time = input.readString();
       } else {
         input.skip(ftype);
       }
@@ -2985,29 +3001,29 @@ TopicBank.prototype.read = function(input) {
 
 TopicBank.prototype.write = function(output) {
   output.writeStructBegin('TopicBank');
-  if (this.id !== null && this.id !== undefined) {
-    output.writeFieldBegin('id', Thrift.Type.I32, 1);
-    output.writeI32(this.id);
+  if (this.tb_id !== null && this.tb_id !== undefined) {
+    output.writeFieldBegin('tb_id', Thrift.Type.I32, 1);
+    output.writeI32(this.tb_id);
     output.writeFieldEnd();
   }
-  if (this.name !== null && this.name !== undefined) {
-    output.writeFieldBegin('name', Thrift.Type.STRING, 2);
-    output.writeString(this.name);
+  if (this.tb_name !== null && this.tb_name !== undefined) {
+    output.writeFieldBegin('tb_name', Thrift.Type.STRING, 2);
+    output.writeString(this.tb_name);
     output.writeFieldEnd();
   }
-  if (this.type !== null && this.type !== undefined) {
-    output.writeFieldBegin('type', Thrift.Type.STRING, 3);
-    output.writeString(this.type);
+  if (this.tb_type !== null && this.tb_type !== undefined) {
+    output.writeFieldBegin('tb_type', Thrift.Type.STRING, 3);
+    output.writeString(this.tb_type);
     output.writeFieldEnd();
   }
-  if (this.create_time !== null && this.create_time !== undefined) {
-    output.writeFieldBegin('create_time', Thrift.Type.STRING, 4);
-    output.writeString(this.create_time);
+  if (this.tb_create_time !== null && this.tb_create_time !== undefined) {
+    output.writeFieldBegin('tb_create_time', Thrift.Type.STRING, 4);
+    output.writeString(this.tb_create_time);
     output.writeFieldEnd();
   }
-  if (this.update_time !== null && this.update_time !== undefined) {
-    output.writeFieldBegin('update_time', Thrift.Type.STRING, 5);
-    output.writeString(this.update_time);
+  if (this.tb_update_time !== null && this.tb_update_time !== undefined) {
+    output.writeFieldBegin('tb_update_time', Thrift.Type.STRING, 5);
+    output.writeString(this.tb_update_time);
     output.writeFieldEnd();
   }
   if (this.topics !== null && this.topics !== undefined) {

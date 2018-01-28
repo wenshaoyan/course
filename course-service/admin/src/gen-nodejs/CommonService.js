@@ -632,6 +632,131 @@ CommonService_topicOptionSelectNoCache_result.prototype.write = function(output)
   return;
 };
 
+var CommonService_topicOptionCount_args = function(args) {
+  this.abstractSql = null;
+  if (args) {
+    if (args.abstractSql !== undefined && args.abstractSql !== null) {
+      this.abstractSql = new bean_ttypes.AbstractSql(args.abstractSql);
+    }
+  }
+};
+CommonService_topicOptionCount_args.prototype = {};
+CommonService_topicOptionCount_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.abstractSql = new bean_ttypes.AbstractSql();
+        this.abstractSql.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CommonService_topicOptionCount_args.prototype.write = function(output) {
+  output.writeStructBegin('CommonService_topicOptionCount_args');
+  if (this.abstractSql !== null && this.abstractSql !== undefined) {
+    output.writeFieldBegin('abstractSql', Thrift.Type.STRUCT, 1);
+    this.abstractSql.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var CommonService_topicOptionCount_result = function(args) {
+  this.success = null;
+  this.re = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.re = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = args.success;
+    }
+    if (args.re !== undefined && args.re !== null) {
+      this.re = args.re;
+    }
+  }
+};
+CommonService_topicOptionCount_result.prototype = {};
+CommonService_topicOptionCount_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.I32) {
+        this.success = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.re = new bean_ttypes.RequestException();
+        this.re.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CommonService_topicOptionCount_result.prototype.write = function(output) {
+  output.writeStructBegin('CommonService_topicOptionCount_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.I32, 0);
+    output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  if (this.re !== null && this.re !== undefined) {
+    output.writeFieldBegin('re', Thrift.Type.STRUCT, 1);
+    this.re.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 var CommonService_topicInsert_args = function(args) {
   this.topic = null;
   if (args) {
@@ -1237,6 +1362,131 @@ CommonService_topicSelectNoCache_result.prototype.write = function(output) {
       }
     }
     output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.re !== null && this.re !== undefined) {
+    output.writeFieldBegin('re', Thrift.Type.STRUCT, 1);
+    this.re.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var CommonService_topicCount_args = function(args) {
+  this.abstractSql = null;
+  if (args) {
+    if (args.abstractSql !== undefined && args.abstractSql !== null) {
+      this.abstractSql = new bean_ttypes.AbstractSql(args.abstractSql);
+    }
+  }
+};
+CommonService_topicCount_args.prototype = {};
+CommonService_topicCount_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.abstractSql = new bean_ttypes.AbstractSql();
+        this.abstractSql.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CommonService_topicCount_args.prototype.write = function(output) {
+  output.writeStructBegin('CommonService_topicCount_args');
+  if (this.abstractSql !== null && this.abstractSql !== undefined) {
+    output.writeFieldBegin('abstractSql', Thrift.Type.STRUCT, 1);
+    this.abstractSql.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var CommonService_topicCount_result = function(args) {
+  this.success = null;
+  this.re = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.re = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = args.success;
+    }
+    if (args.re !== undefined && args.re !== null) {
+      this.re = args.re;
+    }
+  }
+};
+CommonService_topicCount_result.prototype = {};
+CommonService_topicCount_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.I32) {
+        this.success = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.re = new bean_ttypes.RequestException();
+        this.re.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CommonService_topicCount_result.prototype.write = function(output) {
+  output.writeStructBegin('CommonService_topicCount_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.I32, 0);
+    output.writeI32(this.success);
     output.writeFieldEnd();
   }
   if (this.re !== null && this.re !== undefined) {
@@ -1866,6 +2116,131 @@ CommonService_topicBankSelectNoCache_result.prototype.write = function(output) {
   return;
 };
 
+var CommonService_topicBankCount_args = function(args) {
+  this.abstractSql = null;
+  if (args) {
+    if (args.abstractSql !== undefined && args.abstractSql !== null) {
+      this.abstractSql = new bean_ttypes.AbstractSql(args.abstractSql);
+    }
+  }
+};
+CommonService_topicBankCount_args.prototype = {};
+CommonService_topicBankCount_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.abstractSql = new bean_ttypes.AbstractSql();
+        this.abstractSql.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CommonService_topicBankCount_args.prototype.write = function(output) {
+  output.writeStructBegin('CommonService_topicBankCount_args');
+  if (this.abstractSql !== null && this.abstractSql !== undefined) {
+    output.writeFieldBegin('abstractSql', Thrift.Type.STRUCT, 1);
+    this.abstractSql.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var CommonService_topicBankCount_result = function(args) {
+  this.success = null;
+  this.re = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.re = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = args.success;
+    }
+    if (args.re !== undefined && args.re !== null) {
+      this.re = args.re;
+    }
+  }
+};
+CommonService_topicBankCount_result.prototype = {};
+CommonService_topicBankCount_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.I32) {
+        this.success = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.re = new bean_ttypes.RequestException();
+        this.re.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CommonService_topicBankCount_result.prototype.write = function(output) {
+  output.writeStructBegin('CommonService_topicBankCount_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.I32, 0);
+    output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  if (this.re !== null && this.re !== undefined) {
+    output.writeFieldBegin('re', Thrift.Type.STRUCT, 1);
+    this.re.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 var CommonServiceClient = exports.Client = function(output, pClass) {
     this.output = output;
     this.pClass = pClass;
@@ -2116,6 +2491,56 @@ CommonServiceClient.prototype.recv_topicOptionSelectNoCache = function(input,mty
   }
   return callback('topicOptionSelectNoCache failed: unknown result');
 };
+CommonServiceClient.prototype.topicOptionCount = function(abstractSql, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_topicOptionCount(abstractSql);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_topicOptionCount(abstractSql);
+  }
+};
+
+CommonServiceClient.prototype.send_topicOptionCount = function(abstractSql) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('topicOptionCount', Thrift.MessageType.CALL, this.seqid());
+  var args = new CommonService_topicOptionCount_args();
+  args.abstractSql = abstractSql;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+CommonServiceClient.prototype.recv_topicOptionCount = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new CommonService_topicOptionCount_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.re) {
+    return callback(result.re);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('topicOptionCount failed: unknown result');
+};
 CommonServiceClient.prototype.topicInsert = function(topic, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
@@ -2356,6 +2781,56 @@ CommonServiceClient.prototype.recv_topicSelectNoCache = function(input,mtype,rse
     return callback(null, result.success);
   }
   return callback('topicSelectNoCache failed: unknown result');
+};
+CommonServiceClient.prototype.topicCount = function(abstractSql, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_topicCount(abstractSql);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_topicCount(abstractSql);
+  }
+};
+
+CommonServiceClient.prototype.send_topicCount = function(abstractSql) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('topicCount', Thrift.MessageType.CALL, this.seqid());
+  var args = new CommonService_topicCount_args();
+  args.abstractSql = abstractSql;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+CommonServiceClient.prototype.recv_topicCount = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new CommonService_topicCount_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.re) {
+    return callback(result.re);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('topicCount failed: unknown result');
 };
 CommonServiceClient.prototype.topicBankInsert = function(topicBank, callback) {
   this._seqid = this.new_seqid();
@@ -2598,6 +3073,56 @@ CommonServiceClient.prototype.recv_topicBankSelectNoCache = function(input,mtype
   }
   return callback('topicBankSelectNoCache failed: unknown result');
 };
+CommonServiceClient.prototype.topicBankCount = function(abstractSql, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_topicBankCount(abstractSql);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_topicBankCount(abstractSql);
+  }
+};
+
+CommonServiceClient.prototype.send_topicBankCount = function(abstractSql) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('topicBankCount', Thrift.MessageType.CALL, this.seqid());
+  var args = new CommonService_topicBankCount_args();
+  args.abstractSql = abstractSql;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+CommonServiceClient.prototype.recv_topicBankCount = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new CommonService_topicBankCount_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.re) {
+    return callback(result.re);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('topicBankCount failed: unknown result');
+};
 var CommonServiceProcessor = exports.Processor = function(handler) {
   this._handler = handler;
 }
@@ -2807,6 +3332,47 @@ CommonServiceProcessor.prototype.process_topicOptionSelectNoCache = function(seq
     });
   }
 };
+CommonServiceProcessor.prototype.process_topicOptionCount = function(seqid, input, output) {
+  var args = new CommonService_topicOptionCount_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.topicOptionCount.length === 1) {
+    Q.fcall(this._handler.topicOptionCount, args.abstractSql)
+      .then(function(result) {
+        var result_obj = new CommonService_topicOptionCount_result({success: result});
+        output.writeMessageBegin("topicOptionCount", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CommonService_topicOptionCount_result(err);
+          output.writeMessageBegin("topicOptionCount", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("topicOptionCount", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.topicOptionCount(args.abstractSql, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
+        result_obj = new CommonService_topicOptionCount_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("topicOptionCount", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("topicOptionCount", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
 CommonServiceProcessor.prototype.process_topicInsert = function(seqid, input, output) {
   var args = new CommonService_topicInsert_args();
   args.read(input);
@@ -2997,6 +3563,47 @@ CommonServiceProcessor.prototype.process_topicSelectNoCache = function(seqid, in
     });
   }
 };
+CommonServiceProcessor.prototype.process_topicCount = function(seqid, input, output) {
+  var args = new CommonService_topicCount_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.topicCount.length === 1) {
+    Q.fcall(this._handler.topicCount, args.abstractSql)
+      .then(function(result) {
+        var result_obj = new CommonService_topicCount_result({success: result});
+        output.writeMessageBegin("topicCount", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CommonService_topicCount_result(err);
+          output.writeMessageBegin("topicCount", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("topicCount", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.topicCount(args.abstractSql, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
+        result_obj = new CommonService_topicCount_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("topicCount", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("topicCount", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
 CommonServiceProcessor.prototype.process_topicBankInsert = function(seqid, input, output) {
   var args = new CommonService_topicBankInsert_args();
   args.read(input);
@@ -3180,6 +3787,47 @@ CommonServiceProcessor.prototype.process_topicBankSelectNoCache = function(seqid
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
         output.writeMessageBegin("topicBankSelectNoCache", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+CommonServiceProcessor.prototype.process_topicBankCount = function(seqid, input, output) {
+  var args = new CommonService_topicBankCount_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.topicBankCount.length === 1) {
+    Q.fcall(this._handler.topicBankCount, args.abstractSql)
+      .then(function(result) {
+        var result_obj = new CommonService_topicBankCount_result({success: result});
+        output.writeMessageBegin("topicBankCount", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CommonService_topicBankCount_result(err);
+          output.writeMessageBegin("topicBankCount", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("topicBankCount", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.topicBankCount(args.abstractSql, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
+        result_obj = new CommonService_topicBankCount_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("topicBankCount", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("topicBankCount", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();

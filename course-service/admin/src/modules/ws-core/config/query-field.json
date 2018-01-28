@@ -1,0 +1,26 @@
+{
+  "_search": {
+    "type": "object",
+    "operator": "like"
+  },
+  "_sort": {
+    "type": "object",
+    "operator": "order"
+
+  },
+  "_select": {
+    "type": "object",
+    "operator": "any"
+
+  },
+  "_datetime": {
+    "type": "object",
+    "operator": "between"
+  },
+  "_limit": {
+    "type": "object",
+    "operator": "limit"
+  }
+
+
+}

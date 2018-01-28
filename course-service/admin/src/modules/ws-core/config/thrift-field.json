@@ -1,0 +1,75 @@
+{
+  "type": {
+    "type": "string",
+    "parent": "where"
+  },
+  "eq": {
+    "type": "string",
+    "parent": "where"
+  },
+  "ne": {
+    "type": "string",
+    "parent": "where"
+  },
+  "gt": {
+    "type": "string",
+    "parent": "where"
+  },
+  "gte": {
+    "type": "string",
+    "parent": "where"
+  },
+  "lt": {
+    "type": "string",
+    "parent": "where"
+  },
+  "lte": {
+    "type": "string",
+    "parent": "where"
+  },
+  "between": {
+    "type": "string",
+    "isList": true,
+    "parent": "where"
+  },
+  "notBetween": {
+    "type": "string",
+    "isList": true,
+    "parent": "where"
+  },
+  "any": {
+    "type": "string",
+    "isList": true,
+    "parent": "where"
+  },
+  "notAny": {
+    "type": "string",
+    "isList": true,
+    "parent": "where"
+  },
+  "like": {
+    "type": "string",
+    "parent": "where"
+  },
+  "notLike": {
+    "type": "string",
+    "parent": "where"
+  },
+  "limit": {
+    "type": "number",
+    "isList": true,
+    "parent": "bean"
+  },
+  "order": {
+    "type": "string",
+    "parent": "bean"
+  },
+  "group": {
+    "type": "string",
+    "parent": "bean"
+  },
+  "mode": {
+    "type": "string",
+    "parent": "bean"
+  }
+}

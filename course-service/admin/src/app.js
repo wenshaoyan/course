@@ -22,6 +22,7 @@ const router_log = require('./middleware/router_log');
 const getUser = require('./middleware/get_user');
 const response = require('./middleware/response');
 const errorSource = require('./config/error_source.json');
+const { formatQuery } = require('./modules/ws-core');
 
 // middlewares
 app.use(convert(bodyparser));
@@ -40,12 +41,15 @@ app.use(response({
     jsonFile: errorSource,
     successLog: getLogger('resSuccess'),
     failLog: getLogger('resFail'),
-    unknownLog:getLogger('resUnknown')
+    unknownLog: getLogger('resUnknown')
 
 }));
 // 跨域
 app.use(cors({
     allowMethods: ['GET', 'POST', 'DELETE', 'PATCH', 'PUT'],
+}));
+app.use(formatQuery({
+    suffixNotUseLike: '_id'
 }));
 
 router.use('/users', user.routes(), user.allowedMethods());

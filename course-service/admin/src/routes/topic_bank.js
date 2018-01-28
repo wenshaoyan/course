@@ -5,6 +5,7 @@
 'use strict';
 const router = require('koa-router')();
 const { TopicBank, Custom } = require('../gen-nodejs/bean_types');
+const { AbstractSqlBean } = require('../modules/ws-core');
 const SysUtil = require('../util/sys_util');
 const logger = getLogger();
 const CommonService = getServiceConfig().dalName.common;
@@ -22,10 +23,23 @@ router.use(async(ctx, next) => {
     }
 });
 router.get('/', async (ctx, next) => {
-    const params = ctx.query;
+    const params = ctx.querySql;
+    // params.mode = 'topic+option';
     try {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
-        ctx.body = await client.topicBankSelectCustom(new TopicBank(),new Custom({tables: ['topic']}));
+        ctx.body = await client.topicBankSelect(new AbstractSqlBean(params));
+    } catch (e) {
+        console.log(e);
+        ctx.error = e;
+    }
+});
+router.get('/counts', async (ctx, next) => {
+    const params = ctx.querySql;
+    // params.mode = 'topic+option';
+    try {
+        const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
+        const count = await client.topicBankCount(new AbstractSqlBean(params))
+        ctx.body = {count};
     } catch (e) {
         console.log(e);
         ctx.error = e;
