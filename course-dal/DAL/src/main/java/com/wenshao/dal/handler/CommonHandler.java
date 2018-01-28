@@ -4,11 +4,7 @@ import com.wenshao.dal.bean.*;
 import com.wenshao.dal.dao.TopicBankDao;
 import com.wenshao.dal.dao.TopicDao;
 import com.wenshao.dal.dao.TopicOptionDao;
-import com.wenshao.dal.dao.impl.TopicBankDaoImpl;
-import com.wenshao.dal.dao.impl.TopicDaoImpl;
-import com.wenshao.dal.dao.impl.TopicOptionDaoImpl;
 import com.wenshao.dal.thriftgen.*;
-import com.wenshao.dal.util.ExceptionUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
@@ -58,6 +54,11 @@ public class CommonHandler implements CommonService.Iface {
     }
 
     @Override
+    public int topicOptionCount(AbstractSql abstractSql) throws RequestException, TException {
+        return 0;
+    }
+
+    @Override
     public int topicInsert(Topic topic) throws TException {
         return  0;
     }
@@ -77,12 +78,17 @@ public class CommonHandler implements CommonService.Iface {
     public List<Topic> topicSelect(AbstractSql abstractSql) throws RequestException {
         SqlSession sqlSession = sessionFactory.openSession();
         TopicDao dao = sqlSession.getMapper(TopicDao.class);
-        return dao.select(new AbstractSqlBean(abstractSql,Topic.class));
+        return dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
     }
 
     @Override
     public List<Topic> topicSelectNoCache(AbstractSql abstractSql) throws RequestException {
         return null;
+    }
+
+    @Override
+    public int topicCount(AbstractSql abstractSql) throws RequestException, TException {
+        return 0;
     }
 
     @Override
@@ -104,12 +110,19 @@ public class CommonHandler implements CommonService.Iface {
     public List<TopicBank> topicBankSelect(AbstractSql abstractSql) throws RequestException {
         SqlSession sqlSession = sessionFactory.openSession();
         TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
-        return dao.select(new AbstractSqlBean(abstractSql,Topic.class));
+        return dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
     }
 
     @Override
     public List<TopicBank> topicBankSelectNoCache(AbstractSql abstractSql) throws RequestException {
-        return null;
+        return topicBankSelect(abstractSql);
+    }
+
+    @Override
+    public int topicBankCount(AbstractSql abstractSql) throws RequestException {
+        SqlSession sqlSession = sessionFactory.openSession();
+        TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
+        return dao.count(new AbstractSqlBean(abstractSql,TopicOption.class));
     }
 
 

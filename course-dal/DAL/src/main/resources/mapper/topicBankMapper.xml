@@ -15,6 +15,10 @@
         select *
         from t_topic_bank
     </sql>
+    <sql id="select_count">
+        SELECT COUNT(*)
+        FROM t_topic_bank
+    </sql>
     <sql id="include_topicOption">
         t_topic_option ON t_topic_option.to_topic_id=t_topic.topic_id
     </sql>
@@ -43,36 +47,66 @@
     </sql>
     <select id="select" parameterType="_AbstractSqlBean"  resultMap="topicBankResult">
         <include refid="select_list"/>
-        <if test="abstractSql and abstractSql.includes">
-            
+        <if test="abstractSql and abstractSql.mode">
+            <if test="abstractSql.mode == 'topic+option'">
+                LEFT JOIN (
+                    SELECT *
+                    FROM t_topic
+                    INNER JOIN t_topic_relation ON t_topic_relation.tr_topic_id=t_topic.topic_id
+                    LEFT JOIN t_topic_option ON t_topic_option.to_topic_id=t_topic.topic_id
+                ) AS topic ON t_topic_bank.tb_id=topic.tr_tb_id
+            </if>
+            <if test="abstractSql.mode == 'topic'">
+                INNER JOIN t_topic_relation ON t_topic_bank.tb_id=t_topic_relation.tr_tb_id
+                LEFT JOIN t_topic ON t_topic_relation.tr_topic_id=t_topic.topic_id
+            </if>
         </if>
-        <include refid="Base_Condition"/>
-        <include refid="Base_Group"/>
-        <include refid="Base_Order"/>
-        <include refid="Base_Limit"/>
+        <include refid="BaseMapper.Base_Condition"/>
+        <include refid="BaseMapper.Base_Group"/>
+        <include refid="BaseMapper.Base_Order"/>
+        <include refid="BaseMapper.Base_Limit"/>
     </select>
-
+    <select id="count" parameterType="_AbstractSqlBean"  resultType="java.lang.Integer">
+        <include refid="select_count"/>
+        <if test="abstractSql and abstractSql.mode">
+            <if test="abstractSql.mode == 'topic+option'">
+                LEFT JOIN (
+                SELECT *
+                FROM t_topic
+                INNER JOIN t_topic_relation ON t_topic_relation.tr_topic_id=t_topic.topic_id
+                INNER JOIN t_topic_option ON t_topic_option.to_topic_id=t_topic.topic_id
+                ) AS topic ON t_topic_bank.tb_id=topic.tr_tb_id
+            </if>
+            <if test="abstractSql.mode == 'topic'">
+                INNER JOIN t_topic_relation ON t_topic_bank.tb_id=t_topic_relation.tr_tb_id
+                INNER JOIN t_topic ON t_topic_relation.tr_topic_id=t_topic.topic_id
+            </if>
+        </if>
+        <include refid="BaseMapper.Base_Condition"/>
+        <include refid="BaseMapper.Base_Group"/>
+        <include refid="BaseMapper.Base_Order"/>
+    </select>
     <select id="selectMaxLocation" parameterType="_TopicBankBean" resultType="java.lang.Integer">
         <include refid="select_max"/>
-        <include refid="Base_Condition"/>
+        <include refid="BaseMapper.Base_Condition"/>
     </select>
 
     <update id="update" parameterType="_TopicBankBean" >
         <include refid="update_table" />
         <include refid="update_set" />
-        <include refid="Base_Condition" />
+        <include refid="BaseMapper.Base_Condition" />
     </update>
     <delete id="remove" parameterType="_TopicBankBean">
         <include refid="delete_table"/>
-        <include refid="Base_Condition"/>
+        <include refid="BaseMapper.Base_Condition"/>
     </delete>
 
     <resultMap id="topicBankResult" type="_TopicBankBean">
-        <id property="id" column="tb_id"/>
-        <result property="create_time_bean" column="tb_create_time"/>
-        <result property="update_time_bean" column="tb_update_time"/>
-        <result property="name" column="tb_name"/>
-        <result property="type" column="tb_type"/>
-        <collection property="topics" ofType="_TopicBean" resultMap="mapper.topicMapper.topicResult" />
+        <id property="tb_id" column="tb_id"/>
+        <result property="tb_create_time" column="tb_create_time"/>
+        <result property="tb_update_time" column="tb_update_time"/>
+        <result property="tb_name" column="tb_name"/>
+        <result property="tb_type" column="tb_type"/>
+        <collection property="topics" ofType="_TopicBean" resultMap="com.wenshao.dal.dao.TopicDao.topicResult" />
     </resultMap>
 </mapper>

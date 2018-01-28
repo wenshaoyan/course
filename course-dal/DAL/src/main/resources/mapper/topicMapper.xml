@@ -64,14 +64,14 @@
     </delete>
 
     <resultMap id="topicResult" type="_TopicBean">
-        <id property="id" column="topic_id"/>
-        <result property="create_time_bean" column="topic_create_time"/>
-        <result property="update_time_bean" column="topic_update_time"/>
-        <result property="title" column="topic_title"/>
-        <result property="type" column="topic_type"/>
-        <result property="analysis" column="topic_analysis"/>
-        <result property="correct_answer" column="topic_correct_answer"/>
-        <result property="score" column="topic_score"/>
+        <id property="topic_id" column="topic_id"/>
+        <result property="topic_create_time" column="topic_create_time"/>
+        <result property="topic_update_time" column="topic_update_time"/>
+        <result property="topic_title" column="topic_title"/>
+        <result property="topic_type" column="topic_type"/>
+        <result property="topic_analysis" column="topic_analysis"/>
+        <result property="topic_correct_answer" column="topic_correct_answer"/>
+        <result property="topic_score" column="topic_score"/>
         <collection property="topicOptions" ofType="_TopicOptionBean" resultMap="com.wenshao.dal.dao.TopicOptionDao.topicOptionResult"/>
     </resultMap>
 </mapper>

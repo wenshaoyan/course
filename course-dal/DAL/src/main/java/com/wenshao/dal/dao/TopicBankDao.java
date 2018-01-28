@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface TopicBankDao {
     List<TopicBank> select(@Param("abstractSql") AbstractSqlBean abstractSqlBean);
+    int count(@Param("abstractSql") AbstractSqlBean abstractSqlBean);
 }

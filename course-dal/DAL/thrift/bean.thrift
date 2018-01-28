@@ -137,6 +137,7 @@ struct AbstractSql{
     4:string group
     5:list<i32> limit
     6:list<Include> includes
+    7:string mode
 }
 struct TopicOption{
     1:i32 to_id
@@ -147,21 +148,21 @@ struct TopicOption{
 
 }
 struct Topic{
-    1:i32 id
-    2:string title
-    3:string type
-    4:string analysis
-    5:string correct_answer
-    6:double score
-    7:string create_time
-    8:string update_time
+    1:i32 topic_id
+    2:string topic_title
+    3:string topic_type
+    4:string topic_analysis
+    5:string topic_correct_answer
+    6:double topic_score
+    7:string topic_create_time
+    8:string topic_update_time
     9:list<TopicOption> topicOptions
 }
 struct TopicBank{
-    1:i32 id
-    2:string name
-    3:string type
-    4:string create_time
-    5:string update_time
+    1:i32 tb_id
+    2:string tb_name
+    3:string tb_type
+    4:string tb_create_time
+    5:string tb_update_time
     6:list<Topic> topics
 }
