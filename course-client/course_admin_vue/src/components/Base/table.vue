@@ -1,13 +1,16 @@
 <template>
   <div style="padding:20px;">
-    <el-collapse>
-      <el-collapse-item title="过滤参数">
-        <div>search:{{searchData}}</div>
-        <div>sort:{{sortData}}</div>
-        <div>select:{{selectData}}</div>
-        <div>datetime:{{datetimeData}}</div>
-      </el-collapse-item>
-    </el-collapse>
+    <div style="width: 100%">
+      <el-collapse style="width: 90%;float: left">
+        <el-collapse-item title="过滤参数">
+          <div>search:{{searchData}}</div>
+          <div>sort:{{sortData}}</div>
+          <div>select:{{selectData}}</div>
+          <div>datetime:{{datetimeData}}</div>
+        </el-collapse-item>
+      </el-collapse>
+      <el-button style="width: 10%;float: left;height: 43px;" type="primary">添加</el-button>
+    </div>
 
     <table style="width: 100%">
       <thead>
@@ -22,7 +25,7 @@
               closable
               :disable-transitions="false"
               @close="handleClose(key,'sort')">
-              {{sub(sortData[key])}}
+              {{sub(sortData[key] % 2 ? 'asc' : 'desc')}}
             </el-tag>
             <i v-if="!sortData[key] && 'sort' in item.types && item.types.sort && item.types.sort.show" class="fa fa-sort-amount-asc i-child-3" @click="showSort($event,key,item.sort)" ></i>
             <el-tag
@@ -76,9 +79,8 @@
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="pages.currentPage"
-        :page-sizes="[20, 30, 50]"
-        :page-size="20"
+        :page-sizes="[1, 20, 30, 50]"
+        :page-size="pages.pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="pages.total">
       </el-pagination>
@@ -92,7 +94,10 @@
   import moment from 'moment'
   const formatTime = (d, row) => {
     const f = 'YYYY-MM-DD HH:mm:ss.SSS'
-    const m = moment(Number(d))
+    if (!isNaN(d)) {
+      d = Number(d)
+    }
+    const m = moment(d)
     return m.format(f)
   }
   export default {
@@ -133,7 +138,8 @@
         datetimeData: datetimeFields,
         pages: {
           currentPage: 0,
-          total: 100,
+          total: 0,
+          pageSize: 1
         },
         data: [],
         optionsButtons: false
@@ -162,10 +168,19 @@
     methods: {
       getList() {
         this.listLoading = true
-        const params = {}
+        const params = {
+          _search: JSON.stringify(this.searchData),
+          _sort: JSON.stringify(this.sortData),
+          _select: JSON.stringify(this.selectData),
+          _datetime: JSON.stringify(this.datetimeData),
+          _limit: JSON.stringify([this.pages.pageSize, this.pages.currentPage * this.pages.pageSize])
+        }
         this.restful.query(params).then(data => {
           this.data = data
+          return this.restful.count(params)
+        }).then(data => {
           this.listLoading = false
+          this.pages.total = data.count
         }).catch(e => {
           this.listLoading = false
         })
@@ -179,8 +194,10 @@
             desc: '倒序'
           },
           default: this.sortData[prop],
-          callback: (data) => {
-            this.changeData(prop, 'sort', data)
+          callback: (data, action) => {
+            // 计算出当前的排序数字
+            data = this.sortChange(data)
+            this.changeData(prop, 'sort', data, action)
           }
         })
       },
@@ -190,8 +207,8 @@
           type: "search",
           isMultiple: true,
           default: this.searchData[prop],
-          callback: (data) => {
-            this.changeData(prop, 'search', data)
+          callback: (data, action) => {
+            this.changeData(prop, 'search', data, action)
           }
         })
       },
@@ -202,8 +219,8 @@
           isMultiple: true,
           options: $c.options,
           default: this.selectData[prop],
-          callback: (data) => {
-            this.changeData(prop, 'select', data)
+          callback: (data, action) => {
+            this.changeData(prop, 'select', data, action)
           }
         })
       },
@@ -212,26 +229,52 @@
           time: -1,
           type: "datetime",
           default: this.datetimeData[prop],
-          callback: (data) => {
+          callback: (data, action) => {
             data[0] = moment(data[0]).format('YYYY-MM-DD HH:mm:ss')
             data[1] = moment(data[1]).format('YYYY-MM-DD HH:mm:ss')
-            this.changeData(prop, 'datetime', data)
+            this.changeData(prop, 'datetime', data, action)
           }
         })
       },
-      getActionData(action) {
-        if (action === 'select') return this.selectData
-        else if (action === 'search') return this.searchData
-        else if (action === 'sort') return this.sortData
-        else if (action === 'datetime') return this.datetimeData
+      getTypeData(type) {
+        if (type === 'select') return this.selectData
+        else if (type === 'search') return this.searchData
+        else if (type === 'sort') return this.sortData
+        else if (type === 'datetime') return this.datetimeData
       },
-      changeData(prop, action, _data) {
-        const data = this.getActionData(action);
+      changeData(prop, type, _data, action) {
+        const data = this.getTypeData(type);
       	if (data) data[prop] = _data
+        if (action === 'screen') {
+      	    this.getList()
+        }
       },
-      handleClose(prop, action) {
-        const data = this.getActionData(action);
+      // 获取当前排序的最大值 奇数为asc  偶数为desc
+      sortChange(order) {
+        let maxOrderIndex = 0
+        let orderIndex = 0
+        for (const key in this.sortData) {
+          if (this.sortData[key] > maxOrderIndex) maxOrderIndex = this.sortData[key]
+        }
+        if (order === 'asc') {
+          if (maxOrderIndex % 2) {  // 奇数
+            orderIndex = maxOrderIndex + 2
+          } else {  // 偶数
+            orderIndex = maxOrderIndex + 1
+          }
+        } else {
+          if (maxOrderIndex % 2) {  // 奇数
+            orderIndex = maxOrderIndex + 1
+          } else {  // 偶数
+            orderIndex = maxOrderIndex + 2
+          }
+        }
+        return orderIndex;
+      },
+      handleClose(prop, type) {
+        const data = this.getTypeData(type);
         if (data) data[prop] = undefined
+        this.getList()
       },
       filter(c, row, key) {
         if (c.filter) {
@@ -263,10 +306,11 @@
       },
       // page
       handleSizeChange() {
-
+        this.getList()
       },
-      handleCurrentChange() {
-
+      handleCurrentChange(a) {
+        this.pages.currentPage = a-1
+        this.getList()
       }
     }
   }

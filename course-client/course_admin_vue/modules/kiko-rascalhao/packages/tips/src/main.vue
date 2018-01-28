@@ -199,14 +199,14 @@
       selectChange() {},
       sortChange() {},
       screen() {
-        this.change()
+        this.change('screen')
         this.hidden()
       },
       save() {
-        this.change()
+        this.change('save')
         this.hidden()
       },
-      change() {
+      change(action) {
         if (this.callback && this.callback instanceof Function) {
         	let data = null
           if (this.type === 'select') {
@@ -219,7 +219,7 @@
             data = this.datetimeData
           }
           if (data) {
-            this.callback(data)
+            this.callback(data, action)
           }
         }
       },

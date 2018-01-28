@@ -6,11 +6,16 @@ import fetch from '@/utils/fetch'
  */
 
 const getFetch = (url, data, method) => {
-  return fetch({
+  const requestData = {
     url: url,
-    method: method,
-    data: data
-  })
+    method: method
+  }
+  if (method === 'get' || method === 'GET') {
+    requestData.params = data
+  } else {
+    requestData.data = data
+  }
+  return fetch(requestData)
 }
 class restful {
   constructor(prefix) {
@@ -29,6 +34,9 @@ class restful {
   }
   query(data) {
     return getFetch(this.prefix, data, 'get')
+  }
+  count(data) {
+    return getFetch(this.prefix + '/counts', data, 'get')
   }
   remove(id, data) {
     return getFetch(this.prefix + '/' + id, data, 'delete')

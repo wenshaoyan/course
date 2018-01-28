@@ -17,9 +17,9 @@
     data () {
       return {
         table: {
-          prefix: '/topics',
+          prefix: '/topic-banks',
           listFields: {
-            id: {
+            tb_id: {
               name: 'id',
               width: '80',
               types: {
@@ -31,7 +31,7 @@
                 }
               }
             },
-            title: {
+            tb_name: {
               name: '题库名称',
               width: 'auth',
               types: {
@@ -43,7 +43,7 @@
                 }
               }
             },
-            type: {
+            tb_type: {
               name: '题库类型',
               width: '100',
               types: {
@@ -58,7 +58,7 @@
                 return v
               }
             },
-            create_time: {
+            tb_create_time: {
               name: '创建时间',
               width: '120',
               filter: 'formatTime',
@@ -68,7 +68,7 @@
                 }
               }
             },
-            update_time: {
+            tb_update_time: {
               name: '更新时间',
               width: '120',
               filter: 'formatTime',
