@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wenshao.dal.dao.TopicBankDao">
-    <insert id="insert" parameterType="_TopicBean" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="topicBank.tb_id">
         INSERT INTO t_topic_bank(tb_create_time,tb_update_time,tb_name,tb_type)
-        VALUES(NOW(3),NOW(3),#{name},#{type})
+        VALUES(NOW(3),NOW(3),#{topicBank.tb_name},#{topicBank.tb_type})
     </insert>
     <insert id="addTopic" parameterType="java.util.Map" >
       INSERT INTO t_topic_relation(tr_topic_id,tr_tb_id) VALUES(#{topic_id},#{tb_id})
@@ -90,7 +90,6 @@
         <include refid="select_max"/>
         <include refid="BaseMapper.Base_Condition"/>
     </select>
-
     <update id="update" parameterType="_TopicBankBean" >
         <include refid="update_table" />
         <include refid="update_set" />
@@ -100,7 +99,6 @@
         <include refid="delete_table"/>
         <include refid="BaseMapper.Base_Condition"/>
     </delete>
-
     <resultMap id="topicBankResult" type="_TopicBankBean">
         <id property="tb_id" column="tb_id"/>
         <result property="tb_create_time" column="tb_create_time"/>

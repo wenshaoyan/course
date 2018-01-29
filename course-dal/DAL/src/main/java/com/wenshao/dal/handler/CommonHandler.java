@@ -8,9 +8,6 @@ import com.wenshao.dal.thriftgen.*;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
-import org.apache.thrift.TException;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,50 +23,50 @@ public class CommonHandler implements CommonService.Iface {
     }
 
     @Override
-    public int topicOptionInsert(TopicOption topicOption) throws RequestException,TException {
+    public int topicOptionInsert(TopicOption topicOption) throws RequestException {
         return 0;
     }
 
     @Override
-    public int topicOptionUpdate(TopicOption topicOption) throws TException {
+    public int topicOptionUpdate(TopicOption topicOption) throws RequestException {
         return 0;
     }
 
     @Override
-    public int topicOptionRemove(TopicOption topicOption) throws TException {
+    public int topicOptionRemove(TopicOption topicOption) throws RequestException {
         return 0;
     }
 
 
     @Override
-    public List<TopicOption> topicOptionSelect(AbstractSql abstractSql) throws TException {
+    public List<TopicOption> topicOptionSelect(AbstractSql abstractSql) throws RequestException {
         SqlSession sqlSession = sessionFactory.openSession();
         TopicOptionDao dao = sqlSession.getMapper(TopicOptionDao.class);
         return dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
     }
 
     @Override
-    public List<TopicOption> topicOptionSelectNoCache(AbstractSql abstractSql) throws TException {
+    public List<TopicOption> topicOptionSelectNoCache(AbstractSql abstractSql) throws RequestException {
         return null;
     }
 
     @Override
-    public int topicOptionCount(AbstractSql abstractSql) throws RequestException, TException {
+    public int topicOptionCount(AbstractSql abstractSql) throws RequestException {
         return 0;
     }
 
     @Override
-    public int topicInsert(Topic topic) throws TException {
+    public int topicInsert(Topic topic) throws RequestException {
         return  0;
     }
 
     @Override
-    public int topicUpdate(Topic topic) throws TException {
+    public int topicUpdate(Topic topic) throws RequestException {
         return 0;
     }
 
     @Override
-    public int topicRemove(Topic topic) throws TException {
+    public int topicRemove(Topic topic) throws RequestException {
         return 0;
     }
 
@@ -87,30 +84,43 @@ public class CommonHandler implements CommonService.Iface {
     }
 
     @Override
-    public int topicCount(AbstractSql abstractSql) throws RequestException, TException {
+    public int topicCount(AbstractSql abstractSql) throws RequestException {
         return 0;
     }
 
     @Override
-    public int topicBankInsert(TopicBank topicBank) throws TException {
+    public int topicBankInsert(TopicBank topicBank) throws RequestException {
+        SqlSession sqlSession = sessionFactory.openSession();
+        TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
+        dao.insert(topicBank);
+        sqlSession.commit();
+        sqlSession.close();
+        return topicBank.getTb_id();
+    }
+
+    @Override
+    public int topicBankUpdate(TopicBank topicBank) throws RequestException {
         return 0;
     }
 
     @Override
-    public int topicBankUpdate(TopicBank topicBank) throws TException {
-        return 0;
-    }
-
-    @Override
-    public int topicBankRemove(TopicBank topicBank) throws TException {
+    public int topicBankRemove(TopicBank topicBank) throws RequestException {
         return 0;
     }
 
     @Override
     public List<TopicBank> topicBankSelect(AbstractSql abstractSql) throws RequestException {
+        try {
+            Thread.sleep(7000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         SqlSession sqlSession = sessionFactory.openSession();
         TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
-        return dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
+        List<TopicBank> result = dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
+        sqlSession.commit();
+        sqlSession.close();
+        return result;
     }
 
     @Override
@@ -122,7 +132,10 @@ public class CommonHandler implements CommonService.Iface {
     public int topicBankCount(AbstractSql abstractSql) throws RequestException {
         SqlSession sqlSession = sessionFactory.openSession();
         TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
-        return dao.count(new AbstractSqlBean(abstractSql,TopicOption.class));
+        int result =  dao.count(new AbstractSqlBean(abstractSql,TopicOption.class));
+        sqlSession.commit();
+        sqlSession.close();
+        return result;
     }
 
 

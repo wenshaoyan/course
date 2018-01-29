@@ -71,9 +71,17 @@ CommonService_topicOptionInsert_args.prototype.write = function(output) {
 
 var CommonService_topicOptionInsert_result = function(args) {
   this.success = null;
+  this.re = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.re = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = args.success;
+    }
+    if (args.re !== undefined && args.re !== null) {
+      this.re = args.re;
     }
   }
 };
@@ -98,9 +106,14 @@ CommonService_topicOptionInsert_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.re = new bean_ttypes.RequestException();
+        this.re.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -115,6 +128,11 @@ CommonService_topicOptionInsert_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  if (this.re !== null && this.re !== undefined) {
+    output.writeFieldBegin('re', Thrift.Type.STRUCT, 1);
+    this.re.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -178,9 +196,17 @@ CommonService_topicOptionUpdate_args.prototype.write = function(output) {
 
 var CommonService_topicOptionUpdate_result = function(args) {
   this.success = null;
+  this.re = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.re = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = args.success;
+    }
+    if (args.re !== undefined && args.re !== null) {
+      this.re = args.re;
     }
   }
 };
@@ -205,9 +231,14 @@ CommonService_topicOptionUpdate_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.re = new bean_ttypes.RequestException();
+        this.re.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -222,6 +253,11 @@ CommonService_topicOptionUpdate_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  if (this.re !== null && this.re !== undefined) {
+    output.writeFieldBegin('re', Thrift.Type.STRUCT, 1);
+    this.re.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -285,9 +321,17 @@ CommonService_topicOptionRemove_args.prototype.write = function(output) {
 
 var CommonService_topicOptionRemove_result = function(args) {
   this.success = null;
+  this.re = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.re = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = args.success;
+    }
+    if (args.re !== undefined && args.re !== null) {
+      this.re = args.re;
     }
   }
 };
@@ -312,9 +356,14 @@ CommonService_topicOptionRemove_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.re = new bean_ttypes.RequestException();
+        this.re.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -329,6 +378,11 @@ CommonService_topicOptionRemove_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  if (this.re !== null && this.re !== undefined) {
+    output.writeFieldBegin('re', Thrift.Type.STRUCT, 1);
+    this.re.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -813,9 +867,17 @@ CommonService_topicInsert_args.prototype.write = function(output) {
 
 var CommonService_topicInsert_result = function(args) {
   this.success = null;
+  this.re = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.re = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = args.success;
+    }
+    if (args.re !== undefined && args.re !== null) {
+      this.re = args.re;
     }
   }
 };
@@ -840,9 +902,14 @@ CommonService_topicInsert_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.re = new bean_ttypes.RequestException();
+        this.re.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -857,6 +924,11 @@ CommonService_topicInsert_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  if (this.re !== null && this.re !== undefined) {
+    output.writeFieldBegin('re', Thrift.Type.STRUCT, 1);
+    this.re.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -920,9 +992,17 @@ CommonService_topicUpdate_args.prototype.write = function(output) {
 
 var CommonService_topicUpdate_result = function(args) {
   this.success = null;
+  this.re = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.re = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = args.success;
+    }
+    if (args.re !== undefined && args.re !== null) {
+      this.re = args.re;
     }
   }
 };
@@ -947,9 +1027,14 @@ CommonService_topicUpdate_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.re = new bean_ttypes.RequestException();
+        this.re.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -964,6 +1049,11 @@ CommonService_topicUpdate_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  if (this.re !== null && this.re !== undefined) {
+    output.writeFieldBegin('re', Thrift.Type.STRUCT, 1);
+    this.re.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -1027,9 +1117,17 @@ CommonService_topicRemove_args.prototype.write = function(output) {
 
 var CommonService_topicRemove_result = function(args) {
   this.success = null;
+  this.re = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.re = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = args.success;
+    }
+    if (args.re !== undefined && args.re !== null) {
+      this.re = args.re;
     }
   }
 };
@@ -1054,9 +1152,14 @@ CommonService_topicRemove_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.re = new bean_ttypes.RequestException();
+        this.re.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -1071,6 +1174,11 @@ CommonService_topicRemove_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  if (this.re !== null && this.re !== undefined) {
+    output.writeFieldBegin('re', Thrift.Type.STRUCT, 1);
+    this.re.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -1555,9 +1663,17 @@ CommonService_topicBankInsert_args.prototype.write = function(output) {
 
 var CommonService_topicBankInsert_result = function(args) {
   this.success = null;
+  this.re = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.re = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = args.success;
+    }
+    if (args.re !== undefined && args.re !== null) {
+      this.re = args.re;
     }
   }
 };
@@ -1582,9 +1698,14 @@ CommonService_topicBankInsert_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.re = new bean_ttypes.RequestException();
+        this.re.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -1599,6 +1720,11 @@ CommonService_topicBankInsert_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  if (this.re !== null && this.re !== undefined) {
+    output.writeFieldBegin('re', Thrift.Type.STRUCT, 1);
+    this.re.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -1662,9 +1788,17 @@ CommonService_topicBankUpdate_args.prototype.write = function(output) {
 
 var CommonService_topicBankUpdate_result = function(args) {
   this.success = null;
+  this.re = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.re = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = args.success;
+    }
+    if (args.re !== undefined && args.re !== null) {
+      this.re = args.re;
     }
   }
 };
@@ -1689,9 +1823,14 @@ CommonService_topicBankUpdate_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.re = new bean_ttypes.RequestException();
+        this.re.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -1706,6 +1845,11 @@ CommonService_topicBankUpdate_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  if (this.re !== null && this.re !== undefined) {
+    output.writeFieldBegin('re', Thrift.Type.STRUCT, 1);
+    this.re.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -1769,9 +1913,17 @@ CommonService_topicBankRemove_args.prototype.write = function(output) {
 
 var CommonService_topicBankRemove_result = function(args) {
   this.success = null;
+  this.re = null;
+  if (args instanceof bean_ttypes.RequestException) {
+    this.re = args;
+    return;
+  }
   if (args) {
     if (args.success !== undefined && args.success !== null) {
       this.success = args.success;
+    }
+    if (args.re !== undefined && args.re !== null) {
+      this.re = args.re;
     }
   }
 };
@@ -1796,9 +1948,14 @@ CommonService_topicBankRemove_result.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.re = new bean_ttypes.RequestException();
+        this.re.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -1813,6 +1970,11 @@ CommonService_topicBankRemove_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.I32, 0);
     output.writeI32(this.success);
+    output.writeFieldEnd();
+  }
+  if (this.re !== null && this.re !== undefined) {
+    output.writeFieldBegin('re', Thrift.Type.STRUCT, 1);
+    this.re.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -2292,6 +2454,9 @@ CommonServiceClient.prototype.recv_topicOptionInsert = function(input,mtype,rseq
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.re) {
+    return callback(result.re);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -2339,6 +2504,9 @@ CommonServiceClient.prototype.recv_topicOptionUpdate = function(input,mtype,rseq
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.re) {
+    return callback(result.re);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -2386,6 +2554,9 @@ CommonServiceClient.prototype.recv_topicOptionRemove = function(input,mtype,rseq
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.re) {
+    return callback(result.re);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -2583,6 +2754,9 @@ CommonServiceClient.prototype.recv_topicInsert = function(input,mtype,rseqid) {
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.re) {
+    return callback(result.re);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -2630,6 +2804,9 @@ CommonServiceClient.prototype.recv_topicUpdate = function(input,mtype,rseqid) {
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.re) {
+    return callback(result.re);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -2677,6 +2854,9 @@ CommonServiceClient.prototype.recv_topicRemove = function(input,mtype,rseqid) {
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.re) {
+    return callback(result.re);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -2874,6 +3054,9 @@ CommonServiceClient.prototype.recv_topicBankInsert = function(input,mtype,rseqid
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.re) {
+    return callback(result.re);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -2921,6 +3104,9 @@ CommonServiceClient.prototype.recv_topicBankUpdate = function(input,mtype,rseqid
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.re) {
+    return callback(result.re);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -2968,6 +3154,9 @@ CommonServiceClient.prototype.recv_topicBankRemove = function(input,mtype,rseqid
   result.read(input);
   input.readMessageEnd();
 
+  if (null !== result.re) {
+    return callback(result.re);
+  }
   if (null !== result.success) {
     return callback(null, result.success);
   }
@@ -3156,8 +3345,13 @@ CommonServiceProcessor.prototype.process_topicOptionInsert = function(seqid, inp
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionInsert", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CommonService_topicOptionInsert_result(err);
+          output.writeMessageBegin("topicOptionInsert", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("topicOptionInsert", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -3165,7 +3359,7 @@ CommonServiceProcessor.prototype.process_topicOptionInsert = function(seqid, inp
   } else {
     this._handler.topicOptionInsert(args.topicOption, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CommonService_topicOptionInsert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("topicOptionInsert", Thrift.MessageType.REPLY, seqid);
       } else {
@@ -3192,8 +3386,13 @@ CommonServiceProcessor.prototype.process_topicOptionUpdate = function(seqid, inp
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionUpdate", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CommonService_topicOptionUpdate_result(err);
+          output.writeMessageBegin("topicOptionUpdate", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("topicOptionUpdate", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -3201,7 +3400,7 @@ CommonServiceProcessor.prototype.process_topicOptionUpdate = function(seqid, inp
   } else {
     this._handler.topicOptionUpdate(args.topicOption, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CommonService_topicOptionUpdate_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("topicOptionUpdate", Thrift.MessageType.REPLY, seqid);
       } else {
@@ -3228,8 +3427,13 @@ CommonServiceProcessor.prototype.process_topicOptionRemove = function(seqid, inp
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicOptionRemove", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CommonService_topicOptionRemove_result(err);
+          output.writeMessageBegin("topicOptionRemove", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("topicOptionRemove", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -3237,7 +3441,7 @@ CommonServiceProcessor.prototype.process_topicOptionRemove = function(seqid, inp
   } else {
     this._handler.topicOptionRemove(args.topicOption, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CommonService_topicOptionRemove_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("topicOptionRemove", Thrift.MessageType.REPLY, seqid);
       } else {
@@ -3387,8 +3591,13 @@ CommonServiceProcessor.prototype.process_topicInsert = function(seqid, input, ou
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicInsert", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CommonService_topicInsert_result(err);
+          output.writeMessageBegin("topicInsert", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("topicInsert", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -3396,7 +3605,7 @@ CommonServiceProcessor.prototype.process_topicInsert = function(seqid, input, ou
   } else {
     this._handler.topicInsert(args.topic, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CommonService_topicInsert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("topicInsert", Thrift.MessageType.REPLY, seqid);
       } else {
@@ -3423,8 +3632,13 @@ CommonServiceProcessor.prototype.process_topicUpdate = function(seqid, input, ou
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicUpdate", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CommonService_topicUpdate_result(err);
+          output.writeMessageBegin("topicUpdate", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("topicUpdate", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -3432,7 +3646,7 @@ CommonServiceProcessor.prototype.process_topicUpdate = function(seqid, input, ou
   } else {
     this._handler.topicUpdate(args.topic, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CommonService_topicUpdate_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("topicUpdate", Thrift.MessageType.REPLY, seqid);
       } else {
@@ -3459,8 +3673,13 @@ CommonServiceProcessor.prototype.process_topicRemove = function(seqid, input, ou
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicRemove", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CommonService_topicRemove_result(err);
+          output.writeMessageBegin("topicRemove", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("topicRemove", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -3468,7 +3687,7 @@ CommonServiceProcessor.prototype.process_topicRemove = function(seqid, input, ou
   } else {
     this._handler.topicRemove(args.topic, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CommonService_topicRemove_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("topicRemove", Thrift.MessageType.REPLY, seqid);
       } else {
@@ -3618,8 +3837,13 @@ CommonServiceProcessor.prototype.process_topicBankInsert = function(seqid, input
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicBankInsert", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CommonService_topicBankInsert_result(err);
+          output.writeMessageBegin("topicBankInsert", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("topicBankInsert", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -3627,7 +3851,7 @@ CommonServiceProcessor.prototype.process_topicBankInsert = function(seqid, input
   } else {
     this._handler.topicBankInsert(args.topicBank, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CommonService_topicBankInsert_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("topicBankInsert", Thrift.MessageType.REPLY, seqid);
       } else {
@@ -3654,8 +3878,13 @@ CommonServiceProcessor.prototype.process_topicBankUpdate = function(seqid, input
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicBankUpdate", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CommonService_topicBankUpdate_result(err);
+          output.writeMessageBegin("topicBankUpdate", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("topicBankUpdate", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -3663,7 +3892,7 @@ CommonServiceProcessor.prototype.process_topicBankUpdate = function(seqid, input
   } else {
     this._handler.topicBankUpdate(args.topicBank, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CommonService_topicBankUpdate_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("topicBankUpdate", Thrift.MessageType.REPLY, seqid);
       } else {
@@ -3690,8 +3919,13 @@ CommonServiceProcessor.prototype.process_topicBankRemove = function(seqid, input
         output.flush();
       }, function (err) {
         var result;
-        result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("topicBankRemove", Thrift.MessageType.EXCEPTION, seqid);
+        if (err instanceof bean_ttypes.RequestException) {
+          result = new CommonService_topicBankRemove_result(err);
+          output.writeMessageBegin("topicBankRemove", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("topicBankRemove", Thrift.MessageType.EXCEPTION, seqid);
+        }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
@@ -3699,7 +3933,7 @@ CommonServiceProcessor.prototype.process_topicBankRemove = function(seqid, input
   } else {
     this._handler.topicBankRemove(args.topicBank, function (err, result) {
       var result_obj;
-      if ((err === null || typeof err === 'undefined')) {
+      if ((err === null || typeof err === 'undefined') || err instanceof bean_ttypes.RequestException) {
         result_obj = new CommonService_topicBankRemove_result((err !== null || typeof err === 'undefined') ? err : {success: result});
         output.writeMessageBegin("topicBankRemove", Thrift.MessageType.REPLY, seqid);
       } else {

@@ -78,23 +78,23 @@ service CourseService{
 }
 # 公共服务
 service CommonService{
-    i32 topicOptionInsert(1: bean.TopicOption topicOption),
-    i32 topicOptionUpdate(1: bean.TopicOption topicOption),
-    i32 topicOptionRemove(1: bean.TopicOption topicOption),
+    i32 topicOptionInsert(1: bean.TopicOption topicOption) throws (1: bean.RequestException re),
+    i32 topicOptionUpdate(1: bean.TopicOption topicOption) throws (1: bean.RequestException re),
+    i32 topicOptionRemove(1: bean.TopicOption topicOption) throws (1: bean.RequestException re),
     list<bean.TopicOption> topicOptionSelect(1: bean.AbstractSql abstractSql) throws (1: bean.RequestException re),
     list<bean.TopicOption> topicOptionSelectNoCache(1: bean.AbstractSql abstractSql) throws (1: bean.RequestException re),
     i32 topicOptionCount(1: bean.AbstractSql abstractSql) throws (1: bean.RequestException re),
 
-    i32 topicInsert(1: bean.Topic topic),
-    i32 topicUpdate(1: bean.Topic topic),
-    i32 topicRemove(1: bean.Topic topic),
+    i32 topicInsert(1: bean.Topic topic) throws (1: bean.RequestException re),
+    i32 topicUpdate(1: bean.Topic topic) throws (1: bean.RequestException re),
+    i32 topicRemove(1: bean.Topic topic) throws (1: bean.RequestException re),
     list<bean.Topic> topicSelect(1: bean.AbstractSql abstractSql) throws (1: bean.RequestException re),
     list<bean.Topic> topicSelectNoCache(1: bean.AbstractSql abstractSql) throws (1: bean.RequestException re),
     i32 topicCount(1: bean.AbstractSql abstractSql) throws (1: bean.RequestException re),
 
-    i32 topicBankInsert(1: bean.TopicBank topicBank),
-    i32 topicBankUpdate(1: bean.TopicBank topicBank),
-    i32 topicBankRemove(1: bean.TopicBank topicBank),
+    i32 topicBankInsert(1: bean.TopicBank topicBank) throws (1: bean.RequestException re),
+    i32 topicBankUpdate(1: bean.TopicBank topicBank) throws (1: bean.RequestException re),
+    i32 topicBankRemove(1: bean.TopicBank topicBank) throws (1: bean.RequestException re),
     list<bean.TopicBank> topicBankSelect(1: bean.AbstractSql abstractSql) throws (1: bean.RequestException re),
     list<bean.TopicBank> topicBankSelectNoCache(1: bean.AbstractSql abstractSql) throws (1: bean.RequestException re),
     i32 topicBankCount(1: bean.AbstractSql abstractSql) throws (1: bean.RequestException re),

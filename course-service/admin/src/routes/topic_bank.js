@@ -27,7 +27,13 @@ router.get('/', async (ctx, next) => {
     // params.mode = 'topic+option';
     try {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
-        ctx.body = await client.topicBankSelect(new AbstractSqlBean(params));
+        const a  = await Promise.all([
+	        client.topicBankSelect(new AbstractSqlBean(params)),
+	        client.topicBankCount(new AbstractSqlBean(params))
+        ])
+        // ctx.body = await client.topicBankSelect(new AbstractSqlBean(params));
+	    // const count = await client.topicBankCount(new AbstractSqlBean(params));
+	    console.log(a);
     } catch (e) {
         console.log(e);
         ctx.error = e;
@@ -38,10 +44,9 @@ router.get('/counts', async (ctx, next) => {
     // params.mode = 'topic+option';
     try {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
-        const count = await client.topicBankCount(new AbstractSqlBean(params))
+        const count = await client.topicBankCount(new AbstractSqlBean(params));
         ctx.body = {count};
     } catch (e) {
-        console.log(e);
         ctx.error = e;
     }
 });
@@ -51,7 +56,6 @@ router.post('/', async (ctx, next) => {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
         ctx.body = await client.topicBankInsert(new TopicBank(params));
     } catch (e) {
-        console.log(e);
         ctx.error = e;
     }
 });
@@ -62,7 +66,6 @@ router.patch('/topics', async (ctx, next) => {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
         ctx.body = await client.topicBankAddTopic(params.tb_id,params.topic_id);
     } catch (e) {
-        console.log(e);
         ctx.error = e;
     }
 });
@@ -73,7 +76,6 @@ router.delete('/topics', async (ctx, next) => {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
         ctx.body = await client.topicBankRemoveTopic(params.tb_id,params.topic_id);
     } catch (e) {
-        console.log(e);
         ctx.error = e;
     }
 });
