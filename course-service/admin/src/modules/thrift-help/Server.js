@@ -1,7 +1,7 @@
 /**
  * Created by wenshao on 2017/9/12.
  */
-'use strict';
+// 'use strict';
 const thrift = require('thrift');
 const transport = thrift.TFramedTransport;
 const protocol = thrift.TBinaryProtocol;
@@ -9,6 +9,20 @@ const logger = getLogger('thrift');
 const ConnectZk = require('./ConnectZk');
 const genericPool = require('generic-pool');
 const _poolTagObject = {};
+const Interceptor = require('./interceptor');
+class TimeoutException{
+    constructor() {
+	    this.code = null;
+	    this.message = null;
+	    this.serverName = null;
+	    this.methodName = null;
+	    this.fullMessage = null;
+	    this.name = 'TimeoutException';
+    }
+    static name() {
+    	return 'TimeoutException';
+    }
+}
 
 const Server = (function () {
     const _isPrintLog = Symbol('_isPrintLog');
@@ -177,6 +191,27 @@ const Server = (function () {
             const cHost = this.host;
             const cPort = this.port;
             const cServerObject = this.serverObject;
+	        const interceptor = new Interceptor(cServerObject.Client);
+
+            interceptor.monitorPrototypeRe(/^send_/, function (data) {
+                if (!this.timer) this.timer = {};
+	            const id = this.seqid();
+	            this.timer[id] = setTimeout(() => {
+	                const callback = this._reqs[id] || function() {};
+	                delete this._reqs[id];
+	                const re = new TimeoutException();
+	                re.code = 810;
+	                re.message = 'timeout';
+	                re.serverName = cServerObject.name;
+	                re.methodName = data.name;
+	                re.fullMessage = 'timeout';
+	                callback(re)
+                },10000)
+            });
+	        interceptor.monitorPrototypeRe(/^recv_/, function (data) {
+		        const id = this.seqid();
+                if (this.timer && this.timer[id]) clearTimeout(this.timer[id]);
+	        });
             // this._client = thrift.createClient(this.serverObject, this.connection);
             const factory = {
                 create: function () {

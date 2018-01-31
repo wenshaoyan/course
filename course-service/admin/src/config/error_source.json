@@ -23,6 +23,12 @@
     "en_message":"Parameter validation failure",
     "error_source":"ajv"
   },
+  "THRIFT_ASK_TIMEOUT":{
+    "message":"参数验证失败",
+    "code":5,
+    "en_message":"Parameter validation failure",
+    "error_source":"ajv"
+  },
   "TEL_EXIST":{
     "message":"手机号已经存在",
     "code":101,

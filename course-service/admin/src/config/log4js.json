@@ -54,6 +54,10 @@
       "numBackups": 5,
       "compress": true,
       "encoding": "utf-8"
+    },
+    "http":{
+      "type": "logFaces-HTTP",
+      "url": "${logUrl}"
     }
 
   },
@@ -64,6 +68,7 @@
     "thrift":{"appenders":["console","thrift","thriftLogCentre"],"level":"trace"},
     "resSuccess":{"appenders":["resSuccess"],"level":"trace"},
     "resFail":{"appenders":["console","resFail"],"level":"trace"},
-    "resUnknown":{"appenders":["console","resUnknown"],"level":"trace"}
+    "resUnknown":{"appenders":["console","resUnknown"],"level":"trace"},
+    "error": {"appenders":["console","http"],"level":"trace"}
   }
 }

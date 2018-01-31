@@ -25,19 +25,15 @@ router.use(async(ctx, next) => {
 router.get('/', async (ctx, next) => {
     const params = ctx.querySql;
     // params.mode = 'topic+option';
-    try {
         const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
-        const a  = await Promise.all([
+       /* const a  = await Promise.all([
 	        client.topicBankSelect(new AbstractSqlBean(params)),
 	        client.topicBankCount(new AbstractSqlBean(params))
-        ])
-        // ctx.body = await client.topicBankSelect(new AbstractSqlBean(params));
+        ])*/
+        ctx.body = await client.topicBankSelect(new AbstractSqlBean(params));
 	    // const count = await client.topicBankCount(new AbstractSqlBean(params));
-	    console.log(a);
-    } catch (e) {
-        console.log(e);
-        ctx.error = e;
-    }
+	    // console.log(a);
+
 });
 router.get('/counts', async (ctx, next) => {
     const params = ctx.querySql;

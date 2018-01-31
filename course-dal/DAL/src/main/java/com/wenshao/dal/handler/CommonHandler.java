@@ -5,6 +5,7 @@ import com.wenshao.dal.dao.TopicBankDao;
 import com.wenshao.dal.dao.TopicDao;
 import com.wenshao.dal.dao.TopicOptionDao;
 import com.wenshao.dal.thriftgen.*;
+import com.wenshao.dal.util.ExceptionUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
@@ -111,16 +112,18 @@ public class CommonHandler implements CommonService.Iface {
     @Override
     public List<TopicBank> topicBankSelect(AbstractSql abstractSql) throws RequestException {
         try {
-            Thread.sleep(7000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        SqlSession sqlSession = sessionFactory.openSession();
+        //
+         throw ExceptionUtil.getParameterE();
+      /*  SqlSession sqlSession = sessionFactory.openSession();
         TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
         List<TopicBank> result = dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
         sqlSession.commit();
         sqlSession.close();
-        return result;
+        return result;*/
     }
 
     @Override

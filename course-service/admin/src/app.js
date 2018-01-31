@@ -41,7 +41,8 @@ app.use(response({
     jsonFile: errorSource,
     successLog: getLogger('resSuccess'),
     failLog: getLogger('resFail'),
-    unknownLog: getLogger('resUnknown')
+    unknownLog: getLogger('resUnknown'),
+	errorLog: getLogger('errorLog'),
 
 }));
 // 跨域
