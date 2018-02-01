@@ -21,7 +21,8 @@
     "log4js": "^2.3.3",
     "node-uuid": "^1.4.8",
     "node-zookeeper-client": "^0.2.2",
-    "thrift": "^0.10.0"
+    "thrift": "^0.10.0",
+    "thrift-node-core": "^1.0.6"
   },
   "devDependencies": {
     "nodemon": "^1.8.1"

@@ -111,19 +111,20 @@ public class CommonHandler implements CommonService.Iface {
 
     @Override
     public List<TopicBank> topicBankSelect(AbstractSql abstractSql) throws RequestException {
-        try {
+       /* try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         //
-         throw ExceptionUtil.getParameterE();
-      /*  SqlSession sqlSession = sessionFactory.openSession();
+         throw ExceptionUtil.getParameterE();*/
+        SqlSession sqlSession = sessionFactory.openSession();
         TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
         List<TopicBank> result = dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
+        System.out.println(result);
         sqlSession.commit();
         sqlSession.close();
-        return result;*/
+        return result;
     }
 
     @Override

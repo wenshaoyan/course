@@ -5,24 +5,22 @@ const convert = require('koa-convert');
 const json = require('koa-json');
 const bodyparser = require('koa-bodyparser')();
 const cors = require('koa2-cors');
+const {routerLog, response, formatQuery} = require('thrift-node-core');
 
 
-const user = require('./routes/user');
+/*const user = require('./routes/user');
 const management = require('./routes/management');
 const role = require('./routes/role');
 const banner = require('./routes/banner');
 const client = require('./routes/client');
 const version = require('./routes/version');
-const course = require('./routes/course');
+const course = require('./routes/course');*/
 const topicBank = require('./routes/topic_bank');
 const topic = require('./routes/topic');
 const topicOption = require('./routes/topic_option');
 
-const router_log = require('./middleware/router_log');
 const getUser = require('./middleware/get_user');
-const response = require('./middleware/response');
 const errorSource = require('./config/error_source.json');
-const { formatQuery } = require('./modules/ws-core');
 
 // middlewares
 app.use(convert(bodyparser));
@@ -35,11 +33,11 @@ app.use(getUser({
     "salt": "wenshao"
 }));
 // logger
-app.use(router_log());
+app.use(routerLog());
 
 app.use(response({
     jsonFile: errorSource,
-    successLog: getLogger('resSuccess'),
+    // successLog: getLogger('resSuccess'),
     failLog: getLogger('resFail'),
     unknownLog: getLogger('resUnknown'),
 	errorLog: getLogger('errorLog'),
@@ -53,13 +51,13 @@ app.use(formatQuery({
     suffixNotUseLike: '_id'
 }));
 
-router.use('/users', user.routes(), user.allowedMethods());
+/*router.use('/users', user.routes(), user.allowedMethods());
 router.use('/managements', management.routes(), management.allowedMethods());
 router.use('/roles', role.routes(), role.allowedMethods());
 router.use('/banners', banner.routes(), banner.allowedMethods());
 router.use('/clients', client.routes(), client.allowedMethods());
 router.use('/versions', version.routes(), version.allowedMethods());
-router.use('/courses', course.routes(), course.allowedMethods());
+router.use('/courses', course.routes(), course.allowedMethods());*/
 router.use('/topic-banks', topicBank.routes(), topicBank.allowedMethods());
 router.use('/topics', topic.routes(), topic.allowedMethods());
 router.use('/topic-options', topicOption.routes(), topicOption.allowedMethods());

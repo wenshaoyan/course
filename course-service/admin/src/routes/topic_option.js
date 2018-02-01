@@ -5,16 +5,15 @@
 'use strict';
 const router = require('koa-router')();
 const { TopicOption } = require('../gen-nodejs/bean_types');
-const { AbstractSqlBean } = require('../modules/ws-core');
 const SysUtil = require('../util/sys_util');
-const logger = getLogger();
-const CommonService = getServiceConfig().dalName.common;
+const {AbstractSqlBean, getThrift} = require('thrift-node-core');
+const CommonService = 'CommonService';
 const routerI = require('../middleware/router_interceptor');
 const AdminSchema = require('../schema/admin_schema');
 const apiName = '/';
 
 router.use(async(ctx, next) => {
-    const myServer = getThriftServer(CommonService);
+    const myServer = getThrift(CommonService);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
@@ -26,7 +25,7 @@ router.use(async(ctx, next) => {
 router.get('/', async (ctx, next) => {
     const params = ctx.query;
     try {
-        const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
+        const client = await getThrift(CommonService).getClient(ctx.poolTag);
         ctx.body = await client.topicOptionSelect(new AbstractSqlBean({
             where: {
 	            to_id: {
@@ -55,7 +54,7 @@ router.get('/', async (ctx, next) => {
 router.post('/', async (ctx, next) => {
     const params = ctx.request.body;
     try {
-        const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
+        const client = await getThrift(CommonService).getClient(ctx.poolTag);
         ctx.body = await client.topicOptionInsert(new TopicOption(params));
     } catch (e) {
         ctx.error = e;

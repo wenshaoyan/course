@@ -7,14 +7,13 @@ const router = require('koa-router')();
 const bean_types = require('../gen-nodejs/bean_types');
 const SysUtil = require('../util/sys_util');
 const ArrayUtil = require('../util/array_util');
-const logger = getLogger();
-const bannerService = getServiceConfig().dalName.banner;
+const {AbstractSqlBean, getThrift} = require('thrift-node-core');
+const BannerService = 'BannerService';
 const routerI = require('../middleware/router_interceptor');
 const AdminSchema = require('../schema/admin_schema');
-const apiName = '/';
 
 router.use(async (ctx, next) => {
-    const myServer = getThriftServer(bannerService);
+    const myServer = getThrift(BannerService);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
@@ -28,7 +27,7 @@ router.get('/', async (ctx, next) => {
     const banner = new bean_types.Banner(params);
     const query = new bean_types.Query(params);
     try {
-        const client = await getThriftServer(bannerService).getClient(ctx.poolTag);
+        const client = await getThrift(BannerService).getClient(ctx.poolTag);
         const result = await client.selectQueryNoCache(banner, query);
         ArrayUtil.valueJoin(result, 'image_url', getServiceConfig().publicServer);
         ctx.body = result;
@@ -42,7 +41,7 @@ router.post('/', async (ctx, next) => {
     const banner = new bean_types.Banner(params);
     banner.client_id = params.client_id;
     try {
-        const client = await getThriftServer(bannerService).getClient(ctx.poolTag);
+        const client = await getThrift(BannerService).getClient(ctx.poolTag);
         const id = await client.insert(banner);
         ctx.body = {
             id: id
@@ -57,7 +56,7 @@ router.put('/:id', async (ctx, next) => {
     const banner = new bean_types.Banner(params);
     banner.id = ctx.params.id;
     try {
-        const client = await getThriftServer(bannerService).getClient(ctx.poolTag);
+        const client = await getThrift(BannerService).getClient(ctx.poolTag);
         const result = await client.update(banner);
         if (result !== 1) {
             ctx.error = 'UPDATE_FAIL';
@@ -78,7 +77,7 @@ router.patch('/:id', async (ctx, next) => {
     banner.id = ctx.params.id;
     banner.location = params.location;
     try {
-        const client = await getThriftServer(bannerService).getClient(ctx.poolTag);
+        const client = await getThrift(BannerService).getClient(ctx.poolTag);
         const result = await client.update(banner);
         if (result !== 1) {
             ctx.error = 'UPDATE_FAIL';
@@ -96,7 +95,7 @@ router.delete('/:id', async (ctx, next) => {
     const banner = new bean_types.Banner();
     banner.id = params.id;
     try {
-        const client = await getThriftServer(bannerService).getClient(ctx.poolTag);
+        const client = await getThrift(BannerService).getClient(ctx.poolTag);
         const result = await client.remove(banner);
         if (result !== 1) {
             ctx.error = 'DELETE_FAIL';

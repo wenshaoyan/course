@@ -4,16 +4,15 @@
  */
 'use strict';
 const router = require('koa-router')();
-const { TopicBank, Custom } = require('../gen-nodejs/bean_types');
-const { AbstractSqlBean } = require('../modules/ws-core');
+const {TopicBank, Custom} = require('../gen-nodejs/bean_types');
+const {AbstractSqlBean, getThrift} = require('thrift-node-core');
 const SysUtil = require('../util/sys_util');
-const logger = getLogger();
-const CommonService = getServiceConfig().dalName.common;
+const CommonService = 'CommonService';
 const routerI = require('../middleware/router_interceptor');
 const AdminSchema = require('../schema/admin_schema');
 
-router.use(async(ctx, next) => {
-    const myServer = getThriftServer(CommonService);
+router.use(async (ctx, next) => {
+    const myServer = getThrift(CommonService);
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
@@ -24,22 +23,15 @@ router.use(async(ctx, next) => {
 });
 router.get('/', async (ctx, next) => {
     const params = ctx.querySql;
-    // params.mode = 'topic+option';
-        const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
-       /* const a  = await Promise.all([
-	        client.topicBankSelect(new AbstractSqlBean(params)),
-	        client.topicBankCount(new AbstractSqlBean(params))
-        ])*/
-        ctx.body = await client.topicBankSelect(new AbstractSqlBean(params));
-	    // const count = await client.topicBankCount(new AbstractSqlBean(params));
-	    // console.log(a);
+    const client = await getThrift(CommonService).getClient(ctx.poolTag);
+    ctx.body = await client.topicBankSelect(new AbstractSqlBean(params));
 
 });
 router.get('/counts', async (ctx, next) => {
     const params = ctx.querySql;
     // params.mode = 'topic+option';
     try {
-        const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
+        const client = await getThrift(CommonService).getClient(ctx.poolTag);
         const count = await client.topicBankCount(new AbstractSqlBean(params));
         ctx.body = {count};
     } catch (e) {
@@ -49,7 +41,7 @@ router.get('/counts', async (ctx, next) => {
 router.post('/', async (ctx, next) => {
     const params = ctx.request.body;
     try {
-        const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
+        const client = await getThrift(CommonService).getClient(ctx.poolTag);
         ctx.body = await client.topicBankInsert(new TopicBank(params));
     } catch (e) {
         ctx.error = e;
@@ -59,8 +51,8 @@ router.post('/', async (ctx, next) => {
 router.patch('/topics', async (ctx, next) => {
     const params = ctx.request.body;
     try {
-        const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
-        ctx.body = await client.topicBankAddTopic(params.tb_id,params.topic_id);
+        const client = await getThrift(CommonService).getClient(ctx.poolTag);
+        ctx.body = await client.topicBankAddTopic(params.tb_id, params.topic_id);
     } catch (e) {
         ctx.error = e;
     }
@@ -69,8 +61,8 @@ router.patch('/topics', async (ctx, next) => {
 router.delete('/topics', async (ctx, next) => {
     const params = ctx.request.body;
     try {
-        const client = await getThriftServer(CommonService).getClient(ctx.poolTag);
-        ctx.body = await client.topicBankRemoveTopic(params.tb_id,params.topic_id);
+        const client = await getThrift(CommonService).getClient(ctx.poolTag);
+        ctx.body = await client.topicBankRemoveTopic(params.tb_id, params.topic_id);
     } catch (e) {
         ctx.error = e;
     }
