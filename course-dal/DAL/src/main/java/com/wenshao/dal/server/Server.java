@@ -107,7 +107,7 @@ public class Server {
     private void startZK(String serverName) throws Exception {
         RetryNTimes retryNTimes = new RetryNTimes(10, 1000);
         String localIp = IPUtil.getLocalIp();
-        String root = "dal/" + Server.getEnv() + "/" + serverName;
+        String root = "thrift/" + Server.getEnv() + "/" + serverName;
         CuratorFramework client = CuratorFrameworkFactory.builder()
                 .connectString(ZKConstant.CONNECT_STRING)
                 .sessionTimeoutMs(ZKConstant.SESSION_TIMEOUT)
