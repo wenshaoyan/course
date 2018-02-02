@@ -4,6 +4,7 @@ import com.wenshao.dal.thriftgen.AbstractSql;
 import com.wenshao.dal.thriftgen.RequestException;
 import com.wenshao.dal.thriftgen.Where;
 import com.wenshao.dal.util.ExceptionUtil;
+import com.wenshao.dal.util.FatherToChildUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
@@ -38,7 +39,17 @@ public class AbstractSqlBean extends AbstractSql {
     }
 
     public AbstractSqlBean(AbstractSql abstractSql, Class clazz) throws RequestException {
-        super(abstractSql);
+        super();
+        if (abstractSql != null) {
+           this.selects = abstractSql.selects;
+           this.where = abstractSql.where;
+           this.selects = abstractSql.selects;
+           this.order = abstractSql.order;
+           this.group = abstractSql.group;
+           this.limit = abstractSql.limit;
+           this.includes = abstractSql.includes;
+           this.mode = abstractSql.mode;
+        }
         initClazz(clazz);
         initWhere();
         initOrder();
@@ -136,13 +147,13 @@ public class AbstractSqlBean extends AbstractSql {
     }
 
     private void initLimit() {
-        if (this.limit !=null && this.limit.size() != 0) {
+        if (this.limit != null && this.limit.size() != 0) {
             if (this.limit.size() == 1) {
                 this.limitObject = String.valueOf(this.limit.get(0));
             }
             if (this.limit.size() == 2) {
                 this.limitObject = String.valueOf(this.limit.get(0)) +
-                        " OFFSET "+ String.valueOf(this.limit.get(1));
+                        " OFFSET " + String.valueOf(this.limit.get(1));
             }
         }
     }

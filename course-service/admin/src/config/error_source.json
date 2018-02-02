@@ -29,6 +29,12 @@
     "en_message":"Parameter validation failure",
     "error_source":"ajv"
   },
+  "SERVICE_ERROR":{
+    "message":"service配置错误",
+    "code":6,
+    "en_message":"service validation failure",
+    "error_source":"service"
+  },
   "TEL_EXIST":{
     "message":"手机号已经存在",
     "code":101,
