@@ -37,13 +37,15 @@ public class CommonHandler implements CommonService.Iface {
     public int topicOptionRemove(TopicOption topicOption) throws RequestException {
         return 0;
     }
-
-
     @Override
     public List<TopicOption> topicOptionSelect(AbstractSql abstractSql) throws RequestException {
         SqlSession sqlSession = sessionFactory.openSession();
-        TopicOptionDao dao = sqlSession.getMapper(TopicOptionDao.class);
-        return dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
+        try {
+            TopicOptionDao dao = sqlSession.getMapper(TopicOptionDao.class);
+            return dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
+        }finally {
+            sqlSession.close();
+        }
     }
 
     @Override
@@ -75,8 +77,13 @@ public class CommonHandler implements CommonService.Iface {
     @Override
     public List<Topic> topicSelect(AbstractSql abstractSql) throws RequestException {
         SqlSession sqlSession = sessionFactory.openSession();
-        TopicDao dao = sqlSession.getMapper(TopicDao.class);
-        return dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
+        try {
+            TopicDao dao = sqlSession.getMapper(TopicDao.class);
+            return dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
+        }finally {
+            sqlSession.close();
+        }
+
     }
 
     @Override
@@ -92,11 +99,15 @@ public class CommonHandler implements CommonService.Iface {
     @Override
     public int topicBankInsert(TopicBank topicBank) throws RequestException {
         SqlSession sqlSession = sessionFactory.openSession();
-        TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
-        dao.insert(topicBank);
-        sqlSession.commit();
-        sqlSession.close();
-        return topicBank.getTb_id();
+        try {
+            TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
+            dao.insert(topicBank);
+            sqlSession.commit();
+            return topicBank.getTb_id();
+        }finally {
+            sqlSession.close();
+
+        }
     }
 
     @Override
@@ -111,20 +122,13 @@ public class CommonHandler implements CommonService.Iface {
 
     @Override
     public List<TopicBank> topicBankSelect(AbstractSql abstractSql) throws RequestException {
-       /* try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        //
-         throw ExceptionUtil.getParameterE();*/
         SqlSession sqlSession = sessionFactory.openSession();
-        TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
-        List<TopicBank> result = dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
-        System.out.println(result);
-        sqlSession.commit();
-        sqlSession.close();
-        return result;
+        try {
+            TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
+            return dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
+        }finally {
+            sqlSession.close();
+        }
     }
 
     @Override
@@ -135,11 +139,13 @@ public class CommonHandler implements CommonService.Iface {
     @Override
     public int topicBankCount(AbstractSql abstractSql) throws RequestException {
         SqlSession sqlSession = sessionFactory.openSession();
-        TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
-        int result =  dao.count(new AbstractSqlBean(abstractSql,TopicOption.class));
-        sqlSession.commit();
-        sqlSession.close();
-        return result;
+        try {
+            TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
+            return dao.count(new AbstractSqlBean(abstractSql,TopicOption.class));
+        }finally {
+            sqlSession.close();
+        }
+
     }
 
 

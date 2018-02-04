@@ -20,9 +20,9 @@
                 <property name="username" value="${username}" />
                 <property name="password" value="${password}" />
                 <!-- 在任意时间可以存在的活动（也就是正在使用）连接数量，默认值：10 -->
-                <property name="poolMaximumActiveConnections" value="50" />
+                <property name="poolMaximumActiveConnections" value="100" />
                 <!-- 任意时间可能存在的空闲连接数 默认是5,最好设置为0,否则可能会崩溃掉 -->
-                <property name="poolMaximumIdleConnections" value="0" />
+                <property name="poolMaximumIdleConnections" value="10" />
             </dataSource>
         </environment>
     </environments>

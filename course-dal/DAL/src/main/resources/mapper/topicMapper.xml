@@ -43,6 +43,11 @@
 
     <select id="select" parameterType="_AbstractSqlBean" resultMap="topicResult">
         <include refid="select_list"/>
+        <if test="abstractSql and abstractSql.mode">
+            <if test="abstractSql.mode == 'topic_relation'">
+                INNER JOIN t_topic_relation ON t_topic_relation.tr_topic_id = t_topic.topic_id
+            </if>
+        </if>
         <include refid="BaseMapper.Base_Condition"/>
         <include refid="BaseMapper.Base_Group"/>
         <include refid="BaseMapper.Base_Order"/>

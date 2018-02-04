@@ -13,7 +13,7 @@ module.exports = {
     },
     "thriftGlobal": {
         "timeout": 10000,
-        "poolMax": 5,
+        "poolMax": 50,
         "poolMin": 1,
         "log": getLogger('thrift')
     },

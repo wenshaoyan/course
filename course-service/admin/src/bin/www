@@ -26,9 +26,8 @@ function getEnv() {
 global.NODE_ENV = getEnv();
 
 start(config, function () {
-    // console.error('==========')
     getLogger().info('http://localhost:9000')
-})
+});
 
 
 

@@ -8,7 +8,7 @@ const {TopicBank, Custom} = require('../gen-nodejs/bean_types');
 const {AbstractSqlBean, getThrift} = require('thrift-node-core');
 const SysUtil = require('../util/sys_util');
 const CommonService = 'CommonService';
-const services = require('../services/topic');
+const services = require('./topic');
 
 function trim(str) {
     return str.replace(/(^\s*)|(\s*$)/g, "");
@@ -155,32 +155,32 @@ router.use(async (ctx, next) => {
     if (myServer.connectionStatus !== 1) {   // 检查thrift连接状态
         ctx.error = 'THRIFT_CONNECT_ERROR';
     } else {
-        ctx.poolTag = SysUtil.getUuid();
         await next();
-        myServer.release(ctx.poolTag);
     }
 });
 router.get('/', async (ctx, next) => {
     const params = new AbstractSqlBean(ctx.querySql);
-    const json = {
+    if (!(params.limit instanceof Array) || params.limit.length === 0) {
+        params.limit = [2];
+    }
+    ctx.methodJson = {
         data: {
-            service: 'selectTopicOptionBanks',
+            method: 'selectTopicOptionBanks',
             args: {
                 abstractSqlBean: params
             },
             fields: {
                 topics: {
-                    service: 'selectTopics',
+                    method: 'selectTopics',
                     fields: {
                         topicOptions: {
-                            service: 'selectTopicOptions'
+                            method: 'selectTopicOptions'
                         }
                     }
                 }
             }
         }
     };
-    ctx.serviceJson = json;
     await next();
 });
 router.get('/counts', async (ctx, next) => {
@@ -223,86 +223,4 @@ router.delete('/topics', async (ctx, next) => {
         ctx.error = e;
     }
 });
-router.use(async (ctx, next) => {
-    ctx.body = await createTask({}, ctx.serviceJson, ctx);;
-});
-
-/**
- * 创建任务
- * @param root      当前字段的上级对象 第一级为{}
- * @param fields    字段集合
- * @param ctx
- * @return {Promise<{}>}
- */
-async function createTask(root, fields, ctx) {
-    const resultData = {};
-    const list = [];
-    const listMap = new Map();
-    let i = 0;
-    for (const name in fields) {
-        listMap.set(i, name);
-        list.push(execTask(fields[name], name, root, ctx));
-        i++;
-    }
-    const result = await Promise.all(list);
-    for (const j in result) {
-        resultData[listMap.get(+j)] = result[j];
-    }
-    return resultData
-}
-
-/**
- * 执行任务
- * @param field     field为对应到的service中的对象
- * @param name      field的名称
- * @param root      当前字段的上级对象 第一级为{}
- * @param ctx
- * @return {Promise<*>}
- */
-async function execTask(field, name, root, ctx) {
-    let args = {};
-
-    if (!services[field.service]) {
-        console.error(field, field.service + ' not found');
-        throw new Error(field.service + ' not found');
-    }
-    const currentService = services[field.service];
-    if (currentService.args) {
-        for (const k in currentService.args) {
-            args[k] = null;
-        }
-    }
-    if (field.args) { // 有参数
-        args = field.args;
-    }
-    const extend = {thrift: {}, http: {}};
-    if (typeof currentService === 'string') {
-        const v = currentService.thrift;
-        if (!getThrift(v)) {
-            console.error(`${v} not in thrift `);
-            throw new Error(`${v} not in thrift `);
-        }
-        extend.thrift[v] = await getThrift(v).getClient(ctx.poolTag);
-    } else if (currentService.thrift instanceof Array) {
-        for (const v of currentService.thrift) {
-            if (!getThrift(v)) {
-                console.error(`${v} not in thrift `);
-                throw new Error(`${v} not in thrift `);
-            }
-            extend.thrift[v] = await getThrift(v).getClient(ctx.poolTag);
-        }
-    }
-    const newRoot = await currentService.resolve(root, args, extend, ctx);
-
-    for (const parent of newRoot) {
-        if (field.fields) {
-            const children = await createTask(parent, field.fields, ctx);
-            for (const childrenKey in children) {
-                parent[childrenKey] = children[childrenKey];
-            }
-        }
-    }
-    return newRoot;
-}
-
 module.exports = router;
