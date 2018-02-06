@@ -26,7 +26,6 @@ const topicOption = require('./routes/topic_option');
 
 const getUser = require('./middleware/get_user');
 const errorSource = require('./config/error_source.json');
-const graphqlHTTP = require('express-graphql');
 
 // middlewares
 app.use(convert(bodyparser));
