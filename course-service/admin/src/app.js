@@ -7,19 +7,26 @@ const bodyparser = require('koa-bodyparser')();
 const cors = require('koa2-cors');
 const path = require('path');
 const {routerLog, response, formatQuery, methodQuery} = require('thrift-node-core');
+const {graphqlKoa, graphiqlKoa} = require('apollo-server-koa');
+const {
+    GraphQLSchema,
+    GraphQLObjectType,
+} = require('graphql');
 /*const user = require('./routes/user');
  const management = require('./routes/management');
  const role = require('./routes/role');
  const banner = require('./routes/banner');
  const client = require('./routes/client');
  const version = require('./routes/version');
- const course = require('./routes/course');*/
+ const course = require('./routes/course');
 const topicBank = require('./routes/topic_bank');
 const topic = require('./routes/topic');
 const topicOption = require('./routes/topic_option');
+*/
 
 const getUser = require('./middleware/get_user');
 const errorSource = require('./config/error_source.json');
+const graphqlHTTP = require('express-graphql');
 
 // middlewares
 app.use(convert(bodyparser));
@@ -35,14 +42,14 @@ app.use(getUser({
 // logger
 app.use(routerLog());
 
-app.use(response({
+/*app.use(response({
     jsonFile: errorSource,
     // successLog: getLogger('resSuccess'),
     failLog: getLogger('resFail'),
     unknownLog: getLogger('resUnknown'),
     errorLog: getLogger('errorLog'),
 
-}));
+}));*/
 
 // 跨域
 app.use(cors({
@@ -58,16 +65,64 @@ app.use(formatQuery({
  router.use('/banners', banner.routes(), banner.allowedMethods());
  router.use('/clients', client.routes(), client.allowedMethods());
  router.use('/versions', version.routes(), version.allowedMethods());
- router.use('/courses', course.routes(), course.allowedMethods());*/
+ router.use('/courses', course.routes(), course.allowedMethods());
 router.use('/topic-banks', topicBank.routes(), topicBank.allowedMethods());
 router.use('/topics', topic.routes(), topic.allowedMethods());
 router.use('/topic-options', topicOption.routes(), topicOption.allowedMethods());
-
+*/
+const SysUtil = require('./util/sys_util');
+const {Queries, Mutations} = SysUtil.mergeDirSchema('../types');
+const schema = new GraphQLSchema({
+    query: new GraphQLObjectType({
+        name: 'Query',
+        description: `查询微服务`,
+        fields: Queries
+    }),
+    mutation: new GraphQLObjectType({
+        name: 'Mutation',
+        description: '修改微服务',
+        fields: Mutations
+    })
+});
+function next123() {
+    return async(ctx, next) => {
+        /*console.log(ctx)
+        graphqlKoa({
+            schema,
+            context: {
+                ctx: ctx,
+                // user: this.state && this.state.user,
+                // status: this.service.util.status.bind(this.service.util),
+            }
+        });*/
+        //ctx.body ='1'
+        console.log('=========')
+        // return next1234();
+        await next();
+    }
+}
+function next1234() {
+    return async(ctx, next) => {
+        graphqlKoa({
+            schema,
+            context: {
+                ctx: ctx,
+                // user: this.state && this.state.user,
+                // status: this.service.util.status.bind(this.service.util),
+            },
+            tracing: true
+        })(ctx);
+        // await next();
+    }
+}
+router.post('/graphql',next1234());
+router.get('/graphql', graphqlKoa({
+    schema
+}));
+router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' }));
 
 app.use(router.routes(), router.allowedMethods());
-app.use(methodQuery({
-    methodDir: path.join(__dirname, './methods')
-}));
+
 // response
 app.on('error', function (err, ctx) {
     console.log(err);
