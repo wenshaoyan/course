@@ -6,8 +6,7 @@ const json = require('koa-json');
 const bodyparser = require('koa-bodyparser')();
 const cors = require('koa2-cors');
 const path = require('path');
-const {routerLog, response, formatQuery, methodQuery} = require('thrift-node-core');
-const {graphqlKoa, graphiqlKoa} = require('apollo-server-koa');
+const {routerLog, response, formatQuery, methodQuery, graphqlKoa} = require('thrift-node-core');
 const {
     GraphQLSchema,
     GraphQLObjectType,
@@ -83,25 +82,9 @@ const schema = new GraphQLSchema({
         fields: Mutations
     })
 });
-function next123() {
-    return async(ctx, next) => {
-        /*console.log(ctx)
-        graphqlKoa({
-            schema,
-            context: {
-                ctx: ctx,
-                // user: this.state && this.state.user,
-                // status: this.service.util.status.bind(this.service.util),
-            }
-        });*/
-        //ctx.body ='1'
-        console.log('=========')
-        // return next1234();
-        await next();
-    }
-}
+
 function next1234() {
-    return async(ctx, next) => {
+    return async (ctx, next) => {
         graphqlKoa({
             schema,
             context: {
@@ -109,16 +92,23 @@ function next1234() {
                 // user: this.state && this.state.user,
                 // status: this.service.util.status.bind(this.service.util),
             },
-            tracing: true
+            tracing: true,
+            formatResponse: (data, a, b) => {
+                // console.log(a,b)
+                return data;
+            }
         })(ctx);
         // await next();
     }
 }
-router.post('/graphql',next1234());
+
+router.post('/graphql', graphqlKoa({
+    schema,
+    log:getLogger()
+}));
 router.get('/graphql', graphqlKoa({
     schema
 }));
-router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' }));
 
 app.use(router.routes(), router.allowedMethods());
 
