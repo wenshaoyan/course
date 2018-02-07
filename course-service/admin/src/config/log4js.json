@@ -15,6 +15,7 @@
     "resFail":{"appenders":["console","http"],"level":"trace"},
     "resUnknown":{"appenders":["console","http"],"level":"trace"},
     "error": {"appenders":["console","http"],"level":"trace"},
-    "core": {"appenders":["console","http"],"level":"trace"}
+    "core": {"appenders":["console","http"],"level":"trace"},
+    "graphql": {"appenders":["console","http"],"level":"trace"}
   }
 }

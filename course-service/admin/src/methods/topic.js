@@ -1,42 +1,54 @@
-const {TopicBank} = require('../gen-nodejs/bean_types');
-const {AbstractSqlBean} = require('thrift-node-core');
-module.exports = {
-    selectTopicOptionBanks: {
-        type: TopicBank,
-        description: '按规则获取题库',
-        args: {
-            abstractSqlBean: {
-                type: AbstractSqlBean
-            }
-        },
-        thrift: ['CommonService'],
-        resolve: function (root, args, extend, ctx) {
-            return extend.thrift.CommonService.topicBankSelect(args.abstractSqlBean);
-        }
-    },
-    selectTopicOptions: {
-        type: TopicBank,
-        description: '按规则获取选项',
-        thrift: ['CommonService'],
-        resolve: function (root, args, extend, ctx) {
-            return extend.thrift.CommonService.topicOptionSelect(new AbstractSqlBean({
-                where: {
-                    to_topic_id: {eq: root.topic_id, type: 'number'}
-                }
-            }));
-        }
-    },
-    selectTopics: {
-        type: TopicBank,
-        description: '按规则获取题目',
-        thrift: ['CommonService'],
-        resolve: function (root, args, extend, ctx) {
-            return extend.thrift.CommonService.topicSelect(new AbstractSqlBean({
-                where: {
-                    tr_tb_id: {eq: root.tb_id, type: 'number'}
-                },
-                mode: 'topic_relation'
-            }));
+const {
+    GraphQLString,
+    GraphQLObjectType,
+    GraphQLNonNull,
+    GraphQLFloat,
+    GraphQLList,
+    GraphQLInterfaceType,
+    GraphQLScalarType,
+    Kind
+} = require('graphql');
+const {Topic, TopicBank, TopicOption} = require('../types/objects');
+const {getThrift} = require('thrift-node-core');
+
+const Queries = {
+    topics:{
+        name:'topics',
+        type: new GraphQLList(Topic),
+        description: '获取题目列表',
+        resolve:async (root, args, {ctx}) => {
+            // const CommonClient = getThrift('CommonService').getProxyClient();
+            // const result = await CommonClient.topicSelect();
+            // console.log(result);
+            return  [ { topic_id: 6,
+                topic_title: '1',
+                topic_type: '1',
+                topic_analysis: '1',
+                topic_correct_answer: '1',
+                topic_score: 1,
+                topic_create_time: '2018-01-20 17:05:08',
+                topic_update_time: '2018-01-20 17:05:11',
+                topicOptions: [] },
+                { topic_id: 7,
+                    topic_title: '1',
+                    topic_type: '1',
+                    topic_analysis: '1',
+                    topic_correct_answer: '1',
+                    topic_score: 1,
+                    topic_create_time: '2018-01-20 17:05:08',
+                    topic_update_time: '2018-01-20 17:05:11',
+                    topicOptions: [] } ];
         }
     }
 };
+const Mutations = {
+    topics1: {
+        name: 'topics1',
+        type: Topic,
+        description: '获取题目列表',
+        resolve: (root, args, {ctx}) => {
+            return {};
+        }
+    }
+};
+module.exports = {Queries,Mutations};

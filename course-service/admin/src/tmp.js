@@ -1,6 +1,7 @@
 const {GraphQLString, GraphQLObjectType, GraphQLNonNull, GraphQLFloat,
 GraphQLList,GraphQLInterfaceType,GraphQLScalarType,Kind} = require('graphql');
-
+const {Topic} = require('../types/topic');
+// 定义
 const OddType = new GraphQLScalarType({
     name: 'Odd',
     serialize: oddValue,
@@ -16,6 +17,12 @@ const OddType = new GraphQLScalarType({
 function oddValue(value) {
     return value % 2 === 1 ? value : null;
 }
+const EntityType = new GraphQLInterfaceType({
+    name: 'Entity',
+    fields: {
+        name: { type: GraphQLString }
+    }
+});
 const Queries = {
     Test: {
         type: new GraphQLObjectType({
@@ -75,6 +82,15 @@ const Queries = {
                 v: 11
             }]
         }
+    },
+    git: {
+        type: Topic,
+        description: 'ttt',
+        resolve: (root,args,context) => {
+            return {
+                name:'1'
+            }
+        }
     }
 };
 const Mutations = {
@@ -82,11 +98,10 @@ const Mutations = {
         type: GraphQLString,
         description: '查询某个商品最新的订单信息',
         resolve: (root, args, ctx) => {
-            return '1';
         }
     }
 };
 module.exports = {
-    Queries,
-    Mutations
+    //Queries,
+    //Mutations
 };

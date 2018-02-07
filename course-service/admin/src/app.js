@@ -37,17 +37,6 @@ app.use(getUser({
     "salt": "wenshao"
 }));
 
-// logger
-app.use(routerLog());
-
-/*app.use(response({
-    jsonFile: errorSource,
-    // successLog: getLogger('resSuccess'),
-    failLog: getLogger('resFail'),
-    unknownLog: getLogger('resUnknown'),
-    errorLog: getLogger('errorLog'),
-
-}));*/
 
 // 跨域
 app.use(cors({
@@ -69,7 +58,7 @@ router.use('/topics', topic.routes(), topic.allowedMethods());
 router.use('/topic-options', topicOption.routes(), topicOption.allowedMethods());
 */
 const SysUtil = require('./util/sys_util');
-const {Queries, Mutations} = SysUtil.mergeDirSchema('../types');
+const {Queries, Mutations} = SysUtil.mergeDirSchema('../methods');
 const schema = new GraphQLSchema({
     query: new GraphQLObjectType({
         name: 'Query',
@@ -82,32 +71,13 @@ const schema = new GraphQLSchema({
         fields: Mutations
     })
 });
-
-function next1234() {
-    return async (ctx, next) => {
-        graphqlKoa({
-            schema,
-            context: {
-                ctx: ctx,
-                // user: this.state && this.state.user,
-                // status: this.service.util.status.bind(this.service.util),
-            },
-            tracing: true,
-            formatResponse: (data, a, b) => {
-                // console.log(a,b)
-                return data;
-            }
-        })(ctx);
-        // await next();
-    }
-}
-
 router.post('/graphql', graphqlKoa({
     schema,
-    log:getLogger()
+    log:getLogger('graphql')
 }));
 router.get('/graphql', graphqlKoa({
-    schema
+    schema,
+    //log:getLogger('graphql')
 }));
 
 app.use(router.routes(), router.allowedMethods());
