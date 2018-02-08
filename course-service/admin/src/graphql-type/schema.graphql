@@ -1,0 +1,17 @@
+type Query {
+  topicBanks: [TopicBank]
+  topics: [Topic]
+  topicOptions: [TopicOption]
+}
+
+# this schema allows the following mutation:
+type Mutation {
+  addTopic(id: Int!):Int
+}
+
+# we need to tell the server which types represent the root query
+# and root mutation types. We call them RootQuery and RootMutation by convention.
+schema {
+  query: Query
+  mutation: Mutation
+}

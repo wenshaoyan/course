@@ -1,0 +1,17 @@
+type TopicOption implements Node{
+  _sid:String!
+  tb_id:Int!
+  tb_name:Int!
+}
+type Topic implements Node{
+  _sid:String!
+  topic_id:Int!
+  topic_name:Int!
+  topicOptions:[TopicOption]
+}
+type TopicBank implements Node{
+  _sid:String!
+  tb_id:Int!
+  tb_name:String!
+  topics: [Topic]
+}

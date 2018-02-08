@@ -36,31 +36,41 @@ class SysUtil {
         finder(startPath);
         return result;
     }
-    static mergeDirSchema(dir) {
+
+    /**
+     * 正常合并目录下的js文件 不分先后
+     * @param dir
+     */
+    static normalMergeDirMethod(dir) {
         const list = SysUtil.loadDirFiles(dir);
-        const Queries = {}, Mutations = {};
+        const data = {};
         for (const file of list) {
             const f = require(file);
-            if (f.Queries && typeof f.Queries === 'object') {
-                Object.keys(f.Queries).forEach(key => {
-                    if (key in Queries) {
-                        throw new Error(`mergeDirSchema:${key} is exist`);
+            if (f && typeof f === 'object') {
+                Object.keys(f).forEach(key => {
+                    if (key in data) {
+                        throw new Error(`normalMergeDirMethod:${key} is exist`);
                     }
-                    Queries[key] = f.Queries[key];
+                    data[key] = f[key];
                 })
             }
-            if (f.Mutations && typeof f.Mutations === 'object') {
-                Object.keys(f.Mutations).forEach(key => {
-                    if (key in Mutations) {
-                        throw new Error(`mergeDirSchema:${key} is exist`);
-                    }
-                    Mutations[key] = f.Mutations[key];
-                })
-            }
+        }
+        return data;
+    }
 
+    /**
+     * 正常合并目录下所有文件为一个文件 不分先后
+     * @param dir
+     * @return {string}
+     */
+    static normalMergeDirFile(dir) {
+        const list = SysUtil.loadDirFiles(dir);
+        let data = '';
+        for (const file of list) {
+            data += fs.readFileSync(file, 'utf8')
 
         }
-        return {Queries, Mutations};
+        return data;
     }
 }
 module.exports = SysUtil;

@@ -6,7 +6,8 @@ const json = require('koa-json');
 const bodyparser = require('koa-bodyparser')();
 const cors = require('koa2-cors');
 const path = require('path');
-const {routerLog, response, formatQuery, methodQuery, graphqlKoa} = require('thrift-node-core');
+const {routerLog, response, formatQuery, methodQuery} = require('thrift-node-core');
+const {graphqlKoa, graphiqlKoa} = require('apollo-server-koa');
 const {
     GraphQLSchema,
     GraphQLObjectType,
@@ -58,26 +59,29 @@ router.use('/topics', topic.routes(), topic.allowedMethods());
 router.use('/topic-options', topicOption.routes(), topicOption.allowedMethods());
 */
 const SysUtil = require('./util/sys_util');
-const {Queries, Mutations} = SysUtil.mergeDirSchema('../methods');
-const schema = new GraphQLSchema({
-    query: new GraphQLObjectType({
-        name: 'Query',
-        description: `查询微服务`,
-        fields: Queries
-    }),
-    mutation: new GraphQLObjectType({
-        name: 'Mutation',
-        description: '修改微服务',
-        fields: Mutations
-    })
+const { makeExecutableSchema } = require('graphql-tools');
+
+const typeDefs = SysUtil.normalMergeDirFile('../graphql-type');
+const resolvers = {};
+resolvers.Query = SysUtil.normalMergeDirMethod('../graphql-resolvers/query');
+resolvers.Mutation = SysUtil.normalMergeDirMethod('../graphql-resolvers/mutation');
+const resolve = SysUtil.normalMergeDirMethod('../graphql-resolvers/resolvers');
+Object.keys(resolve).map((key) => {
+    resolvers[key] = resolve[key];
+});
+
+
+const executableSchema = makeExecutableSchema({
+    typeDefs,
+    resolvers
 });
 router.post('/graphql', graphqlKoa({
-    schema,
+    schema:executableSchema,
     log:getLogger('graphql')
 }));
 router.get('/graphql', graphqlKoa({
-    schema,
-    //log:getLogger('graphql')
+    schema:executableSchema,
+    log:getLogger('graphql')
 }));
 
 app.use(router.routes(), router.allowedMethods());
