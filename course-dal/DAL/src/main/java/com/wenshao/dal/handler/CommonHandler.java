@@ -79,7 +79,7 @@ public class CommonHandler implements CommonService.Iface {
         SqlSession sqlSession = sessionFactory.openSession();
         try {
             TopicDao dao = sqlSession.getMapper(TopicDao.class);
-            return dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
+            return dao.select(new AbstractSqlBean(abstractSql,Topic.class));
         }finally {
             sqlSession.close();
         }
@@ -125,7 +125,7 @@ public class CommonHandler implements CommonService.Iface {
         SqlSession sqlSession = sessionFactory.openSession();
         try {
             TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
-            return dao.select(new AbstractSqlBean(abstractSql,TopicOption.class));
+            return dao.select(new AbstractSqlBean(abstractSql,TopicBank.class));
         }finally {
             sqlSession.close();
         }
@@ -141,7 +141,7 @@ public class CommonHandler implements CommonService.Iface {
         SqlSession sqlSession = sessionFactory.openSession();
         try {
             TopicBankDao dao = sqlSession.getMapper(TopicBankDao.class);
-            return dao.count(new AbstractSqlBean(abstractSql,TopicOption.class));
+            return dao.count(new AbstractSqlBean(abstractSql,TopicBank.class));
         }finally {
             sqlSession.close();
         }
