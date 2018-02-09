@@ -13,19 +13,38 @@ module.exports = {
         _sid() {
             return '1';
         },
-        topics(root, args, context) {
+        async topics(root, args, context) {
             const client = getThrift(CommonService).getProxyClient();
-            return client.topicSelect();
+            return await client.topicSelect();
+        },
+        tb_name(root, args, context) {
+            console.log('root');
         }
     },
     Topic: {
         _sid() {
             return '2';
         },
-        topicOptions(root, args, context) {
+        async topicOptions(root, args, context) {
             const client = getThrift(CommonService).getProxyClient();
             return client.topicOptionSelect();
         }
+    },
+    TopicOption: {
+        _sid(){
+            return '3';
+        }
+    },
+    Vehicle: {
+        __resolveType(obj, context, info){
+            if(obj.wingspan){
+                return 'Airplane';
+            }
 
-    }
+            if(obj.licensePlate){
+                return 'Car';
+            }
+            return null;
+        }
+    },
 };

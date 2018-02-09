@@ -1,12 +1,12 @@
 type TopicOption implements Node{
   _sid:String!
-  tb_id:Int!
-  tb_name:Int!
+  to_id:Int!
+  to_content:Int!
 }
 type Topic implements Node{
   _sid:String!
   topic_id:Int!
-  topic_name:Int!
+  topic_title:String!
   topicOptions:[TopicOption]
 }
 type TopicBank implements Node{
@@ -14,4 +14,14 @@ type TopicBank implements Node{
   tb_id:Int!
   tb_name:String!
   topics: [Topic]
+}
+
+type Airplane implements Vehicle {
+  maxSpeed: Int
+  wingspan: Int
+}
+
+type Car implements Vehicle {
+  maxSpeed: Int
+  licensePlate: String
 }
