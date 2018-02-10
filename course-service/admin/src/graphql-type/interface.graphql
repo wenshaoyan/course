@@ -1,3 +1,6 @@
+interface Node{
+	_sid: String!
+}
 interface Vehicle {
   maxSpeed: Int
 }

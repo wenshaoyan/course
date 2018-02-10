@@ -16,11 +16,11 @@ Object.keys(resolve).map((key) => {
 });
 const str = baseSchemaString();
 const baseSchema = makeExecutableSchema({
-    typeDefs: str.typeDefs + str.publicType,
+    typeDefs: str.typeDefs,
     resolvers: str.resolvers
 });
 const executableSchema = makeExecutableSchema({
-    typeDefs: typeDefs + str.publicType,
+    typeDefs: typeDefs,
     resolvers
 });
 
