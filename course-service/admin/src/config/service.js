@@ -5,9 +5,11 @@ module.exports = {
         "url": process.env.ZK_URL,
         "register": [
             {
-                "path": "/develop/http/admin",
+                "path": "/develop/graphql/admin",
                 "id": "127.0.0.1:9000",
-                "data": "127.0.0.1:9000"
+                "data": {
+
+                }
             }
         ]
     },
