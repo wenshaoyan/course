@@ -5,10 +5,10 @@
 const {start, normalMergeDirFile, normalMergeDirMethod, baseSchemaString} = require('thrift-node-core');
 const {makeExecutableSchema, mergeSchemas} = require('graphql-tools');
 
-const typeDefs = normalMergeDirFile('../graphql-type');
+const typeDefs = normalMergeDirFile('../graphql-types');
 const resolvers = {};
-resolvers.Query = normalMergeDirMethod('../graphql-resolvers/query');
-resolvers.Mutation = normalMergeDirMethod('../graphql-resolvers/mutation');
+resolvers.Query = normalMergeDirMethod('../graphql-resolvers/queries');
+resolvers.Mutation = normalMergeDirMethod('../graphql-resolvers/mutations');
 const resolve = normalMergeDirMethod('../graphql-resolvers/resolvers');
 Object.keys(resolve).map((key) => {
     if (key in resolvers) throw new Error(`graphql-schema-util:${key} in resolvers is exist`);
