@@ -4,7 +4,7 @@
  * Module dependencies.
  *
  */
-const {start} = require('thrift-node-core');
+const {start, exit} = require('thrift-node-core');
 
 
 const log4js = require('log4js');
@@ -28,6 +28,11 @@ global.NODE_ENV = getEnv();
 start(config, function () {
     getLogger().info('http://localhost:9000')
 });
-
+process.on('exit', function() {
+    exit();
+});
+process.on('SIGINT', function() {
+    exit();
+});
 
 
