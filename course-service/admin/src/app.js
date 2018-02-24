@@ -21,7 +21,10 @@ app.use(getUser({
     "salt": "wenshao"
 }));
 
-
+app.use(async(ctx,next)=>{
+    console.log(ctx.url,ctx.method,ctx.headers);
+    await next();
+})
 // 跨域
 app.use(cors({
     allowMethods: ['GET', 'POST', 'DELETE', 'PATCH', 'PUT'],
@@ -34,10 +37,10 @@ router.post('/graphql', graphqlKoa({
     schema:getGraphqlSchema(),
     log:getLogger('graphql')
 }));
-router.get('/graphql', graphqlKoa({
+/*router.get('/graphql', graphqlKoa({
     schema:getGraphqlSchema(),
     log:getLogger('graphql')
-}));
+}));*/
 
 app.use(router.routes(), router.allowedMethods());
 

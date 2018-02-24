@@ -43,7 +43,7 @@ module.exports = {
     },
     "http": {},
     "web": {
-        "port": 9000,
+        "port": process.env.APP_PORT,
         "app": require('../app')
     }
 }

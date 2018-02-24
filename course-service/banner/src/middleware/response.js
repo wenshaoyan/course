@@ -88,5 +88,4 @@ function func(opt) {
         }
     }
 }
-
 module.exports = func;

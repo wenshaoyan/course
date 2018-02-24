@@ -10,6 +10,7 @@ const {start, exit} = require('thrift-node-core');
 const log4js = require('log4js');
 log4js.configure(require('../config/log4js'));
 global.getLogger = log4js.getLogger;
+const logger = getLogger();
 
 const config = require('../config/service');
 global.getServiceConfig = () => {
@@ -26,13 +27,28 @@ function getEnv() {
 global.NODE_ENV = getEnv();
 
 start(config, function () {
-    getLogger().info('http://localhost:9000')
+    getLogger().info(`listen:${process.env.APP_PORT}`)
 });
-process.on('exit', function() {
-    exit();
+
+process.on('exit',function(code){
+    exit(); // 释放zookeeper连接
+    logger.info('zookeeper session close!');
+    if (code === 1000) {
+        logger.error('process:uncaughtException');
+    }else if (code === 1001) {
+        logger.error('process:SIGINT');
+    } else {
+        logger.error('process:unknown');
+    }
 });
-process.on('SIGINT', function() {
-    exit();
+process.on('uncaughtException',function(){
+    process.exit(1000);
+});
+process.on('SIGINT',function () {
+    process.exit(1001);
+});
+process.on('SIGKILL',function () {
+    process.exit(1002);
 });
 
 
