@@ -47,7 +47,7 @@ process.on('uncaughtException',function(){
 process.on('SIGINT',function () {
     process.exit(1001);
 });
-process.on('SIGKILL',function () {
+process.on('SIGTERM',function () {
     process.exit(1002);
 });
 

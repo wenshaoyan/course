@@ -21,10 +21,6 @@ app.use(getUser({
     "salt": "wenshao"
 }));
 
-app.use(async(ctx,next)=>{
-    console.log(ctx.url,ctx.method,ctx.headers);
-    await next();
-})
 // 跨域
 app.use(cors({
     allowMethods: ['GET', 'POST', 'DELETE', 'PATCH', 'PUT'],
