@@ -6,7 +6,7 @@ module.exports = {
         "register": [
             {
                 "path": "/develop/graphql/admin",
-                "id": "127.0.0.1:9000",
+                "id": `${process.env.APP_IP}:${process.env.APP_PORT}`,
                 "data": {
 
                 }

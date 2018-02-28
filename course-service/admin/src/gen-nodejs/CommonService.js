@@ -3198,7 +3198,6 @@ CommonServiceClient.prototype.recv_topicBankSelect = function(input,mtype,rseqid
     var x = new Thrift.TApplicationException();
     x.read(input);
     input.readMessageEnd();
-    console.log('000000000000000000',x)
     return callback(x);
   }
   var result = new CommonService_topicBankSelect_result();
