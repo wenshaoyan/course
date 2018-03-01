@@ -42,4 +42,14 @@ b = {
         }
     }
 }
+const callback = () => {
 
+};
+const f1 = () => {
+    console.log(arguments);
+}
+function f2(){
+    const ctx = {aaaaaaa:1};
+    f1('=====')
+}
+f2();

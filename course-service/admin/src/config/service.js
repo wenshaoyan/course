@@ -10,7 +10,14 @@ module.exports = {
                 "data": {
 
                 }
-            }
+            },
+            {
+                "path": "/develop/restful/admin",
+                "id": `${process.env.APP_IP}:${process.env.APP_PORT}`,
+                "data": {
+
+                }
+            },
         ]
     },
     "thriftGlobal": {
