@@ -28,8 +28,9 @@ module.exports = {
         return {maxSpeed:1,wingspan:2};
     },
     cars() {
-        throw new Error('111');
-        // return {maxSpeed:2,licensePlate:'1111'};
+        // throw new Error('111');
+        console.log(new Error());
+        return {maxSpeed:2,licensePlate:'1111'};
     },
     vehicles() {
         return {maxSpeed:1,wingspan:1};
