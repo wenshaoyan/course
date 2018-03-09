@@ -14,7 +14,7 @@ public class TestConsumer {
         props.put("bootstrap.servers", "120.92.108.221:9092");
         System.out.println("this is the group part test 1");
         //消费者的组id
-        props.put("group.id", "GroupA");//这里是GroupA或者GroupB
+        props.put("group.id", "GroupC");//这里是GroupA或者GroupB
 
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
@@ -35,8 +35,9 @@ public class TestConsumer {
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(100);
             for (ConsumerRecord<String, String> record : records){
-                System.out.println("====================");
+                System.out.println(records.partitions());
                 //　正常这里应该使用线程池处理，不应该在这里处理
+
                 System.out.printf("offset = %d, key = %s, value = %s", record.offset(), record.key(), record.value()+"\n");
 
             }
