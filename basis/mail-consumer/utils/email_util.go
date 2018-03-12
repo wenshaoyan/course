@@ -4,8 +4,10 @@ import (
 	"net/smtp"
 	"strings"
 	"encoding/json"
+	"os"
 )
-
+var SEND_MAIL_USER = os.Getenv("SEND_MAIL_USER")
+var SEND_MAIL_PASSWORD = os.Getenv("SEND_MAIL_PASSWORD")
 type MailInfo struct {
 	To       string `json:"to"`
 	Subject  string `json:"subject"`
@@ -15,8 +17,8 @@ type MailInfo struct {
 }
 
 func SendToMail(to, subject, body, bodyType string) error {
-	user := "wenshao314106@163.com"
-	password := "Wensi19930314106"
+	user := SEND_MAIL_USER
+	password := SEND_MAIL_PASSWORD
 	host := "smtp.163.com:25"
 	hp := strings.Split(host, ":")
 	auth := smtp.PlainAuth("", user, password, hp[0])
