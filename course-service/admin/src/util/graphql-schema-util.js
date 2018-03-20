@@ -2,7 +2,7 @@
  * Created by wenshao on 2018/02/09.
  * graphql schema 工具
  */
-const {start, normalMergeDirFile, normalMergeDirMethod, baseSchemaString} = require('thrift-node-core');
+const {start, normalMergeDirFile, normalMergeDirMethod, baseSchemaString} = require('potens-core-node');
 const {makeExecutableSchema, mergeSchemas} = require('graphql-tools');
 
 const typeDefs = normalMergeDirFile('../graphql-types');

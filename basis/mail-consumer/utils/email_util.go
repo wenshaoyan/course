@@ -5,6 +5,7 @@ import (
 	"strings"
 	"encoding/json"
 	"os"
+	"fmt"
 )
 var SEND_MAIL_USER = os.Getenv("SEND_MAIL_USER")
 var SEND_MAIL_PASSWORD = os.Getenv("SEND_MAIL_PASSWORD")
@@ -17,6 +18,9 @@ type MailInfo struct {
 }
 
 func SendToMail(to, subject, body, bodyType string) error {
+	if to == "" || subject == "" || body == "" {
+		return  fmt.Errorf("%s", "参数检查失败")
+	}
 	user := SEND_MAIL_USER
 	password := SEND_MAIL_PASSWORD
 	host := "smtp.163.com:25"

@@ -4,12 +4,12 @@
  * Module dependencies.
  *
  */
-const {start, exit} = require('thrift-node-core');
+const {start, exit} = require('potens-core-node');
 
 
-const log4js = require('log4js');
-log4js.configure(require('../config/log4js'));
-global.getLogger = log4js.getLogger;
+const log4j2 = require('log4j2-node');
+log4j2.configure(require('../config/log4js'));
+global.getLogger = log4j2.getLogger;
 const logger = getLogger();
 
 const config = require('../config/service');

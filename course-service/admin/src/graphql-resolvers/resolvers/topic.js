@@ -4,7 +4,7 @@
  */
 'use strict';
 
-const {getThrift} = require('thrift-node-core');
+const {getThrift} = require('potens-core-node');
 const CommonService = 'CommonService';
 
 module.exports = {

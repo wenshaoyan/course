@@ -5,7 +5,7 @@ const convert = require('koa-convert');
 const json = require('koa-json');
 const bodyparser = require('koa-bodyparser')();
 const cors = require('koa2-cors');
-const {formatQuery, methodQuery, graphqlKoa} = require('thrift-node-core');
+const {formatQuery, methodQuery, graphqlKoa} = require('potens-core-node');
 
 const getUser = require('./middleware/get_user');
 const errorSource = require('./config/error_source.json');
