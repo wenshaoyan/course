@@ -6,6 +6,14 @@
  */
 const {start, exit} = require('potens-core-node');
 
+const envSet = new Set(['develop', 'production']);
+function getEnv() {
+    let env = process.env.NODE_ENV;
+    if (env && envSet.has(env)) return env;
+    return 'develop';
+}
+
+global.NODE_ENV = getEnv();
 
 const log4j2 = require('log4j2-node');
 log4j2.configure(require('../config/log4js'));
@@ -17,14 +25,7 @@ global.getServiceConfig = () => {
     return config
 };
 
-const envSet = new Set(['develop', 'production']);
-function getEnv() {
-    let env = process.env.NODE_ENV;
-    if (env && envSet.has(env)) return env;
-    return 'develop';
-}
 
-global.NODE_ENV = getEnv();
 
 start(config, function () {
     getLogger().info(`listen:${process.env.APP_PORT}`)

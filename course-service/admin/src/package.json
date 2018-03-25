@@ -23,10 +23,10 @@
     "koa-router": "^7.1.1",
     "koa2-cors": "^2.0.3",
     "lodash": "^4.17.5",
-    "log4j2-node": "^1.0.1",
+    "log4j2-node": "^1.0.2",
     "node-uuid": "^1.4.8",
     "node-zookeeper-client": "^0.2.2",
-    "potens-core-node": "^1.1.1",
+    "potens-core-node": "^1.1.2",
     "thrift": "^0.10.0"
   },
   "devDependencies": {

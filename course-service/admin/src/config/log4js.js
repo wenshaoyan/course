@@ -2,8 +2,8 @@ module.exports = {
   "appenders": {
     "console":{"type":"console"},
     "kafka":{
-      "type": "console",
-      "socket_config": {"kafkaHost": process.env.KAFKA_HOST, "topic": "global-log"}
+      "type": "kafka",
+      "socket_config": {"kafkaHost": process.env.KAFKA_URL, "topic": "global-log"}
     }
   },
   "categories": {
