@@ -1,10 +1,10 @@
 package com.wenshao.dal.server;
 
+import com.google.gson.Gson;
 import com.wenshao.dal.bean.CacheXmlBean;
+import com.wenshao.dal.bean.ZkNodeDataBean;
 import com.wenshao.dal.constant.ZKConstant;
-import com.wenshao.dal.thriftgen.CacheService;
 import com.wenshao.dal.util.CacheClientUtil;
-import com.wenshao.dal.util.ExceptionUtil;
 import com.wenshao.dal.util.IPUtil;
 import com.wenshao.dal.util.JaxbUtil;
 import org.apache.curator.framework.CuratorFramework;
@@ -15,7 +15,6 @@ import org.apache.logging.log4j.Logger;
 import org.apache.thrift.TMultiplexedProcessor;
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
-import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.server.TThreadedSelectorServer;
@@ -61,7 +60,6 @@ public class Server {
     public Server(TProcessor processor, int port) {
         this.processor = processor;
         this.port = port;
-
     }
 
     public Server(TProcessor processor, int port, Reader cacheReader) {
@@ -130,7 +128,10 @@ public class Server {
         Id id2 = new Id("world", "anyone");
         ACL acl2 = new ACL(ZooDefs.Perms.READ, id2);
         acls.add(acl2);
-        String nodeData = localIp + ":" + this.port;
+        ZkNodeDataBean zkNodeDateBean = new ZkNodeDataBean();
+        zkNodeDateBean.setHost(localIp + ":" + this.port);
+        Gson gson = new Gson();
+        String nodeData = gson.toJson(zkNodeDateBean);
         client.create()
                 .withMode(CreateMode.EPHEMERAL)
                 .forPath('/' + localIp, nodeData.getBytes());
